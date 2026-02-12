@@ -16,4 +16,4 @@ import { AdminController } from './admin.controller';
     AdminService
   ]
 })
-export class AdminModule {}
+export class AdminUserModule {}

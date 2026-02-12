@@ -12,12 +12,15 @@ import { GlobalModule } from './global/global.module';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { 
-  AdminModule, 
   AuthadminModule, 
+  AdminUserModule,
   UserModule, 
   AuthuserModule,
   AsignacionModule,
   ModulosModule,
+  AdminCategoryModule,
+  AdminProductModule,
+  AdminProviderModule
 } from './mod/index'
 
 @Module({
@@ -38,13 +41,15 @@ import {
     }),
 
     GlobalModule, 
-
-    AdminModule,
     AuthadminModule,
+    AdminUserModule,
     UserModule,
     AuthuserModule,
     ModulosModule,
     AsignacionModule,
+    AdminCategoryModule,
+    AdminProductModule,
+    AdminProviderModule
   ],
   controllers: [AppController],
   providers: [AppService],

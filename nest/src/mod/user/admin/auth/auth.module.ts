@@ -5,11 +5,11 @@ import { AuthadminController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from '@guard/secret_key';
 
-import { AdminModule } from '@module/user/admin/user/admin.module';
+import { AdminUserModule } from '@module/user/admin/user/admin.module';
 
 @Module({
   imports: [
-    AdminModule, 
+    AdminUserModule, 
     JwtModule.register({
       global: true,
       secret: jwtConstants.secretAdmin,
