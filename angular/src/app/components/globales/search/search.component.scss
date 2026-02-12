@@ -1,0 +1,143 @@
+:host {
+  --gradient-header-search: linear-gradient(90deg, #007bff 20%, #2dc7ed 100%);
+
+  &[data-theme='dark'], 
+  &:host-context([data-theme='dark']) {
+    --gradient-header-search: linear-gradient(90deg, #4f5050 20%, #919494 100%);
+  }
+}
+
+/* --- NUEVO: BOTÓN DENTRO DE LA CARD --- */
+.btn-close-card {
+  position: absolute;
+  top: 10px;
+  left: 10px; /* Esquina superior izquierda */
+  background: rgba(255, 255, 255, 0.2); /* Fondo semi-transparente para que resalte en el gradient */
+  border: none;
+  color: white;
+  border-radius: 4px;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1010; /* Por encima del header de la card */
+  transition: background 0.3s ease;
+
+  .fa-times {
+    font-size: 0.5em;
+  }
+}
+
+.btn-minimize-card {
+  position: absolute;
+  top: 10px;
+  left: 5px; /* Esquina superior izquierda */
+  background: rgba(255, 255, 255, 0.2); /* Fondo semi-transparente para que resalte en el gradient */
+  border: none;
+  color: white;
+  border-radius: 4px;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1010; /* Por encima del header de la card */
+  transition: background 0.3s ease;
+  margin-left: 7%;
+
+  .fa-window-minimize {
+    font-size: 0.5em;
+  }
+}
+
+/* --- CARD ANIMADA (Mantenemos tu base con un ajuste de posición relativa) --- */
+.animated-card {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(110%); 
+  width: 350px;
+  max-width: 90vw;
+  background-color: white;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-radius: 12px 0 0 12px;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden; 
+
+  &.is-visible {
+    transform: translateY(-50%) translateX(0);
+  }
+
+  .header {
+    margin: 0;
+    padding: 8px;
+    font-size: 1.2rem;
+    text-align: center;
+    /* Tu gradiente anterior */
+    background: var(--gradient-header-search);
+    color: white;
+  }
+
+  .card-body {
+    padding: 20px !important;
+  }
+}
+
+/* Este contenedor controla la posición de TODO el grupo en la pantalla */
+.filter-wrapper {
+  position: absolute;
+  right: 0.5em !important;
+  top: 37% !important;
+  z-index: 100;
+  display: inline-block;
+}
+
+.floating-button {
+  position: relative; /* Cambiado de absolute a relative */
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  
+  &.active {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0);
+  }
+}
+
+.floating-number-filter {
+  cursor: pointer;
+  position: absolute; /* Ahora es absoluto respecto a .filter-wrapper */
+  
+  /* POSICIONAMIENTO EN LA ESQUINA DEL BOTÓN */
+  right: -5px !important; 
+  top: -5px !important; 
+  
+  background-color: red;
+  color: #fff;
+  border-radius: 50%;
+  z-index: 101; /* Siempre por encima del botón */
+  
+  height: 18px; /* Un poquito más grande para mejor visibilidad en móvil */
+  width: 18px;
+  font-size: 10px !important;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  &.active {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0);
+  }
+}

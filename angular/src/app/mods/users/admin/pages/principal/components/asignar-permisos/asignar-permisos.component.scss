@@ -1,0 +1,41 @@
+/* Corrección para que el checkbox no flote a la izquierda */
+.static-check {
+  position: static !important;
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+  cursor: pointer;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+/* Pantallas Grandes (Escritorio / Tablets Grandes) */
+@media only screen and (min-width: 1024px) {
+  .item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 0.5rem;
+  }
+
+  .sub-card {
+    flex: 1 1 calc(25% - 15px); /* 4 columnas */
+    min-width: 250px;
+  }
+}
+
+/* Pantallas Pequeñas (Móviles / Tablets vertical) */
+@media only screen and (max-width: 1023px) {
+  .card {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .sub-card {
+    width: 100%; /* Una columna en móvil */
+  }
+}
+
+/* Estilo extra para iconos de info */
+fa-info-circle {
+  cursor: help;
+}

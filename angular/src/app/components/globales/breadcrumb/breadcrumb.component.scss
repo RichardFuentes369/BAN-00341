@@ -1,0 +1,20 @@
+.breadcrumb-item + .breadcrumb-item::before {
+  color: rgba(132, 128, 128, 0.7) !important;
+  content: "  >  " !important;
+  font-weight: bold;
+}
+
+.link-light {
+  text-decoration: none !important;
+}
+
+.link-light:hover {
+  text-decoration: underline !important;
+  opacity: 0.9;
+}
+
+.breadcrumb {
+  background-color: transparent !important;
+  display: flex;
+  align-items: center;
+}

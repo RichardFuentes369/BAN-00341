@@ -1,0 +1,202 @@
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { CreateAsignacionDto } from './dto/create-asignacion.dto';
+import { UpdateAsignacionDto } from './dto/update-asignacion.dto';
+
+import { Repository } from 'typeorm';
+import { Asignacion } from './entities/asignacion.entity';
+import { Modulo } from '@module/modules/entities/modulo.entity';
+import { I18nService } from 'nestjs-i18n';
+
+@Injectable()
+export class AsignacionService {
+  constructor(
+    @Inject('PERMISO_MODULO_REPOSITORY')
+    private moduloRepository: Repository<Modulo>,
+    @Inject('PERMISO_ASIGNACION_REPOSITORY')
+    private asignacionRepository: Repository<Asignacion>,
+    private i18n: I18nService
+  ) {}
+
+  async findOne(
+    lang: string, 
+    moduloId: number,
+    nombrePermiso: string, 
+    userId: number
+  ): Promise<Asignacion>{
+
+    if(moduloId == 0){
+      return this.asignacionRepository.findOne({
+        where: {
+          permiso: nombrePermiso,
+          user_id: userId
+        },
+      });
+    }else{
+      return this.asignacionRepository.findOne({
+        where: {
+          permiso: nombrePermiso,
+          modulo_padre_id: moduloId,
+          user_id: userId
+        },
+      });
+    }
+
+  }
+
+  async findAll(
+    lang: string, 
+    userId: number, 
+    permiso: string
+  ) {
+
+    if(permiso != ''){
+      const Permiso = await this.moduloRepository.createQueryBuilder('modulo')
+      .where('modulo.permiso = :permiso', { permiso:permiso })
+      .getOne();
+      
+      const Modulos = await this.asignacionRepository.createQueryBuilder('permiso')
+      .where('permiso.user_id = :userId', { userId:userId })
+      .andWhere('permiso.modulo_padre_id = :id_permiso', { id_permiso:Permiso.id })
+      .getRawMany();
+      
+      return Modulos;
+    }
+
+    const Modulos = await this.asignacionRepository.createQueryBuilder('permiso')
+    .where('permiso.modulo_padre_id  Is Null')
+    .andWhere('permiso.user_id = :userId', { userId:userId })
+    .getRawMany();
+
+    return Modulos;
+  }
+
+  organizarJerarquia(data) {
+    // Crear un mapa de todos los elementos por ID para acceder fácilmente
+    const map = new Map();
+    const roots = [];
+  
+    // Crear los nodos base (padres, hijos, nietos)
+    data.forEach(item => {
+      if (!item.mpm_modulo_padre_id) {
+        map.set(item.mpm_id, { ...item, 'mpm_toogle': false, children: [] });
+      }else{
+        map.set(item.mpm_id, { ...item, children: [] });
+      }
+  
+      // Si no tiene 'mpm_modulo_padre_id', es un padre y lo agregamos a roots
+      if (!item.mpm_modulo_padre_id) {
+        roots.push(map.get(item.mpm_id));
+      }
+    });
+  
+    // Ahora asignamos a cada hijo a su correspondiente padre
+    data.forEach(item => {
+      if (item.mpm_modulo_padre_id) {
+        const parent = map.get(item.mpm_modulo_padre_id);
+        if (parent) {
+          parent.children.push(map.get(item.mpm_id));
+        }
+      }
+    });
+  
+    return roots;
+  }
+
+  async findAllForUser(
+    lang:string, 
+    queryParams,
+  ) {
+
+    // Realizar la consulta
+    const query = await this.moduloRepository.createQueryBuilder('mpm')
+    .select([
+      'mpm.modulo_padre_id',
+      'mpm.id',
+      'mpm.permiso',
+      'mpm.nombre',
+      'mpm.descripcion',
+    ])
+    .addSelect(subQuery => {
+      return subQuery
+        .select('CASE WHEN mpma.permiso IS NOT NULL THEN 1 ELSE 0 END as asignado')
+        .from('mod_permisos_modulo_asignacion', 'mpma')
+        .andWhere(`
+          CASE WHEN mpm.modulo_padre_id IS NULL THEN
+            mpma.modulo_padre_id IS NULL AND
+            mpma.permiso = mpm.permiso
+          ELSE
+            mpma.permiso = mpm.permiso AND
+            mpma.modulo_padre_id = mpm.modulo_padre_id
+          END
+        `)
+        .andWhere('mpma.user_id = :userId', { userId: queryParams.userId })
+    }, 'asignado')
+    .getRawMany();
+
+    const result = this.organizarJerarquia(query)
+
+    return result;
+  }
+
+  // requieren permisos de usuario
+
+  async updateAsignacion(
+    lang: string,
+    idPermiso: number, 
+    idPadre: string, 
+    opcion: number, 
+    idUser: number
+  ){
+
+    const permisoMaestro = await this.moduloRepository.findOne({
+      where: {
+        id: idPermiso
+      },
+    });
+
+    if(opcion == 0){
+      let model = {
+        'permiso': permisoMaestro.permiso,
+        'modulo_padre_id':  (permisoMaestro.modulo_padre_id) ? permisoMaestro.modulo_padre_id : null,
+        'nombre':  permisoMaestro.nombre,
+        'descripcion':  permisoMaestro.descripcion,
+        'user_id': idUser
+      }
+      
+      try {
+        const guardarAsignacion = this.asignacionRepository.save(model)
+        return {
+          'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
+          'message': this.i18n.t('modulo.MSJ_PERMISO_ASIGNADO_MESSAGE', { lang }),
+          'status': 200,
+        }
+      } catch (error) {
+        throw new NotFoundException(this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('user.MSJ_IS_DESACTIVED', { lang }) });
+      }
+    }
+    
+    if(permisoMaestro){
+      const permisoAsignado = await this.asignacionRepository.findOne({
+        where: {
+          'permiso': permisoMaestro.permiso,
+          'modulo_padre_id': (permisoMaestro.modulo_padre_id) ? permisoMaestro.modulo_padre_id : null,
+          'user_id': idUser
+        },  
+      });
+      
+      try {
+        const actualizarAsignacion = this.asignacionRepository.delete(permisoAsignado.id);
+        return {
+          'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
+          'message': this.i18n.t('modulo.MSJ_PERMISO_REMOVIDO_MESSAGE', { lang }),
+          'status': 200,
+        }
+      } catch (error) {
+        throw new NotFoundException(
+          this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('user.MSJ_IS_DESACTIVED', { lang }) }
+        );
+      }
+    }
+
+  }
+}

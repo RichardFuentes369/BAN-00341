@@ -1,0 +1,1 @@
+export const LAYOUT_ADMIN_PAGE_MOD = 'mod';

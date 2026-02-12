@@ -1,0 +1,108 @@
+<div class="">
+  <div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" 
+        [ngClass]="minimizarSliderbar == false ? 'toggled': ''" 
+        id="accordionSidebar">
+
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" [routerLink]="LAYOUT_PAGE_PROFILE">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">{{NAME_PAGE}}</div>
+      </a>
+
+      <hr class="sidebar-divider my-0">
+
+      <div class="sidebar-heading">
+        {{ 'layout-admin.WORD_MODULES' | translate}}
+      </div>
+
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="LAYOUT_ADMIN_PAGE_MOD" routerLinkActive="active">
+          <i class="fa fa-bars"></i>
+          <span>
+            {{ 'layout-admin.OPTION_MODULES_MENU' | translate}}
+          </span>
+        </a>
+      </li>
+
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle" (click)="mostrarMenuLateral()"></button>
+      </div>
+
+    </ul>
+    <div id="content-wrapper" class="d-flex flex-column">
+      
+      <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
+
+        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3"
+          (click)="mostrarMenuLateral()">
+          <i class="fa fa-bars"></i>
+        </button>
+
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+          <div class="input-group">
+            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+              aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button">
+                <i class="fas fa-search fa-sm"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item dropdown no-arrow my-auto text-center pl-2 pr-2">
+            <app-globales-colormode></app-globales-colormode>
+            <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
+          </li>
+          
+          <div class="topbar-divider d-none d-sm-block"></div>
+
+          <li class="nav-item dropdown no-arrow pl-2 pr-2">
+            <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+              <img class="img-profile rounded-circle" src="../../../assets/images/undraw_profile.svg">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+              <a class="dropdown-item" routerLinkActive="active" [routerLink]="LAYOUT_PAGE_PROFILE">
+                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                {{ 'layout-admin.DRADROPDOW_MENU_PROFILE' | translate}}
+              </a>
+              <a class="dropdown-item" routerLinkActive="active" [routerLink]="LAYOUT_PAGE_SETTINGS">
+                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                {{ 'layout-admin.DRADROPDOW_MENU_SETTING' | translate}}
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" (click)="cerrarSession()" style="cursor: pointer;">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                {{ 'layout-admin.DRADROPDOW_MENU_LOGOUT' | translate}}
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div id="content-scroll-area">
+        <div id="content">
+          <div class="container-fluid pt-4 mb-3">
+            <app-globales-breadcrumbs></app-globales-breadcrumbs>
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+
+        <footer class="sticky-footer bg-white shadow-lg mt-auto">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright &copy; {{CURRENT_YEAR}}</span>
+            </div>
+          </div>
+        </footer>
+      </div>
+      </div>
+    </div>
+  </div>

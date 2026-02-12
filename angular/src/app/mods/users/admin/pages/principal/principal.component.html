@@ -1,0 +1,52 @@
+<div class="card shadow mb-4">
+  <h1 class="text-center m-0 mt-4 mb-2">
+    {{ 'mod-users.PAGE_ADMIN_TITLE' | translate}}
+  </h1>
+
+  <div class="p-5">
+    <app-globales-search
+      [icon]="iconFilter" 
+      [componente]="componenteFilter"
+      (filtroItem) = "filtroData()"
+    >
+    </app-globales-search>
+
+    @if (cargarTabla) {
+      <app-globales-tablecrud
+        [campoFiltro] = showcampoFiltro
+        [endPoint] = endPoint
+        [columnas] = columnas
+        [permisosAcciones] = permisos
+        [filters] = filters
+    
+        (verItem) = "verData($event)"
+        (crearNuevoItem) = "crearData($event)"
+        (editarItem) = "editarData($event)"
+        (activarItem) = "activarData($event)"
+        (asignar) = "asignarData($event)"
+        (eliminarItem) = "eliminarData($event)"
+      >
+      </app-globales-tablecrud>
+    }
+    @else {
+      <app-globales-loading></app-globales-loading>
+    }
+  </div>
+
+  <app-globales-modal-boostrap
+    [tamano]="tamano"
+    [scrollable]="scrollable"
+    [title]="title"
+    [save]="save"
+    [buttonSave]="buttonSave"
+    [edit]="edit"
+    [buttonEdit]="buttonEdit"
+    [cancel]="cancel"
+    [buttonCancel]="buttonCancel"
+    [componentePrecargado]="componentePrecargado"
+    [cierreModal]="cierreModal"
+    (actualizarTabla)="refrescarTabla()"
+  >
+  </app-globales-modal-boostrap>
+
+</div>
