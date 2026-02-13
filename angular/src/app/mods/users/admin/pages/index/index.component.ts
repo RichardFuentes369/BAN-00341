@@ -31,7 +31,6 @@ export class IndexComponent implements OnInit{
     private permisosService :PermisosService
   ) { }
 
-
   public MOD_USER_PAGE_ADMIN = MOD_USER_PAGE_ADMIN
   public MOD_USER_PAGE_FINAL = MOD_USER_PAGE_FINAL
 
