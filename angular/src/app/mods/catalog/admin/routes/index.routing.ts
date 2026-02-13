@@ -3,6 +3,12 @@ import { Routes } from '@angular/router';
 import { adminGuard } from '@guard/roles/admin/admin.guard';
 
 import { 
+  BREADCRUMB_PATH_ADMIN_CATEGORY,
+  BREADCRUMB_PATH_ADMIN_SUPPLIER,
+  PATH_ADMIN_CATEGORY,
+  PATH_ADMIN_SUPPLIER,
+  TITLE_PATH_ADMIN_CATEGORY,
+  TITLE_PATH_ADMIN_SUPPLIER,
   TITLE_PATH_CATALOG_INDEX 
 } from '@mod/catalog/const/catalog.const';
 
@@ -16,22 +22,22 @@ export const CatalogRoutes: Routes = [
     data: { breadcrumb: null },
     component: IndexComponent,
   },
-  // {
-  //   path: PATH_ADMIN_USERS,
-  //   title: TITLE_PATH_ADMIN_USERS,
-  //   data: { breadcrumb: BREADCRUMB_PATH_ADMIN_USERS },
-  //   canActivate: [
-  //     adminGuard
-  //   ],
-  //   loadChildren: () => import('./administradores.routing').then(x=>x.UsuariosAdministradoresRoutes)
-  // },
-  // {
-  //   path: PATH_FINAL_USERS,
-  //   title: TITLE_PATH_FINAL_USERS,
-  //   data: { breadcrumb: BREADCRUMB_PATH_FINAL_USERS },
-  //   canActivate: [
-  //     adminGuard
-  //   ],
-  //   loadChildren: () => import('./finales.routing').then(x=>x.UsuariosFinalesRoutes)
-  // },
+  {
+    path: PATH_ADMIN_CATEGORY,
+    title: TITLE_PATH_ADMIN_CATEGORY,
+    data: { breadcrumb: BREADCRUMB_PATH_ADMIN_CATEGORY },
+    canActivate: [
+      adminGuard
+    ],
+    loadChildren: () => import('./categorias.routing').then(x=>x.CatalogoCategoriasRoutes)
+  },
+  {
+    path: PATH_ADMIN_SUPPLIER,
+    title: TITLE_PATH_ADMIN_SUPPLIER,
+    data: { breadcrumb: BREADCRUMB_PATH_ADMIN_SUPPLIER },
+    canActivate: [
+      adminGuard
+    ],
+    loadChildren: () => import('./proveedores.routing').then(x=>x.CatalogoProveedoresRoutes)
+  },
 ];
