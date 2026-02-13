@@ -8,6 +8,6 @@ export { ModulosModule } from './modules/modulos.module'
 export { AsignacionModule } from './user/admin/permission/asignacion/asignacion.module'
 
 export { AdminCategoryModule } from './category/admin/categories/category.module';
-export { AdminProductModule } from './product/admin/products/product.module';
 export { AdminProviderModule } from './provider/admin/providers/provider.module';
+export { AdminInventoryModule } from './inventory/admin/inventory/inventory.module';
 

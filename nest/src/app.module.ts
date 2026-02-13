@@ -19,8 +19,8 @@ import {
   AsignacionModule,
   ModulosModule,
   AdminCategoryModule,
-  AdminProductModule,
-  AdminProviderModule
+  AdminProviderModule,
+  AdminInventoryModule
 } from './mod/index'
 
 @Module({
@@ -48,8 +48,8 @@ import {
     ModulosModule,
     AsignacionModule,
     AdminCategoryModule,
-    AdminProductModule,
-    AdminProviderModule
+    AdminProviderModule,
+    AdminInventoryModule
   ],
   controllers: [AppController],
   providers: [AppService],
