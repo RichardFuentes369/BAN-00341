@@ -1,5 +1,7 @@
 {
   "TITTLE_MENU": "Menü",
   "PAGES_USERS": "Benutzer",
-  "PAGES_MODULES": "Module"
+  "PAGES_MODULES": "Module",
+  "PAGES_CATALOG": "Katalog",
+  "PAGE_STOCK": "Aktie"
 }

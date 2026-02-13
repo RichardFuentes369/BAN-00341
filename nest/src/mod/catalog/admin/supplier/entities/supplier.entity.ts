@@ -1,23 +1,22 @@
-// import { PermisosModulos } from 'src/mod/permisos/modulos/entities/modulo.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('mod_catalog_supplier')
 export class Supplier {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column()
+  @Column({ type: 'bigint' }) // NIT suele ser un número largo
   nit: number;
 
-  @Column()
-  razon_social: number;
+  @Column({ type: 'varchar', length: 255 })
+  razon_social: string;
 
-  @Column()
-  direccion: number;
+  @Column({ type: 'varchar', length: 255 })
+  direccion: string;
 
-  @Column()
-  telefono: number;
+  @Column({ type: 'varchar', length: 50 })
+  telefono: string;
 
-  @Column()
-  correo: number;
+  @Column({ type: 'varchar', length: 150 })
+  correo: string;
 }

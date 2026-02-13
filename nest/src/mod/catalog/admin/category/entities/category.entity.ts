@@ -3,12 +3,12 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity('mod_catalog_category')
 export class Category {
-  @PrimaryGeneratedColumn('increment')
+  @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  nombre: number; // [Alimentos y Abarrotes - Bebidas y Liquidos - Frescos y Lacteos - Limpieza e Higiene]
+  @Column({ type: 'varchar', length: 255, unique: true })
+  nombre: string; // [Alimentos y Abarrotes - Bebidas y Liquidos - Frescos y Lacteos - Limpieza e Higiene]
 
-  @Column()
-  descripcion: number;
+  @Column({ type: 'varchar', length: 255 })
+  descripcion: string;
 }

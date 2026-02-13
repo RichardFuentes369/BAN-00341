@@ -8,7 +8,7 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 
 import { TranslateModule } from '@ngx-translate/core';
 import { STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_TOKEN_ADMIN } from '@const/app.const';
-import { ADMIN_PAGE_MENU_PERSMISSION_USERS, ADMIN_PAGE_MENU_PERSMISSION_MODULES, LAYOUT_ADMIN_PAGE_USERS, LAYOUT_ADMIN_PAGE_MODULES } from '@mod/main/const/main.const';
+import { ADMIN_PAGE_MENU_PERSMISSION_USERS, ADMIN_PAGE_MENU_PERSMISSION_MODULES, LAYOUT_ADMIN_PAGE_USERS, LAYOUT_ADMIN_PAGE_MODULES, LAYOUT_ADMIN_PAGE_CATALOG, LAYOUT_ADMIN_PAGE_STOCK } from '@mod/main/const/main.const';
 
 @Component({
   selector: 'app-mod-menu-admin',
@@ -32,6 +32,8 @@ export class MenuAdminComponent implements OnInit{
   public ADMIN_PAGE_MENU_PERSMISSION_MODULES = ADMIN_PAGE_MENU_PERSMISSION_MODULES
   public LAYOUT_ADMIN_PAGE_USERS = LAYOUT_ADMIN_PAGE_USERS
   public LAYOUT_ADMIN_PAGE_MODULES = LAYOUT_ADMIN_PAGE_MODULES
+  public LAYOUT_ADMIN_PAGE_CATALOG = LAYOUT_ADMIN_PAGE_CATALOG
+  public LAYOUT_ADMIN_PAGE_STOCK = LAYOUT_ADMIN_PAGE_STOCK
 
   menu: any[] = []
 

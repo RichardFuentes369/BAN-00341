@@ -20,6 +20,32 @@
       </a>
       }
 
+      <!-- @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_USERS)){ -->
+      <a [routerLink]="LAYOUT_ADMIN_PAGE_CATALOG" class="item" style="text-decoration: none; color: inherit; display: block;">
+        <div class="card card-option">
+          <div class="card-body text-center p-0 pb-3 pt-3">
+            <img src="https://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/256/Actions-address-book-new-icon.png" width="80px">
+          </div>
+          <div class="card-footer text-center">
+            <span>{{ 'mod-main.PAGES_CATALOG' | translate }}</span>
+          </div>
+        </div>
+      </a>
+      <!-- } -->
+
+      <!-- @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_USERS)){ -->
+      <a [routerLink]="LAYOUT_ADMIN_PAGE_STOCK" class="item" style="text-decoration: none; color: inherit; display: block;">
+        <div class="card card-option">
+          <div class="card-body text-center p-0 pb-3 pt-3">
+            <img src="https://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/256/Actions-address-book-new-icon.png" width="80px">
+          </div>
+          <div class="card-footer text-center">
+            <span>{{ 'mod-main.PAGE_STOCK' | translate }}</span>
+          </div>
+        </div>
+      </a>
+      <!-- } -->
+
       @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_MODULES)){
       <a [routerLink]="LAYOUT_ADMIN_PAGE_MODULES" class="item" style="text-decoration: none; color: inherit; display: block;">
         <div class="card card-option">

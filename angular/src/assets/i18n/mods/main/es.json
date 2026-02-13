@@ -1,5 +1,7 @@
 {
   "TITTLE_MENU": "Menú",
   "PAGES_USERS": "Usuarios",
-  "PAGES_MODULES": "Modulos"
+  "PAGES_MODULES": "Modulos",
+  "PAGES_CATALOG": "Catalogo",
+  "PAGE_STOCK": "Existencia"
 }
