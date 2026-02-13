@@ -18,9 +18,11 @@ import {
   AuthuserModule,
   AsignacionModule,
   ModulosModule,
-  AdminCategoryModule,
-  AdminProviderModule,
-  AdminInventoryModule
+  CategoryModule,
+  ProductModule,
+  SupplierModule,
+  LossModule,
+  InventoryModule,
 } from './mod/index'
 
 @Module({
@@ -47,9 +49,11 @@ import {
     AuthuserModule,
     ModulosModule,
     AsignacionModule,
-    AdminCategoryModule,
-    AdminProviderModule,
-    AdminInventoryModule
+    CategoryModule,
+    ProductModule,
+    SupplierModule,
+    LossModule,
+    InventoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
