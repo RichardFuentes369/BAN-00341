@@ -1,5 +1,33 @@
 {
-    "MODULE_TITLE": "Catálogo",
-    "BUTTON_CATEGORY": "Categorías",
-    "BUTTON_SUPPLIER": "Proveedores"
+  "UNKNOW_MODULE_TITLE": "Desconocido",
+
+  "PAGE_CATEGORY_TITLE": "Categorías",
+  "PAGE_SUPPLIER_TITLE": "Proveedores",
+
+  "MODULE_TITLE": "Catálogo",
+
+  "BUTTON_SAVE_": "Guardar",
+  "BUTTON_UPDATE_": "Actualizar",
+  "BUTTON_CANCEL": "Cancelar",
+  "BUTTON_BACK": "Volver",
+  "BUTTON_SEARCH": "Buscar",
+
+  "CATEGORY": {
+    "COLUMN_ID": "Id",
+    "COLUMN_NAME": "Nombre",
+    "COLUMN_DESCRIPTION": "Descripcion",
+    "COLUMN_STATUS": "Estado"
+  },
+
+  "SUPPLIER": {
+    "COLUMN_ID": "ID",
+    "COLUMN_BUSINESS_NIT": "NIT / Identificación Tributaria",
+    "COLUMN_BUSINESS_NAME": "Razón Social",
+    "COLUMN_BUSINESS_ADDRESS": "Dirección de la Empresa",
+    "COLUMN_BUSINESS_PHONE": "Teléfono de la Empresa",
+    "COLUMN_BUSINESS_EMAIL": "Correo Electrónico de la Empresa"
+  },
+
+  "BUTTON_CATEGORY": "Categorías",
+  "BUTTON_SUPPLIER": "Proveedores"
 }

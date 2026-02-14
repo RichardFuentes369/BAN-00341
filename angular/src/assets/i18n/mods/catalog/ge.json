@@ -1,5 +1,33 @@
 {
-    "MODULE_TITLE": "Katalog",
-    "BUTTON_CATEGORY": "Kategorien",
-    "BUTTON_SUPPLIER": "Lieferanten"
+  "UNKNOW_MODULE_TITLE": "Unbekannt",
+
+  "PAGE_CATEGORY_TITLE": "Kategorien",
+  "PAGE_SUPPLIER_TITLE": "Lieferanten",
+
+  "MODULE_TITLE": "Katalog",
+
+  "BUTTON_SAVE_": "Speichern",
+  "BUTTON_UPDATE_": "Aktualisieren",
+  "BUTTON_CANCEL": "Abbrechen",
+  "BUTTON_BACK": "Zurück",
+  "BUTTON_SEARCH": "Suchen",
+
+  "CATEGORY": {
+    "COLUMN_ID": "ID",
+    "COLUMN_NAME": "Name",
+    "COLUMN_DESCRIPTION": "Beschreibung",
+    "COLUMN_STATUS": "Status"
+  },
+
+  "SUPPLIER": {
+    "COLUMN_ID": "ID",
+    "COLUMN_BUSINESS_NIT": "Steuernummer",
+    "COLUMN_BUSINESS_NAME": "Firmenname",
+    "COLUMN_BUSINESS_ADDRESS": "Geschäftsadresse",
+    "COLUMN_BUSINESS_PHONE": "Geschäftstelefon",
+    "COLUMN_BUSINESS_EMAIL": "Geschäfts-E-Mail"
+  },
+  
+  "BUTTON_CATEGORY": "Kategorien",
+  "BUTTON_SUPPLIER": "Lieferanten"
 }

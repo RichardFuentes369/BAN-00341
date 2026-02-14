@@ -1303,7 +1303,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"nombre\": \"Limpieza e Higiene\",\r\n    \"descripcion\": \"Limpieza e Higiene\"\r\n}",
+											"raw": "{\r\n    \"nombre\": \"Papelería y Oficina\",\r\n    \"descripcion\": \"Papelería y Oficina\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1534,7 +1534,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"nit\": \"100005\",\r\n    \"razon_social\": \"Proveedor 5\",\r\n    \"direccion\": \"calle 32 a # 52 - 105\",\r\n    \"telefono\": \"607 38542525\",\r\n    \"correo\": \"proveedor5@gmail.com\"\r\n}",
+											"raw": "{\r\n    \"nit\": \"10000{{provider_id}}\",\r\n    \"razon_social\": \"Proveedor {{provider_id}}\",\r\n    \"direccion\": \"calle 32 a # 52 - 105\",\r\n    \"telefono\": \"607 38542525\",\r\n    \"correo\": \"proveedor{{provider_id}}@gmail.com\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1656,10 +1656,6 @@
 					]
 				}
 			]
-		},
-		{
-			"name": "providers",
-			"item": []
 		}
 	]
 }

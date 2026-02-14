@@ -1,5 +1,34 @@
 {
-    "MODULE_TITLE": "Catalog",
-    "BUTTON_CATEGORY": "Categories",
-    "BUTTON_SUPPLIER": "Suppliers"
+  "UNKNOW_MODULE_TITLE": "Unknown",
+
+  "PAGE_CATEGORY_TITLE": "Categories",
+  "PAGE_SUPPLIER_TITLE": "Suppliers",
+
+  "MODULE_TITLE": "Catalog",
+
+  "BUTTON_SAVE_": "Save",
+  "BUTTON_UPDATE_": "Update",
+  "BUTTON_CANCEL": "Cancel",
+  "BUTTON_BACK": "Back",
+  "BUTTON_SEARCH": "Search",
+
+  "CATEGORY": {
+    "COLUMN_ID": "ID",
+    "COLUMN_NAME": "Name",
+    "COLUMN_DESCRIPTION": "Description",
+    "COLUMN_STATUS": "Status"
+  },
+
+  "SUPPLIER": {
+    "COLUMN_ID": "ID",
+    "COLUMN_BUSINESS_NIT": "Tax ID / Tax Identification Number",
+    "COLUMN_BUSINESS_NAME": "Bussines Name",
+    "COLUMN_BUSINESS_ADDRESS": "Bussiness Address",
+    "COLUMN_BUSINESS_PHONE": "Bussines Phone",
+    "COLUMN_BUSINESS_EMAIL": "Bussiness Email"
+  },
+
+  "BUTTON_CATEGORY": "Categories",
+  "BUTTON_SUPPLIER": "Suppliers"
+
 }

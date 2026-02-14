@@ -1,5 +1,33 @@
 {
-    "MODULE_TITLE": "Catalogue",
-    "BUTTON_CATEGORY": "Catégories",
-    "BUTTON_SUPPLIER": "Fournisseurs"
+  "UNKNOW_MODULE_TITLE": "Inconnu",
+
+  "PAGE_CATEGORY_TITLE": "Catégories",
+  "PAGE_SUPPLIER_TITLE": "Fournisseurs",
+
+  "MODULE_TITLE": "Catalogue",
+
+  "BUTTON_SAVE_": "Enregistrer",
+  "BUTTON_UPDATE_": "Mettre à jour",
+  "BUTTON_CANCEL": "Annuler",
+  "BUTTON_BACK": "Retour",
+  "BUTTON_SEARCH": "Rechercher",
+
+  "CATEGORY": {
+    "COLUMN_ID": "ID",
+    "COLUMN_NAME": "Nom",
+    "COLUMN_DESCRIPTION": "Description",
+    "COLUMN_STATUS": "État"
+  },
+
+  "SUPPLIER": {
+    "COLUMN_ID": "ID",
+    "COLUMN_BUSINESS_NIT": "Numéro d'identification fiscale",
+    "COLUMN_BUSINESS_NAME": "Raison sociale",
+    "COLUMN_BUSINESS_ADDRESS": "Adresse de l'entreprise",
+    "COLUMN_BUSINESS_PHONE": "Téléphone de l'entreprise",
+    "COLUMN_BUSINESS_EMAIL": "E-mail de l'entreprise"
+  },
+
+  "BUTTON_CATEGORY": "Catégories",
+  "BUTTON_SUPPLIER": "Fournisseurs"
 }
