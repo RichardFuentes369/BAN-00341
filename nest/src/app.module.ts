@@ -21,9 +21,9 @@ import {
   CategoryModule,
   ProductModule,
   SupplierModule,
-  LossModule,
-  InventoryModule,
 } from './mod/index'
+import { TiposModule } from './mod/merma/tipos/tipos.module';
+import { MermasModule } from './mod/merma/mermas/mermas.module';
 
 @Module({
   imports: [
@@ -52,8 +52,8 @@ import {
     CategoryModule,
     ProductModule,
     SupplierModule,
-    LossModule,
-    InventoryModule,
+    TiposModule,
+    MermasModule,
   ],
   controllers: [AppController],
   providers: [AppService],

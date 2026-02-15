@@ -1,0 +1,68 @@
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
+import { SupplierService } from './supplier.service';
+import { Supplier } from './entities/supplier.entity';
+import { ApiTags } from '@nestjs/swagger';
+import { AdminGuard } from '@guard/admin/admin.guard';
+import { GetUser } from 'src/decorator/getIdUser.decorator';
+import { FilterCategoryrDto } from '@module/catalogo/supplier/dto/filter-supplier.dto';
+
+@Controller('supplier')
+export class SupplierController {
+  constructor(private readonly supplierService: SupplierService) {}
+
+  @ApiTags('supplier')
+  @Get('obtener-proveedores')
+  findAll(
+    @Query('lang') lang: string,
+    @Query() filterDto: FilterCategoryrDto,
+    @GetUser('id') userId: number
+  ) {
+    return this.supplierService.findAll(filterDto, lang);
+  }
+
+  @ApiTags('supplier')
+  @UseGuards(AdminGuard)
+  @Get('obtener-proveedor')
+  findOne(
+    @Query('_id') _id: string,
+    @Query('lang') lang: string,
+    @GetUser('id') userId: number
+  ) {
+    return this.supplierService.findOne(lang, +_id);
+  }
+
+  @ApiTags('supplier')
+  @UseGuards(AdminGuard)
+  @Post('crear-proveedor')
+  create(
+    @Query('lang') lang: string,
+    @Body() supplierData: Partial<Supplier>,
+    @GetUser('id') userId: number
+  ) {
+    return this.supplierService.create(lang, supplierData, userId);
+  }
+
+  @ApiTags('supplier')
+  @UseGuards(AdminGuard)
+  @Patch('editar-proveedor')
+  update(
+    @Query('lang') lang: string,
+    @Query('_id') _id: string,
+    @Body() supplierData: Partial<Supplier>,
+    @GetUser('id') userId: number
+  ) {
+    return this.supplierService.update(lang, +_id, supplierData, userId);
+  }
+
+  @ApiTags('supplier')
+  @UseGuards(AdminGuard)
+  @Delete('eliminar-proveedor')
+  remove(
+    @Query('lang') lang: string,
+    @Query('_id') _id: string,
+    @GetUser('id') userId: number
+  ) {
+    const idsNumeros: number[] = _id.split(',').map(str => parseInt(str.trim(), 10));
+    return this.supplierService.remove(lang, idsNumeros, userId);
+  }
+}

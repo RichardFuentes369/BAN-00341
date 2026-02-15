@@ -18,10 +18,6 @@ export const PATH_CATALOG = 'catalog';
 export const TITLE_PATH_CATALOG = 'Catalogo';
 export const BREADCRUMB_PATH_CATALOG = 'Catalogo';
 
-export const PATH_STOCK = 'stock';
-export const TITLE_PATH_STOCK = 'Existencia';
-export const BREADCRUMB_PATH_STOCK = 'Existencia';
-
 export const PATH_MODULES = 'modules';
 export const TITLE_PATH_MODULES = 'Modulos';
 export const BREADCRUMB_PATH_MODULES = 'Modulos';

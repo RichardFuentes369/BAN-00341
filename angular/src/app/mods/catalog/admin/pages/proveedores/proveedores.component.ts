@@ -66,15 +66,15 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
       data: 'razon_social',
     },
     {
-      title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_PHONE'),
+      title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_ADDRESS'),
       data: 'direccion',
     },
     {
-      title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_EMAIL'),
+      title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_PHONE'),
       data: 'telefono',
     },
     {
-      title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_ADDRESS'),
+      title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_EMAIL'),
       data: 'correo',
     },
   ];

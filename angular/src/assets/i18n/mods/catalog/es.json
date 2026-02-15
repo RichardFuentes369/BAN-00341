@@ -21,7 +21,7 @@
 
   "SUPPLIER": {
     "COLUMN_ID": "ID",
-    "COLUMN_BUSINESS_NIT": "NIT / Identificación Tributaria",
+    "COLUMN_BUSINESS_NIT": "NIT",
     "COLUMN_BUSINESS_NAME": "Razón Social",
     "COLUMN_BUSINESS_ADDRESS": "Dirección de la Empresa",
     "COLUMN_BUSINESS_PHONE": "Teléfono de la Empresa",
