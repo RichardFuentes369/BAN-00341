@@ -1,6 +1,6 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { In, Like, Repository } from 'typeorm';
-import { Category } from './entities/category.entity';
+import { Categoria } from './entities/category.entity';
 import { FilterCategoryrDto } from '@module/catalogo/category/dto/filter-category.dto';
 import { I18nService } from 'nestjs-i18n';
 
@@ -8,7 +8,7 @@ import { I18nService } from 'nestjs-i18n';
 export class CategoryService {
   constructor(
     @Inject('CATEGORY_REPOSITORY') // Asegúrate de que el Provider coincida en tu módulo
-    private categoryRepository: Repository<Category>,
+    private categoryRepository: Repository<Categoria>,
     private i18n: I18nService
   ) {}
 
@@ -79,7 +79,7 @@ export class CategoryService {
     return category;
   }
 
-  async create(lang: string, categoryData: Partial<Category>, userId: number) {
+  async create(lang: string, categoryData: Partial<Categoria>, userId: number) {
     try {
       // Opcional: Validar si ya existe una categoría con ese nombre
       const exists = await this.categoryRepository.findOne({ where: { nombre: categoryData.nombre } });
@@ -102,7 +102,7 @@ export class CategoryService {
     }
   }
 
-  async update(lang: string, id: number, categoryData: Partial<Category>, userId: number) {
+  async update(lang: string, id: number, categoryData: Partial<Categoria>, userId: number) {
     const category = await this.findOne(lang, id);
     
     return this.categoryRepository.save({

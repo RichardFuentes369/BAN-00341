@@ -1,9 +1,9 @@
 // import { PermisosModulos } from 'src/mod/permisos/modulos/entities/modulo.entity';
-import { Product } from '@module/catalogo/product/entities/product.entity';
+import { Producto } from '@module/catalogo/product/entities/product.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity('mod_catalogo_categorias')
-export class Category {
+export class Categoria {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -13,6 +13,7 @@ export class Category {
   @Column({ type: 'varchar', length: 255 })
   descripcion: string;
 
-  @OneToMany(() => Product, (producto) => producto.categoria)
-  produto: Product[];
+  // Relation
+  @OneToMany(() => Producto, (producto) => producto.id_categoria)
+  produtos: Producto[];
 }

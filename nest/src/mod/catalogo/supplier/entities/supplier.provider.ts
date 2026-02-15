@@ -1,10 +1,10 @@
 import { DataSource } from 'typeorm';
-import { Supplier } from './supplier.entity';
+import { Proveedor } from './supplier.entity';
 
 export const supplierProviders = [
   {
     provide: 'SUPPLIER_REPOSITORY',
-    useFactory: (dataSource: DataSource) => dataSource.getRepository(Supplier),
+    useFactory: (dataSource: DataSource) => dataSource.getRepository(Proveedor),
     inject: ['DATA_SOURCE'],
   },
 ];

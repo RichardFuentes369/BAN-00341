@@ -1,11 +1,11 @@
 // import { PermisosModulos } from 'src/mod/permisos/modulos/entities/modulo.entity';
-import { Batch } from '@module/lote/batch/entities/batch.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
+import { Lote } from '@module/lote/batch/entities/batch.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn, OneToOne, Batch } from 'typeorm';
 import { UnidadMedida } from '../enums/UnidadMedida';
-import { Category } from '@module/catalogo/category/entities/category.entity';
+import { Categoria } from '@module/catalogo/category/entities/category.entity';
 
 @Entity('mod_catalogo_productos')
-export class Product {
+export class Producto {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -15,23 +15,20 @@ export class Product {
   @Column({ type: 'varchar', length: 150 })
   nombre: string;
 
-  @ManyToOne(() => Category, (categoria) => categoria.id, {
+  @Column()
+  stock_minimo: number;
+
+  @Column({ type: 'enum', enum: UnidadMedida, default: UnidadMedida.KG })
+  unidad_medida: UnidadMedida;
+
+  // Relation
+  @ManyToOne(() => Categoria, (tipo_categoria) => tipo_categoria.id, {
     onDelete: 'CASCADE', 
     nullable: false
   })
   @JoinColumn({ name: 'id_categoria' })
-  categoria: Category;
+  id_categoria: Categoria;
 
-  @Column()
-  stock_minimo: number;
-
-  @Column({
-    type: 'enum',
-    enum: UnidadMedida,
-    default: UnidadMedida.KG,
-  })
-  unidad_medida: UnidadMedida;
-
-  @OneToMany(() => Batch, (batch) => batch.product)
-  batchs: Batch[];
+  @OneToMany(() => Lote, (lote) => lote.id_producto)
+  lote: Lote[];
 }

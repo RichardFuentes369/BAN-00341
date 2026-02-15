@@ -1,8 +1,8 @@
-import { Batch } from '@module/lote/batch/entities/batch.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Lote } from '@module/lote/batch/entities/batch.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne } from 'typeorm';
 
 @Entity('mod_catalogo_proveedores')
-export class Supplier {
+export class Proveedor {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -20,7 +20,8 @@ export class Supplier {
 
   @Column({ type: 'varchar', length: 50 })
   telefono: string;
-
-  @OneToMany(() => Batch, (batch) => batch.supplier)
-  batchs: Batch[];
+  
+  // Relation
+  @OneToMany(() => Lote, (lote) => lote.id_proveedor)
+  lote: Lote[];
 }

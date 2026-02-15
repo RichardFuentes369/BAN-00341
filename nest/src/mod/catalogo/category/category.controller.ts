@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
 import { CategoryService } from './category.service';
-import { Category } from './entities/category.entity';
+import { Categoria } from './entities/category.entity';
 import { ApiTags } from '@nestjs/swagger';
 import { AdminGuard } from '@guard/admin/admin.guard'; // Ajusta la ruta según tu proyecto
 import { GetUser } from 'src/decorator/getIdUser.decorator';
@@ -42,7 +42,7 @@ export class CategoryController {
   @Post('crear-categoria')
   create(
     @Query('lang') lang: string,
-    @Body() categoryData: Partial<Category>,
+    @Body() categoryData: Partial<Categoria>,
     @GetUser('id') userId: number
   ) {
     return this.categoryService.create(
@@ -58,7 +58,7 @@ export class CategoryController {
   update(
     @Query('lang') lang: string,
     @Query('_id') _id: string,
-    @Body() categoryData: Partial<Category>,
+    @Body() categoryData: Partial<Categoria>,
     @GetUser('id') userId: number
   ) {
     return this.categoryService.update(

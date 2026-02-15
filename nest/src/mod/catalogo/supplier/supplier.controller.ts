@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
 import { SupplierService } from './supplier.service';
-import { Supplier } from './entities/supplier.entity';
+import { Proveedor } from './entities/supplier.entity';
 import { ApiTags } from '@nestjs/swagger';
 import { AdminGuard } from '@guard/admin/admin.guard';
 import { GetUser } from 'src/decorator/getIdUser.decorator';
@@ -36,7 +36,7 @@ export class SupplierController {
   @Post('crear-proveedor')
   create(
     @Query('lang') lang: string,
-    @Body() supplierData: Partial<Supplier>,
+    @Body() supplierData: Partial<Proveedor>,
     @GetUser('id') userId: number
   ) {
     return this.supplierService.create(lang, supplierData, userId);
@@ -48,7 +48,7 @@ export class SupplierController {
   update(
     @Query('lang') lang: string,
     @Query('_id') _id: string,
-    @Body() supplierData: Partial<Supplier>,
+    @Body() supplierData: Partial<Proveedor>,
     @GetUser('id') userId: number
   ) {
     return this.supplierService.update(lang, +_id, supplierData, userId);

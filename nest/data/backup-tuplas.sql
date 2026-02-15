@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               10.11.14-MariaDB-0ubuntu0.24.04.1 - Ubuntu 24.04
--- Server OS:                    debian-linux-gnu
--- HeidiSQL Version:             12.8.0.6908
+-- Versión del servidor:         10.11.13-MariaDB-0ubuntu0.24.04.1 - Ubuntu 24.04
+-- SO del servidor:              debian-linux-gnu
+-- HeidiSQL Versión:             12.8.0.6908
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -14,7 +14,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping data for table core_project_BAN_00341.mod_catalogo_categorias: ~10 rows (approximately)
+-- Volcando datos para la tabla core_project_BAN_00341.mod_catalogo_categorias: ~10 rows (aproximadamente)
 INSERT INTO `mod_catalogo_categorias` (`id`, `nombre`, `descripcion`) VALUES
 	(1, 'Lácteos', 'Productos derivados de la leche y refrigerados'),
 	(2, 'Cárnicos', 'Carnes frías, embutidos y carnes rojas'),
@@ -27,20 +27,20 @@ INSERT INTO `mod_catalogo_categorias` (`id`, `nombre`, `descripcion`) VALUES
 	(9, 'Enlatados', 'Conservas, atún y verduras enlatadas'),
 	(10, 'Cuidado Personal', 'Jabones, champú y cremas dentales');
 
--- Dumping data for table core_project_BAN_00341.mod_catalogo_productos: ~10 rows (approximately)
-INSERT INTO `mod_catalogo_productos` (`id`, `codigo_barra`, `nombre`, `stock_minimo`, `id_categoria`, `unidad_medida`) VALUES
-	(1, '770123456001', 'Leche Entera 1L', 20, '1', 'litro'),
-	(2, '770123456002', 'Arroz Blanco 1kg', 50, '6', 'kg'),
-	(3, '770123456003', 'Jamón de Cerdo 250g', 10, '2', 'paquete'),
-	(4, '770123456004', 'Agua Mineral 500ml', 30, '3', 'unidad'),
-	(5, '770123456005', 'Detergente en Polvo 1kg', 15, '5', 'unidad'),
-	(6, '770123456006', 'Pan de Molde Familiar', 12, '4', 'paquete'),
-	(7, '770123456007', 'Aceite de Girasol 1L', 10, '6', 'litro'),
-	(8, '770123456008', 'Atún en Agua 170g', 20, '9', 'unidad'),
-	(9, '770123456009', 'Papas Fritas Naturales', 25, '7', 'paquete'),
-	(10, '770123456010', 'Manzanas Rojas x6', 8, '8', 'paquete');
+-- Volcando datos para la tabla core_project_BAN_00341.mod_catalogo_productos: ~10 rows (aproximadamente)
+INSERT INTO `mod_catalogo_productos` (`id`, `codigo_barra`, `nombre`, `stock_minimo`, `unidad_medida`, `id_categoria`) VALUES
+	(1, '770123456001', 'Leche Entera 1L', 20, 'kg', 1),
+	(2, '770123456002', 'Arroz Blanco 1kg', 50, 'kg', 1),
+	(3, '770123456003', 'Jamón de Cerdo 250g', 10, 'kg', 1),
+	(4, '770123456004', 'Agua Mineral 500ml', 30, 'kg', 1),
+	(5, '770123456005', 'Detergente en Polvo 1kg', 15, 'kg', 1),
+	(6, '770123456006', 'Pan de Molde Familiar', 12, 'kg', 1),
+	(7, '770123456007', 'Aceite de Girasol 1L', 10, 'kg', 1),
+	(8, '770123456008', 'Atún en Agua 170g', 20, 'kg', 1),
+	(9, '770123456009', 'Papas Fritas Naturales', 25, 'kg', 1),
+	(10, '770123456010', 'Manzanas Rojas x6', 8, 'kg', 1);
 
--- Dumping data for table core_project_BAN_00341.mod_catalogo_proveedores: ~10 rows (approximately)
+-- Volcando datos para la tabla core_project_BAN_00341.mod_catalogo_proveedores: ~10 rows (aproximadamente)
 INSERT INTO `mod_catalogo_proveedores` (`id`, `nit`, `razon_social`, `direccion`, `telefono`, `correo`) VALUES
 	(1, 9001234561, 'Distribuidora Alimentos Express S.A.', 'Calle 45 #10-20', '6012345678', 'ventas@alimentos.com'),
 	(2, 9007890122, 'Lácteos del Campo Ltda', 'Carrera 15 #5-30', '6019876543', 'contacto@lacteos.com'),
@@ -53,46 +53,46 @@ INSERT INTO `mod_catalogo_proveedores` (`id`, `nit`, `razon_social`, `direccion`
 	(9, 8304445559, 'Frutas y Verduras El Jardín', 'Plaza Mayor Mod 4', '6011112223', 'fresco@eljardin.com'),
 	(10, 9008887770, 'Empaques y Desechables del Caribe', 'Km 5 Vía Mar', '6015556667', 'servicio@empaques.co');
 
--- Dumping data for table core_project_BAN_00341.mod_lote: ~10 rows (approximately)
-INSERT INTO `mod_lote` (`id`, `fecha_entrada`, `fecha_vencimiento`, `cantidad_inicial`, `stock_actual`, `costo_unitario`, `precio_venta_sugerido`, `id_producto`, `id_proveedor`, `estado`) VALUES
-	(1, '2026-02-15 04:36:16', '2026-05-20 05:00:00', 100, 85, 2500.00, 3200.00, 1, 2, 'disponible'),
-	(2, '2026-02-15 04:36:16', '2027-01-15 05:00:00', 200, 190, 1800.00, 2400.00, 2, 6, 'disponible'),
-	(3, '2026-02-15 04:36:16', '2026-03-10 05:00:00', 50, 42, 4500.00, 5800.00, 3, 3, 'disponible'),
-	(4, '2026-02-15 04:36:16', '2027-12-01 05:00:00', 300, 300, 800.00, 1500.00, 4, 4, 'disponible'),
-	(5, '2026-02-15 04:36:16', '2028-06-30 05:00:00', 40, 35, 7500.00, 9500.00, 5, 8, 'disponible'),
-	(6, '2026-02-15 04:36:16', '2026-02-28 05:00:00', 30, 10, 3200.00, 4500.00, 6, 5, 'disponible'),
-	(7, '2026-02-15 04:36:16', '2027-08-14 05:00:00', 60, 58, 6200.00, 8200.00, 7, 6, 'disponible'),
-	(8, '2026-02-15 04:36:16', '2028-11-20 05:00:00', 100, 100, 3800.00, 5000.00, 8, 7, 'disponible'),
-	(9, '2026-02-15 04:36:16', '2025-12-01 05:00:00', 50, 0, 1200.00, 2200.00, 9, 1, 'vencido'),
-	(10, '2026-02-15 04:36:16', '2026-07-22 05:00:00', 80, 0, 2000.00, 3500.00, 10, 9, 'agotado');
+-- Volcando datos para la tabla core_project_BAN_00341.mod_lote: ~10 rows (aproximadamente)
+INSERT INTO `mod_lote` (`id`, `fecha_entrada`, `fecha_vencimiento`, `cantidad_inicial`, `stock_actual`, `costo_unitario`, `precio_venta_sugerido`, `estado`, `id_producto`, `id_proveedor`) VALUES
+	(1, '2026-02-15 04:36:16', '2026-05-20 05:00:00', 100, 85, 2500.00, 3200.00, 'disponible', 1, 1),
+	(2, '2026-02-15 04:36:16', '2027-01-15 05:00:00', 200, 190, 1800.00, 2400.00, 'disponible', 1, 1),
+	(3, '2026-02-15 04:36:16', '2026-03-10 05:00:00', 50, 42, 4500.00, 5800.00, 'disponible', 1, 1),
+	(4, '2026-02-15 04:36:16', '2027-12-01 05:00:00', 300, 300, 800.00, 1500.00, 'disponible', 1, 1),
+	(5, '2026-02-15 04:36:16', '2028-06-30 05:00:00', 40, 35, 7500.00, 9500.00, 'disponible', 1, 1),
+	(6, '2026-02-15 04:36:16', '2026-02-28 05:00:00', 30, 10, 3200.00, 4500.00, 'disponible', 1, 1),
+	(7, '2026-02-15 04:36:16', '2027-08-14 05:00:00', 60, 58, 6200.00, 8200.00, 'disponible', 1, 1),
+	(8, '2026-02-15 04:36:16', '2028-11-20 05:00:00', 100, 100, 3800.00, 5000.00, 'disponible', 1, 1),
+	(9, '2026-02-15 04:36:16', '2025-12-01 05:00:00', 50, 0, 1200.00, 2200.00, 'vencido', 1, 1),
+	(10, '2026-02-15 04:36:16', '2026-07-22 05:00:00', 80, 0, 2000.00, 3500.00, 'agotado', 1, 1);
 
--- Dumping data for table core_project_BAN_00341.mod_merma_mermas: ~0 rows (approximately)
-INSERT INTO `mod_merma_mermas` (`id`, `id_lote`, `id_tipo_merma`, `fecha_reporte`, `valor_perdido`, `observacioens`, `cantidad`) VALUES
-	(51, 1, 4, '2026-02-15 04:41:26', 5000.00, 'Dos bolsas de leche rotas en descarga', 2),
-	(52, 3, 4, '2026-02-15 04:41:26', 9000.00, 'Pérdida de vacío en empaque de jamón', 2),
-	(53, 6, 4, '2026-02-15 04:41:26', 3200.00, 'Pan de molde aplastado', 1),
-	(54, 9, 4, '2026-02-15 04:41:26', 60000.00, 'Lote completo de snacks vencido', 50),
-	(55, 2, 7, '2026-02-15 04:41:26', 3600.00, 'Bolsa de arroz mojada', 2),
-	(56, 5, 7, '2026-02-15 04:41:26', 7500.00, 'Faltante en inventario cíclico', 1),
-	(57, 1, 7, '2026-02-15 04:41:26', 2500.00, 'Leche con mal olor prematuro', 1),
-	(58, 7, 9, '2026-02-15 04:41:26', 6200.00, 'Aceite con envase perforado', 1),
-	(59, 3, 9, '2026-02-15 04:41:26', 4500.00, 'Producto roído por ratones', 1),
-	(60, 4, 9, '2026-02-15 04:41:26', 1600.00, 'Botellas de agua abolladas', 2);
+-- Volcando datos para la tabla core_project_BAN_00341.mod_merma_mermas: ~10 rows (aproximadamente)
+INSERT INTO `mod_merma_mermas` (`id`, `fecha_reporte`, `valor_perdido`, `observaciones`, `cantidad`, `id_tipo_merma`, `id_lote`) VALUES
+	(1, '2026-02-15 04:41:26', 5000.00, 'Dos bolsas de leche rotas en descarga', 2, 1, 1),
+	(2, '2026-02-15 04:41:26', 9000.00, 'Pérdida de vacío en empaque de jamón', 2, 2, 2),
+	(3, '2026-02-15 04:41:26', 3200.00, 'Pan de molde aplastado', 1, 3, 3),
+	(4, '2026-02-15 04:41:26', 60000.00, 'Lote completo de snacks vencido', 50, 1, 4),
+	(5, '2026-02-15 04:41:26', 3600.00, 'Bolsa de arroz mojada', 2, 2, 7),
+	(6, '2026-02-15 04:41:26', 7500.00, 'Faltante en inventario cíclico', 1, 3, 8),
+	(7, '2026-02-15 04:41:26', 2500.00, 'Leche con mal olor prematuro', 1, 4, 9),
+	(8, '2026-02-15 04:41:26', 6200.00, 'Aceite con envase perforado', 1, 1, 10),
+	(9, '2026-02-15 04:41:26', 4500.00, 'Producto roído por ratones', 1, 1, 9),
+	(10, '2026-02-15 04:41:26', 1600.00, 'Botellas de agua abolladas', 2, 1, 8);
 
--- Dumping data for table core_project_BAN_00341.mod_merma_tipos: ~10 rows (approximately)
+-- Volcando datos para la tabla core_project_BAN_00341.mod_merma_tipos: ~10 rows (aproximadamente)
 INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
-	(11, 'Consumo Interno'),
-	(5, 'Daño Físico / Rotura'),
-	(9, 'Deterioro por Humedad'),
-	(10, 'Devolución Proveedor'),
+	(1, 'Consumo Interno'),
+	(2, 'Daño Físico / Rotura'),
+	(3, 'Deterioro por Humedad'),
+	(5, 'Devolución Proveedor'),
 	(8, 'Error de Empaque'),
 	(6, 'Falla de Cadena de Frío'),
-	(12, 'Muestra Comercial'),
-	(13, 'Plagas'),
-	(7, 'Robo o Extravío'),
+	(9, 'Muestra Comercial'),
+	(10, 'Plagas'),
+	(11, 'Robo o Extravío'),
 	(4, 'Vencimiento');
 
--- Dumping data for table core_project_BAN_00341.mod_permisos_modulo: ~35 rows (approximately)
+-- Volcando datos para la tabla core_project_BAN_00341.mod_permisos_modulo: ~35 rows (aproximadamente)
 INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`, `tiene_permisos`, `descripcion`, `modulo_padre_id`) VALUES
 	(1, 'Usuarios', 'usuarios', 1, 0, 'Modulo usuarios', NULL),
 	(2, 'Administradores', 'administradores', 0, 1, 'Permiso administradores, modulo usuarios', 1),
@@ -130,7 +130,7 @@ INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`
 	(36, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo proveedores, modulo catalogo', 26),
 	(37, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso eliminar_multiple, submodulo proveedores, modulo catalogo', 26);
 
--- Dumping data for table core_project_BAN_00341.mod_permisos_modulo_asignacion: ~24 rows (approximately)
+-- Volcando datos para la tabla core_project_BAN_00341.mod_permisos_modulo_asignacion: ~24 rows (aproximadamente)
 INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descripcion`, `modulo_padre_id`, `user_id`) VALUES
 	(2, 'Administradores', 'administradores', 'Modulo Usuarios', 1, 1),
 	(4, 'Crear', 'crear', 'Permiso crear, submodulo administradores, modulo usuarios', 2, 1),
@@ -157,7 +157,7 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(82, 'Crear', 'crear', 'Permiso crear, submodulo finales, modulo usuarios', 10, 1),
 	(83, 'Usuarios', 'usuarios', 'Modulo usuarios', NULL, 1);
 
--- Dumping data for table core_project_BAN_00341.mod_usuarios_admin: ~13 rows (approximately)
+-- Volcando datos para la tabla core_project_BAN_00341.mod_usuarios_admin: ~13 rows (aproximadamente)
 INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'Admin1', 'Principal', 'admin1@correo.com', 'Qwerty9601', 1),
 	(2, 'admin2', 'admin2', 'admin2@correo.com', 'Qwerty9601', 1),
@@ -173,7 +173,7 @@ INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `passw
 	(18, 'admin12', 'admin12', 'admin12@gmail.com', 'Qwerty9601.', 1),
 	(19, 'Donald', 'Trump', 'donald@correo.com', 'Qwerty9601', 1);
 
--- Dumping data for table core_project_BAN_00341.mod_usuarios_user: ~38 rows (approximately)
+-- Volcando datos para la tabla core_project_BAN_00341.mod_usuarios_user: ~38 rows (aproximadamente)
 INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'final1', 'final1', 'final1@gmail.com', 'Qwerty9601', 1),
 	(2, 'final2', 'final2', 'final2@gmail.com', 'Qwerty9601', 1),

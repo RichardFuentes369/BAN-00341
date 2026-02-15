@@ -10,6 +10,7 @@ export class Tipo {
   @Column({ type: 'varchar', length: 255, unique: true })
   nombre: string;
 
-  @OneToMany(() => Merma, (merma) => merma.tipo)
+  // Relation
+  @OneToMany(() => Merma, (merma) => merma.id_tipo_merma)
   mermas: Merma[];
 }

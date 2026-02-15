@@ -1,6 +1,6 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { In, Like, Repository } from 'typeorm';
-import { Supplier } from './entities/supplier.entity';
+import { Proveedor } from './entities/supplier.entity';
 import { FilterCategoryrDto } from '@module/catalogo/supplier/dto/filter-supplier.dto';
 import { I18nService } from 'nestjs-i18n';
 
@@ -8,7 +8,7 @@ import { I18nService } from 'nestjs-i18n';
 export class SupplierService {
   constructor(
     @Inject('SUPPLIER_REPOSITORY')
-    private supplierRepository: Repository<Supplier>,
+    private supplierRepository: Repository<Proveedor>,
     private i18n: I18nService
   ) {}
 
@@ -71,7 +71,7 @@ export class SupplierService {
     return supplier;
   }
 
-  async create(lang: string, supplierData: Partial<Supplier>, userId: number) {
+  async create(lang: string, supplierData: Partial<Proveedor>, userId: number) {
     try {
       // Validar si el NIT ya existe
       const exists = await this.supplierRepository.findOne({ where: { nit: supplierData.nit } });
@@ -94,7 +94,7 @@ export class SupplierService {
     }
   }
 
-  async update(lang: string, id: number, supplierData: Partial<Supplier>, userId: number) {
+  async update(lang: string, id: number, supplierData: Partial<Proveedor>, userId: number) {
     const supplier = await this.findOne(lang, id);
     return this.supplierRepository.save({
       ...supplier,
