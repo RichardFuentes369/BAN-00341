@@ -13,6 +13,10 @@
   "BUTTON_SEARCH": "Search",
 
   "CATEGORY": {
+    "CREATE_TITLE": "Create category", 
+    "EDIT_TITLE": "Edit category {{category_name}}", 
+    "SEE_TITLE": "See category {{category_name}}", 
+
     "COLUMN_ID": "ID",
     "COLUMN_NAME": "Name",
     "COLUMN_DESCRIPTION": "Description",
@@ -20,14 +24,47 @@
   },
 
   "SUPPLIER": {
+    "CREATE_TITLE": "Create supplier", 
+    "EDIT_TITLE": "Edit supplier {{supplier_name}}", 
+    "SEE_TITLE": "See supplier {{supplier_name}}", 
+
     "COLUMN_ID": "ID",
     "COLUMN_BUSINESS_NIT": "Tax ID",
     "COLUMN_BUSINESS_NAME": "Bussines Name",
     "COLUMN_BUSINESS_ADDRESS": "Bussiness Address",
     "COLUMN_BUSINESS_PHONE": "Bussines Phone",
-    "COLUMN_BUSINESS_EMAIL": "Bussiness Email"
-  },
+    "COLUMN_BUSINESS_EMAIL": "Bussiness Email",
 
+    "LABEL_BUSINESS_NIT": "Tax ID",
+    "LABEL_BUSINESS_NAME": "Bussines Name",
+    "LABEL_BUSINESS_EMAIL": "Bussiness Email",
+    "LABEL_BUSINESS_PHONE": "Bussiness Phone",
+    "LABEL_BUSINESS_ADDRESS": "Bussiness Address",
+
+    "PLACEHOLDER_BUSINESS_NIT": "Enter Tax ID number",
+    "PLACEHOLDER_BUSINESS_NAME": "Enter business or legal name",
+    "PLACEHOLDER_BUSINESS_EMAIL": "example@company.com",
+    "PLACEHOLDER_BUSINESS_PHONE": "e.g., +1 555 123 4567",
+    "PLACEHOLDER_BUSINESS_ADDRESS": "Enter the primary business address",
+
+    "SWAL_CREATED": "SUPPLIER!",
+    "SWAL_UPDATED": "SUPPLIER!",
+    "SWAL_DELETED": "SUPPLIER!",
+    
+    "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the supplier{{plural}} {{user_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete the supplier{{plural}} {{user_name}}?"
+  },
+  
+  "SWAL_WARNING_REVERSE_CHANGE": "You cannot reverse this!",
+  "SWAL_CREATED_RECORD": "Record successfully created.",
+  "SWAL_DELETED_RECORD": "Successfully deleted.",
+  "SWAL_UPDATED_RECORD": "Record successfully updated.",
+
+  "SWAL_BUTTON_DELETE": "Delete",
+  "SWAL_BUTTON_CANCEL": "Cancel",
+
+  "BUTTON_EDIT": "Edit",
+  
   "BUTTON_CATEGORY": "Categories",
   "BUTTON_SUPPLIER": "Suppliers"
 

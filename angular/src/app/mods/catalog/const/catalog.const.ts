@@ -15,3 +15,8 @@ export const BREADCRUMB_PATH_ADMIN_SUPPLIER = 'Proveedores';
 export const MOD_CATEGORY_PAGE_CATEGORY =  '/admin/mod/catalog/categorias/';
 export const MOD_CATEGORY_PAGE_PRODUCT =  '/admin/mod/catalog/category/product';
 export const MOD_CATEGORY_PAGE_SUPPLIER =  '/admin/mod/catalog/proveedores/';
+
+export const CREAR_PROVEEDOR_COMPONENT = 'CrearProveedorComponent';
+export const VER_PROVEEDOR_COMPONENT = 'VerProveedorComponent';
+export const EDITAR_PROVEEDOR_COMPONENT = 'EditarProveedorComponent';
+export const FILTRO_PROVEEDOR_COMPONENT = 'FiltroProveedorComponent';

@@ -22,14 +22,14 @@ export class Merma {
 
   // Relation
   @ManyToOne(() => Tipo, (tipo_merma) => tipo_merma.id, {
-    onDelete: 'CASCADE', 
+    onDelete: 'RESTRICT', 
     nullable: false
   })
   @JoinColumn({ name: 'id_tipo_merma' })
   id_tipo_merma: Tipo;
 
   @ManyToOne(() => Lote, (lote) => lote.id, {
-    onDelete: 'CASCADE', 
+    onDelete: 'RESTRICT', 
     nullable: false
   })
   @JoinColumn({ name: 'id_lote' })

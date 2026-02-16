@@ -31,16 +31,20 @@ export class IndexComponent implements OnInit{
   menu: any[] = []
 
   async ngOnInit() {
-    // await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
-    // const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH)
-    // const submodulo = await this.permisosService.permisoPage(0,'usuarios',userData.data.id)
+    await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
+    const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH)
+    const submodulo = await this.permisosService.permisoPage(0,'catalogo',userData.data.id)
 
-    // if (submodulo.data === "") {
-    //   this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
-    // } 
+    if (submodulo.data === "") {
+      this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
+    } 
 
-    // const modulo = await this.permisosService.permisos(userData.data.id,'usuarios')
-    // this.menu = modulo.data
+    const modulo = await this.permisosService.permisos(userData.data.id,'catalogo')
+    this.menu = modulo.data
+  }
+
+  tienePermiso(nombre: string): boolean {
+    return this.menu.some((permiso) => permiso.permiso_permiso === nombre);
   }
 
 }

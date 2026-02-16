@@ -13,6 +13,10 @@
   "BUTTON_SEARCH": "Buscar",
 
   "CATEGORY": {
+    "CREATE_TITLE": "Crear categoría",
+    "EDIT_TITLE": "Editar categoría {{category_name}}",
+    "SEE_TITLE": "Ver categoría {{category_name}}",
+
     "COLUMN_ID": "Id",
     "COLUMN_NAME": "Nombre",
     "COLUMN_DESCRIPTION": "Descripcion",
@@ -20,13 +24,46 @@
   },
 
   "SUPPLIER": {
+    "CREATE_TITLE": "Crear proveedor",
+    "EDIT_TITLE": "Editar proveedor {{supplier_name}}",
+    "SEE_TITLE": "Ver proveedor {{supplier_name}}",
+
     "COLUMN_ID": "ID",
     "COLUMN_BUSINESS_NIT": "NIT",
     "COLUMN_BUSINESS_NAME": "Razón Social",
     "COLUMN_BUSINESS_ADDRESS": "Dirección de la Empresa",
     "COLUMN_BUSINESS_PHONE": "Teléfono de la Empresa",
-    "COLUMN_BUSINESS_EMAIL": "Correo Electrónico de la Empresa"
+    "COLUMN_BUSINESS_EMAIL": "Correo Electrónico de la Empresa",
+
+    "LABEL_BUSINESS_NIT": "Identificación tributaria (NIT)",
+    "LABEL_BUSINESS_NAME": "Nombre de la empresa",
+    "LABEL_BUSINESS_EMAIL": "Correo electrónico de la empresa",
+    "LABEL_BUSINESS_PHONE": "Teléfono de la empresa",
+    "LABEL_BUSINESS_ADDRESS": "Dirección de la empresa",
+    
+    "PLACEHOLDER_BUSINESS_NIT": "Ingrese el número de identificación tributaria",
+    "PLACEHOLDER_BUSINESS_NAME": "Ingrese la razón social o nombre comercial",
+    "PLACEHOLDER_BUSINESS_EMAIL": "ejemplo@empresa.com",
+    "PLACEHOLDER_BUSINESS_PHONE": "Ej: +57 300 123 4567",
+    "PLACEHOLDER_BUSINESS_ADDRESS": "Ingrese la dirección física de la sede principal",
+
+    "SWAL_CREATED": "¡PROVEEDOR!",
+    "SWAL_UPDATED": "¡PROVEEDOR!",
+    "SWAL_DELETED": "¡PROVEEDOR!",
+
+    "SWAL_ARE_YOU_SURE_UPDATE": "¿Está seguro de que desea actualizar el proveedor {{user_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "¿Está seguro de que desea eliminar {{art_the}} proveedor{{plural}} {{user_name}}?"
   },
+
+  "SWAL_WARNING_REVERSE_CHANGE": "¡No podrás revertir esto!",
+  "SWAL_CREATED_RECORD": "Registro creado con éxito.",
+  "SWAL_DELETED_RECORD": "Eliminado con éxito.",
+  "SWAL_UPDATED_RECORD": "Actualizado con éxito.",
+
+  "SWAL_BUTTON_DELETE": "Eliminar",
+  "SWAL_BUTTON_CANCEL": "Cancelar",
+
+  "BUTTON_EDIT": "Editar",
 
   "BUTTON_CATEGORY": "Categorías",
   "BUTTON_SUPPLIER": "Proveedores"

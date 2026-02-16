@@ -5,7 +5,7 @@
 
     <div class="">
         <div class="parent">
-            <!-- @if(tienePermiso('administradores')){ -->
+            @if(tienePermiso('categorias')){
             <a [routerLink]="MOD_CATEGORY_PAGE_CATEGORY" class="item"
                 style="text-decoration: none; color: inherit; display: block;">
                 <div class="card card-option">
@@ -20,8 +20,8 @@
                     </div>
                 </div>
             </a>
-            <!-- } -->
-            <!-- @if(tienePermiso('administradores')){ -->
+            }
+            @if(tienePermiso('proveedores')){
             <a [routerLink]="MOD_CATEGORY_PAGE_SUPPLIER" class="item"
                 style="text-decoration: none; color: inherit; display: block;">
                 <div class="card card-option">
@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </a>
-            <!-- } -->
+            }
         </div>
     </div>
 

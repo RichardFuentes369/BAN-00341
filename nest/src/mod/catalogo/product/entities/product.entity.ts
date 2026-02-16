@@ -23,7 +23,7 @@ export class Producto {
 
   // Relation
   @ManyToOne(() => Categoria, (tipo_categoria) => tipo_categoria.id, {
-    onDelete: 'CASCADE', 
+    onDelete: 'RESTRICT', 
     nullable: false
   })
   @JoinColumn({ name: 'id_categoria' })

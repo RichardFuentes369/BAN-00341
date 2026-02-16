@@ -33,14 +33,14 @@ export class Lote {
 
   // Relation
   @ManyToOne(() => Producto, (producto) => producto.id, {
-    onDelete: 'CASCADE', 
+    onDelete: 'RESTRICT', 
     nullable: false
   })
   @JoinColumn({ name: 'id_producto' })
   id_producto: Producto;
 
   @ManyToOne(() => Proveedor, (proveedor) => proveedor.id, {
-    onDelete: 'CASCADE', 
+    onDelete: 'RESTRICT', 
     nullable: false
   })
   @JoinColumn({ name: 'id_proveedor' })

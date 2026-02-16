@@ -13,6 +13,10 @@
   "BUTTON_SEARCH": "Suchen",
 
   "CATEGORY": {
+    "CREATE_TITLE": "Kategorie erstellen",
+    "EDIT_TITLE": "Kategorie {{category_name}} bearbeiten",
+    "SEE_TITLE": "Kategorie {{category_name}} anzeigen",
+
     "COLUMN_ID": "ID",
     "COLUMN_NAME": "Name",
     "COLUMN_DESCRIPTION": "Beschreibung",
@@ -20,14 +24,47 @@
   },
 
   "SUPPLIER": {
+    "CREATE_TITLE": "Lieferanten erstellen",
+    "EDIT_TITLE": "Lieferant {{supplier_name}} bearbeiten",
+    "SEE_TITLE": "Lieferant {{supplier_name}} anzeigen",
+
     "COLUMN_ID": "ID",
     "COLUMN_BUSINESS_NIT": "Steuernummer",
     "COLUMN_BUSINESS_NAME": "Firmenname",
     "COLUMN_BUSINESS_ADDRESS": "Geschäftsadresse",
     "COLUMN_BUSINESS_PHONE": "Geschäftstelefon",
-    "COLUMN_BUSINESS_EMAIL": "Geschäfts-E-Mail"
+    "COLUMN_BUSINESS_EMAIL": "Geschäfts-E-Mail",
+
+    "LABEL_BUSINESS_NIT": "Steuernummer",
+    "LABEL_BUSINESS_NAME": "Unternehmensname",
+    "LABEL_BUSINESS_EMAIL": "Geschäftliche E-Mail",
+    "LABEL_BUSINESS_PHONE": "Geschäftliche Telefonnummer",
+    "LABEL_BUSINESS_ADDRESS": "Unternehmensadresse",
+
+    "PLACEHOLDER_BUSINESS_NIT": "Steuernummer eingeben",
+    "PLACEHOLDER_BUSINESS_NAME": "Unternehmens- oder Firmenname eingeben",
+    "PLACEHOLDER_BUSINESS_EMAIL": "beispiel@firma.de",
+    "PLACEHOLDER_BUSINESS_PHONE": "z. B. +49 30 1234567",
+    "PLACEHOLDER_BUSINESS_ADDRESS": "Geben Sie die Geschäftsadresse ein",
+    
+    "SWAL_CREATED": "LIEFERANT!",
+    "SWAL_UPDATED": "LIEFERANT!",
+    "SWAL_DELETED": "LIEFERANT!",
+    
+    "SWAL_ARE_YOU_SURE_UPDATE": "Sind Sie sicher, dass Sie den Lieferanten {{user_name}} aktualisieren möchten?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Sind Sie sicher, dass Sie den Lieferanten{{plural}} {{user_name}} löschen möchten?"
   },
+
+  "SWAL_WARNING_REVERSE_CHANGE": "Diese Änderung kann nicht rückgängig gemacht werden!",
+  "SWAL_CREATED_RECORD": "Datensatz erfolgreich erstellt.",
+  "SWAL_DELETED_RECORD": "Erfolgreich gelöscht.",
+  "SWAL_UPDATED_RECORD": "Erfolgreich aktualisiert.",
+
+  "SWAL_BUTTON_DELETE": "Löschen",
+  "SWAL_BUTTON_CANCEL": "Abbrechen",
   
+  "BUTTON_EDIT": "Bearbeiten",
+
   "BUTTON_CATEGORY": "Kategorien",
   "BUTTON_SUPPLIER": "Lieferanten"
 }

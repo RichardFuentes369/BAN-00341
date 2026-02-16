@@ -41,17 +41,17 @@ INSERT INTO `mod_catalogo_productos` (`id`, `codigo_barra`, `nombre`, `stock_min
 	(10, '770123456010', 'Manzanas Rojas x6', 8, 'kg', 1);
 
 -- Volcando datos para la tabla core_project_BAN_00341.mod_catalogo_proveedores: ~10 rows (aproximadamente)
-INSERT INTO `mod_catalogo_proveedores` (`id`, `nit`, `razon_social`, `direccion`, `telefono`, `correo`) VALUES
-	(1, 9001234561, 'Distribuidora Alimentos Express S.A.', 'Calle 45 #10-20', '6012345678', 'ventas@alimentos.com'),
-	(2, 9007890122, 'Lácteos del Campo Ltda', 'Carrera 15 #5-30', '6019876543', 'contacto@lacteos.com'),
-	(3, 8005554443, 'Cárnicos Gourmet SAS', 'Zona Industrial Sur', '6012223334', 'pedidos@carnicos.com'),
-	(4, 9106667774, 'Bebidas del Valle S.A.', 'Av. Central 88', '6014445556', 'logistica@bebidas.co'),
-	(5, 8601112225, 'Panadería Central de Colombia', 'Calle 12 #4-15', '6017778889', 'admin@pancentral.com'),
-	(6, 9013334446, 'Granos y Semillas de la Sabana', 'Puerto Seco Local 5', '6013339990', 'info@granos.com'),
-	(7, 8009998887, 'Importaciones Express S.A.S', 'Calle del Comercio 9', '6016665554', 'ventas@importexpress.com'),
-	(8, 9002221118, 'Químicos y Limpieza Total', 'Transversal 7 #2-10', '6018990001', 'comercial@limpieza.com'),
-	(9, 8304445559, 'Frutas y Verduras El Jardín', 'Plaza Mayor Mod 4', '6011112223', 'fresco@eljardin.com'),
-	(10, 9008887770, 'Empaques y Desechables del Caribe', 'Km 5 Vía Mar', '6015556667', 'servicio@empaques.co');
+INSERT INTO `mod_catalogo_proveedores` (`id`, `nit`, `razon_social`, `direccion`, `correo`, `telefono`) VALUES
+	(1, 9001234561, 'Distribuidora Alimentos Express S.A.', 'Calle 45 #10-20', 'ventas@alimentos.com', '6012345678'),
+	(2, 9007890122, 'Lácteos del Campo Ltda', 'Carrera 15 #5-30', 'contacto@lacteos.com', '6019876543'),
+	(3, 8005554443, 'Cárnicos Gourmet SAS', 'Zona Industrial Sur', 'pedidos@carnicos.com', '6012223334'),
+	(4, 9106667774, 'Bebidas del Valle S.A.', 'Av. Central 88', 'logistica@bebidas.co', '6014445556'),
+	(5, 8601112225, 'Panadería Central de Colombia', 'Calle 12 #4-15', 'admin@pancentral.com', '6017778889'),
+	(6, 9013334446, 'Granos y Semillas de la Sabana', 'Puerto Seco Local 5', 'info@granos.com', '6013339990'),
+	(7, 8009998887, 'Importaciones Express S.A.S', 'Calle del Comercio 9', 'ventas@importexpress.com', '6016665554'),
+	(8, 9002221118, 'Químicos y Limpieza Total', 'Transversal 7 #2-10', 'comercial@limpieza.com', '6018990001'),
+	(9, 8304445559, 'Frutas y Verduras El Jardín', 'Plaza Mayor Mod 4', 'fresco@eljardin.com', '6011112223'),
+	(10, 9008887770, 'Empaques y Desechables del Caribe', 'Km 5 Vía Mar', 'servicio@empaques.co', '6015556667');
 
 -- Volcando datos para la tabla core_project_BAN_00341.mod_lote: ~10 rows (aproximadamente)
 INSERT INTO `mod_lote` (`id`, `fecha_entrada`, `fecha_vencimiento`, `cantidad_inicial`, `stock_actual`, `costo_unitario`, `precio_venta_sugerido`, `estado`, `id_producto`, `id_proveedor`) VALUES
@@ -67,17 +67,17 @@ INSERT INTO `mod_lote` (`id`, `fecha_entrada`, `fecha_vencimiento`, `cantidad_in
 	(10, '2026-02-15 04:36:16', '2026-07-22 05:00:00', 80, 0, 2000.00, 3500.00, 'agotado', 1, 1);
 
 -- Volcando datos para la tabla core_project_BAN_00341.mod_merma_mermas: ~10 rows (aproximadamente)
-INSERT INTO `mod_merma_mermas` (`id`, `fecha_reporte`, `valor_perdido`, `observaciones`, `cantidad`, `id_tipo_merma`, `id_lote`) VALUES
-	(1, '2026-02-15 04:41:26', 5000.00, 'Dos bolsas de leche rotas en descarga', 2, 1, 1),
-	(2, '2026-02-15 04:41:26', 9000.00, 'Pérdida de vacío en empaque de jamón', 2, 2, 2),
-	(3, '2026-02-15 04:41:26', 3200.00, 'Pan de molde aplastado', 1, 3, 3),
-	(4, '2026-02-15 04:41:26', 60000.00, 'Lote completo de snacks vencido', 50, 1, 4),
-	(5, '2026-02-15 04:41:26', 3600.00, 'Bolsa de arroz mojada', 2, 2, 7),
-	(6, '2026-02-15 04:41:26', 7500.00, 'Faltante en inventario cíclico', 1, 3, 8),
-	(7, '2026-02-15 04:41:26', 2500.00, 'Leche con mal olor prematuro', 1, 4, 9),
-	(8, '2026-02-15 04:41:26', 6200.00, 'Aceite con envase perforado', 1, 1, 10),
-	(9, '2026-02-15 04:41:26', 4500.00, 'Producto roído por ratones', 1, 1, 9),
-	(10, '2026-02-15 04:41:26', 1600.00, 'Botellas de agua abolladas', 2, 1, 8);
+INSERT INTO `mod_merma_mermas` (`id`, `cantidad`, `fecha_reporte`, `valor_perdido`, `observaciones`, `id_tipo_merma`, `id_lote`) VALUES
+	(1, 2, '2026-02-15 04:41:26', 5000.00, 'Dos bolsas de leche rotas en descarga', 1, 1),
+	(2, 2, '2026-02-15 04:41:26', 9000.00, 'Pérdida de vacío en empaque de jamón', 2, 2),
+	(3, 1, '2026-02-15 04:41:26', 3200.00, 'Pan de molde aplastado', 3, 3),
+	(4, 50, '2026-02-15 04:41:26', 60000.00, 'Lote completo de snacks vencido', 1, 4),
+	(5, 2, '2026-02-15 04:41:26', 3600.00, 'Bolsa de arroz mojada', 2, 7),
+	(6, 1, '2026-02-15 04:41:26', 7500.00, 'Faltante en inventario cíclico', 3, 8),
+	(7, 1, '2026-02-15 04:41:26', 2500.00, 'Leche con mal olor prematuro', 4, 9),
+	(8, 1, '2026-02-15 04:41:26', 6200.00, 'Aceite con envase perforado', 1, 10),
+	(9, 1, '2026-02-15 04:41:26', 4500.00, 'Producto roído por ratones', 1, 9),
+	(10, 2, '2026-02-15 04:41:26', 1600.00, 'Botellas de agua abolladas', 1, 8);
 
 -- Volcando datos para la tabla core_project_BAN_00341.mod_merma_tipos: ~10 rows (aproximadamente)
 INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
@@ -173,7 +173,7 @@ INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `passw
 	(18, 'admin12', 'admin12', 'admin12@gmail.com', 'Qwerty9601.', 1),
 	(19, 'Donald', 'Trump', 'donald@correo.com', 'Qwerty9601', 1);
 
--- Volcando datos para la tabla core_project_BAN_00341.mod_usuarios_user: ~38 rows (aproximadamente)
+-- Volcando datos para la tabla core_project_BAN_00341.mod_usuarios_user: ~17 rows (aproximadamente)
 INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'final1', 'final1', 'final1@gmail.com', 'Qwerty9601', 1),
 	(2, 'final2', 'final2', 'final2@gmail.com', 'Qwerty9601', 1),

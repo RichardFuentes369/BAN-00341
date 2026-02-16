@@ -34,12 +34,14 @@ export class SupplierService {
     const skipReal = (page == 1) ? 0 : (page - 1) * limit;
     const where: any = {};
 
-    // Filtros por NIT o Razón Social
     if (filterDto['razon_social']) {
       where.razon_social = Like(`%${filterDto['razon_social']}%`);
     }
     if (filterDto['nit']) {
-      where.nit = filterDto['nit'];
+      where.nit = Like(`%${filterDto['nit']}%`);
+    }
+    if (filterDto['correo']) {
+      where.correo = Like(`%${filterDto['correo']}%`);
     }
 
     const totalRecords = await this.supplierRepository.count({ where });
