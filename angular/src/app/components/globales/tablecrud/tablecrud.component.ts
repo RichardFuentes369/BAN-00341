@@ -111,7 +111,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
         });
       },
       language: {
-        "processing": "Procesando...",
+        "processing": `${this.translate.instant('global-tablecrud.WORD_PROCESSING')}...`,
         "lengthMenu": `${this.translate.instant('global-tablecrud.TABLE_INFO_SHOW')} _MENU_ ${this.translate.instant('global-tablecrud.TABLE_INFO_RECORDS')}`,
         "zeroRecords": "No se encontraron resultados",
         "emptyTable": `${this.translate.instant('global-tablecrud.TABLE_INFO_NO_INFO')}`,

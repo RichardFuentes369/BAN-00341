@@ -4,6 +4,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { ListaComponentes } from '@mod/lista-componentes'
 import { WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-globales-modal-boostrap',
@@ -29,6 +30,7 @@ export class ModalBoostrapComponent implements OnDestroy{
   @Input() cierreModal: string = "static";
 
   constructor(
+    private router: Router,
     private resolver: ComponentFactoryResolver,
     private translate: TranslateService,
     private renderer: Renderer2 // Añadido para mover el modal al body
@@ -82,6 +84,6 @@ export class ModalBoostrapComponent implements OnDestroy{
   }
 
   async buttonCloseM(){
-    // Bootstrap maneja el cierre, pero puedes limpiar aquí si es necesario
+    this.router.navigate([], {});
   }
 }
