@@ -118,7 +118,7 @@ INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`
 	(22, 'Catalogo', 'catalogo', 1, 0, 'Modulo catalogo', NULL),
 	(25, 'Categorias', 'categorias', 0, 1, 'Permiso categorias, modulo catalogo', 22),
 	(26, 'Proveedores', 'proveedores', 0, 1, 'Permiso proveedores, modulo catalogo', 22),
-	(27, 'Asignar productos', 'asignar_productos', 0, 1, 'Permiso asignar_productos, submodulo categorias, modulo catalogo', 25),
+	(27, 'Productos (asignar)', 'asignar_productos', 0, 1, 'Permiso asignar_productos, submodulo categorias, modulo catalogo', 25),
 	(28, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo categorias, modulo catalogo', 25),
 	(29, 'Crear', 'crear', 0, 1, 'Permiso crear, submodulo categorias, modulo catalogo', 25),
 	(30, 'Editar', 'editar', 0, 1, 'Permiso editar, submodulo categorias, modulo catalogo', 25),
@@ -130,89 +130,23 @@ INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`
 	(36, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo proveedores, modulo catalogo', 26),
 	(37, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso eliminar_multiple, submodulo proveedores, modulo catalogo', 26);
 
+
 -- Volcando datos para la tabla core_project_BAN_00341.mod_permisos_modulo_asignacion: ~24 rows (aproximadamente)
 INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descripcion`, `modulo_padre_id`, `user_id`) VALUES
-	(2, 'Administradores', 'administradores', 'Modulo Usuarios', 1, 1),
-	(4, 'Crear', 'crear', 'Permiso crear, submodulo administradores, modulo usuarios', 2, 1),
-	(5, 'Editar', 'editar', 'Permiso editar, submodulo administradores, modulo usuarios', 2, 1),
-	(7, 'Eliminar (multiple)', 'eliminar_multiple', 'Permiso eliminar multiple, submodulo administradores, modulo usuarios', 2, 1),
-	(8, 'Estado (usuario)', 'estado_usuario', 'Permiso estado usuario, submodulo administradores, modulo usuarios', 2, 1),
-	(9, 'Permisos (asignar)', 'asignar_permisos', 'Permiso asignar_permisos usuario, submodulo administradores, modulo usuarios', 2, 1),
-	(11, 'Ver', 'ver', 'Permiso ver, submodulo finales, modulo usuarios', 10, 1),
-	(13, 'Editar', 'editar', 'Permiso editar, submodulo finales, modulo usuarios', 10, 1),
-	(17, 'Ver', 'ver', 'Permiso ver, modulo modulos', 17, 1),
-	(18, 'Crear', 'crear', 'Permiso crear, modulo modulos', 17, 1),
-	(19, 'Editar', 'editar', 'Permiso editar, modulo modulos', 17, 1),
-	(31, 'Estado (usuario)', 'estado_usuario', 'Permiso estado usuario, submodulo finales, modulo usuarios', 10, 1),
-	(39, 'Eliminar (multiple)', 'eliminar_multiple', 'Permiso eliminar multiple, submodulo finales, modulo usuarios', 10, 1),
-	(42, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, modulo modulos', 17, 1),
-	(45, 'Modulos', 'modulos', 'Modulo modulos', NULL, 1),
-	(47, 'Ver', 'ver', 'Permiso ver, submodulo administradores, modulo usuarios', 2, 1),
-	(61, 'Administradores', 'administradores', 'Modulo Usuarios', 1, 19),
-	(63, 'Usuarios', 'usuarios', 'Modulo usuarios', NULL, 19),
-	(64, 'Finales', 'finales', 'Modulo Usuarios', 1, 19),
-	(66, 'Ver', 'ver', 'Permiso ver, modulo modulos', 17, 19),
-	(79, 'Modulos', 'modulos', 'Modulo modulos', NULL, 19),
-	(81, 'Finales', 'finales', 'Modulo Usuarios', 1, 1),
-	(82, 'Crear', 'crear', 'Permiso crear, submodulo finales, modulo usuarios', 10, 1),
-	(83, 'Usuarios', 'usuarios', 'Modulo usuarios', NULL, 1);
+  (1, 'Usuarios', 'usuarios', 'Modulo usuarios', NULL, 1),
+  (2, 'Administradores', 'administradores', 'Permiso administradores, modulo usuarios', 1, 1),
+  (3, 'Permisos (asignar)\r\n', 'asignar_permisos', 'Permiso asignar_permisos usuario, submodulo administradores, modulo usuarios', 2, 1);
+
 
 -- Volcando datos para la tabla core_project_BAN_00341.mod_usuarios_admin: ~13 rows (aproximadamente)
 INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'Admin1', 'Principal', 'admin1@correo.com', 'Qwerty9601', 1),
-	(2, 'admin2', 'admin2', 'admin2@correo.com', 'Qwerty9601', 1),
-	(3, 'admin3', 'admin3', 'admin3@correo.com', 'Qwerty9601', 1),
-	(4, 'Admin4', 'Admin4', 'admin4@gmail.com', 'Qwerty9601', 1),
-	(6, 'Admin5', 'Admin5', 'admin5@gmail.com', 'Qwerty9601', 1),
-	(7, 'Admin6', 'Admin6', 'admin6@gmail.com', 'Qwerty9601', 1),
-	(8, 'Admin7', 'Admin7', 'admin7@gmail.com', 'Qwerty9601', 1),
-	(9, 'Admin8', 'Admin8', 'admin8@gmail.com', 'Qwerty9601', 1),
-	(10, 'Admin9', 'Admin9', 'admin9@gmail.com', 'Qwerty9601', 1),
-	(11, 'Admin10', 'Admin10', 'admin10@gmail.com', 'Qwerty9601', 1),
-	(12, 'Admin11', 'Admin11', 'admin11@gmail.com', 'Qwerty9601', 1),
-	(18, 'admin12', 'admin12', 'admin12@gmail.com', 'Qwerty9601.', 1),
-	(19, 'Donald', 'Trump', 'donald@correo.com', 'Qwerty9601', 1);
+	(2, 'admin2', 'admin2', 'admin2@correo.com', 'Qwerty9601', 1);
 
 -- Volcando datos para la tabla core_project_BAN_00341.mod_usuarios_user: ~17 rows (aproximadamente)
 INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'final1', 'final1', 'final1@gmail.com', 'Qwerty9601', 1),
-	(2, 'final2', 'final2', 'final2@gmail.com', 'Qwerty9601', 1),
-	(3, 'final3', 'final3', 'final3@gmail.com', 'Qwerty9601', 1),
-	(4, 'final4', 'final4', 'final4@gmail.com', 'Qwerty9601', 1),
-	(5, 'final5', 'final5', 'final5@gmail.com', 'Qwerty9601', 1),
-	(6, 'final6', 'final6', 'final6@gmail.com', 'Qwerty9601', 1),
-	(7, 'final7', 'final7', 'final7@gmail.com', 'Qwerty9601', 1),
-	(8, 'final8', 'final8', 'final8@gmail.com', 'Qwerty9601', 1),
-	(9, 'final9', 'final9', 'final9@gmail.com', 'Qwerty9601', 1),
-	(10, 'final10', 'final10', 'final10@gmail.com', 'Qwerty9601', 1),
-	(11, 'final11', 'final11', 'final11@gmail.com', 'Qwerty9601', 0),
-	(12, 'final12', 'final12', 'final12@gmail.com', 'Qwerty9601', 0),
-	(14, 'final13', 'final13', '13@gmail.com', 'Qwerty9601', 1),
-	(15, 'final14', 'final14', '14@gmail.com', 'Qwerty9601', 1),
-	(16, 'final15', 'final15', '15@gmail.com', 'Qwerty9601', 1),
-	(17, 'final16', 'final16', '16@gmail.com', 'Qwerty9601', 1),
-	(18, 'final17', 'final17', '17@gmail.com', 'Qwerty9601', 1),
-	(19, 'final18', 'final18', '18@gmail.com', 'Qwerty9601', 1),
-	(20, 'final19', 'final19', '19@gmail.com', 'Qwerty9601', 1),
-	(21, 'final20', 'final20', '20@gmail.com', 'Qwerty9601', 1),
-	(22, 'final21', 'final21', '21@gmail.com', 'Qwerty9601', 1),
-	(23, 'final22', 'final22', '22@gmail.com', 'Qwerty9601', 1),
-	(24, 'final23', 'final23', '23@gmail.com', 'Qwerty9601', 1),
-	(25, 'final24', 'final24', '24@gmail.com', 'Qwerty9601', 1),
-	(26, 'final25', 'final25', '25@gmail.com', 'Qwerty9601', 1),
-	(27, 'final26', 'final26', '26@gmail.com', 'Qwerty9601', 1),
-	(28, 'final28', 'final28', '28@gmail.com', 'Qwerty9601', 1),
-	(29, 'final29', 'final29', '29@gmail.com', 'Qwerty9601', 1),
-	(30, 'final30', 'final30', '30@gmail.com', 'Qwerty9601', 1),
-	(31, 'final31', 'final31', '31@gmail.com', 'Qwerty9601', 1),
-	(32, 'final32', 'final32', '32@gmail.com', 'Qwerty9601', 1),
-	(33, 'final33', 'final33', '33@gmail.com', 'Qwerty9601', 1),
-	(34, 'final34', 'final34', '34@gmail.com', 'Qwerty9601', 1),
-	(35, 'final35', 'final35', '35@gmail.com', 'Qwerty9601', 1),
-	(36, 'final36', 'final36', '36@gmail.com', 'Qwerty9601', 1),
-	(37, 'final37', 'final37', '37@gmail.com', 'Qwerty9601', 1),
-	(38, 'final38', 'final38', '38@gmail.com', 'Qwerty9601', 0),
-	(58, 'final39', 'final39', '39@gmail.com', 'Qwerty9601.', 1);
+	(2, 'final2', 'final2', 'final2@gmail.com', 'Qwerty9601', 1);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

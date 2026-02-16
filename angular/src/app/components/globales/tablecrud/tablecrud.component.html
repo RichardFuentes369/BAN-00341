@@ -26,8 +26,13 @@
       </button>
     }
     @if(tienePermiso('asignar_permisos')){
-      <button class="btn btn-primary btn-sm mx-1" (click)="assignItem($event)" [disabled]="idsSeleccionados.length !== 1">
-        {{ 'global-tablecrud.BUTTON_OPTION_ASSIGN' | translate}} ({{idsSeleccionados.length}})
+      <button class="btn btn-primary btn-sm mx-1" (click)="assign($event)" [disabled]="idsSeleccionados.length !== 1">
+        {{ 'global-tablecrud.BUTTON_OPTION_ASSIGN_PERMISSION' | translate}} ({{idsSeleccionados.length}})
+      </button>
+    }    
+    @if(tienePermiso('asignar_productos')){
+      <button class="btn btn-primary btn-sm mx-1" (click)="assign($event)" [disabled]="idsSeleccionados.length !== 1">
+        {{ 'global-tablecrud.BUTTON_OPTION_ASSIGN_PRODUCTS' | translate}} ({{idsSeleccionados.length}})
       </button>
     }
     @if(tienePermiso('estado_usuario')){

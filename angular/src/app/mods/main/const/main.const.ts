@@ -1,4 +1,5 @@
 export const ADMIN_PAGE_MENU_PERSMISSION_USERS = 'usuarios';
+export const ADMIN_PAGE_MENU_PERSMISSION_CATALOG = 'catalogo';
 export const ADMIN_PAGE_MENU_PERSMISSION_MODULES = 'modulos';
 
 export const LAYOUT_ADMIN_PAGE_USERS = '/admin/mod/users';

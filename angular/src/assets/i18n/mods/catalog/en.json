@@ -20,13 +20,27 @@
     "COLUMN_ID": "ID",
     "COLUMN_NAME": "Name",
     "COLUMN_DESCRIPTION": "Description",
-    "COLUMN_STATUS": "Status"
+    "COLUMN_TOTAL_PRODUCTOS": "# Products",
+    "COLUMN_STATUS": "Status",
+
+    "LABEL_NAME_CATEGORY": "Name",
+    "LABEL_DESCRIPTION_CATEGORY": "Description",
+
+    "PLACEHOLDER_NAME_CATEGORY": "Enter a name",
+    "PLACEHOLDER_DESCRIPTION_CATEGORY": "Enter a description",
+
+    "SWAL_CREATED": "CATEGORY!",
+    "SWAL_UPDATED": "CATEGORY!",
+    "SWAL_DELETED": "CATEGORY!",
+    
+    "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the category{{plural}} {{user_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete the category{{plural}} {{user_name}}?"
   },
 
   "SUPPLIER": {
     "CREATE_TITLE": "Create supplier", 
-    "EDIT_TITLE": "Edit supplier {{supplier_name}}", 
-    "SEE_TITLE": "See supplier {{supplier_name}}", 
+    "EDIT_TITLE": "Edit supplier {{category_name}}", 
+    "SEE_TITLE": "See supplier {{category_name}}", 
 
     "COLUMN_ID": "ID",
     "COLUMN_BUSINESS_NIT": "Tax ID",

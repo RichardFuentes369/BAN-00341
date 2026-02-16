@@ -58,22 +58,27 @@ export class FinalesComponent implements OnInit{
     {
       title: this.translate.instant('mod-users.COLUMN_ID'),
       data: 'id',
+      className: 'text-center'
     },
     {
       title: this.translate.instant('mod-users.COLUMN_EMAIL'),
       data: 'email',
+      className: 'text-center'
     },
     {
       title: this.translate.instant('mod-users.COLUMN_NAMES'),
       data: 'firstName',
+      className: 'text-center'
     },
     {
       title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
       data: 'lastName',
+      className: 'text-center'
     },
     {
       title: this.translate.instant('mod-users.COLUMN_STATUS'),
       data: 'isActive',
+      className: 'text-center',
       render: function (data: any, type: any, row: any) {
         if (type === 'display') {
           if (data === true) {
@@ -145,22 +150,27 @@ export class FinalesComponent implements OnInit{
       {
         title: this.translate.instant('mod-users.COLUMN_ID'),
         data: 'id',
+        className: 'text-center',
       },
       {
         title: this.translate.instant('mod-users.COLUMN_EMAIL'),
         data: 'email',
+        className: 'text-center',
       },
       {
         title: this.translate.instant('mod-users.COLUMN_NAMES'),
         data: 'firstName',
+        className: 'text-center',
       },
       {
         title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
         data: 'lastName',
+        className: 'text-center',
       },
       {
         title: this.translate.instant('mod-users.COLUMN_STATUS'),
         data: 'isActive',
+        className: 'text-center',
         render: (data: any, type: any) => {
           if (type === 'display') {
             const statusKey = data ? this.translate.instant('mod-users.WORD_ACTIVED') : this.translate.instant('mod-users.WORD_INACTIVED');

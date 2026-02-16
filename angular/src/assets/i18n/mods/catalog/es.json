@@ -20,7 +20,21 @@
     "COLUMN_ID": "Id",
     "COLUMN_NAME": "Nombre",
     "COLUMN_DESCRIPTION": "Descripcion",
-    "COLUMN_STATUS": "Estado"
+    "COLUMN_TOTAL_PRODUCTOS": "# Productos", 
+    "COLUMN_STATUS": "Estado",
+
+    "LABEL_NAME_CATEGORY": "Nombre",
+    "LABEL_DESCRIPTION_CATEGORY": "Descripción",
+
+    "PLACEHOLDER_NAME_CATEGORY": "Ingrese un nombre",
+    "PLACEHOLDER_DESCRIPTION_CATEGORY": "Ingrese una descripción",
+
+    "SWAL_CREATED": "¡CATEGORÍA!",
+    "SWAL_UPDATED": "¡CATEGORÍA!",
+    "SWAL_DELETED": "¡CATEGORÍA!",
+
+    "SWAL_ARE_YOU_SURE_UPDATE": "¿Está seguro de que desea actualizar la categoria {{user_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "¿Está seguro de que desea eliminar {{art_the}} categoria{{plural}} {{user_name}}?"
   },
 
   "SUPPLIER": {

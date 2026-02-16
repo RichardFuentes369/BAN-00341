@@ -11,7 +11,7 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { Subscription, timer } from 'rxjs';
 import { CategoriasService } from './service/categorias.service';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
-import { STORAGE_KEY_PROFILE_ADMIN } from '@mod/catalog/const/catalog.const';
+import { CREAR_CATEGORIA_COMPONENT, EDITAR_CATEGORIA_COMPONENT, FILTRO_CATEGORIA_COMPONENT, STORAGE_KEY_PROFILE_ADMIN, VER_CATEGORIA_COMPONENT } from '@mod/catalog/const/catalog.const';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -45,7 +45,7 @@ export class CategoriasComponent implements OnInit, OnDestroy{
   search = true
   buttonSearch = this.translate.instant('mod-catalog.BUTTON_SEARCH')
   iconFilter="fa fa-filter"
-  componenteFilter=FILTRO_USUARIO_COMPONENT
+  componenteFilter=FILTRO_CATEGORIA_COMPONENT
   // fin datos envio al filtro
 
   // inicio datos que envio al componente tabla
@@ -56,14 +56,22 @@ export class CategoriasComponent implements OnInit, OnDestroy{
     {
       title: this.translate.instant('mod-catalog.CATEGORY.COLUMN_ID'),
       data: 'id',
+      className: 'text-center'
     },
     {
       title: this.translate.instant('mod-catalog.CATEGORY.COLUMN_NAME'),
       data: 'nombre',
+      className: 'text-center'
     },
     {
       title: this.translate.instant('mod-catalog.CATEGORY.COLUMN_DESCRIPTION'),
       data: 'descripcion',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-catalog.CATEGORY.COLUMN_TOTAL_PRODUCTOS'),
+      data: 'totalProductos',
+      className: 'text-center'
     },
   ];
   permisosAcciones = this.permisos
@@ -90,19 +98,17 @@ export class CategoriasComponent implements OnInit, OnDestroy{
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
-    const permiso_modulo = await this.permisosService.permisoPage(0,'usuarios',userData.data.id)
-    const permiso_submodulo = await this.permisosService.permisoPage(1,'administradores',userData.data.id)
+    const permiso_modulo = await this.permisosService.permisoPage(0,'catalogo',userData.data.id)
+    const permiso_submodulo = await this.permisosService.permisoPage(22,'categorias',userData.data.id)
 
     if (permiso_modulo.data === "" || permiso_submodulo.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     }
 
-    const permisos = await this.permisosService.permisos(userData.data.id,'administradores')
+    const permisos = await this.permisosService.permisos(userData.data.id,'categorias')
     this.permisos = permisos.data
-    sessionStorage.removeItem('email')
-    sessionStorage.removeItem('firstName')
-    sessionStorage.removeItem('lastName')
-    sessionStorage.removeItem('isActive')
+    sessionStorage.removeItem('nombre')
+    sessionStorage.removeItem('descripcion')
 
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarTabla = false;
@@ -125,20 +131,139 @@ export class CategoriasComponent implements OnInit, OnDestroy{
       {
         title: this.translate.instant('mod-catalog.CATEGORY.COLUMN_ID'),
         data: 'id',
+        className: 'text-center'
       },
       {
         title: this.translate.instant('mod-catalog.CATEGORY.COLUMN_NAME'),
         data: 'nombre',
+        className: 'text-center'
       },
       {
         title: this.translate.instant('mod-catalog.CATEGORY.COLUMN_DESCRIPTION'),
         data: 'descripcion',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-catalog.CATEGORY.COLUMN_TOTAL_PRODUCTOS'),
+        data: 'totalProductos',
+        className: 'text-center'
       },
     ];  
+  }
+    
+  crearData (_id: string){
+    this.tamano = "xl"
+    this.scrollable = false
+    this.title = this.translate.instant('mod-catalog.CATEGORY.CREATE_TITLE')
+    this.save = true
+    this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
+    this.edit = false
+    this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
+    this.cierreModal = "true"
+    this.componentePrecargado = CREAR_CATEGORIA_COMPONENT
+
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if(idButton){
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
+  }
+
+  async verData (_id: string){
+    const response = await this.categoriasService.getDataCategory(_id)
+    const { nombre } = response.data || { nombre: 'xxxxxxx' }
+    
+    this.translate.get('mod-catalog.CATEGORY.SEE_TITLE', { "category_name": nombre }).subscribe((res: string) => {this.title = res});
+    this.tamano = "xl"
+    this.scrollable = false
+    this.save = false
+    this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
+    this.edit = false
+    this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
+    this.cierreModal = "true"
+    this.componentePrecargado = VER_CATEGORIA_COMPONENT
+
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if(idButton){
+      this.router.navigate([], {
+        queryParams: { id: _id },
+      });
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
+  }
+
+  async editarData (_id: string){
+    const response = await this.categoriasService.getDataCategory(_id)
+    const { nombre } = response.data || { nombre: 'xxxxxxx' }
+    
+    this.translate.get('mod-catalog.CATEGORY.SEE_TITLE', { "category_name": nombre }).subscribe((res: string) => {this.title = res});
+    this.tamano = "xl"
+    this.scrollable = false
+    this.save = false
+    this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
+    this.edit = true
+    this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
+    this.componentePrecargado = EDITAR_CATEGORIA_COMPONENT
+
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if(idButton){
+      this.router.navigate([], {
+        queryParams: { rol: 'admin', id: _id },
+      });
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
   }
 
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
+  async eliminarData (_id: string[]){
+    const response = await this.categoriasService.getDataCategory(_id[0])
+    const { nombre } = response.data || { nombre: 'xxxxxxx' }
+    const name_user = (_id.length === 1) ? nombre: "("+_id.length+")"
+    const count_users = (_id.length === 1) ? 'el' : 'los'
+    const plural = (_id.length === 1) ? '' : 's'
+    
+    this.translate.get('mod-catalog.CATEGORY.SWAL_ARE_YOU_SURE_DELETE',{ "art_the": count_users, "plural": plural, "user_name": name_user}).subscribe((translatedTitle: string) => {
+      Swal.fire({
+        title: translatedTitle,
+        text: this.translate.instant('mod-catalog.SWAL_WARNING_REVERSE_CHANGE'),
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: this.translate.instant('mod-catalog.SWAL_BUTTON_DELETE'),
+        cancelButtonText: this.translate.instant('mod-catalog.SWAL_BUTTON_CANCEL')
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          if (result.isConfirmed) {
+            await this.categoriasService.deleteCategory(_id)
+            await this.someInput.reload()
+            Swal.fire({
+              title: this.translate.instant('mod-catalog.CATEGORY.SWAL_DELETED'),
+              text: this.translate.instant('mod-catalog.SWAL_DELETED_RECORD'),
+              icon: "success"
+            });
+          }
+        }
+      });
+    });
+  }
+
+  asignarData (data: { id: string, ctrlKey: boolean }){
+    console.log('mostramos la pagina de productos')
+    // const url = `${MOD_USER_PAGE_ADMIN_ASSIGMENT}?id=${data.id}`;
+    // if (data.ctrlKey) {
+    //   window.open(url, '_blank');
+    // } else {
+    //   this.router.navigate([MOD_USER_PAGE_ADMIN_ASSIGMENT], { queryParams: { id: data.id } });
+    // }
+  }
 
   async filtroData(){
     let filtros = await $('.complementoRuta').val();

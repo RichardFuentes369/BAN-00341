@@ -10,6 +10,10 @@ import { FiltroProveedorComponent } from './catalog/admin/pages/proveedores/comp
 import { CrearProveedorComponent } from './catalog/admin/pages/proveedores/components/crear-proveedor/crear-proveedor.component';
 import { VerProveedorComponent } from './catalog/admin/pages/proveedores/components/ver-proveedor/ver-proveedor.component';
 import { EditarProveedorComponent } from './catalog/admin/pages/proveedores/components/editar-proveedor/editar-proveedor.component';
+import { FiltroCategoriaComponent } from './catalog/admin/pages/categorias/components/filtro/filtro.component';
+import { VerCategoriaComponent } from './catalog/admin/pages/categorias/components/ver-categoria/ver-categoria.component';
+import { CrearCategoriaComponent } from './catalog/admin/pages/categorias/components/crear-categoria/crear-categoria.component';
+import { EditarCategoriaComponent } from './catalog/admin/pages/categorias/components/editar-categoria/editar-categoria.component';
 
 export class ListaComponentes {
 
@@ -67,7 +71,24 @@ export class ListaComponentes {
       name: 'FiltroProveedorComponent',
       componente: FiltroProveedorComponent      
     },
-
+    // modulo catalogo
+    // categorias
+    {
+      name: 'FiltroCategoriaComponent',
+      componente: FiltroCategoriaComponent
+    },  
+    {
+      name: 'CrearCategoriaComponent',
+      componente: CrearCategoriaComponent  
+    }, 
+    {
+      name: 'VerCategoriaComponent',
+      componente: VerCategoriaComponent  
+    },
+    {
+      name: 'EditarCategoriaComponent',
+      componente: EditarCategoriaComponent  
+    },
   ];
 
   obtenerComponentePorNombre(nombre: string) {

@@ -3,7 +3,8 @@
   "BUTTON_OPTION_CREATE": "Create",
   "BUTTON_OPTION_EDIT": "Edit",
   "BUTTON_OPTION_DELETE": "Delete",
-  "BUTTON_OPTION_ASSIGN": "Assign",
+  "BUTTON_OPTION_ASSIGN_PERMISSION": "Assign Permissions",
+  "BUTTON_OPTION_ASSIGN_PRODUCTS": "Assign Products",
   "BUTTON_OPTION_CLEAR": "Clear",
   "BUTTON_OPTION_SUSPEND": "Suspend",
 

@@ -80,14 +80,17 @@ export class PermisosComponent implements OnInit{
     {
       title: this.translate.instant('mod-modules.COLUMN_PERMISSION_NAME'),
       data: 'nombre',
+      className: 'text-center'
     },
     {
       title: this.translate.instant('mod-modules.COLUMN_PERMISSION_NICKNAME'),
       data: 'permiso',
+      className: 'text-center'
     },
     {
       title: this.translate.instant('mod-modules.COLUMN_DESCRIPTION'),
       data: 'descripcion',
+      className: 'text-center'
     },
   ]
   permisosAcciones = this.permisos
@@ -116,14 +119,17 @@ export class PermisosComponent implements OnInit{
       {
         title: this.translate.instant('mod-modules.COLUMN_PERMISSION_NAME'),
         data: 'nombre',
+        className: 'text-center'
       },
       {
         title: this.translate.instant('mod-modules.COLUMN_PERMISSION_NICKNAME'),
         data: 'permiso',
+        className: 'text-center'
       },
       {
         title: this.translate.instant('mod-modules.COLUMN_DESCRIPTION'),
         data: 'descripcion',
+        className: 'text-center'
       },
     ]
   }

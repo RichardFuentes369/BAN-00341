@@ -20,3 +20,8 @@ export const CREAR_PROVEEDOR_COMPONENT = 'CrearProveedorComponent';
 export const VER_PROVEEDOR_COMPONENT = 'VerProveedorComponent';
 export const EDITAR_PROVEEDOR_COMPONENT = 'EditarProveedorComponent';
 export const FILTRO_PROVEEDOR_COMPONENT = 'FiltroProveedorComponent';
+
+export const VER_CATEGORIA_COMPONENT = 'VerCategoriaComponent';
+export const CREAR_CATEGORIA_COMPONENT = 'CrearCategoriaComponent';
+export const EDITAR_CATEGORIA_COMPONENT = 'EditarCategoriaComponent';
+export const FILTRO_CATEGORIA_COMPONENT = 'FiltroCategoriaComponent';

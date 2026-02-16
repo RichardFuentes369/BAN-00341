@@ -48,12 +48,26 @@ export class CategoryService {
     }
 
     const peticion = async (offset: number) => {
-      return await this.categoryRepository.find({
-        skip: offset,
-        take: limit,
-        where: where,
-        order: { [field]: order }
-      });
+      const query = this.categoryRepository.createQueryBuilder('categoria')
+      .loadRelationCountAndMap(
+        'categoria.totalProductos', 
+        'categoria.produtos'
+      )
+      .skip(offset)
+      .take(limit);
+
+      const Order = order.toUpperCase() === 'DESC' ? 'DESC' : 'ASC';
+      query.orderBy(`categoria.${field}`, Order);
+
+      if (filterDto.nombre) {
+        query.andWhere('categoria.nombre LIKE :nombre', { nombre: `%${filterDto.nombre}%` });
+      }
+
+      if (filterDto.descripcion) {
+        query.andWhere('categoria.descripcion LIKE :descripcion', { descripcion: `%${filterDto.descripcion}%` });
+      }
+
+      return await query.getMany();
     };
 
     const totalRecords = await this.categoryRepository.count({ where });

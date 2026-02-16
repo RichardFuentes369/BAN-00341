@@ -20,7 +20,7 @@
       </a>
       }
 
-      <!-- @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_USERS)){ -->
+      @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_CATALOG)){
       <a [routerLink]="LAYOUT_ADMIN_PAGE_CATALOG" class="item" style="text-decoration: none; color: inherit; display: block;">
         <div class="card card-option">
           <div class="card-body text-center p-0 pb-3 pt-3">
@@ -31,7 +31,7 @@
           </div>
         </div>
       </a>
-      <!-- } -->
+      }
 
       @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_MODULES)){
       <a [routerLink]="LAYOUT_ADMIN_PAGE_MODULES" class="item" style="text-decoration: none; color: inherit; display: block;">

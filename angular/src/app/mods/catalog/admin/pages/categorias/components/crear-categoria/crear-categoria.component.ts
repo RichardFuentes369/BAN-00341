@@ -1,4 +1,3 @@
-
 import { Component, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Subject } from 'rxjs';
@@ -12,23 +11,23 @@ import { Router } from '@angular/router';
 import { ocultarModalOscura } from '@function/System'
 import { FinalService } from '@mod/users/admin/pages/finales/service/final.service';
 import { STORAGE_KEY_PROFILE } from '@const/app.const';
-import { ProveedoresService } from '../../service/proveedores.service';
+import { CategoriasService } from '../../service/categorias.service';
 
 @Component({
-  selector: 'app-crear-proveedor',
+  selector: 'app-crear-categoria',
   standalone: true,
   imports: [TranslateModule, FormsModule],
-  templateUrl: './crear-proveedor.component.html',
-  styleUrl: './crear-proveedor.component.scss',
+  templateUrl: './crear-categoria.component.html',
+  styleUrl: './crear-categoria.component.scss',
 })
-export class CrearProveedorComponent {
+export class CrearCategoriaComponent {
 
   private validationSubject = new Subject<void>();
   isFormValid = false;
 
   constructor(
     private router: Router,
-    private proveedoresService: ProveedoresService,
+    private categoriasService: CategoriasService,
     private translate: TranslateService
   ){
     this.validationSubject.pipe(
@@ -40,19 +39,13 @@ export class CrearProveedorComponent {
   }
 
   model = {
-    nit: '',
-    razon_social: '',
-    direccion: '',
-    telefono: '',
-    correo: '',
+    nombre: '',
+    descripcion: '',
   }
 
   validators = {
-    nit: false,
-    razon_social: false,
-    direccion: false,
-    telefono: false,
-    correo: false,
+    nombre: false,
+    descripcion: false,
   }
 
   goTo (url: string, _id: number){
@@ -71,27 +64,20 @@ export class CrearProveedorComponent {
 
   checkValidation(): boolean {
 
-    const regexNIT = /^[0-9]{8,15}$/;
-    const regexPhoneCO = /^(\+57)?3\d{9}$/;
-    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    this.validators.nit = (this.model.nit.length === 0 || !regexNIT.test(this.model.nit))
-    this.validators.razon_social = (this.model.razon_social.length === 0)
-    this.validators.direccion = (this.model.direccion.length === 0)
-    this.validators.telefono = (this.model.telefono.length === 0 || !regexPhoneCO.test(this.model.telefono))
-    this.validators.correo = (this.model.correo.length === 0 || !regexEmail.test(this.model.correo))
+    this.validators.nombre = (this.model.nombre.length === 0)
+    this.validators.descripcion = (this.model.descripcion.length === 0)
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
-    (!this.validators.nit && !this.validators.razon_social && !this.validators.direccion && !this.validators.telefono && !this.validators.correo) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+    (!this.validators.nombre && !this.validators.descripcion) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
     
-    return !this.validators.nit && !this.validators.razon_social && !this.validators.direccion && !this.validators.telefono && !this.validators.correo
+    return !this.validators.nombre && !this.validators.descripcion
   }
 
-  async crearProveedor(){
-
+  async crearCategoria(){
     if(this.isFormValid){
-      let endPoint = this.proveedoresService
+      let endPoint = this.categoriasService
 
-      const response = await endPoint.createProvider(this.model)
+      const response = await endPoint.createCategory(this.model)
       if(response.data.status == 404){
         ocultarModalOscura()
         Swal.fire({
@@ -104,7 +90,7 @@ export class CrearProveedorComponent {
       if(response.data.status == 200){
         ocultarModalOscura()
         Swal.fire({
-          title: this.translate.instant('mod-catalog.SUPPLIER.SWAL_CREATED'),
+          title: this.translate.instant('mod-catalog.CATEGORY.SWAL_CREATED'),
           text: this.translate.instant('mod-catalog.SWAL_CREATED_RECORD'),
           icon: "success"
         });

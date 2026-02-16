@@ -55,26 +55,32 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     {
       title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_ID'),
       data: 'id',
+      className: 'text-center'
     },
     {
       title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NIT'),
       data: 'nit',
+      className: 'text-center'
     },
     {
       title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NAME'),
       data: 'razon_social',
+      className: 'text-center'
     },
     {
       title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_ADDRESS'),
       data: 'direccion',
+      className: 'text-center'
     },
     {
       title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_PHONE'),
       data: 'telefono',
+      className: 'text-center'
     },
     {
       title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_EMAIL'),
       data: 'correo',
+      className: 'text-center'
     },
   ];
   permisosAcciones = this.permisos
@@ -135,26 +141,32 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
       {
         title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_ID'),
         data: 'id',
+        className: 'text-center'
       },
       {
         title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NIT'),
         data: 'nit',
+        className: 'text-center'
       },
       {
         title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NAME'),
         data: 'razon_social',
+        className: 'text-center'
       },
       {
         title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_PHONE'),
         data: 'direccion',
+        className: 'text-center'
       },
       {
         title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_EMAIL'),
         data: 'telefono',
+        className: 'text-center'
       },
       {
         title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_ADDRESS'),
         data: 'correo',
+        className: 'text-center'
       },
     ];  
   }
@@ -218,10 +230,13 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
     this.cancel = true
     this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
-    this.componentePrecargado = EDITAR_PROVEEDOR_COMPONENT
+    this.componentePrecargado = EDITAR_PROVEEDOR_COMPONENT  
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
+      this.router.navigate([], {
+        queryParams: { rol: 'admin', id: _id },
+      });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }

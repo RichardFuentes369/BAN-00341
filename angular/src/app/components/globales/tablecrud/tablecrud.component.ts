@@ -178,7 +178,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   editItem() { if (this.idsSeleccionados.length === 1) this.editarItem.emit(this.idsSeleccionados[0]); }
   deleteItem() { if (this.idsSeleccionados.length > 0) this.eliminarItem.emit(this.idsSeleccionados); }
   activedItem() { if (this.idsSeleccionados.length > 0) this.activarItem.emit(this.idsSeleccionados); }
-  assignItem(event: MouseEvent) {
+  assign(event: MouseEvent) {
     if (this.idsSeleccionados.length === 1) {
       this.asignar.emit({
         id: this.idsSeleccionados[0],

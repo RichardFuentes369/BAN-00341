@@ -1,0 +1,44 @@
+<div class="">
+  
+  @for (item of categoria; track item; let  i = $index) {
+    <div class="col-xl-12 col-sm-12 row">
+      <div class="col-xl col-sm-12">
+        <div class="col-sm-12 row p-0">
+          <div class="col-sm-12 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-catalog.CATEGORY.LABEL_NAME_CATEGORY' | translate}}
+            </label>
+            <input type="text" class="form-control" [(ngModel)]="model.nombre" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nombre" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate}}">
+            @if(validators.nombre) {
+              <span class="text-danger small">{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate }}</span>
+            }
+          </div>
+          <div class="col-sm-12 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-catalog.CATEGORY.LABEL_DESCRIPTION_CATEGORY' | translate}}
+            </label>
+            <textarea 
+              class="form-control" 
+              [(ngModel)]="model.descripcion" 
+              (ngModelChange)="onInputChange()">
+            </textarea>
+            @if(validators.descripcion) {
+              <span class="text-danger small">{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate }}</span>
+            }
+          </div>
+          <div class="col-sm-12 row p-0">
+            <div class="col-sm-12">
+              <button class="btn btn-sm btn-primary btnAction d-none" (click)="actualizarData()">
+                {{ 'mod-catalog.BUTTON_EDIT' | translate}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+</div>
+
+
+
