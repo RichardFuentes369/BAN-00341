@@ -13,6 +13,7 @@ import { CategoriasService } from './service/categorias.service';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import { CREAR_CATEGORIA_COMPONENT, EDITAR_CATEGORIA_COMPONENT, FILTRO_CATEGORIA_COMPONENT, STORAGE_KEY_PROFILE_ADMIN, VER_CATEGORIA_COMPONENT } from '@mod/catalog/const/catalog.const';
 import Swal from 'sweetalert2';
+import { CardComponent } from '@component/globales/card/card.component';
 
 @Component({
   selector: 'app-categorias',
@@ -23,6 +24,7 @@ import Swal from 'sweetalert2';
     LoadingComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
+    CardComponent
   ],
   templateUrl: './categorias.component.html',
   styleUrl: './categorias.component.scss',
@@ -91,9 +93,15 @@ export class CategoriasComponent implements OnInit, OnDestroy{
   componentePrecargado = ""
   // fin datos envio al modal
 
+  // inicio datos envio card information
+  titelInformationCard = "Hola mundo"
+  contentInformation = "Hola mundo"
+  // fin datos envio card information
+
+
   cargarTabla = true;
 
-    // metodos Init, Destroy
+  // metodos Init, Destroy
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
@@ -201,7 +209,7 @@ export class CategoriasComponent implements OnInit, OnDestroy{
     const response = await this.categoriasService.getDataCategory(_id)
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
     
-    this.translate.get('mod-catalog.CATEGORY.SEE_TITLE', { "category_name": nombre }).subscribe((res: string) => {this.title = res});
+    this.translate.get('mod-catalog.CATEGORY.EDIT_TITLE', { "category_name": nombre }).subscribe((res: string) => {this.title = res});
     this.tamano = "xl"
     this.scrollable = false
     this.save = false

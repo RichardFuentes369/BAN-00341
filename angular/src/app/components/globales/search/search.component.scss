@@ -90,7 +90,7 @@
 /* Este contenedor controla la posición de TODO el grupo en la pantalla */
 .filter-wrapper {
   position: absolute;
-  right: 0.5em !important;
+  right: -0.5em !important;
   top: 37% !important;
   z-index: 100;
   display: inline-block;

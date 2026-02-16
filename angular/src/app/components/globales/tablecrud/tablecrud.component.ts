@@ -79,11 +79,12 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   listar() {
     this.dtOptions = {
       paging: true,
-      scrollY: '400',
       ordering: false,
       processing: true,
       searching: false,
       serverSide: true,
+      scrollY: '', 
+      scrollCollapse: false,
       ajax: (dataTablesParameters: any, callback) => {
         const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
         const page = Math.floor(dataTablesParameters.start / dataTablesParameters.length) + 1;
