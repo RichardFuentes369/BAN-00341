@@ -12,6 +12,7 @@ import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PRO
 import { CREAR_PROVEEDOR_COMPONENT, EDITAR_PROVEEDOR_COMPONENT, FILTRO_PROVEEDOR_COMPONENT, VER_PROVEEDOR_COMPONENT } from '@mod/catalog/const/catalog.const';
 import Swal from 'sweetalert2';
 import { ProveedoresService } from './service/proveedores.service';
+import { CardComponent } from '@component/globales/card/card.component';
 
 @Component({
   selector: 'app-proveedores',
@@ -22,6 +23,7 @@ import { ProveedoresService } from './service/proveedores.service';
     LoadingComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
+    CardComponent
   ],
   templateUrl: './proveedores.component.html',
   styleUrl: './proveedores.component.scss',
@@ -99,6 +101,11 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   cierreModal = "true"
   componentePrecargado = ""
   // fin datos envio al modal
+
+  // inicio datos envio card information
+  titelInformationCard = "Hola mundo"
+  contentInformation = "Hola mundo"
+  // fin datos envio card information
 
   cargarTabla = true;
 

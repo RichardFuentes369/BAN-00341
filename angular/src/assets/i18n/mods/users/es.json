@@ -6,6 +6,8 @@
 
   "MODULE_TITLE": "Usuarios",
 
+  "CARD_ADMIN_TITLE": "Total usuarios",
+
   "CREATE_ADMIN_TITLE": "Crear usuario administrador",
   "EDIT_ADMIN_TITLE": "Editar usuario {{user_name}}",
   "SEE_ADMIN_TITLE": "Ver usuario {{user_name}}",

@@ -3,7 +3,19 @@
     {{ 'mod-users.PAGE_FINAL_TITLE' | translate}}
   </h1>
   
-  <div class="mt-3 p-2">
+  <div class="col-sm-12 row mt-4 mx-0 pl-0 pr-0">
+    <div class="col-sm-3">
+      @if (cargarIdioma) {
+      <app-information-card
+        [title]="titelInformationCard" 
+        [content]="contentInformation" 
+      >
+      </app-information-card>
+      }
+    </div>
+  </div>
+
+  <div class="mt-3 p-2" style="position: relative;">
     <app-globales-search
       [icon]="iconFilter" 
       [componente]="componenteFilter"
@@ -11,7 +23,7 @@
     >
     </app-globales-search>
 
-    @if (cargarTabla) {
+    @if (cargarIdioma) {
     <app-globales-tablecrud
       [campoFiltro] = showcampoFiltro
       [endPoint] = endPoint

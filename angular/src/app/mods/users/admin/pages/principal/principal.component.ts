@@ -17,6 +17,7 @@ import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import { CREAR_USUARIO_COMPONENT, EDITAR_USUARIO_COMPONENT, FILTRO_USUARIO_COMPONENT, MOD_USER_PAGE_ADMIN_ASSIGMENT, STORAGE_KEY_PROFILE_ADMIN, VER_USUARIO_COMPONENT } from '@mod/users/const/users.const'
 import { LoadingComponent } from '@component/globales/loading/loading.component';
+import { CardComponent } from '@component/globales/card/card.component';
 
 @Component({
   selector: 'app-principal',
@@ -27,6 +28,7 @@ import { LoadingComponent } from '@component/globales/loading/loading.component'
     LoadingComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
+    CardComponent,
   ],
   templateUrl: './principal.component.html',
   styleUrl: './principal.component.scss'
@@ -107,7 +109,12 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   componentePrecargado = ""
   // fin datos envio al modal
 
-  cargarTabla = true;
+  // inicio datos envio card information
+  titelInformationCard = this.translate.instant('mod-users.CARD_ADMIN_TITLE')
+  contentInformation = "32"
+  // fin datos envio card information
+
+  cargarIdioma = true;
 
   // metodos Init, Destroy
   async ngOnInit() {
@@ -129,10 +136,11 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     sessionStorage.removeItem('isActive')
 
     this.langSub = this.translate.onLangChange.subscribe(() => {
-      this.cargarTabla = false;
+      this.cargarIdioma = false;
       timer(200).subscribe(() => {
         this.listar(); 
-        this.cargarTabla = true;
+        this.cambiarTextos(); 
+        this.cargarIdioma = true;
       });
     });
   }
@@ -179,6 +187,10 @@ export class PrincipalComponent implements OnInit, OnDestroy{
         }
       }
     ]
+  }
+
+  cambiarTextos(){
+    this.titelInformationCard = this.translate.instant('mod-users.CARD_ADMIN_TITLE')
   }
 
   crearData (_id: string){

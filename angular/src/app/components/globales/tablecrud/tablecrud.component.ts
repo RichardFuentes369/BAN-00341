@@ -28,6 +28,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild(DataTableDirective, { static: false }) datatableElement!: DataTableDirective;
 
+  responsive = "table-responsive-xl"
   url = environment.apiUrl;
   idsSeleccionados: any[] = [];
   dtOptions: Config = {};

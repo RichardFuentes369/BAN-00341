@@ -15,6 +15,7 @@ import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import { CREAR_USUARIO_COMPONENT, EDITAR_USUARIO_COMPONENT, FILTRO_USUARIO_COMPONENT, STORAGE_KEY_PROFILE_FINAL, VER_USUARIO_COMPONENT } from '@mod/users/const/users.const'
 import { LoadingComponent } from '@component/globales/loading/loading.component';
+import { CardComponent } from '@component/globales/card/card.component';
 
 @Component({
   selector: 'app-menu-usuarios-finales',
@@ -25,6 +26,7 @@ import { LoadingComponent } from '@component/globales/loading/loading.component'
     LoadingComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
+    CardComponent,
   ],
   templateUrl: './finales.component.html',
   styleUrl: './finales.component.scss'
@@ -94,7 +96,12 @@ export class FinalesComponent implements OnInit{
   permisosAcciones = this.permisos
   // fin datos que envio al componente tabla
 
-  cargarTabla = true;
+  // inicio datos envio card information
+  titelInformationCard = this.translate.instant('mod-users.CARD_ADMIN_TITLE')
+  contentInformation = "32"
+  // fin datos envio card information
+
+  cargarIdioma = true;
 
   // inicio datos envio al modal
   tamano = ""
@@ -130,11 +137,12 @@ export class FinalesComponent implements OnInit{
     sessionStorage.removeItem('isActive')
 
     this.langSub = this.translate.onLangChange.subscribe(() => {
-      this.cargarTabla = false;
+      this.cargarIdioma = false;
 
       timer(200).subscribe(() => {
         this.listar(); 
-        this.cargarTabla = true;
+        this.cambiarTextos(); 
+        this.cargarIdioma = true;
       });
     });
   } 
@@ -180,6 +188,10 @@ export class FinalesComponent implements OnInit{
         }
       }
     ]
+  }
+
+  cambiarTextos(){
+    this.titelInformationCard = this.translate.instant('mod-users.CARD_ADMIN_TITLE')
   }
 
   crearData (_id: string){
