@@ -94,12 +94,12 @@ export class CategoriasComponent implements OnInit, OnDestroy{
   // fin datos envio al modal
 
   // inicio datos envio card information
-  titelInformationCard = "Hola mundo"
-  contentInformation = "Hola mundo"
+  titleTotalCategorys = this.translate.instant('mod-catalog.CATEGORY.CARD_TOTAL_CATEGORIES_TITLE')
+  titleTotalProducts = this.translate.instant('mod-catalog.CATEGORY.CARD_TOTAL_PRODUCTS_TITLE')
+  contentInformation = "45"
   // fin datos envio card information
 
-
-  cargarTabla = true;
+  cargarIdioma = true;
 
   // metodos Init, Destroy
   async ngOnInit() {
@@ -119,10 +119,11 @@ export class CategoriasComponent implements OnInit, OnDestroy{
     sessionStorage.removeItem('descripcion')
 
     this.langSub = this.translate.onLangChange.subscribe(() => {
-      this.cargarTabla = false;
+      this.cargarIdioma = false;
       timer(200).subscribe(() => {
         this.listar(); 
-        this.cargarTabla = true;
+        this.cambiarTextos(); 
+        this.cargarIdioma = true;
       });
     });
   }
@@ -157,6 +158,11 @@ export class CategoriasComponent implements OnInit, OnDestroy{
         className: 'text-center'
       },
     ];  
+  }
+
+  cambiarTextos(){
+    this.titleTotalCategorys = this.translate.instant('mod-catalog.CATEGORY.CARD_TOTAL_CATEGORIES_TITLE')
+    this.titleTotalProducts = this.translate.instant('mod-catalog.CATEGORY.CARD_TOTAL_PRODUCTS_TITLE')
   }
     
   crearData (_id: string){

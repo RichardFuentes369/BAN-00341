@@ -34,7 +34,10 @@
     "SWAL_DELETED": "CATEGORY!",
     
     "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the category{{plural}} {{user_name}}?",
-    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete the category{{plural}} {{user_name}}?"
+    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete the category{{plural}} {{user_name}}?",
+
+    "CARD_TOTAL_CATEGORIES_TITLE": "Total categories",
+    "CARD_TOTAL_PRODUCTS_TITLE": "Total products"
   },
 
   "SUPPLIER": {
@@ -66,7 +69,9 @@
     "SWAL_DELETED": "SUPPLIER!",
     
     "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the supplier{{plural}} {{user_name}}?",
-    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete the supplier{{plural}} {{user_name}}?"
+    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete the supplier{{plural}} {{user_name}}?",
+
+    "CARD_TOTAL_SUPPLIERS_TITLE": "Total suppliers"
   },
   
   "SWAL_WARNING_REVERSE_CHANGE": "You cannot reverse this!",

@@ -103,11 +103,11 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   // fin datos envio al modal
 
   // inicio datos envio card information
-  titelInformationCard = "Hola mundo"
-  contentInformation = "Hola mundo"
+  titleTotalSuppliers = this.translate.instant('mod-catalog.SUPPLIER.CARD_TOTAL_SUPPLIERS_TITLE')
+  contentInformation = "250"
   // fin datos envio card information
 
-  cargarTabla = true;
+  cargarIdioma = true;
 
   // metodos Init, Destroy
   async ngOnInit() {
@@ -128,10 +128,11 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     sessionStorage.removeItem('correo')
 
     this.langSub = this.translate.onLangChange.subscribe(() => {
-      this.cargarTabla = false;
+      this.cargarIdioma = false;
       timer(200).subscribe(() => {
         this.listar(); 
-        this.cargarTabla = true;
+        this.cambiarTextos(); 
+        this.cargarIdioma = true;
       });
     });
   }
@@ -176,6 +177,10 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
         className: 'text-center'
       },
     ];  
+  }
+
+  cambiarTextos(){
+    this.titleTotalSuppliers = this.translate.instant('mod-catalog.SUPPLIER.CARD_TOTAL_SUPPLIERS_TITLE')
   }
   
   crearData (_id: string){

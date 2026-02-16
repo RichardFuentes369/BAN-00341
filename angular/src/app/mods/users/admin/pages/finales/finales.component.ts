@@ -117,6 +117,13 @@ export class FinalesComponent implements OnInit{
   componentePrecargado = ""
   // fin datos envio al modal
 
+  // inicio datos envio card information
+  titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
+  titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
+  contentTotalUsers = "32"
+  contentTotalPermission = "420"
+  // fin datos envio card information
+
   // metodos Init, Destroy
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
@@ -191,7 +198,8 @@ export class FinalesComponent implements OnInit{
   }
 
   cambiarTextos(){
-    this.titelInformationCard = this.translate.instant('mod-users.CARD_ADMIN_TITLE')
+    this.titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
+    this.titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
   }
 
   crearData (_id: string){
