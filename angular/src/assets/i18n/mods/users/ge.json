@@ -6,7 +6,10 @@
 
   "MODULE_TITLE": "Benutzer",
 
-  "CARD_ADMIN_TITLE": "Gesamtbenutzer",
+  "CARD_TOTAL_ADMIN_TITLE": "Gesamtbenutzer",
+  "CARD_TOTAL_PERMISSIONS_TITLE": "Zugewiesene Berechtigungen Gesamt",
+  "CARD_TOTAL_SUSPENDED_USERS": "Gesperrte Benutzer Gesamt",
+  "CARD_TOTAL_ACTIVED_USERS": "Aktive Benutzer Gesamt",
 
   "CREATE_ADMIN_TITLE": "Benutzeradministrator erstellen",
   "EDIT_ADMIN_TITLE": "Benutzer {{user_name}} bearbeiten",

@@ -6,7 +6,10 @@
 
   "MODULE_TITLE": "Utilisateurs",
 
-  "CARD_ADMIN_TITLE": "Total utilisateurs",
+  "CARD_TOTAL_ADMIN_TITLE": "Total utilisateurs",
+  "CARD_TOTAL_PERMISSIONS_TITLE": "Total des Permissions Assignées",
+  "CARD_TOTAL_SUSPENDED_USERS": "Total des Utilisateurs Suspendus",
+  "CARD_TOTAL_ACTIVED_USERS": "Total des Utilisateurs Actifs",
 
   "CREATE_ADMIN_TITLE": "Créer un utilisateur administrateur",
   "EDIT_ADMIN_TITLE": "Modifier l'utilisateur {{user_name}}",

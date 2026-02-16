@@ -86,6 +86,8 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
       serverSide: true,
       scrollY: '', 
       scrollCollapse: false,
+      lengthMenu: [5, 10, 20, 30, 40, 50, 100],
+      pageLength: 20,
       ajax: (dataTablesParameters: any, callback) => {
         const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
         const page = Math.floor(dataTablesParameters.start / dataTablesParameters.length) + 1;

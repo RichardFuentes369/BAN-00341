@@ -110,8 +110,11 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   // fin datos envio al modal
 
   // inicio datos envio card information
-  titelInformationCard = this.translate.instant('mod-users.CARD_ADMIN_TITLE')
-  contentInformation = "32"
+  titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
+  titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
+  titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
+  contentTotalUsers = "32"
+  contentTotalPermission = "420"
   // fin datos envio card information
 
   cargarIdioma = true;
@@ -190,7 +193,9 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   }
 
   cambiarTextos(){
-    this.titelInformationCard = this.translate.instant('mod-users.CARD_ADMIN_TITLE')
+    this.titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
+    this.titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
+    this.titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
   }
 
   crearData (_id: string){
