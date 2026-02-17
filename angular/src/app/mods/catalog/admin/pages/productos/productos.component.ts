@@ -56,30 +56,30 @@ export class ProductosComponent implements OnInit, OnDestroy{
   filters = ''
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-users.COLUMN_ID'),
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_ID'),
       data: 'id',
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-users.COLUMN_ID'),
-      data: 'codigo_barra',
-      className: 'text-center'
-    },
-    {
-      title: this.translate.instant('mod-users.COLUMN_EMAIL'),
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME'),
       data: 'nombre',
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-users.COLUMN_NAMES'),
-      data: 'unidad_medida',
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+      data: 'codigo_barra',
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_STOCK'),
+      data: 'stock_minimo',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_UNIT_OF_MEASUREMENT'),
       data: 'unidad_medida',
       className: 'text-center'
-    }
+    },
   ];
   permisosAcciones = this.permisos
   // fin datos que envio al componente tabla
@@ -145,27 +145,27 @@ export class ProductosComponent implements OnInit, OnDestroy{
   listar(){
     this.columnas = [
       {
-        title: this.translate.instant('mod-users.COLUMN_ID'),
+        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_ID'),
         data: 'id',
         className: 'text-center'
       },
       {
-        title: this.translate.instant('mod-users.COLUMN_EMAIL'),
+        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME'),
+        data: 'nombre',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
         data: 'codigo_barra',
         className: 'text-center'
       },
       {
-        title: this.translate.instant('mod-users.COLUMN_NAMES'),
-        data: 'nomrbe',
-        className: 'text-center'
-      },
-      {
-        title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
+        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_STOCK'),
         data: 'stock_minimo',
         className: 'text-center'
       },
       {
-        title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
+        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_UNIT_OF_MEASUREMENT'),
         data: 'unidad_medida',
         className: 'text-center'
       },

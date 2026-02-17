@@ -3,6 +3,7 @@
 
   "PAGE_CATEGORY_TITLE": "Categories",
   "PAGE_SUPPLIER_TITLE": "Suppliers",
+  "PAGE_PRODUCT_TITLE": "Products",
 
   "MODULE_TITLE": "Catalog",
 
@@ -72,6 +73,42 @@
     "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete the supplier{{plural}} {{user_name}}?",
 
     "CARD_TOTAL_SUPPLIERS_TITLE": "Total suppliers"
+  },
+
+  "PRODUCT": {
+    "CREATE_TITLE": "Create product", 
+    "EDIT_TITLE": "Edit product {{product_name}}", 
+    "SEE_TITLE": "See product {{product_name}}", 
+
+    "COLUMN_ID": "ID",
+    "COLUMN_NAME": "Name",
+    "COLUMN_BAR_CODE": "Barcode",
+    "COLUMN_STOCK": "Stock",
+    "COLUMN_UNIT_OF_MEASUREMENT": "Unit of measurement",
+
+    "LABEL_NAME_PRODUCT": "Name",
+    "LABEL_COD_BAR_PRODUCT": "Barcode",
+    "LABEL_STOCK_PRODUCT": "Stock",
+    "LABEL_UNIT_OF_MEASUREMENT_PRODUCT": "Unit of measurement",
+
+    "PLACEHOLDER_NAME_PRODUCT": "Enter a name",
+    "PLACEHOLDER_COD_BAR_PRODUCT": "Enter a barcode",
+    "PLACEHOLDER_STOCK_PRODUCT": "Enter a number",
+
+    "SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION": "Select", 
+    "SELECT_UNIT_OF_MEASUREMENT_UNIT_OPTION": "Unit", 
+    "SELECT_UNIT_OF_MEASUREMENT_KG_OPTION": "Kilogram", 
+    "SELECT_UNIT_OF_MEASUREMENT_LITER_OPTION": "Liter", 
+    "SELECT_UNIT_OF_MEASUREMENT_PACKAGE_OPTION": "Package", 
+
+    "SWAL_CREATED": "PRODUCT!",
+    "SWAL_UPDATED": "PRODUCT!",
+    "SWAL_DELETED": "PRODUCT!",
+    
+    "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the product{{plural}} {{user_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete the product{{plural}} {{user_name}}?",
+
+    "CARD_TOTAL_PRODUCTS_TITLE": "Total products"
   },
   
   "SWAL_WARNING_REVERSE_CHANGE": "You cannot reverse this!",

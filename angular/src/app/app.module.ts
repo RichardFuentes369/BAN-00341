@@ -54,7 +54,6 @@ export function createTranslateLoader(http: HttpClient) {
       { baseTranslateUrl, moduleName: 'mods/users', namespace: 'mod-users'},
       { baseTranslateUrl, moduleName: 'mods/modules', namespace: 'mod-modules'},
       { baseTranslateUrl, moduleName: 'mods/catalog', namespace: 'mod-catalog'},
-      { baseTranslateUrl, moduleName: 'mods/product', namespace: 'mod-product'},
       { baseTranslateUrl, moduleName: 'mods/stock', namespace: 'mod-stock'},
       // fin modulos
     ]

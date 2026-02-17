@@ -3,6 +3,7 @@
 
   "PAGE_CATEGORY_TITLE": "Catégories",
   "PAGE_SUPPLIER_TITLE": "Fournisseurs",
+  "PAGE_PRODUCT_TITLE": "Produits",
 
   "MODULE_TITLE": "Catalogue",
 
@@ -72,6 +73,34 @@
     "SWAL_ARE_YOU_SURE_DELETE": "Êtes-vous sûr de vouloir supprimer le fournisseur{{plural}} {{user_name}} ?",
 
     "CARD_TOTAL_SUPPLIERS_TITLE": "Total de fournisseurs"
+  },
+
+  "PRODUCT": {
+    "CREATE_TITLE": "Créer le produit", 
+    "EDIT_TITLE": "Modifier le produit {{product_name}}", 
+    "SEE_TITLE": "Voir le produit {{product_name}}", 
+
+    "COLUMN_ID": "ID",
+    "COLUMN_NAME": "Nom",
+    "COLUMN_BAR_CODE": "Code-barres",
+    "COLUMN_STOCK": "Stock",
+    "COLUMN_UNIT_OF_MEASUREMENT": "Unité de mesure",
+
+    "LABEL_NAME_PRODUCT": "Nom",
+    "LABEL_COD_BAR_PRODUCT": "Code-barres",
+    "LABEL_STOCK_PRODUCT": "Stock",
+    "LABEL_UNIT_OF_MEASUREMENT_PRODUCT": "Unité de mesure",
+    
+    "PLACEHOLDER_NAME_PRODUCT": "Saisir un nom",
+    "PLACEHOLDER_COD_BAR_PRODUCT": "Saisir un code-barres",
+    "PLACEHOLDER_STOCK_PRODUCT": "Saisir un nombre",
+    "PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT": "Saisir une unité de mesure",
+
+    "SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION": "Sélectionner", 
+    "SELECT_UNIT_OF_MEASUREMENT_UNIT_OPTION": "Unité", 
+    "SELECT_UNIT_OF_MEASUREMENT_KG_OPTION": "Kilogramme", 
+    "SELECT_UNIT_OF_MEASUREMENT_LITER_OPTION": "Litre", 
+    "SELECT_UNIT_OF_MEASUREMENT_PACKAGE_OPTION": "Paquet"
   },
 
   "SWAL_WARNING_REVERSE_CHANGE": "Cette action est irréversible!",
