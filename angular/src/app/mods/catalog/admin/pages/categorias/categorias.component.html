@@ -31,10 +31,10 @@
     </app-globales-search>
 
     @if (cargarIdioma) {
-      <app-globales-tablecrud 
-        [campoFiltro]=showcampoFiltro 
+      <app-globales-gridcrud
+        [page]=showPage 
+        [perPage]=showperPage 
         [endPoint]=endPoint 
-        [columnas]=columnas
         [permisosAcciones]=permisos 
         [filters]=filters 
 
@@ -44,7 +44,7 @@
         (eliminarItem) = "eliminarData($event)"
         (asignar) = "asignarData($event)"
       >
-      </app-globales-tablecrud>
+      </app-globales-gridcrud>
     }
     @else {
       <app-globales-loading></app-globales-loading>

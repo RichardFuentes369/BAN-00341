@@ -39,6 +39,7 @@ export function createTranslateLoader(http: HttpClient) {
       { baseTranslateUrl, moduleName: 'components/globales/dropzone', namespace: 'global-dropzone' },
       { baseTranslateUrl, moduleName: 'components/globales/permission', namespace: 'global-permission' },
       { baseTranslateUrl, moduleName: 'components/globales/colormode', namespace: 'global-colormode' },
+      { baseTranslateUrl, moduleName: 'components/globales/gridcrud', namespace: 'global-gridcrud' },
       // fin globales
 
       // inicio layout

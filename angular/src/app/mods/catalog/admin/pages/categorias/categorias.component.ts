@@ -14,6 +14,7 @@ import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PRO
 import { CREAR_CATEGORIA_COMPONENT, EDITAR_CATEGORIA_COMPONENT, FILTRO_CATEGORIA_COMPONENT, STORAGE_KEY_PROFILE_ADMIN, VER_CATEGORIA_COMPONENT } from '@mod/catalog/const/catalog.const';
 import Swal from 'sweetalert2';
 import { CardComponent } from '@component/globales/card/card.component';
+import { GridcrudComponent } from '@component/globales/gridcrud/gridcrud.component';
 
 @Component({
   selector: 'app-categorias',
@@ -22,7 +23,7 @@ import { CardComponent } from '@component/globales/card/card.component';
     TranslateModule,
     SearchComponent,
     LoadingComponent,
-    TablecrudComponent,
+    GridcrudComponent,
     ModalBoostrapComponent,
     CardComponent
   ],
@@ -51,31 +52,10 @@ export class CategoriasComponent implements OnInit, OnDestroy{
   // fin datos envio al filtro
 
   // inicio datos que envio al componente tabla
-  showcampoFiltro = false
+  showPage = 1
+  showperPage = 10
   endPoint = 'category/obtener-categorias'
   filters = ''
-  columnas: any[] = [
-    {
-      title: this.translate.instant('mod-catalog.CATEGORY.COLUMN_ID'),
-      data: 'id',
-      className: 'text-center'
-    },
-    {
-      title: this.translate.instant('mod-catalog.CATEGORY.COLUMN_NAME'),
-      data: 'nombre',
-      className: 'text-center'
-    },
-    {
-      title: this.translate.instant('mod-catalog.CATEGORY.COLUMN_DESCRIPTION'),
-      data: 'descripcion',
-      className: 'text-center'
-    },
-    {
-      title: this.translate.instant('mod-catalog.CATEGORY.COLUMN_TOTAL_PRODUCTOS'),
-      data: 'totalProductos',
-      className: 'text-center'
-    },
-  ];
   permisosAcciones = this.permisos
   // fin datos que envio al componente tabla
 
@@ -121,7 +101,6 @@ export class CategoriasComponent implements OnInit, OnDestroy{
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarIdioma = false;
       timer(200).subscribe(() => {
-        this.listar(); 
         this.cambiarTextos(); 
         this.cargarIdioma = true;
       });
@@ -135,31 +114,6 @@ export class CategoriasComponent implements OnInit, OnDestroy{
   }
 
   // metodos Componente
-  listar(){
-    this.columnas = [
-      {
-        title: this.translate.instant('mod-catalog.CATEGORY.COLUMN_ID'),
-        data: 'id',
-        className: 'text-center'
-      },
-      {
-        title: this.translate.instant('mod-catalog.CATEGORY.COLUMN_NAME'),
-        data: 'nombre',
-        className: 'text-center'
-      },
-      {
-        title: this.translate.instant('mod-catalog.CATEGORY.COLUMN_DESCRIPTION'),
-        data: 'descripcion',
-        className: 'text-center'
-      },
-      {
-        title: this.translate.instant('mod-catalog.CATEGORY.COLUMN_TOTAL_PRODUCTOS'),
-        data: 'totalProductos',
-        className: 'text-center'
-      },
-    ];  
-  }
-
   cambiarTextos(){
     this.titleTotalCategorys = this.translate.instant('mod-catalog.CATEGORY.CARD_TOTAL_CATEGORIES_TITLE')
     this.titleTotalProducts = this.translate.instant('mod-catalog.CATEGORY.CARD_TOTAL_PRODUCTS_TITLE')
@@ -236,8 +190,8 @@ export class CategoriasComponent implements OnInit, OnDestroy{
     }
   }
 
-  @ViewChild(TablecrudComponent)
-  someInput!: TablecrudComponent
+  @ViewChild(GridcrudComponent)
+  someInput!: GridcrudComponent
   async eliminarData (_id: string[]){
     const response = await this.categoriasService.getDataCategory(_id[0])
     const { nombre } = response.data || { nombre: 'xxxxxxx' }

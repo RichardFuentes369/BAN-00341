@@ -1,0 +1,84 @@
+:host {
+  --gradient-hover: linear-gradient(90deg,#2b87ff 0%, #5aa3f2 45%);
+  --gradient-table-select: radial-gradient(circle, #f54c4c 16%, #cc1e1e 100%);
+
+  &[data-theme='dark'], 
+  &:host-context([data-theme='dark']) {
+    --gradient-hover: linear-gradient(90deg,#a7a9ac 0%, #cbced1 45%);
+    --gradient-table-select: radial-gradient(circle, #919494 16%, #4f5050 100%);
+  }
+}
+
+.parent {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.item {
+  padding: 0.5rem; // Un poco más de aire entre cards
+  transition: all 0.2s ease;
+}
+
+.card-option {
+  cursor: pointer;
+  transform: scale(0.95); // Empieza un poquito más pequeña
+  transition: transform 0.2s ease-in-out, background 0.2s ease;
+  
+  // Para que el body ocupe el espacio y el footer quede abajo
+  display: flex;
+  flex-direction: column;
+}
+
+/* Efecto HOVER (Igual al de tu menú) */
+.card-option:hover {
+  transform: scale(1.02); // Se agranda
+  z-index: 2;
+  
+  .card-body {
+    background: var(--gradient-hover);
+    color: white !important;
+    
+    p, h5 { color: white !important; }
+  }
+}
+
+/* Efecto SELECCIONADO (Clic) */
+.selected-card {
+  transform: scale(1) !important; // Se queda en tamaño normal
+  // border: 2px solid #cc1e1e;
+  
+  .card-body, .card-footer {
+    background: var(--gradient-table-select) !important;
+    color: white !important;
+    
+    p, h5, span { color: white !important; }
+  }
+}
+
+
+.pagination {
+  .page-item {
+    &.disabled .btn {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    .btn {
+      border-radius: 4px;
+      padding: 5px 15px;
+      transition: all 0.2s;
+    }
+  }
+  
+  .page-link {
+    background: var(--gradient-hover);
+    border: none;
+    color: white;
+    border-radius: 4px;
+  }
+}
+
+/* Reutilizamos tus Media Queries */
+@media only screen and (max-width: 2560px) { .item { width: 20%; } }
+@media only screen and (max-width: 1200px) { .item { width: 25%; } }
+@media only screen and (max-width: 768px) { .item { width: 50%; } }
+@media only screen and (max-width: 425px) { .item { width: 100%; } }
