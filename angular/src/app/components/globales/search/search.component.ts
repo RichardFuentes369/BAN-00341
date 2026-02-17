@@ -3,6 +3,7 @@ import { Component, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { ListaComponentes } from '@mod/lista-componentes'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-globales-search',
@@ -18,6 +19,7 @@ export class SearchComponent{
   @ViewChild('contenedorFilter', { read: ViewContainerRef }) contenedorDinamico!: ViewContainerRef;
 
   constructor(
+    private router: Router,
     private resolver: ComponentFactoryResolver,
     private translate: TranslateService
   ) {}
@@ -61,6 +63,7 @@ export class SearchComponent{
     $('.limpiar').click()
     this.filtroItem.emit()
     this.contador = await sessionStorage.length
+    this.router.navigate([], {});
   }
   
   async closeFilterEraser(){
@@ -69,6 +72,7 @@ export class SearchComponent{
     this.filtroItem.emit()
     this.isFilterVisible = false
     this.contador = await sessionStorage.length
+    this.router.navigate([], {});
   }
 
   async actionFilter(){

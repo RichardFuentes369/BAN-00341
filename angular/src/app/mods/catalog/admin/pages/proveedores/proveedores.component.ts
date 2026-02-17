@@ -223,7 +223,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
-        queryParams: { rol: 'admin', id: _id },
+        queryParams: { id: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
@@ -248,7 +248,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
-        queryParams: { rol: 'admin', id: _id },
+        queryParams: { id: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
@@ -290,6 +290,9 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
 
   async filtroData(){
     let filtros = await $('.complementoRuta').val();
+    this.router.navigate([], {
+      queryParams: { search: filtros },
+    });
     if(typeof filtros === 'string'){
       this.filters = filtros
     }
