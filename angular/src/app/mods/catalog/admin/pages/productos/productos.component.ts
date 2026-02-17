@@ -1,0 +1,190 @@
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CardComponent } from '@component/globales/card/card.component';
+import { LoadingComponent } from '@component/globales/loading/loading.component';
+import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
+import { SearchComponent } from '@component/globales/search/search.component';
+import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
+import { AuthService } from '@guard/service/auth.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { PermisosService } from '@service/globales/permisos/permisos.service';
+import { ProductosService } from './service/productos.service';
+import { Subscription, timer } from 'rxjs';
+import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
+import { FILTRO_PRODUCT_COMPONENT } from '@mod/catalog/const/catalog.const';
+
+@Component({
+  selector: 'app-productos',
+  standalone: true,
+  imports: [
+    TranslateModule,
+    SearchComponent,
+    LoadingComponent,
+    TablecrudComponent,
+    // ModalBoostrapComponent,
+    CardComponent,
+  ],
+  templateUrl: './productos.component.html',
+  styleUrl: './productos.component.scss',
+})
+export class ProductosComponent implements OnInit, OnDestroy{
+
+  // construcator
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private userService :AuthService,
+    private permisosService :PermisosService,
+    private productosService :ProductosService,
+    private translate: TranslateService
+  ) { }
+  
+  private langSub: Subscription | undefined;
+  permisos: any[] = []
+
+  // inicio datos envio al filtro
+  search = true
+  buttonSearch = this.translate.instant('mod-users.BUTTON_SEARCH')
+  iconFilter="fa fa-filter"
+  componenteFilter=FILTRO_PRODUCT_COMPONENT
+  // fin datos envio al filtro
+
+  // inicio datos que envio al componente tabla
+  showcampoFiltro = false
+  endPoint = 'product/obtener-productos'
+  complementoEndPoint = `&id_category=${this.route.snapshot.queryParamMap.get('id')}`
+  filters = ''
+  columnas: any[] = [
+    {
+      title: this.translate.instant('mod-users.COLUMN_ID'),
+      data: 'id',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-users.COLUMN_ID'),
+      data: 'codigo_barra',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-users.COLUMN_EMAIL'),
+      data: 'nombre',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-users.COLUMN_NAMES'),
+      data: 'unidad_medida',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
+      data: 'unidad_medida',
+      className: 'text-center'
+    }
+  ];
+  permisosAcciones = this.permisos
+  // fin datos que envio al componente tabla
+
+  // inicio datos envio al modal
+  tamano = ""
+  scrollable = false
+  title = ""
+  save = true
+  buttonSave = this.translate.instant('mod-users.BUTTON_SAVE_')
+  edit = true
+  buttonEdit = this.translate.instant('mod-users.BUTTON_UPDATE_')
+  cancel = true
+  buttonCancel = this.translate.instant('mod-users.BUTTON_CANCEL')
+  cierreModal = "true"
+  componentePrecargado = ""
+  // fin datos envio al modal
+
+  // inicio datos envio card information
+  img = "assets/images/img_admin.png"
+  titleTotalProducts = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
+  contentTotalProducts = "32"
+  // fin datos envio card information
+
+  cargarIdioma = true;
+
+  // metodos Init, Destroy
+  async ngOnInit() {
+    await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
+    const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
+
+    const permiso_modulo = await this.permisosService.permisoPage(0,'catalogo',userData.data.id)
+    const permiso_submodulo = await this.permisosService.permisoPage(22,'productos',userData.data.id)
+
+    if (permiso_modulo.data === "" || permiso_submodulo.data === "") {
+      this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
+    }
+
+    const permisos = await this.permisosService.permisos(userData.data.id,'productos')
+    this.permisos = permisos.data
+    // sessionStorage.removeItem('email')
+    // sessionStorage.removeItem('nomrbe')
+    // sessionStorage.removeItem('lastName')
+    // sessionStorage.removeItem('isActive')
+
+    this.langSub = this.translate.onLangChange.subscribe(() => {
+      this.cargarIdioma = false;
+      timer(200).subscribe(() => {
+        this.listar(); 
+        this.cambiarTextos(); 
+        this.cargarIdioma = true;
+      });
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.langSub) {
+      this.langSub.unsubscribe();
+    }
+  }
+
+  // metodos Componente
+  listar(){
+    this.columnas = [
+      {
+        title: this.translate.instant('mod-users.COLUMN_ID'),
+        data: 'id',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-users.COLUMN_EMAIL'),
+        data: 'codigo_barra',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-users.COLUMN_NAMES'),
+        data: 'nomrbe',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
+        data: 'stock_minimo',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
+        data: 'unidad_medida',
+        className: 'text-center'
+      },
+    ]
+  }
+
+  cambiarTextos(){
+    // this.titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
+    // this.titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
+    // this.titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
+  }
+
+  async filtroData(){
+    let filtros = await $('.complementoRuta').val();
+    this.router.navigate([], {
+      queryParams: { search: filtros },
+    });
+    if(typeof filtros === 'string'){
+      this.filters = filtros
+    }
+  }
+}

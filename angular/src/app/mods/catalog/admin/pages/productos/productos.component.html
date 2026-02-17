@@ -1,0 +1,44 @@
+<div class="card shadow mb-4">
+  <h1 class="text-center m-0 mt-4 mb-2">
+    {{ 'mod-product.PAGE_PRODUCT_TITLE' | translate}}
+  </h1>
+
+  <div class="row mt-4 mx-0 px-0">
+    @if (cargarIdioma) {
+    <div class="col-sm-6 col-md-3 mb-1 d-flex flex-column">
+      <app-information-card
+        [img]="img"
+        [title]="titleTotalProducts" 
+        [content]="contentTotalProducts" 
+      >
+      </app-information-card>
+    </div>
+    }
+  </div>
+
+  <div class="mt-3 p-2" style="position: relative;">
+    <app-globales-search
+      [icon]="iconFilter" 
+      [componente]="componenteFilter"
+      (filtroItem) = "filtroData()"
+    >
+    </app-globales-search>
+
+    @if (cargarIdioma) {
+      <app-globales-tablecrud
+        [campoFiltro] = showcampoFiltro
+        [endPoint] = endPoint
+        [complementoEndPoint] = complementoEndPoint
+        [columnas] = columnas
+        [permisosAcciones] = permisos
+        [filters] = filters
+    
+      >
+      </app-globales-tablecrud>
+    }
+    @else {
+      <app-globales-loading></app-globales-loading>
+    }
+  </div>
+
+</div>

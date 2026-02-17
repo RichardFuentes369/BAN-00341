@@ -10,7 +10,7 @@ import {
 // componentes
 import { CategoriasComponent } from '@mod/catalog/admin/pages/categorias/categorias.component';
 import { adminGuard } from '@guard/roles/admin/admin.guard';
-import { ProductosComponent } from '../pages/categorias/components/productos/productos.component';
+// import { ProductosComponent } from '../pages/categorias/components/productos/productos.component';
 
 export const CatalogoCategoriasRoutes: Routes = [
   {
@@ -21,11 +21,11 @@ export const CatalogoCategoriasRoutes: Routes = [
   },
   {
     path: PATH_ADMIN_PRODUCT,
-    data: { breadcrumb: BREADCRUMB_PATH_ADMIN_PRODUCT },
     title: TITLE_PATH_ADMIN_PRODUCT,
+    data: { breadcrumb: BREADCRUMB_PATH_ADMIN_PRODUCT },
     canActivate: [
       adminGuard
     ],
-    component: ProductosComponent,
+    loadChildren: () => import('./productos.routing').then(x=>x.CatalogoProductosRoutes)
   },
 ];

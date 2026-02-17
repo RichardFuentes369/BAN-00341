@@ -20,6 +20,11 @@ export const MOD_CATEGORY_PAGE_CATEGORY =  '/admin/mod/catalog/categorias/';
 export const MOD_CATEGORY_PAGE_PRODUCT_ASSIGMENT =  '/admin/mod/catalog/categorias/productos';
 export const MOD_CATEGORY_PAGE_SUPPLIER =  '/admin/mod/catalog/proveedores/';
 
+export const CREAR_PRODUCT_COMPONENT = 'CrearProductoComponent';
+export const VER_PRODUCT_COMPONENT = 'VerProductoComponent';
+export const EDITAR_PRODUCT_COMPONENT = 'EditarProductoComponent';
+export const FILTRO_PRODUCT_COMPONENT = 'FiltroProductComponent';
+
 export const CREAR_PROVEEDOR_COMPONENT = 'CrearProveedorComponent';
 export const VER_PROVEEDOR_COMPONENT = 'VerProveedorComponent';
 export const EDITAR_PROVEEDOR_COMPONENT = 'EditarProveedorComponent';

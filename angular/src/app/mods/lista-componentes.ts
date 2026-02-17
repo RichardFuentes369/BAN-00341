@@ -14,6 +14,10 @@ import { FiltroCategoriaComponent } from './catalog/admin/pages/categorias/compo
 import { VerCategoriaComponent } from './catalog/admin/pages/categorias/components/ver-categoria/ver-categoria.component';
 import { CrearCategoriaComponent } from './catalog/admin/pages/categorias/components/crear-categoria/crear-categoria.component';
 import { EditarCategoriaComponent } from './catalog/admin/pages/categorias/components/editar-categoria/editar-categoria.component';
+import { FiltroProductComponent } from './catalog/admin/pages/productos/components/filtro/filtro.component';
+import { CrearProductoComponent } from './catalog/admin/pages/productos/components/crear-producto/crear-producto.component';
+import { VerProductoComponent } from './catalog/admin/pages/productos/components/ver-producto/ver-producto.component';
+import { EditarProductoComponent } from './catalog/admin/pages/productos/components/editar-producto/editar-producto.component';
 
 export class ListaComponentes {
 
@@ -88,6 +92,24 @@ export class ListaComponentes {
     {
       name: 'EditarCategoriaComponent',
       componente: EditarCategoriaComponent  
+    },    
+    // modulo catalogo
+    // productos
+    {
+      name: 'FiltroProductComponent',
+      componente: FiltroProductComponent
+    },  
+    {
+      name: 'CrearProductoComponent',
+      componente: CrearProductoComponent  
+    }, 
+    {
+      name: 'VerProductoComponent',
+      componente: VerProductoComponent  
+    },
+    {
+      name: 'EditarProductoComponent',
+      componente: EditarProductoComponent  
     },
   ];
 

@@ -27,6 +27,11 @@ export class FilterProductrDto {
   order?: string;
 
   @IsOptional()
+  @IsNumber()
+  @Min(1)
+  id_category?: number;   
+
+  @IsOptional()
   @IsString()
   codigo_barra?: string;   
 

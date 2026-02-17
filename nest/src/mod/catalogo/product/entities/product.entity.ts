@@ -18,6 +18,9 @@ export class Producto {
   @Column()
   stock_minimo: number;
 
+  @Column()
+  id_categoria: number;
+
   @Column({ type: 'enum', enum: UnidadMedida, default: UnidadMedida.KG })
   unidad_medida: UnidadMedida;
 
@@ -27,7 +30,7 @@ export class Producto {
     nullable: false
   })
   @JoinColumn({ name: 'id_categoria' })
-  id_categoria: Categoria;
+  categoria: Categoria;
 
   @OneToMany(() => Lote, (lote) => lote.id_producto)
   lote: Lote[];

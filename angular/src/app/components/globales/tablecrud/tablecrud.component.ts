@@ -22,6 +22,7 @@ let haySeleccionados: any[] = [];
 export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() campoFiltro: boolean = false;
   @Input() endPoint: string = '';
+  @Input() complementoEndPoint: string = '';
   @Input() filters: string = '';
   @Input() columnas: any;
   @Input() permisosAcciones: any[] = [];
@@ -93,7 +94,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
         const page = Math.floor(dataTablesParameters.start / dataTablesParameters.length) + 1;
                 
         this.http.get<any[]>(
-          `${this.url}${this.endPoint}?page=${page}&limit=${dataTablesParameters.length}&field=id&order=asc${this.filters}&lang=${lang}`
+          `${this.url}${this.endPoint}?page=${page}&limit=${dataTablesParameters.length}&field=id&order=asc${this.filters}${this.complementoEndPoint}&lang=${lang}`
         ).subscribe((post) => {
           const recordsTotal = post[0].pagination.totalRecord;
           const data = post[0].result.map((item: any) => {

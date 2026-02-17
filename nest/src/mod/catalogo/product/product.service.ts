@@ -36,6 +36,9 @@ export class ProductService {
     const skipReal = (page == 1) ? 0 : (page - 1) * limit;
     const where: any = {};
 
+    if (filterDto['id_category']) {
+      where.id_categoria = filterDto['id_category'];
+    }
     if (filterDto['codigo_barra']) {
       where.codigo_barra = Like(`%${filterDto['codigo_barra']}%`);
     }
@@ -47,9 +50,6 @@ export class ProductService {
     }
     if (filterDto['unidad_medida']) {
       where.unidad_medida = Like(`%${filterDto['unidad_medida']}%`);
-    }
-    if (filterDto['id_categoria']) {
-      where.id_categoria = Like(`%${filterDto['id_categoria']}%`);
     }
 
     const totalRecords = await this.productRepository.count({ where });
