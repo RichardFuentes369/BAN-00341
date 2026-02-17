@@ -7,6 +7,7 @@
     @if (cargarIdioma) {
     <div class="col-sm-6 col-md-3 mb-1 d-flex flex-column">
       <app-information-card
+        [img]="img"
         [title]="titleTotalCategorys" 
         [content]="contentInformation" 
       >
@@ -14,6 +15,7 @@
     </div>
     <div class="col-sm-6 col-md-3 mb-1 d-flex flex-column">
       <app-information-card
+        [img]="img"
         [title]="titleTotalProducts" 
         [content]="contentInformation" 
       >

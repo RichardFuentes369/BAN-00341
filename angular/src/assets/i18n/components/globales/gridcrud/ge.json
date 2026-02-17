@@ -1,4 +1,21 @@
 {
   "WORD_PREVIOUS": "Vorherige",
-  "WORD_NEXT": "Nächste"
+  "WORD_NEXT": "Nächste",
+  "WORD_TOTAL": "Gesamt",
+
+  "BUTTON_OPTION_SEE": "Ansehen",
+  "BUTTON_OPTION_CREATE": "Erstellen",
+  "BUTTON_OPTION_EDIT": "Bearbeiten",
+  "BUTTON_OPTION_DELETE": "Löschen",
+  "BUTTON_OPTION_ASSIGN_PERMISSION": "Berechtigungen zuweisen",
+  "BUTTON_OPTION_ASSIGN_PRODUCTS": "Produkte zuweisen",
+  "BUTTON_OPTION_CLEAR": "Löschen",
+  "BUTTON_OPTION_SUSPEND": "Anhalten",
+
+  "PAGINATION_INFO_SHOW": "Anzeigen",
+  "PAGINATION_INFO_RECORDS": "Datensätze",
+  "PAGINATION_INFO_SHOWING": "Anzeigen",
+  "PAGINATION_INFO_TO": "bis",
+  "PAGINATION_INFO_OF": "von",
+  "PAGINATION_INFO_ENTRIES": "Einträge"
 }

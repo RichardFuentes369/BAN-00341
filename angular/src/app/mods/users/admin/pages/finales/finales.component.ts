@@ -97,6 +97,7 @@ export class FinalesComponent implements OnInit{
   // fin datos que envio al componente tabla
 
   // inicio datos envio card information
+  img = "assets/images/img_admin.png"
   titelInformationCard = this.translate.instant('mod-users.CARD_ADMIN_TITLE')
   contentInformation = "32"
   // fin datos envio card information

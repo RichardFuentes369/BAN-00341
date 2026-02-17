@@ -74,6 +74,7 @@ export class CategoriasComponent implements OnInit, OnDestroy{
   // fin datos envio al modal
 
   // inicio datos envio card information
+  img = "assets/images/img_admin.png"
   titleTotalCategorys = this.translate.instant('mod-catalog.CATEGORY.CARD_TOTAL_CATEGORIES_TITLE')
   titleTotalProducts = this.translate.instant('mod-catalog.CATEGORY.CARD_TOTAL_PRODUCTS_TITLE')
   contentInformation = "45"

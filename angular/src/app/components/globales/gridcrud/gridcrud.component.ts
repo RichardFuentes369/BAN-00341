@@ -4,6 +4,7 @@ import { environment } from '@environment/environment';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subject, Subscription } from 'rxjs';
 import { Config } from 'datatables.net';
+import { FormsModule } from '@angular/forms';
 
 let ultimaUrlConsultada: string = '';
 let haySeleccionados: any[] = [];
@@ -12,7 +13,8 @@ let haySeleccionados: any[] = [];
   selector: 'app-globales-gridcrud',
   standalone: true,
   imports: [
-    TranslateModule
+    TranslateModule,
+    FormsModule
   ],
   templateUrl: './gridcrud.component.html',
   styleUrl: './gridcrud.component.scss',
@@ -30,8 +32,10 @@ export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
   idsSeleccionados: any[] = [];
 
   paginaActual: number = 1;
+  totalRegistros: number = 20;
   totalPaginas: number = 20;
-  registrosPorPagina: number = 10;
+  desdeConteo: number = 0;
+  hastaConteo: number = 0;
 
   private langSub: Subscription | undefined;
 
@@ -50,6 +54,11 @@ export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+  }
+
+  onPerPageChange() {
+    this.paginaActual = 1; 
+    this.listar(this.paginaActual);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -74,6 +83,11 @@ export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
     ).subscribe({
       next: (post) => {
         const recordsTotal = post[0].pagination.totalRecord;
+
+        this.desdeConteo = ((page - 1) * this.perPage) + 1;
+        this.hastaConteo = this.desdeConteo + Math.max(0, post[0].result.length - 1);
+
+        this.totalRegistros = recordsTotal;
         this.totalPaginas = Math.ceil(recordsTotal / this.perPage);
 
         this.data = post[0].result.map((item: any) => {

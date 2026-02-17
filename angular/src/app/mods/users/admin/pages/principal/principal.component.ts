@@ -1,4 +1,3 @@
-
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -110,6 +109,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   // fin datos envio al modal
 
   // inicio datos envio card information
+  img = "assets/images/img_admin.png"
   titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
   titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
   titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
