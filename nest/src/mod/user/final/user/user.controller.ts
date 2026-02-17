@@ -14,7 +14,6 @@ import { GetUser } from 'src/decorator/getIdUser.decorator';
 export class UserController {
   constructor(private readonly userService: UserService) {}
  
-  @ApiTags('user')
   // @UseGuards(AdminGuard)
   @Get('obtener-usuarios-finales')
   findAll(
@@ -28,7 +27,6 @@ export class UserController {
     );
   }
   
-  @ApiTags('user')
   @UseGuards(AdminGuard)
   @Get('obtener-usuario-final')
   findOne(
@@ -42,7 +40,6 @@ export class UserController {
     );
   }
 
-  @ApiTags('user')
   @UseGuards(AdminGuard)
   @Post('crear-usuario-final')
   create(
@@ -57,7 +54,6 @@ export class UserController {
     );
   }
   
-  @ApiTags('user')
   @UseGuards(AdminGuard)
   @Patch('actualizar-usuario-final')
   update(
@@ -74,7 +70,6 @@ export class UserController {
     );
   }
 
-  @ApiTags('admin')
   @UseGuards(AdminGuard)
   @Patch('actualizar-estado-usuario-final')
   updateStatus(
@@ -91,7 +86,6 @@ export class UserController {
     );
   }
   
-  @ApiTags('user')
   @UseGuards(AdminGuard)
   @Delete('eliminar-usuario-final')
   remove(

@@ -43,7 +43,6 @@ export class ModulosController {
     );
   }
 
-  @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
   @Get('obtener-modulo-permiso')
   findSubmodules(
@@ -57,7 +56,6 @@ export class ModulosController {
     );
   }
 
-  @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
   @Post('crear-modulo-permiso')
   create(
@@ -72,7 +70,6 @@ export class ModulosController {
     );
   }
 
-  @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
   @Patch('editar-modulo-permiso')
   updateModuloPermiso(
@@ -89,7 +86,6 @@ export class ModulosController {
   }  
 
   // no se usa
-  @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
   @Patch('updateModuloPermiso')
   update(
@@ -104,7 +100,6 @@ export class ModulosController {
     );
   }
 
-  @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
   @Delete('eliminar-modulo-permiso')
   remove(

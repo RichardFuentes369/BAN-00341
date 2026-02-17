@@ -11,7 +11,7 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { Subscription, timer } from 'rxjs';
 import { CategoriasService } from './service/categorias.service';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
-import { CREAR_CATEGORIA_COMPONENT, EDITAR_CATEGORIA_COMPONENT, FILTRO_CATEGORIA_COMPONENT, STORAGE_KEY_PROFILE_ADMIN, VER_CATEGORIA_COMPONENT } from '@mod/catalog/const/catalog.const';
+import { CREAR_CATEGORIA_COMPONENT, EDITAR_CATEGORIA_COMPONENT, FILTRO_CATEGORIA_COMPONENT, MOD_CATEGORY_PAGE_PRODUCT_ASSIGMENT, VER_CATEGORIA_COMPONENT } from '@mod/catalog/const/catalog.const';
 import Swal from 'sweetalert2';
 import { CardComponent } from '@component/globales/card/card.component';
 import { GridcrudComponent } from '@component/globales/gridcrud/gridcrud.component';
@@ -225,13 +225,12 @@ export class CategoriasComponent implements OnInit, OnDestroy{
   }
 
   asignarData (data: { id: string, ctrlKey: boolean }){
-    console.log('mostramos la pagina de productos')
-    // const url = `${MOD_USER_PAGE_ADMIN_ASSIGMENT}?id=${data.id}`;
-    // if (data.ctrlKey) {
-    //   window.open(url, '_blank');
-    // } else {
-    //   this.router.navigate([MOD_USER_PAGE_ADMIN_ASSIGMENT], { queryParams: { id: data.id } });
-    // }
+    const url = `${MOD_CATEGORY_PAGE_PRODUCT_ASSIGMENT}?id=${data.id}`;
+    if (data.ctrlKey) {
+      window.open(url, '_blank');
+    } else {
+      this.router.navigate([MOD_CATEGORY_PAGE_PRODUCT_ASSIGMENT], { queryParams: { id: data.id } });
+    }
   }
 
   async filtroData(){

@@ -20,7 +20,6 @@ import { ApiTags } from '@nestjs/swagger';
 export class AuthuserController {
   constructor(private readonly authauserService: AuthuserService) {}
 
-  @ApiTags('autenticacion_user')
   @HttpCode(HttpStatus.OK)
   @Post('login')
   create(
@@ -33,7 +32,6 @@ export class AuthuserController {
     );
   }
 
-  @ApiTags('autenticacion_user')
   @Post('refresh')
   refreshToken(
     @Query('lang') lang:string,
@@ -45,7 +43,6 @@ export class AuthuserController {
     );
   }
 
-  @ApiTags('autenticacion_user')
   @UseGuards(FinalGuard)
   @Get('profile')
   getProfile(

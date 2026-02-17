@@ -5,7 +5,7 @@ enum Order {
   desc = 'desc'
 }
 
-export class FilterCategoryrDto {
+export class FilterProductrDto {
   @IsOptional()
   @IsPositive()
   @IsNumber()
@@ -28,23 +28,19 @@ export class FilterCategoryrDto {
 
   @IsOptional()
   @IsString()
-  nit?: string;   
+  codigo_barra?: string;   
 
   @IsOptional()
   @IsString()
-  razon_social?: string;   
-
+  nombre?: string;    
+  
   @IsOptional()
   @IsString()
-  direccion?: string;   
-
+  stock_minimo?: string;    
+  
   @IsOptional()
   @IsString()
-  telefono?: string;   
-
-  @IsOptional()
-  @IsString()
-  correo?: string;   
+  unidad_medida?: string;   
 
   @IsOptional()
   @IsNumber()

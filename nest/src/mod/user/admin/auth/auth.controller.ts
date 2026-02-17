@@ -20,7 +20,6 @@ import { ApiTags } from '@nestjs/swagger';
 export class AuthadminController {
   constructor(private readonly authadminService: AuthadminService) {}
 
-  @ApiTags('autenticacion_admin')
   @HttpCode(HttpStatus.OK)
   @Post('login')
   create(
@@ -33,7 +32,6 @@ export class AuthadminController {
     );
   }
   
-  @ApiTags('autenticacion_admin')
   @Post('refresh')
   refreshToken(
     @Query('lang') lang: string,
@@ -45,7 +43,6 @@ export class AuthadminController {
     );
   }
   
-  @ApiTags('autenticacion_admin')
   @UseGuards(AdminGuard)
   @Get('profile')
   getProfile(

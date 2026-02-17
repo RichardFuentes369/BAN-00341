@@ -2,15 +2,16 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } f
 import { CategoryService } from './category.service';
 import { Categoria } from './entities/category.entity';
 import { ApiTags } from '@nestjs/swagger';
-import { AdminGuard } from '@guard/admin/admin.guard'; // Ajusta la ruta según tu proyecto
+import { AdminGuard } from '@guard/admin/admin.guard'; 
 import { GetUser } from 'src/decorator/getIdUser.decorator';
-import { FilterCategoryrDto } from '@module/catalogo/category/dto/filter-category.dto'; // Reutilizando tu DTO de filtrado
+import { FilterCategoryrDto } from '@module/catalogo/category/dto/filter-category.dto';
+import { CreateCategoryDto } from './dto/create-category.dto';
+import { UpdateCategoryDto } from './dto/update-category.dto';
 
 @Controller('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
-  @ApiTags('category')
   @Get('obtener-categorias')
   findAll(
     @Query('lang') lang: string,
@@ -23,7 +24,6 @@ export class CategoryController {
     );
   }
 
-  @ApiTags('category')
   @UseGuards(AdminGuard)
   @Get('obtener-categoria')
   findOne(
@@ -37,12 +37,11 @@ export class CategoryController {
     );
   }
 
-  @ApiTags('category')
   @UseGuards(AdminGuard)
   @Post('crear-categoria')
   create(
     @Query('lang') lang: string,
-    @Body() categoryData: Partial<Categoria>,
+    @Body() categoryData: CreateCategoryDto,
     @GetUser('id') userId: number
   ) {
     return this.categoryService.create(
@@ -52,13 +51,12 @@ export class CategoryController {
     );
   }
 
-  @ApiTags('category')
   @UseGuards(AdminGuard)
   @Patch('editar-categoria')
   update(
     @Query('lang') lang: string,
     @Query('_id') _id: string,
-    @Body() categoryData: Partial<Categoria>,
+    @Body() categoryData: UpdateCategoryDto,
     @GetUser('id') userId: number
   ) {
     return this.categoryService.update(
@@ -69,7 +67,6 @@ export class CategoryController {
     );
   }
 
-  @ApiTags('category')
   @UseGuards(AdminGuard)
   @Delete('eliminar-categoria')
   remove(

@@ -3,6 +3,8 @@ import { In, Like, Repository } from 'typeorm';
 import { Proveedor } from './entities/supplier.entity';
 import { FilterCategoryrDto } from '@module/catalogo/supplier/dto/filter-supplier.dto';
 import { I18nService } from 'nestjs-i18n';
+import { UpdateSupplierDto } from './dto/update-supplier.dto';
+import { CreateSupplierDto } from './dto/create-supplier.dto';
 
 @Injectable()
 export class SupplierService {
@@ -73,7 +75,11 @@ export class SupplierService {
     return supplier;
   }
 
-  async create(lang: string, supplierData: Partial<Proveedor>, userId: number) {
+  async create(
+    lang: string, 
+    supplierData: CreateSupplierDto, 
+    userId: number
+  ) {
     try {
       // Validar si el NIT ya existe
       const exists = await this.supplierRepository.findOne({ where: { nit: supplierData.nit } });
@@ -96,8 +102,14 @@ export class SupplierService {
     }
   }
 
-  async update(lang: string, id: number, supplierData: Partial<Proveedor>, userId: number) {
+  async update(
+    lang: string, 
+    id: number, 
+    supplierData: UpdateSupplierDto, 
+    userId: number
+  ) {
     const supplier = await this.findOne(lang, id);
+
     return this.supplierRepository.save({
       ...supplier,
       ...supplierData

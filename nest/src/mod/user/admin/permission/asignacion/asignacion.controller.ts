@@ -8,7 +8,6 @@ import { GetUser } from 'src/decorator/getIdUser.decorator';
 export class AsignacionController {
   constructor(private readonly asignacionService: AsignacionService) {}
 
-  @ApiTags('asignacion_permiso')
   @UseGuards(AdminGuard)
   @Get('mis-permisos')
   findAll(
@@ -43,7 +42,6 @@ export class AsignacionController {
     );
   }
 
-  @ApiTags('asignacion_permiso')
   @UseGuards(AdminGuard)
   @Get('validar-acceso-permiso-usuario')
   findOne(
@@ -59,7 +57,6 @@ export class AsignacionController {
     );
   }
 
-  @ApiTags('asignacion_permiso')
   @UseGuards(AdminGuard)
   @Put('actualizar-asignacion-permiso')
   updateAsignacion(

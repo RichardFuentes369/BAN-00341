@@ -12,8 +12,12 @@ export const PATH_ADMIN_SUPPLIER = 'proveedores';
 export const TITLE_PATH_ADMIN_SUPPLIER = 'Proveedores';
 export const BREADCRUMB_PATH_ADMIN_SUPPLIER = 'Proveedores';
 
+export const PATH_ADMIN_PRODUCT = 'productos';
+export const TITLE_PATH_ADMIN_PRODUCT = 'productos';
+export const BREADCRUMB_PATH_ADMIN_PRODUCT = 'Productos';
+
 export const MOD_CATEGORY_PAGE_CATEGORY =  '/admin/mod/catalog/categorias/';
-export const MOD_CATEGORY_PAGE_PRODUCT =  '/admin/mod/catalog/category/product';
+export const MOD_CATEGORY_PAGE_PRODUCT_ASSIGMENT =  '/admin/mod/catalog/categorias/productos';
 export const MOD_CATEGORY_PAGE_SUPPLIER =  '/admin/mod/catalog/proveedores/';
 
 export const CREAR_PROVEEDOR_COMPONENT = 'CrearProveedorComponent';

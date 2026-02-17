@@ -1,34 +1,64 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { ApiTags } from '@nestjs/swagger';
+import { GetUser } from 'src/decorator/getIdUser.decorator';
+import { FilterProductrDto } from './dto/filter-product.dto';
+import { AdminGuard } from '@guard/admin/admin.guard';
 
 @Controller('product')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
-  @Post()
-  create(@Body() createProductDto: CreateProductDto) {
-    return this.productService.create(createProductDto);
+  @Get('obtener-productos')
+  findAll(
+    @Query('lang') lang: string,
+    @Query() filterDto: FilterProductrDto,
+    @GetUser('id') userId: number
+  ) {
+    return this.productService.findAll(filterDto, lang);
   }
 
-  @Get()
-  findAll() {
-    return this.productService.findAll();
+  @UseGuards(AdminGuard)
+  @Get('obtener-producto')
+  findOne(
+    @Query('_id') _id: string,
+    @Query('lang') lang: string,
+    @GetUser('id') userId: number
+  ) {
+    return this.productService.findOne(lang, +_id);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.productService.findOne(+id);
+  @UseGuards(AdminGuard)
+  @Post('crear-producto')
+  create(
+    @Query('lang') lang: string,
+    @Body() supplierData: CreateProductDto,
+    @GetUser('id') userId: number
+  ) {
+    return this.productService.create(lang, supplierData, userId);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    return this.productService.update(+id, updateProductDto);
+  @UseGuards(AdminGuard)
+  @Patch('editar-producto')
+  update(
+    @Query('lang') lang: string,
+    @Query('_id') _id: string,
+    @Body() supplierData: UpdateProductDto,
+    @GetUser('id') userId: number
+  ) {
+    return this.productService.update(lang, +_id, supplierData, userId);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.productService.remove(+id);
+  @UseGuards(AdminGuard)
+  @Delete('eliminar-producto')
+  remove(
+    @Query('lang') lang: string,
+    @Query('_id') _id: string,
+    @GetUser('id') userId: number
+  ) {
+    const idsNumeros: number[] = _id.split(',').map(str => parseInt(str.trim(), 10));
+    return this.productService.remove(lang, idsNumeros, userId);
   }
 }

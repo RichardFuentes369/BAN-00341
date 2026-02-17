@@ -35,7 +35,6 @@ export class FilterCategoryrDto {
     @IsString()
     descripcion?: string;   
 
-
     @IsOptional()
     @IsNumber()
     isActive?: number;

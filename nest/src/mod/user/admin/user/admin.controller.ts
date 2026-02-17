@@ -14,7 +14,6 @@ import { GetUser } from 'src/decorator/getIdUser.decorator';
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
  
-  @ApiTags('admin')
   // @UseGuards(AdminGuard)
   @Get('obtener-usuarios-administradores')
   findAll(
@@ -28,7 +27,6 @@ export class AdminController {
     );
   }
 
-  @ApiTags('admin')
   @UseGuards(AdminGuard)
   @Get('obtener-usuario-administrador')
   findOne(
@@ -42,7 +40,6 @@ export class AdminController {
     );
   }
 
-  @ApiTags('admin')
   @UseGuards(AdminGuard)
   @Post('crear-usuario-admininistrador')
   create(
@@ -57,7 +54,6 @@ export class AdminController {
     );
   }
 
-  @ApiTags('admin')
   @UseGuards(AdminGuard)
   @Patch('editar-usuario-administrador')
   update(
@@ -74,7 +70,6 @@ export class AdminController {
     );
   }
 
-  @ApiTags('admin')
   @UseGuards(AdminGuard)
   @Patch('actualizar-estado-admininistrador')
   updateStatus(
@@ -91,7 +86,6 @@ export class AdminController {
     );
   }
 
-  @ApiTags('admin')
   @UseGuards(AdminGuard)
   @Delete('eliminar-usuario-admininistrador')
   remove(

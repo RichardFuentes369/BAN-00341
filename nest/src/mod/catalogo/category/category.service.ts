@@ -3,11 +3,13 @@ import { In, Like, Repository } from 'typeorm';
 import { Categoria } from './entities/category.entity';
 import { FilterCategoryrDto } from '@module/catalogo/category/dto/filter-category.dto';
 import { I18nService } from 'nestjs-i18n';
+import { CreateCategoryDto } from './dto/create-category.dto';
+import { UpdateCategoryDto } from './dto/update-category.dto';
 
 @Injectable()
 export class CategoryService {
   constructor(
-    @Inject('CATEGORY_REPOSITORY') // Asegúrate de que el Provider coincida en tu módulo
+    @Inject('CATEGORY_REPOSITORY')
     private categoryRepository: Repository<Categoria>,
     private i18n: I18nService
   ) {}
@@ -23,12 +25,10 @@ export class CategoryService {
   ) {
     const { limit, page, field = 'id', order = 'ASC' } = filterDto;
 
-    // Validaciones de parámetros obligatorios
     if (!page || !limit) throw new NotFoundException(
       this.i18n.t('category.MSJ_ERROR_PARAMETRO_LISTA_NO_ENVIADO', { lang })
     );
 
-    // Validar si el campo de ordenamiento existe en la entidad
     const propiedades = this.listarPropiedadesTabla(this.categoryRepository);
     if (!propiedades.includes(field)) {
       throw new NotFoundException(
@@ -85,17 +85,25 @@ export class CategoryService {
     }];
   }
 
-  async findOne(lang: string, id: number) {
-    const category = await this.categoryRepository.findOne({ where: { id } });
+  async findOne(
+    lang: string, 
+    id: number
+  ) {
+    const category = await this.categoryRepository.findOne({ 
+      where: { id } 
+    });
     if (!category) throw new NotFoundException(
       this.i18n.t('category.MSJ_CATEGORIA_NO_ENCONTRADA', { lang })
     );
     return category;
   }
 
-  async create(lang: string, categoryData: Partial<Categoria>, userId: number) {
+  async create(
+    lang: string, 
+    categoryData: CreateCategoryDto, 
+    userId: number
+  ) {
     try {
-      // Opcional: Validar si ya existe una categoría con ese nombre
       const exists = await this.categoryRepository.findOne({ where: { nombre: categoryData.nombre } });
       if (exists) throw new NotFoundException(
         this.i18n.t('category.MSJ_ERROR_EXISTE', { lang })
@@ -116,7 +124,12 @@ export class CategoryService {
     }
   }
 
-  async update(lang: string, id: number, categoryData: Partial<Categoria>, userId: number) {
+  async update(
+    lang: string, 
+    id: number, 
+    categoryData: UpdateCategoryDto, 
+    userId: number
+  ) {
     const category = await this.findOne(lang, id);
     
     return this.categoryRepository.save({

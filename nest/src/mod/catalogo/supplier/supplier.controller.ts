@@ -5,12 +5,13 @@ import { ApiTags } from '@nestjs/swagger';
 import { AdminGuard } from '@guard/admin/admin.guard';
 import { GetUser } from 'src/decorator/getIdUser.decorator';
 import { FilterCategoryrDto } from '@module/catalogo/supplier/dto/filter-supplier.dto';
+import { UpdateSupplierDto } from './dto/update-supplier.dto';
+import { CreateSupplierDto } from './dto/create-supplier.dto';
 
 @Controller('supplier')
 export class SupplierController {
   constructor(private readonly supplierService: SupplierService) {}
 
-  @ApiTags('supplier')
   @Get('obtener-proveedores')
   findAll(
     @Query('lang') lang: string,
@@ -20,7 +21,6 @@ export class SupplierController {
     return this.supplierService.findAll(filterDto, lang);
   }
 
-  @ApiTags('supplier')
   @UseGuards(AdminGuard)
   @Get('obtener-proveedor')
   findOne(
@@ -31,30 +31,27 @@ export class SupplierController {
     return this.supplierService.findOne(lang, +_id);
   }
 
-  @ApiTags('supplier')
   @UseGuards(AdminGuard)
   @Post('crear-proveedor')
   create(
     @Query('lang') lang: string,
-    @Body() supplierData: Partial<Proveedor>,
+    @Body() supplierData: CreateSupplierDto,
     @GetUser('id') userId: number
   ) {
     return this.supplierService.create(lang, supplierData, userId);
   }
 
-  @ApiTags('supplier')
   @UseGuards(AdminGuard)
   @Patch('editar-proveedor')
   update(
     @Query('lang') lang: string,
     @Query('_id') _id: string,
-    @Body() supplierData: Partial<Proveedor>,
+    @Body() supplierData: UpdateSupplierDto,
     @GetUser('id') userId: number
   ) {
     return this.supplierService.update(lang, +_id, supplierData, userId);
   }
 
-  @ApiTags('supplier')
   @UseGuards(AdminGuard)
   @Delete('eliminar-proveedor')
   remove(
