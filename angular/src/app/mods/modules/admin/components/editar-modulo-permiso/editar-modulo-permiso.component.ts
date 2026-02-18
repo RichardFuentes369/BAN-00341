@@ -9,7 +9,6 @@ import { debounceTime, map } from 'rxjs/operators';
 
 import Swal from 'sweetalert2'
 import { ocultarModalOscura } from '@function/System'
-import { STORAGE_KEY_MODULE, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
 import { ModulosService } from '../../service/modulos.service';
 
 interface PermisoInterface {

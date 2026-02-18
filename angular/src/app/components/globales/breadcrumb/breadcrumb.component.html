@@ -1,14 +1,18 @@
 <div class="">
   @if (breadcrumbs.length > 0) {
     <nav aria-label="breadcrumb" class="badge mb-2 mt-4 valid-feedback">
-      <ol class="breadcrumb mb-0">
+     <ol class="breadcrumb mb-0">
         @for (breadcrumb of breadcrumbs; track breadcrumb; let last = $last) {
           <li class="breadcrumb-item">
             @if (!last) {
-              <a [routerLink]="breadcrumb.url" style="text-decoration:none">{{ breadcrumb.label }}</a>
+              <a [routerLink]="[breadcrumb.url]" 
+                [queryParams]="breadcrumb.queryParams"
+                style="text-decoration:none">
+                {{ breadcrumb.label }}
+              </a>
             }
-            @if (last) {
-              <span class="alert-link text-dark" style="text-decoration:none">{{ breadcrumb.label }}</span>
+            @else {
+              <span class="alert-link text-dark">{{ breadcrumb.label }}</span>
             }
           </li>
         }
@@ -17,3 +21,4 @@
     <hr class="m-0 mb-4">
   }
 </div>
+

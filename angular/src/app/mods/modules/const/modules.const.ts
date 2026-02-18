@@ -1,5 +1,14 @@
-export const STORAGE_KEY_MODULE = 'modulo';
-export const STORAGE_KEY_SUBMODULE = 'submodulo';
+export const PATH_MODULO = 'administradores';
+export const TITLE_PATH_MODULO = 'Administradores';
+export const BREADCRUMB_PATH_MODULO = 'Administradores';
+
+export const PATH_SUBMODULES = 'submodules';
+export const TITLE_PATH_SUBMODULES = 'Submodulos';
+export const BREADCRUMB_PATH_SUBMODULES = 'Submodulos';
+
+export const PATH_ADMIN_PERMISSIONS = 'permissions';
+export const TITLE_PATH_ADMIN_PERMISSIONS = 'Permisos';
+export const BREADCRUMB_PATH_ADMIN_PERMISSIONS = 'Permisos';
 
 export const CREAR_MODULO_PERMISO_COMPONENT = 'CrearModuloPermisoComponent';
 export const EDITAR_MODULO_PERMISO_COMPONENT = 'EditarModuloPermisoComponent';

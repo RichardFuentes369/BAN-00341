@@ -1,25 +1,22 @@
-
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute, RouterModule } from '@angular/router';
-import { BreadcrumbService } from './service/breadcrumb.service';
+import { RouterModule } from '@angular/router';
+import { BreadcrumbService, Breadcrumb } from './service/breadcrumb.service';
 
 @Component({
   selector: 'app-globales-breadcrumbs',
   standalone: true,
-  imports: [
-    RouterModule
-],
+  imports: [RouterModule],
   templateUrl: './breadcrumb.component.html',
   styleUrls: ['./breadcrumb.component.scss']
 })
 export class BreadcrumbsComponent implements OnInit {
-  breadcrumbs: any[] = [];
+  breadcrumbs: Breadcrumb[] = [];
 
   constructor(private breadcrumbService: BreadcrumbService) {}
 
   ngOnInit() {
-    this.breadcrumbService.breadcrumbs$.subscribe(breadcrumbs => {
-      this.breadcrumbs = breadcrumbs;
+    this.breadcrumbService.breadcrumbs$.subscribe(data => {
+      this.breadcrumbs = data;
     });
   }
 }

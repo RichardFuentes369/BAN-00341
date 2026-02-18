@@ -9,7 +9,6 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2'
 import { ocultarModalOscura } from '@function/System'
 import { ModulosService } from '@mod/modules/admin/service/modulos.service';
-import { STORAGE_KEY_MODULE, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

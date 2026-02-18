@@ -8,7 +8,7 @@ import { ModulosService } from '@mod/modules/admin/service/modulos.service';
 import Swal from 'sweetalert2'
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
-import { CREAR_MODULO_PERMISO_COMPONENT, EDITAR_MODULO_PERMISO_COMPONENT, MOD_MODULES_PAGE_MODULES, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
+import { CREAR_MODULO_PERMISO_COMPONENT, EDITAR_MODULO_PERMISO_COMPONENT, MOD_MODULES_PAGE_MODULES } from '@mod/modules/const/modules.const';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { Subscription, timer } from 'rxjs';
 import { STORAGE_KEY_PROFILE_ADMIN } from '@mod/users/const/users.const';
