@@ -51,7 +51,7 @@ export class CategoriasService {
     })
   }
 
-  async updateProvider(data: any, id: string){
+  async updateCategory(data: any, id: string){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = `category/editar-categoria`
     let urlCopleta = environment.apiUrl+complemento

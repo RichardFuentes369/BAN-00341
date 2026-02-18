@@ -72,7 +72,8 @@
     "SWAL_ARE_YOU_SURE_UPDATE": "Sind Sie sicher, dass Sie den Lieferanten {{user_name}} aktualisieren möchten?",
     "SWAL_ARE_YOU_SURE_DELETE": "Sind Sie sicher, dass Sie den Lieferanten{{plural}} {{user_name}} löschen möchten?",
 
-    "CARD_TOTAL_SUPPLIERS_TITLE": "Lieferanten insgesamt"
+    "CARD_TOTAL_SUPPLIERS_TITLE": "Lieferanten insgesamt",
+    "CARD_TOTAL_PRODUCTS_TITLE": "Gesamtprodukte"
   },
 
   "PRODUCT": {
@@ -100,7 +101,9 @@
     "SELECT_UNIT_OF_MEASUREMENT_UNIT_OPTION": "Einheit", 
     "SELECT_UNIT_OF_MEASUREMENT_KG_OPTION": "Kilogramm", 
     "SELECT_UNIT_OF_MEASUREMENT_LITER_OPTION": "Liter", 
-    "SELECT_UNIT_OF_MEASUREMENT_PACKAGE_OPTION": "Paket"
+    "SELECT_UNIT_OF_MEASUREMENT_PACKAGE_OPTION": "Paket",
+
+    "CARD_TOTAL_PRODUCTS_TITLE": "Gesamtprodukte"
   },
 
   "SWAL_WARNING_REVERSE_CHANGE": "Diese Änderung kann nicht rückgängig gemacht werden!",

@@ -90,7 +90,7 @@ export class EditarCategoriaComponent implements OnInit{
     if(this.isFormValid){
       let endPoint = this.categoriasService
   
-      await endPoint.updateProvider(
+      await endPoint.updateCategory(
         {
           "nombre": this.model.nombre,
           "descripcion": this.model.descripcion,

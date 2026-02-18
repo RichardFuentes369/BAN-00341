@@ -72,7 +72,7 @@
     "SWAL_ARE_YOU_SURE_UPDATE": "Êtes-vous sûr de vouloir mettre à jour le fournisseur {{user_name}} ?",
     "SWAL_ARE_YOU_SURE_DELETE": "Êtes-vous sûr de vouloir supprimer le fournisseur{{plural}} {{user_name}} ?",
 
-    "CARD_TOTAL_SUPPLIERS_TITLE": "Total de fournisseurs"
+    "CARD_TOTAL_PRODUCTS_TITLE": "Total des produits"
   },
 
   "PRODUCT": {
@@ -100,7 +100,9 @@
     "SELECT_UNIT_OF_MEASUREMENT_UNIT_OPTION": "Unité", 
     "SELECT_UNIT_OF_MEASUREMENT_KG_OPTION": "Kilogramme", 
     "SELECT_UNIT_OF_MEASUREMENT_LITER_OPTION": "Litre", 
-    "SELECT_UNIT_OF_MEASUREMENT_PACKAGE_OPTION": "Paquet"
+    "SELECT_UNIT_OF_MEASUREMENT_PACKAGE_OPTION": "Paquet",
+
+    "CARD_TOTAL_PRODUCTS_TITLE": "Total des produits"
   },
 
   "SWAL_WARNING_REVERSE_CHANGE": "Cette action est irréversible!",

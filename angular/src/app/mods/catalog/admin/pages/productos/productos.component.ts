@@ -10,8 +10,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { ProductosService } from './service/productos.service';
 import { Subscription, timer } from 'rxjs';
-import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
-import { FILTRO_PRODUCT_COMPONENT } from '@mod/catalog/const/catalog.const';
+import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
+import { CREAR_PRODUCT_COMPONENT, EDITAR_PRODUCT_COMPONENT, FILTRO_PRODUCT_COMPONENT, VER_PRODUCT_COMPONENT } from '@mod/catalog/const/catalog.const';
 
 @Component({
   selector: 'app-productos',
@@ -21,7 +21,7 @@ import { FILTRO_PRODUCT_COMPONENT } from '@mod/catalog/const/catalog.const';
     SearchComponent,
     LoadingComponent,
     TablecrudComponent,
-    // ModalBoostrapComponent,
+    ModalBoostrapComponent,
     CardComponent,
   ],
   templateUrl: './productos.component.html',
@@ -100,7 +100,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
 
   // inicio datos envio card information
   img = "assets/images/img_admin.png"
-  titleTotalProducts = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
+  titleTotalProducts = this.translate.instant('mod-catalog.PRODUCT.CARD_TOTAL_PRODUCTS_TITLE')
   contentTotalProducts = "32"
   // fin datos envio card information
 
@@ -120,10 +120,10 @@ export class ProductosComponent implements OnInit, OnDestroy{
 
     const permisos = await this.permisosService.permisos(userData.data.id,'productos')
     this.permisos = permisos.data
-    // sessionStorage.removeItem('email')
-    // sessionStorage.removeItem('nomrbe')
-    // sessionStorage.removeItem('lastName')
-    // sessionStorage.removeItem('isActive')
+    sessionStorage.removeItem('nombre')
+    sessionStorage.removeItem('codigo_barra')
+    sessionStorage.removeItem('stock_minimo')
+    sessionStorage.removeItem('unidad_medida')
 
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarIdioma = false;
@@ -172,10 +172,80 @@ export class ProductosComponent implements OnInit, OnDestroy{
     ]
   }
 
+  // metodos Componente
   cambiarTextos(){
-    // this.titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
-    // this.titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
-    // this.titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
+    this.titleTotalProducts = this.translate.instant('mod-catalog.PRODUCT.CARD_TOTAL_PRODUCTS_TITLE')
+  }
+
+  crearData (_id: string){
+    this.tamano = "xl"
+    this.scrollable = false
+    this.title = this.translate.instant('mod-catalog.PRODUCT.CREATE_TITLE')
+    this.save = true
+    this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
+    this.edit = false
+    this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
+    this.cierreModal = "true"
+    this.componentePrecargado = CREAR_PRODUCT_COMPONENT
+
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if(idButton){
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
+  }
+
+  async verData (_id: string){
+    const response = await this.productosService.getDataProduct(_id)
+    const { nombre } = response.data || { nombre: 'xxxxxxx' }
+    
+    this.translate.get('mod-catalog.PRODUCT.SEE_TITLE', { "product_name": nombre }).subscribe((res: string) => {this.title = res});
+    this.tamano = "xl"
+    this.scrollable = false
+    this.save = false
+    this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
+    this.edit = false
+    this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
+    this.cierreModal = "true"
+    this.componentePrecargado = VER_PRODUCT_COMPONENT
+
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if(idButton){
+      this.router.navigate([], {
+        queryParams: { id: _id },
+      });
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
+  }
+
+  async editarData (_id: string){
+    const response = await this.productosService.getDataProduct(_id)
+    const { nombre } = response.data || { nombre: 'xxxxxxx' }
+    
+    this.translate.get('mod-catalog.PRODUCT.EDIT_TITLE', { "product_name": nombre }).subscribe((res: string) => {this.title = res});
+    this.tamano = "xl"
+    this.scrollable = false
+    this.save = false
+    this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
+    this.edit = true
+    this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
+    this.componentePrecargado = EDITAR_PRODUCT_COMPONENT
+
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if(idButton){
+      this.router.navigate([], {
+        queryParams: { id: _id },
+      });
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
   }
 
   async filtroData(){
