@@ -347,10 +347,8 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   }
 
   async filtroData(){
-    let filtros = await $('.complementoRuta').val();
-    this.router.navigate([], {
-      queryParams: { search: filtros },
-    });
+    let filtros = $('.complementoRuta').val()
+    this.router.navigate([], { queryParams: { search: (filtros) ? filtros : null }, });
     if(typeof filtros === 'string'){
       this.filters = filtros
     }

@@ -342,7 +342,7 @@ export class FinalesComponent implements OnInit{
 
   async filtroData(){
     let filtros = await $('.complementoRuta').val();
-    this.router.navigate([], { queryParams: { search: filtros }, });
+    this.router.navigate([], { queryParams: { search: (filtros) ? filtros : null }, });
     if(typeof filtros === 'string'){
       this.filters = filtros
     }else{

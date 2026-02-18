@@ -18,8 +18,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SearchComponent{
   @ViewChild('contenedorFilter', { read: ViewContainerRef }) contenedorDinamico!: ViewContainerRef;
 
-  paramsRespaldo: any;
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -45,8 +43,6 @@ export class SearchComponent{
   async openFilterMinimize() {
     let componente = await this.listaDeComponentes.obtenerComponentePorNombre(this.componente);
     
-    this.paramsRespaldo = { ...this.route.snapshot.queryParams };
-    
     if(componente){
       const factory = await this.resolver.resolveComponentFactory(componente.componente);
       this.clickeado = !this.clickeado
@@ -68,9 +64,14 @@ export class SearchComponent{
     $('.limpiar').click()
     this.filtroItem.emit()
     this.contador = await sessionStorage.length
-    if (this.paramsRespaldo) {
+    if (this.route.snapshot.queryParams['search']) {
       this.router.navigate([], {
-        queryParams: this.paramsRespaldo
+        relativeTo: this.route,
+        queryParams: { 
+          search: null
+        },
+        queryParamsHandling: 'merge',
+        replaceUrl: true 
       });
     }
   }
@@ -81,9 +82,14 @@ export class SearchComponent{
     this.filtroItem.emit()
     this.isFilterVisible = false
     this.contador = await sessionStorage.length
-    if (this.paramsRespaldo) {
+    if (this.route.snapshot.queryParams['search']) {
       this.router.navigate([], {
-        queryParams: this.paramsRespaldo
+        relativeTo: this.route,
+        queryParams: { 
+          search: null
+        },
+        queryParamsHandling: 'merge',
+        replaceUrl: true 
       });
     }
   }
