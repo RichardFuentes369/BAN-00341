@@ -95,24 +95,24 @@ export class EditarModuloPermisoComponent implements OnInit{
   }
 
   async ngOnInit() {
-    if(!localStorage.getItem(STORAGE_KEY_MODULE) && !localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+    if(!this.route.snapshot.queryParams?.['id_module'] && !this.route.snapshot.queryParams?.['id_submodule']){
       this.showSelect = true
       this.showSelectOption = true
       this.hasSubmodule = true
       this.hasPermission = true
     }
-    if(localStorage.getItem(STORAGE_KEY_MODULE) && !localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+    if(this.route.snapshot.queryParams?.['id_module'] && !this.route.snapshot.queryParams?.['id_submodule']){
       this.showSelect = true
       this.showSelectOption = false
       this.hasSubmodule = false
       this.hasPermission = true
     }
-    if(localStorage.getItem(STORAGE_KEY_MODULE) && localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+    if(this.route.snapshot.queryParams?.['id_module'] && this.route.snapshot.queryParams?.['id_submodule']){
       this.showSelectOption = false
       this.hasSubmodule = false
       this.hasPermission = true
     }
-    if(!localStorage.getItem(STORAGE_KEY_MODULE) && localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+    if(!this.route.snapshot.queryParams?.['id_module'] && this.route.snapshot.queryParams?.['id_submodule']){
       this.showSelectOption = false
       this.showSelect = false
       this.hasSubmodule = false

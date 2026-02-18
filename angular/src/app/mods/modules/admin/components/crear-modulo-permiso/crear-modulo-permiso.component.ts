@@ -10,6 +10,7 @@ import Swal from 'sweetalert2'
 import { ocultarModalOscura } from '@function/System'
 import { ModulosService } from '@mod/modules/admin/service/modulos.service';
 import { STORAGE_KEY_MODULE, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-crear-modulo-permiso',
@@ -25,6 +26,7 @@ export class CrearModuloPermisoComponent implements OnInit{
 
   constructor(
     private translate: TranslateService,
+    private route: ActivatedRoute,
     private modulosService :ModulosService,
   ){
     this.validationSubject.pipe(
@@ -58,7 +60,7 @@ export class CrearModuloPermisoComponent implements OnInit{
   }
 
   async ngOnInit() {
-    if(!localStorage.getItem(STORAGE_KEY_MODULE) && !localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+    if(!this.route.snapshot.queryParams?.['id_module'] && !this.route.snapshot.queryParams?.['id_submodule']){
       this.optionSelect = 0
       this.model.modulo_padre_id = 0
       this.showSelect = true
@@ -66,24 +68,24 @@ export class CrearModuloPermisoComponent implements OnInit{
       this.hasSubmodule = true
       this.hasPermission = true
     }
-    if(localStorage.getItem(STORAGE_KEY_MODULE) && !localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+    if(this.route.snapshot.queryParams?.['id_module'] && !this.route.snapshot.queryParams?.['id_submodule']){
       this.optionSelect = 2
-      this.model.modulo_padre_id = Number(localStorage.getItem(STORAGE_KEY_MODULE))
+      this.model.modulo_padre_id = Number(this.route.snapshot.queryParams?.['id_module'])
       this.showSelect = true
       this.showSelectOption = false
       this.hasSubmodule = false
       this.hasPermission = true
     }
-    if(localStorage.getItem(STORAGE_KEY_MODULE) && localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+    if(this.route.snapshot.queryParams?.['id_module'] && this.route.snapshot.queryParams?.['id_submodule']){
       this.optionSelect = 2
-      this.model.modulo_padre_id = Number(localStorage.getItem(STORAGE_KEY_SUBMODULE))
+      this.model.modulo_padre_id = Number(this.route.snapshot.queryParams?.['id_submodule'])
       this.showSelectOption = false
       this.hasSubmodule = false
       this.hasPermission = true
     }
-    if(!localStorage.getItem(STORAGE_KEY_MODULE) && localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+    if(!this.route.snapshot.queryParams?.['id_module'] && this.route.snapshot.queryParams?.['id_submodule']){
       this.optionSelect = 2
-      this.model.modulo_padre_id = Number(localStorage.getItem(STORAGE_KEY_SUBMODULE))
+      this.model.modulo_padre_id = Number(this.route.snapshot.queryParams?.['id_submodule'])
       this.showSelectOption = false
       this.showSelect = false
       this.hasSubmodule = false

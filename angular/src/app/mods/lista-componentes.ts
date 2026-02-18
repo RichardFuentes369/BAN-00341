@@ -5,7 +5,6 @@ import { FiltroUsuariosComponent } from '@mod/users/admin/components/filtro/filt
 
 import { CrearModuloPermisoComponent } from '@mod/modules/admin/components/crear-modulo-permiso/crear-modulo-permiso.component';
 import { EditarModuloPermisoComponent } from '@mod/modules/admin/components/editar-modulo-permiso/editar-modulo-permiso.component';
-import { VerModuloPermisoComponent } from '@mod/modules/admin/components/ver-modulo-permiso/ver-modulo-permiso.component';
 import { FiltroProveedorComponent } from './catalog/admin/pages/proveedores/components/filtro/filtro.component';
 import { CrearProveedorComponent } from './catalog/admin/pages/proveedores/components/crear-proveedor/crear-proveedor.component';
 import { VerProveedorComponent } from './catalog/admin/pages/proveedores/components/ver-proveedor/ver-proveedor.component';
@@ -51,10 +50,6 @@ export class ListaComponentes {
     {
       name: 'EditarModuloPermisoComponent',
       componente: EditarModuloPermisoComponent  
-    },
-    {
-      name: 'VerModuloPermisoComponent',
-      componente: VerModuloPermisoComponent  
     },
     
     // modulo catalogo
