@@ -95,12 +95,12 @@ export class EditarUsuariosComponent implements OnInit{
     switch (this.route.snapshot.queryParams?.['rol']) {
       case 'admin':
         this.usuarioReal = await this.principalService.getDataUser(
-          this.route.snapshot.queryParams?.['id']
+          this.route.snapshot.queryParams?.['id_user']
         )
         break;
       case 'user':
         this.usuarioReal = await this.finalService.getDataUser(
-          this.route.snapshot.queryParams?.['id']
+          this.route.snapshot.queryParams?.['id_user']
           )
         break;
     }

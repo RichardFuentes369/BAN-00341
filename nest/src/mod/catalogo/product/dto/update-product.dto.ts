@@ -13,6 +13,10 @@ export class UpdateProductDto extends PartialType(CreateProductDto) {
   readonly nombre?: string;
 
   @IsOptional()
+  @IsString()
+  readonly marca?: string;
+
+  @IsOptional()
   @IsNumber()
   readonly stock_minimo?: number;  
   

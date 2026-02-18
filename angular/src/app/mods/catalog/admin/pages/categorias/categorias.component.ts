@@ -159,7 +159,7 @@ export class CategoriasComponent implements OnInit, OnDestroy{
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
-        queryParams: { id: _id },
+        queryParams: { id_category: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
@@ -184,7 +184,7 @@ export class CategoriasComponent implements OnInit, OnDestroy{
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
-        queryParams: { id: _id },
+        queryParams: { id_category: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
@@ -229,7 +229,7 @@ export class CategoriasComponent implements OnInit, OnDestroy{
     if (data.ctrlKey) {
       window.open(url, '_blank');
     } else {
-      this.router.navigate([MOD_CATEGORY_PAGE_PRODUCT_ASSIGMENT], { queryParams: { id: data.id } });
+      this.router.navigate([MOD_CATEGORY_PAGE_PRODUCT_ASSIGMENT], { queryParams: { id_category: data.id } });
     }
   }
 

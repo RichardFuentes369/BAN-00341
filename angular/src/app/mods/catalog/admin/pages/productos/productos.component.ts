@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CardComponent } from '@component/globales/card/card.component';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
@@ -52,12 +52,17 @@ export class ProductosComponent implements OnInit, OnDestroy{
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = 'product/obtener-productos'
-  complementoEndPoint = `&id_category=${this.route.snapshot.queryParamMap.get('id')}`
+  complementoEndPoint = `&id_category=${this.route.snapshot.queryParamMap.get('id_category')}`
   filters = ''
   columnas: any[] = [
     {
       title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_ID'),
       data: 'id',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
+      data: 'marca',
       className: 'text-center'
     },
     {
@@ -150,6 +155,11 @@ export class ProductosComponent implements OnInit, OnDestroy{
         className: 'text-center'
       },
       {
+        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
+        data: 'marca',
+        className: 'text-center'
+      },
+      {
         title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME'),
         data: 'nombre',
         className: 'text-center'
@@ -216,7 +226,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
-        queryParams: { id: _id },
+        queryParams: { id_category: this.route.snapshot.queryParams?.['id_category'], id_product: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
@@ -241,20 +251,29 @@ export class ProductosComponent implements OnInit, OnDestroy{
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
-        queryParams: { id: _id },
+        queryParams: { id_category: this.route.snapshot.queryParams?.['id_category'], id_product: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
   }
 
+  @ViewChild(TablecrudComponent)
+  someInput!: TablecrudComponent
+
   async filtroData(){
     let filtros = await $('.complementoRuta').val();
     this.router.navigate([], {
-      queryParams: { search: filtros },
+      queryParams: { id_category: this.route.snapshot.queryParams?.['id_category'], search: filtros },
     });
     if(typeof filtros === 'string'){
       this.filters = filtros
     }
+  }
+
+  async refrescarTabla (){
+    setTimeout(async () => {
+      await this.someInput.reload()
+    }, 100);
   }
 }

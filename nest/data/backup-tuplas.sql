@@ -28,17 +28,17 @@ INSERT INTO `mod_catalogo_categorias` (`id`, `nombre`, `descripcion`) VALUES
 	(10, 'Cuidado Personal', 'Jabones, champú y cremas dentales');
 
 -- Volcando datos para la tabla core_project_BAN_00341.mod_catalogo_productos: ~10 rows (aproximadamente)
-INSERT INTO `mod_catalogo_productos` (`id`, `codigo_barra`, `nombre`, `stock_minimo`, `unidad_medida`, `id_categoria`) VALUES
-	(1, '770123456001', 'Leche Entera 1L', 20, 'kg', 1),
-	(2, '770123456002', 'Arroz Blanco 1kg', 50, 'kg', 1),
-	(3, '770123456003', 'Jamón de Cerdo 250g', 10, 'kg', 1),
-	(4, '770123456004', 'Agua Mineral 500ml', 30, 'kg', 1),
-	(5, '770123456005', 'Detergente en Polvo 1kg', 15, 'kg', 1),
-	(6, '770123456006', 'Pan de Molde Familiar', 12, 'kg', 1),
-	(7, '770123456007', 'Aceite de Girasol 1L', 10, 'kg', 1),
-	(8, '770123456008', 'Atún en Agua 170g', 20, 'kg', 1),
-	(9, '770123456009', 'Papas Fritas Naturales', 25, 'kg', 1),
-	(10, '770123456010', 'Manzanas Rojas x6', 8, 'kg', 1);
+INSERT INTO `mod_catalogo_productos` (`id`, `codigo_barra`, `nombre`, `stock_minimo`, `unidad_medida`, `marca`, `id_categoria`) VALUES
+	(1, '770123456001', 'Leche Entera 1L', 20, 'kg', 'pajarito', 1),
+	(2, '770123456002', 'Arroz Blanco 1kg', 50, 'kg', 'pajarito', 1),
+	(3, '770123456003', 'Jamón de Cerdo 250g', 10, 'kg', 'pajarito', 1),
+	(4, '770123456004', 'Agua Mineral 500ml', 30, 'kg', 'pajarito', 1),
+	(5, '770123456005', 'Detergente en Polvo 1kg', 15, 'kg', 'pajarito', 1),
+	(6, '770123456006', 'Pan de Molde Familiar', 12, 'kg', 'pajarito', 1),
+	(7, '770123456007', 'Aceite de Girasol 1L', 10, 'kg', 'pajarito', 1),
+	(8, '770123456008', 'Atún en Agua 170g', 20, 'kg', 'pajarito', 1),
+	(9, '770123456009', 'Papas Fritas Naturales', 25, 'kg', 'pajarito', 1),
+	(10, '770123456010', 'Manzanas Rojas x6', 8, 'kg', 'pajarito', 1);
 
 -- Volcando datos para la tabla core_project_BAN_00341.mod_catalogo_proveedores: ~10 rows (aproximadamente)
 INSERT INTO `mod_catalogo_proveedores` (`id`, `nit`, `razon_social`, `direccion`, `correo`, `telefono`) VALUES

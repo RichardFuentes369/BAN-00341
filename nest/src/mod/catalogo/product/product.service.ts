@@ -39,6 +39,9 @@ export class ProductService {
     if (filterDto['id_category']) {
       where.id_categoria = filterDto['id_category'];
     }
+    if (filterDto['marca']) {
+      where.marca = Like(`%${filterDto['marca']}%`);
+    }
     if (filterDto['codigo_barra']) {
       where.codigo_barra = Like(`%${filterDto['codigo_barra']}%`);
     }

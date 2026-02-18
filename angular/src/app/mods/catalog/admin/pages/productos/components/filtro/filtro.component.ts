@@ -15,6 +15,7 @@ export class FiltroProductComponent {
 
   model = {
     nombre: '',
+    marca: '',
     codigo_barra: '',
     stock_minimo: '',
     unidad_medida: '',
@@ -23,6 +24,7 @@ export class FiltroProductComponent {
   async ngOnInit() {
     this.model = {
       nombre: sessionStorage.getItem('nombre') || '',
+      marca: sessionStorage.getItem('marca') || '',
       codigo_barra: sessionStorage.getItem('codigo_barra') || '',
       stock_minimo: sessionStorage.getItem('stock_minimo') || '',
       unidad_medida: sessionStorage.getItem('unidad_medida') || '',
@@ -30,7 +32,7 @@ export class FiltroProductComponent {
 
     this.complementoFiltro = ''
     if(this.model.nombre != ''){
-      this.complementoFiltro += `&nombre=${this.model.nombre}&codigo_barra=${this.model.codigo_barra}&stock_minimo=${this.model.stock_minimo}&unidad_medida=${this.model.unidad_medida}`
+      this.complementoFiltro += `&nombre=${this.model.nombre}&marca=${this.model.marca}&codigo_barra=${this.model.codigo_barra}&stock_minimo=${this.model.stock_minimo}&unidad_medida=${this.model.unidad_medida}`
     }
     $(".complementoRuta").val(this.complementoFiltro)
   }
@@ -41,6 +43,7 @@ export class FiltroProductComponent {
     this.model.nombre = ''
 
     sessionStorage.removeItem('nombre')
+    sessionStorage.removeItem('marca')
     sessionStorage.removeItem('codigo_barra')
     sessionStorage.removeItem('stock_minimo')
     sessionStorage.removeItem('unidad_medida')
@@ -50,10 +53,18 @@ export class FiltroProductComponent {
     this.complementoFiltro = ''
     
     sessionStorage.removeItem('nombre')
+    sessionStorage.removeItem('marca')
+    sessionStorage.removeItem('codigo_barra')
+    sessionStorage.removeItem('stock_minimo')
+    sessionStorage.removeItem('unidad_medida')
 
     if(this.model.nombre != ''){
       this.complementoFiltro += `&nombre=${this.model.nombre}`
       sessionStorage.setItem('nombre', this.model.nombre)
+    }
+    if(this.model.nombre != ''){
+      this.complementoFiltro += `&marca=${this.model.marca}`
+      sessionStorage.setItem('marca', this.model.marca)
     }
     if(this.model.codigo_barra != ''){
       this.complementoFiltro += `&codigo_barra=${this.model.codigo_barra}`

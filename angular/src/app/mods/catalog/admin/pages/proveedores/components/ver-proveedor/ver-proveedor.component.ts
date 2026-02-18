@@ -41,7 +41,7 @@ export class VerProveedorComponent implements OnInit{
 
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
-    this.proveedorReal = await this.proveedoresService.getDataProvider(this.route.snapshot.queryParams?.['id'])
+    this.proveedorReal = await this.proveedoresService.getDataProvider(this.route.snapshot.queryParams?.['id_supplier'])
 
     this.proveedor.push(this.proveedorReal.data)
   }

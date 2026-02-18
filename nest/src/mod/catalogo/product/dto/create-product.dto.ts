@@ -11,6 +11,10 @@ export class CreateProductDto {
   // @Transform(({value}) => value.trim())
   readonly nombre;
 
+  @IsString()
+  // @Transform(({value}) => value.trim())
+  readonly marca;
+
   @IsNumber()
   // @Transform(({value}) => value.trim())
   readonly stock_minimo;  

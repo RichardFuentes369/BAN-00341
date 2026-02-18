@@ -4,7 +4,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { ListaComponentes } from '@mod/lista-componentes'
 import { WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-globales-modal-boostrap',
@@ -29,8 +29,11 @@ export class ModalBoostrapComponent implements OnDestroy{
   @Input() componentePrecargado: string = '';
   @Input() cierreModal: string = "static";
 
+  paramsRespaldo: any;
+
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private resolver: ComponentFactoryResolver,
     private translate: TranslateService,
     private renderer: Renderer2 // Añadido para mover el modal al body
@@ -48,6 +51,8 @@ export class ModalBoostrapComponent implements OnDestroy{
   async openModal() {
     const boton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL) as HTMLButtonElement
     const metodoClickeado = boton.getAttribute(WORD_KEY_COMPONENT_GLOBAL)
+
+    this.paramsRespaldo = { ...this.route.snapshot.queryParams };
     
     if(metodoClickeado){
       let componente = await this.listaDeComponentes.obtenerComponentePorNombre(metodoClickeado);
@@ -84,6 +89,10 @@ export class ModalBoostrapComponent implements OnDestroy{
   }
 
   async buttonCloseM(){
-    this.router.navigate([], {});
+    if (this.paramsRespaldo) {
+      this.router.navigate([], {
+        queryParams: this.paramsRespaldo
+      });
+    }
   }
 }

@@ -81,17 +81,20 @@
     "SEE_TITLE": "Voir le produit {{product_name}}", 
 
     "COLUMN_ID": "ID",
+    "COLUMN_BRAND": "Marque",
     "COLUMN_NAME": "Nom",
     "COLUMN_BAR_CODE": "Code-barres",
     "COLUMN_STOCK": "Stock",
     "COLUMN_UNIT_OF_MEASUREMENT": "Unité de mesure",
 
     "LABEL_NAME_PRODUCT": "Nom",
+    "LABEL_BRAND_PRODUCT": "Marque",
     "LABEL_COD_BAR_PRODUCT": "Code-barres",
     "LABEL_STOCK_PRODUCT": "Stock",
     "LABEL_UNIT_OF_MEASUREMENT_PRODUCT": "Unité de mesure",
     
     "PLACEHOLDER_NAME_PRODUCT": "Saisir un nom",
+    "PLACEHOLDER_BRAND_PRODUCT": "Saisir une marque",
     "PLACEHOLDER_COD_BAR_PRODUCT": "Saisir un code-barres",
     "PLACEHOLDER_STOCK_PRODUCT": "Saisir un nombre",
     "PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT": "Saisir une unité de mesure",
@@ -101,6 +104,13 @@
     "SELECT_UNIT_OF_MEASUREMENT_KG_OPTION": "Kilogramme", 
     "SELECT_UNIT_OF_MEASUREMENT_LITER_OPTION": "Litre", 
     "SELECT_UNIT_OF_MEASUREMENT_PACKAGE_OPTION": "Paquet",
+
+    "SWAL_CREATED": "Produit!",
+    "SWAL_UPDATED": "Produit!",
+    "SWAL_DELETED": "Produit!",
+    
+    "SWAL_ARE_YOU_SURE_UPDATE": "Êtes-vous sûr de vouloir mettre à jour le produit{{plural}} {{product_name}} ?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Êtes-vous sûr de vouloir supprimer le produit{{plural}} {{product_name}} ?",
 
     "CARD_TOTAL_PRODUCTS_TITLE": "Total des produits"
   },

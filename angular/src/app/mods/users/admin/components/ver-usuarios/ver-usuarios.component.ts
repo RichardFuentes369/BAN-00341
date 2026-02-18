@@ -48,12 +48,12 @@ export class VerUsuariosComponent implements OnInit{
     switch (this.route.snapshot.queryParams?.['rol']) {
       case 'admin':
         this.usuarioReal = await this.userPrincipalService.getDataUser(
-          this.route.snapshot.queryParams?.['id']
+          this.route.snapshot.queryParams?.['id_user']
         )
         break;
       case 'user':
         this.usuarioReal = await this.userFinalService.getDataUser(
-          this.route.snapshot.queryParams?.['id']
+          this.route.snapshot.queryParams?.['id_user']
           )
         break;
     }

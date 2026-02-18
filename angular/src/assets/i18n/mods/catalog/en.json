@@ -81,17 +81,20 @@
     "SEE_TITLE": "See product {{product_name}}", 
 
     "COLUMN_ID": "ID",
+    "COLUMN_BRAND": "Brand",
     "COLUMN_NAME": "Name",
     "COLUMN_BAR_CODE": "Barcode",
     "COLUMN_STOCK": "Stock",
     "COLUMN_UNIT_OF_MEASUREMENT": "Unit of measurement",
 
     "LABEL_NAME_PRODUCT": "Name",
+    "LABEL_BRAND_PRODUCT": "Brand",
     "LABEL_COD_BAR_PRODUCT": "Barcode",
     "LABEL_STOCK_PRODUCT": "Stock",
     "LABEL_UNIT_OF_MEASUREMENT_PRODUCT": "Unit of measurement",
 
     "PLACEHOLDER_NAME_PRODUCT": "Enter a name",
+    "PLACEHOLDER_BRAND_PRODUCT": "Enter a brand",
     "PLACEHOLDER_COD_BAR_PRODUCT": "Enter a barcode",
     "PLACEHOLDER_STOCK_PRODUCT": "Enter a number",
 
@@ -105,8 +108,8 @@
     "SWAL_UPDATED": "PRODUCT!",
     "SWAL_DELETED": "PRODUCT!",
     
-    "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the product{{plural}} {{user_name}}?",
-    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete the product{{plural}} {{user_name}}?",
+    "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the product{{plural}} {{product_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete the product{{plural}} {{product_name}}?",
 
     "CARD_TOTAL_PRODUCTS_TITLE": "Total products"
   },

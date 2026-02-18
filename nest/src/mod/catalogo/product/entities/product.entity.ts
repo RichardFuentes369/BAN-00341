@@ -15,6 +15,9 @@ export class Producto {
   @Column({ type: 'varchar', length: 150 })
   nombre: string;
 
+  @Column({ type: 'varchar', length: 150 })
+  marca: string;
+
   @Column()
   stock_minimo: number;
 

@@ -237,9 +237,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
-      this.router.navigate([], {
-        queryParams: { rol: 'admin', id: _id },
-      });
+      this.router.navigate([], { queryParams: { rol: 'admin', id_user: _id } });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
@@ -265,7 +263,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
-        queryParams: { rol: 'admin', id: _id },
+        queryParams: { rol: 'admin', id_user: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
@@ -340,11 +338,11 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   }
 
   asignarData (data: { id: string, ctrlKey: boolean }){
-    const url = `${MOD_USER_PAGE_ADMIN_ASSIGMENT}?id=${data.id}`;
+    const url = `${MOD_USER_PAGE_ADMIN_ASSIGMENT}?id_user=${data.id}`;
     if (data.ctrlKey) {
       window.open(url, '_blank');
     } else {
-      this.router.navigate([MOD_USER_PAGE_ADMIN_ASSIGMENT], { queryParams: { id: data.id } });
+      this.router.navigate([MOD_USER_PAGE_ADMIN_ASSIGMENT], { queryParams: { id_user: data.id } });
     }
   }
 

@@ -37,6 +37,10 @@ export class FilterProductrDto {
 
   @IsOptional()
   @IsString()
+  marca?: string;   
+
+  @IsOptional()
+  @IsString()
   nombre?: string;    
   
   @IsOptional()

@@ -49,7 +49,7 @@ export class AsignarPermisosComponent implements OnInit{
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     } 
     
-    let userId = this.route.snapshot.queryParams['id']
+    let userId = this.route.snapshot.queryParams['id_user']
 
     const datUser = await this.principalService.getDataUser(userId)
     const { firstName, lastName } = datUser.data || { firstName: 'xxxx', lastName: 'yyyy' }
@@ -60,7 +60,7 @@ export class AsignarPermisosComponent implements OnInit{
   }
 
   async asignarPermiso(item: any){
-    let userId = this.route.snapshot.queryParams['id']
+    let userId = this.route.snapshot.queryParams['id_user']
 
     let opcion = ''
     if(item.asignado == null || item.asignado == '0'){
