@@ -138,10 +138,13 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     sessionStorage.removeItem('lastName')
     sessionStorage.removeItem('isActive')
 
+    this.actualizarContadores()
+
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarIdioma = false;
       timer(200).subscribe(() => {
         this.listar(); 
+        this.actualizarContadores()
         this.cambiarTextos(); 
         this.cargarIdioma = true;
       });
@@ -358,6 +361,10 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);
+  }
+
+  actualizarContadores (){
+    console.log('actualizando contadores')
   }
 
 }
