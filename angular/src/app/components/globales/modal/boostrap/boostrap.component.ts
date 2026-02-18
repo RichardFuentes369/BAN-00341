@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver, Output, EventEmitter, Renderer2, OnDestroy } from '@angular/core';
+import { Component, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver, Output, EventEmitter, Renderer2, OnDestroy, AfterViewInit } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { ListaComponentes } from '@mod/lista-componentes'
