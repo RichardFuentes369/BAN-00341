@@ -9,6 +9,7 @@ import { swalert } from '@function/System'
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 import { PrincipalService } from '../../service/principal.service';
 import { CommonModule } from '@angular/common';
+import { MOD_USER_PAGE_ADMIN } from '@mod/users/const/users.const';
 
 @Component({
   selector: 'app-asignar-permisos',
@@ -48,6 +49,10 @@ export class AsignarPermisosComponent implements OnInit{
     if (permiso_modulo.data === "" || permiso_submodulo.data === "" || permiso_vista.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     } 
+
+    if(!this.route.snapshot.queryParamMap.get('id_user')){
+      this.router.navigate([MOD_USER_PAGE_ADMIN]);
+    }
     
     let userId = this.route.snapshot.queryParams['id_user']
 

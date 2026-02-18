@@ -11,7 +11,7 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { ProductosService } from './service/productos.service';
 import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
-import { CREAR_PRODUCT_COMPONENT, EDITAR_PRODUCT_COMPONENT, FILTRO_PRODUCT_COMPONENT, VER_PRODUCT_COMPONENT } from '@mod/catalog/const/catalog.const';
+import { CREAR_PRODUCT_COMPONENT, EDITAR_PRODUCT_COMPONENT, FILTRO_PRODUCT_COMPONENT, MOD_CATEGORY_PAGE_CATEGORY, VER_PRODUCT_COMPONENT } from '@mod/catalog/const/catalog.const';
 
 @Component({
   selector: 'app-productos',
@@ -121,6 +121,10 @@ export class ProductosComponent implements OnInit, OnDestroy{
 
     if (permiso_modulo.data === "" || permiso_submodulo.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
+    }
+
+    if(!this.route.snapshot.queryParamMap.get('id_category')){
+      this.router.navigate([MOD_CATEGORY_PAGE_CATEGORY]);
     }
 
     const permisos = await this.permisosService.permisos(userData.data.id,'productos')

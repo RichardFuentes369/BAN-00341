@@ -17,7 +17,7 @@ import { STORAGE_KEY_PROFILE_ADMIN } from '@mod/users/const/users.const';
   selector: 'app-modulos',
   standalone: true,
   imports: [
-    TranslateModule, 
+    TranslateModule,
     TablecrudComponent,
     LoadingComponent,
     ModalBoostrapComponent
@@ -25,13 +25,13 @@ import { STORAGE_KEY_PROFILE_ADMIN } from '@mod/users/const/users.const';
   templateUrl: './modulos.component.html',
   styleUrl: './modulos.component.scss'
 })
-export class ModulosComponent implements OnInit{
+export class ModulosComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private userService :AuthService,
-    private permisosService :PermisosService,
-    private modulosService :ModulosService,
+    private userService: AuthService,
+    private permisosService: PermisosService,
+    private modulosService: ModulosService,
     private translate: TranslateService,
     private route: ActivatedRoute
   ) { }
@@ -40,23 +40,21 @@ export class ModulosComponent implements OnInit{
   permisos: any[] = []
 
   async ngOnInit() {
-    localStorage.removeItem(STORAGE_KEY_MODULE)
-    localStorage.removeItem(STORAGE_KEY_SUBMODULE)
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
-    const submodulo = await this.permisosService.permisoPage(0,'modulos',userData.data.id)
+    const submodulo = await this.permisosService.permisoPage(0, 'modulos', userData.data.id)
     if (submodulo.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
-    } 
+    }
 
-    const modulo = await this.permisosService.permisos(userData.data.id,'modulos')
+    const modulo = await this.permisosService.permisos(userData.data.id, 'modulos')
     this.permisos = modulo.data
 
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarTabla = false;
       timer(200).subscribe(() => {
-        this.listar(); 
+        this.listar();
         this.cargarTabla = true;
       });
     });
@@ -119,12 +117,12 @@ export class ModulosComponent implements OnInit{
   componentePrecargado = ""
 
   cargarTabla = true;
-  
+
   search = true
   buttonSearch = this.translate.instant('mod-modules.BUTTON_SEARCH')
-  iconFilter="fa fa-filter"
+  iconFilter = "fa fa-filter"
 
-  listar(){
+  listar() {
     this.columnas = [
       {
         title: this.translate.instant('mod-modules.COLUMN_MODULE_NAME'),
@@ -165,18 +163,16 @@ export class ModulosComponent implements OnInit{
     ]
   }
 
-  async verData (_id: string){
+  async verData(_id: string) {
     const hasChildren = await this.modulosService.getHasSubmodule(+_id)
-    if(hasChildren.data[0].tiene_submodulos == false){
-      localStorage.setItem(STORAGE_KEY_SUBMODULE, _id)
-      this.router.navigate([MOD_MODULES_PAGE_PERMISSIONS]);
-    }else{
-      localStorage.setItem(STORAGE_KEY_MODULE, _id)
-      this.router.navigate([MOD_MODULES_PAGE_SUBMODULES]);
+    if (hasChildren.data[0].tiene_submodulos == false) {
+      this.router.navigate([MOD_MODULES_PAGE_PERMISSIONS], { queryParams: { id_module: _id } });
+    } else {
+      this.router.navigate([MOD_MODULES_PAGE_SUBMODULES], { queryParams: { id_module: _id } });
     }
   }
-  
-  crearData (_id: string){
+
+  crearData(_id: string) {
     this.tamano = "xl"
     this.scrollable = false
     this.title = this.translate.instant('mod-modules.CREATE_MODULE_TITLE')
@@ -190,19 +186,17 @@ export class ModulosComponent implements OnInit{
     this.componentePrecargado = CREAR_MODULO_PERMISO_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
   }
-  
-  async editarData (_id: string){
-    localStorage.setItem(STORAGE_KEY_PROFILE, STORAGE_KEY_PROFILE_ADMIN)
 
+  async editarData(_id: string) {
     const response = await this.modulosService.getHasSubmodule(+_id)
     const { nombre } = response.data?.[0] || { nombre: 'xxxxxxx' }
-    
-    this.translate.get('mod-modules.EDIT_MODULE_TITLE', { "module_name": nombre }).subscribe((res: string) => {this.title = res});
+
+    this.translate.get('mod-modules.EDIT_MODULE_TITLE', { "module_name": nombre }).subscribe((res: string) => { this.title = res });
     this.tamano = "xl"
     this.scrollable = false
     this.save = false
@@ -214,7 +208,7 @@ export class ModulosComponent implements OnInit{
     this.componentePrecargado = EDITAR_MODULO_PERMISO_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       this.router.navigate([], {
         queryParams: { id: _id },
       });
@@ -225,7 +219,7 @@ export class ModulosComponent implements OnInit{
 
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
-  async eliminarData (_id: string[]){
+  async eliminarData(_id: string[]) {
     const response = await this.modulosService.getHasSubmodule(+_id)
     const { nombre } = response.data?.[0] || { nombre: 'xxxxxxx' }
     this.translate.get('mod-modules.SWAL_ARE_YOU_SURE', { "permission_name": nombre }).subscribe((translatedTitle: string) => {
@@ -238,29 +232,29 @@ export class ModulosComponent implements OnInit{
         cancelButtonText: this.translate.instant('mod-modules.SWAL_BUTTON_CANCEL')
       }).then(async (result) => {
         if (result.isConfirmed) {
-            let response = await this.modulosService.eliminarPermiso(_id)
-            await this.someInput.reload()
+          let response = await this.modulosService.eliminarPermiso(_id)
+          await this.someInput.reload()
 
-            if(response.data.status == 200){
-              Swal.fire({
-                title: this.translate.instant('mod-modules.SWAL_DELETED'),
-                text: this.translate.instant('mod-modules.SWAL_DELETED_RECORD'),
-                icon: "success"
-              });
-            }
-            if(response.data.status == 404){
-              Swal.fire({
-                title: this.translate.instant('mod-modules.SWAL_DELETED'),
-                text: response.data.message,
-                icon: "error"
-              });
-            }
+          if (response.data.status == 200) {
+            Swal.fire({
+              title: this.translate.instant('mod-modules.SWAL_DELETED'),
+              text: this.translate.instant('mod-modules.SWAL_DELETED_RECORD'),
+              icon: "success"
+            });
+          }
+          if (response.data.status == 404) {
+            Swal.fire({
+              title: this.translate.instant('mod-modules.SWAL_DELETED'),
+              text: response.data.message,
+              icon: "error"
+            });
+          }
         }
       });
     });
   }
 
-  async refrescarTabla (){
+  async refrescarTabla() {
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);

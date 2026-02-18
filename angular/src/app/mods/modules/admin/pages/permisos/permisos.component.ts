@@ -17,7 +17,7 @@ import { STORAGE_KEY_PROFILE_ADMIN } from '@mod/users/const/users.const';
   selector: 'app-permisos',
   standalone: true,
   imports: [
-    TranslateModule, 
+    TranslateModule,
     TablecrudComponent,
     LoadingComponent,
     ModalBoostrapComponent,
@@ -25,14 +25,14 @@ import { STORAGE_KEY_PROFILE_ADMIN } from '@mod/users/const/users.const';
   templateUrl: './permisos.component.html',
   styleUrl: './permisos.component.scss'
 })
-export class PermisosComponent implements OnInit{
+export class PermisosComponent implements OnInit {
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private userService :AuthService,
-    private permisosService :PermisosService,
-    private modulosService :ModulosService,
+    private userService: AuthService,
+    private permisosService: PermisosService,
+    private modulosService: ModulosService,
     private translate: TranslateService,
     private module: ModulosService,
   ) { }
@@ -41,33 +41,42 @@ export class PermisosComponent implements OnInit{
   permisos: any[] = []
   moduloPadre: any = 0
 
-  async ngOnInit() {
-    this.moduloPadre = localStorage.getItem(STORAGE_KEY_SUBMODULE)
+  moduloReal = ''
 
-    if(!this.moduloPadre){
+
+  async ngOnInit() {
+    if (!this.route.snapshot.queryParams?.['id_module']) {
       this.router.navigate([MOD_MODULES_PAGE_MODULES]);
     }
+    if (this.route.snapshot.queryParams?.['id_submodule'] && !this.route.snapshot.queryParams?.['id_module']) {
+      this.router.navigate([MOD_MODULES_PAGE_MODULES]);
+    }
+
+    if (this.route.snapshot.queryParams?.['id_module'] && this.route.snapshot.queryParams?.['id_submodule']) {
+      this.moduloReal = this.route.snapshot.queryParams?.['id_submodule']
+    }
+
+    if (this.route.snapshot.queryParams?.['id_module'] && !this.route.snapshot.queryParams?.['id_submodule']) {
+      this.moduloReal = this.route.snapshot.queryParams?.['id_module']
+    }
+
+    this.endPoint = `modulos/obtener-permisos-por-modulo/${this.moduloReal}`;
 
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
-    const submodulo = await this.permisosService.permisoPage(0,'modulos',userData.data.id)
-    if (submodulo.data === "") {
-      this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
-    } 
-
-    const modulo = await this.permisosService.permisos(userData.data.id,'modulos')
+    const modulo = await this.permisosService.permisos(userData.data.id, 'modulos')
 
     for (const permiso of modulo.data) {
-      if(permiso.permiso_permiso != 'ver'){
+      if (permiso.permiso_permiso != 'ver') {
         this.permisos.push(permiso)
       }
     }
-    
+
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarTabla = false;
       timer(200).subscribe(() => {
-        this.listar(); 
+        this.listar();
         this.cargarTabla = true;
       });
     });
@@ -75,7 +84,7 @@ export class PermisosComponent implements OnInit{
 
   // inicio datos que envio al componente
   showcampoFiltro = true
-  endPoint = `modulos/obtener-permisos-por-modulo/${localStorage.getItem(STORAGE_KEY_SUBMODULE)}`
+  endPoint = ``
   columnas = [
     {
       title: this.translate.instant('mod-modules.COLUMN_PERMISSION_NAME'),
@@ -109,12 +118,12 @@ export class PermisosComponent implements OnInit{
   componentePrecargado = ""
 
   cargarTabla = true;
-  
+
   search = true
   buttonSearch = "Buscar"
-  iconFilter="fa fa-filter"
+  iconFilter = "fa fa-filter"
 
-  listar(){
+  listar() {
     this.columnas = [
       {
         title: this.translate.instant('mod-modules.COLUMN_PERMISSION_NAME'),
@@ -134,8 +143,7 @@ export class PermisosComponent implements OnInit{
     ]
   }
 
-  crearData (_id: string){
-    // localStorage.setItem('profile', 'user')
+  crearData(_id: string) {
     this.tamano = "xl"
     this.scrollable = false
     this.title = this.translate.instant('mod-modules.CREATE_PERMISSION_TITLE')
@@ -149,19 +157,17 @@ export class PermisosComponent implements OnInit{
     this.componentePrecargado = CREAR_MODULO_PERMISO_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
   }
 
-  async editarData (_id: string){
-    localStorage.setItem(STORAGE_KEY_PROFILE, STORAGE_KEY_PROFILE_ADMIN)
-
+  async editarData(_id: string) {
     const response = await this.modulosService.getHasSubmodule(+_id)
     const { nombre } = response.data?.[0] || { nombre: 'xxxxxxx' }
 
-    this.translate.get('mod-modules.EDIT_PERMISSION_TITLE', { "permission_name": nombre }).subscribe((res: string) => {this.title = res});
+    this.translate.get('mod-modules.EDIT_PERMISSION_TITLE', { "permission_name": nombre }).subscribe((res: string) => { this.title = res });
     this.tamano = "xl"
     this.scrollable = false
     this.save = false
@@ -174,7 +180,7 @@ export class PermisosComponent implements OnInit{
     this.componentePrecargado = EDITAR_MODULO_PERMISO_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       this.router.navigate([], {
         queryParams: { id: _id },
       });
@@ -183,10 +189,9 @@ export class PermisosComponent implements OnInit{
     }
   }
 
-
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
-  async eliminarData (_id: string[]){
+  async eliminarData(_id: string[]) {
     const response = await this.modulosService.getHasSubmodule(+_id)
     const { nombre } = response.data?.[0] || { nombre: 'xxxxxxx' }
     this.translate.get('mod-modules.SWAL_ARE_YOU_SURE', { "permission_name": nombre }).subscribe((translatedTitle: string) => {
@@ -221,7 +226,7 @@ export class PermisosComponent implements OnInit{
     });
   }
 
-  async refrescarTabla (){
+  async refrescarTabla() {
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);
