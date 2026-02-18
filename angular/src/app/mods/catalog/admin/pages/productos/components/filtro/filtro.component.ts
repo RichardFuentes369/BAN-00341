@@ -32,7 +32,19 @@ export class FiltroProductComponent {
 
     this.complementoFiltro = ''
     if(this.model.nombre != ''){
-      this.complementoFiltro += `&nombre=${this.model.nombre}&marca=${this.model.marca}&codigo_barra=${this.model.codigo_barra}&stock_minimo=${this.model.stock_minimo}&unidad_medida=${this.model.unidad_medida}`
+      this.complementoFiltro += `&nombre=${this.model.nombre}`
+    }
+    if(this.model.marca != ''){
+      this.complementoFiltro += `&marca=${this.model.marca}}`
+    }    
+    if(this.model.codigo_barra != ''){
+      this.complementoFiltro += `&codigo_barra=${this.model.codigo_barra}`
+    }
+    if(this.model.stock_minimo != ''){
+      this.complementoFiltro += `&stock_minimo=${this.model.stock_minimo}`
+    }    
+    if(this.model.unidad_medida != ''){
+      this.complementoFiltro += `&unidad_medida=${this.model.unidad_medida}`
     }
     $(".complementoRuta").val(this.complementoFiltro)
   }
@@ -41,6 +53,10 @@ export class FiltroProductComponent {
     $(".complementoRuta").val('')
     this.complementoFiltro = ''
     this.model.nombre = ''
+    this.model.marca = ''
+    this.model.codigo_barra = ''
+    this.model.stock_minimo = ''
+    this.model.unidad_medida = ''
 
     sessionStorage.removeItem('nombre')
     sessionStorage.removeItem('marca')
@@ -62,7 +78,7 @@ export class FiltroProductComponent {
       this.complementoFiltro += `&nombre=${this.model.nombre}`
       sessionStorage.setItem('nombre', this.model.nombre)
     }
-    if(this.model.nombre != ''){
+    if(this.model.marca != ''){
       this.complementoFiltro += `&marca=${this.model.marca}`
       sessionStorage.setItem('marca', this.model.marca)
     }

@@ -3,7 +3,7 @@ import { Component, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { ListaComponentes } from '@mod/lista-componentes'
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-globales-search',
@@ -18,8 +18,11 @@ import { Router } from '@angular/router';
 export class SearchComponent{
   @ViewChild('contenedorFilter', { read: ViewContainerRef }) contenedorDinamico!: ViewContainerRef;
 
+  paramsRespaldo: any;
+
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private resolver: ComponentFactoryResolver,
     private translate: TranslateService
   ) {}
@@ -42,6 +45,8 @@ export class SearchComponent{
   async openFilterMinimize() {
     let componente = await this.listaDeComponentes.obtenerComponentePorNombre(this.componente);
     
+    this.paramsRespaldo = { ...this.route.snapshot.queryParams };
+    
     if(componente){
       const factory = await this.resolver.resolveComponentFactory(componente.componente);
       this.clickeado = !this.clickeado
@@ -63,7 +68,11 @@ export class SearchComponent{
     $('.limpiar').click()
     this.filtroItem.emit()
     this.contador = await sessionStorage.length
-    this.router.navigate([], {});
+    if (this.paramsRespaldo) {
+      this.router.navigate([], {
+        queryParams: this.paramsRespaldo
+      });
+    }
   }
   
   async closeFilterEraser(){
@@ -72,7 +81,11 @@ export class SearchComponent{
     this.filtroItem.emit()
     this.isFilterVisible = false
     this.contador = await sessionStorage.length
-    this.router.navigate([], {});
+    if (this.paramsRespaldo) {
+      this.router.navigate([], {
+        queryParams: this.paramsRespaldo
+      });
+    }
   }
 
   async actionFilter(){

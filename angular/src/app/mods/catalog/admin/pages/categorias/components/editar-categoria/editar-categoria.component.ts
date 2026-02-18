@@ -76,7 +76,7 @@ export class EditarCategoriaComponent implements OnInit{
 
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
-    this.categoriaReal = await this.categoriasService.getDataCategory(this.route.snapshot.queryParams?.['id'])
+    this.categoriaReal = await this.categoriasService.getDataCategory(this.route.snapshot.queryParams?.['id_category'])
 
     this.categoria.push(this.categoriaReal.data)
 
