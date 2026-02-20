@@ -48,9 +48,16 @@ export class EditarProveedorComponent implements OnInit{
     });
   }
 
-  model = {
+  model: {
+    id: string;
+    nit: bigint | null;
+    razon_social: string,
+    direccion: string,
+    telefono: string,
+    correo: string,
+  } = {
     id: '',
-    nit: '',
+    nit: null,
     razon_social: '',
     direccion: '',
     telefono: '',
@@ -77,7 +84,7 @@ export class EditarProveedorComponent implements OnInit{
     const regexNIT = /^[0-9]{8,15}$/;
     const regexPhoneCO = /^(\+57)?3\d{9}$/;
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    this.validators.nit = (this.model.nit.length === 0 || !regexNIT.test(this.model.nit))
+    this.validators.nit = (this.model.nit === null || !regexNIT.test((this.model.nit as any).toString()));
     this.validators.razon_social = (this.model.razon_social.length === 0)
     this.validators.direccion = (this.model.direccion.length === 0)
     this.validators.telefono = (this.model.telefono.length === 0 || !regexPhoneCO.test(this.model.telefono))
@@ -96,7 +103,7 @@ export class EditarProveedorComponent implements OnInit{
     this.proveedor.push(this.proveedorReal.data)
 
     this.model.id = this.proveedorReal.data.id
-    this.model.nit = this.proveedorReal.data.nit
+    this.model.nit = BigInt(this.proveedorReal.data.nit)
     this.model.razon_social = this.proveedorReal.data.razon_social
     this.model.direccion = this.proveedorReal.data.direccion
     this.model.telefono = this.proveedorReal.data.telefono

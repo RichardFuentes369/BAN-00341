@@ -71,11 +71,11 @@ export class CrearProductoComponent {
   }
 
   checkValidation(): boolean {
-    this.validators.nombre = (this.model.nombre.length === 0)
-    this.validators.marca = (this.model.marca.length === 0)
-    this.validators.codigo_barra = (this.model.codigo_barra.length === 0)
+    this.validators.nombre = (this.model.nombre.trim().length === 0)
+    this.validators.marca = (this.model.marca.trim().length === 0)
+    this.validators.codigo_barra = (this.model.codigo_barra.trim().length === 0)
     this.validators.stock_minimo = (this.model.stock_minimo <= 0)
-    this.validators.unidad_medida = (this.model.unidad_medida != '')
+    this.validators.unidad_medida = (this.model.unidad_medida === '')
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
     (!this.validators.codigo_barra && !this.validators.nombre && !this.validators.marca && !this.validators.stock_minimo && !this.validators.unidad_medida) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
@@ -86,7 +86,7 @@ export class CrearProductoComponent {
   async crearProducto(){
     if(this.isFormValid){
       let endPoint = this.productosService
-      this.model.id_categoria = Number(this.route.snapshot.queryParams?.['id'])
+      this.model.id_categoria = Number(this.route.snapshot.queryParams?.['id_category'])
       const response = await endPoint.createProduct(this.model)
       if(response.data.status == 404){
         ocultarModalOscura()

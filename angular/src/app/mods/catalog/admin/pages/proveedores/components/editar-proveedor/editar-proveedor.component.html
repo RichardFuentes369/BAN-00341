@@ -7,7 +7,7 @@
             <label for="exampleInputEmail1">
               {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}
             </label>
-            <input type="text" class="form-control" [(ngModel)]="model.nit" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nit" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate}}">
+            <input type="number" class="form-control" [(ngModel)]="model.nit" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nit" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate}}">
             @if(validators.nit) {
               <span class="text-danger small">{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate }}</span>
             }

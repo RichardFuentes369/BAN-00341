@@ -39,8 +39,14 @@ export class CrearProveedorComponent {
     });
   }
 
-  model = {
-    nit: '',
+  model: {
+    nit: bigint | null;
+    razon_social: string,
+    direccion: string,
+    telefono: string,
+    correo: string,
+  } = {
+    nit: null,
     razon_social: '',
     direccion: '',
     telefono: '',
@@ -74,11 +80,11 @@ export class CrearProveedorComponent {
     const regexNIT = /^[0-9]{8,15}$/;
     const regexPhoneCO = /^(\+57)?3\d{9}$/;
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    this.validators.nit = (this.model.nit.length === 0 || !regexNIT.test(this.model.nit))
-    this.validators.razon_social = (this.model.razon_social.length === 0)
-    this.validators.direccion = (this.model.direccion.length === 0)
-    this.validators.telefono = (this.model.telefono.length === 0 || !regexPhoneCO.test(this.model.telefono))
-    this.validators.correo = (this.model.correo.length === 0 || !regexEmail.test(this.model.correo))
+    this.validators.nit = (this.model.nit === null || !regexNIT.test((this.model.nit as any).toString()));
+    this.validators.razon_social = (this.model.razon_social.trim().length === 0)
+    this.validators.direccion = (this.model.direccion.trim().length === 0)
+    this.validators.telefono = (this.model.telefono.trim().length === 0 || !regexPhoneCO.test(this.model.telefono))
+    this.validators.correo = (this.model.correo.trim().length === 0 || !regexEmail.test(this.model.correo))
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
     (!this.validators.nit && !this.validators.razon_social && !this.validators.direccion && !this.validators.telefono && !this.validators.correo) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
@@ -91,7 +97,12 @@ export class CrearProveedorComponent {
     if(this.isFormValid){
       let endPoint = this.proveedoresService
 
-      const response = await endPoint.createProvider(this.model)
+      const dataToSend = {
+        ...this.model,
+        nit: Number(this.model.nit)
+      };
+
+      const response = await endPoint.createProvider(dataToSend)
       if(response.data.status == 404){
         ocultarModalOscura()
         Swal.fire({

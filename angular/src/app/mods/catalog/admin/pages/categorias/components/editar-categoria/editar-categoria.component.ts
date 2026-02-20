@@ -65,8 +65,8 @@ export class EditarCategoriaComponent implements OnInit{
 
   checkValidation(): boolean {
 
-    this.validators.nombre = (this.model.nombre.length === 0)
-    this.validators.descripcion = (this.model.descripcion.length === 0)
+    this.validators.nombre = (this.model.nombre.trim().length === 0)
+    this.validators.descripcion = (this.model.descripcion.trim().length === 0)
 
     const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
     (!this.validators.nombre && !this.validators.descripcion) ? boton.classList.remove('disabled') : boton.classList.add('disabled')

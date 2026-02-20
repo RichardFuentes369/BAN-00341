@@ -98,9 +98,9 @@ export class CrearModuloPermisoComponent implements OnInit{
 
   checkValidation(): boolean {
     const regexPermiso = /^[a-z_]+$/;
-    this.validators.nombre = (this.model.nombre.length === 0)
-    this.validators.permiso = (this.model.permiso.length === 0 || !regexPermiso.test(this.model.permiso))
-    this.validators.descripcion = (this.model.descripcion.length === 0)
+    this.validators.nombre = (this.model.nombre.trim().length === 0)
+    this.validators.permiso = (this.model.permiso.trim().length === 0 || !regexPermiso.test(this.model.permiso))
+    this.validators.descripcion = (this.model.descripcion.trim().length === 0)
     this.validators.selectHas = (this.optionSelect == 0)
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement

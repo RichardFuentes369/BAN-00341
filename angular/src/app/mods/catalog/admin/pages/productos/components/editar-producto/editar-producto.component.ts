@@ -52,7 +52,7 @@ export class EditarProductoComponent implements OnInit{
     id: '',
     codigo_barra: '',
     nombre: '',
-    stock_minimo: '',
+    stock_minimo: 1,
     unidad_medida: '',
     marca: '',
   }
@@ -73,12 +73,11 @@ export class EditarProductoComponent implements OnInit{
   }
 
   checkValidation(): boolean {
-
-    this.validators.codigo_barra = (this.model.codigo_barra.length === 0)
-    this.validators.nombre = (this.model.nombre.length === 0)
-    this.validators.stock_minimo = (this.model.stock_minimo.length === 0)
+    this.validators.nombre = (this.model.nombre.trim().length === 0)
+    this.validators.marca = (this.model.marca.trim().length === 0)
+    this.validators.codigo_barra = (this.model.codigo_barra.trim().length === 0)
+    this.validators.stock_minimo = (this.model.stock_minimo <= 0)
     this.validators.unidad_medida = (this.model.unidad_medida === '')
-    this.validators.marca = (this.model.marca.length === 0)
 
     const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
     (!this.validators.codigo_barra && !this.validators.nombre && !this.validators.stock_minimo && !this.validators.unidad_medida && !this.validators.marca) ? boton.classList.remove('disabled') : boton.classList.add('disabled')

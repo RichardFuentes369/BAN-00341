@@ -98,7 +98,7 @@
     "PLACEHOLDER_BRAND_PRODUCT": "Marke eingeben",
     "PLACEHOLDER_COD_BAR_PRODUCT": "Barcode eingeben",
     "PLACEHOLDER_STOCK_PRODUCT": "Anzahl eingeben",
-    "PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT": "Maßeinheit eingeben",
+    "PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT": "Wählen Sie eine Maßeinheit aus",
 
     "SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION": "Auswählen", 
     "SELECT_UNIT_OF_MEASUREMENT_UNIT_OPTION": "Einheit", 
