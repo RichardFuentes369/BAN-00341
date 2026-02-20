@@ -105,7 +105,6 @@ export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  // Método auxiliar para el paginador HTML
   cambiarPagina(nuevaPagina: number) {
     this.paginaActual = nuevaPagina
     if (nuevaPagina > 0 && nuevaPagina <= this.totalPaginas) {
@@ -116,18 +115,16 @@ export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
   toggleSelection(id: any) {
     const index = this.idsSeleccionados.indexOf(id);
     if (index > -1) {
-      // Si ya existe, lo quitamos (deseleccionar)
       this.idsSeleccionados.splice(index, 1);
     } else {
-      // Si no existe, lo agregamos
       this.idsSeleccionados.push(id);
     }
-    // Forzar detección de cambios si es necesario
     this.cdr.detectChanges();
   }
 
   reload() {
     this.limpiarSeleccion()
+    this.paginaActual = 1
     this.listar()
   }
 
