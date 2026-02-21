@@ -12,6 +12,12 @@ export type I18nTranslations = {
         "MSN_INVALID": string;
         "PASSWORD_INVALID": string;
     };
+    "categoria": {
+        "ERROR": string;
+        "MSJ_CATEGORY_TITTLE": string;
+        "MSN_CATEGORY_REMOVIDO_OK": string;
+        "MSJ_ERROR_PERMISO_TIENE_PRODUCTOS_HIJOS": string;
+    };
     "modulo": {
         "ERROR": string;
         "MSJ_PERMISO_TITTLE": string;

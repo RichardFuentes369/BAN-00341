@@ -441,8 +441,6 @@ export class ModulosService {
       );
       }
     }
-    
-  
 
     return {
       'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),

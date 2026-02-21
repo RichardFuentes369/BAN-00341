@@ -1,4 +1,4 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { HttpException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { In, Like, Repository } from 'typeorm';
 import { Categoria } from './entities/category.entity';
 import { FilterCategoryrDto } from '@module/catalogo/category/dto/filter-category.dto';
@@ -19,15 +19,14 @@ export class CategoryService {
     return metadata.columns.map((column) => column.propertyName);
   }
 
-  async findAll(
-    filterDto: FilterCategoryrDto, 
-    lang: string
-  ) {
+  async findAll(filterDto: FilterCategoryrDto, lang: string) {
     const { limit, page, field = 'id', order = 'ASC' } = filterDto;
 
-    if (!page || !limit) throw new NotFoundException(
-      this.i18n.t('category.MSJ_ERROR_PARAMETRO_LISTA_NO_ENVIADO', { lang })
-    );
+    if (!page || !limit) {
+      throw new NotFoundException(
+        this.i18n.t('category.MSJ_ERROR_PARAMETRO_LISTA_NO_ENVIADO', { lang })
+      );
+    }
 
     const propiedades = this.listarPropiedadesTabla(this.categoryRepository);
     if (!propiedades.includes(field)) {
@@ -37,43 +36,36 @@ export class CategoryService {
     }
 
     const skipReal = (page == 1) ? 0 : (page - 1) * limit;
+
     const where: any = {};
+    if (filterDto.nombre) where.nombre = Like(`%${filterDto.nombre}%`);
+    if (filterDto.descripcion) where.descripcion = Like(`%${filterDto.descripcion}%`);
 
-    if (filterDto.nombre) {
-      where.nombre = Like(`%${filterDto.nombre}%`);
-    }
+    const [categorias, totalRecords] = await this.categoryRepository.findAndCount({
+      where,
+      relations: {
+        productos: true, 
+      },
+      order: {
+        [field]: order.toUpperCase() as 'ASC' | 'DESC',
+      },
+      skip: skipReal,
+      take: limit,
+    });
 
-    if (filterDto.descripcion) {
-      where.descripcion = Like(`%${filterDto.descripcion}%`);
-    }
-
-    const peticion = async (offset: number) => {
-      const query = this.categoryRepository.createQueryBuilder('categoria')
-      .loadRelationCountAndMap(
-        'categoria.totalProductos', 
-        'categoria.produtos'
-      )
-      .skip(offset)
-      .take(limit);
-
-      const Order = order.toUpperCase() === 'DESC' ? 'DESC' : 'ASC';
-      query.orderBy(`categoria.${field}`, Order);
-
-      if (filterDto.nombre) {
-        query.andWhere('categoria.nombre LIKE :nombre', { nombre: `%${filterDto.nombre}%` });
-      }
-
-      if (filterDto.descripcion) {
-        query.andWhere('categoria.descripcion LIKE :descripcion', { descripcion: `%${filterDto.descripcion}%` });
-      }
-
-      return await query.getMany();
-    };
-
-    const totalRecords = await this.categoryRepository.count({ where });
+    const result = categorias.map(categoria => {
+      const totalProductos = categoria.productos ? categoria.productos.length : 0;
+      
+      const { productos, ...resto } = categoria; 
+      
+      return {
+        ...resto,
+        totalProductos
+      };
+    });
 
     return [{
-      'result': await peticion(skipReal),
+      'result': result,
       'pagination': {
         'page': page,
         'perPage': limit,
@@ -139,6 +131,33 @@ export class CategoryService {
   }
 
   async remove(lang: string, ids: number[], userId: number) {
-    return this.categoryRepository.delete({ id: In(ids) });
+
+    const categorias = await this.categoryRepository.find({
+      where: { id: In(ids) },
+      relations: { productos: true },
+    });
+    
+    const resultado = categorias.map(cat => ({
+      ...cat,
+      total_productos: cat.productos.length
+    }));
+
+    const tieneHijos = categorias.some(cat => cat.productos.length > 0);
+    
+    if (tieneHijos) {
+      return {
+        title: this.i18n.t('categoria.MSJ_PERMISO_TITTLE', { lang }),
+        message: this.i18n.t('categoria.MSJ_ERROR_PERMISO_TIENE_PRODUCTOS_HIJOS', { lang }),
+        status: 400, 
+      };
+    }
+
+    this.categoryRepository.delete({ id: In(ids) })
+
+    return {
+        'title': this.i18n.t('categoria.MSJ_CATEGORY_TITTLE', { lang }),
+        'message': this.i18n.t('categoria.MSN_PERMISO_REMOVIDO_OK', { lang }),
+        'status': 200,
+    };
   }
 }
