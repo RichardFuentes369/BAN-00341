@@ -210,13 +210,22 @@ export class CategoriasComponent implements OnInit, OnDestroy{
         cancelButtonText: this.translate.instant('mod-catalog.SWAL_BUTTON_CANCEL')
       }).then(async (result) => {
         if (result.isConfirmed) {
-          if (result.isConfirmed) {
-            await this.categoriasService.deleteCategory(_id)
-            await this.someInput.reload()
+          let response = await this.categoriasService.deleteCategory(_id)
+          await this.someInput.reload()
+          console.log(response)
+
+          if (response.data.status == 200) {
             Swal.fire({
               title: this.translate.instant('mod-catalog.CATEGORY.SWAL_DELETED'),
               text: this.translate.instant('mod-catalog.SWAL_DELETED_RECORD'),
               icon: "success"
+            });
+          }
+          if (response.data.status == 400 || response.data.status == 404) {
+            Swal.fire({
+              title: this.translate.instant('mod-catalog.CATEGORY.SWAL_DELETED'),
+              text: response.data.message,
+              icon: "error"
             });
           }
         }
