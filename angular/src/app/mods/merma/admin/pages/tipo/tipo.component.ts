@@ -10,8 +10,9 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { TipoService } from './service/tipo.service';
 import { Subscription, timer } from 'rxjs';
-import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
-import { FILTRO_TIPO_COMPONENT } from '@mod/merma/const/loss.conts';
+import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
+import { CREAR_TIPO_COMPONENT, EDITAR_TIPO_COMPONENT, FILTRO_TIPO_COMPONENT, VER_TIPO_COMPONENT } from '@mod/merma/const/loss.conts';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-merma-tipo',
@@ -151,109 +152,109 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
     this.titleTotalSuppliers = this.translate.instant('mod-merma.TYPE.CARD_TOTAL_TYPE_TITLE')
   }
   
-  // crearData (_id: string){
-  //   this.tamano = "xl"
-  //   this.scrollable = false
-  //   this.title = this.translate.instant('mod-merma.SUPPLIER.CREATE_TITLE')
-  //   this.save = true
-  //   this.buttonSave = this.translate.instant('mod-merma.BUTTON_SAVE_')
-  //   this.edit = false
-  //   this.buttonEdit = this.translate.instant('mod-merma.BUTTON_UPDATE_')
-  //   this.cancel = true
-  //   this.buttonCancel = this.translate.instant('mod-merma.BUTTON_CANCEL')
-  //   this.cierreModal = "true"
-  //   this.componentePrecargado = CREAR_PROVEEDOR_COMPONENT
+  crearData (_id: string){
+    this.tamano = "xl"
+    this.scrollable = false
+    this.title = this.translate.instant('mod-merma.TYPE.CREATE_TITLE')
+    this.save = true
+    this.buttonSave = this.translate.instant('mod-merma.BUTTON_SAVE_')
+    this.edit = false
+    this.buttonEdit = this.translate.instant('mod-merma.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-merma.BUTTON_CANCEL')
+    this.cierreModal = "true"
+    this.componentePrecargado = CREAR_TIPO_COMPONENT
 
-  //   const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-  //   if(idButton){
-  //     idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
-  //     idButton.click()
-  //   }
-  // }
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if(idButton){
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
+  }
 
-  // async verData (_id: string){
-  //   const response = await this.proveedoresService.getDataProvider(_id)
-  //   const { razon_social } = response.data || { razon_social: 'xxxxxxx' }
+  async verData (_id: string){
+    const response = await this.tipoService.getDataTipo(_id)
+    const { nombre } = response.data || { nombre: 'xxxxxxx' }
     
-  //   this.translate.get('mod-merma.SUPPLIER.SEE_TITLE', { "supplier_name": razon_social }).subscribe((res: string) => {this.title = res});
-  //   this.tamano = "xl"
-  //   this.scrollable = false
-  //   this.save = false
-  //   this.buttonSave = this.translate.instant('mod-merma.BUTTON_SAVE_')
-  //   this.edit = false
-  //   this.buttonEdit = this.translate.instant('mod-merma.BUTTON_UPDATE_')
-  //   this.cancel = true
-  //   this.buttonCancel = this.translate.instant('mod-merma.BUTTON_CANCEL')
-  //   this.cierreModal = "true"
-  //   this.componentePrecargado = VER_PROVEEDOR_COMPONENT
+    this.translate.get('mod-merma.TYPE.SEE_TITLE', { "type_name": nombre }).subscribe((res: string) => {this.title = res});
+    this.tamano = "xl"
+    this.scrollable = false
+    this.save = false
+    this.buttonSave = this.translate.instant('mod-merma.BUTTON_SAVE_')
+    this.edit = false
+    this.buttonEdit = this.translate.instant('mod-merma.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-merma.BUTTON_CANCEL')
+    this.cierreModal = "true"
+    this.componentePrecargado = VER_TIPO_COMPONENT
 
-  //   const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-  //   if(idButton){
-  //     this.router.navigate([], {
-  //       queryParams: { id_supplier: _id },
-  //     });
-  //     idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
-  //     idButton.click()
-  //   }
-  // }
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if(idButton){
+      this.router.navigate([], {
+        queryParams: { id_tipo_merma: _id },
+      });
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
+  }
 
-  // async editarData (_id: string){
-  //   const response = await this.proveedoresService.getDataProvider(_id)
-  //   const { razon_social } = response.data || { razon_social: 'xxxxxxx' }
+  async editarData (_id: string){
+    const response = await this.tipoService.getDataTipo(_id)
+    const { nombre } = response.data || { nombre: 'xxxxxxx' }
     
-  //   this.translate.get('mod-merma.SUPPLIER.EDIT_TITLE', { "supplier_name": razon_social }).subscribe((res: string) => {this.title = res});
-  //   this.tamano = "xl"
-  //   this.scrollable = false
-  //   this.save = false
-  //   this.buttonSave = this.translate.instant('mod-merma.BUTTON_SAVE_')
-  //   this.edit = true
-  //   this.buttonEdit = this.translate.instant('mod-merma.BUTTON_UPDATE_')
-  //   this.cancel = true
-  //   this.buttonCancel = this.translate.instant('mod-merma.BUTTON_CANCEL')
-  //   this.componentePrecargado = EDITAR_PROVEEDOR_COMPONENT  
+    this.translate.get('mod-merma.TYPE.EDIT_TITLE', { "type_name": nombre }).subscribe((res: string) => {this.title = res});
+    this.tamano = "xl"
+    this.scrollable = false
+    this.save = false
+    this.buttonSave = this.translate.instant('mod-merma.BUTTON_SAVE_')
+    this.edit = true
+    this.buttonEdit = this.translate.instant('mod-merma.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-merma.BUTTON_CANCEL')
+    this.componentePrecargado = EDITAR_TIPO_COMPONENT  
 
-  //   const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-  //   if(idButton){
-  //     this.router.navigate([], {
-  //       queryParams: { id_supplier: _id },
-  //     });
-  //     idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
-  //     idButton.click()
-  //   }
-  // }
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if(idButton){
+      this.router.navigate([], {
+        queryParams: { id_tipo_merma: _id },
+      });
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
+  }
 
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
-  // async eliminarData (_id: string[]){
-  //   const response = await this.proveedoresService.getDataProvider(_id[0])
-  //   const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
-  //   const name_user = (_id.length === 1) ? firstName+" "+lastName : "("+_id.length+")"
-  //   const count_users = (_id.length === 1) ? 'el' : 'los'
-  //   const plural = (_id.length === 1) ? '' : 's'
+  async eliminarData (_id: string[]){
+    const response = await this.tipoService.getDataTipo(_id[0])
+    const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
+    const name_user = (_id.length === 1) ? firstName+" "+lastName : "("+_id.length+")"
+    const count_users = (_id.length === 1) ? 'el' : 'los'
+    const plural = (_id.length === 1) ? '' : 's'
     
-  //   this.translate.get('mod-merma.SUPPLIER.SWAL_ARE_YOU_SURE_DELETE',{ "art_the": count_users, "plural": plural, "user_name": name_user}).subscribe((translatedTitle: string) => {
-  //     Swal.fire({
-  //       title: translatedTitle,
-  //       text: this.translate.instant('mod-merma.SWAL_WARNING_REVERSE_CHANGE'),
-  //       icon: 'warning',
-  //       showCancelButton: true,
-  //       confirmButtonText: this.translate.instant('mod-merma.SWAL_BUTTON_DELETE'),
-  //       cancelButtonText: this.translate.instant('mod-merma.SWAL_BUTTON_CANCEL')
-  //     }).then(async (result) => {
-  //       if (result.isConfirmed) {
-  //         if (result.isConfirmed) {
-  //           await this.proveedoresService.deleteProvider(_id)
-  //           await this.someInput.reload()
-  //           Swal.fire({
-  //             title: this.translate.instant('mod-merma.SUPPLIER.SWAL_DELETED'),
-  //             text: this.translate.instant('mod-merma.SWAL_DELETED_RECORD'),
-  //             icon: "success"
-  //           });
-  //         }
-  //       }
-  //     });
-  //   });
-  // }
+    this.translate.get('mod-merma.TYPE.SWAL_ARE_YOU_SURE_DELETE',{ "art_the": count_users, "plural": plural, "user_name": name_user}).subscribe((translatedTitle: string) => {
+      Swal.fire({
+        title: translatedTitle,
+        text: this.translate.instant('mod-merma.SWAL_WARNING_REVERSE_CHANGE'),
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: this.translate.instant('mod-merma.SWAL_BUTTON_DELETE'),
+        cancelButtonText: this.translate.instant('mod-merma.SWAL_BUTTON_CANCEL')
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          if (result.isConfirmed) {
+            await this.tipoService.deleteTipo(_id)
+            await this.someInput.reload()
+            Swal.fire({
+              title: this.translate.instant('mod-merma.TYPE.SWAL_DELETED'),
+              text: this.translate.instant('mod-merma.SWAL_DELETED_RECORD'),
+              icon: "success"
+            });
+          }
+        }
+      });
+    });
+  }
 
   async filtroData(){
     let filtros = await $('.complementoRuta').val();

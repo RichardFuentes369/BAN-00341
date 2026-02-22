@@ -1,11 +1,22 @@
-:host {
-  display: flex;
-  flex-direction: column;
-  height: 100%; /* Obliga al componente a llenar la columna de Bootstrap */
-}
+::ng-deep {
+  :root {
+    --card-border-style: 5px solid #007bff;
+  }
 
-.card {
-  flex: 1; /* Hace que la tarjeta crezca para llenar el componente */
-  display: flex;
-  flex-direction: column;
+  [data-theme='dark'] {
+    --card-border-style: 5px solid #4f5050;
+  }
+  
+  .cardcomponent {
+    border-top: 0 !important;
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+    border-left: var(--card-border-style) !important;
+  }
+
+  .card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
 }

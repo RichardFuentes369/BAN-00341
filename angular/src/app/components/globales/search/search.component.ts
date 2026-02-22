@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver, OnInit, Output, EventEmitter, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver, OnInit, Output, EventEmitter, ElementRef, AfterViewInit, HostListener } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { ListaComponentes } from '@mod/lista-componentes'
@@ -39,6 +39,14 @@ export class SearchComponent{
 
   @Output()
   filtroItem = new EventEmitter<string>()
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'f') {
+      event.preventDefault();
+      this.openFilterMinimize();
+    }
+  }
 
   async openFilterMinimize() {
     let componente = await this.listaDeComponentes.obtenerComponentePorNombre(this.componente);

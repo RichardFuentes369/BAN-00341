@@ -20,7 +20,28 @@
   "COLUMN_TOTAL": "Gesamt",
 
   "TYPE": {
-    "PLACEHOLDER_NAME": "Einen Namen eingeben",
+    "CREATE_TITLE": "Typ erstellen", 
+    "EDIT_TITLE": "Typ {{type_name}} bearbeiten", 
+    "SEE_TITLE": "Typ {{type_name}} anzeigen",
+
+    "LABEL_NAME_TYPE": "Name",
+    "PLACEHOLDER_NAME_TYPE": "Einen Namen eingeben",
+
+    "SWAL_CREATED": "¡TYP!",
+    "SWAL_UPDATED": "¡TYP!",
+    "SWAL_DELETED": "¡TYP!",
+
+    "SWAL_ARE_YOU_SURE_UPDATE": "Möchten Sie den Benutzernamen wirklich aktualisieren?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Möchten Sie den Benutzernamen wirklich löschen?",
+
     "CARD_TOTAL_TYPE_TITLE": "Types insgesamt"
-  }
+  },
+
+  "SWAL_WARNING_REVERSE_CHANGE": "Diese Änderung kann nicht rückgängig gemacht werden!",
+  "SWAL_CREATED_RECORD": "Datensatz erfolgreich erstellt.",
+  "SWAL_DELETED_RECORD": "Erfolgreich gelöscht.",
+  "SWAL_UPDATED_RECORD": "Erfolgreich aktualisiert.",
+
+  "SWAL_BUTTON_DELETE": "Löschen",
+  "SWAL_BUTTON_CANCEL": "Abbrechen"
 }

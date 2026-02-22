@@ -1,0 +1,19 @@
+<div class="">
+  @for (item of tipo; track item; let  i = $index) {
+    <div class="col-xl-12 col-sm-12 row">
+      <div class="col-xl col-sm-12">
+        <div class="col-sm-12 row p-0">
+          <div class="col-sm-12 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-merma.TYPE.LABEL_NAME_TYPE' | translate}}
+            </label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.nombre}}" readonly>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
+
+

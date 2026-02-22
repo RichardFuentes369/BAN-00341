@@ -8,23 +8,23 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { ocultarModalOscura } from '@function/System'
-import { CategoriasService } from '../../service/categorias.service';
+import { TipoService } from '@mod/merma/admin/pages/tipo/service/tipo.service';
 
 @Component({
-  selector: 'app-crear-categoria',
+  selector: 'app-crear-tipo',
   standalone: true,
   imports: [TranslateModule, FormsModule],
-  templateUrl: './crear-categoria.component.html',
-  styleUrl: './crear-categoria.component.scss',
+  templateUrl: './crear-tipo.component.html',
+  styleUrl: './crear-tipo.component.scss',
 })
-export class CrearCategoriaComponent {
+export class CrearTipoMermaComponent {
 
   private validationSubject = new Subject<void>();
   isFormValid = false;
 
   constructor(
     private router: Router,
-    private categoriasService: CategoriasService,
+    private tipoService: TipoService,
     private translate: TranslateService
   ){
     this.validationSubject.pipe(
@@ -37,12 +37,10 @@ export class CrearCategoriaComponent {
 
   model = {
     nombre: '',
-    descripcion: '',
   }
 
   validators = {
     nombre: false,
-    descripcion: false,
   }
 
   goTo (url: string, _id: number){
@@ -62,19 +60,18 @@ export class CrearCategoriaComponent {
   checkValidation(): boolean {
 
     this.validators.nombre = (this.model.nombre.trim().length === 0)
-    this.validators.descripcion = (this.model.descripcion.trim().length === 0)
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
-    (!this.validators.nombre && !this.validators.descripcion) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+    (!this.validators.nombre) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
     
-    return !this.validators.nombre && !this.validators.descripcion
+    return !this.validators.nombre
   }
 
-  async crearCategoria(){
+  async crearTipo(){
     if(this.isFormValid){
-      let endPoint = this.categoriasService
+      let endPoint = this.tipoService
 
-      const response = await endPoint.createCategory(this.model)
+      const response = await endPoint.createTipo(this.model)
       if(response.data.status == 404){
         ocultarModalOscura()
         Swal.fire({
@@ -87,8 +84,8 @@ export class CrearCategoriaComponent {
       if(response.data.status == 200){
         ocultarModalOscura()
         Swal.fire({
-          title: this.translate.instant('mod-catalog.CATEGORY.SWAL_CREATED'),
-          text: this.translate.instant('mod-catalog.SWAL_CREATED_RECORD'),
+          title: this.translate.instant('mod-merma.TYPE.SWAL_CREATED'),
+          text: this.translate.instant('mod-merma.SWAL_CREATED_RECORD'),
           icon: "success"
         });
       }

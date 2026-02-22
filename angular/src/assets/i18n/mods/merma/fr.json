@@ -20,7 +20,28 @@
   "COLUMN_TOTAL": "Total",
 
   "TYPE": {
-    "PLACEHOLDER_NAME": "Saisir un nom",
+    "CREATE_TITLE": "Créer un type", 
+    "EDIT_TITLE": "Modifier le type {{type_name}}", 
+    "SEE_TITLE": "Voir le type {{type_name}}",
+
+    "LABEL_NAME_TYPE": "Nom",
+    "PLACEHOLDER_NAME_TYPE": "Saisir un nom",
+
+    "SWAL_CREATED": "¡TYPE!",
+    "SWAL_UPDATED": "¡TYPE!",
+    "SWAL_DELETED": "¡TYPE!",
+
+    "SWAL_ARE_YOU_SURE_UPDATE": "Êtes-vous sûr de vouloir mettre à jour le fournisseur {{user_name}} ?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Êtes-vous sûr de vouloir supprimer le(s) fournisseur(s) {{user_name}} ?",
+
     "CARD_TOTAL_TYPE_TITLE": "Total types"
-  }
+  },
+
+  "SWAL_WARNING_REVERSE_CHANGE": "Cette action est irréversible!",
+  "SWAL_CREATED_RECORD": "Enregistrement créé avec succès.",
+  "SWAL_DELETED_RECORD": "Supprimé avec succès.",
+  "SWAL_UPDATED_RECORD": "Mis à jour avec succès.",
+
+  "SWAL_BUTTON_DELETE": "Supprimer",
+  "SWAL_BUTTON_CANCEL": "Annuler"
 }

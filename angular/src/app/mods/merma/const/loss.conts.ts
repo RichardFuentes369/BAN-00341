@@ -15,7 +15,7 @@ export const BREADCRUMB_PATH_ADMIN_REGISTRO = 'Registro de Perdida';
 export const MOD_MERMA_PAGE_TIPOS =  '/admin/mod/merma/tipos/';
 export const MOD_MERMA_PAGE_REGISTRO =  '/admin/mod/merma/registro';
 
-export const CREAR_TIPO_COMPONENT = 'CrearProductoComponent';
-export const VER_TIPO_COMPONENT = 'VerProductoComponent';
-export const EDITAR_TIPO_COMPONENT = 'EditarProductoComponent';
+export const CREAR_TIPO_COMPONENT = 'CrearTipoMermaComponent';
+export const VER_TIPO_COMPONENT = 'VerTipoMermaComponent';
+export const EDITAR_TIPO_COMPONENT = 'EditarTipoMermaComponent';
 export const FILTRO_TIPO_COMPONENT = 'FiltroTipoMermaComponent';

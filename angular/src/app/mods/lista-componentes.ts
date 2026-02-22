@@ -18,6 +18,9 @@ import { CrearProductoComponent } from './catalog/admin/pages/productos/componen
 import { VerProductoComponent } from './catalog/admin/pages/productos/components/ver-producto/ver-producto.component';
 import { EditarProductoComponent } from './catalog/admin/pages/productos/components/editar-producto/editar-producto.component';
 import { FiltroTipoMermaComponent } from './merma/admin/pages/tipo/components/filtro/filtro.component';
+import { VerTipoMermaComponent } from './merma/admin/pages/tipo/components/ver-tipo/ver-tipo.component';
+import { EditarTipoMermaComponent } from './merma/admin/pages/tipo/components/editar-tipo/editar-tipo.component';
+import { CrearTipoMermaComponent } from './merma/admin/pages/tipo/components/crear-tipo/crear-tipo.component';
 
 export class ListaComponentes {
 
@@ -112,6 +115,18 @@ export class ListaComponentes {
     {
       name: 'FiltroTipoMermaComponent',
       componente: FiltroTipoMermaComponent
+    },  
+    {
+      name: 'VerTipoMermaComponent',
+      componente: VerTipoMermaComponent
+    },  
+    {
+      name: 'EditarTipoMermaComponent',
+      componente: EditarTipoMermaComponent
+    },  
+    {
+      name: 'CrearTipoMermaComponent',
+      componente: CrearTipoMermaComponent
     },  
   ];
 

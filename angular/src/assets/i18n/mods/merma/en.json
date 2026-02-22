@@ -20,7 +20,28 @@
   "COLUMN_TOTAL": "Total",
 
   "TYPE": {
-    "PLACEHOLDER_NAME": "Enter a name",
+    "CREATE_TITLE": "Create type", 
+    "EDIT_TITLE": "Edit type {{type_name}}", 
+    "SEE_TITLE": "See type {{type_name}}", 
+
+    "LABEL_NAME_TYPE": "Name",
+    "PLACEHOLDER_NAME_TYPE": "Enter a name",
+
+    "SWAL_CREATED": "TYPE!",
+    "SWAL_UPDATED": "TYPE!",
+    "SWAL_DELETED": "TYPE!",
+    
+    "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the type{{plural}} {{user_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete the type{{plural}} {{user_name}}?",
+
     "CARD_TOTAL_TYPE_TITLE": "Total types"
-  }
+  },
+  
+  "SWAL_WARNING_REVERSE_CHANGE": "You cannot reverse this!",
+  "SWAL_CREATED_RECORD": "Record successfully created.",
+  "SWAL_DELETED_RECORD": "Successfully deleted.",
+  "SWAL_UPDATED_RECORD": "Record successfully updated.",
+
+  "SWAL_BUTTON_DELETE": "Delete",
+  "SWAL_BUTTON_CANCEL": "Cancel"
 }
