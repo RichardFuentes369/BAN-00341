@@ -1,0 +1,26 @@
+{
+  "UNKNOW_MODULE_TITLE": "Unbekanntes",
+  
+  "PAGE_TYPE_TITLE": "Type",
+  "PAGE_RECORD_TITLE": "Registres",
+
+  "MODULE_TITLE": "Schwund",
+
+  "BUTTON_SAVE_": "Speichern",
+  "BUTTON_UPDATE_": "Aktualisieren",
+  "BUTTON_CANCEL": "Abbrechen",
+  "BUTTON_BACK": "Zurück",
+  "BUTTON_SEARCH": "Suchen",
+
+  "BUTTON_TYPE": "Type",
+  "BUTTON_RECORD": "Registres",
+
+  "COLUMN_ID": "ID",
+  "COLUMN_NAME": "Name",
+  "COLUMN_TOTAL": "Gesamt",
+
+  "TYPE": {
+    "PLACEHOLDER_NAME": "Einen Namen eingeben",
+    "CARD_TOTAL_TYPE_TITLE": "Types insgesamt"
+  }
+}

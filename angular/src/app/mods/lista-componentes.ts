@@ -17,6 +17,7 @@ import { FiltroProductComponent } from './catalog/admin/pages/productos/componen
 import { CrearProductoComponent } from './catalog/admin/pages/productos/components/crear-producto/crear-producto.component';
 import { VerProductoComponent } from './catalog/admin/pages/productos/components/ver-producto/ver-producto.component';
 import { EditarProductoComponent } from './catalog/admin/pages/productos/components/editar-producto/editar-producto.component';
+import { FiltroTipoMermaComponent } from './merma/admin/pages/tipo/components/filtro/filtro.component';
 
 export class ListaComponentes {
 
@@ -106,6 +107,12 @@ export class ListaComponentes {
       name: 'EditarProductoComponent',
       componente: EditarProductoComponent  
     },
+    // modulo merma
+    // tipo
+    {
+      name: 'FiltroTipoMermaComponent',
+      componente: FiltroTipoMermaComponent
+    },  
   ];
 
   obtenerComponentePorNombre(nombre: string) {

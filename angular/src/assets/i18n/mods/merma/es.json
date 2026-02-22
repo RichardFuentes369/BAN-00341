@@ -1,0 +1,26 @@
+{
+  "UNKNOW_MODULE_TITLE": "Módulo Desconocido",
+
+  "PAGE_TYPE_TITLE": "Tipo",
+  "PAGE_RECORD_TITLE": "Registros",
+
+  "MODULE_TITLE": "Merma",
+
+  "BUTTON_SAVE_": "Guardar",
+  "BUTTON_UPDATE_": "Actualizar",
+  "BUTTON_CANCEL": "Cancelar",
+  "BUTTON_BACK": "Volver",
+  "BUTTON_SEARCH": "Buscar",
+
+  "BUTTON_TYPE": "Tipo",
+  "BUTTON_RECORD": "Registros",
+
+  "COLUMN_ID": "Id",
+  "COLUMN_NAME": "Nombre",
+  "COLUMN_TOTAL": "Total",
+
+  "TYPE": {
+    "PLACEHOLDER_NAME": "Ingrese un nombre",
+    "CARD_TOTAL_TYPE_TITLE": "Total tipos"
+  }
+}

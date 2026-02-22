@@ -1,0 +1,26 @@
+{
+  "UNKNOW_MODULE_TITLE": "Inconnu",
+
+  "PAGE_TYPE_TITLE": "Type",
+  "PAGE_RECORD_TITLE": "Registres",
+
+  "MODULE_TITLE": "Démarque",
+
+  "BUTTON_SAVE_": "Enregistrer",
+  "BUTTON_UPDATE_": "Mettre à jour",
+  "BUTTON_CANCEL": "Annuler",
+  "BUTTON_BACK": "Retour",
+  "BUTTON_SEARCH": "Rechercher",
+
+  "BUTTON_TYPE": "Type",
+  "BUTTON_RECORD": "Registres",
+  
+  "COLUMN_ID": "ID",
+  "COLUMN_NAME": "Nom",
+  "COLUMN_TOTAL": "Total",
+
+  "TYPE": {
+    "PLACEHOLDER_NAME": "Saisir un nom",
+    "CARD_TOTAL_TYPE_TITLE": "Total types"
+  }
+}

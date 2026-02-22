@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.11.13-MariaDB-0ubuntu0.24.04.1 - Ubuntu 24.04
+-- Versión del servidor:         10.11.14-MariaDB-0ubuntu0.24.04.1 - Ubuntu 24.04
 -- SO del servidor:              debian-linux-gnu
 -- HeidiSQL Versión:             12.8.0.6908
 -- --------------------------------------------------------
@@ -25,33 +25,26 @@ INSERT INTO `mod_catalogo_categorias` (`id`, `nombre`, `descripcion`) VALUES
 	(7, 'Snacks', 'Papas fritas, dulces y pasabocas'),
 	(8, 'Frutas y Verduras', 'Productos frescos del campo'),
 	(9, 'Enlatados', 'Conservas, atún y verduras enlatadas'),
-	(10, 'Cuidado Personal', 'Jabones, champú y cremas dentales');
+	(10, ' Cuidado Personal', 'Jabones, champú y cremas dentales');
 
--- Volcando datos para la tabla core_project_BAN_00341.mod_catalogo_productos: ~10 rows (aproximadamente)
-INSERT INTO `mod_catalogo_productos` (`id`, `codigo_barra`, `nombre`, `stock_minimo`, `unidad_medida`, `marca`, `id_categoria`) VALUES
-	(1, '770123456001', 'Leche Entera 1L', 20, 'kg', 'pajarito', 1),
-	(2, '770123456002', 'Arroz Blanco 1kg', 50, 'kg', 'pajarito', 1),
-	(3, '770123456003', 'Jamón de Cerdo 250g', 10, 'kg', 'pajarito', 1),
-	(4, '770123456004', 'Agua Mineral 500ml', 30, 'kg', 'pajarito', 1),
-	(5, '770123456005', 'Detergente en Polvo 1kg', 15, 'kg', 'pajarito', 1),
-	(6, '770123456006', 'Pan de Molde Familiar', 12, 'kg', 'pajarito', 1),
-	(7, '770123456007', 'Aceite de Girasol 1L', 10, 'kg', 'pajarito', 1),
-	(8, '770123456008', 'Atún en Agua 170g', 20, 'kg', 'pajarito', 1),
-	(9, '770123456009', 'Papas Fritas Naturales', 25, 'kg', 'pajarito', 1),
-	(10, '770123456010', 'Manzanas Rojas x6', 8, 'kg', 'pajarito', 1);
+-- Volcando datos para la tabla core_project_BAN_00341.mod_catalogo_productos: ~12 rows (aproximadamente)
+INSERT INTO `mod_catalogo_productos` (`id`, `codigo_barra`, `nombre`, `stock_minimo`, `unidad_medida`, `id_categoria`, `marca`) VALUES
+	(1, '770123456001', 'Leche Entera 1L', 20, 'kg', 1, 'Alpina'),
+	(2, '25252525252', 'Arroz Blanco 1kg', 50, 'kg', 1, 'Diana'),
+	(3, '770123456003', 'Jamón de Cerdo 250g', 10, 'kg', 1, 'Pietran'),
+	(4, '770123456004', 'Agua Mineral 500ml', 30, 'kg', 1, 'Brisa'),
+	(5, '770123456005', 'Detergente en Polvo 1kg', 15, 'kg', 1, 'Ajax'),
+	(6, '770123456006', 'Pan de Molde Familiar', 12, 'kg', 1, 'Exito'),
+	(7, '770123456007', 'Aceite de Girasol 1L', 10, 'kg', 1, 'Girasol'),
+	(8, '770123456008', 'Atún en Agua 170g', 20, 'kg', 1, 'VanCan'),
+	(9, '770123456009', 'Papas Fritas Naturales', 25, 'kg', 1, 'FritoLay'),
+	(10, '770123456010', 'Manzanas Rojas x6', 8, 'kg', 1, 'Buen dia'),
+	(21, '10002145', 'Salchichas', 15, 'paquete', 2, 'Zenu');
 
--- Volcando datos para la tabla core_project_BAN_00341.mod_catalogo_proveedores: ~10 rows (aproximadamente)
+-- Volcando datos para la tabla core_project_BAN_00341.mod_catalogo_proveedores: ~2 rows (aproximadamente)
 INSERT INTO `mod_catalogo_proveedores` (`id`, `nit`, `razon_social`, `direccion`, `correo`, `telefono`) VALUES
 	(1, 9001234561, 'Distribuidora Alimentos Express S.A.', 'Calle 45 #10-20', 'ventas@alimentos.com', '6012345678'),
-	(2, 9007890122, 'Lácteos del Campo Ltda', 'Carrera 15 #5-30', 'contacto@lacteos.com', '6019876543'),
-	(3, 8005554443, 'Cárnicos Gourmet SAS', 'Zona Industrial Sur', 'pedidos@carnicos.com', '6012223334'),
-	(4, 9106667774, 'Bebidas del Valle S.A.', 'Av. Central 88', 'logistica@bebidas.co', '6014445556'),
-	(5, 8601112225, 'Panadería Central de Colombia', 'Calle 12 #4-15', 'admin@pancentral.com', '6017778889'),
-	(6, 9013334446, 'Granos y Semillas de la Sabana', 'Puerto Seco Local 5', 'info@granos.com', '6013339990'),
-	(7, 8009998887, 'Importaciones Express S.A.S', 'Calle del Comercio 9', 'ventas@importexpress.com', '6016665554'),
-	(8, 9002221118, 'Químicos y Limpieza Total', 'Transversal 7 #2-10', 'comercial@limpieza.com', '6018990001'),
-	(9, 8304445559, 'Frutas y Verduras El Jardín', 'Plaza Mayor Mod 4', 'fresco@eljardin.com', '6011112223'),
-	(10, 9008887770, 'Empaques y Desechables del Caribe', 'Km 5 Vía Mar', 'servicio@empaques.co', '6015556667');
+	(14, 1098785729, 'Industrias JB Sas', 'Calle 6 # 12 - 72 villabel', 'jb.business@gmail.com', '3504284093');
 
 -- Volcando datos para la tabla core_project_BAN_00341.mod_lote: ~10 rows (aproximadamente)
 INSERT INTO `mod_lote` (`id`, `fecha_entrada`, `fecha_vencimiento`, `cantidad_inicial`, `stock_actual`, `costo_unitario`, `precio_venta_sugerido`, `estado`, `id_producto`, `id_proveedor`) VALUES
@@ -68,16 +61,16 @@ INSERT INTO `mod_lote` (`id`, `fecha_entrada`, `fecha_vencimiento`, `cantidad_in
 
 -- Volcando datos para la tabla core_project_BAN_00341.mod_merma_mermas: ~10 rows (aproximadamente)
 INSERT INTO `mod_merma_mermas` (`id`, `cantidad`, `fecha_reporte`, `valor_perdido`, `observaciones`, `id_tipo_merma`, `id_lote`) VALUES
-	(1, 2, '2026-02-15 04:41:26', 5000.00, 'Dos bolsas de leche rotas en descarga', 1, 1),
-	(2, 2, '2026-02-15 04:41:26', 9000.00, 'Pérdida de vacío en empaque de jamón', 2, 2),
-	(3, 1, '2026-02-15 04:41:26', 3200.00, 'Pan de molde aplastado', 3, 3),
-	(4, 50, '2026-02-15 04:41:26', 60000.00, 'Lote completo de snacks vencido', 1, 4),
-	(5, 2, '2026-02-15 04:41:26', 3600.00, 'Bolsa de arroz mojada', 2, 7),
-	(6, 1, '2026-02-15 04:41:26', 7500.00, 'Faltante en inventario cíclico', 3, 8),
-	(7, 1, '2026-02-15 04:41:26', 2500.00, 'Leche con mal olor prematuro', 4, 9),
-	(8, 1, '2026-02-15 04:41:26', 6200.00, 'Aceite con envase perforado', 1, 10),
-	(9, 1, '2026-02-15 04:41:26', 4500.00, 'Producto roído por ratones', 1, 9),
-	(10, 2, '2026-02-15 04:41:26', 1600.00, 'Botellas de agua abolladas', 1, 8);
+	(1, 2, '2026-02-15 09:41:26', 5000.00, 'Dos bolsas de leche rotas en descarga', 1, 1),
+	(2, 2, '2026-02-15 09:41:26', 9000.00, 'Pérdida de vacío en empaque de jamón', 2, 2),
+	(3, 1, '2026-02-15 09:41:26', 3200.00, 'Pan de molde aplastado', 3, 3),
+	(4, 50, '2026-02-15 09:41:26', 60000.00, 'Lote completo de snacks vencido', 1, 4),
+	(5, 2, '2026-02-15 09:41:26', 3600.00, 'Bolsa de arroz mojada', 2, 7),
+	(6, 1, '2026-02-15 09:41:26', 7500.00, 'Faltante en inventario cíclico', 3, 8),
+	(7, 1, '2026-02-15 09:41:26', 2500.00, 'Leche con mal olor prematuro', 4, 9),
+	(8, 1, '2026-02-15 09:41:26', 6200.00, 'Aceite con envase perforado', 1, 10),
+	(9, 1, '2026-02-15 09:41:26', 4500.00, 'Producto roído por ratones', 1, 9),
+	(10, 2, '2026-02-15 09:41:26', 1600.00, 'Botellas de agua abolladas', 1, 8);
 
 -- Volcando datos para la tabla core_project_BAN_00341.mod_merma_tipos: ~10 rows (aproximadamente)
 INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
@@ -92,7 +85,7 @@ INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
 	(11, 'Robo o Extravío'),
 	(4, 'Vencimiento');
 
--- Volcando datos para la tabla core_project_BAN_00341.mod_permisos_modulo: ~35 rows (aproximadamente)
+-- Volcando datos para la tabla core_project_BAN_00341.mod_permisos_modulo: ~41 rows (aproximadamente)
 INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`, `tiene_permisos`, `descripcion`, `modulo_padre_id`) VALUES
 	(1, 'Usuarios', 'usuarios', 1, 0, 'Modulo usuarios', NULL),
 	(2, 'Administradores', 'administradores', 0, 1, 'Permiso administradores, modulo usuarios', 1),
@@ -128,25 +121,87 @@ INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`
 	(34, 'Crear', 'crear', 0, 1, 'Permiso crear, submodulo proveedores, modulo catalogo', 26),
 	(35, 'Editar', 'editar', 0, 1, 'Permiso editar, submodulo proveedores, modulo catalogo', 26),
 	(36, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo proveedores, modulo catalogo', 26),
-	(37, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso eliminar_multiple, submodulo proveedores, modulo catalogo', 26);
+	(37, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso eliminar_multiple, submodulo proveedores, modulo catalogo', 26),
+	(38, 'Productos', 'productos', 1, 1, 'Permiso productos, modulo catalogo', 22),
+	(39, 'Ver', 'ver', 0, 1, 'Permiso productos, modulo catalogo', 38),
+	(40, 'Crear', 'crear', 0, 1, 'Permiso productos, modulo catalogo', 38),
+	(41, 'Editar', 'editar', 0, 1, 'Permiso productos, modulo catalogo', 38),
+	(42, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso productos, modulo catalogo', 38),
+	(43, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso productos, modulo catalogo', 38),
+	(44, 'Merma', 'merma', 1, 0, 'Modulo merma', NULL),
+	(45, 'Tipos merma', 'tipo_merma', 0, 1, 'Permiso tipo_merma, modulo merma', 44),
+	(46, 'Registro merma', 'registro_merma', 0, 1, 'Permiso registro_merma, modulo merma', 44);
 
-
--- Volcando datos para la tabla core_project_BAN_00341.mod_permisos_modulo_asignacion: ~24 rows (aproximadamente)
+-- Volcando datos para la tabla core_project_BAN_00341.mod_permisos_modulo_asignacion: ~37 rows (aproximadamente)
 INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descripcion`, `modulo_padre_id`, `user_id`) VALUES
-  (1, 'Usuarios', 'usuarios', 'Modulo usuarios', NULL, 1),
-  (2, 'Administradores', 'administradores', 'Permiso administradores, modulo usuarios', 1, 1),
-  (3, 'Permisos (asignar)\r\n', 'asignar_permisos', 'Permiso asignar_permisos usuario, submodulo administradores, modulo usuarios', 2, 1);
+	(1, 'Usuarios', 'usuarios', 'Modulo usuarios', NULL, 1),
+	(2, 'Administradores', 'administradores', 'Permiso administradores, modulo usuarios', 1, 1),
+	(3, 'Permisos (asignar)\r\n', 'asignar_permisos', 'Permiso asignar_permisos usuario, submodulo administradores, modulo usuarios', 2, 1),
+	(5, 'Categorias', 'categorias', 'Permiso categorias, modulo catalogo', 22, 1),
+	(7, 'Ver', 'ver', 'Permiso ver, submodulo categorias, modulo catalogo', 25, 1),
+	(8, 'Crear', 'crear', 'Permiso crear, submodulo categorias, modulo catalogo', 25, 1),
+	(9, 'Editar', 'editar', 'Permiso editar, submodulo categorias, modulo catalogo', 25, 1),
+	(11, 'Eliminar (multiple)', 'eliminar_multiple', 'Permiso eliminar_multiple, submodulo categorias, modulo catalogo', 25, 1),
+	(12, 'Ver', 'ver', 'Permiso ver, submodulo proveedores, modulo catalogo', 26, 1),
+	(17, 'Productos (asignar)', 'asignar_productos', 'Permiso asignar_productos, submodulo categorias, modulo catalogo', 25, 1),
+	(18, 'Ver', 'ver', 'Permiso ver, submodulo administradores, modulo usuarios', 2, 1),
+	(19, 'Crear', 'crear', 'Permiso crear, submodulo administradores, modulo usuarios', 2, 1),
+	(20, 'Editar', 'editar', 'Permiso editar, submodulo administradores, modulo usuarios', 2, 1),
+	(23, 'Estado (usuario)', 'estado_usuario', 'Permiso estado usuario, submodulo administradores, modulo usuarios', 2, 1),
+	(24, 'Finales', 'finales', 'Permiso finales, modulo usuarios', 1, 1),
+	(25, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar individual, submodulo administradores, modulo usuarios', 2, 1),
+	(26, 'Ver', 'ver', 'Permiso ver, submodulo finales, modulo usuarios', 10, 1),
+	(27, 'Crear', 'crear', 'Permiso crear, submodulo finales, modulo usuarios', 10, 1),
+	(28, 'Editar', 'editar', 'Permiso editar, submodulo finales, modulo usuarios', 10, 1),
+	(29, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar individual, submodulo finales, modulo usuarios', 10, 1),
+	(30, 'Estado (usuario)', 'estado_usuario', 'Permiso estado usuario, submodulo finales, modulo usuarios', 10, 1),
+	(31, 'Modulos', 'modulos', 'Modulo modulos', NULL, 1),
+	(32, 'Ver', 'ver', 'Permiso ver, modulo modulos', 17, 1),
+	(33, 'Crear', 'crear', 'Permiso crear, modulo modulos', 17, 1),
+	(34, 'Editar', 'editar', 'Permiso editar, modulo modulos', 17, 1),
+	(35, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, modulo modulos', 17, 1),
+	(36, 'Productos', 'productos', 'Permiso productos, modulo catalogo', 22, 1),
+	(37, 'Ver', 'ver', 'Permiso productos, modulo catalogo', 38, 1),
+	(38, 'Crear', 'crear', 'Permiso productos, modulo catalogo', 38, 1),
+	(39, 'Editar', 'editar', 'Permiso productos, modulo catalogo', 38, 1),
+	(40, 'Eliminar', 'eliminar', 'Permiso productos, modulo catalogo', 38, 1),
+	(42, 'Eliminar (multiple)', 'eliminar_multiple', 'Permiso productos, modulo catalogo', 38, 1),
+	(46, 'Crear', 'crear', 'Permiso crear, submodulo proveedores, modulo catalogo', 26, 1),
+	(47, 'Editar', 'editar', 'Permiso editar, submodulo proveedores, modulo catalogo', 26, 1),
+	(48, 'Eliminar (multiple)', 'eliminar_multiple', 'Permiso eliminar_multiple, submodulo proveedores, modulo catalogo', 26, 1),
+	(50, 'Catalogo', 'catalogo', 'Modulo catalogo', NULL, 1),
+	(52, 'Proveedores', 'proveedores', 'Permiso proveedores, modulo catalogo', 22, 1),
+	(53, 'Merma', 'merma', 'Modulo merma', NULL, 1),
+	(54, 'Tipos merma', 'tipo_merma', 'Permiso tipo_merma, modulo merma', 44, 1),
+	(55, 'Registro merma', 'registro_merma', 'Permiso registro_merma, modulo merma', 44, 1);
 
-
--- Volcando datos para la tabla core_project_BAN_00341.mod_usuarios_admin: ~13 rows (aproximadamente)
+-- Volcando datos para la tabla core_project_BAN_00341.mod_usuarios_admin: ~2 rows (aproximadamente)
 INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'Admin1', 'Principal', 'admin1@correo.com', 'Qwerty9601', 1),
-	(2, 'admin2', 'admin2', 'admin2@correo.com', 'Qwerty9601', 1);
+	(19, 'Donald', 'Trump', 'donald@correo.com', 'Qwerty9601', 1);
 
--- Volcando datos para la tabla core_project_BAN_00341.mod_usuarios_user: ~17 rows (aproximadamente)
+-- Volcando datos para la tabla core_project_BAN_00341.mod_usuarios_user: ~21 rows (aproximadamente)
 INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'final1', 'final1', 'final1@gmail.com', 'Qwerty9601', 1),
-	(2, 'final2', 'final2', 'final2@gmail.com', 'Qwerty9601', 1);
+	(2, 'final2', 'final2', 'final2@gmail.com', 'Qwerty9601', 1),
+	(3, 'final3', 'final3', 'final3@gmail.com', 'Qwerty9601', 1),
+	(4, 'final4', 'final4', 'final4@gmail.com', 'Qwerty9601', 1),
+	(5, 'final5', 'final5', 'final5@gmail.com', 'Qwerty9601', 1),
+	(11, 'final11', 'final11', 'final11@gmail.com', 'Qwerty9601', 0),
+	(12, 'final12', 'final12', 'final12@gmail.com', 'Qwerty9601', 0),
+	(14, 'final13', 'final13', '13@gmail.com', 'Qwerty9601', 1),
+	(15, 'final14', 'final14', '14@gmail.com', 'Qwerty9601', 1),
+	(16, 'final15', 'final15', '15@gmail.com', 'Qwerty9601', 1),
+	(17, 'final16', 'final16', '16@gmail.com', 'Qwerty9601', 1),
+	(18, 'final17', 'final17', '17@gmail.com', 'Qwerty9601', 1),
+	(19, 'final18', 'final18', '18@gmail.com', 'Qwerty9601', 1),
+	(20, 'final19', 'final19', '19@gmail.com', 'Qwerty9601', 0),
+	(21, 'final20', 'final20', '20@gmail.com', 'Qwerty9601', 0),
+	(22, 'final21', 'final21', '21@gmail.com', 'Qwerty9601', 0),
+	(23, 'final22', 'final22', '22@gmail.com', 'Qwerty9601', 0),
+	(24, 'final23', 'final23', '23@gmail.com', 'Qwerty9601', 0),
+	(25, 'final24', 'final24', '24@gmail.com', 'Qwerty9601', 0),
+	(26, 'final25', 'final25', '25@gmail.com', 'Qwerty9601', 0);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

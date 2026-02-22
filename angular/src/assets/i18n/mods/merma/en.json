@@ -1,0 +1,26 @@
+{
+  "UNKNOW_MODULE_TITLE": "Unknown Module",
+
+  "PAGE_TYPE_TITLE": "Type",
+  "PAGE_RECORD_TITLE": "Redcords",
+
+  "MODULE_TITLE": "Shrink",
+
+  "BUTTON_SAVE_": "Save",
+  "BUTTON_UPDATE_": "Update",
+  "BUTTON_CANCEL": "Cancel",
+  "BUTTON_BACK": "Back",
+  "BUTTON_SEARCH": "Search",
+
+  "BUTTON_TYPE": "Type",
+  "BUTTON_RECORD": "Redcords",
+
+  "COLUMN_ID": "Id",
+  "COLUMN_NAME": "Name",
+  "COLUMN_TOTAL": "Total",
+
+  "TYPE": {
+    "PLACEHOLDER_NAME": "Enter a name",
+    "CARD_TOTAL_TYPE_TITLE": "Total types"
+  }
+}

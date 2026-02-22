@@ -20,6 +20,19 @@
       </a>
       }
 
+      @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_LOSS)){
+      <a [routerLink]="LAYOUT_ADMIN_PAGE_LOSS" class="item" style="text-decoration: none; color: inherit; display: block;">
+        <div class="card card-option">
+          <div class="card-body text-center p-0 pb-3 pt-3">
+            <img src="assets/images/img_averiado.png" width="80px">
+          </div>
+          <div class="card-footer text-center">
+            <span>{{ 'mod-main.PAGES_LOSS' | translate }}</span>
+          </div>
+        </div>
+      </a>
+      }
+
       @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_CATALOG)){
       <a [routerLink]="LAYOUT_ADMIN_PAGE_CATALOG" class="item" style="text-decoration: none; color: inherit; display: block;">
         <div class="card card-option">
