@@ -1884,6 +1884,238 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "mermas",
+			"item": [
+				{
+					"name": "admin",
+					"item": [
+						{
+							"name": "eliminar-merma",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/tipos_merma/eliminar-tipo-merma?_id=1&lang=es",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"tipos_merma",
+										"eliminar-tipo-merma"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "1"
+										},
+										{
+											"key": "lang",
+											"value": "es"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "obtener-mermas",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/tipos_merma/obtener-tipo-mermas?page=1&limit=10&field=id&order=asc",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"tipos_merma",
+										"obtener-tipo-mermas"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "field",
+											"value": "id"
+										},
+										{
+											"key": "order",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "obtener-merma",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/tipos_merma/obtener-tipo-merma?_id=1&lang=es",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"tipos_merma",
+										"obtener-tipo-merma"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "1"
+										},
+										{
+											"key": "lang",
+											"value": "es"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "crear-merma",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Sin información\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/tipos_merma/crear-tipo-merma?lang=es",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"tipos_merma",
+										"crear-tipo-merma"
+									],
+									"query": [
+										{
+											"key": "lang",
+											"value": "es"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "actualizar-merma",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Limpieza e Higiene\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/tipos_merma/editar-tipo-merma?_id=12&lang=es",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"tipos_merma",
+										"editar-tipo-merma"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "12"
+										},
+										{
+											"key": "lang",
+											"value": "es"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
 		}
 	]
 }

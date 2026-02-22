@@ -16,9 +16,14 @@ export const PATH_ADMIN_PRODUCT = 'productos';
 export const TITLE_PATH_ADMIN_PRODUCT = 'productos';
 export const BREADCRUMB_PATH_ADMIN_PRODUCT = 'Productos';
 
+export const PATH_ADMIN_LOTE = 'lote';
+export const TITLE_PATH_ADMIN_LOTE = 'lote';
+export const BREADCRUMB_PATH_ADMIN_LOTE = 'Lote';
+
 export const MOD_CATEGORY_PAGE_CATEGORY =  '/admin/mod/catalog/categorias/';
 export const MOD_CATEGORY_PAGE_PRODUCT_ASSIGMENT =  '/admin/mod/catalog/categorias/productos';
 export const MOD_CATEGORY_PAGE_SUPPLIER =  '/admin/mod/catalog/proveedores/';
+export const MOD_CATEGORY_PAGE_LOTE =  '/admin/mod/catalog/lote/';
 
 export const CREAR_PRODUCT_COMPONENT = 'CrearProductoComponent';
 export const VER_PRODUCT_COMPONENT = 'VerProductoComponent';

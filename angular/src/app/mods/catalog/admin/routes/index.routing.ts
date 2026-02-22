@@ -4,10 +4,13 @@ import { adminGuard } from '@guard/roles/admin/admin.guard';
 
 import { 
   BREADCRUMB_PATH_ADMIN_CATEGORY,
+  BREADCRUMB_PATH_ADMIN_LOTE,
   BREADCRUMB_PATH_ADMIN_SUPPLIER,
   PATH_ADMIN_CATEGORY,
+  PATH_ADMIN_LOTE,
   PATH_ADMIN_SUPPLIER,
   TITLE_PATH_ADMIN_CATEGORY,
+  TITLE_PATH_ADMIN_LOTE,
   TITLE_PATH_ADMIN_SUPPLIER,
   TITLE_PATH_CATALOG_INDEX 
 } from '@mod/catalog/const/catalog.const';
@@ -30,6 +33,17 @@ export const CatalogRoutes: Routes = [
       adminGuard
     ],
     loadChildren: () => import('./categorias.routing').then(x=>x.CatalogoCategoriasRoutes)
+  },
+  {
+    path: PATH_ADMIN_LOTE,
+    title: TITLE_PATH_ADMIN_LOTE,
+    data: { breadcrumb: BREADCRUMB_PATH_ADMIN_LOTE },
+    canActivate: [
+      adminGuard
+    ],
+    loadChildren: () => import('./lote.routing').then(x=>x.CatalogoLoteRoutes
+
+    )
   },
   {
     path: PATH_ADMIN_SUPPLIER,

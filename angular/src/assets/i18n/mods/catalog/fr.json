@@ -126,5 +126,6 @@
   "BUTTON_EDIT": "Modifier",
 
   "BUTTON_CATEGORY": "Catégories",
-  "BUTTON_SUPPLIER": "Fournisseurs"
+  "BUTTON_SUPPLIER": "Fournisseurs",
+  "BUTTON_LOTE": "Lot"  
 }

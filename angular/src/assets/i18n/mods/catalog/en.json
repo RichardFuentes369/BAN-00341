@@ -126,6 +126,7 @@
   "BUTTON_EDIT": "Edit",
   
   "BUTTON_CATEGORY": "Categories",
-  "BUTTON_SUPPLIER": "Suppliers"
+  "BUTTON_SUPPLIER": "Suppliers",
+  "BUTTON_LOTE": "Batch"
 
 }
