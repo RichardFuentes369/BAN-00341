@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.11.14-MariaDB-0ubuntu0.24.04.1 - Ubuntu 24.04
--- SO del servidor:              debian-linux-gnu
--- HeidiSQL Versión:             12.8.0.6908
+-- Server version:               10.11.14-MariaDB-0ubuntu0.24.04.1 - Ubuntu 24.04
+-- Server OS:                    debian-linux-gnu
+-- HeidiSQL Version:             12.8.0.6908
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -14,7 +14,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Volcando datos para la tabla core_project_BAN_00341.mod_catalogo_categorias: ~10 rows (aproximadamente)
+-- Dumping data for table core_project_BAN_00341.mod_catalogo_categorias: ~10 rows (approximately)
 INSERT INTO `mod_catalogo_categorias` (`id`, `nombre`, `descripcion`) VALUES
 	(1, 'Lácteos', 'Productos derivados de la leche y refrigerados'),
 	(2, 'Cárnicos', 'Carnes frías, embutidos y carnes rojas'),
@@ -27,7 +27,7 @@ INSERT INTO `mod_catalogo_categorias` (`id`, `nombre`, `descripcion`) VALUES
 	(9, 'Enlatados', 'Conservas, atún y verduras enlatadas'),
 	(10, ' Cuidado Personal', 'Jabones, champú y cremas dentales');
 
--- Volcando datos para la tabla core_project_BAN_00341.mod_catalogo_productos: ~11 rows (aproximadamente)
+-- Dumping data for table core_project_BAN_00341.mod_catalogo_productos: ~11 rows (approximately)
 INSERT INTO `mod_catalogo_productos` (`id`, `codigo_barra`, `nombre`, `stock_minimo`, `unidad_medida`, `id_categoria`, `marca`) VALUES
 	(1, '770123456001', 'Leche Entera 1L', 20, 'kg', 1, 'Alpina'),
 	(2, '25252525252', 'Arroz Blanco 1kg', 50, 'kg', 1, 'Diana'),
@@ -41,38 +41,31 @@ INSERT INTO `mod_catalogo_productos` (`id`, `codigo_barra`, `nombre`, `stock_min
 	(10, '770123456010', 'Manzanas Rojas x6', 8, 'kg', 1, 'Buen dia'),
 	(21, '10002145', 'Salchichas', 15, 'paquete', 2, 'Zenu');
 
--- Volcando datos para la tabla core_project_BAN_00341.mod_catalogo_proveedores: ~2 rows (aproximadamente)
+-- Dumping data for table core_project_BAN_00341.mod_catalogo_proveedores: ~2 rows (approximately)
 INSERT INTO `mod_catalogo_proveedores` (`id`, `nit`, `razon_social`, `direccion`, `correo`, `telefono`) VALUES
 	(1, 9001234561, 'Distribuidora Alimentos Express S.A.', 'Calle 45 #10-20', 'ventas@alimentos.com', '6012345678'),
 	(14, 1098785729, 'Industrias JB Sas', 'Calle 6 # 12 - 72 villabel', 'jb.business@gmail.com', '3504284093');
 
--- Volcando datos para la tabla core_project_BAN_00341.mod_lote: ~10 rows (aproximadamente)
-INSERT INTO `mod_lote` (`id`, `fecha_entrada`, `fecha_vencimiento`, `cantidad_inicial`, `stock_actual`, `costo_unitario`, `precio_venta_sugerido`, `estado`, `id_producto`, `id_proveedor`) VALUES
-	(1, '2026-02-15 04:36:16', '2026-05-20 05:00:00', 100, 85, 2500.00, 3200.00, 'disponible', 1, 1),
-	(2, '2026-02-15 04:36:16', '2027-01-15 05:00:00', 200, 190, 1800.00, 2400.00, 'disponible', 1, 1),
-	(3, '2026-02-15 04:36:16', '2026-03-10 05:00:00', 50, 42, 4500.00, 5800.00, 'disponible', 1, 1),
-	(4, '2026-02-15 04:36:16', '2027-12-01 05:00:00', 300, 300, 800.00, 1500.00, 'disponible', 1, 1),
-	(5, '2026-02-15 04:36:16', '2028-06-30 05:00:00', 40, 35, 7500.00, 9500.00, 'disponible', 1, 1),
-	(6, '2026-02-15 04:36:16', '2026-02-28 05:00:00', 30, 10, 3200.00, 4500.00, 'disponible', 1, 1),
-	(7, '2026-02-15 04:36:16', '2027-08-14 05:00:00', 60, 58, 6200.00, 8200.00, 'disponible', 1, 1),
-	(8, '2026-02-15 04:36:16', '2028-11-20 05:00:00', 100, 100, 3800.00, 5000.00, 'disponible', 1, 1),
-	(9, '2026-02-15 04:36:16', '2025-12-01 05:00:00', 50, 0, 1200.00, 2200.00, 'vencido', 1, 1),
-	(10, '2026-02-15 04:36:16', '2026-07-22 05:00:00', 80, 0, 2000.00, 3500.00, 'agotado', 1, 1);
+-- Dumping data for table core_project_BAN_00341.mod_lote: ~7 rows (approximately)
+INSERT INTO `mod_lote` (`id`, `fecha_entrada`, `fecha_vencimiento`, `costo_unitario`, `precio_venta_sugerido`, `estado`, `id_producto`, `id_proveedor`, `lote`, `cantidad_comprada`, `cantidad_vendida`, `stock`) VALUES
+	(1, '2026-03-03 23:35:23', '2026-05-03 23:35:24', 2500.00, 2850.00, 'disponible', 1, 1, 'Lote2021415', 250, 60, 155),
+	(2, '2026-03-03 23:35:23', '2026-03-18 23:35:24', 2500.00, 2850.00, 'disponible', 1, 1, 'Lote2021416', 300, 91, 199),
+	(3, '2026-03-03 23:35:23', '2026-03-23 23:35:24', 2500.00, 2850.00, 'disponible', 1, 1, 'Lote2021417', 180, 62, 118),
+	(4, '2026-02-03 23:35:23', '2026-03-01 23:35:24', 2500.00, 2850.00, 'disponible', 1, 1, 'Lote2021418', 175, 52, 123),
+	(5, '2026-03-03 23:35:23', '2026-03-01 23:35:24', 2500.00, 2850.00, 'disponible', 1, 1, 'Lote2021419', 243, 74, 164),
+	(6, '2026-03-03 23:35:23', '2026-02-01 23:35:24', 2500.00, 2850.00, 'disponible', 1, 1, 'Lote2021410', 592, 592, 0),
+	(8, '2026-03-03 23:35:23', '2026-02-01 23:35:24', 2500.00, 2850.00, 'disponible', 1, 1, 'Lote2021421', 240, 200, 40);
 
--- Volcando datos para la tabla core_project_BAN_00341.mod_merma_mermas: ~10 rows (aproximadamente)
+-- Dumping data for table core_project_BAN_00341.mod_merma_mermas: ~6 rows (approximately)
 INSERT INTO `mod_merma_mermas` (`id`, `cantidad`, `fecha_reporte`, `valor_perdido`, `observaciones`, `id_tipo_merma`, `id_lote`) VALUES
-	(1, 2, '2026-02-15 09:41:26', 5000.00, 'Dos bolsas de leche rotas en descarga', 1, 1),
-	(2, 2, '2026-02-15 09:41:26', 9000.00, 'Pérdida de vacío en empaque de jamón', 2, 2),
-	(3, 1, '2026-02-15 09:41:26', 3200.00, 'Pan de molde aplastado', 3, 3),
-	(4, 50, '2026-02-15 09:41:26', 60000.00, 'Lote completo de snacks vencido', 1, 4),
-	(5, 2, '2026-02-15 09:41:26', 3600.00, 'Bolsa de arroz mojada', 2, 7),
-	(6, 1, '2026-02-15 09:41:26', 7500.00, 'Faltante en inventario cíclico', 3, 8),
-	(7, 1, '2026-02-15 09:41:26', 2500.00, 'Leche con mal olor prematuro', 4, 9),
-	(8, 1, '2026-02-15 09:41:26', 6200.00, 'Aceite con envase perforado', 1, 10),
-	(9, 1, '2026-02-15 09:41:26', 4500.00, 'Producto roído por ratones', 1, 9),
-	(10, 2, '2026-02-15 09:41:26', 1600.00, 'Botellas de agua abolladas', 1, 8);
+	(1, 20, '2026-03-04 00:46:47', 25000.00, 'ninguna', 2, 1),
+	(2, 10, '2026-03-04 00:46:47', 25000.00, 'ninguna', 9, 1),
+	(3, 5, '2026-03-04 00:46:47', 25000.00, 'ninguna', 1, 1),
+	(4, 5, '2026-03-04 00:46:47', 25000.00, 'ninguna', 4, 2),
+	(5, 5, '2026-03-04 00:46:47', 25000.00, 'ninguna', 4, 2),
+	(6, 5, '2026-03-04 00:46:47', 25000.00, 'dañados', 4, 5);
 
--- Volcando datos para la tabla core_project_BAN_00341.mod_merma_tipos: ~10 rows (aproximadamente)
+-- Dumping data for table core_project_BAN_00341.mod_merma_tipos: ~10 rows (approximately)
 INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
 	(1, 'Consumo Interno'),
 	(2, 'Daño Físico / Rotura'),
@@ -85,7 +78,7 @@ INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
 	(11, 'Robo o Extravío'),
 	(4, 'Vencimiento');
 
--- Volcando datos para la tabla core_project_BAN_00341.mod_permisos_modulo: ~54 rows (aproximadamente)
+-- Dumping data for table core_project_BAN_00341.mod_permisos_modulo: ~60 rows (approximately)
 INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`, `tiene_permisos`, `descripcion`, `modulo_padre_id`) VALUES
 	(1, 'Usuarios', 'usuarios', 1, 0, 'Modulo usuarios', NULL),
 	(2, 'Administradores', 'administradores', 0, 1, 'Permiso administradores, modulo usuarios', 1),
@@ -123,26 +116,32 @@ INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`
 	(36, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo proveedores, modulo catalogo', 26),
 	(37, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso eliminar_multiple, submodulo proveedores, modulo catalogo', 26),
 	(38, 'Productos', 'productos', 1, 1, 'Permiso productos, modulo catalogo', 22),
-	(39, 'Ver', 'ver', 0, 1, 'Permiso productos, modulo catalogo', 38),
-	(40, 'Crear', 'crear', 0, 1, 'Permiso productos, modulo catalogo', 38),
-	(41, 'Editar', 'editar', 0, 1, 'Permiso productos, modulo catalogo', 38),
-	(42, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso productos, modulo catalogo', 38),
-	(43, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso productos, modulo catalogo', 38),
+	(39, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo productos, modulo catalogo', 38),
+	(40, 'Crear', 'crear', 0, 1, 'Permiso crear, submodulo productos, modulo catalogo', 38),
+	(41, 'Editar', 'editar', 0, 1, 'Permiso editar, submodulo productos, modulo catalogo', 38),
+	(42, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo productos, modulo catalogo', 38),
+	(43, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso eliminar_multiple, submodulo productos, modulo catalogo', 38),
 	(44, 'Merma', 'merma', 1, 0, 'Modulo merma', NULL),
 	(45, 'Tipos merma', 'tipo_merma', 0, 1, 'Permiso tipo_merma, modulo merma', 44),
 	(46, 'Registro merma', 'registro_merma', 0, 1, 'Permiso registro_merma, modulo merma', 44),
-	(47, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo registro_merma, modulo merma', 45),
-	(48, 'Crear', 'crear', 0, 1, 'Permiso crear, submodulo registro_merma, modulo merma', 45),
-	(49, 'Editar', 'editar', 0, 1, 'Permiso editar, submodulo registro_merma, modulo merma', 45),
+	(47, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo tipo_merma, modulo merma', 45),
+	(48, 'Crear', 'crear', 0, 1, 'Permiso crear, submodulo tipo_merma, modulo merma', 45),
+	(49, 'Editar', 'editar', 0, 1, 'Permiso editar, submodulo tipo_merma, modulo merma', 45),
 	(50, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo tipo_merma, modulo merma', 45),
-	(51, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso eliminar_multiple, submodulo registro_merma, modulo merma', 45),
-	(52, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo registro_merma, modulo merma', 46),
-	(53, 'Crear', 'crear', 0, 1, 'Permiso crear, submodulo registro_merma, modulo merma', 46),
-	(54, 'Editar', 'editar', 0, 1, 'Permiso editar, submodulo registro_merma, modulo merma', 46),
-	(55, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo registro_merma, modulo merma', 46),
-	(56, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso eliminar_multiple, submodulo registro_merma, modulo merma', 46);
+	(51, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso eliminar_multiple, submodulo tipo_merma, modulo merma', 45),
+	(52, 'Lote', 'lote', 0, 1, 'Permiso lote, modulo catalogo', 22),
+	(53, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo lote, modulo catalogo', 52),
+	(54, 'Crear', 'crear', 0, 1, 'Permiso crear, submodulo lote, modulo catalogo', 52),
+	(55, 'Editar', 'editar', 0, 1, 'Permiso editar, submodulo lote, modulo catalogo', 52),
+	(56, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo lote, modulo catalogo', 52),
+	(57, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso eliminar_multiple, submodulo lote, modulo catalogo', 52),
+	(58, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo registro_merma, modulo merma', 46),
+	(59, 'Crear', 'crear', 0, 1, 'Permiso crear, submodulo registro_merma, modulo merma', 46),
+	(60, 'Editar', 'editar', 0, 1, 'Permiso editar, submodulo registro_merma, modulo merma', 46),
+	(61, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo registro_merma, modulo merma', 46),
+	(62, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso eliminar_multiple, submodulo registro_merma, modulo merma', 46);
 
--- Volcando datos para la tabla core_project_BAN_00341.mod_permisos_modulo_asignacion: ~44 rows (aproximadamente)
+-- Dumping data for table core_project_BAN_00341.mod_permisos_modulo_asignacion: ~48 rows (approximately)
 INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descripcion`, `modulo_padre_id`, `user_id`) VALUES
 	(1, 'Usuarios', 'usuarios', 'Modulo usuarios', NULL, 1),
 	(2, 'Administradores', 'administradores', 'Permiso administradores, modulo usuarios', 1, 1),
@@ -171,11 +170,11 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(34, 'Editar', 'editar', 'Permiso editar, modulo modulos', 17, 1),
 	(35, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, modulo modulos', 17, 1),
 	(36, 'Productos', 'productos', 'Permiso productos, modulo catalogo', 22, 1),
-	(37, 'Ver', 'ver', 'Permiso productos, modulo catalogo', 38, 1),
-	(38, 'Crear', 'crear', 'Permiso productos, modulo catalogo', 38, 1),
-	(39, 'Editar', 'editar', 'Permiso productos, modulo catalogo', 38, 1),
+	(37, 'Ver', 'ver', 'Permiso ver, submodulo productos, modulo catalogo', 38, 1),
+	(38, 'Crear', 'crear', 'Permiso crear, submodulo productos, modulo catalogo', 38, 1),
+	(39, 'Editar', 'editar', 'Permiso editar, submodulo productos, modulo catalogo', 38, 1),
 	(40, 'Eliminar', 'eliminar', 'Permiso productos, modulo catalogo', 38, 1),
-	(42, 'Eliminar (multiple)', 'eliminar_multiple', 'Permiso productos, modulo catalogo', 38, 1),
+	(42, 'Eliminar (multiple)', 'eliminar_multiple', 'Permiso eliminar_multiple, submodulo productos, modulo catalogo', 38, 1),
 	(46, 'Crear', 'crear', 'Permiso crear, submodulo proveedores, modulo catalogo', 26, 1),
 	(47, 'Editar', 'editar', 'Permiso editar, submodulo proveedores, modulo catalogo', 26, 1),
 	(48, 'Eliminar (multiple)', 'eliminar_multiple', 'Permiso eliminar_multiple, submodulo proveedores, modulo catalogo', 26, 1),
@@ -187,14 +186,18 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(56, 'Ver', 'ver', 'Permiso ver, submodulo tipo_merma, modulo merma', 45, 1),
 	(57, 'Crear', 'crear', 'Permiso crear, submodulo tipo_merma, modulo merma', 45, 1),
 	(58, 'Editar', 'editar', 'Permiso editar, submodulo tipo_merma, modulo merma', 45, 1),
-	(59, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo tipo_merma, modulo merma', 45, 1);
+	(59, 'Eliminar (multiple)', 'eliminar_multiple', 'Permiso eliminar_multiple, submodulo tipo_merma, modulo merma', 45, 1),
+	(60, 'Lote', 'lote', 'Permiso lote, modulo catalogo', 22, 1),
+	(61, 'Ver', 'ver', 'Permiso ver, submodulo lote, modulo catalogo', 52, 1),
+	(62, 'Crear', 'crear', 'Permiso crear, submodulo lote, modulo catalogo', 52, 1),
+	(63, 'Editar', 'editar', 'Permiso editar, submodulo lote, modulo catalogo', 52, 1);
 
--- Volcando datos para la tabla core_project_BAN_00341.mod_usuarios_admin: ~2 rows (aproximadamente)
+-- Dumping data for table core_project_BAN_00341.mod_usuarios_admin: ~2 rows (approximately)
 INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'Admin1', 'Principal', 'admin1@correo.com', 'Qwerty9601', 1),
 	(19, 'Donald', 'Trump', 'donald@correo.com', 'Qwerty9601', 1);
 
--- Volcando datos para la tabla core_project_BAN_00341.mod_usuarios_user: ~20 rows (aproximadamente)
+-- Dumping data for table core_project_BAN_00341.mod_usuarios_user: ~20 rows (approximately)
 INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'final1', 'final1', 'final1@gmail.com', 'Qwerty9601', 1),
 	(2, 'final2', 'final2', 'final2@gmail.com', 'Qwerty9601', 1),

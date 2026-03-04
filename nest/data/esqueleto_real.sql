@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.11.14-MariaDB-0ubuntu0.24.04.1 - Ubuntu 24.04
--- SO del servidor:              debian-linux-gnu
--- HeidiSQL Versión:             12.8.0.6908
+-- Server version:               10.11.14-MariaDB-0ubuntu0.24.04.1 - Ubuntu 24.04
+-- Server OS:                    debian-linux-gnu
+-- HeidiSQL Version:             12.8.0.6908
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -15,12 +15,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Volcando estructura de base de datos para core_project_BAN_00341
+-- Dumping database structure for core_project_BAN_00341
 DROP DATABASE IF EXISTS `core_project_BAN_00341`;
 CREATE DATABASE IF NOT EXISTS `core_project_BAN_00341` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `core_project_BAN_00341`;
 
--- Volcando estructura para tabla core_project_BAN_00341.mod_catalogo_categorias
+-- Dumping structure for table core_project_BAN_00341.mod_catalogo_categorias
 DROP TABLE IF EXISTS `mod_catalogo_categorias`;
 CREATE TABLE IF NOT EXISTS `mod_catalogo_categorias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -30,9 +30,9 @@ CREATE TABLE IF NOT EXISTS `mod_catalogo_categorias` (
   UNIQUE KEY `IDX_1fd4865dcbc2b7722b210d9a08` (`nombre`)
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Data exporting was unselected.
 
--- Volcando estructura para tabla core_project_BAN_00341.mod_catalogo_productos
+-- Dumping structure for table core_project_BAN_00341.mod_catalogo_productos
 DROP TABLE IF EXISTS `mod_catalogo_productos`;
 CREATE TABLE IF NOT EXISTS `mod_catalogo_productos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -48,9 +48,9 @@ CREATE TABLE IF NOT EXISTS `mod_catalogo_productos` (
   CONSTRAINT `FK_e442e00427c9f85b6c8767ef9be` FOREIGN KEY (`id_categoria`) REFERENCES `mod_catalogo_categorias` (`id`) ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Data exporting was unselected.
 
--- Volcando estructura para tabla core_project_BAN_00341.mod_catalogo_proveedores
+-- Dumping structure for table core_project_BAN_00341.mod_catalogo_proveedores
 DROP TABLE IF EXISTS `mod_catalogo_proveedores`;
 CREATE TABLE IF NOT EXISTS `mod_catalogo_proveedores` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -63,31 +63,34 @@ CREATE TABLE IF NOT EXISTS `mod_catalogo_proveedores` (
   UNIQUE KEY `IDX_20124d60355ae6fbf4410be1f5` (`nit`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Data exporting was unselected.
 
--- Volcando estructura para tabla core_project_BAN_00341.mod_lote
+-- Dumping structure for table core_project_BAN_00341.mod_lote
 DROP TABLE IF EXISTS `mod_lote`;
 CREATE TABLE IF NOT EXISTS `mod_lote` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fecha_entrada` timestamp NOT NULL DEFAULT current_timestamp(),
   `fecha_vencimiento` timestamp NOT NULL,
-  `cantidad_inicial` int(11) NOT NULL DEFAULT 0,
-  `stock_actual` int(11) NOT NULL DEFAULT 0,
   `costo_unitario` decimal(10,2) NOT NULL DEFAULT 0.00,
   `precio_venta_sugerido` decimal(10,2) NOT NULL DEFAULT 0.00,
   `estado` enum('disponible','vencido','agotado') NOT NULL DEFAULT 'disponible',
   `id_producto` int(11) NOT NULL,
   `id_proveedor` int(11) NOT NULL,
+  `lote` varchar(50) NOT NULL,
+  `cantidad_comprada` int(11) NOT NULL DEFAULT 0,
+  `cantidad_vendida` int(11) NOT NULL DEFAULT 0,
+  `stock` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_0fa3203835ac3fa160d1931dbb` (`lote`),
   KEY `FK_c092e4d64074c5be85e9116dd94` (`id_producto`),
   KEY `FK_2a6dab7c1ebe24649a8d88a5e51` (`id_proveedor`),
   CONSTRAINT `FK_2a6dab7c1ebe24649a8d88a5e51` FOREIGN KEY (`id_proveedor`) REFERENCES `mod_catalogo_proveedores` (`id`) ON UPDATE NO ACTION,
   CONSTRAINT `FK_c092e4d64074c5be85e9116dd94` FOREIGN KEY (`id_producto`) REFERENCES `mod_catalogo_productos` (`id`) ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Data exporting was unselected.
 
--- Volcando estructura para tabla core_project_BAN_00341.mod_merma_mermas
+-- Dumping structure for table core_project_BAN_00341.mod_merma_mermas
 DROP TABLE IF EXISTS `mod_merma_mermas`;
 CREATE TABLE IF NOT EXISTS `mod_merma_mermas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -102,22 +105,22 @@ CREATE TABLE IF NOT EXISTS `mod_merma_mermas` (
   KEY `FK_c43c67defe5b3af684b4065015b` (`id_lote`),
   CONSTRAINT `FK_c43c67defe5b3af684b4065015b` FOREIGN KEY (`id_lote`) REFERENCES `mod_lote` (`id`) ON UPDATE NO ACTION,
   CONSTRAINT `FK_f936b059227146a8e5f1ffaec0a` FOREIGN KEY (`id_tipo_merma`) REFERENCES `mod_merma_tipos` (`id`) ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Data exporting was unselected.
 
--- Volcando estructura para tabla core_project_BAN_00341.mod_merma_tipos
+-- Dumping structure for table core_project_BAN_00341.mod_merma_tipos
 DROP TABLE IF EXISTS `mod_merma_tipos`;
 CREATE TABLE IF NOT EXISTS `mod_merma_tipos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_d4131d037acc1ff2cb862fe550` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Data exporting was unselected.
 
--- Volcando estructura para tabla core_project_BAN_00341.mod_permisos_modulo
+-- Dumping structure for table core_project_BAN_00341.mod_permisos_modulo
 DROP TABLE IF EXISTS `mod_permisos_modulo`;
 CREATE TABLE IF NOT EXISTS `mod_permisos_modulo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -130,11 +133,11 @@ CREATE TABLE IF NOT EXISTS `mod_permisos_modulo` (
   PRIMARY KEY (`id`),
   KEY `FK_28bd06971f76c49399db2715d90` (`modulo_padre_id`),
   CONSTRAINT `FK_28bd06971f76c49399db2715d90` FOREIGN KEY (`modulo_padre_id`) REFERENCES `mod_permisos_modulo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Data exporting was unselected.
 
--- Volcando estructura para tabla core_project_BAN_00341.mod_permisos_modulo_asignacion
+-- Dumping structure for table core_project_BAN_00341.mod_permisos_modulo_asignacion
 DROP TABLE IF EXISTS `mod_permisos_modulo_asignacion`;
 CREATE TABLE IF NOT EXISTS `mod_permisos_modulo_asignacion` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -146,11 +149,11 @@ CREATE TABLE IF NOT EXISTS `mod_permisos_modulo_asignacion` (
   PRIMARY KEY (`id`),
   KEY `FK_6eb0af2f8e13274ad1819f4cfca` (`user_id`),
   CONSTRAINT `FK_6eb0af2f8e13274ad1819f4cfca` FOREIGN KEY (`user_id`) REFERENCES `mod_usuarios_admin` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Data exporting was unselected.
 
--- Volcando estructura para tabla core_project_BAN_00341.mod_usuarios_admin
+-- Dumping structure for table core_project_BAN_00341.mod_usuarios_admin
 DROP TABLE IF EXISTS `mod_usuarios_admin`;
 CREATE TABLE IF NOT EXISTS `mod_usuarios_admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -163,9 +166,9 @@ CREATE TABLE IF NOT EXISTS `mod_usuarios_admin` (
   UNIQUE KEY `IDX_c885318c449a37e806a7f87607` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Data exporting was unselected.
 
--- Volcando estructura para tabla core_project_BAN_00341.mod_usuarios_user
+-- Dumping structure for table core_project_BAN_00341.mod_usuarios_user
 DROP TABLE IF EXISTS `mod_usuarios_user`;
 CREATE TABLE IF NOT EXISTS `mod_usuarios_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -178,7 +181,29 @@ CREATE TABLE IF NOT EXISTS `mod_usuarios_user` (
   UNIQUE KEY `IDX_129e1f78d9bf43c04689f16cf8` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- La exportación de datos fue deseleccionada.
+-- Data exporting was unselected.
+
+-- Dumping structure for view core_project_BAN_00341.vista_detalle_lote
+DROP VIEW IF EXISTS `vista_detalle_lote`;
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `vista_detalle_lote` (
+	`id_lote` INT(11) NOT NULL,
+	`lote` VARCHAR(1) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`productos_comprados` INT(11) NOT NULL,
+	`en_existencia` INT(11) NOT NULL,
+	`vendidos` INT(11) NOT NULL,
+	`afectados_merma` DECIMAL(32,0) NOT NULL,
+	`precio_sugerido` DECIMAL(10,2) NOT NULL,
+	`nombre_producto` VARCHAR(1) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`nombre_proveedor` VARCHAR(1) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`dias_restantes` BIGINT(21) NULL,
+	`alerta_color` VARCHAR(1) NULL COLLATE 'utf8mb4_general_ci',
+	`alerta_notificacion` VARCHAR(1) NULL COLLATE 'utf8mb4_general_ci'
+) ENGINE=MyISAM;
+
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `vista_detalle_lote`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vista_detalle_lote` AS select `t`.`id_lote` AS `id_lote`,`t`.`lote` AS `lote`,`t`.`productos_comprados` AS `productos_comprados`,`t`.`en_existencia` AS `en_existencia`,`t`.`vendidos` AS `vendidos`,`t`.`afectados_merma` AS `afectados_merma`,`t`.`precio_sugerido` AS `precio_sugerido`,`t`.`nombre_producto` AS `nombre_producto`,`t`.`nombre_proveedor` AS `nombre_proveedor`,`t`.`dias_restantes` AS `dias_restantes`,case when `t`.`dias_restantes` <= 0 then 'ROJO' when `t`.`dias_restantes` <= 10 then 'NARANJA' when `t`.`dias_restantes` between 11 and 15 then 'AMARILLO' when `t`.`dias_restantes` > 15 then 'VERDE' else 'SIN_COLOR' end AS `alerta_color`,case when `t`.`dias_restantes` < 0 then 'Producto vencido' when `t`.`dias_restantes` = 0 then 'Vence hoy' when `t`.`dias_restantes` > 0 then concat('Faltan ',`t`.`dias_restantes`,' días') else 'Información no disponible' end AS `alerta_notificacion` from (select `lote`.`id` AS `id_lote`,`lote`.`lote` AS `lote`,`lote`.`cantidad_comprada` AS `productos_comprados`,`lote`.`stock` AS `en_existencia`,coalesce((select sum(`mmm`.`cantidad`) from `mod_merma_mermas` `mmm` where `mmm`.`id_lote` = `lote`.`id`),0) AS `afectados_merma`,`lote`.`cantidad_vendida` AS `vendidos`,`lote`.`precio_venta_sugerido` AS `precio_sugerido`,`mcproducto`.`nombre` AS `nombre_producto`,`mcproveedor`.`razon_social` AS `nombre_proveedor`,timestampdiff(DAY,current_timestamp(),`lote`.`fecha_vencimiento`) AS `dias_restantes` from ((`mod_lote` `lote` join `mod_catalogo_productos` `mcproducto` on(`lote`.`id_producto` = `mcproducto`.`id`)) join `mod_catalogo_proveedores` `mcproveedor` on(`lote`.`id_proveedor` = `mcproveedor`.`id`)) where `lote`.`stock` > 0) `t`;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

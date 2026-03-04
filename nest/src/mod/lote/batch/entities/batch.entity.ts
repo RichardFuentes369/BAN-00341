@@ -10,6 +10,9 @@ export class Lote {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ type: 'varchar', length: 50, unique: true })
+  lote: string;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   fecha_entrada: Date;
 
@@ -17,10 +20,13 @@ export class Lote {
   fecha_vencimiento: Date;
 
   @Column({ type: 'int', nullable: false, default: 0 })
-  cantidad_inicial;
+  cantidad_comprada;
 
   @Column({ type: 'int', nullable: false, default: 0 })
-  stock_actual;
+  cantidad_vendida;
+
+  @Column({ type: 'int', nullable: false, default: 0 })
+  stock;
 
   @Column({ type: 'decimal', precision: 10, scale: 2, default: 0.00 })
   costo_unitario;
