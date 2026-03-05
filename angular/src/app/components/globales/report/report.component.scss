@@ -1,143 +1,102 @@
-:host {
-  --gradient-header-search: linear-gradient(90deg, #007bff 20%, #2dc7ed 100%);
-
-  &[data-theme='dark'], 
-  &:host-context([data-theme='dark']) {
-    --gradient-header-search: linear-gradient(90deg, #4f5050 20%, #919494 100%);
+::ng-deep {
+  :root {
+    --gradient-header-modal: linear-gradient(90deg, #007bff 20%, #2cc6ed 100%);
   }
-}
-
-/* --- NUEVO: BOTÓN DENTRO DE LA CARD --- */
-.btn-close-card {
-  position: absolute;
-  top: 10px;
-  left: 10px; /* Esquina superior izquierda */
-  background: rgba(255, 255, 255, 0.2); /* Fondo semi-transparente para que resalte en el gradient */
-  border: none;
-  color: white;
-  border-radius: 4px;
-  width: 15px;
-  height: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  z-index: 1010; /* Por encima del header de la card */
-  transition: background 0.3s ease;
-
-  .fa-times {
-    font-size: 0.5em;
-  }
-}
-
-.btn-minimize-card {
-  position: absolute;
-  top: 10px;
-  left: 5px; /* Esquina superior izquierda */
-  background: rgba(255, 255, 255, 0.2); /* Fondo semi-transparente para que resalte en el gradient */
-  border: none;
-  color: white;
-  border-radius: 4px;
-  width: 15px;
-  height: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  z-index: 1010; /* Por encima del header de la card */
-  transition: background 0.3s ease;
-  margin-left: 7%;
-
-  .fa-window-minimize {
-    font-size: 0.5em;
-  }
-}
-
-/* --- CARD ANIMADA (Mantenemos tu base con un ajuste de posición relativa) --- */
-.animated-card {
-  position: fixed;
-  right: -0.3vw!important;
-  top: 50%;
-  transform: translateY(-50%) translateX(110%); 
-  width: 350px;
-  max-width: 90vw;
-  background-color: white;
-  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  border-radius: 12px 0 0 12px;
-  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  overflow: hidden; 
-
-  &.is-visible {
-    transform: translateY(-50%) translateX(0);
+  [data-theme='dark'] {
+    --gradient-header-modal: linear-gradient(90deg, #4f5050 20%, #919494 100%);
   }
 
   .header {
-    margin: 0;
-    padding: 8px;
-    font-size: 1.2rem;
-    text-align: center;
-    /* Tu gradiente anterior */
-    background: var(--gradient-header-search);
+    background: var(--gradient-header-modal) !important;
+    border-bottom: none; 
+  }
+
+  .modal-header .close {
     color: white;
+    opacity: 0.8;
+    &:hover { opacity: 1; }
   }
 
-  .card-body {
-    padding: 20px !important;
+  .floating-group {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-}
 
-.floating-button {
-  position: relative; /* Cambiado de absolute a relative */
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  
-  &.active {
-    opacity: 0;
+  .floating-button {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    z-index: 100;
+  }
+
+  .floating-number-filter {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 101;
+    cursor: pointer;
+  }
+
+  .animated-card {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) translateX(105%);
+    width: 350px;
+    background: white;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    z-index: 2000;
+    border-radius: 12px 0 0 12px;
+    transition: transform 0.4s ease, visibility 0.4s;
     visibility: hidden;
-    transform: scale(0);
+    overflow: hidden;
+
+    &.is-visible {
+      transform: translateY(-50%) translateX(0);
+      visibility: visible;
+    }
+
+    .header {
+      margin: 0;
+      padding: 12px;
+      background: var(--gradient-header);
+      color: white;
+      text-align: center;
+      font-size: 1.1rem;
+    }
   }
-}
 
-.floating-number-filter {
-  cursor: pointer;
-  position: absolute; /* Ahora es absoluto respecto a .filter-wrapper */
-  
-  /* POSICIONAMIENTO EN LA ESQUINA DEL BOTÓN */
-  right: -5px !important; 
-  top: -5px !important; 
-  
-  background-color: red;
-  color: #fff;
-  border-radius: 50%;
-  z-index: 101; /* Siempre por encima del botón */
-  
-  height: 18px; /* Un poquito más grande para mejor visibilidad en móvil */
-  width: 18px;
-  font-size: 10px !important;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-
-  &.active {
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(0);
+  .btn-close-card, .btn-minimize-card {
+    position: absolute;
+    top: 10px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    z-index: 2001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
   }
-}
 
-.floating-group {
-  position: relative; /* CRÍTICO: El contador se ancla aquí */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 35px;
-  height: 35px;
+  .btn-close-card { left: 10px; }
+  .btn-minimize-card { left: 35px; }
+
 }

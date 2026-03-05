@@ -1,86 +1,102 @@
-:host {
-  display: block;
-  --gradient-header: linear-gradient(90deg, #007bff 20%, #2dc7ed 100%);
-}
-
-.floating-group {
-  position: relative;
-  width: 35px;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.floating-button {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  z-index: 100;
-}
-
-.floating-number-filter {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background: red;
-  color: white;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  font-size: 10px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 101;
-  cursor: pointer;
-}
-
-.animated-card {
-  position: fixed;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%) translateX(105%);
-  width: 350px;
-  background: white;
-  box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-  z-index: 2000;
-  border-radius: 12px 0 0 12px;
-  transition: transform 0.4s ease, visibility 0.4s;
-  visibility: hidden;
-  overflow: hidden;
-
-  &.is-visible {
-    transform: translateY(-50%) translateX(0);
-    visibility: visible;
+::ng-deep {
+  :root {
+    --gradient-header-modal: linear-gradient(90deg, #007bff 20%, #2cc6ed 100%);
+  }
+  [data-theme='dark'] {
+    --gradient-header-modal: linear-gradient(90deg, #4f5050 20%, #919494 100%);
   }
 
   .header {
-    margin: 0;
-    padding: 12px;
-    background: var(--gradient-header);
-    color: white;
-    text-align: center;
-    font-size: 1.1rem;
+    background: var(--gradient-header-modal) !important;
+    border-bottom: none; 
   }
-}
 
-.btn-close-card, .btn-minimize-card {
-  position: absolute;
-  top: 10px;
-  background: rgba(255,255,255,0.2);
-  border: none;
-  color: white;
-  width: 20px;
-  height: 20px;
-  border-radius: 4px;
-  z-index: 2001;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
+  .modal-header .close {
+    color: white;
+    opacity: 0.8;
+    &:hover { opacity: 1; }
+  }
 
-.btn-close-card { left: 10px; }
-.btn-minimize-card { left: 35px; }
+  .floating-group {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .floating-button {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    z-index: 100;
+  }
+
+  .floating-number-filter {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 101;
+    cursor: pointer;
+  }
+
+  .animated-card {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) translateX(105%);
+    width: 350px;
+    background: white;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    z-index: 2000;
+    border-radius: 12px 0 0 12px;
+    transition: transform 0.4s ease, visibility 0.4s;
+    visibility: hidden;
+    overflow: hidden;
+
+    &.is-visible {
+      transform: translateY(-50%) translateX(0);
+      visibility: visible;
+    }
+
+    .header {
+      margin: 0;
+      padding: 12px;
+      background: var(--gradient-header);
+      color: white;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+  }
+
+  .btn-close-card, .btn-minimize-card {
+    position: absolute;
+    top: 10px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    z-index: 2001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .btn-close-card { left: 10px; }
+  .btn-minimize-card { left: 35px; }
+
+}

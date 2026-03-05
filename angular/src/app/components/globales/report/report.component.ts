@@ -25,10 +25,10 @@ export class ReportComponent {
 
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'r') {
-      event.preventDefault();
-      this.openFilterMinimize();
-    }
+    // if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'r') {
+    //   event.preventDefault();
+    //   this.openFilterMinimize();
+    // }
   }
 
   async openFilterMinimize() {
