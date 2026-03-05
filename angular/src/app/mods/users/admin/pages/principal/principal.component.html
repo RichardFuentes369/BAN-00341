@@ -32,14 +32,19 @@
     }  
   </div>
 
-  <div class="mt-3 p-2" style="position: relative;">
-    <app-globales-search
-      [icon]="iconFilter" 
-      [componente]="componenteFilter"
-      (filtroItem) = "filtroData()"
-    >
-    </app-globales-search>
-
+  <div class="mt-3 p-2" style="position: relative; overflow-x: hidden;">
+    <div class="filter-wrapper">
+      <app-globales-search
+        [icon]="iconFilter" 
+        [componente]="componenteFilter"
+        (filtroItem) = "filtroData()"
+      >
+      </app-globales-search>
+      <app-globales-report
+        [icon]="iconReport" 
+      >
+      </app-globales-report>
+    </div>
     <!--
       <button (click)="generar('excel')">xlsx</button>
       <button (click)="generar('csv')">csv</button>

@@ -1,0 +1,36 @@
+<div class="">
+  <div class="floating-group">
+    <span class="floating-number-filter text-center" (click)="openFilterMinimize()" [title]="contador">
+      {{contador}}
+    </span>
+    <button class="floating-button btn-sm btn btn-primary" (click)="openReportMinimize()">
+      <i class="fa fa-file-download"></i>
+    </button>
+  </div>
+
+  <div class="animated-card" [class.is-visible]="isReportVisible">
+    <button class="btn-close-card" (click)="$event.stopPropagation(); closeReport()">
+      <i class="fa fa-times"></i> 
+    </button>    
+    <button class="btn-minimize-card" (click)="openReportMinimize()">
+      <i class="fa fa-window-minimize"></i> 
+    </button>
+
+    <h3 class="header">
+      {{ 'global-report.TITTLE_COMPONENT' | translate}}
+    </h3>
+
+    <div class="card-body pl-0 p-0 pr-0">
+      <div class="pt-2 pb-2">
+        <div #contenedorReport></div>
+      </div>
+
+      <button class="btn btn-sm btn-success rounded-circle mx-1">
+          <i class="fas fa-file-excel"></i>
+      </button>
+      <button class="btn btn-sm btn-success rounded-circle mx-1">
+          <i class="fas fa-file-csv"></i>
+      </button>
+    </div>
+  </div>
+</div>

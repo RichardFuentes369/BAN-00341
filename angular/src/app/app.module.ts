@@ -33,6 +33,7 @@ export function createTranslateLoader(http: HttpClient) {
       { baseTranslateUrl, moduleName: 'components/globales/loading', namespace: 'global-loading' },
       { baseTranslateUrl, moduleName: 'components/globales/login', namespace: 'global-login' },
       { baseTranslateUrl, moduleName: 'components/globales/search', namespace: 'global-search' },
+      { baseTranslateUrl, moduleName: 'components/globales/report', namespace: 'global-report' },
       { baseTranslateUrl, moduleName: 'components/globales/modal', namespace: 'global-modal' },
       { baseTranslateUrl, moduleName: 'components/globales/notfound', namespace: 'global-notfound' },
       { baseTranslateUrl, moduleName: 'components/globales/tablecrud', namespace: 'global-tablecrud' },

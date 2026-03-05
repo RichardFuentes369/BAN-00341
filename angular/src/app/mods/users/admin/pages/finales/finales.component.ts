@@ -11,6 +11,7 @@ import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.comp
 import { FinalService } from './service/final.service';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { SearchComponent } from '@component/globales/search/search.component';
+import { ReportComponent } from '@component/globales/report/report.component';
 import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import { CREAR_USUARIO_COMPONENT, EDITAR_USUARIO_COMPONENT, FILTRO_USUARIO_COMPONENT, STORAGE_KEY_PROFILE_FINAL, VER_USUARIO_COMPONENT } from '@mod/users/const/users.const'
@@ -23,6 +24,7 @@ import { CardComponent } from '@component/globales/card/card.component';
   imports: [
     TranslateModule,
     SearchComponent,
+    ReportComponent,
     LoadingComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
@@ -51,6 +53,10 @@ export class FinalesComponent implements OnInit{
   iconFilter="fa fa-filter"
   componenteFilter=FILTRO_USUARIO_COMPONENT
   // fin datos envio al filtro
+
+  // inicio datos envio report
+  iconReport="fa fa-file"
+  // fin datos envio repor
 
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
