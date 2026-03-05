@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query, Res } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
 
 import { FilterUserDto } from '@module/user/dto/filter-user.dto';
+
+import { Response } from 'express';
 
 import { ApiTags } from '@nestjs/swagger';
 import { UpdateStatusDto } from './dto/update-status.dto';
@@ -99,5 +101,22 @@ export class AdminController {
       idsNumeros,
       userId
     );
+  }
+
+  // reportes
+  @Get('excel')
+  async downloadExcel(@Res() res: Response) {
+    const buffer = await this.adminService.generarExcel();
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', 'attachment; filename=reporte.xlsx');
+    res.send(buffer);
+  }
+
+  @Get('csv')
+  downloadCsv(@Res() res: Response) {
+    const csv = this.adminService.generarCsv();
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename=reporte.csv');
+    res.status(200).send(csv);
   }
 }

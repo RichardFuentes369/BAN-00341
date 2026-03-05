@@ -2,6 +2,9 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
 
+import * as ExcelJS from 'exceljs';
+import { stringify } from 'csv-stringify/sync';
+
 import { In, Like, Repository } from 'typeorm';
 import { Admin } from './entities/admin.entity';
 import { FilterUserDto } from '@module/user/dto/filter-user.dto';
@@ -198,5 +201,33 @@ export class AdminService {
     userId: number
   ) {
     return this.adminRepository.delete({id: In(id)})
+  }
+
+
+  private data = [
+    { lote: 'L001', producto: 'Arroz', existencia: 50, alerta: 'VERDE' },
+    { lote: 'L002', producto: 'Leche', existencia: 5, alerta: 'ROJO' }
+  ];
+  
+  async generarExcel() {
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Reporte de Lotes');
+
+    worksheet.columns = [
+      { header: 'Lote', key: 'lote', width: 15 },
+      { header: 'Producto', key: 'producto', width: 30 },
+      { header: 'Existencia', key: 'existencia', width: 15 },
+      { header: 'Alerta', key: 'alerta', width: 15 }
+    ];
+
+    worksheet.addRows(this.data);
+    return await workbook.xlsx.writeBuffer();
+  }
+
+  generarCsv() {
+    return stringify(this.data, {
+      header: true,
+      columns: ['lote', 'producto', 'existencia', 'alerta']
+    });
   }
 }

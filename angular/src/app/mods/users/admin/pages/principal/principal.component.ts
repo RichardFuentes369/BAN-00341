@@ -367,4 +367,23 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     console.log('actualizando contadores')
   }
 
+  generar(formato: 'excel' | 'csv') {
+    this.principalService.descargarReporte(formato).subscribe({
+      next: (blob: Blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        const extension = formato === 'excel' ? 'xlsx' : 'csv';
+        a.download = `reporte_lotes_${new Date().getTime()}.${extension}`;
+        document.body.appendChild(a); 
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      },
+      error: (err) => {
+        console.error('Error al descargar el reporte', err);
+      }
+    });
+  }
+
 }

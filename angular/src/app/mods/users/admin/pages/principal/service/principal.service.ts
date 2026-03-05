@@ -3,13 +3,18 @@ import { TranslateService } from '@ngx-translate/core';
 import { environment } from '@environment/environment';
 import axios from 'axios';
 import { STORAGE_KEY_TOKEN_ADMIN, WORD_KEY_AUTHORIZATION_APPLICATION_TYPE, WORD_KEY_AUTHORIZATION_CONTENT_TYPE, WORD_KEY_AUTHORIZATION_GLOBAL, WORD_KEY_BEARER_GLOBAL } from '@const/app.const';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PrincipalService {
 
-  constructor(private translate: TranslateService) {}
+  constructor(
+    private http: HttpClient,
+    private translate: TranslateService
+  ) {}
 
   async getDataUser(id: string){
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
@@ -115,6 +120,19 @@ export class PrincipalService {
         lang: lang,
       }
     })
+  }
+
+  descargarReporte(tipo: 'excel' | 'csv'): Observable<Blob> {
+    const urlCompleta = `${environment.apiUrl}admin/${tipo}`;
+    const token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN);
+    const headers = new HttpHeaders({
+      [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+      'Accept': tipo === 'excel' ? 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' : 'text/csv'
+    });
+    return this.http.get(urlCompleta, {
+      headers: headers,
+      responseType: 'blob'
+    });
   }
 
 }
