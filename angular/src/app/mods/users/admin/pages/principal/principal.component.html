@@ -42,13 +42,11 @@
       </app-globales-search>
       <app-globales-report
         [icon]="iconReport" 
+        [componente]="componenteReport"
+        (reportItem) = "reportData($event)"
       >
       </app-globales-report>
     </div>
-    <!--
-      <button (click)="generar('excel')">xlsx</button>
-      <button (click)="generar('csv')">csv</button>
-    -->
 
     @if (cargarIdioma) {
       <app-globales-tablecrud

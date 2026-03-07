@@ -1,9 +1,9 @@
 <div class="floating-group">
-  <span class="floating-number-filter text-center" (click)="openFilterMinimize()" [title]="contador">
-    {{contador}}
-  </span>
-  <button class="floating-button btn-sm btn btn-primary" (click)="openReportMinimize()">
-    <i class="fa fa-file-download"></i>
+  <!-- <span class="floating-number-filter text-center" (click)="openReportMinimize()" [title]="contador">
+    {{ contador }}
+  </span> -->
+  <button class="floating-button btn btn-sm btn-primary" (click)="openReportMinimize()">
+    <i [ngClass]="icon"></i>
   </button>
 </div>
 
@@ -11,24 +11,28 @@
   <button class="btn-close-card" (click)="$event.stopPropagation(); closeReport()">
     <i class="fa fa-times"></i>
   </button>
-  <button class="btn-minimize-card" (click)="openReportMinimize()">
-    <i class="fa fa-window-minimize"></i>
-  </button>
-
-  <h3 class="header">
-    {{ 'global-report.TITTLE_COMPONENT' | translate}}
-  </h3>
-
-  <div class="card-body pl-0 p-0 pr-0">
-    <div class="pt-2 pb-2">
-      <div #contenedorReport></div>
-      <button class="btn btn-sm btn-success rounded-circle mx-1">
-        <i class="fas fa-file-excel"></i>
-      </button>
-      <button class="btn btn-sm btn-success rounded-circle mx-1">
-        <i class="fas fa-file-csv"></i>
-      </button>
+  <h3 class="header">{{ 'global-report.TITTLE_COMPONENT' | translate}}</h3>
+  <div class="card-body">
+    <div class="card shadow-sm mb-2 p-2">
+      <p class="font-weight-bold small text-muted mb-0 text-center" [innerHTML]="'global-report.TITLE_SELECT_OPTION' | translate">
+      </p>
     </div>
+    <div #contenedorReport></div>
+    <div class="card shadow-sm">
+      <div class="card-body d-flex justify-content-center align-items-center py-2">
+        
+        <button class="btn btn-sm btn-secondary rounded-circle mx-1" (click)="clearReport()" title="Limpiar">
+          <i class="fa fa-eraser" aria-hidden="true"></i>
+        </button>
 
+        <button class="btn btn-sm btn-success rounded-circle mx-1" (click)="generar('excel')" title="Exportar a Excel">
+          <i class="fas fa-file-excel"></i>
+        </button>
+        
+        <button class="btn btn-sm btn-success rounded-circle mx-1" (click)="generar('csv')" title="Exportar a CSV">
+          <i class="fas fa-file-csv"></i>
+        </button>
+      </div>
+    </div>
   </div>
 </div>

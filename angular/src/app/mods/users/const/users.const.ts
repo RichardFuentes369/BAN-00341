@@ -30,4 +30,5 @@ export const CREAR_USUARIO_COMPONENT = 'CrearUsuariosComponent';
 export const VER_USUARIO_COMPONENT = 'VerUsuariosComponent';
 export const EDITAR_USUARIO_COMPONENT = 'EditarUsuariosComponent';
 export const FILTRO_USUARIO_COMPONENT = 'FiltroUsuariosComponent';
+export const REPORT_USUARIO_COMPONENT = 'ReporteUsuarioComponent';
 export const EDITAR_MODULO_PERMISO_COMPONENT = 'EditarModuloPermisoComponent';

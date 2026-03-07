@@ -69,7 +69,7 @@ export class SearchComponent{
   }  
 
   async clearFilter(){
-    $('.limpiar').click()
+    $('.limpiarS').click()
     this.filtroItem.emit()
     this.contador = await sessionStorage.length
     if (this.route.snapshot.queryParams['search']) {
@@ -85,7 +85,7 @@ export class SearchComponent{
   }
   
   async closeFilterEraser(){
-    $('.limpiar').click()
+    $('.limpiarS').click()
     this.clickeado = !this.clickeado
     this.filtroItem.emit()
     this.isFilterVisible = false

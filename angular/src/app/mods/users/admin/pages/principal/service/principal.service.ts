@@ -4,7 +4,7 @@ import { environment } from '@environment/environment';
 import axios from 'axios';
 import { STORAGE_KEY_TOKEN_ADMIN, WORD_KEY_AUTHORIZATION_APPLICATION_TYPE, WORD_KEY_AUTHORIZATION_CONTENT_TYPE, WORD_KEY_AUTHORIZATION_GLOBAL, WORD_KEY_BEARER_GLOBAL } from '@const/app.const';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -122,15 +122,19 @@ export class PrincipalService {
     })
   }
 
-  descargarReporte(tipo: 'excel' | 'csv'): Observable<Blob> {
+  descargarReporte(tipo: string, parametros: any): Observable<Blob> {
+
     const urlCompleta = `${environment.apiUrl}admin/${tipo}`;
     const token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN);
+
     const headers = new HttpHeaders({
       [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
       'Accept': tipo === 'excel' ? 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' : 'text/csv'
     });
+
     return this.http.get(urlCompleta, {
       headers: headers,
+      params: parametros,
       responseType: 'blob'
     });
   }

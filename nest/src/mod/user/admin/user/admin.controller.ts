@@ -105,16 +105,26 @@ export class AdminController {
 
   // reportes
   @Get('excel')
-  async downloadExcel(@Res() res: Response) {
-    const buffer = await this.adminService.generarExcel();
+  async downloadExcel(
+    @Query('lang') lang:string,
+    @Query() columns: any,
+    @GetUser('id') userId: number,
+    @Res() res: Response
+  ) {
+    const buffer = await this.adminService.generarExcel(columns, lang);
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     res.setHeader('Content-Disposition', 'attachment; filename=reporte.xlsx');
     res.send(buffer);
   }
 
   @Get('csv')
-  downloadCsv(@Res() res: Response) {
-    const csv = this.adminService.generarCsv();
+  async downloadCsv(
+    @Query('lang') lang:string,
+    @Query() columns: any,
+    @GetUser('id') userId: number,
+    @Res() res: Response
+  ) {
+    const csv = await this.adminService.generarCsv(columns, lang);
     res.setHeader('Content-Type', 'text/csv');
     res.setHeader('Content-Disposition', 'attachment; filename=reporte.csv');
     res.status(200).send(csv);

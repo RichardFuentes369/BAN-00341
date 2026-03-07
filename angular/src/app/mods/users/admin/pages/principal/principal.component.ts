@@ -1,5 +1,5 @@
 import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthService } from '@guard/service/auth.service';
@@ -15,9 +15,10 @@ import { SearchComponent } from '@component/globales/search/search.component';
 import { ReportComponent } from '@component/globales/report/report.component'
 import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
-import { CREAR_USUARIO_COMPONENT, EDITAR_USUARIO_COMPONENT, FILTRO_USUARIO_COMPONENT, MOD_USER_PAGE_ADMIN_ASSIGMENT, STORAGE_KEY_PROFILE_ADMIN, VER_USUARIO_COMPONENT } from '@mod/users/const/users.const'
+import { CREAR_USUARIO_COMPONENT, EDITAR_USUARIO_COMPONENT, FILTRO_USUARIO_COMPONENT, MOD_USER_PAGE_ADMIN_ASSIGMENT, REPORT_USUARIO_COMPONENT, STORAGE_KEY_PROFILE_ADMIN, VER_USUARIO_COMPONENT } from '@mod/users/const/users.const'
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { CardComponent } from '@component/globales/card/card.component';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-principal',
@@ -40,6 +41,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   constructor(
     private router: Router,
     private userService :AuthService,
+    private route: ActivatedRoute,
     private permisosService :PermisosService,
     private principalService :PrincipalService,
     private translate: TranslateService
@@ -56,7 +58,8 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   // fin datos envio al filtro
 
   // inicio datos envio report
-  iconReport="fa fa-file"
+  iconReport="fa fa-file-download"
+  componenteReport=REPORT_USUARIO_COMPONENT
   // fin datos envio repor
 
   // inicio datos que envio al componente tabla
@@ -145,6 +148,15 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     sessionStorage.removeItem('isActive')
 
     this.actualizarContadores()
+
+    this.route.queryParams.subscribe(params => {
+      const valorSearch = params['search'];
+      if (valorSearch) {
+        this.filters = valorSearch;
+      } else {
+        this.filters = '';
+      }
+    });
 
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarIdioma = false;
@@ -373,8 +385,38 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     console.log('actualizando contadores')
   }
 
-  generar(formato: 'excel' | 'csv') {
-    this.principalService.descargarReporte(formato).subscribe({
+  reportData(formato: string) {
+    const complementoRuta = $(".complementoRuta").val()
+    const querySearch = this.route.snapshot.queryParamMap.get('search');
+
+    const compRuta: string = typeof complementoRuta === 'string' ? complementoRuta : '';
+    const qSearch: string = querySearch ?? '';
+
+    const configParams = new URLSearchParams(compRuta.replace(/^[&?]/, ''));
+    const searchParams = new URLSearchParams(qSearch.replace(/^[&?]/, ''));
+
+    const allKeys = Array.from(new Set([...Array.from(configParams.keys()), ...Array.from(searchParams.keys())]));
+
+    const reporteConfig = allKeys.map(key => {
+      return {
+        field: key,
+        value: searchParams.get(key) || '',
+        show: configParams.get(key) === 'true'
+      };
+    });
+
+    let params = new HttpParams();
+
+    reporteConfig.forEach(item => {
+      if (item.value) {
+        params = params.append(item.field, item.value);
+      }
+      if (item.show) {
+        params = params.append(item.field, 'true');
+      }
+    });
+
+    this.principalService.descargarReporte(formato, params).subscribe({
       next: (blob: Blob) => {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');

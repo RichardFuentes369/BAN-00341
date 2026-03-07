@@ -203,31 +203,109 @@ export class AdminService {
     return this.adminRepository.delete({id: In(id)})
   }
 
+  // reporte pendiente permisos
+  async generarExcel(allParams: any, lang: string) {
+    const where: any = {};
 
-  private data = [
-    { lote: 'L001', producto: 'Arroz', existencia: 50, alerta: 'VERDE' },
-    { lote: 'L002', producto: 'Leche', existencia: 5, alerta: 'ROJO' }
-  ];
-  
-  async generarExcel() {
+    const getSearchValue = (param: any) => {
+      if (Array.isArray(param)) {
+        const val = param.find(v => v !== 'true');
+        return (val !== undefined && val !== '') ? val : null;
+      }
+      return (param !== 'true' && param !== '' && param !== undefined) ? param : null;
+    };
+
+    const emailVal = getSearchValue(allParams.email);
+    if (emailVal) where.email = Like(`%${emailVal}%`);
+
+    const firstNameVal = getSearchValue(allParams.firstName);
+    if (firstNameVal) where.firstName = Like(`%${firstNameVal}%`);
+
+    const lastNameVal = getSearchValue(allParams.lastName);
+    if (lastNameVal) where.lastName = Like(`%${lastNameVal}%`);
+
+    const activeVal = getSearchValue(allParams.isActive);
+    if (activeVal !== null) {
+      where.isActive = activeVal === 'true' || activeVal === true;
+    }
+
+    const data = await this.adminRepository.find({ where });
+
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet('Reporte de Lotes');
 
-    worksheet.columns = [
-      { header: 'Lote', key: 'lote', width: 15 },
-      { header: 'Producto', key: 'producto', width: 30 },
-      { header: 'Existencia', key: 'existencia', width: 15 },
-      { header: 'Alerta', key: 'alerta', width: 15 }
+    const masterColumns = [
+      { header: 'Id', key: 'id', width: 10, alwaysShow: true },
+      { header: 'Email', key: 'email', width: 30 },
+      { header: 'Nombre', key: 'firstName', width: 20 },
+      { header: 'Apellido', key: 'lastName', width: 20 },
+      { header: 'Estado', key: 'isActive', width: 15 }
     ];
 
-    worksheet.addRows(this.data);
+    const dynamicColumns = masterColumns.filter(col => {
+      if (col.alwaysShow) return true;
+      const val = allParams[col.key];
+      return Array.isArray(val) ? val.includes('true') : val === 'true';
+    });
+
+    worksheet.columns = dynamicColumns;
+    worksheet.addRows(data);
     return await workbook.xlsx.writeBuffer();
   }
 
-  generarCsv() {
-    return stringify(this.data, {
-      header: true,
-      columns: ['lote', 'producto', 'existencia', 'alerta']
+  async generarCsv( allParams: any, lang: string){
+    const where: any = {};
+
+    const getSearchValue = (param: any) => {
+      if (Array.isArray(param)) {
+        const val = param.find(v => v !== 'true');
+        return (val !== undefined && val !== '') ? val : null;
+      }
+      return (param !== 'true' && param !== '' && param !== undefined) ? param : null;
+    };
+
+    const emailVal = getSearchValue(allParams.email);
+    if (emailVal) where.email = Like(`%${emailVal}%`);
+
+    const firstNameVal = getSearchValue(allParams.firstName);
+    if (firstNameVal) where.firstName = Like(`%${firstNameVal}%`);
+
+    const lastNameVal = getSearchValue(allParams.lastName);
+    if (lastNameVal) where.lastName = Like(`%${lastNameVal}%`);
+
+    const activeVal = getSearchValue(allParams.isActive);
+    if (activeVal !== null) {
+      where.isActive = activeVal === 'true' || activeVal === true;
+    }
+
+    const data = await this.adminRepository.find({ where });
+
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Reporte');
+
+    const masterColumns = [
+      { header: 'Id', key: 'id', width: 10, alwaysShow: true },
+      { header: 'Email', key: 'email', width: 30 },
+      { header: 'Nombre', key: 'firstName', width: 20 },
+      { header: 'Apellido', key: 'lastName', width: 20 },
+      { header: 'Estado', key: 'isActive', width: 15 }
+    ];
+
+    const dynamicColumns = masterColumns.filter(col => {
+      if (col.alwaysShow) return true;
+      const val = allParams[col.key];
+      return Array.isArray(val) ? val.includes('true') : val === 'true';
+    });
+    
+    worksheet.columns = dynamicColumns;
+    worksheet.addRows(data);
+
+    return await workbook.csv.writeBuffer({
+      formatterOptions: {
+        delimiter: ',',      
+        quote: '"'
+      }
     });
   }
+
 }

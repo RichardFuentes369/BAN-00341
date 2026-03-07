@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, Input, ViewChild, ViewContainerRef } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { Component, ComponentFactoryResolver, EventEmitter, HostListener, Input, Output, ViewChild, ViewContainerRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ListaComponentes } from '@mod/lista-componentes';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-globales-report',
@@ -15,13 +17,27 @@ import { TranslateModule } from '@ngx-translate/core';
 export class ReportComponent {
   @ViewChild('contenedorReport', { read: ViewContainerRef }) contenedorDinamico!: ViewContainerRef;
 
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private resolver: ComponentFactoryResolver,
+    private translate: TranslateService
+  ) {}
+
+  listaDeComponentes = new ListaComponentes();
+
   @Input()
-  icon: string = 'fa fa-file';  
+  icon: string = 'fa fa-file-download';  
+  @Input()
+  componente: string = '';  
 
   isReportVisible: boolean = false;
   clickeado:boolean = false
 
   contador = 0
+
+  @Output()
+  reportItem = new EventEmitter<string>()
 
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -31,33 +47,38 @@ export class ReportComponent {
     // }
   }
 
-  async openFilterMinimize() {
-    // let componente = await this.listaDeComponentes.obtenerComponentePorNombre(this.componente);
-    
-    // if(componente){
-    //   const factory = await this.resolver.resolveComponentFactory(componente.componente);
-    //   this.clickeado = !this.clickeado
-    //   if(this.clickeado == true){
-    //     this.contenedorDinamico.clear()
-    //     this.contenedorDinamico.createComponent(factory);
-    //     this.isFilterVisible = true
-    //   }else{
-    //     this.filtroItem.emit()
-    //     this.isFilterVisible = false
-    //   }
-    // }else{
-    //   const mensaje = this.translate.instant('global-search.CONSOLE_ERROR_NOT_FOUND_COMPONENT')
-    //   console.error(mensaje)
-    // }
-    this.isReportVisible = !this.isReportVisible
-  }  
-
   async openReportMinimize() {
-    this.isReportVisible = !this.isReportVisible
-  }  
+    let componente = await this.listaDeComponentes.obtenerComponentePorNombre(this.componente);
+    
+    if(componente){
+      const factory = await this.resolver.resolveComponentFactory(componente.componente);
+      this.clickeado = !this.clickeado
+      if(this.clickeado == true){
+        this.contenedorDinamico.clear()
+        const componentRef = this.contenedorDinamico.createComponent(factory);
+        this.isReportVisible = true
+      }else{
+        this.isReportVisible = false
+      }
+    }else{
+      const mensaje = this.translate.instant('global-search.CONSOLE_ERROR_NOT_FOUND_COMPONENT')
+      console.error(mensaje)
+    }
+  }
 
   async closeReport(){
+    $('.limpiarR').click()
+    this.clickeado = !this.clickeado
     this.isReportVisible = false
   }
+
+  async clearReport(){
+    $('.limpiarR').click()
+  }
+
+  async generar(formato: 'excel' | 'csv') {
+    (formato == 'excel') ? $('.excel').click() : $('.csv').click()
+    this.reportItem.emit(formato)
+  }  
 
 }
