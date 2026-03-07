@@ -2,6 +2,8 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
+import * as ExcelJS from 'exceljs';
+
 import { In, Like, Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { PaginationDto } from '@global/dto/pagination.dto';
@@ -118,7 +120,6 @@ export class UserService {
   }
 
   // requieren permisos de usuario
-
   async create(
   createUserDto: CreateUserDto,
   lang: string,
@@ -195,5 +196,110 @@ export class UserService {
     userId: number
   ) {
     return this.userRepository.delete({id: In(id)})
+  }
+
+  // reporte pendiente permisos
+  async generarExcel(allParams: any, lang: string) {
+    const where: any = {};
+
+    const getSearchValue = (param: any) => {
+      if (Array.isArray(param)) {
+        const val = param.find(v => v !== 'true');
+        return (val !== undefined && val !== '') ? val : null;
+      }
+      return (param !== 'true' && param !== '' && param !== undefined) ? param : null;
+    };
+
+    const emailVal = getSearchValue(allParams.email);
+    if (emailVal) where.email = Like(`%${emailVal}%`);
+
+    const firstNameVal = getSearchValue(allParams.firstName);
+    if (firstNameVal) where.firstName = Like(`%${firstNameVal}%`);
+
+    const lastNameVal = getSearchValue(allParams.lastName);
+    if (lastNameVal) where.lastName = Like(`%${lastNameVal}%`);
+
+    const activeVal = getSearchValue(allParams.isActive);
+    if (activeVal !== null) {
+      where.isActive = (activeVal == 0) ? 0 : 1;
+    }
+
+    const data = await this.userRepository.find({ where });
+
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Reporte de Lotes');
+
+    const masterColumns = [
+      { header: 'Id', key: 'id', width: 10, alwaysShow: true },
+      { header: 'Email', key: 'email', width: 30 },
+      { header: 'Nombre', key: 'firstName', width: 20 },
+      { header: 'Apellido', key: 'lastName', width: 20 },
+      { header: 'Estado', key: 'isActive', width: 15 }
+    ];
+
+    const dynamicColumns = masterColumns.filter(col => {
+      if (col.alwaysShow) return true;
+      const val = allParams[col.key];
+      return Array.isArray(val) ? val.includes('true') : val === 'true';
+    });
+
+    worksheet.columns = dynamicColumns;
+    worksheet.addRows(data);
+    return await workbook.xlsx.writeBuffer();
+  }
+
+  async generarCsv( allParams: any, lang: string){
+    const where: any = {};
+
+    const getSearchValue = (param: any) => {
+      if (Array.isArray(param)) {
+        const val = param.find(v => v !== 'true');
+        return (val !== undefined && val !== '') ? val : null;
+      }
+      return (param !== 'true' && param !== '' && param !== undefined) ? param : null;
+    };
+
+    const emailVal = getSearchValue(allParams.email);
+    if (emailVal) where.email = Like(`%${emailVal}%`);
+
+    const firstNameVal = getSearchValue(allParams.firstName);
+    if (firstNameVal) where.firstName = Like(`%${firstNameVal}%`);
+
+    const lastNameVal = getSearchValue(allParams.lastName);
+    if (lastNameVal) where.lastName = Like(`%${lastNameVal}%`);
+
+    const activeVal = getSearchValue(allParams.isActive);
+    if (activeVal !== null) {
+      where.isActive = (activeVal == 0) ? 0 : 1;
+    }
+
+    const data = await this.userRepository.find({ where });
+
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Reporte');
+
+    const masterColumns = [
+      { header: 'Id', key: 'id', width: 10, alwaysShow: true },
+      { header: 'Email', key: 'email', width: 30 },
+      { header: 'Nombre', key: 'firstName', width: 20 },
+      { header: 'Apellido', key: 'lastName', width: 20 },
+      { header: 'Estado', key: 'isActive', width: 15 }
+    ];
+
+    const dynamicColumns = masterColumns.filter(col => {
+      if (col.alwaysShow) return true;
+      const val = allParams[col.key];
+      return Array.isArray(val) ? val.includes('true') : val === 'true';
+    });
+    
+    worksheet.columns = dynamicColumns;
+    worksheet.addRows(data);
+
+    return await workbook.csv.writeBuffer({
+      formatterOptions: {
+        delimiter: ',',      
+        quote: '"'
+      }
+    });
   }
 }

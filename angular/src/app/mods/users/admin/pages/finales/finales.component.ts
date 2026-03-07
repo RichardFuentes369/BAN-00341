@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import Swal from 'sweetalert2'
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@guard/service/auth.service';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
@@ -17,6 +17,7 @@ import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PRO
 import { CREAR_USUARIO_COMPONENT, EDITAR_USUARIO_COMPONENT, FILTRO_USUARIO_COMPONENT, REPORT_USUARIO_COMPONENT, STORAGE_KEY_PROFILE_FINAL, VER_USUARIO_COMPONENT } from '@mod/users/const/users.const'
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { CardComponent } from '@component/globales/card/card.component';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-menu-usuarios-finales',
@@ -39,6 +40,7 @@ export class FinalesComponent implements OnInit{
   constructor(
     private router: Router,
     private userService :AuthService,
+    private route: ActivatedRoute,
     private permisosService :PermisosService,
     private finalService :FinalService,
     private translate: TranslateService
@@ -361,6 +363,55 @@ export class FinalesComponent implements OnInit{
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);
+  }
+
+   reportData(formato: string) {
+    const complementoRuta = $(".complementoRuta").val()
+    const querySearch = this.route.snapshot.queryParamMap.get('search');
+
+    const compRuta: string = typeof complementoRuta === 'string' ? complementoRuta : '';
+    const qSearch: string = querySearch ?? '';
+
+    const configParams = new URLSearchParams(compRuta.replace(/^[&?]/, ''));
+    const searchParams = new URLSearchParams(qSearch.replace(/^[&?]/, ''));
+
+    const allKeys = Array.from(new Set([...Array.from(configParams.keys()), ...Array.from(searchParams.keys())]));
+
+    const reporteConfig = allKeys.map(key => {
+      return {
+        field: key,
+        value: searchParams.get(key) || '',
+        show: configParams.get(key) === 'true'
+      };
+    });
+
+    let params = new HttpParams();
+
+    reporteConfig.forEach(item => {
+      if (item.value) {
+        params = params.append(item.field, item.value);
+      }
+      if (item.show) {
+        params = params.append(item.field, 'true');
+      }
+    });
+
+    this.finalService.descargarReporte(formato, params).subscribe({
+      next: (blob: Blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        const extension = formato === 'excel' ? 'xlsx' : 'csv';
+        a.download = `reporte_lotes_${new Date().getTime()}.${extension}`;
+        document.body.appendChild(a); 
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      },
+      error: (err) => {
+        console.error('Error al descargar el reporte', err);
+      }
+    });
   }
 
 }

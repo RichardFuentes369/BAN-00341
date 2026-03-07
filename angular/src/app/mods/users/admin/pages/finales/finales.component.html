@@ -35,6 +35,7 @@
       <app-globales-report
         [icon]="iconReport" 
         [componente]="componenteReport"
+        (reportItem) = "reportData($event)"
       >
       </app-globales-report>
     </div>

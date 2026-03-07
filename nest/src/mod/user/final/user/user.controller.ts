@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query, Res } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 import { ApiTags } from '@nestjs/swagger';
+import { Response } from 'express';
 
 import { FilterUserDto } from '@module/user/dto/filter-user.dto';
 import { UpdateStatusDto } from '@module/user/admin/user/dto/update-status.dto';
@@ -99,5 +100,32 @@ export class UserController {
       lang,
       userId
     );
+  }
+  
+  // reportes
+  @Get('excel')
+  async downloadExcel(
+    @Query('lang') lang:string,
+    @Query() columns: any,
+    @GetUser('id') userId: number,
+    @Res() res: Response
+  ) {
+    const buffer = await this.userService.generarExcel(columns, lang);
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', 'attachment; filename=reporte.xlsx');
+    res.send(buffer);
+  }
+
+  @Get('csv')
+  async downloadCsv(
+    @Query('lang') lang:string,
+    @Query() columns: any,
+    @GetUser('id') userId: number,
+    @Res() res: Response
+  ) {
+    const csv = await this.userService.generarCsv(columns, lang);
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename=reporte.csv');
+    res.status(200).send(csv);
   }
 }

@@ -226,7 +226,7 @@ export class AdminService {
 
     const activeVal = getSearchValue(allParams.isActive);
     if (activeVal !== null) {
-      where.isActive = activeVal === 'true' || activeVal === true;
+      where.isActive = (activeVal == 0) ? 0 : 1;
     }
 
     const data = await this.adminRepository.find({ where });
@@ -275,7 +275,7 @@ export class AdminService {
 
     const activeVal = getSearchValue(allParams.isActive);
     if (activeVal !== null) {
-      where.isActive = activeVal === 'true' || activeVal === true;
+      where.isActive = (activeVal == 0) ? 0 : 1;
     }
 
     const data = await this.adminRepository.find({ where });
