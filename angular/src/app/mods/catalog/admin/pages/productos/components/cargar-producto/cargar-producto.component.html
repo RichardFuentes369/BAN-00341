@@ -1,0 +1,23 @@
+<div class="">
+  <div class="col-sm-12 row p-0">
+    <div class="col-sm-8 my-auto">
+      <input 
+        type="file" 
+        accept=".xlsx" 
+        (change)="onFileChange($event)"
+        class="form-control"
+      >
+      <small class="text-danger" *ngIf="!validators.archivo_valido && fileToUpload">
+        {{ validators.archivo_error_msj }}
+      </small>
+      <button class="btn btn-primary btnAction d-none" (click)="subirArchivo()">
+        Cargar registros
+      </button>
+    </div>
+    <div class="col-sm my-auto p-0">
+      <button class="btn btn-block btn-outline-primary" (click)="descargarPlantilla()">
+        Descargar plantilla
+      </button>
+    </div>
+  </div>
+</div>

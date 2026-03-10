@@ -22,6 +22,7 @@ import { VerTipoMermaComponent } from './merma/admin/pages/tipo/components/ver-t
 import { EditarTipoMermaComponent } from './merma/admin/pages/tipo/components/editar-tipo/editar-tipo.component';
 import { CrearTipoMermaComponent } from './merma/admin/pages/tipo/components/crear-tipo/crear-tipo.component';
 import { ReporteUsuarioComponent } from './users/admin/components/reporte/reporte.component';
+import { CargarProductoComponent } from './catalog/admin/pages/productos/components/cargar-producto/cargar-producto.component';
 
 export class ListaComponentes {
 
@@ -103,6 +104,10 @@ export class ListaComponentes {
       name: 'FiltroProductComponent',
       componente: FiltroProductComponent
     },  
+    {
+      name: 'CargarProductoComponent',
+      componente: CargarProductoComponent
+    },
     {
       name: 'CrearProductoComponent',
       componente: CrearProductoComponent  

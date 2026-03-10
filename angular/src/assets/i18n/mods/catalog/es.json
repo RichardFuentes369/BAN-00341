@@ -76,6 +76,7 @@
   },
 
   "PRODUCT": {
+    "UPLOAD_TITLE": "Cargar productos", 
     "CREATE_TITLE": "Crear producto", 
     "EDIT_TITLE": "Editar producto {{product_name}}", 
     "SEE_TITLE": "Ver producto {{product_name}}", 

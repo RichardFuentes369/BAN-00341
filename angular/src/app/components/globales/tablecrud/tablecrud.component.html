@@ -1,5 +1,10 @@
 <div class="table-container card p-5 shadow">
   <div class="botoneria mb-3">
+    @if(tienePermiso('cargar_excel')){
+      <button class="btn btn-primary btn-sm mx-1" (click)="uploadItem()" [disabled]="idsSeleccionados.length >= 1">
+        {{ 'global-tablecrud.BUTTON_OPTION_UPLOAD' | translate}}
+      </button>
+    }
     @if(tienePermiso('crear')){
       <button class="btn btn-primary btn-sm mx-1" (click)="newItem()" [disabled]="idsSeleccionados.length >= 1">
         {{ 'global-tablecrud.BUTTON_OPTION_CREATE' | translate}}

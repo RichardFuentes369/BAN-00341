@@ -1651,6 +1651,52 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "upload-productos",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "file",
+													"type": "file",
+													"src": "/home/richard/Downloads/productos_nuevos.xlsx"
+												}
+											]
+										},
+										"url": {
+											"raw": "localhost:3000/api/product/cargar-productos?id_category=1",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"product",
+												"cargar-productos"
+											],
+											"query": [
+												{
+													"key": "id_category",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},

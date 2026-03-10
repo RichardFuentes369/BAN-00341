@@ -5,6 +5,9 @@ import { In, Like, Repository } from 'typeorm';
 import { Producto } from './entities/product.entity';
 import { I18nService } from 'nestjs-i18n';
 import { FilterProductrDto } from './dto/filter-product.dto';
+import * as ExcelJS from 'exceljs';
+import { BadRequestException } from '@nestjs/common';
+import { ProductExcel } from './interface/excel-product.interface';
 
 @Injectable()
 export class ProductService {
@@ -127,4 +130,81 @@ export class ProductService {
   async remove(lang: string, ids: number[], userId: number) {
     return this.productRepository.delete({ id: In(ids) });
   }
+
+  async processExcel(buffer: Buffer | Uint8Array, id_category: number) {
+    if (!buffer || buffer.byteLength === 0) {
+      throw new BadRequestException('El archivo está vacío');
+    }
+
+    const workbook = new ExcelJS.Workbook();
+    await workbook.xlsx.load(buffer as any);
+    const worksheet = workbook.getWorksheet(1);
+
+    // 1. Cargar códigos existentes de la BD
+    const existingProducts = await this.productRepository.find({
+      select: ['codigo_barra']
+    });
+    
+    // Usamos un Set para búsquedas instantáneas O(1)
+    const existingCodes = new Set(existingProducts.map(p => p.codigo_barra));
+
+    const productsToSave: any[] = []; 
+    const duplicatesFound: string[] = [];
+    
+    worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
+      if (rowNumber === 1) return; // Saltar encabezado
+
+      // CORRECCIÓN: Extraer el código primero
+      const codigo_barra = row.getCell(1).text?.trim();
+
+      // Validar si viene vacío en el Excel
+      if (!codigo_barra) return;
+
+      // 2. Validar duplicados (en BD o en el mismo archivo)
+      if (existingCodes.has(codigo_barra)) {
+        duplicatesFound.push(codigo_barra);
+        return; 
+      }
+
+      const product = {
+        codigo_barra: codigo_barra,
+        nombre: row.getCell(2).text,
+        stock_minimo: Number(row.getCell(3).value) || 0,
+        unidad_medida: row.getCell(4).text,
+        marca: row.getCell(5).text,
+        id_categoria: id_category
+      };
+
+      if (product.id_categoria && product.codigo_barra) {
+        productsToSave.push(product);
+        // IMPORTANTE: Agregar al Set para que si el código se repite 
+        // más abajo en el Excel, también sea detectado como duplicado.
+        existingCodes.add(codigo_barra); 
+      }
+    });
+
+    // Si no hay nada nuevo, retornamos un mensaje informativo en lugar de un error
+    if (productsToSave.length === 0) {
+      return {
+        success: true,
+        message: 'No se encontraron productos nuevos (todos existen o el archivo está vacío)',
+        duplicatesCount: duplicatesFound.length
+      };
+    }
+
+    try {
+      const result = await this.productRepository.save(productsToSave);
+      
+      return {
+        success: true,
+        message: `${result.length} productos cargados correctamente`,
+        count: result.length,
+        ignored: duplicatesFound.length
+      };
+    } catch (error) {
+      console.error('Error al guardar masivamente:', error);
+      throw new BadRequestException('Error al insertar los productos en la base de datos');
+    }
+  }
+
 }

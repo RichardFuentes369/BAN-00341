@@ -57,7 +57,7 @@ export class FinalesComponent implements OnInit{
   // fin datos envio al filtro
 
   // inicio datos envio report
-  iconReport="fa fa-file"
+  iconReport="fa fa-file-download"
   componenteReport=REPORT_USUARIO_COMPONENT
   // fin datos envio repor
 

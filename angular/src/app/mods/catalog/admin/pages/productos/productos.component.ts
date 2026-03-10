@@ -11,7 +11,7 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { ProductosService } from './service/productos.service';
 import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
-import { CREAR_PRODUCT_COMPONENT, EDITAR_PRODUCT_COMPONENT, FILTRO_PRODUCT_COMPONENT, MOD_CATEGORY_PAGE_CATEGORY, VER_PRODUCT_COMPONENT } from '@mod/catalog/const/catalog.const';
+import { CARGAR_PRODUCT_COMPONENT, CREAR_PRODUCT_COMPONENT, EDITAR_PRODUCT_COMPONENT, FILTRO_PRODUCT_COMPONENT, MOD_CATEGORY_PAGE_CATEGORY, VER_PRODUCT_COMPONENT } from '@mod/catalog/const/catalog.const';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -212,6 +212,26 @@ export class ProductosComponent implements OnInit, OnDestroy{
     }
   }
 
+  cargarData(_id: string){
+    this.translate.get('mod-catalog.PRODUCT.UPLOAD_TITLE').subscribe((res: string) => {this.title = res});
+    this.tamano = "xl"
+    this.scrollable = false
+    this.save = true
+    this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
+    this.edit = false
+    this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
+    this.cierreModal = "true"
+    this.componentePrecargado = CARGAR_PRODUCT_COMPONENT
+
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if(idButton){
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
+  }
+
   async verData (_id: string){
     const response = await this.productosService.getDataProduct(_id)
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
@@ -265,36 +285,36 @@ export class ProductosComponent implements OnInit, OnDestroy{
 
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
-    async eliminarData (_id: string[]){
-      const response = await this.productosService.getDataProduct(_id[0])
-      const { nombre } = response.data || { nombre: 'xxxxxxx' }
-      const name_user = (_id.length === 1) ? nombre: "("+_id.length+")"
-      const count_users = (_id.length === 1) ? 'el' : 'los'
-      const plural = (_id.length === 1) ? '' : 's'
-      
-      this.translate.get('mod-catalog.PRODUCT.SWAL_ARE_YOU_SURE_DELETE',{ "art_the": count_users, "plural": plural, "product_name": name_user}).subscribe((translatedTitle: string) => {
-        Swal.fire({
-          title: translatedTitle,
-          text: this.translate.instant('mod-catalog.SWAL_WARNING_REVERSE_CHANGE'),
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonText: this.translate.instant('mod-catalog.SWAL_BUTTON_DELETE'),
-          cancelButtonText: this.translate.instant('mod-catalog.SWAL_BUTTON_CANCEL')
-        }).then(async (result) => {
+  async eliminarData (_id: string[]){
+    const response = await this.productosService.getDataProduct(_id[0])
+    const { nombre } = response.data || { nombre: 'xxxxxxx' }
+    const name_user = (_id.length === 1) ? nombre: "("+_id.length+")"
+    const count_users = (_id.length === 1) ? 'el' : 'los'
+    const plural = (_id.length === 1) ? '' : 's'
+    
+    this.translate.get('mod-catalog.PRODUCT.SWAL_ARE_YOU_SURE_DELETE',{ "art_the": count_users, "plural": plural, "product_name": name_user}).subscribe((translatedTitle: string) => {
+      Swal.fire({
+        title: translatedTitle,
+        text: this.translate.instant('mod-catalog.SWAL_WARNING_REVERSE_CHANGE'),
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: this.translate.instant('mod-catalog.SWAL_BUTTON_DELETE'),
+        cancelButtonText: this.translate.instant('mod-catalog.SWAL_BUTTON_CANCEL')
+      }).then(async (result) => {
+        if (result.isConfirmed) {
           if (result.isConfirmed) {
-            if (result.isConfirmed) {
-              await this.productosService.deleteProduct(_id)
-              await this.someInput.reload()
-              Swal.fire({
-                title: this.translate.instant('mod-catalog.PRODUCT.SWAL_DELETED'),
-                text: this.translate.instant('mod-catalog.SWAL_DELETED_RECORD'),
-                icon: "success"
-              });
-            }
+            await this.productosService.deleteProduct(_id)
+            await this.someInput.reload()
+            Swal.fire({
+              title: this.translate.instant('mod-catalog.PRODUCT.SWAL_DELETED'),
+              text: this.translate.instant('mod-catalog.SWAL_DELETED_RECORD'),
+              icon: "success"
+            });
           }
-        });
+        }
       });
-    }
+    });
+  }
 
   async filtroData(){
     let filtros = await $('.complementoRuta').val();

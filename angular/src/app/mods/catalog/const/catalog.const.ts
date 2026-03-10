@@ -25,6 +25,7 @@ export const MOD_CATEGORY_PAGE_PRODUCT_ASSIGMENT =  '/admin/mod/catalog/categori
 export const MOD_CATEGORY_PAGE_SUPPLIER =  '/admin/mod/catalog/proveedores/';
 export const MOD_CATEGORY_PAGE_LOTE =  '/admin/mod/catalog/lote/';
 
+export const CARGAR_PRODUCT_COMPONENT = 'CargarProductoComponent';
 export const CREAR_PRODUCT_COMPONENT = 'CrearProductoComponent';
 export const VER_PRODUCT_COMPONENT = 'VerProductoComponent';
 export const EDITAR_PRODUCT_COMPONENT = 'EditarProductoComponent';

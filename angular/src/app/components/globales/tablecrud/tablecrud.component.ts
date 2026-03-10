@@ -171,6 +171,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   // Outputs y métodos Emitters (abreviados para el ejemplo)
+  @Output() cargarItem = new EventEmitter<string>();
   @Output() verItem = new EventEmitter<string>();
   @Output() crearNuevoItem = new EventEmitter<string>();
   @Output() editarItem = new EventEmitter<string>();
@@ -178,6 +179,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output() activarItem = new EventEmitter<string[]>();
   @Output() asignar = new EventEmitter<{ id: string, ctrlKey: boolean }>();
 
+  uploadItem() { if (this.idsSeleccionados.length === 0) this.cargarItem.emit(); }
   newItem() { if (this.idsSeleccionados.length === 0) this.crearNuevoItem.emit(); }
   seeItem() { if (this.idsSeleccionados.length === 1) this.verItem.emit(this.idsSeleccionados[0]); }
   editItem() { if (this.idsSeleccionados.length === 1) this.editarItem.emit(this.idsSeleccionados[0]); }
