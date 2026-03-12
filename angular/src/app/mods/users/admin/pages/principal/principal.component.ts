@@ -33,18 +33,6 @@ import { HttpParams } from '@angular/common/http';
     ModalBoostrapComponent,
     CardComponent,
   ],
-  animations: [
-    trigger('fadeSlide', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(-12px)' }),
-        animate('250ms cubic-bezier(0.34, 1.56, 0.64, 1)', 
-          style({ opacity: 1, transform: 'translateY(0)' }))
-      ]),
-      transition(':leave', [
-        animate('150ms ease-in', style({ opacity: 0, transform: 'translateY(-12px)' }))
-      ])
-    ])
-  ],
   templateUrl: './principal.component.html',
   styleUrl: './principal.component.scss'
 })

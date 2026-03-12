@@ -106,13 +106,9 @@ export class FinalesComponent implements OnInit{
   // fin datos que envio al componente tabla
 
   // inicio datos envio card information
-  img_user_actived = "assets/images/img_actived.png"
-  img_user_inactived = "assets/images/img_inactived.png"
   titelInformationCard = this.translate.instant('mod-users.CARD_ADMIN_TITLE')
   contentInformation = "32"
   // fin datos envio card information
-
-  cargarIdioma = true;
 
   // inicio datos envio al modal
   tamano = ""
@@ -129,11 +125,31 @@ export class FinalesComponent implements OnInit{
   // fin datos envio al modal
 
   // inicio datos envio card information
+  img_user_actived = "assets/images/img_actived.png"
+  img_user_with_permission = "assets/images/img_permission.png"
+  img_user_inactived = "assets/images/img_inactived.png"
   titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
+  titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
+  titleTotalActivedUsers = this.translate.instant('mod-users.CARD_TOTAL_ACTIVED_USERS')
   titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
   contentTotalUsers = "32"
   contentTotalPermission = "420"
   // fin datos envio card information
+
+  cargarIdioma = true;
+  mostrarCards = false;
+  isAnimationDone = false;
+
+  toggleCards() {
+    this.mostrarCards = !this.mostrarCards;
+    if (!this.mostrarCards) {
+      setTimeout(() => {
+        this.isAnimationDone = true;
+      }, 250);
+    } else {
+      this.isAnimationDone = false;
+    }
+  }
 
   // metodos Init, Destroy
   async ngOnInit() {
