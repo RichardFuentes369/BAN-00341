@@ -1,22 +1,58 @@
 ::ng-deep {
-  :root {
-    --card-border-style: 5px solid #007bff;
+  .card-custom {
+    border-radius: 12px;
+    border: none;
+    background-color: #fff;
+    overflow: hidden;
   }
 
-  [data-theme='dark'] {
-    --card-border-style: 5px solid #4f5050;
-  }
-  
-  .cardcomponent {
-    border-top: 0 !important;
-    border-right: 0 !important;
-    border-bottom: 0 !important;
-    border-left: var(--card-border-style) !important;
+  .card-body-custom {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
 
-  .card {
-    flex: 1;
+  .logo-container {
+    flex: 0 0 60px; 
+    display: flex;
+    justify-content: center;
+  }
+
+  .img-logo {
+    width: 100%;
+    max-width: 50px;
+    height: auto;
+  }
+
+  .divider {
+    width: 1.5px;
+    height: 50px;
+    background-color: #e9ecef;
+    flex-shrink: 0; 
+  }
+
+  .text-container {
+    flex: 1; 
+    min-width: 0;
     display: flex;
     flex-direction: column;
+  }
+
+  .title-text {
+    font-weight: 700;
+    color: #343a40;
+    line-height: 1.2;
+    font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+    
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal; 
+  }
+
+  .content-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-weight: 500;
   }
 }

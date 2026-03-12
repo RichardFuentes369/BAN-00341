@@ -1,5 +1,6 @@
 import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthService } from '@guard/service/auth.service';
@@ -31,6 +32,18 @@ import { HttpParams } from '@angular/common/http';
     TablecrudComponent,
     ModalBoostrapComponent,
     CardComponent,
+  ],
+  animations: [
+    trigger('fadeSlide', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(-12px)' }),
+        animate('250ms cubic-bezier(0.34, 1.56, 0.64, 1)', 
+          style({ opacity: 1, transform: 'translateY(0)' }))
+      ]),
+      transition(':leave', [
+        animate('150ms ease-in', style({ opacity: 0, transform: 'translateY(-12px)' }))
+      ])
+    ])
   ],
   templateUrl: './principal.component.html',
   styleUrl: './principal.component.scss'
@@ -118,15 +131,31 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   // fin datos envio al modal
 
   // inicio datos envio card information
-  img = "assets/images/img_admin.png"
+  img_user_actived = "assets/images/img_actived.png"
+  img_user_with_permission = "assets/images/img_permission.png"
+  img_user_inactived = "assets/images/img_inactived.png"
   titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
   titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
+  titleTotalActivedUsers = this.translate.instant('mod-users.CARD_TOTAL_ACTIVED_USERS')
   titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
   contentTotalUsers = "32"
   contentTotalPermission = "420"
   // fin datos envio card information
 
   cargarIdioma = true;
+  mostrarCards = false;
+  isAnimationDone = false;
+
+  toggleCards() {
+    this.mostrarCards = !this.mostrarCards;
+    if (!this.mostrarCards) {
+      setTimeout(() => {
+        this.isAnimationDone = true;
+      }, 250);
+    } else {
+      this.isAnimationDone = false;
+    }
+  }
 
   // metodos Init, Destroy
   async ngOnInit() {
@@ -160,9 +189,9 @@ export class PrincipalComponent implements OnInit, OnDestroy{
 
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarIdioma = false;
-      timer(200).subscribe(() => {
+      timer(50).subscribe(() => {
         this.listar(); 
-        this.actualizarContadores()
+        this.actualizarContadores();
         this.cambiarTextos(); 
         this.cargarIdioma = true;
       });
@@ -216,6 +245,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   cambiarTextos(){
     this.titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
     this.titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
+    this.titleTotalActivedUsers = this.translate.instant('mod-users.CARD_TOTAL_ACTIVED_USERS')
     this.titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
   }
 

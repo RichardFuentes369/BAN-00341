@@ -48,6 +48,12 @@ table {
   width: 100%;
 }
 
+.card-custom {
+  border-radius: 12px;
+  border: none;
+  min-height: 100px;
+}
+
 .botoneria {
   display: flex;
   justify-content: flex-end;

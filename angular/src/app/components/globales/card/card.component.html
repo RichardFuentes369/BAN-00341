@@ -1,15 +1,20 @@
-<div class="card my-2 shadow cardcomponent">
-  <div class="card-body">
-    <div class="row my-auto mx-auto">
-      <div class="col-sm-4">
-        <img [src]="img" width="80px">
+<div class="card my-2 shadow card-custom">
+  <div class="card-body card-body-custom d-flex align-items-center">
+    
+    <div class="logo-container">
+      <img [src]="img" class="img-logo">
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="text-container">
+      <div class="title-text">
+        {{title}}
       </div>
-      <div class="col-sm-8">
-        <div class="title">
-          {{title}}
-        </div>
+      <div class="content-text">
         ({{content}})
       </div>
     </div>
+
   </div>
 </div>
