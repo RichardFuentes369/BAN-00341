@@ -103,6 +103,14 @@ export class AdminController {
     );
   }
 
+  // contadores
+  @Get('obtener-contadores-usuarios-administradores')
+  async contadores(
+    @Query('lang') lang:string,
+  ) {
+    return this.adminService.contadoresUsuarios(lang);
+  }
+
   // reportes
   @Get('excel')
   async downloadExcel(

@@ -132,8 +132,9 @@ export class FinalesComponent implements OnInit{
   titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
   titleTotalActivedUsers = this.translate.instant('mod-users.CARD_TOTAL_ACTIVED_USERS')
   titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
-  contentTotalUsers = "32"
-  contentTotalPermission = "420"
+  contentTotalUsers = '0'
+  contentTotalUsersActived = '0'
+  contentTotalUsersSuspend = '0'
   // fin datos envio card information
 
   cargarIdioma = true;
@@ -147,6 +148,7 @@ export class FinalesComponent implements OnInit{
         this.isAnimationDone = true;
       }, 250);
     } else {
+      this.actualizarContadores()
       this.isAnimationDone = false;
     }
   }
@@ -175,6 +177,7 @@ export class FinalesComponent implements OnInit{
 
       timer(200).subscribe(() => {
         this.listar(); 
+        this.actualizarContadores();
         this.cambiarTextos(); 
         this.cargarIdioma = true;
       });
@@ -382,7 +385,14 @@ export class FinalesComponent implements OnInit{
     }, 100);
   }
 
-   reportData(formato: string) {
+  async actualizarContadores (){
+    const data = await this.finalService.obtenerTotale()
+    this.contentTotalUsers = data.data.contentTotalUsers
+    this.contentTotalUsersActived = data.data.contentTotalUsersActived
+    this.contentTotalUsersSuspend = data.data.contentTotalUsersSuspend
+  }
+
+  reportData(formato: string) {
     const complementoRuta = $(".complementoRuta").val()
     const querySearch = this.route.snapshot.queryParamMap.get('search');
 

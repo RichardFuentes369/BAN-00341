@@ -9,12 +9,15 @@ import { In, Like, Repository } from 'typeorm';
 import { Admin } from './entities/admin.entity';
 import { FilterUserDto } from '@module/user/dto/filter-user.dto';
 import { I18nService } from 'nestjs-i18n';
+import { Asignacion } from '../permission/asignacion/entities/asignacion.entity';
+import { AsignacionService } from '../permission/asignacion/asignacion.service';
 
 @Injectable()
 export class AdminService {
   constructor(
     @Inject('ADMIN_REPOSITORY')
     private adminRepository: Repository<Admin>,
+    private readonly asignacionService: AsignacionService,
     private i18n: I18nService
   ) {}
 
@@ -122,7 +125,6 @@ export class AdminService {
   }
 
   // requieren permisos de usuario
-
   async create(
     lang: string,
     createAdminDto: CreateAdminDto,
@@ -201,6 +203,24 @@ export class AdminService {
     userId: number
   ) {
     return this.adminRepository.delete({id: In(id)})
+  }
+
+  async contadoresUsuarios(
+    lang: string
+  ){
+    const cont1 =  await this.adminRepository.count()
+    const cont2 = await this.adminRepository.count({ where: { isActive: true } })
+    const cont3 = await this.adminRepository.count({ where: { isActive: false } })
+    const cont4 = await this.asignacionService.prueba()
+    
+    const data = {
+      "contentTotalUsers": cont1,
+      "contentTotalUsersActived": cont2,
+      "contentTotalUsersSuspend": cont3,
+      "contentTotalPermission": cont4,
+    }
+
+    return data
   }
 
   // reporte pendiente permisos

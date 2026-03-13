@@ -198,6 +198,22 @@ export class UserService {
     return this.userRepository.delete({id: In(id)})
   }
 
+  async contadoresUsuarios(
+    lang: string
+  ){
+    const cont1 =  await this.userRepository.count()
+    const cont2 = await this.userRepository.count({ where: { isActive: true } })
+    const cont3 = await this.userRepository.count({ where: { isActive: false } })
+    
+    const data = {
+      "contentTotalUsers": cont1,
+      "contentTotalUsersActived": cont2,
+      "contentTotalUsersSuspend": cont3
+    }
+
+    return data
+  }
+
   // reporte pendiente permisos
   async generarExcel(allParams: any, lang: string) {
     const where: any = {};

@@ -27,15 +27,14 @@
 }
 
 
-/* Contenedor principal para evitar saltos */
 .row-container-collapse {
-  overflow: hidden; /* Vital para que el espacio desaparezca */
-  transition: max-height 0.3s cubic-bezier(0, 1, 0, 1); /* Transición de altura */
+  overflow: hidden; 
+  transition: max-height 0.3s cubic-bezier(0, 1, 0, 1); 
 }
 
 .animate__fadeIn {
   animation: fastIn 0.25s ease-out forwards;
-  max-height: 500px; /* Un valor mayor al alto real de tus cards */
+  max-height: 500px; 
   margin-top: 1rem;
   opacity: 1;
 }

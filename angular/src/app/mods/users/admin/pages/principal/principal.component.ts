@@ -122,12 +122,16 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   img_user_actived = "assets/images/img_actived.png"
   img_user_with_permission = "assets/images/img_permission.png"
   img_user_inactived = "assets/images/img_inactived.png"
+
   titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
   titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
   titleTotalActivedUsers = this.translate.instant('mod-users.CARD_TOTAL_ACTIVED_USERS')
   titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
-  contentTotalUsers = "32"
-  contentTotalPermission = "420"
+  contentTotalUsers = '0'
+  contentTotalUsersActived = '0'
+  contentTotalUsersSuspend = '0'
+  contentTotalPermission = '0'
+
   // fin datos envio card information
 
   cargarIdioma = true;
@@ -141,6 +145,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
         this.isAnimationDone = true;
       }, 250);
     } else {
+      this.actualizarContadores()
       this.isAnimationDone = false;
     }
   }
@@ -163,8 +168,6 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     sessionStorage.removeItem('firstName')
     sessionStorage.removeItem('lastName')
     sessionStorage.removeItem('isActive')
-
-    this.actualizarContadores()
 
     this.route.queryParams.subscribe(params => {
       const valorSearch = params['search'];
@@ -399,8 +402,12 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     }, 100);
   }
 
-  actualizarContadores (){
-    console.log('actualizando contadores')
+  async actualizarContadores (){
+    const data = await this.principalService.obtenerTotale()
+    this.contentTotalUsers = data.data.contentTotalUsers
+    this.contentTotalUsersActived = data.data.contentTotalUsersActived
+    this.contentTotalUsersSuspend = data.data.contentTotalUsersSuspend
+    this.contentTotalPermission = data.data.contentTotalPermission
   }
 
   reportData(formato: string) {

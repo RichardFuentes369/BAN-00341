@@ -101,6 +101,14 @@ export class UserController {
       userId
     );
   }
+
+  // contadores
+  @Get('obtener-contadores-usuarios-administradores')
+  async contadores(
+    @Query('lang') lang:string,
+  ) {
+    return this.userService.contadoresUsuarios(lang);
+  }
   
   // reportes
   @Get('excel')

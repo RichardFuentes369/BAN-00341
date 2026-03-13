@@ -43,6 +43,10 @@ export class AsignacionService {
 
   }
 
+  async prueba() {
+    return await this.moduloRepository.count();
+  }
+
   async findAll(
     lang: string, 
     userId: number, 
@@ -139,7 +143,6 @@ export class AsignacionService {
   }
 
   // requieren permisos de usuario
-
   async updateAsignacion(
     lang: string,
     idPermiso: number, 
