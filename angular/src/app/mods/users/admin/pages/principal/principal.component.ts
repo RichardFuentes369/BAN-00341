@@ -135,7 +135,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   // fin datos envio card information
 
   cargarIdioma = true;
-  mostrarCards = false;
+  mostrarCards = true;
   isAnimationDone = false;
 
   toggleCards() {

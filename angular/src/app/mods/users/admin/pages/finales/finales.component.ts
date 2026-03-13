@@ -138,7 +138,7 @@ export class FinalesComponent implements OnInit{
   // fin datos envio card information
 
   cargarIdioma = true;
-  mostrarCards = false;
+  mostrarCards = true;
   isAnimationDone = false;
 
   toggleCards() {

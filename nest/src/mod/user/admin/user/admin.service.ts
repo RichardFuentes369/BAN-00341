@@ -255,7 +255,7 @@ export class AdminService {
     const worksheet = workbook.addWorksheet('Reporte de Lotes');
 
     const masterColumns = [
-      { header: 'Id', key: 'id', width: 10, alwaysShow: true },
+      { header: 'Id', key: 'id', width: 10 },
       { header: 'Email', key: 'email', width: 30 },
       { header: 'Nombre', key: 'firstName', width: 20 },
       { header: 'Apellido', key: 'lastName', width: 20 },
@@ -263,7 +263,6 @@ export class AdminService {
     ];
 
     const dynamicColumns = masterColumns.filter(col => {
-      if (col.alwaysShow) return true;
       const val = allParams[col.key];
       return Array.isArray(val) ? val.includes('true') : val === 'true';
     });
@@ -304,7 +303,7 @@ export class AdminService {
     const worksheet = workbook.addWorksheet('Reporte');
 
     const masterColumns = [
-      { header: 'Id', key: 'id', width: 10, alwaysShow: true },
+      { header: 'Id', key: 'id', width: 10 },
       { header: 'Email', key: 'email', width: 30 },
       { header: 'Nombre', key: 'firstName', width: 20 },
       { header: 'Apellido', key: 'lastName', width: 20 },
@@ -312,7 +311,6 @@ export class AdminService {
     ];
 
     const dynamicColumns = masterColumns.filter(col => {
-      if (col.alwaysShow) return true;
       const val = allParams[col.key];
       return Array.isArray(val) ? val.includes('true') : val === 'true';
     });
