@@ -32,6 +32,7 @@ export function createTranslateLoader(http: HttpClient) {
       { baseTranslateUrl, moduleName: 'components/globales/idioma', namespace: 'global-idioma' },
       { baseTranslateUrl, moduleName: 'components/globales/loading', namespace: 'global-loading' },
       { baseTranslateUrl, moduleName: 'components/globales/login', namespace: 'global-login' },
+      { baseTranslateUrl, moduleName: 'components/globales/card', namespace: 'global-card' },
       { baseTranslateUrl, moduleName: 'components/globales/search', namespace: 'global-search' },
       { baseTranslateUrl, moduleName: 'components/globales/report', namespace: 'global-report' },
       { baseTranslateUrl, moduleName: 'components/globales/modal', namespace: 'global-modal' },

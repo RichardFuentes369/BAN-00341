@@ -1,10 +1,12 @@
 <div class="floating-group">
-  <span class="floating-number-filter text-center" (click)="openFilterMinimize()" [title]="contador">
-    {{ contador }}
+  <span class="custom-tooltip tooltip-left" [attr.data-title]="'global-search.TITTLE_COMPONENT' | translate">
+    <span class="floating-number-filter text-center" (click)="openFilterMinimize()">
+      {{ contador }}
+    </span>
+    <button class="floating-button btn btn-sm btn-primary" (click)="openFilterMinimize()">
+      <i [ngClass]="icon"></i>
+    </button>
   </span>
-  <button class="floating-button btn btn-sm btn-primary" (click)="openFilterMinimize()">
-    <i [ngClass]="icon"></i>
-  </button>
 </div>
 
 <div class="animated-card" [class.is-visible]="isFilterVisible">

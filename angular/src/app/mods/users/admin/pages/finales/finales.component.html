@@ -4,11 +4,13 @@
   </h1>
   
   <div class="container-fluid px-3">
-    <div class="mb-2 d-flex justify-content-between align-items-center">
-      <span class="btn btn-link btn-sm text-decoration-none text-muted" (click)="toggleCards()">
-        <i [class]="mostrarCards ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
-      </span>
-    </div>
+    <span class="custom-tooltip tooltip-right my-auto" [attr.data-title]="mostrarCards ? ('global-card.WORD_HIDE' | translate) : ('global-card.WORD_SHOW' | translate)">
+      <div class="mb-2 d-flex justify-content-between align-items-center">
+        <span class="btn btn-link btn-sm text-decoration-none text-muted" (click)="toggleCards()">
+          <i [class]="mostrarCards ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+        </span>
+      </div>
+    </span>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 mt-2"
         [class.animate__fadeIn]="mostrarCards"

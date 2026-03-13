@@ -59,3 +59,99 @@
     background-color: #a19f9f !important;
   } 
 }
+
+
+/* --- LÓGICA BASE COMÚN --- */
+.custom-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-tooltip::before,
+.custom-tooltip::after {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  position: absolute;
+  background-color: #2d3436;
+}
+
+/* La flecha siempre es un pseudo-elemento de borde */
+.custom-tooltip::before {
+  content: "";
+  background-color: transparent; /* Reseteo para flecha */
+  border-style: solid;
+  z-index: 1001;
+}
+
+.custom-tooltip::after {
+  content: attr(data-title);
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+/* --- CLASE: ABAJO (Bottom) --- */
+.tooltip-bottom::before {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-color: transparent transparent #2d3436 transparent;
+}
+
+.tooltip-bottom::after {
+  top: calc(100% + 14px); /* Pegado a la flecha */
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+.tooltip-bottom:hover::after { transform: translateX(-50%) translateY(0); }
+
+/* --- CLASE: IZQUIERDA (Left) --- */
+.tooltip-left::before {
+  top: 50%;
+  right: 100%; /* Pegado al borde izquierdo del botón */
+  transform: translateY(-50%);
+  border-width: 8px;
+  border-color: transparent transparent transparent #2d3436; /* Apunta a la derecha */
+}
+
+.tooltip-left::after {
+  top: 50%;
+  right: calc(100% + 14px); /* Espacio para la flecha */
+  transform: translateY(-50%) translateX(5px);
+}
+
+.tooltip-left:hover::after { transform: translateY(-50%) translateX(0); }
+
+/* --- CLASE: DERECHA (Right) --- */
+.tooltip-right::before {
+  top: 50%;
+  left: 100%; /* Pegado al borde derecho del botón */
+  transform: translateY(-50%);
+  border-width: 8px;
+  border-color: transparent #2d3436 transparent transparent; /* Apunta a la izquierda */
+}
+
+.tooltip-right::after {
+  top: 50%;
+  left: calc(100% + 14px); /* Espacio para la flecha a la derecha */
+  transform: translateY(-50%) translateX(-5px); /* Inicia 5px más a la izquierda para el efecto */
+}
+
+.tooltip-right:hover::after { 
+  transform: translateY(-50%) translateX(0); 
+}
+
+/* --- HOVER GLOBAL --- */
+.custom-tooltip:hover::before,
+.custom-tooltip:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
