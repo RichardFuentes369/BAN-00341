@@ -132,9 +132,9 @@ export class FinalesComponent implements OnInit{
   titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
   titleTotalActivedUsers = this.translate.instant('mod-users.CARD_TOTAL_ACTIVED_USERS')
   titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
-  contentTotalUsers = '0'
-  contentTotalUsersActived = '0'
-  contentTotalUsersSuspend = '0'
+  count_total_users = '0'
+  count_actived_users = '0'
+  count_suspend_users = '0'
   // fin datos envio card information
 
   cargarIdioma = true;
@@ -144,9 +144,7 @@ export class FinalesComponent implements OnInit{
   toggleCards() {
     this.mostrarCards = !this.mostrarCards;
     if (!this.mostrarCards) {
-      setTimeout(() => {
-        this.isAnimationDone = true;
-      }, 250);
+      this.isAnimationDone = true;
     } else {
       this.actualizarContadores()
       this.isAnimationDone = false;
@@ -171,6 +169,8 @@ export class FinalesComponent implements OnInit{
     sessionStorage.removeItem('firstName')
     sessionStorage.removeItem('lastName')
     sessionStorage.removeItem('isActive')
+
+    await this.actualizarContadores()
 
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarIdioma = false;
@@ -387,9 +387,9 @@ export class FinalesComponent implements OnInit{
 
   async actualizarContadores (){
     const data = await this.finalService.obtenerTotale()
-    this.contentTotalUsers = data.data.contentTotalUsers
-    this.contentTotalUsersActived = data.data.contentTotalUsersActived
-    this.contentTotalUsersSuspend = data.data.contentTotalUsersSuspend
+    this.count_total_users = data.data.count_total_users
+    this.count_actived_users = data.data.count_actived_users
+    this.count_suspend_users = data.data.count_suspend_users
   }
 
   reportData(formato: string) {

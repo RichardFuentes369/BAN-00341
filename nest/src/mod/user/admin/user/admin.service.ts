@@ -214,10 +214,10 @@ export class AdminService {
     const cont4 = await this.asignacionService.prueba()
     
     const data = {
-      "contentTotalUsers": cont1,
-      "contentTotalUsersActived": cont2,
-      "contentTotalUsersSuspend": cont3,
-      "contentTotalPermission": cont4,
+      "count_total_users": cont1,
+      "count_actived_users": cont2,
+      "count_suspend_users": cont3,
+      "count_permissions_assigment": cont4,
     }
 
     return data
