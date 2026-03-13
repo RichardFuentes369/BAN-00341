@@ -1,4 +1,8 @@
 {
   "TITTLE_COMPONENT": "Reportes",
-  "TITLE_SELECT_OPTION": "Seleccione las columnas <br> que desea mostrar en el reporte."
+  "TITLE_SELECT_OPTION": "Seleccione las columnas <br> que desea mostrar en el reporte.",
+
+  "BUTTON_CLEAN": "Limpiar",
+  "BUTTON_EXCEL_EXPOT": "Excel",
+  "BUTTON_CSV_EXPORT": "Csv"
 }

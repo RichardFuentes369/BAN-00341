@@ -96,6 +96,25 @@
   z-index: 1000;
 }
 
+/* --- CLASE: Arriba (Top) --- */
+.tooltip-top::before {
+  bottom: 100%; /* Se apoya sobre el borde superior del botón */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-color: #2d3436 transparent transparent transparent; /* Apunta hacia abajo */
+}
+
+.tooltip-top::after {
+  bottom: calc(100% + 14px); /* Espacio para la flecha arriba del botón */
+  left: 50%;
+  transform: translateX(-50%) translateY(5px); /* Inicia 5px abajo para el efecto de subida */
+}
+
+.tooltip-top:hover::after { 
+  transform: translateX(-50%) translateY(0); 
+}
+
 /* --- CLASE: ABAJO (Bottom) --- */
 .tooltip-bottom::before {
   top: 100%;
