@@ -73,22 +73,15 @@
   visibility: hidden;
   transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
   position: absolute;
-  background-color: #2d3436;
-}
-
-/* La flecha siempre es un pseudo-elemento de borde */
-.custom-tooltip::before {
-  content: "";
-  background-color: transparent; /* Reseteo para flecha */
-  border-style: solid;
-  z-index: 1001;
+  pointer-events: none;
 }
 
 .custom-tooltip::after {
   content: attr(data-title);
+  background-color: var(--tooltip-bg, #2d3436);
   color: #ffffff;
-  padding: 4px 8px;
-  border-radius: 5px;
+  padding: 5px 10px;
+  border-radius: 6px;
   font-size: 12px;
   font-weight: 500;
   white-space: nowrap;
@@ -96,76 +89,10 @@
   z-index: 1000;
 }
 
-/* --- CLASE: Arriba (Top) --- */
-.tooltip-top::before {
-  bottom: 100%; /* Se apoya sobre el borde superior del botón */
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 8px;
-  border-color: #2d3436 transparent transparent transparent; /* Apunta hacia abajo */
-}
-
-.tooltip-top::after {
-  bottom: calc(100% + 14px); /* Espacio para la flecha arriba del botón */
-  left: 50%;
-  transform: translateX(-50%) translateY(5px); /* Inicia 5px abajo para el efecto de subida */
-}
-
-.tooltip-top:hover::after { 
-  transform: translateX(-50%) translateY(0); 
-}
-
-/* --- CLASE: ABAJO (Bottom) --- */
-.tooltip-bottom::before {
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 8px;
-  border-color: transparent transparent #2d3436 transparent;
-}
-
-.tooltip-bottom::after {
-  top: calc(100% + 14px); /* Pegado a la flecha */
-  left: 50%;
-  transform: translateX(-50%) translateY(-5px);
-}
-
-.tooltip-bottom:hover::after { transform: translateX(-50%) translateY(0); }
-
-/* --- CLASE: IZQUIERDA (Left) --- */
-.tooltip-left::before {
-  top: 50%;
-  right: 100%; /* Pegado al borde izquierdo del botón */
-  transform: translateY(-50%);
-  border-width: 8px;
-  border-color: transparent transparent transparent #2d3436; /* Apunta a la derecha */
-}
-
-.tooltip-left::after {
-  top: 50%;
-  right: calc(100% + 14px); /* Espacio para la flecha */
-  transform: translateY(-50%) translateX(5px);
-}
-
-.tooltip-left:hover::after { transform: translateY(-50%) translateX(0); }
-
-/* --- CLASE: DERECHA (Right) --- */
-.tooltip-right::before {
-  top: 50%;
-  left: 100%; /* Pegado al borde derecho del botón */
-  transform: translateY(-50%);
-  border-width: 8px;
-  border-color: transparent #2d3436 transparent transparent; /* Apunta a la izquierda */
-}
-
-.tooltip-right::after {
-  top: 50%;
-  left: calc(100% + 14px); /* Espacio para la flecha a la derecha */
-  transform: translateY(-50%) translateX(-5px); /* Inicia 5px más a la izquierda para el efecto */
-}
-
-.tooltip-right:hover::after { 
-  transform: translateY(-50%) translateX(0); 
+.custom-tooltip::before {
+  content: "";
+  z-index: 1001;
+  border-style: solid;
 }
 
 /* --- HOVER GLOBAL --- */
@@ -173,4 +100,78 @@
 .custom-tooltip:hover::after {
   opacity: 1;
   visibility: visible;
+}
+
+/* --- DIRECCIONES --- */
+
+/* ARRIBA (Top) */
+.tooltip-top::before {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(5px);
+  border-width: 6px 6px 0 6px;
+  border-color: var(--tooltip-bg, #2d3436) transparent transparent transparent;
+}
+.tooltip-top::after {
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(5px);
+}
+.tooltip-top:hover::before,
+.tooltip-top:hover::after {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ABAJO (Bottom) */
+.tooltip-bottom::before {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  border-width: 0 6px 6px 6px;
+  border-color: transparent transparent var(--tooltip-bg, #2d3436) transparent;
+}
+.tooltip-bottom::after {
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+}
+.tooltip-bottom:hover::before,
+.tooltip-bottom:hover::after {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* IZQUIERDA (Left) */
+.tooltip-left::before {
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%) translateX(5px);
+  border-width: 6px 0 6px 6px;
+  border-color: transparent transparent transparent var(--tooltip-bg, #2d3436);
+}
+.tooltip-left::after {
+  top: 50%;
+  right: calc(100% + 6px);
+  transform: translateY(-50%) translateX(5px);
+}
+.tooltip-left:hover::before,
+.tooltip-left:hover::after {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* DERECHA (Right) */
+.tooltip-right::before {
+  top: 50%;
+  left: 101%;
+  transform: translateY(-50%) translateX(-5px);
+  border-width: 6px 6px 6px 0;
+  border-color: transparent var(--tooltip-bg, #2d3436) transparent transparent;
+}
+.tooltip-right::after {
+  top: 50%;
+  left: calc(100% + 6px);
+  transform: translateY(-50%) translateX(-5px);
+}
+.tooltip-right:hover::before,
+.tooltip-right:hover::after {
+  transform: translateY(-50%) translateX(0);
 }

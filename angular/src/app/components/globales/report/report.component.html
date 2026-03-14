@@ -21,8 +21,8 @@
     </div>
     <div #contenedorReport></div>
     <div class="card shadow-sm">
-      <div class="card-body d-flex justify-content-center align-items-center py-2">
-        <span class="custom-tooltip tooltip-top" [attr.data-title]="'global-report.BUTTON_CLEAN' | translate">
+      <div class="d-flex justify-content-center align-items-center py-2">
+        <span class="custom-tooltip tooltip-left" [attr.data-title]="'global-report.BUTTON_CLEAN' | translate">
           <button class="btn btn-sm btn-secondary rounded-circle mx-1" (click)="clearReport()">
             <i class="fa fa-eraser" aria-hidden="true"></i>
           </button>
@@ -34,7 +34,7 @@
           </button>
         </span>
         
-        <span class="custom-tooltip tooltip-top" [attr.data-title]="'global-report.BUTTON_CSV_EXPORT' | translate">
+        <span class="custom-tooltip tooltip-right" [attr.data-title]="'global-report.BUTTON_CSV_EXPORT' | translate">
           <button class="btn btn-sm btn-success rounded-circle mx-1" (click)="generar('csv')">
             <i class="fas fa-file-csv"></i>
           </button>

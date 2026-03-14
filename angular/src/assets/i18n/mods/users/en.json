@@ -64,8 +64,8 @@
 
   "BUTTON_USER_CREATE": "Create user",
   "BUTTON_USER_EDIT": "Edit user",
-  "BUTTON_ADMIN": "Administrator users",
-  "BUTTON_FINAL": "End users",
+  "BUTTON_ADMIN": "Admins",
+  "BUTTON_FINAL": "Ends",
   "BUTTON_SAVE_": "Save",
   "BUTTON_UPDATE_": "Update",
   "BUTTON_CANCEL": "Cancel",
