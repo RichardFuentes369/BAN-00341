@@ -1,35 +1,35 @@
 <div class="table-container card shadow card-custom pt-0 px-4">
   <div class="botoneria">
     @if(tienePermiso('cargar_excel')){
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_UPLOAD' | translate">
+      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-tablecrud.BUTTON_OPTION_UPLOAD' | translate">
         <button class="btn btn-link btn-sm mx-1 p-0 text-primary border-0" (click)="uploadItem()" [disabled]="idsSeleccionados.length >= 1">
           <i class="fa fa-upload"></i>
         </button>
       </span>
     }
     @if(tienePermiso('crear')){
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_CREATE' | translate">
+      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-tablecrud.BUTTON_OPTION_CREATE' | translate">
         <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="newItem()" [disabled]="idsSeleccionados.length >= 1">
           <i class="fa fa-plus-circle text-primary" [style.opacity]="idsSeleccionados.length >= 1 ? '0.5' : '1'" style="font-size: 1.2rem;"></i>
         </button>
       </span>
     }
     @if(tienePermiso('ver')){
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_SEE' | translate">
+      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-tablecrud.BUTTON_OPTION_SEE' | translate">
         <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="seeItem()" [disabled]="idsSeleccionados.length != 1">
           <i class="fa fa-eye" [class.text-primary]="idsSeleccionados.length === 1" [class.text-muted]="idsSeleccionados.length != 1" style="font-size: 1.15rem;"></i>
         </button>
       </span>
     }
     @if(tienePermiso('editar')){
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_EDIT' | translate">
+      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-tablecrud.BUTTON_OPTION_EDIT' | translate">
         <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="editItem()" [disabled]="idsSeleccionados.length != 1">
           <i class="fa fa-pencil-square" [class.text-success]="idsSeleccionados.length === 1" [class.text-muted]="idsSeleccionados.length != 1" style="font-size: 1.15rem;"></i>
         </button>
       </span>
     }
     @if(tienePermiso('eliminar_individual') || tienePermiso('eliminar_multiple')){
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_DELETE' | translate">
+      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-tablecrud.BUTTON_OPTION_DELETE' | translate">
         <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="deleteItem()" [disabled]="idsSeleccionados.length === 0">
           <div class="d-flex align-items-center">
             <i class="fa fa-trash" [class.text-danger]="idsSeleccionados.length > 0" [class.text-muted]="idsSeleccionados.length === 0" style="font-size: 1.15rem;"></i>
@@ -41,13 +41,13 @@
       </span>
     }
     @if(tienePermiso('asignar_permisos')){
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_ASSIGN_PERMISSION' | translate">
+      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-tablecrud.BUTTON_OPTION_ASSIGN_PERMISSION' | translate">
         <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="assign($event)" [disabled]="idsSeleccionados.length !== 1">
           <i class="fa fa-key" [class.text-warning]="idsSeleccionados.length === 1" [class.text-muted]="idsSeleccionados.length !== 1" style="font-size: 1.15rem;"></i>
         </button>
       </span>
     }    
-    <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_CLEAR' | translate">
+    <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-tablecrud.BUTTON_OPTION_CLEAR' | translate">
       <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="selectionClear()" [disabled]="idsSeleccionados.length === 0">
         <div class="d-flex align-items-center">
           <i class="fa-solid fa-broom" [class.text-secondary]="idsSeleccionados.length > 0" [class.text-muted]="idsSeleccionados.length === 0" style="font-size: 1.1rem;"></i>
