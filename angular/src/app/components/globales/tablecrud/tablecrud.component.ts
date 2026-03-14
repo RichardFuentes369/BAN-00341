@@ -89,6 +89,12 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
       scrollCollapse: false,
       lengthMenu: [5, 10, 20, 30, 40, 50, 100],
       pageLength: 10,
+      drawCallback: () => {
+        const tableElement = document.querySelector('.table-container');
+        if (tableElement) {
+          tableElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      },
       ajax: (dataTablesParameters: any, callback) => {
         const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
         const page = Math.floor(dataTablesParameters.start / dataTablesParameters.length) + 1;
