@@ -1,18 +1,67 @@
 :host {
+  /* Variables de colores y degradados */
   --gradient-table: radial-gradient(circle, #598bcc 16%, #224abe 100%);
   --gradient-table-select: radial-gradient(circle, #f54c4c 16%, #cc1e1e 100%);
+  --bg-botoneria: #ffffff;
+  --gradient-header-modal: linear-gradient(90deg, #007bff 20%, #2cc6ed 100%);
 
   &[data-theme='dark'], 
   &:host-context([data-theme='dark']) {
     --gradient-table: linear-gradient(180deg, #000 20%, #000 100%);
     --gradient-table-select: radial-gradient(circle, #919494 16%, #4f5050 100%);
+    --bg-botoneria: #1a1a1a;
+    --gradient-header-modal: linear-gradient(90deg, #4f5050 20%, #919494 100%);
   }
 }
 
+/* 1. CONTENEDORES PRINCIPALES */
+.table-container {
+  position: relative; 
+  width: 100%;
+}
+
+.card-custom {
+  border-radius: 12px;
+  border: none;
+  min-height: 100px;
+}
+
+/* 2. BOTONERÍA DE ACCIONES (STICKY) */
+.botoneria {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  position: sticky;
+  top: 0; 
+  z-index: 1; /* Por encima de la tabla pero debajo del search */
+  background-color: #fff;
+  padding: 15px 0;
+  margin-bottom: 0 !important;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 4px 6px -6px rgba(0,0,0,0.1);
+}
+
+/* 3. WRAPPER DE FILTROS LATERALES (FIXED) */
+.filter-wrapper {
+  position: fixed; 
+  right: 1.2rem;    
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1; /* Nivel alto para no ser tapado */
+  display: flex;
+  flex-direction: column; 
+  gap: 12px;
+  align-items: center;
+}
+
+/* 4. ESTILOS DE LA TABLA Y EFECTOS DE SELECCIÓN */
 ::ng-deep {
   .tableDatatable {
     thead tr {
       background: var(--gradient-table) !important;
+      position: sticky;
+      top: 55px;
+      z-index: 1;
     }
 
     thead th {
@@ -24,59 +73,119 @@
     }
 
     tbody tr {
+      cursor: pointer;
       transition: background-color 0.2s ease;
 
+      /* EFECTO CUANDO SE SELECCIONA */
       &.selected-row {
         background: var(--gradient-table-select) !important;
-        animation: selectedPulse 0.4s ease-out;
-
+        animation: selectedPulse 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        
         td {
           background-color: transparent !important;
-          color: #ebe6e6 !important;
-          transition: all 0.3s ease;
+          color: #ffffff !important;
+          border-color: rgba(255, 255, 255, 0.1) !important;
+          font-weight: 600;
         }
       }
     }
   }
-}
 
-table {
-  cursor: pointer;
-}
-.table-container { /* O el nombre de tu clase principal */
-  position: relative; 
-  width: 100%;
-}
+  .animated-card {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) translateX(105%);
+    width: 350px;
+    background: white;
+    z-index: 10010 !important; /* El nivel más alto para estar sobre el thead azul */
+    box-shadow: -10px 0 30px rgba(0,0,0,0.25);
+    border-radius: 12px 0 0 12px;
+    transition: transform 0.4s ease, visibility 0.4s;
+    visibility: hidden;
+    overflow: hidden;
 
-.card-custom {
-  border-radius: 12px;
-  border: none;
-  min-height: 100px;
-}
+    &.is-visible {
+      transform: translateY(-50%) translateX(0);
+      visibility: visible;
+    }
 
-.botoneria {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  margin-bottom: 10px;
-}
+    .header {
+      margin: 0;
+      padding: 12px;
+      background: var(--gradient-header-modal) !important;
+      color: white;
+      text-align: center;
+      font-size: 1.1rem;
+    }
 
-/* Estilos para pantallas pequeñas (responsive) */
-@media (max-width: 768px) { 
-  .botoneria {
-    justify-content: center; 
-    flex-wrap: wrap; 
+    .card-body {
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 15px;
+      background: white;
+    }
   }
 
-  .botoneria button {
-    margin-bottom: 5px; 
-    width: auto; 
+  .btn-close-card, .btn-minimize-card {
+    position: absolute;
+    top: 10px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+    z-index: 10011;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &:hover { background: rgba(255,255,255,0.4); }
   }
+
+  .btn-close-card { left: 10px; }
+  .btn-minimize-card { left: 38px; }
 }
 
-/* Tu animación actual de entrada */
+/* 6. ANIMACIONES */
 @keyframes selectedPulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(0.9); } 
-  100% { transform: scale(1); }
+  0% { 
+    transform: scale(1); 
+  }
+  50% { 
+    transform: scale(0.98); /* Efecto de hundimiento */
+  }
+  100% { 
+    transform: scale(1); 
+  }
+}
+
+.animate__fadeIn {
+  animation: fastIn 0.25s ease-out forwards;
+  max-height: 500px; 
+  opacity: 1;
+}
+
+.animate__fadeOut {
+  animation: fastOut 0.25s ease-in forwards;
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes fastIn {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fastOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-15px); }
+}
+
+/* Responsivo */
+@media (max-width: 768px) { 
+  .botoneria { justify-content: center; flex-wrap: wrap; }
+  .animated-card { width: 100%; border-radius: 0; }
 }

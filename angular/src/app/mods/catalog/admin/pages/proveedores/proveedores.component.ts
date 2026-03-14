@@ -103,12 +103,24 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   // fin datos envio al modal
 
   // inicio datos envio card information
-  img = "assets/images/img_admin.png"
+  img_user_actived = "assets/images/img_admin.png"
   titleTotalSuppliers = this.translate.instant('mod-catalog.SUPPLIER.CARD_TOTAL_SUPPLIERS_TITLE')
-  contentInformation = "250"
+  count_total_products = '0'
   // fin datos envio card information
 
   cargarIdioma = true;
+  mostrarCards = true;
+  isAnimationDone = false;
+
+  toggleCards() {
+    this.mostrarCards = !this.mostrarCards;
+    if (!this.mostrarCards) {
+      this.isAnimationDone = true;
+    } else {
+      this.actualizarContadores()
+      this.isAnimationDone = false;
+    }
+  }
 
   // metodos Init, Destroy
   async ngOnInit() {
@@ -128,9 +140,12 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     sessionStorage.removeItem('razon_social')
     sessionStorage.removeItem('correo')
 
+    await this.actualizarContadores()
+
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarIdioma = false;
       timer(200).subscribe(() => {
+        this.actualizarContadores()
         this.listar(); 
         this.cambiarTextos(); 
         this.cargarIdioma = true;
@@ -300,5 +315,8 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);
+  }
+
+  async actualizarContadores (){
   }
 }

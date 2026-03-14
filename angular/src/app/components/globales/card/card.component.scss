@@ -1,58 +1,69 @@
-::ng-deep {
-  .card-custom {
-    border-radius: 12px;
-    border: none;
-    background-color: #fff;
-    overflow: hidden;
-  }
+.card-custom {
+  border-radius: 12px;
+  border: none;
+  background-color: #ffffff;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-  .card-body-custom {
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+.card-body-custom {
+  padding: 1.25rem 1rem;
+  display: flex;
+  align-items: center; /* Alineación vertical central */
+  gap: 16px;
+}
 
-  .logo-container {
-    flex: 0 0 60px; 
-    display: flex;
-    justify-content: center;
-  }
+.logo-container {
+  flex: 0 0 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .img-logo {
-    width: 100%;
-    max-width: 50px;
-    height: auto;
-  }
+.img-logo {
+  width: 100%;
+  max-width: 45px;
+  height: auto;
+  object-fit: contain;
+}
 
-  .divider {
-    width: 1.5px;
-    height: 50px;
-    background-color: #e9ecef;
-    flex-shrink: 0; 
-  }
+.divider {
+  width: 2px;
+  /* align-self stretch permite que el divisor crezca con el contenido */
+  align-self: stretch; 
+  min-height: 40px;
+  background-color: #f1f3f5;
+  flex-shrink: 0;
+}
 
-  .text-container {
-    flex: 1; 
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-  }
+.text-container {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
 
-  .title-text {
-    font-weight: 700;
-    color: #343a40;
-    line-height: 1.2;
-    font-size: clamp(0.85rem, 2.5vw, 1.1rem);
-    
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: normal; 
-  }
+.title-text {
+  font-weight: 700;
+  color: #212529;
+  line-height: 1.3;
+  font-size: clamp(0.9rem, 2vw, 1.05rem);
+  
+  /* Multilínea sin cortes */
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
 
-  .content-text {
-    font-size: 0.9rem;
-    color: #6c757d;
-    font-weight: 500;
-  }
+.content-text {
+  font-size: 1.25rem;
+  color: #495057;
+  font-weight: 600;
+  /* Evita que el número "vibre" mientras aumenta */
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.5px;
 }

@@ -4,7 +4,7 @@
   right: 1.2rem;    
   top: 11rem;       
   
-  margin-top: 13rem!important;
+  margin-top: 11rem!important;
   z-index: 110;  
   
   display: flex;
@@ -24,4 +24,50 @@
 .table-container {
   position: relative;
   overflow: visible; 
+}
+
+
+.row-container-collapse {
+  overflow: hidden; 
+  transition: max-height 0.3s cubic-bezier(0, 1, 0, 1); 
+}
+
+.animate__fadeIn {
+  animation: fastIn 0.25s ease-out forwards;
+  max-height: 500px; 
+  margin-top: 1rem;
+  opacity: 1;
+}
+
+.animate__fadeOut {
+  animation: fastOut 0.25s ease-in forwards;
+  max-height: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes fastIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(-15px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes fastOut {
+  from { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+  to { 
+    opacity: 0; 
+    transform: translateY(-15px); 
+  }
 }

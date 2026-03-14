@@ -1,107 +1,40 @@
-<div class="table-container card p-5 shadow card-custom pt-0">
-  <div class="botoneria mb-3 mt-3">
+<div class="table-container card shadow card-custom pt-0 px-4">
+  <div class="botoneria">
     @if(tienePermiso('cargar_excel')){
       <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_UPLOAD' | translate">
-        <button 
-          class="btn btn-link btn-sm mx-1 p-0 text-primary" 
-          (click)="uploadItem()" 
-          [disabled]="idsSeleccionados.length >= 1"
-          style="text-decoration: none; border: none; background: transparent;">
-          <i class="fa fa-upload" aria-hidden="true"></i>
+        <button class="btn btn-link btn-sm mx-1 p-0 text-primary border-0" (click)="uploadItem()" [disabled]="idsSeleccionados.length >= 1">
+          <i class="fa fa-upload"></i>
         </button>
       </span>
     }
     @if(tienePermiso('crear')){
       <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_CREATE' | translate">
-        <button 
-          class="btn btn-link btn-sm mx-1 p-0" 
-          (click)="newItem()" 
-          [disabled]="idsSeleccionados.length >= 1"
-          style="text-decoration: none; border: none; background: transparent; box-shadow: none;">
-          <i class="fa fa-plus-circle text-primary" 
-            [style.opacity]="idsSeleccionados.length >= 1 ? '0.5' : '1'"
-            style="font-size: 1.2rem;" 
-            aria-hidden="true"></i>
+        <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="newItem()" [disabled]="idsSeleccionados.length >= 1">
+          <i class="fa fa-plus-circle text-primary" [style.opacity]="idsSeleccionados.length >= 1 ? '0.5' : '1'" style="font-size: 1.2rem;"></i>
         </button>
       </span>
     }
     @if(tienePermiso('ver')){
       <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_SEE' | translate">
-        <button 
-          class="btn btn-link btn-sm mx-1 p-0 border-0" 
-          (click)="seeItem()" 
-          [disabled]="idsSeleccionados.length != 1"
-          style="background: transparent; box-shadow: none; text-decoration: none;">
-          <i class="fa fa-eye" 
-            [class.text-primary]="idsSeleccionados.length === 1"
-            [class.text-muted]="idsSeleccionados.length != 1"
-            style="font-size: 1.15rem;" 
-            aria-hidden="true">
-          </i>
+        <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="seeItem()" [disabled]="idsSeleccionados.length != 1">
+          <i class="fa fa-eye" [class.text-primary]="idsSeleccionados.length === 1" [class.text-muted]="idsSeleccionados.length != 1" style="font-size: 1.15rem;"></i>
         </button>
       </span>
     }
     @if(tienePermiso('editar')){
       <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_EDIT' | translate">
-        <button 
-          class="btn btn-link btn-sm mx-1 p-0 border-0" 
-          (click)="editItem()" 
-          [disabled]="idsSeleccionados.length != 1"
-          style="background: transparent; box-shadow: none; text-decoration: none;">
-          <i class="fa fa-pencil-square" 
-            [class.text-success]="idsSeleccionados.length === 1" 
-            [class.text-muted]="idsSeleccionados.length != 1"
-            style="font-size: 1.15rem;" 
-            aria-hidden="true">
-          </i>
+        <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="editItem()" [disabled]="idsSeleccionados.length != 1">
+          <i class="fa fa-pencil-square" [class.text-success]="idsSeleccionados.length === 1" [class.text-muted]="idsSeleccionados.length != 1" style="font-size: 1.15rem;"></i>
         </button>
       </span>
     }
-    @if(tienePermiso('eliminar_individual')){
+    @if(tienePermiso('eliminar_individual') || tienePermiso('eliminar_multiple')){
       <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_DELETE' | translate">
-        <button 
-          class="btn btn-link btn-sm mx-1 p-0 border-0" 
-          (click)="deleteItem()" 
-          [disabled]="idsSeleccionados.length === 0"
-          style="background: transparent; box-shadow: none; text-decoration: none;">
-          
+        <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="deleteItem()" [disabled]="idsSeleccionados.length === 0">
           <div class="d-flex align-items-center">
-            <i class="fa fa-trash" 
-              [class.text-danger]="idsSeleccionados.length > 0" 
-              [class.text-muted]="idsSeleccionados.length === 0"
-              style="font-size: 1.15rem;" 
-              aria-hidden="true">
-            </i>
-            
+            <i class="fa fa-trash" [class.text-danger]="idsSeleccionados.length > 0" [class.text-muted]="idsSeleccionados.length === 0" style="font-size: 1.15rem;"></i>
             @if (idsSeleccionados.length > 0) {
-              <span class="badge rounded-pill bg-danger ms-1" style="font-size: 0.65rem;">
-                {{idsSeleccionados.length}}
-              </span>
-            }
-          </div>
-        </button>
-      </span>
-    }
-    @if(tienePermiso('eliminar_multiple')){
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_DELETE' | translate">
-        <button 
-          class="btn btn-link btn-sm mx-1 p-0 border-0" 
-          (click)="deleteItem()" 
-          [disabled]="idsSeleccionados.length === 0"
-          style="background: transparent; box-shadow: none; text-decoration: none;">
-          
-          <div class="d-flex align-items-center">
-            <i class="fa fa-trash" 
-              [class.text-danger]="idsSeleccionados.length > 0" 
-              [class.text-muted]="idsSeleccionados.length === 0"
-              style="font-size: 1.15rem;" 
-              aria-hidden="true">
-            </i>
-            
-            @if (idsSeleccionados.length > 0) {
-              <span class="badge rounded-pill bg-danger ms-1" style="font-size: 0.65rem; padding: 0.25em 0.5em;">
-                {{idsSeleccionados.length}}
-              </span>
+              <span class="badge rounded-pill bg-danger ms-1" style="font-size: 0.65rem;">{{idsSeleccionados.length}}</span>
             }
           </div>
         </button>
@@ -109,78 +42,25 @@
     }
     @if(tienePermiso('asignar_permisos')){
       <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_ASSIGN_PERMISSION' | translate">
-        <button 
-          class="btn btn-link btn-sm mx-1 p-0 border-0" 
-          (click)="assign($event)" 
-          [disabled]="idsSeleccionados.length !== 1"
-          style="background: transparent; box-shadow: none; text-decoration: none;">
-          
-          <i class="fa fa-key" 
-            [class.text-warning]="idsSeleccionados.length === 1" 
-            [class.text-muted]="idsSeleccionados.length !== 1"
-            style="font-size: 1.15rem; filter: drop-shadow(0px 0px 1px rgba(0,0,0,0.1));" 
-            aria-hidden="true">
-          </i>
+        <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="assign($event)" [disabled]="idsSeleccionados.length !== 1">
+          <i class="fa fa-key" [class.text-warning]="idsSeleccionados.length === 1" [class.text-muted]="idsSeleccionados.length !== 1" style="font-size: 1.15rem;"></i>
         </button>
       </span>
     }    
-    @if(tienePermiso('estado_usuario')){
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_SUSPEND' | translate">
-        <button 
-          class="btn btn-link btn-sm mx-1 p-0 border-0" 
-          (click)="activedItem()" 
-          [disabled]="idsSeleccionados.length === 0"
-          style="background: transparent; box-shadow: none; text-decoration: none;">
-          
-          <div class="d-flex align-items-center">
-            <i class="fa fa-user-times" 
-              [class.text-warning]="idsSeleccionados.length > 0" 
-              [class.text-muted]="idsSeleccionados.length === 0"
-              style="font-size: 1.15rem;" 
-              aria-hidden="true">
-            </i>
-            
-            @if (idsSeleccionados.length > 0) {
-              <span class="badge rounded-pill bg-warning text-dark ms-1" style="font-size: 0.65rem;">
-                {{idsSeleccionados.length}}
-              </span>
-            }
-          </div>
-        </button>
-      </span>
-    }
     <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_CLEAR' | translate">
-      <button 
-        class="btn btn-link btn-sm mx-1 p-0 border-0" 
-        (click)="selectionClear()" 
-        [disabled]="idsSeleccionados.length === 0"
-        style="background: transparent; box-shadow: none; text-decoration: none;">
-        
+      <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="selectionClear()" [disabled]="idsSeleccionados.length === 0">
         <div class="d-flex align-items-center">
-          <i class="fa-solid fa-broom" 
-            [class.text-secondary]="idsSeleccionados.length > 0" 
-            [class.text-muted]="idsSeleccionados.length === 0"
-            style="font-size: 1.1rem;" 
-            aria-hidden="true">
-          </i>
-          
+          <i class="fa-solid fa-broom" [class.text-secondary]="idsSeleccionados.length > 0" [class.text-muted]="idsSeleccionados.length === 0" style="font-size: 1.1rem;"></i>
           @if (idsSeleccionados.length > 0) {
-            <span class="badge rounded-pill bg-secondary ms-1" 
-                  style="font-size: 0.65rem; padding: 0.25em 0.5em; opacity: 0.8;">
-              {{idsSeleccionados.length}}
-            </span>
+            <span class="badge rounded-pill bg-secondary ms-1" style="font-size: 0.65rem;">{{idsSeleccionados.length}}</span>
           }
         </div>
       </button>
     </span>
   </div>
 
-  <table
-    datatable
-    [class]="responsive"
-    [dtOptions]="dtOptions"
-    [dtTrigger]="dtTrigger"
-    class="row-border hover tableDatatable table w-100"
-  >
-  </table>
+  <div class="table-responsive">
+    <table datatable [class]="responsive" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tableDatatable table w-100">
+    </table>
+  </div>
 </div>

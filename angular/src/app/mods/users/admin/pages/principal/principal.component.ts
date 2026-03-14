@@ -169,7 +169,6 @@ export class PrincipalComponent implements OnInit, OnDestroy{
 
     await this.actualizarContadores()
 
-
     this.route.queryParams.subscribe(params => {
       const valorSearch = params['search'];
       if (valorSearch) {

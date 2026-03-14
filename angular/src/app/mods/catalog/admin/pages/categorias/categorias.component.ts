@@ -72,13 +72,27 @@ export class CategoriasComponent implements OnInit, OnDestroy{
   // fin datos envio al modal
 
   // inicio datos envio card information
-  img = "assets/images/img_admin.png"
+  img_user_actived = "assets/images/img_actived.png"
+
   titleTotalCategorys = this.translate.instant('mod-catalog.CATEGORY.CARD_TOTAL_CATEGORIES_TITLE')
   titleTotalProducts = this.translate.instant('mod-catalog.CATEGORY.CARD_TOTAL_PRODUCTS_TITLE')
-  contentInformation = "45"
+  count_total_categorys = '0'
+  count_actived_products = '0'
   // fin datos envio card information
 
   cargarIdioma = true;
+  mostrarCards = true;
+  isAnimationDone = false;
+
+  toggleCards() {
+    this.mostrarCards = !this.mostrarCards;
+    if (!this.mostrarCards) {
+      this.isAnimationDone = true;
+    } else {
+      this.actualizarContadores()
+      this.isAnimationDone = false;
+    }
+  }
 
   // metodos Init, Destroy
   async ngOnInit() {
@@ -97,9 +111,12 @@ export class CategoriasComponent implements OnInit, OnDestroy{
     sessionStorage.removeItem('nombre')
     sessionStorage.removeItem('descripcion')
 
+    await this.actualizarContadores()
+
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarIdioma = false;
       timer(200).subscribe(() => {
+        this.actualizarContadores();
         this.cambiarTextos(); 
         this.cargarIdioma = true;
       });
@@ -252,5 +269,8 @@ export class CategoriasComponent implements OnInit, OnDestroy{
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);
+  }
+
+  async actualizarContadores (){
   }
 }

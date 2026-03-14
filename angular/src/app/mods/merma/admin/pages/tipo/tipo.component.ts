@@ -94,6 +94,18 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
   // fin datos envio card information
 
   cargarIdioma = true;
+  mostrarCards = true;
+  isAnimationDone = false;
+
+  toggleCards() {
+    this.mostrarCards = !this.mostrarCards;
+    if (!this.mostrarCards) {
+      this.isAnimationDone = true;
+    } else {
+      this.actualizarContadores()
+      this.isAnimationDone = false;
+    }
+  }
 
   // metodos Init, Destroy
   async ngOnInit() {
@@ -111,10 +123,13 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
     this.permisos = permisos.data
     sessionStorage.removeItem('nombre')
 
+    await this.actualizarContadores()
+
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarIdioma = false;
       timer(200).subscribe(() => {
         this.listar(); 
+        this.actualizarContadores();
         this.cambiarTextos(); 
         this.cargarIdioma = true;
       });
@@ -268,5 +283,8 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);
+  }
+
+  async actualizarContadores (){
   }
 }
