@@ -90,13 +90,20 @@ export class FinalesComponent implements OnInit{
       title: this.translate.instant('mod-users.COLUMN_STATUS'),
       data: 'isActive',
       className: 'text-center',
-      render: function (data: any, type: any, row: any) {
+      width: '50px',
+      render: (data: any, type: any) => {
         if (type === 'display') {
-          if (data === true) {
-            return 'Active'
-          } else {
-            return 'Inactive'
-          }
+          const statusText = data 
+            ? this.translate.instant('mod-users.WORD_ACTIVED') 
+            : this.translate.instant('mod-users.WORD_INACTIVED');
+          
+          const dotClass = data ? 'dot-green' : 'dot-red';
+
+          return `
+            <span class="custom-tooltip tooltip-bottom" data-title="${statusText}">
+              <span class="status-dot ${dotClass}"></span>
+            </span>
+          `;
         }
         return data;
       }
@@ -216,10 +223,20 @@ export class FinalesComponent implements OnInit{
         title: this.translate.instant('mod-users.COLUMN_STATUS'),
         data: 'isActive',
         className: 'text-center',
+        width: '50px',
         render: (data: any, type: any) => {
           if (type === 'display') {
-            const statusKey = data ? this.translate.instant('mod-users.WORD_ACTIVED') : this.translate.instant('mod-users.WORD_INACTIVED');
-            return this.translate.instant(statusKey);
+            const statusText = data 
+              ? this.translate.instant('mod-users.WORD_ACTIVED') 
+              : this.translate.instant('mod-users.WORD_INACTIVED');
+            
+            const dotClass = data ? 'dot-green' : 'dot-red';
+
+            return `
+              <span class="custom-tooltip tooltip-bottom" data-title="${statusText}">
+                <span class="status-dot ${dotClass}"></span>
+              </span>
+            `;
           }
           return data;
         }

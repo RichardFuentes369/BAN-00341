@@ -18,14 +18,11 @@
 INSERT INTO `mod_catalogo_categorias` (`id`, `nombre`, `descripcion`) VALUES
 	(1, 'Lácteos', 'Productos derivados de la leche y refrigerados'),
 	(2, 'Cárnicos', 'Carnes frías, embutidos y carnes rojas'),
-	(3, 'Bebidas', 'Jugos, gaseosas, aguas y licores'),
+	(3, 'Bebidas', 'Jugos, gaseosas, aguas, energizantes y licores'),
 	(4, 'Panadería', 'Panes frescos, galletas y repostería'),
 	(5, 'Aseo Hogar', 'Productos de limpieza y desinfección'),
-	(6, 'Granos', 'Arroz, lentejas, frijoles y cereales'),
-	(7, 'Snacks', 'Papas fritas, dulces y pasabocas'),
-	(8, 'Frutas y Verduras', 'Productos frescos del campo'),
-	(9, 'Enlatados', 'Conservas, atún y verduras enlatadas'),
-	(10, ' Cuidado Personal', 'Jabones, champú y cremas dentales');
+	(6, 'Granos y Abarrotes', 'Arroz, lentejas, frijoles y cereales'),
+	(8, ' Cuidado Personal', 'Jabones, champú y cremas dentales');
 
 -- Dumping data for table core_project_BAN_00341.mod_catalogo_productos: ~11 rows (approximately)
 INSERT INTO `mod_catalogo_productos` (`id`, `codigo_barra`, `nombre`, `stock_minimo`, `unidad_medida`, `id_categoria`, `marca`) VALUES
