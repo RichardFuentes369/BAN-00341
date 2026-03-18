@@ -92,7 +92,7 @@ export class CargarProductoComponent {
       ocultarModalOscura();
       
       Swal.fire({
-        title: this.translate.instant('mod-catalog.SUPPLIER.SWAL_UPDATED'),
+        title: this.translate.instant('mod-catalog.PRODUCT.SWAL_UPDATED'),
         text: `${res.count} productos procesados correctamente.`,
         icon: "success"
       });

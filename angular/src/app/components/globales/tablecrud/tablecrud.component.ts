@@ -6,6 +6,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subject, Subscription } from 'rxjs';
 import { Config } from 'datatables.net';
 
+declare var $: any;
+
 let ultimaUrlConsultada: string = '';
 let haySeleccionados: any[] = [];
 
@@ -24,7 +26,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() endPoint: string = '';
   @Input() complementoEndPoint: string = '';
   @Input() filters: string = '';
-  @Input() columnas: any;
+  @Input() columnas: any[] = [];
   @Input() permisosAcciones: any[] = [];
 
   @ViewChild(DataTableDirective, { static: false }) datatableElement!: DataTableDirective;
@@ -46,6 +48,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit() {
     this.listar();
     (ultimaUrlConsultada != this.endPoint) ? this.idsSeleccionados = [] : this.idsSeleccionados = [...haySeleccionados]
+    
     this.langSub = this.translate.onLangChange.subscribe(() => {
       haySeleccionados = [...this.idsSeleccionados];
       this.recargarIdioma();
@@ -72,7 +75,6 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
 
   recargarIdioma() {
     this.datatableElement.dtInstance.then((dtInstance: any) => {
-      // dtInstance.destroy();
       this.listar();
       this.dtTrigger.next(null);
     });
@@ -101,7 +103,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
                 
         this.http.get<any[]>(
           `${this.url}${this.endPoint}?page=${page}&limit=${dataTablesParameters.length}&field=id&order=asc${this.filters}${this.complementoEndPoint}&lang=${lang}`
-        ).subscribe((post) => {
+        ).subscribe((post: any) => {
           const recordsTotal = post[0].pagination.totalRecord;
           const data = post[0].result.map((item: any) => {
             item.selection = this.idsSeleccionados.includes(item.id);
@@ -123,35 +125,104 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
         "zeroRecords": "No se encontraron resultados",
         "emptyTable": `${this.translate.instant('global-tablecrud.TABLE_INFO_NO_INFO')}`,
         "info": `${this.translate.instant('global-tablecrud.TABLE_INFO_SHOWING')} _START_ ${this.translate.instant('global-tablecrud.TABLE_INFO_TO')} _END_ ${this.translate.instant('global-tablecrud.TABLE_INFO_OF')} _TOTAL_ ${this.translate.instant('global-tablecrud.TABLE_INFO_ENTRIES')}`,
-        "infoEmpty": `${this.translate.instant('global-tablecrud.TABLE_INFO_SHOWING')} _START_ ${this.translate.instant('global-tablecrud.TABLE_INFO_TO')} _END_ ${this.translate.instant('global-tablecrud.TABLE_INFO_OF')} _TOTAL_ ${this.translate.instant('global-tablecrud.TABLE_INFO_ENTRIES')}`,
         "paginate": {
           "first": `${this.translate.instant('global-tablecrud.TABLE_INFO_FIRST')}`,
           "last": `${this.translate.instant('global-tablecrud.TABLE_INFO_LAST')}`,
           "next": `${this.translate.instant('global-tablecrud.TABLE_INFO_NEXT')}`,
           "previous": `${this.translate.instant('global-tablecrud.TABLE_INFO_PREVIOUS')}`
-        },
-        "decimal": ",",
-        "thousands": "."
+        }
       },
-      columns: this.columnas,
+      columns: [
+        {
+          title: '<input type="checkbox" class="select-all-checkbox" />', 
+          data: null,
+          defaultContent: '',
+          orderable: false,
+          className: 'text-center select-checkbox-column',
+        },
+        ...this.columnas
+      ],
+      headerCallback: (thead: Node, data: any, start: number, end: number, display: any) => {
+        const $headerCheckbox = $(thead).find('.select-all-checkbox');
+
+        this.datatableElement?.dtInstance.then((dtInstance: any) => {
+          const currentData = dtInstance.rows({ page: 'current' }).data().toArray();
+          if (currentData.length > 0) {
+            const allSelected = currentData.every((item: any) => this.idsSeleccionados.includes(item.id));
+            $headerCheckbox.prop('checked', allSelected);
+          }
+        });
+
+        $headerCheckbox.off('change').on('change', (e: any) => {
+          const isChecked = e.target.checked;
+          this.datatableElement.dtInstance.then((dtInstance: any) => {
+            const currentRows = dtInstance.rows({ page: 'current' });
+            const currentData = currentRows.data();
+            const nodes = currentRows.nodes();
+
+            currentData.each((rowData: any, index: number) => {
+              const id = rowData.id;
+              const idIndex = this.idsSeleccionados.indexOf(id);
+              const $row = $(nodes[index]);
+              const $rowCheckbox = $row.find('.row-checkbox');
+
+              if (isChecked) {
+                if (idIndex === -1) this.idsSeleccionados.push(id);
+                $row.addClass('selected-row');
+                $rowCheckbox.prop('checked', true);
+              } else {
+                if (idIndex !== -1) this.idsSeleccionados.splice(idIndex, 1);
+                $row.removeClass('selected-row');
+                $rowCheckbox.prop('checked', false);
+              }
+            });
+            this.cdr.detectChanges();
+          });
+        });
+      },
       rowCallback: (row: Node, data: any, index: number) => {
         const $row = $(row);
-        if (this.idsSeleccionados.includes(data.id)) {
-          $row.addClass('selected-row');
-        } else {
-          $row.removeClass('selected-row');
-        }
-        $('td', row).off('click').on('click', () => {
-          const existIndex = this.idsSeleccionados.indexOf(data.id);
-          if (existIndex !== -1) {
-            this.idsSeleccionados.splice(existIndex, 1);
+        const $checkbox = $row.find('.row-checkbox');
+
+        // 1. Sincronizar estado visual inicial
+        const isSelected = this.idsSeleccionados.includes(data.id);
+        $row.toggleClass('selected-row', isSelected);
+        $checkbox.prop('checked', isSelected);
+
+        // 2. Evento de clic en toda la fila (TDs)
+        $row.off('click').on('click', (e: any) => {
+          // Si el clic viene directamente del checkbox, no hacemos nada extra 
+          // para evitar que se dispare dos veces (el click del checkbox ya cambia su estado)
+          if ($(e.target).hasClass('row-checkbox')) {
+            e.stopPropagation(); 
+          }
+
+          const idIndex = this.idsSeleccionados.indexOf(data.id);
+          const estaSeleccionado = idIndex !== -1;
+
+          if (estaSeleccionado) {
+            // Deseleccionar
+            this.idsSeleccionados.splice(idIndex, 1);
             $row.removeClass('selected-row');
+            $checkbox.prop('checked', false);
+            $('.select-all-checkbox').prop('checked', false);
           } else {
+            // Seleccionar
             this.idsSeleccionados.push(data.id);
             $row.addClass('selected-row');
+            $checkbox.prop('checked', true);
+            
+            // Verificar si todos en la página están marcados para activar el checkbox del header
+            this.datatableElement.dtInstance.then((dtInstance: any) => {
+              const pageData = dtInstance.rows({ page: 'current' }).data().toArray();
+              const allChecked = pageData.every((item: any) => this.idsSeleccionados.includes(item.id));
+              $('.select-all-checkbox').prop('checked', allChecked);
+            });
           }
+
           this.cdr.detectChanges();
         });
+
         return row;
       }
     };
@@ -161,7 +232,6 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
     this.limpiarSeleccion();
     this.datatableElement.dtInstance.then((dtInstance: any) => {
       dtInstance.ajax.reload(() => {
-        this.cdr.markForCheck(); 
         this.cdr.detectChanges();
       });
     });
@@ -170,13 +240,15 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   limpiarSeleccion() {
     this.idsSeleccionados = [];
     $('.tableDatatable tbody tr').removeClass('selected-row');
+    $('.row-checkbox').prop('checked', false);
+    $('.select-all-checkbox').prop('checked', false);
+    this.cdr.detectChanges();
   }
 
   tienePermiso(nombre: string): boolean {
     return this.permisosAcciones?.some((permiso) => permiso.permiso_permiso === nombre);
   }
 
-  // Outputs y métodos Emitters (abreviados para el ejemplo)
   @Output() cargarItem = new EventEmitter<string>();
   @Output() verItem = new EventEmitter<string>();
   @Output() crearNuevoItem = new EventEmitter<string>();
@@ -191,6 +263,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   editItem() { if (this.idsSeleccionados.length === 1) this.editarItem.emit(this.idsSeleccionados[0]); }
   deleteItem() { if (this.idsSeleccionados.length > 0) this.eliminarItem.emit(this.idsSeleccionados); }
   activedItem() { if (this.idsSeleccionados.length > 0) this.activarItem.emit(this.idsSeleccionados); }
+  
   assign(event: MouseEvent) {
     if (this.idsSeleccionados.length === 1) {
       this.asignar.emit({
@@ -199,5 +272,6 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     }
   }
+  
   selectionClear() { this.limpiarSeleccion(); }
 }
