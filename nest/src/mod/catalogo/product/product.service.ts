@@ -131,80 +131,67 @@ export class ProductService {
     return this.productRepository.delete({ id: In(ids) });
   }
 
-  async processExcel(buffer: Buffer | Uint8Array, id_category: number) {
-    if (!buffer || buffer.byteLength === 0) {
-      throw new BadRequestException('El archivo está vacío');
+  async processExcel(buffer: Buffer, id_category: number) {
+    if (!buffer || buffer.length === 0) {
+      throw new BadRequestException(this.i18n.t('errors.EMPTY_FILE'));
     }
 
+    const { Readable } = require('stream');
+    const stream = new Readable();
+    stream.push(buffer);
+    stream.push(null);
+
     const workbook = new ExcelJS.Workbook();
-    await workbook.xlsx.load(buffer as any);
+    await workbook.xlsx.read(stream);
     const worksheet = workbook.getWorksheet(1);
 
-    // 1. Cargar códigos existentes de la BD
-    const existingProducts = await this.productRepository.find({
-      select: ['codigo_barra']
-    });
-    
-    // Usamos un Set para búsquedas instantáneas O(1)
-    const existingCodes = new Set(existingProducts.map(p => p.codigo_barra));
+    const BATCH_SIZE = 5000; 
+    let batch: any[] = [];
+    let totalProcessed = 0;
 
-    const productsToSave: any[] = []; 
-    const duplicatesFound: string[] = [];
-    
-    worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
-      if (rowNumber === 1) return; // Saltar encabezado
+    const rowCount = worksheet.actualRowCount;
 
-      // CORRECCIÓN: Extraer el código primero
+    for (let i = 2; i <= rowCount; i++) {
+      const row = worksheet.getRow(i);
       const codigo_barra = row.getCell(1).text?.trim();
 
-      // Validar si viene vacío en el Excel
-      if (!codigo_barra) return;
+      if (!codigo_barra) continue;
 
-      // 2. Validar duplicados (en BD o en el mismo archivo)
-      if (existingCodes.has(codigo_barra)) {
-        duplicatesFound.push(codigo_barra);
-        return; 
-      }
-
-      const product = {
+      batch.push({
         codigo_barra: codigo_barra,
         nombre: row.getCell(2).text,
         stock_minimo: Number(row.getCell(3).value) || 0,
         unidad_medida: row.getCell(4).text,
         marca: row.getCell(5).text,
-        id_categoria: id_category
-      };
+        id_categoria: id_category,
+      });
 
-      if (product.id_categoria && product.codigo_barra) {
-        productsToSave.push(product);
-        // IMPORTANTE: Agregar al Set para que si el código se repite 
-        // más abajo en el Excel, también sea detectado como duplicado.
-        existingCodes.add(codigo_barra); 
+      if (batch.length >= BATCH_SIZE) {
+        await this.runBatchInsert(batch);
+        batch = []; // Liberación de memoria inmediata
       }
-    });
-
-    // Si no hay nada nuevo, retornamos un mensaje informativo en lugar de un error
-    if (productsToSave.length === 0) {
-      return {
-        success: true,
-        message: 'No se encontraron productos nuevos (todos existen o el archivo está vacío)',
-        duplicatesCount: duplicatesFound.length
-      };
+      totalProcessed++;
     }
 
-    try {
-      const result = await this.productRepository.save(productsToSave);
-      
-      return {
-        success: true,
-        message: `${result.length} productos cargados correctamente`,
-        count: result.length,
-        ignored: duplicatesFound.length
-      };
-    } catch (error) {
-      console.error('Error al guardar masivamente:', error);
-      throw new BadRequestException('Error al insertar los productos en la base de datos');
+    if (batch.length > 0) {
+      await this.runBatchInsert(batch);
     }
+
+    return {
+      success: true,
+      message: this.i18n.t('messages.SUCCESS_LOAD'),
+      count: totalProcessed
+    };
+  }
+
+  private async runBatchInsert(data: any[]): Promise<void> {
+    await this.productRepository
+      .createQueryBuilder()
+      .insert()
+      .into(Producto)
+      .values(data)
+      .orUpdate(['nombre', 'stock_minimo', 'unidad_medida', 'marca'], ['codigo_barra'])
+      .execute();
   }
 
 }

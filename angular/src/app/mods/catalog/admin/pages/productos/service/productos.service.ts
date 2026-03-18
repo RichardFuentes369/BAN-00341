@@ -136,6 +136,7 @@ export class ProductosService {
 
     const formData = new FormData();
     formData.append('file', file); 
+
     try {
       const response = await axios.post(urlCompleta, formData, {
         headers: {
@@ -144,12 +145,12 @@ export class ProductosService {
         params: {
           id_category: idCategory, 
           lang: lang
-        }
+        },
+        timeout: 300000 
       });
 
       return response.data;
     } catch (error) {
-      console.error('Error al cargar el Excel:', error);
       throw error;
     }
   }

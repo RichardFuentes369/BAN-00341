@@ -72,11 +72,11 @@ export class ModalBoostrapComponent implements OnDestroy{
 
   @Output() actualizarTabla = new EventEmitter<string>()
 
-  async buttonSaveM(){
-    const boton = document.querySelector('.btnAction') as HTMLButtonElement
-    if(boton){
-      await boton.click()
-      this.actualizarTabla.emit()
+  async buttonSaveM() {
+    const boton = document.querySelector('.btnAction') as HTMLButtonElement;
+    if (boton) {
+      boton.click();
+      this.actualizarTabla.emit();
     }
   }
 

@@ -342,6 +342,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
   }
 
   async refrescarTabla (){
+    console.log('actualice')
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);

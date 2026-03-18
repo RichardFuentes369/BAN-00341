@@ -184,15 +184,11 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
         const $row = $(row);
         const $checkbox = $row.find('.row-checkbox');
 
-        // 1. Sincronizar estado visual inicial
         const isSelected = this.idsSeleccionados.includes(data.id);
         $row.toggleClass('selected-row', isSelected);
         $checkbox.prop('checked', isSelected);
 
-        // 2. Evento de clic en toda la fila (TDs)
         $row.off('click').on('click', (e: any) => {
-          // Si el clic viene directamente del checkbox, no hacemos nada extra 
-          // para evitar que se dispare dos veces (el click del checkbox ya cambia su estado)
           if ($(e.target).hasClass('row-checkbox')) {
             e.stopPropagation(); 
           }
@@ -201,18 +197,15 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
           const estaSeleccionado = idIndex !== -1;
 
           if (estaSeleccionado) {
-            // Deseleccionar
             this.idsSeleccionados.splice(idIndex, 1);
             $row.removeClass('selected-row');
             $checkbox.prop('checked', false);
             $('.select-all-checkbox').prop('checked', false);
           } else {
-            // Seleccionar
             this.idsSeleccionados.push(data.id);
             $row.addClass('selected-row');
             $checkbox.prop('checked', true);
             
-            // Verificar si todos en la página están marcados para activar el checkbox del header
             this.datatableElement.dtInstance.then((dtInstance: any) => {
               const pageData = dtInstance.rows({ page: 'current' }).data().toArray();
               const allChecked = pageData.every((item: any) => this.idsSeleccionados.includes(item.id));
