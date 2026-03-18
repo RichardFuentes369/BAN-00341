@@ -74,8 +74,8 @@ export class CargarProductoComponent {
     }
     
     (!this.validators.archivo_valido) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
-
-    console.log(this.validators.archivo_valido)
+    
+    this.validators.archivo_valido = true;
     this.validators.archivo_error_msj = '';
     return true;
   }

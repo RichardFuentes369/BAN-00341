@@ -57,6 +57,7 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
     {
       title: this.translate.instant('mod-merma.COLUMN_ID'),
       data: 'id',
+      visible: false,
       className: 'text-center'
     },
     {
@@ -148,6 +149,7 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
       {
         title: this.translate.instant('mod-merma.COLUMN_ID'),
         data: 'id',
+        visible: false,
         className: 'text-center'
       },
       {

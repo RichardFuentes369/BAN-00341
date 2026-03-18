@@ -59,7 +59,8 @@ export class ProductosComponent implements OnInit, OnDestroy{
     {
       title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_ID'),
       data: 'id',
-      className: 'text-center'
+      className: 'text-center',
+      visible: false,
     },
     {
       title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
@@ -172,7 +173,8 @@ export class ProductosComponent implements OnInit, OnDestroy{
       {
         title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_ID'),
         data: 'id',
-        className: 'text-center'
+        className: 'text-center',
+        visible: false,
       },
       {
         title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),

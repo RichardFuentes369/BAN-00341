@@ -21,14 +21,38 @@
         </button>
       </span>
     }
-    @if(tienePermiso('editar')){
+    @if(tienePermiso('estado_usuario')){
+      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-tablecrud.BUTTON_OPTION_STATUS' | translate">
+        <button class="btn btn-link btn-sm mx-1 p-0 border-0 text-decoration-none" (click)="activedItem()" [disabled]="idsSeleccionados.length === 0">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-toggle-on" [class.text-success]="idsSeleccionados.length > 0" [class.text-muted]="idsSeleccionados.length === 0" style="font-size: 1.15rem;"></i>
+            @if (idsSeleccionados.length > 0) {
+              <span class="badge rounded-pill bg-danger ms-1" style="font-size: 0.65rem;">{{idsSeleccionados.length}}</span>
+            }
+          </div>
+        </button>
+      </span>
+    }   
+     @if(tienePermiso('editar')){
       <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-tablecrud.BUTTON_OPTION_EDIT' | translate">
         <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="editItem()" [disabled]="idsSeleccionados.length != 1">
           <i class="fa fa-pencil-square" [class.text-success]="idsSeleccionados.length === 1" [class.text-muted]="idsSeleccionados.length != 1" style="font-size: 1.15rem;"></i>
         </button>
       </span>
     }
-    @if(tienePermiso('eliminar_individual') || tienePermiso('eliminar_multiple')){
+    @if(tienePermiso('eliminar_individual')){
+      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-tablecrud.BUTTON_OPTION_DELETE' | translate">
+        <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="deleteItem()" [disabled]="idsSeleccionados.length === 0 || idsSeleccionados.length > 1">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-trash" [class.text-danger]="idsSeleccionados.length > 0" [class.text-muted]="idsSeleccionados.length === 0" style="font-size: 1.15rem;"></i>
+            @if (idsSeleccionados.length > 0) {
+              <span class="badge rounded-pill bg-danger ms-1" style="font-size: 0.65rem;">{{idsSeleccionados.length}}</span>
+            }
+          </div>
+        </button>
+      </span>
+    }
+    @if(tienePermiso('eliminar_multiple')){
       <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-tablecrud.BUTTON_OPTION_DELETE' | translate">
         <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="deleteItem()" [disabled]="idsSeleccionados.length === 0">
           <div class="d-flex align-items-center">
@@ -60,7 +84,7 @@
   </div>
 
   <div class="table-responsive">
-    <table datatable [class]="responsive" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tableDatatable table w-100">
+    <table datatable  [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tableDatatable table w-100">
     </table>
   </div>
 </div>

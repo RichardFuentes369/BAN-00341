@@ -71,6 +71,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     {
       title: this.translate.instant('mod-users.COLUMN_ID'),
       data: 'id',
+      visible: false,
       className: 'text-center'
     },
     {
@@ -211,6 +212,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
       {
         title: this.translate.instant('mod-users.COLUMN_ID'),
         data: 'id',
+        visible: false,
         className: 'text-center'
       },
       {

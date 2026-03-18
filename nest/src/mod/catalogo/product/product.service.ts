@@ -133,44 +133,48 @@ export class ProductService {
 
   async processExcel(buffer: Buffer, id_category: number) {
     if (!buffer || buffer.length === 0) {
-      throw new BadRequestException(this.i18n.t('errors.EMPTY_FILE'));
+      throw new BadRequestException('El archivo está vacío');
     }
 
+    // 1. Usar WorkbookReader (Streaming) para NO cargar todo en RAM
     const { Readable } = require('stream');
     const stream = new Readable();
     stream.push(buffer);
     stream.push(null);
 
-    const workbook = new ExcelJS.Workbook();
-    await workbook.xlsx.read(stream);
-    const worksheet = workbook.getWorksheet(1);
-
-    const BATCH_SIZE = 5000; 
+    const reader = new ExcelJS.stream.xlsx.WorkbookReader(stream, {});
+    
+    const BATCH_SIZE = 5000;
     let batch: any[] = [];
     let totalProcessed = 0;
 
-    const rowCount = worksheet.actualRowCount;
+    // 2. Procesar por eventos de fila
+    for await (const worksheet of reader) {
+      // Solo procesamos la primera hoja
+      if (worksheet.id > 1) break;
 
-    for (let i = 2; i <= rowCount; i++) {
-      const row = worksheet.getRow(i);
-      const codigo_barra = row.getCell(1).text?.trim();
+      for await (const row of worksheet) {
+        // Saltamos el encabezado (fila 1)
+        if (row.number === 1) continue;
 
-      if (!codigo_barra) continue;
+        const codigo_barra = row.getCell(1).text?.trim();
+        if (!codigo_barra) continue;
 
-      batch.push({
-        codigo_barra: codigo_barra,
-        nombre: row.getCell(2).text,
-        stock_minimo: Number(row.getCell(3).value) || 0,
-        unidad_medida: row.getCell(4).text,
-        marca: row.getCell(5).text,
-        id_categoria: id_category,
-      });
+        batch.push({
+          codigo_barra: codigo_barra,
+          nombre: row.getCell(2).text?.trim(),
+          stock_minimo: Number(row.getCell(3).value) || 0,
+          unidad_medida: row.getCell(4).text?.trim(),
+          marca: row.getCell(5).text?.trim(),
+          id_categoria: id_category,
+        });
 
-      if (batch.length >= BATCH_SIZE) {
-        await this.runBatchInsert(batch);
-        batch = []; // Liberación de memoria inmediata
+        if (batch.length >= BATCH_SIZE) {
+          await this.runBatchInsert(batch);
+          batch = []; // Liberación inmediata de RAM
+        }
+        totalProcessed++;
       }
-      totalProcessed++;
     }
 
     if (batch.length > 0) {
@@ -179,19 +183,24 @@ export class ProductService {
 
     return {
       success: true,
-      message: this.i18n.t('messages.SUCCESS_LOAD'),
       count: totalProcessed
     };
   }
 
   private async runBatchInsert(data: any[]): Promise<void> {
-    await this.productRepository
-      .createQueryBuilder()
-      .insert()
-      .into(Producto)
-      .values(data)
-      .orUpdate(['nombre', 'stock_minimo', 'unidad_medida', 'marca'], ['codigo_barra'])
-      .execute();
+    try {
+      await this.productRepository
+        .createQueryBuilder()
+        .insert()
+        .into(Producto)
+        .values(data)
+        // IMPORTANTE: 'codigo_barra' DEBE ser UNIQUE en la base de datos
+        .orUpdate(['nombre', 'stock_minimo', 'unidad_medida', 'marca'], ['codigo_barra'])
+        .execute();
+    } catch (error) {
+      console.error('Error en batch insert:', error);
+      throw error;
+    }
   }
 
 }

@@ -57,6 +57,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     {
       title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_ID'),
       data: 'id',
+      visible: false,
       className: 'text-center'
     },
     {
@@ -165,6 +166,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
       {
         title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_ID'),
         data: 'id',
+        visible: false,
         className: 'text-center'
       },
       {
