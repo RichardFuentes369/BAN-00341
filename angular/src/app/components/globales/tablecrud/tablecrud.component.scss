@@ -1,6 +1,6 @@
 :host {
   /* --- 1. VARIABLES DE MARCA Y ESTADO --- */
-  --primary-gradient: radial-gradient(circle, #598bcc 16%, #224abe 100%);
+  --primary-gradient: radial-gradient(circle at center, #598bcc 16%, #224abe 100%);
   --bg-selected: #eb2525; /* Azul sólido uniforme para selección */
   --bg-row: #ffffff;
   --bg-table-container: #f8fafc;
@@ -12,7 +12,7 @@
 
   &[data-theme='dark'], 
   &:host-context([data-theme='dark']) {
-    --primary-gradient: linear-gradient(180deg, #1a1a1a 20%, #000 100%);
+    --primary-gradient: radial-gradient(circle at center, #1a1a1a 16%, #000 100%);
     --bg-selected: #334155; /* Gris azulado profundo para dark mode */
     --bg-row: #ffffff;
     --bg-table-container: #0f172a;
@@ -47,7 +47,6 @@
   backdrop-filter: blur(8px);
   padding: 18px 25px;
   border-bottom: 1px solid var(--border-color);
-  border-radius: 16px 16px 0 0;
 
   .title-container {
     margin-right: auto; /* ESTA ES LA CLAVE: Empuja todo lo demás a la derecha */
@@ -94,8 +93,12 @@
       z-index: 1;
     }
 
-    thead th {
+    thead tr {
       background: var(--primary-gradient) !important;
+    }
+
+    thead th {
+      background: transparent !important; /* Quitamos el fondo individual */
       color: #ffffff !important;
       font-weight: 600;
       font-size: 0.75rem;
@@ -123,14 +126,14 @@
         vertical-align: middle;
         font-size: 0.9rem;
 
-        // &:first-child { 
-        //   border-left: 1px solid var(--border-color) !important;
-        //   border-radius: 10px 0 0 10px; 
-        // }
-        // &:last-child { 
-        //   border-right: 1px solid var(--border-color) !important;
-        //   border-radius: 0 10px 10px 0; 
-        // }
+        &:first-child { 
+          border-left: 1px solid var(--border-color) !important;
+          border-radius: 10px 0 0 10px; 
+        }
+        &:last-child { 
+          border-right: 1px solid var(--border-color) !important;
+          border-radius: 0 10px 10px 0; 
+        }
       }
 
       /* EFECTO HOVER */

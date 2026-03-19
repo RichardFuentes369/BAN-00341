@@ -105,6 +105,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
 
   // inicio datos envio card information
   img_user_actived = "assets/images/img_admin.png"
+  titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
   titleTotalSuppliers = this.translate.instant('mod-catalog.SUPPLIER.CARD_TOTAL_SUPPLIERS_TITLE')
   count_total_products = '0'
   // fin datos envio card information
@@ -198,6 +199,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   }
 
   cambiarTextos(){
+    this.titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
     this.titleTotalSuppliers = this.translate.instant('mod-catalog.SUPPLIER.CARD_TOTAL_SUPPLIERS_TITLE')
   }
   

@@ -61,7 +61,7 @@
   "ERROR_USER_EMAIL": "Ingrese un correo valido",
   "ERROR_USER_PASSWORD": "Ingrese una contraseña",
   "ERROR_USER_STATUS": "Debe seleccionar un elemento",
-  "TABLE_TITLE": "",
+  "TABLE_TITLE": "Registros",
 
   "BUTTON_USER_CREATE": "Crear usuario",
   "BUTTON_USER_EDIT": "Editar usuario",

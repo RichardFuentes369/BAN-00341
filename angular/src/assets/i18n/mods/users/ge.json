@@ -62,7 +62,7 @@
   "ERROR_USER_PASSWORD": "Geben Sie ein Passwort ein",
   "ERROR_USER_STATUS": "Sie müssen einen Eintrag auswählen",
   
-  "TABLE_TITLE": "",
+  "TABLE_TITLE": "Datensätze",
 
   "BUTTON_USER_CREATE": "Benutzer erstellen",
   "BUTTON_USER_EDIT": "Benutzer bearbeiten",

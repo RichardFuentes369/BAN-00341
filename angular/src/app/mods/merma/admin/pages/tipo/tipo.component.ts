@@ -90,6 +90,7 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
 
   // inicio datos envio card information
   img = "assets/images/img_admin.png"
+  titlePage = this.translate.instant('mod-merma.TABLE_TITLE')
   titleTotalSuppliers = this.translate.instant('mod-merma.TYPE.CARD_TOTAL_TYPE_TITLE')
   contentInformation = "250"
   // fin datos envio card information
@@ -166,6 +167,7 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
   }
 
   cambiarTextos(){
+    this.titlePage = this.translate.instant('mod-merma.TABLE_TITLE')
     this.titleTotalSuppliers = this.translate.instant('mod-merma.TYPE.CARD_TOTAL_TYPE_TITLE')
   }
   
