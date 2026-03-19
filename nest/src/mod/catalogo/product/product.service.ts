@@ -150,9 +150,6 @@ export class ProductService {
 
     // 2. Procesar por eventos de fila
     for await (const worksheet of reader) {
-      // Solo procesamos la primera hoja
-      if (worksheet.id > 1) break;
-
       for await (const row of worksheet) {
         // Saltamos el encabezado (fila 1)
         if (row.number === 1) continue;
