@@ -1,5 +1,8 @@
 <div class="table-container card shadow card-custom pt-0 px-4">
   <div class="botoneria">
+    <div class="title-container">
+      <h5 class="m-0 fw-bold text-dark">{{ title }}</h5>
+    </div>
     @if(tienePermiso('cargar_excel')){
       <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-tablecrud.BUTTON_OPTION_UPLOAD' | translate">
         <button class="btn btn-link btn-sm mx-1 p-0 text-primary border-0" (click)="uploadItem()" [disabled]="idsSeleccionados.length >= 1">
@@ -84,7 +87,7 @@
   </div>
 
   <div class="table-responsive">
-    <table datatable  [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tableDatatable table w-100">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tableDatatable table w-100">
     </table>
   </div>
 </div>

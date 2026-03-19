@@ -61,6 +61,8 @@
   "ERROR_USER_EMAIL": "Geben Sie eine gültige E-Mail-Adresse ein",
   "ERROR_USER_PASSWORD": "Geben Sie ein Passwort ein",
   "ERROR_USER_STATUS": "Sie müssen einen Eintrag auswählen",
+  
+  "TABLE_TITLE": "",
 
   "BUTTON_USER_CREATE": "Benutzer erstellen",
   "BUTTON_USER_EDIT": "Benutzer bearbeiten",

@@ -136,6 +136,7 @@ export class FinalesComponent implements OnInit{
   img_user_actived = "assets/images/img_actived.png"
   img_user_with_permission = "assets/images/img_permission.png"
   img_user_inactived = "assets/images/img_inactived.png"
+  titlePage = this.translate.instant('mod-users.TABLE_TITLE')
   titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
   titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
   titleTotalActivedUsers = this.translate.instant('mod-users.CARD_TOTAL_ACTIVED_USERS')
@@ -247,6 +248,7 @@ export class FinalesComponent implements OnInit{
   }
 
   cambiarTextos(){
+    this.titlePage = this.translate.instant('mod-users.TABLE_TITLE')
     this.titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
     this.titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
   }

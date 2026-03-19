@@ -1,253 +1,194 @@
 :host {
-  /* Variables de colores y degradados */
-  --gradient-table: radial-gradient(circle, #598bcc 16%, #224abe 100%);
-  --gradient-table-select: radial-gradient(circle, #f54c4c 16%, #cc1e1e 100%);
-  --bg-botoneria: #ffffff;
-  --gradient-header-modal: linear-gradient(90deg, #007bff 20%, #2cc6ed 100%);
+  /* --- 1. VARIABLES DE MARCA Y ESTADO --- */
+  --primary-gradient: radial-gradient(circle, #598bcc 16%, #224abe 100%);
+  --bg-selected: #eb2525; /* Azul sólido uniforme para selección */
+  --bg-row: #ffffff;
+  --bg-table-container: #f8fafc;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.08);
 
   &[data-theme='dark'], 
   &:host-context([data-theme='dark']) {
-    --gradient-table: linear-gradient(180deg, #000 20%, #000 100%);
-    --gradient-table-select: radial-gradient(circle, #919494 16%, #4f5050 100%);
-    --bg-botoneria: #1a1a1a;
-    --gradient-header-modal: linear-gradient(90deg, #4f5050 20%, #919494 100%);
+    --primary-gradient: linear-gradient(180deg, #1a1a1a 20%, #000 100%);
+    --bg-selected: #334155; /* Gris azulado profundo para dark mode */
+    --bg-row: #ffffff;
+    --bg-table-container: #0f172a;
+    --text-main: #1e293b;
+    --text-muted: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.05);
   }
 }
 
-/* 1. CONTENEDORES PRINCIPALES */
+/* --- 2. CONTENEDOR PRINCIPAL --- */
 .table-container {
   position: relative; 
   width: 100%;
+  border-radius: 16px;
+  overflow: visible !important; /* Vital para el sticky */
+  border: none;
 }
 
 .card-custom {
-  border-radius: 12px;
-  border: none;
-  min-height: 100px;
+  box-shadow: var(--shadow-md);
 }
 
-/* 2. BOTONERÍA DE ACCIONES (STICKY) */
+/* --- 3. BOTONERÍA (GLASSMORPHISM LIGHT) --- */
 .botoneria {
   display: flex;
   justify-content: flex-end;
-  gap: 8px;
-  position: sticky;
-  top: 0; 
-  z-index: 1; /* Por encima de la tabla pero debajo del search */
-  background-color: #fff;
-  padding: 15px 0;
-  margin-bottom: 0 !important;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  box-shadow: 0 4px 6px -6px rgba(0,0,0,0.1);
-}
-
-/* 3. WRAPPER DE FILTROS LATERALES (FIXED) */
-.filter-wrapper {
-  position: fixed; 
-  right: 1.2rem;    
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1; /* Nivel alto para no ser tapado */
-  display: flex;
-  flex-direction: column; 
   gap: 12px;
-  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(8px);
+  padding: 18px 25px;
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 16px 16px 0 0;
+
+  .title-container {
+    margin-right: auto; /* ESTA ES LA CLAVE: Empuja todo lo demás a la derecha */
+    padding-left: 5px;
+    
+    h5 {
+      font-size: 1.1rem;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+    }
+  }
+
+  &[data-theme='dark'], 
+  &:host-context([data-theme='dark']) {
+    background-color: rgba(26, 26, 26, 0.9) !important;
+  }
+
+  button {
+    transition: transform 0.2s ease, filter 0.2s ease;
+    &:hover:not(:disabled) {
+      transform: scale(1.1);
+      filter: brightness(1.1);
+    }
+  }
 }
 
-/* 4. ESTILOS DE LA TABLA Y EFECTOS DE SELECCIÓN */
+/* --- 4. DISEÑO DE LA TABLA (CARD-ROW STYLE) --- */
 ::ng-deep {
+  .table-responsive {
+    overflow-y: visible !important;
+    padding: 0 15px 15px 15px;
+  }
+
   .tableDatatable {
+    border-collapse: separate !important;
+    border-spacing: 0 1px !important; /* Espacio entre filas */
+    width: 100% !important;
+    background-color: transparent !important;
+
+    /* HEADER STICKY REFINADO */
     thead tr {
-      background: var(--gradient-table) !important;
       position: sticky;
-      top: 55px;
+      top: 65px; /* Sincronizado con la botonería */
       z-index: 1;
     }
 
     thead th {
-      background-color: transparent !important;
-      color: #fff !important;
+      background: var(--primary-gradient) !important;
+      color: #ffffff !important;
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 16px 12px !important;
+      border: none !important;
       text-align: center;
-      padding: 12px 10px !important;
-      border-bottom: none !important;
+      
+      // &:first-child { border-radius: 10px 0 0 10px; }
+      // &:last-child { border-radius: 0 10px 10px 0; }
     }
 
+    /* FILAS COMO BLOQUES INDEPENDIENTES */
     tbody tr {
-      cursor: pointer !important;
-      transition: background-color 0.2s ease;
+      background-color: transparent !important;
+      transition: all 0.2s ease;
 
+      td {
+        background-color: var(--bg-row) !important;
+        color: var(--text-main);
+        border-top: 1px solid var(--border-color) !important;
+        border-bottom: 1px solid var(--border-color) !important;
+        box-shadow: var(--shadow-sm);
+        vertical-align: middle;
+        font-size: 0.9rem;
+
+        // &:first-child { 
+        //   border-left: 1px solid var(--border-color) !important;
+        //   border-radius: 10px 0 0 10px; 
+        // }
+        // &:last-child { 
+        //   border-right: 1px solid var(--border-color) !important;
+        //   border-radius: 0 10px 10px 0; 
+        // }
+      }
+
+      /* EFECTO HOVER */
+      &:hover {
+        td {
+          cursor: pointer;
+          background-color: rgba(89, 139, 204, 0.04) !important;
+          border-color: rgba(89, 139, 204, 0.2) !important;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      /* SELECCIONADO: COLOR UNIFORME SÓLIDO */
       &.selected-row {
-        background: var(--gradient-table-select) !important;
-        
-        td { 
-          background-color: var(--gradient-table-select) !important;
-          color: #fff !important; 
-          font-weight: bold !important; 
+        td {
+          background-color: var(--bg-selected) !important;
+          background-image: none !important; /* Asegura color sólido */
+          color: #ffffff !important;
+          border-color: var(--bg-selected) !important;
+          font-weight: 500;
+
+          /* Elementos internos en la fila seleccionada */
+          .text-muted, small, i, .fa {
+            color: rgba(255, 255, 255, 0.8) !important;
+          }
+          
+          .badge.bg-danger {
+            background-color: #ffffff !important;
+            color: var(--bg-selected) !important;
+          }
+
+          .row-checkbox {
+            accent-color: #ffffff;
+          }
         }
       }
     }
-
-    .row-checkbox {
-      cursor: pointer !important; /* El cursor de mano solo aquí */
-      width: 18px;
-      height: 18px;
-    }
   }
-
-  .animated-card {
-    position: fixed;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%) translateX(105%);
-    width: 350px;
-    background: white;
-    z-index: 10010 !important; /* El nivel más alto para estar sobre el thead azul */
-    box-shadow: -10px 0 30px rgba(0,0,0,0.25);
-    border-radius: 12px 0 0 12px;
-    transition: transform 0.4s ease, visibility 0.4s;
-    visibility: hidden;
-    overflow: hidden;
-
-    &.is-visible {
-      transform: translateY(-50%) translateX(0);
-      visibility: visible;
-    }
-
-    .header {
-      margin: 0;
-      padding: 12px;
-      background: var(--gradient-header-modal) !important;
-      color: white;
-      text-align: center;
-      font-size: 1.1rem;
-    }
-
-    .card-body {
-      max-height: 80vh;
-      overflow-y: auto;
-      padding: 15px;
-      background: white;
-    }
-  }
-
-  .btn-close-card, .btn-minimize-card {
-    position: absolute;
-    top: 10px;
-    background: rgba(255,255,255,0.2);
-    border: none;
-    color: white;
-    width: 22px;
-    height: 22px;
-    border-radius: 4px;
-    z-index: 10011;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    &:hover { background: rgba(255,255,255,0.4); }
-  }
-
-  .btn-close-card { left: 10px; }
-  .btn-minimize-card { left: 38px; }
 }
 
-/* 6. ANIMACIONES */
-// @keyframes selectedPulse {
-//   0% { 
-//     transform: scale(1); 
-//   }
-//   50% { 
-//     transform: scale(0.98); /* Efecto de hundimiento */
-//   }
-//   100% { 
-//     transform: scale(1); 
-//   }
-// }
-
+/* --- 5. ANIMACIONES --- */
 .animate__fadeIn {
-  animation: fastIn 0.25s ease-out forwards;
-  max-height: 500px; 
-  opacity: 1;
+  animation: slideUp 0.3s ease-out forwards;
 }
 
-.animate__fadeOut {
-  animation: fastOut 0.25s ease-in forwards;
-  max-height: 0;
-  opacity: 0;
-  pointer-events: none;
-}
-
-@keyframes fastIn {
-  from { opacity: 0; transform: translateY(-15px); }
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fastOut {
-  from { opacity: 1; transform: translateY(0); }
-  to { opacity: 0; transform: translateY(-15px); }
-}
-
-/* Responsivo */
+/* --- 6. RESPONSIVO --- */
 @media (max-width: 768px) { 
-  .botoneria { justify-content: center; flex-wrap: wrap; }
-  .animated-card { width: 100%; border-radius: 0; }
-}
-
-
-
-::ng-deep {
-  .status-dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    vertical-align: middle;
+  .botoneria { 
+    justify-content: center; 
+    padding: 10px;
+    top: 0;
   }
-
-  .dot-green {
-    background-color: #28a745;
-    animation: pulse-green 2s infinite;
-  }
-
-  .dot-red {
-    background-color: #dc3545;
-    animation: pulse-red 2s infinite;
-  }
-
-  @keyframes pulse-green {
-    0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
-    70% { box-shadow: 0 0 0 6px rgba(40, 167, 69, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
-  }
-
-  @keyframes pulse-red {
-    0% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
-    70% { box-shadow: 0 0 0 6px rgba(220, 53, 69, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
-  }
-}
-
-/* Añadir a tu archivo SCSS */
-::ng-deep {
-  .select-checkbox-column {
-    width: 40px !important;
-    max-width: 40px !important;
-    text-align: center;
-  }
-
-  .row-checkbox {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-    accent-color: #224abe; /* Color del check en light mode */
-  }
-
-  .selected-row .row-checkbox {
-    accent-color: #ffffff; /* Color del check cuando la fila es roja/gris */
-  }
-  
-  /* Evitar que el click en el checkbox sea difícil de atinar */
-  .select-checkbox-column input {
-    pointer-events: auto;
+  ::ng-deep .tableDatatable thead tr {
+    top: 110px; /* Ajuste si la botonería crece en móvil */
   }
 }

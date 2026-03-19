@@ -22,6 +22,7 @@ let haySeleccionados: any[] = [];
   styleUrl: './tablecrud.component.scss',
 })
 export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
+  @Input() title: string = '';
   @Input() campoFiltro: boolean = false;
   @Input() endPoint: string = '';
   @Input() complementoEndPoint: string = '';
