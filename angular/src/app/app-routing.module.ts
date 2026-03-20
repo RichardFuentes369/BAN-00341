@@ -11,6 +11,7 @@ import { finalGuard } from '@guard/roles/final/final.guard';
 import { HomeNotFoundComponent  } from '@component/globales/notfound/home/home.component'
 import { AdminNotFoundComponent } from '@component/globales/notfound/admin/admin.component'
 import { FinalNotFoundComponent } from '@component/globales/notfound/final/final.component'
+import { BREADCRUMB_PATH_MENU } from '@const/app.const';
 
 const routes: Routes = [
   {
@@ -42,7 +43,7 @@ const routes: Routes = [
       },
       {
         path: 'mod',
-        data: { breadcrumb: 'Menu' },
+        data: { breadcrumb: BREADCRUMB_PATH_MENU },
         loadChildren: () => import('@mod/main/admin/routes/menu.routing').then(x=>x.MenuRoutes)
       },
       {
@@ -56,7 +57,7 @@ const routes: Routes = [
   },
   {
     path: 'final',
-    data: { breadcrumb: 'Menu' },
+    data: { breadcrumb: BREADCRUMB_PATH_MENU },
     component: FinalComponent,
     children: [
       {

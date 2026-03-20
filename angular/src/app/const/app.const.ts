@@ -13,6 +13,8 @@ export const WORD_KEY_AUTHORIZATION_APPLICATION_TYPE = 'application/json';
 export const WORD_KEY_BEARER_GLOBAL = 'Bearer';
 export const WORD_KEY_COMPONENT_GLOBAL = 'componente';
 export const WORD_KEY_ID_MI_BOTON_GLOBAL = 'miBoton';
+export const BREADCRUMB_PATH_MENU = 'mod-main.TITTLE_MENU';
+
 
 export const MAIN_MENU =  '/admin/mod';
 export const _PAGE_WITHOUT_PERMISSION_ADMIN =  '/admin/permiso';
