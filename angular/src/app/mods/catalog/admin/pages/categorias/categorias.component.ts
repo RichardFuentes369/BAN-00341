@@ -73,7 +73,7 @@ export class CategoriasComponent implements OnInit, OnDestroy{
 
   // inicio datos envio card information
   img_user_actived = "assets/images/img_actived.png"
-
+  titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
   titleTotalCategorys = this.translate.instant('mod-catalog.CATEGORY.CARD_TOTAL_CATEGORIES_TITLE')
   titleTotalProducts = this.translate.instant('mod-catalog.CATEGORY.CARD_TOTAL_PRODUCTS_TITLE')
   count_total_categorys = '0'
@@ -131,6 +131,7 @@ export class CategoriasComponent implements OnInit, OnDestroy{
 
   // metodos Componente
   cambiarTextos(){
+    this.titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
     this.titleTotalCategorys = this.translate.instant('mod-catalog.CATEGORY.CARD_TOTAL_CATEGORIES_TITLE')
     this.titleTotalProducts = this.translate.instant('mod-catalog.CATEGORY.CARD_TOTAL_PRODUCTS_TITLE')
   }
