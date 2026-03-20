@@ -4,5 +4,6 @@
   "PAGES_MODULES": "Modulos",
   "PAGES_LOSS": "Merma",
   "PAGES_CATALOG": "Catalogo",
-  "PAGE_STOCK": "Existencia"
+  "PAGE_STOCK": "Existencia",
+  "PAGE_LOTE": "Lote"
 }

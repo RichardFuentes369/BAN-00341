@@ -4,5 +4,6 @@
   "PAGES_MODULES": "Modules",
   "PAGES_LOSS": "Shrinkage",
   "PAGES_CATALOG": "Catalog",
-  "PAGE_STOCK": "Stock"
+  "PAGE_STOCK": "Stock",
+  "PAGE_LOTE": "Batch"
 }

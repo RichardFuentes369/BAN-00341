@@ -4,5 +4,6 @@
   "PAGES_MODULES": "Module",
   "PAGES_LOSS": "Inventurdifferenz",
   "PAGES_CATALOG": "Katalog",
-  "PAGE_STOCK": "Aktie"
+  "PAGE_STOCK": "Aktie",
+  "PAGE_LOTE": "Batch"
 }

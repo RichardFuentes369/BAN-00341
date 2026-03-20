@@ -10,13 +10,16 @@ import {
 
 // componentes
 import { adminGuard } from '@guard/roles/admin/admin.guard';
-import { LoteComponent } from '../pages/lote/lote.component';
+import { LoteComponent } from '../../../lote/admin/pages/lote/lote.component';
 
-export const CatalogoLoteRoutes: Routes = [
+export const LoteRoutes: Routes = [
   {
     path: '',
     title: TITLE_PATH_ADMIN_LOTE,
     data: { breadcrumb: null },
+    canActivate: [
+      adminGuard
+    ],
     component: LoteComponent,
   },
 ];

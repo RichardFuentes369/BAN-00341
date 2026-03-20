@@ -12,15 +12,15 @@ export const BREADCRUMB_PATH_USERS_INDEX = 'Index';
 
 export const PATH_ADMIN_USERS = 'administradores';
 export const TITLE_PATH_ADMIN_USERS = 'Administradores';
-export const BREADCRUMB_PATH_ADMIN_USERS = 'Administradores';
+export const BREADCRUMB_PATH_ADMIN_USERS = 'mod-users.PAGE_ADMIN_TITLE';
 
 export const PATH_FINAL_USERS = 'finales';
 export const TITLE_PATH_FINAL_USERS = 'Finales';
-export const BREADCRUMB_PATH_FINAL_USERS = 'Finales';
+export const BREADCRUMB_PATH_FINAL_USERS = 'mod-users.PAGE_FINAL_TITLE';
 
 export const PATH_ASSIGN_ADMIN_USERS = 'asignar-administrador';
 export const TITLE_PATH_ASSIGN_ADMIN_USERS = 'Asignar usuario administrador';
-export const BREADCRUMB_PATH_ASSIGN_ADMIN_USERS = 'Asignar';
+export const BREADCRUMB_PATH_ASSIGN_ADMIN_USERS = 'mod-users.ASSIGMENT_ADMIN_TITLE_BREADCRUMB';
 
 export const MOD_USER_PAGE_ADMIN_ASSIGMENT =  '/admin/mod/users/administradores/asignar-administrador/';
 export const MOD_USER_PAGE_ADMIN =  '/admin/mod/users/administradores/';

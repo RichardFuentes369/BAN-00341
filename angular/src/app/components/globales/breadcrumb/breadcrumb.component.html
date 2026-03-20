@@ -8,11 +8,11 @@
               <a [routerLink]="[breadcrumb.url]" 
                 [queryParams]="breadcrumb.queryParams"
                 style="text-decoration:none">
-                {{ breadcrumb.label }}
+                {{ breadcrumb.label | translate}}
               </a>
             }
             @else {
-              <span class="alert-link text-dark">{{ breadcrumb.label }}</span>
+              <span class="alert-link text-dark">{{ breadcrumb.label | translate }}</span>
             }
           </li>
         }

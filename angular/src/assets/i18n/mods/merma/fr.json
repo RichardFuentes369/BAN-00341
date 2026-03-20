@@ -1,8 +1,8 @@
 {
   "UNKNOW_MODULE_TITLE": "Inconnu",
 
-  "PAGE_TYPE_TITLE": "Type",
-  "PAGE_RECORD_TITLE": "Registres",
+  "PAGE_TYPE_TITLE": "Type de perte",
+  "PAGE_RECORD_TITLE": "Registres de perte",
 
   "MODULE_TITLE": "Démarque",
   "TABLE_TITLE": "Registres",
@@ -13,8 +13,8 @@
   "BUTTON_BACK": "Retour",
   "BUTTON_SEARCH": "Rechercher",
 
-  "BUTTON_TYPE": "Type",
-  "BUTTON_RECORD": "Registres",
+  "BUTTON_TYPE": "Type de perte",
+  "BUTTON_RECORD": "Registres de perte",
   
   "COLUMN_ID": "ID",
   "COLUMN_NAME": "Nom",

@@ -20,6 +20,7 @@
   "EDIT_FINAL_TITLE": "Edit user final {{user_name}}", 
   "SEE_FINAL_TITLE": "See user final {{user_name}}",
 
+  "ASSIGMENT_ADMIN_TITLE_BREADCRUMB": "Assign permissions",
   "ASSIGMENT_ADMIN_TITLE": "Assign permissions to {{user_name}}",
 
   "SWAL_ARE_YOU_SURE_UPDATE_USER": "Are you sure you want to update the user {{user_name}}?",

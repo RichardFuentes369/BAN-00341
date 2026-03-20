@@ -6,11 +6,11 @@ export const BREADCRUMB_PATH_MERMA_INDEX = 'Index';
 
 export const PATH_ADMIN_TIPOS = 'tipos';
 export const TITLE_PATH_ADMIN_TIPOS = 'Tipos de Perdida';
-export const BREADCRUMB_PATH_ADMIN_TIPOS = 'Tipos de Perdida';
+export const BREADCRUMB_PATH_ADMIN_TIPOS = 'mod-merma.PAGE_TYPE_TITLE';
 
 export const PATH_ADMIN_REGISTRO = 'registro';
 export const TITLE_PATH_ADMIN_REGISTRO = 'Registro de Perdida';
-export const BREADCRUMB_PATH_ADMIN_REGISTRO = 'Registro de Perdida';
+export const BREADCRUMB_PATH_ADMIN_REGISTRO = 'mod-merma.PAGE_RECORD_TITLE';
 
 export const MOD_MERMA_PAGE_TIPOS =  '/admin/mod/merma/tipos/';
 export const MOD_MERMA_PAGE_REGISTRO =  '/admin/mod/merma/registro';

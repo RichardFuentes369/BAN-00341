@@ -1,8 +1,8 @@
 {
   "UNKNOW_MODULE_TITLE": "Unknown Module",
 
-  "PAGE_TYPE_TITLE": "Type",
-  "PAGE_RECORD_TITLE": "Redcords",
+  "PAGE_TYPE_TITLE": "Loss Type",
+  "PAGE_RECORD_TITLE": "Loss Records",
 
   "MODULE_TITLE": "Shrink",
   "TABLE_TITLE": "Records",
@@ -13,8 +13,8 @@
   "BUTTON_BACK": "Back",
   "BUTTON_SEARCH": "Search",
 
-  "BUTTON_TYPE": "Type",
-  "BUTTON_RECORD": "Redcords",
+  "BUTTON_TYPE": "Loss Type",
+  "BUTTON_RECORD": "Loss Records",
 
   "COLUMN_ID": "Id",
   "COLUMN_NAME": "Name",

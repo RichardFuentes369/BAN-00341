@@ -35,17 +35,6 @@ export const CatalogRoutes: Routes = [
     loadChildren: () => import('./categorias.routing').then(x=>x.CatalogoCategoriasRoutes)
   },
   {
-    path: PATH_ADMIN_LOTE,
-    title: TITLE_PATH_ADMIN_LOTE,
-    data: { breadcrumb: BREADCRUMB_PATH_ADMIN_LOTE },
-    canActivate: [
-      adminGuard
-    ],
-    loadChildren: () => import('./lote.routing').then(x=>x.CatalogoLoteRoutes
-
-    )
-  },
-  {
     path: PATH_ADMIN_SUPPLIER,
     title: TITLE_PATH_ADMIN_SUPPLIER,
     data: { breadcrumb: BREADCRUMB_PATH_ADMIN_SUPPLIER },

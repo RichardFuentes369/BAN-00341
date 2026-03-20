@@ -1,8 +1,8 @@
 {
   "UNKNOW_MODULE_TITLE": "Módulo Desconocido",
 
-  "PAGE_TYPE_TITLE": "Tipo",
-  "PAGE_RECORD_TITLE": "Registros",
+  "PAGE_TYPE_TITLE": "Tipo de pérdida",
+  "PAGE_RECORD_TITLE": "Registros de pérdida",
 
   "MODULE_TITLE": "Merma",
   "TABLE_TITLE": "Registros",
@@ -13,8 +13,8 @@
   "BUTTON_BACK": "Volver",
   "BUTTON_SEARCH": "Buscar",
 
-  "BUTTON_TYPE": "Tipo",
-  "BUTTON_RECORD": "Registros",
+  "BUTTON_TYPE": "Tipo de pérdida",
+  "BUTTON_RECORD": "Registros de pérdida",
 
   "COLUMN_ID": "Id",
   "COLUMN_NAME": "Nombre",
