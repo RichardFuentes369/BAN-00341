@@ -1,256 +1,145 @@
-<div class="table-container card p-5 shadow card-custom pt-0">
-  <div class="botoneria mb-3 mt-3">
-    @if(tienePermiso('crear')){
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_CREATE' | translate">
-        <button 
-          class="btn btn-link btn-sm mx-1 p-0" 
-          (click)="newItem()" 
-          [disabled]="idsSeleccionados.length >= 1"
-          style="text-decoration: none; border: none; background: transparent; box-shadow: none;">
-          <i class="fa fa-plus-circle text-primary" 
-            [style.opacity]="idsSeleccionados.length >= 1 ? '0.5' : '1'"
-            style="font-size: 1.2rem;" 
-            aria-hidden="true"></i>
-        </button>
-      </span>
-    }
-    @if(tienePermiso('asignar_productos')){
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_PRODUCTS' | translate">
-        <button 
-          class="btn btn-link btn-sm mx-1 p-0" 
-          (click)="assign($event)" 
-          [disabled]="idsSeleccionados.length !== 1"
-          style="text-decoration: none; border: none; background: transparent; box-shadow: none;">
-          <i class="fa fa-list-alt text-primary" 
-            [style.opacity]="idsSeleccionados.length != 1 ? '0.5' : '1'"
-            style="font-size: 1.2rem;" 
-            aria-hidden="true"></i>
-        </button>
-      </span>
-    }
-    @if(tienePermiso('ver')){
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_SEE' | translate">
-        <button 
-          class="btn btn-link btn-sm mx-1 p-0 border-0" 
-          (click)="seeItem()" 
-          [disabled]="idsSeleccionados.length != 1"
-          style="background: transparent; box-shadow: none; text-decoration: none;">
-          <i class="fa fa-eye" 
-            [class.text-primary]="idsSeleccionados.length === 1"
-            [class.text-muted]="idsSeleccionados.length != 1"
-            style="font-size: 1.15rem;" 
-            aria-hidden="true">
-          </i>
-        </button>
-      </span>
-    }
-    @if(tienePermiso('editar')){
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_EDIT' | translate">
-        <button 
-          class="btn btn-link btn-sm mx-1 p-0 border-0" 
-          (click)="editItem()" 
-          [disabled]="idsSeleccionados.length != 1"
-          style="background: transparent; box-shadow: none; text-decoration: none;">
-          <i class="fa fa-pencil-square" 
-            [class.text-success]="idsSeleccionados.length === 1" 
-            [class.text-muted]="idsSeleccionados.length != 1"
-            style="font-size: 1.15rem;" 
-            aria-hidden="true">
-          </i>
-        </button>
-      </span>
-    }
-    @if(tienePermiso('eliminar_individual')){
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_DELETE' | translate">
-        <button 
-          class="btn btn-link btn-sm mx-1 p-0 border-0" 
-          (click)="deleteItem()" 
-          [disabled]="idsSeleccionados.length === 0"
-          style="background: transparent; box-shadow: none; text-decoration: none;">
-          
-          <div class="d-flex align-items-center">
-            <i class="fa fa-trash" 
-              [class.text-danger]="idsSeleccionados.length > 0" 
-              [class.text-muted]="idsSeleccionados.length === 0"
-              style="font-size: 1.15rem;" 
-              aria-hidden="true">
-            </i>
-            
-            @if (idsSeleccionados.length > 0) {
-              <span class="badge rounded-pill bg-danger ms-1" style="font-size: 0.65rem;">
-                {{idsSeleccionados.length}}
-              </span>
-            }
-          </div>
-        </button>
-      </span>
-    }
-    @if(tienePermiso('eliminar_multiple')){
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_DELETE' | translate">
-        <button 
-          class="btn btn-link btn-sm mx-1 p-0 border-0" 
-          (click)="deleteItem()" 
-          [disabled]="idsSeleccionados.length === 0"
-          style="background: transparent; box-shadow: none; text-decoration: none;">
-          
-          <div class="d-flex align-items-center">
-            <i class="fa fa-trash" 
-              [class.text-danger]="idsSeleccionados.length > 0" 
-              [class.text-muted]="idsSeleccionados.length === 0"
-              style="font-size: 1.15rem;" 
-              aria-hidden="true">
-            </i>
-            
-            @if (idsSeleccionados.length > 0) {
-              <span class="badge rounded-pill bg-danger ms-1" style="font-size: 0.65rem; padding: 0.25em 0.5em;">
-                {{idsSeleccionados.length}}
-              </span>
-            }
-          </div>
-        </button>
-      </span>
-    }
-    @if(tienePermiso('asignar_permisos')){
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_ASSIGN_PERMISSION' | translate">
-        <button 
-          class="btn btn-link btn-sm mx-1 p-0 border-0" 
-          (click)="assign($event)" 
-          [disabled]="idsSeleccionados.length !== 1"
-          style="background: transparent; box-shadow: none; text-decoration: none;">
-          
-          <i class="fa fa-key" 
-            [class.text-warning]="idsSeleccionados.length === 1" 
-            [class.text-muted]="idsSeleccionados.length !== 1"
-            style="font-size: 1.15rem; filter: drop-shadow(0px 0px 1px rgba(0,0,0,0.1));" 
-            aria-hidden="true">
-          </i>
-        </button>
-      </span>
-    }
-    @if(tienePermiso('estado_usuario')){
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_SUSPEND' | translate">
-        <button 
-          class="btn btn-link btn-sm mx-1 p-0 border-0" 
-          (click)="activedItem()" 
-          [disabled]="idsSeleccionados.length === 0"
-          style="background: transparent; box-shadow: none; text-decoration: none;">
-          
-          <div class="d-flex align-items-center">
-            <i class="fa fa-user-times" 
-              [class.text-warning]="idsSeleccionados.length > 0" 
-              [class.text-muted]="idsSeleccionados.length === 0"
-              style="font-size: 1.15rem;" 
-              aria-hidden="true">
-            </i>
-            
-            @if (idsSeleccionados.length > 0) {
-              <span class="badge rounded-pill bg-warning text-dark ms-1" style="font-size: 0.65rem;">
-                {{idsSeleccionados.length}}
-              </span>
-            }
-          </div>
-        </button>
-      </span>
-    }
-    <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_CLEAR' | translate">
-      <button 
-        class="btn btn-link btn-sm mx-1 p-0 border-0" 
-        (click)="selectionClear()" 
-        [disabled]="idsSeleccionados.length === 0"
-        style="background: transparent; box-shadow: none; text-decoration: none;">
-        
-        <div class="d-flex align-items-center">
-          <i class="fa-solid fa-broom" 
-            [class.text-secondary]="idsSeleccionados.length > 0" 
-            [class.text-muted]="idsSeleccionados.length === 0"
-            style="font-size: 1.1rem;" 
-            aria-hidden="true">
-          </i>
-          
-          @if (idsSeleccionados.length > 0) {
-            <span class="badge rounded-pill bg-secondary ms-1" 
-                  style="font-size: 0.65rem; padding: 0.25em 0.5em; opacity: 0.8;">
-              {{idsSeleccionados.length}}
-            </span>
-          }
-        </div>
-      </button>
-    </span>
-  </div>
+<div class="grid-main-container">
+  
 
-  <div class="dt-layout-row">
-    <div class="dt-layout-cell dt-layout-start">
-      <div class="dt-length">
-        <label for="dt-length-0">
-          {{ 'global-gridcrud.PAGINATION_INFO_SHOW' | translate }} 
-          <select aria-controls="DataTables_Table_0" class="dt-input" id="dt-length-0" [(ngModel)]="perPage" (change)="onPerPageChange()">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-            <option value="40">40</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-          </select> 
-          {{ 'global-gridcrud.PAGINATION_INFO_RECORDS' | translate }}
-        </label>
-      </div>
-    </div>
-    <div class="dt-layout-cell dt-layout-end"></div>
-  </div>
-
-  <div class="parent"> 
-    @for (data of data; track data) {
-    <div class="item"> 
-      <div class="card card-option h-100 shadow-sm" [class.selected-card]="idsSeleccionados.includes(data.id)" (click)="toggleSelection(data.id)">
-        <div class="card-body text-center d-flex flex-column align-items-center justify-content-center">
-          <div class="mb-3">
-              <!-- <img src="assets/img/box-icon.png" width="60px" alt="icon"> -->
-          </div>
-          
-          <h5 class="font-weight-bold">{{data.nombre}}</h5>
-          <p class="small text-muted mb-0">{{data.descripcion}}</p>
-          
-          <div class="mt-auto"></div> 
-        </div>
-
-        <div class="card-footer text-center">
-          <span>{{ 'global-gridcrud.WORD_TOTAL' | translate }} {{data.totalProductos}}</span>
-        </div>
-      </div>
-    </div>
-    }
-  </div>
-
-  <div class="d-flex justify-content-between align-items-center mt-4">
-    <div class="text-muted small">
-      {{ 'global-gridcrud.PAGINATION_INFO_SHOWING' | translate}}
-      {{ desdeConteo }}
-      {{ 'global-gridcrud.PAGINATION_INFO_TO' | translate }}
-      {{ hastaConteo }}
-      {{ 'global-gridcrud.PAGINATION_INFO_OF' | translate }}
-      {{ totalRegistros }}
-      {{ 'global-gridcrud.PAGINATION_INFO_ENTRIES' | translate }}
-    </div>
-  </div>
-
-  <nav aria-label="Page navigation" class="ml-auto">
-    <ul class="pagination pagination-sm m-0">
-      <li class="page-item" [class.disabled]="paginaActual === 1">
-        <a class="page-item btn btn-outline-primary btn-sm mx-1" (click)="cambiarPagina(paginaActual - 1)">
-          {{ 'global-gridcrud.WORD_PREVIOUS' | translate }}
-        </a>
-      </li>
+  <div class="grid-content-body px-4 py-4 card shadow">
+    
+  <div class="sticky-header mb-4">
+    <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between mx-auto container">
       
-      <li class="page-item active">
-        <span class="page-link">{{ paginaActual }}</span>
-      </li>
+      <div class="title-container mb-2 mb-md-0">
+        <h5 class="m-0 fw-bold text-secondary">{{ title }}</h5>
+        <!-- @if (idsSeleccionados.length > 0) { -->
+          <span class="text-muted animated fadeIn" style="font-size: 0.85rem;">
+            {{ 'global-tablecrud.WORD_SELECTED' | translate }}: 
+            <b class="text-dark">{{idsSeleccionados.length}}</b>
+          </span>
+        <!-- } -->
+      </div>
 
-      <li class="page-item" [class.disabled]="paginaActual === totalPaginas">
-        <a class="page-item btn btn-outline-primary btn-sm mx-1" (click)="cambiarPagina(paginaActual + 1)">
-          {{ 'global-gridcrud.WORD_NEXT' | translate }}
-        </a>
-      </li>
-    </ul>
-  </nav>
+
+      <div class="actions-container d-flex flex-wrap align-items-center">
+        @if(tienePermiso('crear')){
+        <span class="custom-tooltip tooltip-bottom my-auto"
+          [attr.data-title]="'global-tablecrud.BUTTON_OPTION_CREATE' | translate">
+          <button class="btn btn-link btn-sm mx-1 p-0 border-0 btn-nav-item" (click)="newItem()"
+            [disabled]="idsSeleccionados.length >= 1">
+            <i class="fa fa-plus-circle text-primary" [style.opacity]="idsSeleccionados.length >= 1 ? '0.5' : '1'"
+              style="font-size: 1.2rem;"></i>
+          </button>
+        </span>
+        }
+
+
+        @if(tienePermiso('asignar_productos')){
+          <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-gridcrud.BUTTON_OPTION_PRODUCTS' | translate">
+            <button 
+              class="btn btn-link btn-sm mx-1 p-0" 
+              (click)="assign($event)" 
+              [disabled]="idsSeleccionados.length !== 1"
+              style="text-decoration: none; border: none; background: transparent; box-shadow: none;">
+              <i class="fa fa-list-alt text-success" 
+                [style.opacity]="idsSeleccionados.length != 1 ? '0.5' : '1'"
+                style="font-size: 1.2rem;" 
+                aria-hidden="true"></i>
+            </button>
+          </span>
+        }
+
+        @if(tienePermiso('ver')){
+        <span class="custom-tooltip tooltip-bottom my-auto"
+          [attr.data-title]="'global-tablecrud.BUTTON_OPTION_SEE' | translate">
+          <button class="btn btn-link btn-sm mx-1 p-0 border-0 btn-nav-item" (click)="seeItem()"
+            [disabled]="idsSeleccionados.length != 1">
+            <i class="fa fa-eye" [class.text-primary]="idsSeleccionados.length === 1"
+              [class.text-muted]="idsSeleccionados.length != 1" style="font-size: 1.15rem;"></i>
+          </button>
+        </span>
+        }
+
+        @if(tienePermiso('editar')){
+        <span class="custom-tooltip tooltip-bottom my-auto"
+          [attr.data-title]="'global-tablecrud.BUTTON_OPTION_EDIT' | translate">
+          <button class="btn btn-link btn-sm mx-1 p-0 border-0 btn-nav-item" (click)="editItem()"
+            [disabled]="idsSeleccionados.length != 1">
+            <i class="fa fa-pencil" [class.text-warning]="idsSeleccionados.length === 1"
+              [class.text-muted]="idsSeleccionados.length != 1" style="font-size: 1.15rem;"></i>
+          </button>
+        </span>
+        }
+
+        @if(tienePermiso('eliminar_multiple')){
+        <span class="custom-tooltip tooltip-bottom my-auto"
+          [attr.data-title]="'global-tablecrud.BUTTON_OPTION_DELETE' | translate">
+          <button class="btn btn-link btn-sm mx-1 p-0 border-0 btn-nav-item" (click)="deleteItem()"
+            [disabled]="idsSeleccionados.length === 0">
+            <div class="position-relative">
+              <i class="fa fa-trash" [class.text-danger]="idsSeleccionados.length > 0"
+                [class.text-muted]="idsSeleccionados.length === 0" style="font-size: 1.15rem;"></i>
+            </div>
+          </button>
+        </span>
+        }
+
+        <span class="custom-tooltip tooltip-bottom my-auto"
+          [attr.data-title]="'global-tablecrud.BUTTON_OPTION_CLEAR' | translate">
+          <button class="btn btn-link btn-sm mx-1 p-0 border-0 btn-nav-item" (click)="selectionClear()"
+            [disabled]="idsSeleccionados.length === 0">
+            <i class="fa-solid fa-broom" [class.text-secondary]="idsSeleccionados.length > 0"
+              [class.text-muted]="idsSeleccionados.length === 0" style="font-size: 1.1rem;"></i>
+          </button>
+        </span>
+
+      </div>
+    </div>
+  </div>
+    <div class="mb-4">
+      <label class="small text-muted d-flex align-items-center gap-2">
+        {{ 'global-gridcrud.PAGINATION_INFO_SHOW' | translate }}
+        <select class="form-select form-select-sm w-auto" [(ngModel)]="perPage" (change)="onPerPageChange()">
+          <option [value]="10">10</option>
+          <option [value]="20">20</option>
+          <option [value]="50">50</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="row g-3"> 
+      @for (item of data; track item.id) {
+        <div class="col-12 col-sm-6 col-md-4 col-xl-3 col-xxl-2"> 
+          <div class="card card-modern h-100 shadow-sm" 
+               [class.is-selected]="idsSeleccionados.includes(item.id)" 
+               (click)="toggleSelection(item.id)">
+            
+            <div class="card-body text-center d-flex flex-column align-items-center justify-content-center py-4">
+              <h6 class="fw-bold mb-1">{{item.nombre}}</h6>
+              <p class="small text-muted mb-0">{{item.descripcion}}</p>
+            </div>
+
+            <div class="card-footer bg-transparent border-0 text-center pb-3">
+              <span class="badge rounded-pill border fw-normal text-dark">
+                {{ 'global-gridcrud.WORD_TOTAL' | translate }}: {{item.totalProductos}}
+              </span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-5 gap-3">
+      <div class="text-muted small">
+        {{ 'global-gridcrud.PAGINATION_INFO_SHOWING' | translate}} {{ desdeConteo }} - {{ hastaConteo }} / {{ totalRegistros }}
+      </div>
+      <nav>
+        <ul class="pagination pagination-sm m-0">
+          <li class="page-item" [class.disabled]="paginaActual === 1">
+            <button class="btn btn-outline-primary btn-sm mx-1" (click)="cambiarPagina(paginaActual - 1)">Anterior</button>
+          </li>
+          <li class="page-item active"><span class="page-link">{{ paginaActual }}</span></li>
+          <li class="page-item" [class.disabled]="paginaActual === totalPaginas">
+            <button class="btn btn-outline-primary btn-sm mx-1" (click)="cambiarPagina(paginaActual + 1)">Siguiente</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 </div>
