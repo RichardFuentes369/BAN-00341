@@ -63,6 +63,9 @@
   "ERROR_USER_PASSWORD": "Enter a password",
   "ERROR_USER_STATUS": "You must select an item",
   "TABLE_TITLE": "Records",
+
+  "REPORT_PERMISSION_TITLE": "Report",
+  "REPORT_PERMISSION_SUBTITLE": "of permissions",
   
   "BUTTON_USER_CREATE": "Create user",
   "BUTTON_USER_EDIT": "Edit user",

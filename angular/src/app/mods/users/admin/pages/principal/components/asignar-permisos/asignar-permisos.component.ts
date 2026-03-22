@@ -17,7 +17,7 @@ import { MOD_USER_PAGE_ADMIN } from '@mod/users/const/users.const';
   imports: [
     TranslateModule,
     CommonModule
-],
+  ],
   templateUrl: './asignar-permisos.component.html',
   styleUrl: './asignar-permisos.component.scss'
 })

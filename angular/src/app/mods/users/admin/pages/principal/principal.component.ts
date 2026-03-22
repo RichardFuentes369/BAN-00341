@@ -20,6 +20,7 @@ import { CREAR_USUARIO_COMPONENT, EDITAR_USUARIO_COMPONENT, FILTRO_USUARIO_COMPO
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { CardComponent } from '@component/globales/card/card.component';
 import { HttpParams } from '@angular/common/http';
+import { ReportePermisosComponent } from './components/reporte-permisos/reporte-permisos.component';
 
 @Component({
   selector: 'app-principal',
@@ -32,6 +33,7 @@ import { HttpParams } from '@angular/common/http';
     TablecrudComponent,
     ModalBoostrapComponent,
     CardComponent,
+    ReportePermisosComponent
   ],
   templateUrl: './principal.component.html',
   styleUrl: './principal.component.scss'
@@ -116,7 +118,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
         return data;
       }
     }
-  ];
+  ]; 
   permisosAcciones = this.permisos
   // fin datos que envio al componente tabla
 

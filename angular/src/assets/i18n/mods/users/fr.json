@@ -64,6 +64,9 @@
   "ERROR_USER_STATUS": "Vous devez sélectionner un élément",
   "TABLE_TITLE": "Registres",
 
+  "REPORT_PERMISSION_TITLE": "Rapport",
+  "REPORT_PERMISSION_SUBTITLE": "d'autorisations",
+
   "BUTTON_USER_CREATE": "Créer un utilisateur",
   "BUTTON_USER_EDIT": "Modifier l'utilisateur",
   "BUTTON_ADMIN": "Administrateurs",

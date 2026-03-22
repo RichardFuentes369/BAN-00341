@@ -1,0 +1,54 @@
+<div class="">
+  <div class="title-container mx-1 mt-3 mb-2 mb-md-0">
+    <h5 class="m-0 fw-bold text-secondary h6">
+      {{ 'mod-users.REPORT_PERMISSION_TITLE' | translate }}
+    </h5>
+    <span class="text-muted animated fadeIn" style="font-size: 0.85rem;">
+      {{ 'mod-users.SELECT_STATUS_USER_SELECT_OPTION' | translate }}
+    </span>
+  </div>
+
+  <div class="col-sm-12 row mt-2 ml-0 p-0">
+    <div class="col-sm-4">
+      <select name="" id="" class="form-control my-2">
+        <option value="">
+          {{ 'mod-users.SELECT_STATUS_USER_SELECT_OPTION' | translate }}
+        </option>
+      </select>
+    </div>
+    <div class="col-sm-4">
+      <select name="" id="" class="form-control my-2" disabled>
+        <option value="">
+          {{ 'mod-users.SELECT_STATUS_USER_SELECT_OPTION' | translate }}
+        </option>
+      </select>
+    </div>
+    <div class="col-sm-4">
+      <select name="" id="" class="form-control my-2" disabled>
+        <option value="">
+          {{ 'mod-users.SELECT_STATUS_USER_SELECT_OPTION' | translate }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-end align-items-center py-2 mb-2 mx-2">
+    <span class="custom-tooltip tooltip-left" [attr.data-title]="'global-report.BUTTON_CLEAN' | translate">
+      <button class="btn btn-sm btn-secondary rounded-circle mx-1">
+        <i class="fa fa-eraser" aria-hidden="true"></i>
+      </button>
+    </span>
+
+    <span class="custom-tooltip tooltip-top" [attr.data-title]="'global-report.BUTTON_EXCEL_EXPOT' | translate">
+      <button class="btn btn-sm btn-success rounded-circle mx-1">
+        <i class="fas fa-file-excel"></i>
+      </button>
+    </span>
+
+    <span class="custom-tooltip tooltip-right" [attr.data-title]="'global-report.BUTTON_CSV_EXPORT' | translate">
+      <button class="btn btn-sm btn-success rounded-circle mx-1">
+        <i class="fas fa-file-csv"></i>
+      </button>
+    </span>
+  </div>
+</div>

@@ -65,6 +65,9 @@
   
   "TABLE_TITLE": "Datensätze",
 
+  "REPORT_PERMISSION_TITLE": "Bericht",
+  "REPORT_PERMISSION_SUBTITLE": "über Berechtigungen",
+
   "BUTTON_USER_CREATE": "Benutzer erstellen",
   "BUTTON_USER_EDIT": "Benutzer bearbeiten",
   "BUTTON_ADMIN": "Administratoren",
