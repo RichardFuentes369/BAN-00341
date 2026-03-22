@@ -79,6 +79,7 @@
   "COLUMN_EMAIL": "E-Mail-Adresse",
   "COLUMN_NAMES": "Vornamen",
   "COLUMN_LASTNAME": "Nachnamen",
+  "COLUMN_PERMISSION_COUNT": "Bererechtigungsanzahl",
   "COLUMN_STATUS": "Status",
 
   "WORD_ACTIVED": "Aktiv",

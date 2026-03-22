@@ -78,6 +78,7 @@
   "COLUMN_EMAIL": "Adresse e-mail",
   "COLUMN_NAMES": "Prénoms",
   "COLUMN_LASTNAME": "Noms",
+  "COLUMN_PERMISSION_COUNT": "# Autorisations",
   "COLUMN_STATUS": "Statut",
 
   "WORD_ACTIVED": "Actif",

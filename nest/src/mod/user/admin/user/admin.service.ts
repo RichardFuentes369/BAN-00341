@@ -73,37 +73,36 @@ export class AdminService {
       where.isActive = filterUserDto.isActive;
     }
 
-    const peticion = async (page) => {
-      return await this.adminRepository.find({
-        skip: page,
-        take: limit,
-        where: where,
-        order: {
-          [field]: order
-        }
-      })
-    }
+    const [registros, total] = await this.adminRepository.findAndCount({
+      skip: skipeReal,
+      take: limit,
+      where: where,
+      order: { [field]: order },
+      relations: { asignaciones: true } 
+    });
 
-    const totalRecords = async () => {
-      return await this.adminRepository.count({
-        where: where
-      })
-    }
+    const result = registros.map(admin => {
+      return {
+        ...admin,
+        totalPermisos: admin.asignaciones ? admin.asignaciones.length : 0,
+        asignaciones: undefined 
+      };
+    });
 
     return [{
-      'result': await peticion(skipeReal),
+      'result': result,
       'pagination': {
         'page': page,
         'perPage': limit,
-        'previou': (page == 1) ? null : page-1,
-        'next': (await peticion(page*limit)).length == 0 ? null : page+1,
-        'totalRecord': await totalRecords()
+        'previou': (page === 1) ? null : page - 1,
+        'next': (skipeReal + limit < total) ? page + 1 : null,
+        'totalRecord': total
       },
-      'order':{
+      'order': {
         'order': order,
         'field': field
       }
-    }]
+    }];
   }
 
   findOne(

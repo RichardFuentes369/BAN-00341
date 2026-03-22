@@ -1,26 +1,11 @@
 <!-- Button trigger modal -->
-<button type="button" id="miBoton" class="btn btn-primary d-none" data-toggle="modal" data-target="#staticBackdrop" componente="" (click)="openModal()">
+<button type="button" id="miBoton" class="btn btn-primary d-none" componente="" (click)="openModal()">
   Modal
 </button>
 
-<!-- Modal -->
-<div
-  class="modal fade"
-  id="staticBackdrop"
-  data-keyboard="false"
-  tabindex="-1"
-  aria-labelledby="staticBackdropLabel"
-  aria-hidden="true"
-  [attr.data-backdrop]="cierreModal"
->
-  <div class="modal-dialog"
-    [ngClass]="
-      [
-        tamano !== '' ? 'modal-' + tamano : 'modal-sm',
-        scrollable ? 'modal-dialog-scrollable' : ''
-      ].join(' ')
-    "
-  >
+<div class="modal fade" id="staticBackdrop" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog modal-dialog-centered" 
+    [ngClass]="[tamano !== '' ? 'modal-' + tamano : 'modal-sm', scrollable ? 'modal-dialog-scrollable' : ''].join(' ')">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">{{title}}</h5>
@@ -31,9 +16,7 @@
         }
       </div>
       <div class="modal-body">
-
         <div #contenedor></div>
-
       </div>
       <div class="modal-footer">
         @if(cancel){
@@ -49,3 +32,4 @@
     </div>
   </div>
 </div>
+

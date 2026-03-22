@@ -78,6 +78,7 @@
   "COLUMN_EMAIL": "Email address",
   "COLUMN_NAMES": "First names",
   "COLUMN_LASTNAME": "Last names",
+  "COLUMN_PERMISSION_COUNT": "# Permissions",
   "COLUMN_STATUS": "Status",
   "WORD_ACTIVED": "Active",
   "WORD_INACTIVED": "Inactive",

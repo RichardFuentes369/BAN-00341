@@ -80,6 +80,7 @@
   "COLUMN_EMAIL": "Correo electrónico",
   "COLUMN_NAMES": "Nombres",
   "COLUMN_LASTNAME": "Apellidos",
+  "COLUMN_PERMISSION_COUNT": "# Permisos",
   "COLUMN_STATUS": "Estado",
 
   "WORD_ACTIVED": "Activo",

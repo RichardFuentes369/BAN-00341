@@ -88,6 +88,11 @@ export class PrincipalComponent implements OnInit, OnDestroy{
       title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
       data: 'lastName',
       className: 'text-center'
+    },    
+    {
+      title: this.translate.instant('mod-users.COLUMN_PERMISSION_COUNT'),
+      data: 'totalPermisos',
+      className: 'text-center'
     },
     {
       title: this.translate.instant('mod-users.COLUMN_STATUS'),
@@ -228,6 +233,11 @@ export class PrincipalComponent implements OnInit, OnDestroy{
       {
         title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
         data: 'lastName',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-users.COLUMN_PERMISSION_COUNT'),
+        data: 'totalPermisos',
         className: 'text-center'
       },
       {
