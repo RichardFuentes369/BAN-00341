@@ -856,6 +856,34 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "contadores",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/admin/obtener-contadores-usuarios-administradores/?lang=es",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"admin",
+												"obtener-contadores-usuarios-administradores",
+												""
+											],
+											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						}

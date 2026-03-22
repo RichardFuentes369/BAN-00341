@@ -43,8 +43,8 @@ export class AsignacionService {
 
   }
 
-  async prueba() {
-    return await this.moduloRepository.count();
+  async contadoresPermisosAsignados() {
+    return await this.asignacionRepository.count();
   }
 
   async findAll(

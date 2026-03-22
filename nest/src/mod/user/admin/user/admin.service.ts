@@ -210,7 +210,7 @@ export class AdminService {
     const cont1 =  await this.adminRepository.count()
     const cont2 = await this.adminRepository.count({ where: { isActive: true } })
     const cont3 = await this.adminRepository.count({ where: { isActive: false } })
-    const cont4 = await this.asignacionService.prueba()
+    const cont4 = await this.asignacionService.contadoresPermisosAsignados()
     
     const data = {
       "count_total_users": cont1,
