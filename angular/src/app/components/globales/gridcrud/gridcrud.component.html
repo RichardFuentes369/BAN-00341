@@ -132,11 +132,15 @@
       <nav>
         <ul class="pagination pagination-sm m-0">
           <li class="page-item" [class.disabled]="paginaActual === 1">
-            <button class="btn btn-outline-primary btn-sm mx-1" (click)="cambiarPagina(paginaActual - 1)">Anterior</button>
+            <button class="btn btn-outline-primary btn-sm mx-1" (click)="cambiarPagina(paginaActual - 1)">
+              {{ 'global-gridcrud.WORD_PREVIOUS' | translate}}
+            </button>
           </li>
           <li class="page-item active"><span class="page-link">{{ paginaActual }}</span></li>
           <li class="page-item" [class.disabled]="paginaActual === totalPaginas">
-            <button class="btn btn-outline-primary btn-sm mx-1" (click)="cambiarPagina(paginaActual + 1)">Siguiente</button>
+            <button class="btn btn-outline-primary btn-sm mx-1" (click)="cambiarPagina(paginaActual + 1)">
+              {{ 'global-gridcrud.WORD_NEXT' | translate}}
+            </button>
           </li>
         </ul>
       </nav>
