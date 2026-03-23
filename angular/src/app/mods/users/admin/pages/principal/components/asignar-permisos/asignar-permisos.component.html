@@ -22,7 +22,7 @@
           <div class="row">
             @for (subModulos of modulos.children; track subModulos.mpm_permiso) {
 
-            @if (subModulos.mpm_modulo_padre_id !== 17) {
+            @if (subModulos.mpm_modulo_padre_id !== ModuloModulos && subModulos.mpm_modulo_padre_id !== ModuloLote) {
             <div class="col-md-6 mb-3">
               <div class="card sub-card h-100">
                 <div class="card-header d-flex align-items-center bg-white">

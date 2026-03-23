@@ -31,12 +31,13 @@ export class AsignarPermisosComponent implements OnInit{
     private principalService :PrincipalService,
   ) { }
 
+
+  prueba = 666
+  ModuloModulos = 17
+  ModuloLote = 64
+
   title: any = {}
   permisos: any[] = []
-
-  sinModulo: any[] = [
-    'modulos',
-  ]
 
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
