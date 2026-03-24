@@ -1,34 +1,37 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } from '@nestjs/common';
 import { MermasService } from './mermas.service';
 import { CreateMermaDto } from './dto/create-merma.dto';
 import { UpdateMermaDto } from './dto/update-merma.dto';
+import { GetUser } from 'src/decorator/getIdUser.decorator';
+import { FilterRegistroMermaDto } from './dto/filter-merma.dto';
+import { AdminGuard } from '@guard/admin/admin.guard';
 
-@Controller('mermas')
+@Controller('registro-mermas')
 export class MermasController {
   constructor(private readonly mermasService: MermasService) {}
 
-  @Post()
-  create(@Body() createMermaDto: CreateMermaDto) {
-    return this.mermasService.create(createMermaDto);
+  @Get('obtener-registro-mermas')
+  findAll(
+    @Query('lang') lang: string,
+    @Query() FilterRegistroMermaDto: FilterRegistroMermaDto,
+    @GetUser('id') userId: number
+  ) {
+    return this.mermasService.findAll(
+      FilterRegistroMermaDto, 
+      lang
+    );
   }
 
-  @Get()
-  findAll() {
-    return this.mermasService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.mermasService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMermaDto: UpdateMermaDto) {
-    return this.mermasService.update(+id, updateMermaDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.mermasService.remove(+id);
+  @UseGuards(AdminGuard)
+  @Get('obtener-registro-merma')
+  findOne(
+    @Query('_id') _id: string,
+    @Query('lang') lang: string,
+    @GetUser('id') userId: number
+  ) {
+    return this.mermasService.findOne(
+      lang, 
+      +_id
+    );
   }
 }

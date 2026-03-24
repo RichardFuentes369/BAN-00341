@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
 import { Merma } from './merma.entity';
 
-export const tipoProviders = [
+export const mermasProviders = [
   {
     provide: 'MERMA_REPOSITORY',
     useFactory: (dataSource: DataSource) => dataSource.getRepository(Merma),

@@ -21,9 +21,10 @@ import {
   CategoryModule,
   ProductModule,
   SupplierModule,
+  TiposModule,
+  MermasModule,
+  BatchModule
 } from './mod/index'
-import { TiposModule } from './mod/merma/tipos/tipos.module';
-import { MermasModule } from './mod/merma/mermas/mermas.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { MermasModule } from './mod/merma/mermas/mermas.module';
     CategoryModule,
     ProductModule,
     SupplierModule,
+    BatchModule,
     TiposModule,
     MermasModule,
   ],

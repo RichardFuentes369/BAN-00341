@@ -12,6 +12,11 @@ export type I18nTranslations = {
         "MSN_INVALID": string;
         "PASSWORD_INVALID": string;
     };
+    "batch": {
+        "ERROR": string;
+        "MSJ_BATCH_TITTLE": string;
+        "MSN_BATCH_REMOVIDO_OK": string;
+    };
     "categoria": {
         "ERROR": string;
         "MSJ_CATEGORY_TITTLE": string;

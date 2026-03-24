@@ -1954,238 +1954,6 @@
 									"response": []
 								}
 							]
-						},
-						{
-							"name": "lote",
-							"item": [
-								{
-									"name": "obtener-lote",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{tokenAdmin}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "localhost:3000/api/product/obtener-productos?page=1&limit=10&field=id&order=asc",
-											"host": [
-												"localhost"
-											],
-											"port": "3000",
-											"path": [
-												"api",
-												"product",
-												"obtener-productos"
-											],
-											"query": [
-												{
-													"key": "page",
-													"value": "1"
-												},
-												{
-													"key": "limit",
-													"value": "10"
-												},
-												{
-													"key": "field",
-													"value": "id"
-												},
-												{
-													"key": "order",
-													"value": "asc"
-												},
-												{
-													"key": "id_category",
-													"value": "1",
-													"disabled": true
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "obtener-lote",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{tokenAdmin}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "localhost:3000/api/product/obtener-producto?_id=1&lang=es",
-											"host": [
-												"localhost"
-											],
-											"port": "3000",
-											"path": [
-												"api",
-												"product",
-												"obtener-producto"
-											],
-											"query": [
-												{
-													"key": "_id",
-													"value": "1"
-												},
-												{
-													"key": "lang",
-													"value": "es"
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "crear-lote",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{tokenAdmin}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"codigo_barra\": \"2020202012\",\r\n    \"nombre\": \"Platanos Fritas Naturales\",\r\n    \"marca\": \"Anonimo\",\r\n    \"stock_minimo\": 10,\r\n    \"unidad_medida\": \"kg\",\r\n    \"id_categoria\": 1\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "localhost:3000/api/product/crear-producto?lang=es",
-											"host": [
-												"localhost"
-											],
-											"port": "3000",
-											"path": [
-												"api",
-												"product",
-												"crear-producto"
-											],
-											"query": [
-												{
-													"key": "lang",
-													"value": "es"
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "actualizar-lote",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{tokenAdmin}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "PATCH",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"nombre\": \"Limpieza e Higiene\",\r\n    \"descripcion\": \"Limpieza e Higiene2\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "localhost:3000/api/category/editar-categoria?_id=4&lang=es",
-											"host": [
-												"localhost"
-											],
-											"port": "3000",
-											"path": [
-												"api",
-												"category",
-												"editar-categoria"
-											],
-											"query": [
-												{
-													"key": "_id",
-													"value": "4"
-												},
-												{
-													"key": "lang",
-													"value": "es"
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "eliminar-lote",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{tokenAdmin}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "DELETE",
-										"header": [],
-										"url": {
-											"raw": "localhost:3000/api/product/eliminar-producto?_id=13,14,15&lang=es",
-											"host": [
-												"localhost"
-											],
-											"port": "3000",
-											"path": [
-												"api",
-												"product",
-												"eliminar-producto"
-											],
-											"query": [
-												{
-													"key": "_id",
-													"value": "13,14,15"
-												},
-												{
-													"key": "lang",
-													"value": "es"
-												}
-											]
-										}
-									},
-									"response": []
-								}
-							]
 						}
 					]
 				}
@@ -2425,8 +2193,221 @@
 							]
 						},
 						{
-							"name": "registro",
-							"item": []
+							"name": "registro-mermas",
+							"item": [
+								{
+									"name": "obtener-registro-mermas",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/registro-mermas/obtener-registro-mermas?page=1&limit=10&field=id&order=asc",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"registro-mermas",
+												"obtener-registro-mermas"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "10"
+												},
+												{
+													"key": "field",
+													"value": "id"
+												},
+												{
+													"key": "order",
+													"value": "asc"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-registro-merma",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/registro-mermas/obtener-registro-merma?_id=1&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"registro-mermas",
+												"obtener-registro-merma"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "lote",
+			"item": [
+				{
+					"name": "admin",
+					"item": [
+						{
+							"name": "registro-lote",
+							"item": [
+								{
+									"name": "obtener-registro-lotes",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/batch/obtener-registro-lotes?page=1&limit=10&field=id&order=asc",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"batch",
+												"obtener-registro-lotes"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "10"
+												},
+												{
+													"key": "field",
+													"value": "id"
+												},
+												{
+													"key": "order",
+													"value": "asc"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-registro-lote",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/batch/obtener-registro-lote?_id=1&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"batch",
+												"obtener-registro-lote"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "alertas",
+							"item": [
+								{
+									"name": "obtener-registro-alertas",
+									"request": {
+										"method": "GET",
+										"header": []
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-registro-alerta",
+									"request": {
+										"method": "GET",
+										"header": []
+									},
+									"response": []
+								}
+							]
 						}
 					]
 				}
