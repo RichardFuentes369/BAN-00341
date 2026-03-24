@@ -7,8 +7,8 @@ import axios from 'axios';
 @Injectable({
   providedIn: 'root',
 })
-export class RegistroService {
-
+export class LoteService {
+  
   constructor(private translate: TranslateService) { }
 
 }
