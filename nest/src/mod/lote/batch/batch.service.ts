@@ -62,6 +62,11 @@ export class BatchService {
         where: where,
         order: {
           [field]: order
+        },
+        relations: {
+          id_producto: true,
+          id_proveedor: true,
+          mermas: true,
         }
       })
     }

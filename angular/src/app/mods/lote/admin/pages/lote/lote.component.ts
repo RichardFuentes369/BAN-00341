@@ -53,34 +53,64 @@ export class LoteComponent implements OnInit, OnDestroy{
   filters = ''
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-lote.SUPPLIER.COLUMN_ID'),
+      title: this.translate.instant('mod-lote.COLUMN_ID'),
       data: 'id',
       visible: false,
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-lote.SUPPLIER.COLUMN_BUSINESS_NIT'),
-      data: 'nit',
+      title: this.translate.instant('mod-lote.COLUMN_BATCH'),
+      data: 'lote',
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-lote.SUPPLIER.COLUMN_BUSINESS_NAME'),
-      data: 'razon_social',
+      title: this.translate.instant('mod-lote.COLUMN_BATCH'),
+      data: 'id_producto.nombre',
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-lote.SUPPLIER.COLUMN_BUSINESS_ADDRESS'),
-      data: 'direccion',
+      title: this.translate.instant('mod-lote.COLUMN_BATCH'),
+      data: 'id_proveedor.razon_social',
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-lote.SUPPLIER.COLUMN_BUSINESS_PHONE'),
-      data: 'telefono',
+      title: this.translate.instant('mod-lote.COLUMN_REPORT_DATE'),
+      data: 'fecha_entrada',
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-lote.SUPPLIER.COLUMN_BUSINESS_EMAIL'),
-      data: 'correo',
+      title: this.translate.instant('mod-lote.COLUMN_EXPIRATION_DATE'),
+      data: 'fecha_vencimiento',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-lote.COLUMN_UNIT_COST'),
+      data: 'costo_unitario',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-lote.COLUMN_SUGGESTED_RETAIL_PRICE'),
+      data: 'precio_venta_sugerido',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-lote.COLUMN_STATUS'),
+      data: 'estado',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-lote.COLUMN_QUANTITY_SOLD'),
+      data: 'cantidad_vendida',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-lote.COLUMN_SUGGESTED_RETAIL_PRICE'),
+      data: 'precio_venta_sugerido',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-lote.COLUMN_STOCK'),
+      data: 'stock',
       className: 'text-center'
     },
   ];
@@ -104,7 +134,7 @@ export class LoteComponent implements OnInit, OnDestroy{
   // inicio datos envio card information
   img_user_actived = "assets/images/img_admin.png"
   titlePage = this.translate.instant('mod-lote.TABLE_TITLE')
-  titleTotalSuppliers = this.translate.instant('mod-lote.SUPPLIER.CARD_TOTAL_SUPPLIERS_TITLE')
+  titleTotalLot = this.translate.instant('mod-lote.CARD_TOTAL_LOT_TITLE')
   count_total_products = '0'
   // fin datos envio card information
 
@@ -127,14 +157,13 @@ export class LoteComponent implements OnInit, OnDestroy{
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
-    const permiso_modulo = await this.permisosService.permisoPage(0,'loteo',userData.data.id)
-    const permiso_submodulo = await this.permisosService.permisoPage(22,'proveedores',userData.data.id)
+    const permiso_modulo = await this.permisosService.permisoPage(0,'lote',userData.data.id)
 
-    if (permiso_modulo.data === "" || permiso_submodulo.data === "") {
+    if (permiso_modulo.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     }
 
-    const permisos = await this.permisosService.permisos(userData.data.id,'proveedores')
+    const permisos = await this.permisosService.permisos(userData.data.id,'lote')
     this.permisos = permisos.data
     // sessionStorage.removeItem('nit')
     // sessionStorage.removeItem('razon_social')
@@ -162,43 +191,73 @@ export class LoteComponent implements OnInit, OnDestroy{
   // metodos Componente
   listar(){
     this.columnas = [
-      // {
-      //   title: this.translate.instant('mod-lote.SUPPLIER.COLUMN_ID'),
-      //   data: 'id',
-      //   visible: false,
-      //   className: 'text-center'
-      // },
-      // {
-      //   title: this.translate.instant('mod-lote.SUPPLIER.COLUMN_BUSINESS_NIT'),
-      //   data: 'nit',
-      //   className: 'text-center'
-      // },
-      // {
-      //   title: this.translate.instant('mod-lote.SUPPLIER.COLUMN_BUSINESS_NAME'),
-      //   data: 'razon_social',
-      //   className: 'text-center'
-      // },
-      // {
-      //   title: this.translate.instant('mod-lote.SUPPLIER.COLUMN_BUSINESS_PHONE'),
-      //   data: 'direccion',
-      //   className: 'text-center'
-      // },
-      // {
-      //   title: this.translate.instant('mod-lote.SUPPLIER.COLUMN_BUSINESS_EMAIL'),
-      //   data: 'telefono',
-      //   className: 'text-center'
-      // },
-      // {
-      //   title: this.translate.instant('mod-lote.SUPPLIER.COLUMN_BUSINESS_ADDRESS'),
-      //   data: 'correo',
-      //   className: 'text-center'
-      // },
+      {
+        title: this.translate.instant('mod-lote.COLUMN_ID'),
+        data: 'id',
+        visible: false,
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-lote.COLUMN_BATCH'),
+        data: 'lote',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-lote.COLUMN_BATCH'),
+        data: 'id_producto.nombre',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-lote.COLUMN_BATCH'),
+        data: 'id_proveedor.razon_social',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-lote.COLUMN_REPORT_DATE'),
+        data: 'fecha_entrada',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-lote.COLUMN_EXPIRATION_DATE'),
+        data: 'fecha_vencimiento',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-lote.COLUMN_UNIT_COST'),
+        data: 'costo_unitario',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-lote.COLUMN_SUGGESTED_RETAIL_PRICE'),
+        data: 'precio_venta_sugerido',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-lote.COLUMN_STATUS'),
+        data: 'estado',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-lote.COLUMN_QUANTITY_SOLD'),
+        data: 'cantidad_vendida',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-lote.COLUMN_SUGGESTED_RETAIL_PRICE'),
+        data: 'precio_venta_sugerido',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-lote.COLUMN_STOCK'),
+        data: 'stock',
+        className: 'text-center'
+      },
     ];  
   }
 
   cambiarTextos(){
     this.titlePage = this.translate.instant('mod-lote.TABLE_TITLE')
-    this.titleTotalSuppliers = this.translate.instant('mod-lote.SUPPLIER.CARD_TOTAL_SUPPLIERS_TITLE')
+    this.titleTotalLot = this.translate.instant('mod-lote.CARD_TOTAL_LOT_TITLE')
   }
 
   @ViewChild(TablecrudComponent)

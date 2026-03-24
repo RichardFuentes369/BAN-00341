@@ -55,6 +55,10 @@ export class MermasService {
         where: where,
         order: {
           [field]: order
+        },
+        relations: {
+          id_tipo_merma: true,
+          id_lote: true
         }
       })
     }

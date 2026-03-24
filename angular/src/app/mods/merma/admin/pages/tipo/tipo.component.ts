@@ -55,18 +55,18 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
   filters = ''
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-merma.COLUMN_ID'),
+      title: this.translate.instant('mod-merma.TYPE.COLUMN_ID'),
       data: 'id',
       visible: false,
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-merma.COLUMN_NAME'),
+      title: this.translate.instant('mod-merma.TYPE.COLUMN_NAME'),
       data: 'nombre',
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-merma.COLUMN_TOTAL'),
+      title: this.translate.instant('mod-merma.TYPE.COLUMN_TOTAL'),
       data: 'totalReportados',
       className: 'text-center'
     }
@@ -148,18 +148,18 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
   listar(){
     this.columnas = [
       {
-        title: this.translate.instant('mod-merma.COLUMN_ID'),
+        title: this.translate.instant('mod-merma.TYPE.COLUMN_ID'),
         data: 'id',
         visible: false,
         className: 'text-center'
       },
       {
-        title: this.translate.instant('mod-merma.COLUMN_NAME'),
+        title: this.translate.instant('mod-merma.TYPE.COLUMN_NAME'),
         data: 'nombre',
         className: 'text-center'
       },
     {
-      title: this.translate.instant('mod-merma.COLUMN_TOTAL'),
+      title: this.translate.instant('mod-merma.TYPE.COLUMN_TOTAL'),
       data: 'totalReportados',
       className: 'text-center'
     }

@@ -1,3 +1,27 @@
 {
-    "MODULE_TITLE": "Batch"
+  "UNKNOW_MODULE_TITLE": "Unknown Module",
+
+  "MODULE_TITLE": "Batch",
+  "TABLE_TITLE": "Records",
+
+  "BUTTON_SAVE_": "Save",
+  "BUTTON_UPDATE_": "Update",
+  "BUTTON_CANCEL": "Cancel",
+  "BUTTON_BACK": "Back",
+  "BUTTON_SEARCH": "Search",
+
+  "COLUMN_ID": "ID",
+  "COLUMN_REPORT_DATE": "Entry date",
+  "COLUMN_EXPIRATION_DATE": "Expiration date",
+  "COLUMN_UNIT_COST": "Unit cost",
+  "COLUMN_SUGGESTED_RETAIL_PRICE": "Suggested retail price",
+  "COLUMN_STATUS": "Status",
+  "COLUMN_PRODUCT": "Product ID",
+  "COLUMN_SUPPLIER": "Supplier ID",
+  "COLUMN_BATCH": "Batch",
+  "COLUMN_QUANTITY_PURCHASED": "Quantity purchased",
+  "COLUMN_QUANTITY_SOLD": "Quantity sold",
+  "COLUMN_STOCK": "Stock",
+
+  "CARD_TOTAL_LOT_TITLE": "Total records"
 }

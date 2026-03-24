@@ -15,10 +15,16 @@
 
   "BUTTON_TYPE": "Verlustart",
   "BUTTON_RECORD": "Verlustaufzeichnungen",
+  
+  "REGISTER": {
+    "COLUMN_ID": "ID",
+    "COLUMN_REPORT_DATE": "Berichtsdatum",
+    "COLUMN_AMOUNT": "Menge",
+    "COLUMN_LOST_VALUE": "Verlustwert",
+    "COLUMN_OBSERVATION": "Bemerkung",
 
-  "COLUMN_ID": "ID",
-  "COLUMN_NAME": "Name",
-  "COLUMN_TOTAL": "Gesamt",
+    "CARD_TOTAL_REGISTER_TITLE": "Gesamtregister"
+  },
 
   "TYPE": {
     "CREATE_TITLE": "Typ erstellen", 
@@ -34,6 +40,10 @@
 
     "SWAL_ARE_YOU_SURE_UPDATE": "Möchten Sie den Benutzernamen wirklich aktualisieren?",
     "SWAL_ARE_YOU_SURE_DELETE": "Möchten Sie den Benutzernamen wirklich löschen?",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_NAME": "Name",
+    "COLUMN_TOTAL": "Gesamt",
 
     "CARD_TOTAL_TYPE_TITLE": "Types insgesamt"
   },

@@ -1,7 +1,7 @@
 <div class="card shadow-sm mb-4 border-0">
   <div class="d-flex justify-content-between align-items-center px-4 pt-3 pb-2">
     <h4 class="m-0 fw-bold text-bold">
-      {{ 'mod-lote.PAGE_SUPPLIER_TITLE' | translate }}
+      {{ 'mod-lote.MODULE_TITLE' | translate }}
     </h4>
 
     <span class="custom-tooltip tooltip-left"
@@ -18,7 +18,7 @@
       [class.d-none]="!mostrarCards || !cargarIdioma">
       
       @for (card of [
-        { img: img_user_actived, title: titleTotalSuppliers, count: count_total_products }
+        { img: img_user_actived, title: titleTotalLot, count: count_total_products }
       ]; track $index) {
       <div class="col d-flex">
         <app-information-card 

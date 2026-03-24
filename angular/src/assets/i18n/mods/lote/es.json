@@ -1,3 +1,27 @@
 {
-    "MODULE_TITLE": "Lote"
+  "UNKNOW_MODULE_TITLE": "Módulo desconocido",
+
+  "MODULE_TITLE": "Lote",
+  "TABLE_TITLE": "Registros",
+
+  "BUTTON_SAVE_": "Guardar",
+  "BUTTON_UPDATE_": "Actualizar",
+  "BUTTON_CANCEL": "Cancelar",
+  "BUTTON_BACK": "Volver",
+  "BUTTON_SEARCH": "Buscar",
+
+  "COLUMN_ID": "Id",
+  "COLUMN_REPORT_DATE": "Fecha entrada",
+  "COLUMN_EXPIRATION_DATE": "Fecha vencimiento",
+  "COLUMN_UNIT_COST": "Costo unitario",
+  "COLUMN_SUGGESTED_RETAIL_PRICE": "Precio venta sugerido",
+  "COLUMN_STATUS": "Estado",
+  "COLUMN_PRODUCT": "Id product",
+  "COLUMN_SUPPLIER": "Id proveedor",
+  "COLUMN_BATCH": "Lote",
+  "COLUMN_QUANTITY_PURCHASED": "Cantidad comprada",
+  "COLUMN_QUANTITY_SOLD": "Cantidad vendida",
+  "COLUMN_STOCK": "Existencia",
+
+  "CARD_TOTAL_LOT_TITLE": "Total registros"
 }

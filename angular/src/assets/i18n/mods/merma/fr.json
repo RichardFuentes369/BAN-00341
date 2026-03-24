@@ -16,9 +16,15 @@
   "BUTTON_TYPE": "Type de perte",
   "BUTTON_RECORD": "Registres de perte",
   
-  "COLUMN_ID": "ID",
-  "COLUMN_NAME": "Nom",
-  "COLUMN_TOTAL": "Total",
+  "REGISTER": {
+    "COLUMN_ID": "Id",
+    "COLUMN_REPORT_DATE": "Date du rapport",
+    "COLUMN_AMOUNT": "Quantité",
+    "COLUMN_LOST_VALUE": "Valeur perdue",
+    "COLUMN_OBSERVATION": "Observation",
+
+    "CARD_TOTAL_REGISTER_TITLE": "Total des enregistrements"
+  },
 
   "TYPE": {
     "CREATE_TITLE": "Créer un type", 
@@ -34,6 +40,10 @@
 
     "SWAL_ARE_YOU_SURE_UPDATE": "Êtes-vous sûr de vouloir mettre à jour le fournisseur {{user_name}} ?",
     "SWAL_ARE_YOU_SURE_DELETE": "Êtes-vous sûr de vouloir supprimer le(s) fournisseur(s) {{user_name}} ?",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_NAME": "Nom",
+    "COLUMN_TOTAL": "Total",
 
     "CARD_TOTAL_TYPE_TITLE": "Total types"
   },

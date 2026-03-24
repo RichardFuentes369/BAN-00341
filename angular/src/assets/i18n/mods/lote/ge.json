@@ -1,3 +1,28 @@
 {
-    "MODULE_TITLE": "Charge"
+  "UNKNOW_MODULE_TITLE": "Unbekanntes Modul",
+
+  "MODULE_TITLE": "Charge",
+  "TABLE_TITLE": "Datensätze",
+
+  "BUTTON_SAVE_": "Speichern",
+  "BUTTON_UPDATE_": "Aktualisieren",
+  "BUTTON_CANCEL": "Abbrechen",
+  "BUTTON_BACK": "Zurück",
+
+  "BUTTON_SEARCH": "Suchen",
+
+  "COLUMN_ID": "ID",
+  "COLUMN_REPORT_DATE": "Eingangsdatum",
+  "COLUMN_EXPIRATION_DATE": "Ablaufdatum",
+  "COLUMN_UNIT_COST": "Stückkosten",
+  "COLUMN_SUGGESTED_RETAIL_PRICE": "Unverbindliche Preisempfehlung",
+  "COLUMN_STATUS": "Status",
+  "COLUMN_PRODUCT": "Produkt-ID",
+  "COLUMN_SUPPLIER": "Lieferanten-ID",
+  "COLUMN_BATCH": "Charge",
+  "COLUMN_QUANTITY_PURCHASED": "Gekaufte Menge",
+  "COLUMN_QUANTITY_SOLD": "Verkaufte Menge",
+  "COLUMN_STOCK": "Lagerbestand",
+
+  "CARD_TOTAL_REGISTER_TITLE": "Gesamtregister"
 }

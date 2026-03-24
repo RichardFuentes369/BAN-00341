@@ -16,9 +16,15 @@
   "BUTTON_TYPE": "Loss Type",
   "BUTTON_RECORD": "Loss Records",
 
-  "COLUMN_ID": "Id",
-  "COLUMN_NAME": "Name",
-  "COLUMN_TOTAL": "Total",
+  "REGISTER": {
+    "COLUMN_ID": "Id",
+    "COLUMN_REPORT_DATE": "Name",
+    "COLUMN_AMOUNT": "Amount",
+    "COLUMN_LOST_VALUE": "Lost value",
+    "COLUMN_OBSERVATION": "Observation",
+    
+    "CARD_TOTAL_REGISTER_TITLE": "Total records"
+  },
 
   "TYPE": {
     "CREATE_TITLE": "Create type", 
@@ -34,6 +40,10 @@
     
     "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the type{{plural}} {{user_name}}?",
     "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete the type{{plural}} {{user_name}}?",
+
+    "COLUMN_ID": "Id",
+    "COLUMN_NAME": "Name",
+    "COLUMN_TOTAL": "Total",
 
     "CARD_TOTAL_TYPE_TITLE": "Total types"
   },

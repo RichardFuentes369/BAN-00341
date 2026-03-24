@@ -16,24 +16,34 @@
   "BUTTON_TYPE": "Tipo de pérdida",
   "BUTTON_RECORD": "Registros de pérdida",
 
-  "COLUMN_ID": "Id",
-  "COLUMN_NAME": "Nombre",
-  "COLUMN_TOTAL": "Total",
-
+  "REGISTER": {
+    "COLUMN_ID": "Id",
+    "COLUMN_REPORT_DATE": "Fecha reporte",
+    "COLUMN_AMOUNT": "Cantidad",
+    "COLUMN_LOST_VALUE": "Valor perdido",
+    "COLUMN_OBSERVATION": "Observación",
+    
+    "CARD_TOTAL_REGISTER_TITLE": "Total registros"
+  },
+  
   "TYPE": {
     "CREATE_TITLE": "Crear tipo", 
     "EDIT_TITLE": "Editar tipo {{type_name}}", 
     "SEE_TITLE": "Ver tipo {{type_name}}", 
-
+    
     "LABEL_NAME_TYPE": "Nombre",
     "PLACEHOLDER_NAME_TYPE": "Ingrese un nombre",
-
+    
     "SWAL_CREATED": "¡Tipo!",
     "SWAL_UPDATED": "¡Tipo!",
     "SWAL_DELETED": "¡Tipo!",
-
+    
     "SWAL_ARE_YOU_SURE_UPDATE": "¿Está seguro de que desea actualizar el tipo {{user_name}}?",
     "SWAL_ARE_YOU_SURE_DELETE": "¿Está seguro de que desea eliminar {{art_the}} tipo{{plural}} {{user_name}}?",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_NAME": "Nombre",
+    "COLUMN_TOTAL": "Total",
 
     "CARD_TOTAL_TYPE_TITLE": "Total tipos"
   },

@@ -42,7 +42,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
 
   // inicio datos envio al filtro
   search = true
-  buttonSearch = this.translate.instant('mod-registro.BUTTON_SEARCH')
+  buttonSearch = this.translate.instant('mod-merma.BUTTON_SEARCH')
   iconFilter="fa fa-filter"
   componenteFilter=''
   // fin datos envio al filtro
@@ -52,37 +52,36 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
   endPoint = 'registro-mermas/obtener-registro-mermas'
   filters = ''
   columnas: any[] = [
-    // {
-    //   title: this.translate.instant('mod-registro.SUPPLIER.COLUMN_ID'),
-    //   data: 'id',
-    //   visible: false,
-    //   className: 'text-center'
-    // },
-    // {
-    //   title: this.translate.instant('mod-registro.SUPPLIER.COLUMN_BUSINESS_NIT'),
-    //   data: 'nit',
-    //   className: 'text-center'
-    // },
-    // {
-    //   title: this.translate.instant('mod-registro.SUPPLIER.COLUMN_BUSINESS_NAME'),
-    //   data: 'razon_social',
-    //   className: 'text-center'
-    // },
-    // {
-    //   title: this.translate.instant('mod-registro.SUPPLIER.COLUMN_BUSINESS_ADDRESS'),
-    //   data: 'direccion',
-    //   className: 'text-center'
-    // },
-    // {
-    //   title: this.translate.instant('mod-registro.SUPPLIER.COLUMN_BUSINESS_PHONE'),
-    //   data: 'telefono',
-    //   className: 'text-center'
-    // },
-    // {
-    //   title: this.translate.instant('mod-registro.SUPPLIER.COLUMN_BUSINESS_EMAIL'),
-    //   data: 'correo',
-    //   className: 'text-center'
-    // },
+    {
+      title: this.translate.instant('mod-merma.REGISTER.COLUMN_ID'),
+      data: 'id_lote.lote',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-merma.REGISTER.COLUMN_ID'),
+      data: 'id_tipo_merma.nombre',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE'),
+      data: 'fecha_reporte',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-merma.REGISTER.COLUMN_AMOUNT'),
+      data: 'cantidad',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-merma.REGISTER.COLUMN_LOST_VALUE'),
+      data: 'valor_perdido',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-merma.REGISTER.COLUMN_OBSERVATION'),
+      data: 'observaciones',
+      className: 'text-center'
+    },
   ];
   permisosAcciones = this.permisos
   // fin datos que envio al componente tabla
@@ -92,19 +91,19 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
   scrollable = false
   title = ""
   save = true
-  buttonSave = this.translate.instant('mod-registro.BUTTON_SAVE_')
+  buttonSave = this.translate.instant('mod-merma.BUTTON_SAVE_')
   edit = true
-  buttonEdit = this.translate.instant('mod-registro.BUTTON_UPDATE_')
+  buttonEdit = this.translate.instant('mod-merma.BUTTON_UPDATE_')
   cancel = true
-  buttonCancel = this.translate.instant('mod-registro.BUTTON_CANCEL')
+  buttonCancel = this.translate.instant('mod-merma.BUTTON_CANCEL')
   cierreModal = "true"
   componentePrecargado = ""
   // fin datos envio al modal
 
   // inicio datos envio card information
   img_user_actived = "assets/images/img_admin.png"
-  titlePage = this.translate.instant('mod-registro.TABLE_TITLE')
-  titleTotalSuppliers = this.translate.instant('mod-registro.SUPPLIER.CARD_TOTAL_SUPPLIERS_TITLE')
+  titlePage = this.translate.instant('mod-merma.TABLE_TITLE')
+  titleTotalRegister = this.translate.instant('mod-merma.REGISTER.CARD_TOTAL_REGISTER_TITLE')
   count_total_products = '0'
   // fin datos envio card information
 
@@ -127,14 +126,14 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
-    const permiso_modulo = await this.permisosService.permisoPage(0,'catalogo',userData.data.id)
-    const permiso_submodulo = await this.permisosService.permisoPage(22,'proveedores',userData.data.id)
+    const permiso_modulo = await this.permisosService.permisoPage(0,'merma',userData.data.id)
+    const permiso_submodulo = await this.permisosService.permisoPage(44,'registro_merma',userData.data.id)
 
     if (permiso_modulo.data === "" || permiso_submodulo.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     }
 
-    const permisos = await this.permisosService.permisos(userData.data.id,'proveedores')
+    const permisos = await this.permisosService.permisos(userData.data.id,'registro_merma')
     this.permisos = permisos.data
     // sessionStorage.removeItem('nit')
     // sessionStorage.removeItem('razon_social')
@@ -162,43 +161,42 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
   // metodos Componente
   listar(){
     this.columnas = [
-      // {
-      //   title: this.translate.instant('mod-registro.SUPPLIER.COLUMN_ID'),
-      //   data: 'id',
-      //   visible: false,
-      //   className: 'text-center'
-      // },
-      // {
-      //   title: this.translate.instant('mod-registro.SUPPLIER.COLUMN_BUSINESS_NIT'),
-      //   data: 'nit',
-      //   className: 'text-center'
-      // },
-      // {
-      //   title: this.translate.instant('mod-registro.SUPPLIER.COLUMN_BUSINESS_NAME'),
-      //   data: 'razon_social',
-      //   className: 'text-center'
-      // },
-      // {
-      //   title: this.translate.instant('mod-registro.SUPPLIER.COLUMN_BUSINESS_PHONE'),
-      //   data: 'direccion',
-      //   className: 'text-center'
-      // },
-      // {
-      //   title: this.translate.instant('mod-registro.SUPPLIER.COLUMN_BUSINESS_EMAIL'),
-      //   data: 'telefono',
-      //   className: 'text-center'
-      // },
-      // {
-      //   title: this.translate.instant('mod-registro.SUPPLIER.COLUMN_BUSINESS_ADDRESS'),
-      //   data: 'correo',
-      //   className: 'text-center'
-      // },
+      {
+        title: this.translate.instant('mod-merma.REGISTER.COLUMN_ID'),
+        data: 'id_lote.lote',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-merma.REGISTER.COLUMN_ID'),
+        data: 'id_tipo_merma.nombre',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE'),
+        data: 'fecha_reporte',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-merma.REGISTER.COLUMN_AMOUNT'),
+        data: 'cantidad',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-merma.REGISTER.COLUMN_LOST_VALUE'),
+        data: 'valor_perdido',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-merma.REGISTER.COLUMN_OBSERVATION'),
+        data: 'observaciones',
+        className: 'text-center'
+      },
     ];  
   }
 
   cambiarTextos(){
-    this.titlePage = this.translate.instant('mod-registro.TABLE_TITLE')
-    this.titleTotalSuppliers = this.translate.instant('mod-registro.SUPPLIER.CARD_TOTAL_SUPPLIERS_TITLE')
+    this.titlePage = this.translate.instant('mod-merma.TABLE_TITLE')
+    this.titleTotalRegister = this.translate.instant('mod-merma.REGISTER.CARD_TOTAL_REGISTER_TITLE')
   }
 
   @ViewChild(TablecrudComponent)
