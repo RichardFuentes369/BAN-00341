@@ -592,6 +592,50 @@
 										"description": "Este enpoint servira para armar un merge entre los permisos disponibles y los que tiene el usuario habilitado para posteriormente asignar o no"
 									},
 									"response": []
+								},
+								{
+									"name": "reporte-permisos-asignados",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/asignacion/obtener-usuarios-por-permiso/csv",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"asignacion",
+												"obtener-usuarios-por-permiso",
+												"csv"
+											],
+											"query": [
+												{
+													"key": "modulo",
+													"value": "Usuarios",
+													"disabled": true
+												},
+												{
+													"key": "submodulo",
+													"value": "Administradores",
+													"disabled": true
+												},
+												{
+													"key": "permiso",
+													"value": "",
+													"disabled": true
+												},
+												{
+													"key": "user_id",
+													"value": "4",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -884,6 +928,41 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "reporte-usuarios-administradores",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/admin/csv?id=true&email=true&firstName=true",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"admin",
+												"csv"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "true"
+												},
+												{
+													"key": "email",
+													"value": "true"
+												},
+												{
+													"key": "firstName",
+													"value": "true"
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						}
@@ -1113,6 +1192,37 @@
 												"api",
 												"user",
 												"actualizar-estado-usuario-final"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "reporte-usuarios-finales",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/user/excel?email=true&firstName=true",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"user",
+												"excel"
+											],
+											"query": [
+												{
+													"key": "email",
+													"value": "true"
+												},
+												{
+													"key": "firstName",
+													"value": "true"
+												}
 											]
 										}
 									},
