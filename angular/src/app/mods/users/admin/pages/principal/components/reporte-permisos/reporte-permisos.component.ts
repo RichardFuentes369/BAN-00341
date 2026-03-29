@@ -1,62 +1,111 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ModulosService } from '@mod/modules/admin/service/modulos.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { PrincipalService } from '../../service/principal.service';
 
 @Component({
   selector: 'app-reporte-permisos',
   standalone: true,
-  imports: [
-    TranslateModule,
-    CommonModule
-  ],
+  imports: [TranslateModule, FormsModule],
   templateUrl: './reporte-permisos.component.html',
   styleUrl: './reporte-permisos.component.scss',
 })
 export class ReportePermisosComponent implements OnInit{
 
+  constructor(
+    private principalService :PrincipalService,
+  ) { }
+
   private readonly _moduloService = inject(ModulosService);
 
-  selectModulos = []
-  selectSubModulos = []
-  selectPermisos = []
+  loading1 = false;
+  loading2 = false;
+  loading3 = false;
+
+  ModuloModulos = 17
+  ModuloLote = 64
+
+  selectModulos: any[] = [];
+  selectSubModulos: any[] = [];
+  selectPermisos: any[] = [];
+
+  model = {
+    modulo: 0,
+    submodulo: 0,
+    permiso: 0
+  }
 
   ngOnInit() {
     this.listar();
   } 
 
+  limpiar(){
+    this.model.modulo = 0
+    this.model.submodulo = 0
+    this.model.permiso = 0
+    this.selectSubModulos = []
+    this.selectPermisos = []
+  }
+
   async listar() {
+    this.loading1 = true
     try {
-      // cambia el 0 por el id seleccionado
       const response = await this._moduloService.obtenerPermisosPorModule(0)
-      this.selectModulos = response.data[0].result
-      console.log(this.selectModulos)
+      if (response?.data?.[0]?.result) {
+        this.selectModulos = response.data[0].result
+      }
     } catch (error) {
-      console.error(error)
+      console.error('Error UTS-Reporte:', error)
+    } finally {
+      this.loading1 = false
     }
   }
 
-  /*
-  SELECT 
-	mua.id, 
-	mua.firstName, 
-	mua.lastName, 
-	mua.email, 
-	mua.isActive
-FROM mod_permisos_modulo_asignacion mpma
-INNER JOIN mod_usuarios_admin mua ON mua.id = mpma.user_id
+  async cambioModulo(idModulo: number) {
+    this.selectSubModulos = [];
+    this.selectPermisos = [];
+    this.model.submodulo = 0;
+    this.model.permiso = 0;
 
--- permisos
--- WHERE permiso = "eliminar_individual"
--- AND modulo_padre_id = 2 -- anterior select
+    if (idModulo == 0) return;
 
--- submodulos
--- WHERE permiso = "finales"
--- AND modulo_padre_id = 1 -- anterior select
+    this.loading2 = true;
+    try {
+      const response = await this._moduloService.obtenerPermisosPorModule(idModulo);
+      if (response?.data?.[0]?.result) {
+        this.selectSubModulos = response.data[0].result;
+      }
+    } catch (error) {
+      console.error('Error cargando submodulos:', error);
+    } finally {
+      this.loading2 = false;
+    }
+  }
 
--- modulos
--- WHERE permiso = "usuarios"
--- AND modulo_padre_id is null
-*/
+  async cambioSubmodulo(idSubmodulo: number) {
+    this.selectPermisos = [];
+    this.model.permiso = 0;
+
+    if (idSubmodulo == 0) return;
+
+    this.loading3 = true;
+    try {
+      const response = await this._moduloService.obtenerPermisosPorModule(idSubmodulo);
+      if (response?.data?.[0]?.result) {
+        this.selectPermisos = response.data[0].result;
+      }
+    } catch (error) {
+      console.error('Error cargando permisos:', error);
+    } finally {
+      this.loading3 = false;
+    }
+  }
+
+  async generar(option: string){
+    const response = await this.principalService.obtenerReportePermisos(this.model)
+    console.log(response)
+  }
 
 }

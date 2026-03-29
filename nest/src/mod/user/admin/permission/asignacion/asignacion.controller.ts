@@ -72,5 +72,14 @@ export class AsignacionController {
       +query.idUser
     );
   }
+
+  @Get('reporte-permisos-asignados')
+  async permisosAsignados(
+    @Query('lang') lang:string,
+    @Query() query,
+    @GetUser('id') userId: number
+  ) {
+    const reporte = await this.asignacionService.reportePermisos(query.modulo, query.submodulo, query.permiso)
+  }
 }
 

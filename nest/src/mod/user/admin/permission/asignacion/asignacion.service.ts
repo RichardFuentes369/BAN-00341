@@ -202,4 +202,31 @@ export class AsignacionService {
     }
 
   }
+
+  reportePermisos(
+    modulo: string,
+    submodulo: string,
+    permiso: string
+  ){
+    /*
+      -- vamos a crear una consulta con esto, el id que le pasamos es el ultimo que seleccionamos de
+      -- modulo, submodulo, permiso
+      SELECT mpm.modulo_padre_id, mpm.permiso FROM mod_permisos_modulo mpm WHERE id = 1; 
+
+      -- esto me traera 2 campos. modulo_padre_id y permiso los cuales consultaremos
+      -- OJO si en modulo_padre_id es null pues sera campo nulo si no pues se queda
+
+      SELECT 
+        mua.firstName,
+        mua.lastName,
+        mua.email,
+        mua.isActive
+      FROM mod_permisos_modulo_asignacion mpma
+      INNER JOIN mod_usuarios_admin mua ON mpma.user_id = mua.id
+      WHERE 
+      mpma.modulo_padre_id IS NULL
+      -- mpma.modulo_padre_id = 1 -- cambia
+      AND mpma.permiso = 'usuarios'; -- cambia
+    */
+  }
 }
