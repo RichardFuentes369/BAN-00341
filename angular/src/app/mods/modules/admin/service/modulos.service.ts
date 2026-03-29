@@ -13,6 +13,17 @@ export class ModulosService {
     private translate: TranslateService
   ) { }
 
+  async obtenerPermisosPorModule(padreId:number){
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = `modulos/obtener-permisos-por-modulo/${padreId}?page=1&limit=50&field=id&order=asc&lang=${lang}`
+    let urlCopleta = environment.apiUrl+complemento
+
+    return await axios.request({
+      method: 'get',
+      url: urlCopleta,
+    })
+  }
+
   async getHasSubmodule(id: number){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = `modulos/obtener-modulo-permiso?idModulo=${id}&lang=${lang}`
