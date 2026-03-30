@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
+import { BREADCRUMB_PATH_MENU } from '@const/app.const';
 import { BREADCRUMB_PATH_ADMIN_CATEGORY } from '@mod/catalog/const/catalog.const';
-import { BREADCRUMB_PATH_MODULES } from '@mod/main/const/main.const';
+import { BREADCRUMB_PATH_CATALOG, BREADCRUMB_PATH_MODULES, BREADCRUMB_PATH_USERS } from '@mod/main/const/main.const';
 import { BREADCRUMB_PATH_SUBMODULES } from '@mod/modules/const/modules.const';
-import { BREADCRUMB_PATH_ASSIGN_ADMIN_USERS } from '@mod/users/const/users.const';
+import { BREADCRUMB_PATH_ADMIN_USERS, BREADCRUMB_PATH_ASSIGN_ADMIN_USERS, BREADCRUMB_PATH_FINAL_USERS } from '@mod/users/const/users.const';
 import { BehaviorSubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -44,18 +45,20 @@ export class BreadcrumbService {
       if (label) {
         
         let params = { ...child.queryParams };
-        if (label === BREADCRUMB_PATH_MODULES) {
-          delete params['id_submodule'];
-          delete params['id_module'];
+        if (
+          label === BREADCRUMB_PATH_MENU || 
+          label === BREADCRUMB_PATH_USERS || 
+          label === BREADCRUMB_PATH_ADMIN_USERS || 
+          label === BREADCRUMB_PATH_FINAL_USERS ||
+          label === BREADCRUMB_PATH_CATALOG ||
+          label === BREADCRUMB_PATH_ADMIN_CATEGORY ||
+          label === BREADCRUMB_PATH_MODULES
+        ) {
+          params = {}
         }
+
         if (label === BREADCRUMB_PATH_SUBMODULES) {
-          delete params['id_submodule'];
-        }
-        if (label === BREADCRUMB_PATH_ADMIN_CATEGORY) {
-          delete params['id_category'];
-        }
-        if (label === BREADCRUMB_PATH_ASSIGN_ADMIN_USERS) {
-          delete params['id_user'];
+          delete params['id_submodule']
         }
 
         breadcrumbs.push({
