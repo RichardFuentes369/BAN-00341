@@ -162,6 +162,7 @@ export class AsignacionService {
         'permiso': permisoMaestro.permiso,
         'modulo_padre_id':  (permisoMaestro.modulo_padre_id) ? permisoMaestro.modulo_padre_id : null,
         'nombre':  permisoMaestro.nombre,
+        'id_modulo':  permisoMaestro.id,
         'descripcion':  permisoMaestro.descripcion,
         'user_id': idUser
       }

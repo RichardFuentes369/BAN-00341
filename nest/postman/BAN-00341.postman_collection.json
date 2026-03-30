@@ -250,7 +250,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:3000/api/modulos/editModuloPermiso?idPermiso=21&lang=es",
+									"raw": "localhost:3000/api/modulos/updateModuloPermiso?idPermiso=21&lang=es",
 									"host": [
 										"localhost"
 									],
@@ -258,7 +258,7 @@
 									"path": [
 										"api",
 										"modulos",
-										"editModuloPermiso"
+										"updateModuloPermiso"
 									],
 									"query": [
 										{

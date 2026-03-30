@@ -16,7 +16,10 @@ export class Asignacion {
   descripcion: string;
 
   @Column({ nullable: true })
-  modulo_padre_id: number;
+  id_modulo: number; // se traera el id de la tabla original
+
+  @Column({ nullable: true })
+  modulo_padre_id: number; // se traera el id padre de la tabla original
 
   @Column({ nullable: true })
   user_id: number;
