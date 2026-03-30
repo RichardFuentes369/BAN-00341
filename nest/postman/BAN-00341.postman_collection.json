@@ -15,11 +15,21 @@
 						{
 							"name": "crear-modulo-permiso",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"modulo_padre_id\": 0,\r\n    \"tiene_submodulos\": false,\r\n    \"tiene_permisos\": false,\r\n    \"nombre\": \"Modulos\",\r\n    \"permiso\": \"modulos\",\r\n    \"descripcion\": \"Habilita el modulo modulos\"\r\n}",
+									"raw": "{\r\n    \"modulo_padre_id\": 0,\r\n    \"tiene_submodulos\": false,\r\n    \"tiene_permisos\": false,\r\n    \"nombre\": \"Nompre del permiso\",\r\n    \"permiso\": \"nombre_del_permiso\",\r\n    \"descripcion\": \"Aqui_la_descripcion_del_permiso\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -27,7 +37,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:3000/api/modulos/postModuloPermiso",
+									"raw": "localhost:3000/api/modulos/crear-modulo-permiso",
 									"host": [
 										"localhost"
 									],
@@ -35,7 +45,7 @@
 									"path": [
 										"api",
 										"modulos",
-										"postModuloPermiso"
+										"crear-modulo-permiso"
 									]
 								},
 								"description": "Este enpoint servira para crear Modulos y permisos disponibles en la aplicacion.\n\nPara crear modulos el modulo_padre_id debe ser 0, si no lo tomara como un submodulo o permiso."
@@ -45,10 +55,20 @@
 						{
 							"name": "eliminar-modulo-permiso",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/api/modulos/deleteModuloPermiso?idPermiso=0",
+									"raw": "localhost:3000/api/modulos/eliminar-modulo-permiso?idPermiso=71",
 									"host": [
 										"localhost"
 									],
@@ -56,12 +76,12 @@
 									"path": [
 										"api",
 										"modulos",
-										"deleteModuloPermiso"
+										"eliminar-modulo-permiso"
 									],
 									"query": [
 										{
 											"key": "idPermiso",
-											"value": "0"
+											"value": "71"
 										}
 									]
 								},
@@ -70,7 +90,10 @@
 							"response": []
 						},
 						{
-							"name": "getModuloPermisoEspecificos",
+							"name": "obtener-modulo-permiso",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -84,8 +107,17 @@
 								},
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "localhost:3000/api/modulos/getModuloPermisoExistente?idModulo=0&permiso=usuarios",
+									"raw": "localhost:3000/api/modulos/obtener-modulo-permiso",
 									"host": [
 										"localhost"
 									],
@@ -93,51 +125,22 @@
 									"path": [
 										"api",
 										"modulos",
-										"getModuloPermisoExistente"
+										"obtener-modulo-permiso"
 									],
 									"query": [
 										{
-											"key": "idModulo",
-											"value": "0"
+											"key": "modulo_padre_id",
+											"value": "0",
+											"disabled": true
 										},
 										{
 											"key": "permiso",
-											"value": "usuarios"
+											"value": "nombre_del_permiso",
+											"disabled": true
 										}
 									]
 								},
 								"description": "Este enpoint servira para filtrar los modulos o permisos individualmente disponibles en la aplicacion"
-							},
-							"response": []
-						},
-						{
-							"name": "getModuloPermiso",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{tokenAdmin}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:3000/api/modulos/getModuloPermisoExistente",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"api",
-										"modulos",
-										"getModuloPermisoExistente"
-									]
-								},
-								"description": "Este enpoint servira para listar modulos submodulos y permisos disponibles en la aplicacion"
 							},
 							"response": []
 						},
@@ -147,7 +150,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/api/modulos/obtener-permisos-por-modulo/0?page=1&limit=1&field=id&order=asc&lang=es",
+									"raw": "localhost:3000/api/modulos/obtener-permisos-por-modulo/0?page=1&limit=10&field=id&order=asc&lang=es",
 									"host": [
 										"localhost"
 									],
@@ -165,7 +168,7 @@
 										},
 										{
 											"key": "limit",
-											"value": "1"
+											"value": "10"
 										},
 										{
 											"key": "field",
@@ -597,43 +600,7 @@
 									"name": "reporte-permisos-asignados",
 									"request": {
 										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "http://localhost:3000/api/asignacion/obtener-usuarios-por-permiso/csv",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "3000",
-											"path": [
-												"api",
-												"asignacion",
-												"obtener-usuarios-por-permiso",
-												"csv"
-											],
-											"query": [
-												{
-													"key": "modulo",
-													"value": "Usuarios",
-													"disabled": true
-												},
-												{
-													"key": "submodulo",
-													"value": "Administradores",
-													"disabled": true
-												},
-												{
-													"key": "permiso",
-													"value": "",
-													"disabled": true
-												},
-												{
-													"key": "user_id",
-													"value": "4",
-													"disabled": true
-												}
-											]
-										}
+										"header": []
 									},
 									"response": []
 								}
