@@ -29,7 +29,7 @@ export class ModulosController {
   // no se usa
   @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
-  @Get('getModuloPermisoExistente')
+  @Get('obtener-modulo-permiso')
   findOne(
     @Query('lang') lang:string,
     @Query() query,
@@ -37,7 +37,7 @@ export class ModulosController {
   ) {
     return this.modulosService.findPermiso(
       lang,
-      +query.idModulo, 
+      +query.modulo_padre_id, 
       query.permiso, 
       'SEARCH'
     );
@@ -85,20 +85,20 @@ export class ModulosController {
     );
   }  
 
-  // no se usa
-  @UseGuards(AdminGuard)
-  @Patch('updateModuloPermiso')
-  update(
-    @Query('lang') lang:string,
-    @Query() queryParams,
-    @GetUser('id') userId: number
-  ) {
-    return this.modulosService.update(
-      lang,
-      queryParams,
-      userId
-    );
-  }
+  // // no se usa
+  // @UseGuards(AdminGuard)
+  // @Patch('updateModuloPermiso')
+  // update(
+  //   @Query('lang') lang:string,
+  //   @Query() queryParams,
+  //   @GetUser('id') userId: number
+  // ) {
+  //   return this.modulosService.update(
+  //     lang,
+  //     queryParams,
+  //     userId
+  //   );
+  // }
 
   @UseGuards(AdminGuard)
   @Delete('eliminar-modulo-permiso')

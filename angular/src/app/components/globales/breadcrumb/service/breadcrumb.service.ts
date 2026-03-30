@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { BREADCRUMB_PATH_ADMIN_CATEGORY } from '@mod/catalog/const/catalog.const';
+import { BREADCRUMB_PATH_MODULES } from '@mod/main/const/main.const';
 import { BREADCRUMB_PATH_SUBMODULES } from '@mod/modules/const/modules.const';
 import { BREADCRUMB_PATH_ASSIGN_ADMIN_USERS } from '@mod/users/const/users.const';
 import { BehaviorSubject } from 'rxjs';
@@ -43,7 +44,7 @@ export class BreadcrumbService {
       if (label) {
         
         let params = { ...child.queryParams };
-        if (label === 'Modulos') {
+        if (label === BREADCRUMB_PATH_MODULES) {
           delete params['id_submodule'];
           delete params['id_module'];
         }

@@ -25,14 +25,14 @@ export class ModulosService {
 
   async findPermiso(
     lang:string, 
-    moduloId?: number, 
+    modulo_padre_id?: number, 
     permiso?: string, 
     opcion?: string
   ){
     
     let consulta = []
 
-    if(isNaN(moduloId) && permiso == undefined && opcion == 'SEARCH'){
+    if(isNaN(modulo_padre_id) && permiso == undefined && opcion == 'SEARCH'){
       const Modulos = await this.moduloRepository.createQueryBuilder('permiso')
       .where('permiso.modulo_padre IS NULL')
       .getRawMany();
@@ -56,7 +56,7 @@ export class ModulosService {
       return SubModulos;
     }
 
-    if(moduloId == 0 && opcion == 'CREATE'){
+    if(modulo_padre_id == 0 && opcion == 'CREATE'){
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
       .where("modulo.modulo_padre_id IS NULL")
       .andWhere("modulo.permiso  = :permiso", { permiso: permiso })
@@ -66,9 +66,9 @@ export class ModulosService {
         this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_EXISTENTE', { lang }) }
       )
     }
-    if(moduloId != 0 && opcion == 'CREATE'){
+    if(modulo_padre_id != 0 && opcion == 'CREATE'){
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
-      .where("modulo.id = :idPadre", { idPadre: moduloId })
+      .where("modulo.id = :idPadre", { idPadre: modulo_padre_id })
       .getMany();
 
       if(consulta.length == 0) throw new NotFoundException(
@@ -76,7 +76,7 @@ export class ModulosService {
       )
 
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
-      .where("modulo.modulo_padre_id = :idPadre", { idPadre: moduloId })
+      .where("modulo.modulo_padre_id = :idPadre", { idPadre: modulo_padre_id })
       .andWhere("modulo.permiso = :permiso", { permiso: permiso })
       .getMany();
 
@@ -85,7 +85,7 @@ export class ModulosService {
       )
     }
     
-    if(moduloId == 0 && opcion == 'DELETE'){
+    if(modulo_padre_id == 0 && opcion == 'DELETE'){
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
       .where("modulo.modulo_padre_id IS NULL")
       .andWhere("modulo.permiso = :permiso", { permiso: permiso })
@@ -103,9 +103,9 @@ export class ModulosService {
         this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS', { lang }) }
       )
     }
-    if(moduloId != 0 && opcion == 'DELETE'){
+    if(modulo_padre_id != 0 && opcion == 'DELETE'){
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
-      .where("modulo.modulo_padre_id = :idPadre", { idPadre: moduloId })
+      .where("modulo.modulo_padre_id = :idPadre", { idPadre: modulo_padre_id })
       .getMany();
 
       if(consulta.length == 0) throw new NotFoundException(
@@ -121,7 +121,7 @@ export class ModulosService {
       )
 
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
-      .where("modulo.modulo_padre_id = :idPadre", { idPadre: moduloId })
+      .where("modulo.modulo_padre_id = :idPadre", { idPadre: modulo_padre_id })
       .andWhere("modulo.nombre_permiso = :permiso", { permiso: permiso })
       .getMany();
 
@@ -130,7 +130,7 @@ export class ModulosService {
       )
     }
 
-    if(moduloId == 0 && opcion == 'SEARCH'){
+    if(modulo_padre_id == 0 && opcion == 'SEARCH'){
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
       .where("modulo.modulo_padre_id IS NULL")
       .andWhere("modulo.permiso  = :permiso", { permiso: permiso })
@@ -140,9 +140,9 @@ export class ModulosService {
         this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE', { lang }) }
       )
     }
-    if(moduloId != 0 && opcion == 'SEARCH'){
+    if(modulo_padre_id != 0 && opcion == 'SEARCH'){
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
-      .where("modulo.id = :idPadre", { idPadre: moduloId })
+      .where("modulo.id = :idPadre", { idPadre: modulo_padre_id })
       .getMany();
 
       if(consulta.length == 0) throw new NotFoundException(
@@ -150,7 +150,7 @@ export class ModulosService {
       )
 
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
-      .where("modulo.modulo_padre_id = :idPadre", { idPadre: moduloId })
+      .where("modulo.modulo_padre_id = :idPadre", { idPadre: modulo_padre_id })
       .andWhere("modulo.permiso = :permiso", { permiso: permiso })
       .getMany();
 
@@ -317,22 +317,22 @@ export class ModulosService {
     }
   }
 
-  async update(
-    lang:string,
-    query: any,
-    userId: number
-  ){
+  // async update(
+  //   lang:string,
+  //   query: any,
+  //   userId: number
+  // ){
 
-    let idRegistro = await this.findPermiso(query.idModulo, query.permiso, 'SEARCH')
-    const elimiarModulo = this.moduloRepository.delete(idRegistro[0].id);
+  //   let idRegistro = await this.findPermiso(query.idModulo, query.permiso, 'SEARCH')
+  //   const elimiarModulo = this.moduloRepository.delete(idRegistro[0].id);
     
-    return {
-      'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
-      'message': this.i18n.t('modulo.MSN_PERMISO_REMOVIDO_OK', { lang }),
-      'status': 200,
-    }
+  //   return {
+  //     'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
+  //     'message': this.i18n.t('modulo.MSN_PERMISO_REMOVIDO_OK', { lang }),
+  //     'status': 200,
+  //   }
     
-  }  
+  // }  
 
   async remove(
     lang:string,
