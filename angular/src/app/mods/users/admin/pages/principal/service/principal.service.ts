@@ -139,7 +139,6 @@ export class PrincipalService {
   }
 
   async obtenerTotale(){
-
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'admin/obtener-contadores-usuarios-administradores/'
     let urlCopleta = environment.apiUrl+complemento
@@ -156,9 +155,7 @@ export class PrincipalService {
         lang: lang,
       }
     })
-
   }
-
 }
 
 

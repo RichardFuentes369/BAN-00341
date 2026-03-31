@@ -145,6 +145,47 @@
 							"response": []
 						},
 						{
+							"name": "obtener-modulo-permiso-especifico",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/modulos/obtener-modulo-permiso?modulo_padre_id=0&permiso=nombre_del_permiso",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"obtener-modulo-permiso"
+									],
+									"query": [
+										{
+											"key": "modulo_padre_id",
+											"value": "0"
+										},
+										{
+											"key": "permiso",
+											"value": "nombre_del_permiso"
+										}
+									]
+								},
+								"description": "Este enpoint servira para filtrar los modulos o permisos individualmente disponibles en la aplicacion"
+							},
+							"response": []
+						},
+						{
 							"name": "obtener-permisos-por-modulo",
 							"request": {
 								"method": "GET",
@@ -600,7 +641,45 @@
 									"name": "reporte-permisos-asignados",
 									"request": {
 										"method": "GET",
-										"header": []
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/asignacion/reporte-permisos-asignados?modulo=null&submodulo=null&permiso=null&page=1&perPage=10&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"asignacion",
+												"reporte-permisos-asignados"
+											],
+											"query": [
+												{
+													"key": "modulo",
+													"value": "null"
+												},
+												{
+													"key": "submodulo",
+													"value": "null"
+												},
+												{
+													"key": "permiso",
+													"value": "null"
+												},
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "perPage",
+													"value": "10"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
 									},
 									"response": []
 								}

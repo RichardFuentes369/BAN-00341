@@ -79,7 +79,14 @@ export class AsignacionController {
     @Query() query,
     @GetUser('id') userId: number
   ) {
-    const reporte = await this.asignacionService.reportePermisos(query.modulo, query.submodulo, query.permiso)
+    const reporte = await this.asignacionService.reportePermisos(
+      query.modulo, 
+      query.submodulo, 
+      query.permiso, 
+      query.page, 
+      query.perPage
+    )
+    return reporte
   }
 }
 

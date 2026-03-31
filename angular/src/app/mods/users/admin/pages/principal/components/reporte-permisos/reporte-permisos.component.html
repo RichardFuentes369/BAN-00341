@@ -53,6 +53,11 @@
         </select>
       </div>
     }
+
+    <app-globales-tablecrud 
+      [campoFiltro]="showcampoFiltro" [endPoint]="endPoint" [columnas]="columnas"
+      title]="titlePage">
+    </app-globales-tablecrud>
   </div>
 
   <div class="d-flex justify-content-end align-items-center py-2 mb-2 mx-2">
@@ -62,16 +67,10 @@
       </button>
     </span>
 
-    <!-- <span class="custom-tooltip tooltip-top" [attr.data-title]="'global-report.BUTTON_EXCEL_EXPOT' | translate">
-      <button class="btn btn-sm btn-success rounded-circle mx-1" (click)="generar('excel')">
+    <span class="custom-tooltip tooltip-top" [attr.data-title]="'global-report.BUTTON_EXCEL_EXPOT' | translate">
+      <button class="btn btn-sm btn-success rounded-circle mx-1" (click)="consultar()">
         <i class="fas fa-file-excel"></i>
       </button>
     </span>
-
-    <span class="custom-tooltip tooltip-right" [attr.data-title]="'global-report.BUTTON_CSV_EXPORT' | translate">
-      <button class="btn btn-sm btn-success rounded-circle mx-1" (click)="generar('csv')">
-        <i class="fas fa-file-csv"></i>
-      </button>
-    </span> -->
   </div>
 </div>

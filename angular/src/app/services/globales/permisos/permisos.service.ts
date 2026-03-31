@@ -97,4 +97,25 @@ export class PermisosService {
     })
   }
 
+  async consultarPermisosAsignados(modulo: string, submodulo: string, permiso: string, page: number, perPage: number){
+
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = `asignacion/reporte-permisos-asignados?modulo=${modulo}&submodulo=${submodulo}&permiso=${permiso}&page=${page}&perPage=${perPage}&lang=${lang}`
+    let urlCopleta = environment.apiUrl+complemento
+
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
+    return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
+      method: 'get',
+      url: urlCopleta,
+      params: {
+        lang: lang,
+      }
+    })
+  }
+
 }
