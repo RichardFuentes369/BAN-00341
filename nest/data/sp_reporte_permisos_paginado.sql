@@ -1,15 +1,35 @@
+DELIMITER //
+
+DROP PROCEDURE IF EXISTS sp_reporte_permisos_paginado //
+
+CREATE PROCEDURE sp_reporte_permisos_paginado(
+    IN p_pagina_actual INT,
+    IN p_registros_por_pagina INT,
+    IN p_modulo VARCHAR(100),
+    IN p_submodulo VARCHAR(100),
+    IN p_permiso VARCHAR(100)
+)
 BEGIN
+    -- Usamos INT normales para evitar conflictos de rango
     DECLARE v_offset INT;
+    DECLARE v_limit INT;
     DECLARE v_total_registros INT;
     
-    SET v_offset = (p_pagina_actual - 1) * p_registros_por_pagina;
+    -- 1. LÓGICA DE PAGINACIÓN SEGURA
+    -- Si no mandas límite, usamos 999,999,999 (Suficiente para cualquier reporte)
+    IF p_registros_por_pagina IS NULL OR p_registros_por_pagina <= 0 THEN
+        SET v_limit = 999999999; 
+        SET v_offset = 0;
+    ELSE
+        SET v_limit = p_registros_por_pagina;
+        SET v_offset = (IFNULL(p_pagina_actual, 1) - 1) * p_registros_por_pagina;
+    END IF;
 
-    -- 1. CREAMOS UNA TABLA TEMPORAL CON EL RESULTADO FILTRADO (Sin paginar aún)
-    -- Esto lo hacemos para no repetir la lógica del CASE dos veces
-    CREATE TEMPORARY TABLE IF NOT EXISTS temp_reporte AS
-    SELECT 
-        t.*
-    FROM (
+    -- 2. TABLA TEMPORAL
+    DROP TEMPORARY TABLE IF EXISTS temp_reporte;
+    
+    CREATE TEMPORARY TABLE temp_reporte AS
+    SELECT t.* FROM (
         SELECT
             CASE 
                 WHEN mpma.modulo_padre_id IS NULL THEN (
@@ -44,20 +64,25 @@ BEGIN
         (p_submodulo IS NULL OR t.SUBMODULO = p_submodulo) AND
         (p_permiso IS NULL OR t.PERMISO LIKE CONCAT('%', p_permiso, '%'));
 
-    -- 2. OBTENEMOS EL TOTAL PARA EL CÁLCULO DE PÁGINAS
+    -- 3. TOTALES
     SELECT COUNT(*) INTO v_total_registros FROM temp_reporte;
 
-    -- 3. DEVOLVEMOS EL METADATO DE PAGINACIÓN
+    -- 4. RESULTADO 1: METADATOS
     SELECT 
         v_total_registros AS total,
-        p_registros_por_pagina AS perPage,
-        p_pagina_actual AS currentPage,
-        CEIL(v_total_registros / p_registros_por_pagina) AS lastPage;
+        IFNULL(p_registros_por_pagina, v_total_registros) AS perPage,
+        IFNULL(p_pagina_actual, 1) AS currentPage,
+        CEIL(v_total_registros / IFNULL(p_registros_por_pagina, v_total_registros)) AS lastPage;
 
-    -- 4. DEVOLVEMOS LOS DATOS PAGINADOS
-    SELECT * FROM temp_reporte 
-    LIMIT p_registros_por_pagina OFFSET v_offset;
+    -- 5. RESULTADO 2: DATOS (Usando variables de usuario @ para el EXECUTE)
+    SET @l = v_limit;
+    SET @o = v_offset;
+    
+    PREPARE stmt FROM 'SELECT * FROM temp_reporte LIMIT ? OFFSET ?';
+    EXECUTE stmt USING @l, @o;
+    DEALLOCATE PREPARE stmt;
 
-    -- LIMPIEZA
-    DROP TEMPORARY TABLE temp_reporte;
-END
+    DROP TEMPORARY TABLE IF EXISTS temp_reporte;
+END //
+
+DELIMITER ;

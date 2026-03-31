@@ -2,8 +2,9 @@
   "TITTLE_COMPONENT": "Reports",
   "TITLE_SELECT_OPTION": "Select the columns <br> you want to display in the report.",
 
-  "BUTTON_SEARCH": "SEARCH",
+  "BUTTON_OPTION_SEE": "See",
+  "BUTTON_SEARCH": "Search",
   "BUTTON_CLEAN": "Clean",
-  "BUTTON_EXCEL_EXPOT": "Excel",
+  "BUTTON_EXCEL_EXPORT": "Excel",
   "BUTTON_CSV_EXPORT": "Csv"
 }

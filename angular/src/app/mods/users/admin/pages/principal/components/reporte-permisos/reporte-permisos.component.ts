@@ -4,15 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { ModulosService } from '@mod/modules/admin/service/modulos.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PermisosService } from '../../../../../../../services/globales/permisos/permisos.service';
-import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
 
 @Component({
   selector: 'app-reporte-permisos',
   standalone: true,
   imports: [
     TranslateModule, 
-    FormsModule,
-    TablecrudComponent
+    FormsModule
   ],
   templateUrl: './reporte-permisos.component.html',
   styleUrl: './reporte-permisos.component.scss',
@@ -109,12 +107,13 @@ export class ReportePermisosComponent implements OnInit{
     }
   }
 
-  async consultar(){
+  async consultar_sp_reporte_permisos_paginado(){
+
+    let page = 1
+    let perPage = 10
+    let permiso = null
     let modulo = null
     let submodulo = null
-    let permiso = null
-    let page = 1
-    let perPage = 5
 
     if(+this.model.modulo){
       modulo = this.selectModulos.find(obj => obj.id === +this.model.modulo).nombre
@@ -127,6 +126,30 @@ export class ReportePermisosComponent implements OnInit{
     }
 
     const permisosAsignados = await this.permisosService.consultarPermisosAsignados(modulo, submodulo, permiso, page, perPage)
+  }
+
+  async verData (){
+    // const response = await this.principalService.getDataUser(_id)
+    // const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
+    
+    // this.translate.get('mod-users.SEE_ADMIN_TITLE', { "user_name": firstName + ' ' + lastName }).subscribe((res: string) => {this.title = res});
+    // this.tamano = "xl"
+    // this.scrollable = false
+    // this.save = false
+    // this.buttonSave = this.translate.instant('mod-users.BUTTON_SAVE_')
+    // this.edit = false
+    // this.buttonEdit = this.translate.instant('mod-users.BUTTON_UPDATE_')
+    // this.cancel = true
+    // this.buttonCancel = this.translate.instant('mod-users.BUTTON_CANCEL')
+    // this.cierreModal = "true"
+    // this.componentePrecargado = VER_USUARIO_COMPONENT
+
+    // const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    // if(idButton){
+    //   this.router.navigate([], { queryParams: { rol: 'admin', id_user: _id } });
+    //   idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+    //   idButton.click()
+    // }
   }
 
 }

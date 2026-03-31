@@ -62,15 +62,15 @@
         </button>
       </span>
 
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-report.BUTTON_EXCEL_EXPOT' | translate">
-        <button class="btn btn-sm btn-success rounded-circle mx-1" (click)="consultar()">
-          <i class="fas fa-file-excel"></i>
+      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-report.BUTTON_OPTION_SEE' | translate">
+        <button class="btn btn-sm btn-primary rounded-circle mx-1" (click)="verData()">
+          <i class="fa fa-eye"></i>          
         </button>
       </span>
 
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-report.BUTTON_CSV_EXPORT' | translate">
-        <button class="btn btn-sm btn-success rounded-circle mx-1" (click)="consultar()">
-          <i class="fas fa-file-csv"></i>
+      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-report.BUTTON_EXCEL_EXPORT' | translate">
+        <button class="btn btn-sm btn-success rounded-circle mx-1" (click)="consultar_sp_reporte_permisos_paginado()">
+          <i class="fas fa-file-excel"></i>
         </button>
       </span>
     </div>
