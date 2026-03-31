@@ -29,6 +29,9 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() filters: string = '';
   @Input() columnas: any[] = [];
   @Input() permisosAcciones: any[] = [];
+  
+  // NUEVO: Input opcional para mapear respuestas complejas de SP
+  @Input() dataMapper?: (response: any) => { data: any[], total: number };
 
   @ViewChild(DataTableDirective, { static: false }) datatableElement!: DataTableDirective;
 
@@ -101,23 +104,59 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
       ajax: (dataTablesParameters: any, callback) => {
         const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
         const page = Math.floor(dataTablesParameters.start / dataTablesParameters.length) + 1;
+        
+        // Mantengo tu estructura de URL original
+        const fullUrl = `${this.url}${this.endPoint}?page=${page}&limit=${dataTablesParameters.length}&field=id&order=asc${this.filters}${this.complementoEndPoint}&lang=${lang}`;
                 
-        this.http.get<any[]>(
-          `${this.url}${this.endPoint}?page=${page}&limit=${dataTablesParameters.length}&field=id&order=asc${this.filters}${this.complementoEndPoint}&lang=${lang}`
-        ).subscribe((post: any) => {
-          const recordsTotal = post[0].pagination.totalRecord;
-          const data = post[0].result.map((item: any) => {
-            item.selection = this.idsSeleccionados.includes(item.id);
-            return item;
-          });
+        this.http.get<any>(fullUrl).subscribe({
+          next: (res: any) => {
+            let recordsTotal = 0;
+            let rawData = [];
 
-          callback({
-            recordsTotal: recordsTotal,
-            recordsFiltered: recordsTotal,
-            data: data,
-          });
+            // --- LÓGICA HÍBRIDA PARA SP Y TABLAS ESTÁNDAR ---
+            
+            // Caso 1: Se pasó un mapeador explícito (Recomendado para el Reporte)
+            if (this.dataMapper) {
+              const mapped = this.dataMapper(res);
+              recordsTotal = mapped.total;
+              rawData = mapped.data;
+            } 
+            // Caso 2: Es el JSON del SP (Arreglo de arreglos) y no hay mapeador
+            else if (Array.isArray(res) && Array.isArray(res[0]) && res[0][0]?.total !== undefined) {
+              recordsTotal = res[0][0].total;
+              rawData = res[1] || [];
+            }
+            // Caso 3: Estructura Estándar de tu proyecto (Usuarios)
+            else if (res && res[0] && res[0].pagination) {
+              recordsTotal = res[0].pagination.totalRecord;
+              rawData = res[0].result;
+            }
+            // Caso 4: Fallback
+            else {
+              rawData = Array.isArray(res) ? res : [];
+              recordsTotal = rawData.length;
+            }
 
-          this.cdr.detectChanges();
+            // Procesamiento de selección de filas
+            const data = rawData.map((item: any) => {
+              // Si no hay 'id' (como en el reporte), usamos 'IDENTIFICADOR' para la lógica de selección
+              const uniqueId = item.id || item.IDENTIFICADOR;
+              item.selection = this.idsSeleccionados.includes(uniqueId);
+              return item;
+            });
+
+            callback({
+              recordsTotal: recordsTotal,
+              recordsFiltered: recordsTotal,
+              data: data,
+            });
+
+            this.cdr.detectChanges();
+          },
+          error: (err) => {
+            console.error("Error en TableCrud:", err);
+            callback({ recordsTotal: 0, recordsFiltered: 0, data: [] });
+          }
         });
       },
       language: {
@@ -145,7 +184,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
           orderable: false,
           className: 'text-center select-checkbox-column',
           render: (data: any, type: any, row: any) => {
-            const id = row.id; 
+            const id = row.id || row.IDENTIFICADOR; 
             return `
               <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
                 <small>${id}</small>
@@ -161,7 +200,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
         this.datatableElement?.dtInstance.then((dtInstance: any) => {
           const currentData = dtInstance.rows({ page: 'current' }).data().toArray();
           if (currentData.length > 0) {
-            const allSelected = currentData.every((item: any) => this.idsSeleccionados.includes(item.id));
+            const allSelected = currentData.every((item: any) => this.idsSeleccionados.includes(item.id || item.IDENTIFICADOR));
             $headerCheckbox.prop('checked', allSelected);
           }
         });
@@ -174,7 +213,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
             const nodes = currentRows.nodes();
 
             currentData.each((rowData: any, index: number) => {
-              const id = rowData.id;
+              const id = rowData.id || rowData.IDENTIFICADOR;
               const idIndex = this.idsSeleccionados.indexOf(id);
               const $row = $(nodes[index]);
               const $rowCheckbox = $row.find('.row-checkbox');
@@ -197,7 +236,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
         const $row = $(row);
         const $checkbox = $row.find('.row-checkbox');
 
-        const isSelected = this.idsSeleccionados.includes(data.id);
+        const isSelected = this.idsSeleccionados.includes(data.id || data.IDENTIFICADOR);
         $row.toggleClass('selected-row', isSelected);
         $checkbox.prop('checked', isSelected);
 
@@ -206,7 +245,8 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
             e.stopPropagation(); 
           }
 
-          const idIndex = this.idsSeleccionados.indexOf(data.id);
+          const id = data.id || data.IDENTIFICADOR;
+          const idIndex = this.idsSeleccionados.indexOf(id);
           const estaSeleccionado = idIndex !== -1;
 
           if (estaSeleccionado) {
@@ -215,13 +255,13 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
             $checkbox.prop('checked', false);
             $('.select-all-checkbox').prop('checked', false);
           } else {
-            this.idsSeleccionados.push(data.id);
+            this.idsSeleccionados.push(id);
             $row.addClass('selected-row');
             $checkbox.prop('checked', true);
             
             this.datatableElement.dtInstance.then((dtInstance: any) => {
               const pageData = dtInstance.rows({ page: 'current' }).data().toArray();
-              const allChecked = pageData.every((item: any) => this.idsSeleccionados.includes(item.id));
+              const allChecked = pageData.every((item: any) => this.idsSeleccionados.includes(item.id || item.IDENTIFICADOR));
               $('.select-all-checkbox').prop('checked', allChecked);
             });
           }

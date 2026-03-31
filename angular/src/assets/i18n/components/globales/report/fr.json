@@ -2,6 +2,7 @@
   "TITTLE_COMPONENT": "Rapports",
   "TITLE_SELECT_OPTION": "Sélectionnez les colonnes <br> que vous souhaitez afficher dans le rapport.",
   
+  "BUTTON_SEARCH": "RECHERCHER",
   "BUTTON_CLEAN": "Nettoyer",
   "BUTTON_EXCEL_EXPOT": "Excel",
   "BUTTON_CSV_EXPORT": "Csv"

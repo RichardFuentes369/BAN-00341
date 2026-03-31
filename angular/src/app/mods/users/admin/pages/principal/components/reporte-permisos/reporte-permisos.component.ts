@@ -2,14 +2,18 @@ import { CommonModule} from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ModulosService } from '@mod/modules/admin/service/modulos.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PermisosService } from '../../../../../../../services/globales/permisos/permisos.service';
 import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
 
 @Component({
   selector: 'app-reporte-permisos',
   standalone: true,
-  imports: [TranslateModule, FormsModule, TablecrudComponent],
+  imports: [
+    TranslateModule, 
+    FormsModule,
+    TablecrudComponent
+  ],
   templateUrl: './reporte-permisos.component.html',
   styleUrl: './reporte-permisos.component.scss',
 })
@@ -17,6 +21,7 @@ export class ReportePermisosComponent implements OnInit{
 
   constructor(
     private permisosService :PermisosService,
+    private translate: TranslateService
   ) { }
 
   private readonly _moduloService = inject(ModulosService);
@@ -31,30 +36,6 @@ export class ReportePermisosComponent implements OnInit{
   selectModulos: any[] = [];
   selectSubModulos: any[] = [];
   selectPermisos: any[] = [];
-
-  // inicio datos que envio al componente tabla
-  showcampoFiltro = false
-  endPoint = `asignacion/reporte-permisos-asignados?modulo=${null}&submodulo=${null}&permiso=${null}&page=${1}&perPage=${10}&lang=${'es'}`
-  filters = ''
-  columnas: any[] = [
-  ]; 
-  // fin datos que envio al componente tabla
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   model = {
     modulo: 0,
@@ -146,8 +127,6 @@ export class ReportePermisosComponent implements OnInit{
     }
 
     const permisosAsignados = await this.permisosService.consultarPermisosAsignados(modulo, submodulo, permiso, page, perPage)
-    console.log(permisosAsignados.data[0][0])
-    console.log(permisosAsignados.data[1])
   }
 
 }
