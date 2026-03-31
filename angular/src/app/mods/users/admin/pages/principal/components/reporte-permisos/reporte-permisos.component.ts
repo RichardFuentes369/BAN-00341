@@ -103,9 +103,5 @@ export class ReportePermisosComponent implements OnInit{
     }
   }
 
-  async generar(option: string){
-    const response = await this.principalService.obtenerReportePermisos(this.model)
-    console.log(response)
-  }
 
 }

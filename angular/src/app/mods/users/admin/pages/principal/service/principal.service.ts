@@ -159,10 +159,6 @@ export class PrincipalService {
 
   }
 
-  obtenerReportePermisos(data: any){
-    console.log(data)
-  }
-
 }
 
 
