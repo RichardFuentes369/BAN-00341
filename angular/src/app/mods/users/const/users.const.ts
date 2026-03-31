@@ -27,6 +27,7 @@ export const MOD_USER_PAGE_ADMIN =  '/admin/mod/users/administradores/';
 export const MOD_USER_PAGE_FINAL =  '/admin/mod/users/finales/';
 
 export const CREAR_USUARIO_COMPONENT = 'CrearUsuariosComponent';
+export const VER_PERMISOS_COMPONENT = 'VerPermisosComponent';
 export const VER_USUARIO_COMPONENT = 'VerUsuariosComponent';
 export const EDITAR_USUARIO_COMPONENT = 'EditarUsuariosComponent';
 export const FILTRO_USUARIO_COMPONENT = 'FiltroUsuariosComponent';

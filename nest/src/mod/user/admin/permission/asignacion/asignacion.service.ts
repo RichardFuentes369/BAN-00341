@@ -204,13 +204,13 @@ export class AsignacionService {
 
   }
 
-  async reportePermisos(modulo: string, submodulo: string, permiso: string, page: string, perPage: string) {
+  async reportePermisos(modulo: string, submodulo: string, permiso: string, page: string, limit: string) {
     try {
       const result = await this.asignacionRepository.manager.query(
         'CALL sp_reporte_permisos_paginado(?,?,?,?,?)',
         [
           (page === 'null') ? null : page, 
-          (perPage === 'null') ? null : perPage, 
+          (limit === 'null') ? null : limit, 
           (modulo === 'null') ? null : modulo, 
           (submodulo === 'null') ? null : submodulo,
           (permiso === 'null') ? null : permiso, 

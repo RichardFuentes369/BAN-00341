@@ -16,6 +16,8 @@
   "SEE_ADMIN_TITLE": "Modifier l'utilisateur {{user_name}}",
   "ASSIGN_ADMIN_TITLE": "Modifier l'utilisateur {{user_name}}",
 
+  "SEE_PERMISSIONS_TITLE": "Liste des permissions attribuées",
+
   "CREATE_FINAL_TITLE": "Créer un utilisateur final",
   "EDIT_FINAL_TITLE": "Modifier l'utilisateur final {{user_name}}",
   "SEE_FINAL_TITLE": "Voir l'utilisateur final {{user_name}}",

@@ -23,6 +23,7 @@ import { EditarTipoMermaComponent } from './merma/admin/pages/tipo/components/ed
 import { CrearTipoMermaComponent } from './merma/admin/pages/tipo/components/crear-tipo/crear-tipo.component';
 import { ReporteUsuarioComponent } from './users/admin/components/reporte/reporte.component';
 import { CargarProductoComponent } from './catalog/admin/pages/productos/components/cargar-producto/cargar-producto.component';
+import { VerPermisosComponent } from './users/admin/pages/principal/components/ver-permisos/ver-permisos.component';
 
 export class ListaComponentes {
 
@@ -50,6 +51,10 @@ export class ListaComponentes {
     {
       name: 'ReporteUsuarioComponent',
       componente: ReporteUsuarioComponent      
+    },
+    {
+      name: 'VerPermisosComponent',
+      componente: VerPermisosComponent     
     },
     
     // modulos permisos

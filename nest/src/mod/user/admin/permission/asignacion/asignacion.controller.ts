@@ -84,7 +84,7 @@ export class AsignacionController {
       query.submodulo, 
       query.permiso, 
       query.page, 
-      query.perPage
+      query.limit
     )
     return reporte
   }

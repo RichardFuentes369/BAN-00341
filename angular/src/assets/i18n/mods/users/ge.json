@@ -16,6 +16,8 @@
   "SEE_ADMIN_TITLE": "Benutzer {{user_name}} bearbeiten",
   "ASSIGN_ADMIN_TITLE": "Benutzer {{user_name}} bearbeiten",
 
+  "SEE_PERMISSIONS_TITLE": "Liste der zugewiesenen Berechtigungen",
+
   "CREATE_FINAL_TITLE": "Benutzer final erstellen",
   "EDIT_FINAL_TITLE": "Benutzer final {{user_name}} bearbeiten",
   "SEE_FINAL_TITLE": "Benutzer final {{user_name}} anzeigen",

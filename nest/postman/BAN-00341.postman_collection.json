@@ -130,7 +130,7 @@
 									"query": [
 										{
 											"key": "modulo_padre_id",
-											"value": "0",
+											"value": "1",
 											"disabled": true
 										},
 										{
@@ -245,7 +245,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/api/modulos/obtener-modulo-permiso?idModulo=1",
+									"raw": "localhost:3000/api/modulos/obtener-modulo-permiso?idModulo=0",
 									"host": [
 										"localhost"
 									],
@@ -258,7 +258,7 @@
 									"query": [
 										{
 											"key": "idModulo",
-											"value": "1"
+											"value": "0"
 										}
 									]
 								},
@@ -283,7 +283,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nombre\": \"Eliminar (individual)\",\n    \"permiso\": \"eliminar_individual\",\n    \"descripcion\": \"Permiso eliminar_individual, modulo modulos\",\n    \"tiene_permisos\": false,\n    \"tiene_submodulos\": false\n}",
+									"raw": "{\n    \"nombre\": \"Usuarios\",\n    \"permiso\": \"usuarios\",\n    \"descripcion\": \"Modulo usuarios\",\n    \"tiene_permisos\": false,\n    \"tiene_submodulos\": true\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -291,7 +291,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:3000/api/modulos/updateModuloPermiso?idPermiso=21&lang=es",
+									"raw": "localhost:3000/api/modulos/editar-modulo-permiso?idPermiso=1&lang=es",
 									"host": [
 										"localhost"
 									],
@@ -299,16 +299,42 @@
 									"path": [
 										"api",
 										"modulos",
-										"updateModuloPermiso"
+										"editar-modulo-permiso"
 									],
 									"query": [
 										{
 											"key": "idPermiso",
-											"value": "21"
+											"value": "1"
 										},
 										{
 											"key": "lang",
 											"value": "es"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "obtener-nombre-permiso",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/modulos/obtener-nombre-permiso?id=22",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"obtener-nombre-permiso"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "22"
 										}
 									]
 								}
@@ -343,21 +369,17 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/authadmin/login?lang=es",
+											"raw": "localhost:3000/api/modulos/obtener-modulo-permiso/0/1",
 											"host": [
 												"localhost"
 											],
 											"port": "3000",
 											"path": [
 												"api",
-												"authadmin",
-												"login"
-											],
-											"query": [
-												{
-													"key": "lang",
-													"value": "es"
-												}
+												"modulos",
+												"obtener-modulo-permiso",
+												"0",
+												"1"
 											]
 										}
 									},
@@ -643,7 +665,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/asignacion/reporte-permisos-asignados?modulo=null&submodulo=null&permiso=null&page=1&perPage=10&lang=es",
+											"raw": "localhost:3000/api/asignacion/reporte-permisos-asignados?modulo=null&submodulo=null&permiso=null&page=null&limit=null&lang=es",
 											"host": [
 												"localhost"
 											],
@@ -668,11 +690,11 @@
 												},
 												{
 													"key": "page",
-													"value": "1"
+													"value": "null"
 												},
 												{
-													"key": "perPage",
-													"value": "10"
+													"key": "limit",
+													"value": "null"
 												},
 												{
 													"key": "lang",

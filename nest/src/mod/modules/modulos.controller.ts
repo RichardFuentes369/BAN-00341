@@ -26,7 +26,6 @@ export class ModulosController {
     );
   }
  
-  // no se usa
   @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
   @Get('obtener-modulo-permiso')
@@ -53,6 +52,18 @@ export class ModulosController {
     return this.modulosService.getHasSubmodule(
       lang,
       +query.idModulo
+    );
+  }
+
+  @Get('obtener-nombre-permiso')
+  getNamePermission(
+    @Query('lang') lang:string,
+    @Query() query,
+    @GetUser('id') userId: number
+  ) {
+    return this.modulosService.getNamePermission(
+      lang,
+      +query.id
     );
   }
 
@@ -85,7 +96,6 @@ export class ModulosController {
     );
   }  
 
-  // // no se usa
   // @UseGuards(AdminGuard)
   // @Patch('updateModuloPermiso')
   // update(

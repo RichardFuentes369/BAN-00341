@@ -1,16 +1,21 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { STORAGE_KEY_TOKEN_ADMIN, WORD_KEY_AUTHORIZATION_APPLICATION_TYPE, WORD_KEY_AUTHORIZATION_CONTENT_TYPE, WORD_KEY_AUTHORIZATION_GLOBAL, WORD_KEY_BEARER_GLOBAL } from '@const/app.const';
 import { environment } from '@environment/environment';
 import { TranslateService } from '@ngx-translate/core';
 
 import axios from 'axios';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PermisosService {
 
-  constructor(private translate: TranslateService) {}
+  constructor(
+    private http: HttpClient,
+    private translate: TranslateService
+  ) {}
 
   async permisos(idUsuario: number, modulo: string){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
@@ -97,10 +102,9 @@ export class PermisosService {
     })
   }
 
-  async consultarPermisosAsignados(modulo: string, submodulo: string, permiso: string, page: number, perPage: number){
-
+  async consultarPermisosAsignados(modulo: string | null, submodulo: string | null, permiso: string | null, page: string | null, limit: string | null){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = `asignacion/reporte-permisos-asignados?modulo=${modulo}&submodulo=${submodulo}&permiso=${permiso}&page=${page}&perPage=${perPage}&lang=${lang}`
+    let complemento = `asignacion/reporte-permisos-asignados?modulo=${modulo}&submodulo=${submodulo}&permiso=${permiso}&page=${page}&limit=${limit}&lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
 
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)

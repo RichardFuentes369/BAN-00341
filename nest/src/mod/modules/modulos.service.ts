@@ -448,4 +448,16 @@ export class ModulosService {
       'status': 200,
     }
   }
+
+  async getNamePermission(
+    lang:string,
+    idPermiso: any 
+  ){
+    const data = await this.moduloRepository.find({
+      where: {
+        id: idPermiso,
+      }
+    })
+    return data
+  }
 }

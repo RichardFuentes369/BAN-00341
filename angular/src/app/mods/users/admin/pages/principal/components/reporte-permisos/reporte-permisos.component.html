@@ -1,77 +1,77 @@
 <div class="">
-    <div class="title-container mx-1 mt-3 mb-2 mb-md-0">
-      <h5 class="m-0 fw-bold text-secondary h6">
-        {{ 'mod-users.REPORT_PERMISSION_TITLE' | translate }}
-      </h5>
-    </div>
+  <div class="title-container mx-1 mt-3 mb-2 mb-md-0">
+    <h5 class="m-0 fw-bold text-secondary h6">
+      {{ 'mod-users.REPORT_PERMISSION_TITLE' | translate }}
+    </h5>
+  </div>
 
-    <div class="col-sm-12 row mt-2 ml-0 p-0">
-      <div class="col-sm-4" [class]="(model.modulo != ModuloModulos && model.modulo != ModuloLote) ? 'col-sm-4' : 'col-sm-6'">
-        <select [(ngModel)]="model.modulo" (ngModelChange)="cambioModulo($event)" class="form-control my-2" [disabled]="loading1">
-          @if (loading1) {
-            <option value="0">Cargando módulos...</option>
-          } @else {
-            <option value="0">
-              {{ 'mod-users.SELECT_STATUS_USER_SELECT_OPTION' | translate }}
+  <div class="col-sm-12 row mt-2 ml-0 p-0">
+    <div class="col-sm-4" [class]="(model.modulo != ModuloModulos && model.modulo != ModuloLote) ? 'col-sm-4' : 'col-sm-6'">
+      <select [(ngModel)]="model.modulo" (ngModelChange)="cambioModulo($event)" class="form-control my-2" [disabled]="loading1">
+        @if (loading1) {
+          <option value="0">Cargando módulos...</option>
+        } @else {
+          <option value="0">
+            {{ 'mod-users.SELECT_STATUS_USER_SELECT_OPTION' | translate }}
+          </option>
+          @for (modulo of selectModulos; track modulo.id) {
+            <option [value]="modulo.id">
+            {{ modulo.nombre }}
             </option>
-            @for (modulo of selectModulos; track modulo.id) {
-              <option [value]="modulo.id">
-              {{ modulo.nombre }}
-              </option>
-            }
           }
-        </select>
-      </div>
-      <div class="col-sm-4" [class]="(model.modulo != ModuloModulos && model.modulo != ModuloLote) ? 'col-sm-4' : 'col-sm-6'">
-        <select [(ngModel)]="model.submodulo" 
-                (ngModelChange)="cambioSubmodulo($event)" 
+        }
+      </select>
+    </div>
+    <div class="col-sm-4" [class]="(model.modulo != ModuloModulos && model.modulo != ModuloLote) ? 'col-sm-4' : 'col-sm-6'">
+      <select [(ngModel)]="model.submodulo" 
+              (ngModelChange)="cambioSubmodulo($event)" 
+              class="form-control my-2" 
+              [disabled]="loading2 || selectSubModulos.length === 0">
+        @if (loading2) {
+          <option value="0">Cargando submodulos...</option>
+        } @else {
+          <option value="0">{{ 'mod-users.SELECT_STATUS_USER_SELECT_OPTION' | translate }}</option>
+          @for (submodulo of selectSubModulos; track submodulo.id) {
+            <option [value]="submodulo.id">{{ submodulo.nombre }}</option>
+          }
+        }
+      </select>
+    </div>
+    @if (model.modulo != ModuloModulos && model.modulo != ModuloLote) {
+      <div class="col-sm-4">
+        <select [(ngModel)]="model.permiso" 
                 class="form-control my-2" 
-                [disabled]="loading2 || selectSubModulos.length === 0">
-          @if (loading2) {
-            <option value="0">Cargando submodulos...</option>
+                [disabled]="loading3 || selectPermisos.length === 0">
+          @if (loading3) {
+            <option value="0">Cargando permisos...</option>
           } @else {
             <option value="0">{{ 'mod-users.SELECT_STATUS_USER_SELECT_OPTION' | translate }}</option>
-            @for (submodulo of selectSubModulos; track submodulo.id) {
-              <option [value]="submodulo.id">{{ submodulo.nombre }}</option>
+            @for (permiso of selectPermisos; track permiso.id) {
+              <option [value]="permiso.id">{{ permiso.nombre }}</option>
             }
           }
         </select>
       </div>
-      @if (model.modulo != ModuloModulos && model.modulo != ModuloLote) {
-        <div class="col-sm-4">
-          <select [(ngModel)]="model.permiso" 
-                  class="form-control my-2" 
-                  [disabled]="loading3 || selectPermisos.length === 0">
-            @if (loading3) {
-              <option value="0">Cargando permisos...</option>
-            } @else {
-              <option value="0">{{ 'mod-users.SELECT_STATUS_USER_SELECT_OPTION' | translate }}</option>
-              @for (permiso of selectPermisos; track permiso.id) {
-                <option [value]="permiso.id">{{ permiso.nombre }}</option>
-              }
-            }
-          </select>
-        </div>
-      }
-    </div>
+    }
+  </div>
 
-    <div class="d-flex justify-content-end align-items-center py-2 mb-2 mx-2">
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-report.BUTTON_CLEAN' | translate">
-        <button class="btn btn-sm btn-secondary rounded-circle mx-1" (click)="limpiar()">
-          <i class="fa fa-eraser" aria-hidden="true"></i>
-        </button>
-      </span>
+  <div class="d-flex justify-content-end align-items-center py-2 mb-2 mx-2">
+    <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-report.BUTTON_CLEAN' | translate">
+      <button class="btn btn-sm btn-secondary rounded-circle mx-1" (click)="limpiar()">
+        <i class="fa fa-eraser" aria-hidden="true"></i>
+      </button>
+    </span>
 
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-report.BUTTON_OPTION_SEE' | translate">
-        <button class="btn btn-sm btn-primary rounded-circle mx-1" (click)="verData()">
-          <i class="fa fa-eye"></i>          
-        </button>
-      </span>
+    <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-report.BUTTON_OPTION_SEE' | translate">
+      <button class="btn btn-sm btn-primary rounded-circle mx-1" (click)="seeItem()">
+        <i class="fa fa-eye"></i>          
+      </button>
+    </span>
 
-      <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-report.BUTTON_EXCEL_EXPORT' | translate">
-        <button class="btn btn-sm btn-success rounded-circle mx-1" (click)="consultar_sp_reporte_permisos_paginado()">
-          <i class="fas fa-file-excel"></i>
-        </button>
-      </span>
-    </div>
+    <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-report.BUTTON_EXCEL_EXPORT' | translate">
+      <button class="btn btn-sm btn-success rounded-circle mx-1" (click)="consultar_sp_reporte_permisos_paginado()">
+        <i class="fas fa-file-excel"></i>
+      </button>
+    </span>
+  </div>
 </div>

@@ -16,11 +16,12 @@ import { SearchComponent } from '@component/globales/search/search.component';
 import { ReportComponent } from '@component/globales/report/report.component'
 import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
-import { CREAR_USUARIO_COMPONENT, EDITAR_USUARIO_COMPONENT, FILTRO_USUARIO_COMPONENT, MOD_USER_PAGE_ADMIN_ASSIGMENT, REPORT_USUARIO_COMPONENT, STORAGE_KEY_PROFILE_ADMIN, VER_USUARIO_COMPONENT } from '@mod/users/const/users.const'
+import { CREAR_USUARIO_COMPONENT, EDITAR_USUARIO_COMPONENT, FILTRO_USUARIO_COMPONENT, MOD_USER_PAGE_ADMIN_ASSIGMENT, REPORT_USUARIO_COMPONENT, STORAGE_KEY_PROFILE_ADMIN, VER_PERMISOS_COMPONENT, VER_USUARIO_COMPONENT } from '@mod/users/const/users.const'
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { CardComponent } from '@component/globales/card/card.component';
 import { HttpParams } from '@angular/common/http';
 import { ReportePermisosComponent } from './components/reporte-permisos/reporte-permisos.component';
+import { ModulosService } from '@mod/modules/admin/service/modulos.service';
 
 @Component({
   selector: 'app-principal',
@@ -45,6 +46,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     private router: Router,
     private userService :AuthService,
     private route: ActivatedRoute,
+    private mosuloService: ModulosService,
     private permisosService :PermisosService,
     private principalService :PrincipalService,
     private translate: TranslateService
@@ -445,6 +447,40 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     this.count_permissions_assigment = data.data.count_permissions_assigment
   }
 
+  async verPermisos (filtrosHijo?: any){
+    
+    const queryParams: any = {}
+    
+    if (filtrosHijo) {
+      if (filtrosHijo.modulo && filtrosHijo.modulo != 0) queryParams.modulo = (await this.mosuloService.getNameById(+filtrosHijo.modulo)).data[0].nombre
+      if (filtrosHijo.submodulo  && filtrosHijo.submodulo != 0) queryParams.submodulo = (await this.mosuloService.getNameById(+filtrosHijo.submodulo)).data[0].nombre
+      if (filtrosHijo.permiso && filtrosHijo.permiso != 0) queryParams.permiso = (await this.mosuloService.getNameById(+filtrosHijo.permiso)).data[0].nombre
+    }
+
+    this.router.navigate([], { 
+      queryParams: queryParams,
+      queryParamsHandling: 'merge'
+    });
+
+    this.translate.get('mod-users.SEE_PERMISSIONS_TITLE').subscribe((res: string) => {this.title = res});
+    this.tamano = "xl"
+    this.scrollable = false
+    this.save = false
+    this.buttonSave = this.translate.instant('mod-users.BUTTON_SAVE_')
+    this.edit = false
+    this.buttonEdit = this.translate.instant('mod-users.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-users.BUTTON_CANCEL')
+    this.cierreModal = "true"
+    this.componentePrecargado = VER_PERMISOS_COMPONENT
+
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if(idButton){
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
+  }
+
   reportData(formato: string) {
     const complementoRuta = $(".complementoRuta").val()
     const querySearch = this.route.snapshot.queryParamMap.get('search');
@@ -493,6 +529,5 @@ export class PrincipalComponent implements OnInit, OnDestroy{
       }
     });
   }
-
 
 }

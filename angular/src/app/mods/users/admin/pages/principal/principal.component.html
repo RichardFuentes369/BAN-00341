@@ -65,10 +65,11 @@
   <!-- Inició reporte permisos -->
   <div class="mt-2 p-3 pt-0" style="position: relative;">
     <div class="table-container card shadow card-custom pt-0 px-4">
-      <app-reporte-permisos></app-reporte-permisos>
+      <app-reporte-permisos (verItem)="verPermisos($event)"></app-reporte-permisos>
     </div>
   </div>
   <!-- Fin reporte permisos -->
+   
   <app-globales-modal-boostrap [tamano]="tamano" [scrollable]="scrollable" [title]="title" [save]="save"
     [buttonSave]="buttonSave" [edit]="edit" [buttonEdit]="buttonEdit" [cancel]="cancel" [buttonCancel]="buttonCancel"
     [componentePrecargado]="componentePrecargado" [cierreModal]="cierreModal" (actualizarTabla)="refrescarTabla()">
