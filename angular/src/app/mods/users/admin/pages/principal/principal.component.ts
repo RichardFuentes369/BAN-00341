@@ -22,11 +22,13 @@ import { CardComponent } from '@component/globales/card/card.component';
 import { HttpParams } from '@angular/common/http';
 import { ReportePermisosComponent } from './components/reporte-permisos/reporte-permisos.component';
 import { ModulosService } from '@mod/modules/admin/service/modulos.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-principal',
   standalone: true,
   imports: [
+    CommonModule,
     TranslateModule,
     SearchComponent,
     ReportComponent,
@@ -181,7 +183,9 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     }
 
     const permisos = await this.permisosService.permisos(userData.data.id,'administradores')
-    this.permisos = permisos.data
+    this.permisos = permisos.data;
+    this.permisosAcciones = this.permisos;
+    
     sessionStorage.removeItem('email')
     sessionStorage.removeItem('firstName')
     sessionStorage.removeItem('lastName')
@@ -275,6 +279,10 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     this.titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
     this.titleTotalActivedUsers = this.translate.instant('mod-users.CARD_TOTAL_ACTIVED_USERS')
     this.titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
+  }
+
+  tienePermiso(nombre: string): boolean {
+    return this.permisosAcciones?.some((permiso) => permiso.permiso_permiso === nombre);
   }
 
   crearData (_id: string){

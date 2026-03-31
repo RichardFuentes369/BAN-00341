@@ -119,7 +119,7 @@ export class ModulosService {
 
   async getNameById(id: number){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = `modulos/obtener-nombre-permiso?id=${id}&lang=${lang}`
+    let complemento = `modulos/obtener-modulo-permiso?idModulo=${id}&lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 

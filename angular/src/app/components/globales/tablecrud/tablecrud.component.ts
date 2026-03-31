@@ -30,7 +30,6 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() columnas: any[] = [];
   @Input() permisosAcciones: any[] = [];
   
-  // NUEVO: Input opcional para mapear respuestas complejas de SP
   @Input() dataMapper?: (response: any) => { data: any[], total: number };
 
   @ViewChild(DataTableDirective, { static: false }) datatableElement!: DataTableDirective;

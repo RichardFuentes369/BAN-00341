@@ -317,23 +317,6 @@ export class ModulosService {
     }
   }
 
-  // async update(
-  //   lang:string,
-  //   query: any,
-  //   userId: number
-  // ){
-
-  //   let idRegistro = await this.findPermiso(query.idModulo, query.permiso, 'SEARCH')
-  //   const elimiarModulo = this.moduloRepository.delete(idRegistro[0].id);
-    
-  //   return {
-  //     'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
-  //     'message': this.i18n.t('modulo.MSN_PERMISO_REMOVIDO_OK', { lang }),
-  //     'status': 200,
-  //   }
-    
-  // }  
-
   async remove(
     lang:string,
     idPermiso: number,
@@ -447,17 +430,5 @@ export class ModulosService {
       'message': this.i18n.t('modulo.MSN_PERMISO_UPDATED_OK', { lang }),
       'status': 200,
     }
-  }
-
-  async getNamePermission(
-    lang:string,
-    idPermiso: any 
-  ){
-    const data = await this.moduloRepository.find({
-      where: {
-        id: idPermiso,
-      }
-    })
-    return data
   }
 }

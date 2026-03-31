@@ -25,22 +25,6 @@ export class ModulosController {
       paginationDto
     );
   }
- 
-  @ApiTags('modulo_submodulo_permiso')
-  @UseGuards(AdminGuard)
-  @Get('obtener-modulo-permiso')
-  findOne(
-    @Query('lang') lang:string,
-    @Query() query,
-    @GetUser('id') userId: number
-  ) {
-    return this.modulosService.findPermiso(
-      lang,
-      +query.modulo_padre_id, 
-      query.permiso, 
-      'SEARCH'
-    );
-  }
 
   @UseGuards(AdminGuard)
   @Get('obtener-modulo-permiso')
@@ -52,18 +36,6 @@ export class ModulosController {
     return this.modulosService.getHasSubmodule(
       lang,
       +query.idModulo
-    );
-  }
-
-  @Get('obtener-nombre-permiso')
-  getNamePermission(
-    @Query('lang') lang:string,
-    @Query() query,
-    @GetUser('id') userId: number
-  ) {
-    return this.modulosService.getNamePermission(
-      lang,
-      +query.id
     );
   }
 
@@ -95,20 +67,6 @@ export class ModulosController {
       userId
     );
   }  
-
-  // @UseGuards(AdminGuard)
-  // @Patch('updateModuloPermiso')
-  // update(
-  //   @Query('lang') lang:string,
-  //   @Query() queryParams,
-  //   @GetUser('id') userId: number
-  // ) {
-  //   return this.modulosService.update(
-  //     lang,
-  //     queryParams,
-  //     userId
-  //   );
-  // }
 
   @UseGuards(AdminGuard)
   @Delete('eliminar-modulo-permiso')

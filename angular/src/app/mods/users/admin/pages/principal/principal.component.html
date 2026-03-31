@@ -63,11 +63,15 @@
   <!-- Fin tabla registros -->
 
   <!-- Inició reporte permisos -->
-  <div class="mt-2 p-3 pt-0" style="position: relative;">
+  @if(tienePermiso('descarga_reporte_permisos')){
+  <div class="mt-2 p-3 pt-0" style="position: relative;" >
+    @if (cargarIdioma) {
     <div class="table-container card shadow card-custom pt-0 px-4">
       <app-reporte-permisos (verItem)="verPermisos($event)"></app-reporte-permisos>
     </div>
+    }
   </div>
+  }
   <!-- Fin reporte permisos -->
    
   <app-globales-modal-boostrap [tamano]="tamano" [scrollable]="scrollable" [title]="title" [save]="save"
