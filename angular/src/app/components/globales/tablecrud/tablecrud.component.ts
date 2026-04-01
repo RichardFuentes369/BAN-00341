@@ -178,14 +178,19 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
           title: `
             <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;">
               <input type="checkbox" class="select-all-checkbox" style="transform: scale(0.8); margin: 0;" />
-              <span style="font-size: 10px; font-weight: bold; margin-top: 2px;">Id</span>
             </div>
           `,
           data: null,
           orderable: false,
           className: 'text-center select-checkbox-column',
           render: (data: any, type: any, row: any) => {
-            const id = row.id || row.IDENTIFICADOR; 
+            const id = row.id 
+            if (id == undefined) {
+              return `
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                </div>
+              `;
+            }
             return `
               <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
                 <small>${id}</small>
