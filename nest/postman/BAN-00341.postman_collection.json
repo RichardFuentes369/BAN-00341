@@ -245,7 +245,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/api/modulos/obtener-modulo-permiso?idModulo=0",
+									"raw": "localhost:3000/api/modulos/obtener-modulo-permiso?idModulo=1",
 									"host": [
 										"localhost"
 									],
@@ -258,7 +258,7 @@
 									"query": [
 										{
 											"key": "idModulo",
-											"value": "0"
+											"value": "1"
 										}
 									]
 								},
@@ -314,32 +314,6 @@
 								}
 							},
 							"response": []
-						},
-						{
-							"name": "obtener-nombre-permiso",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:3000/api/modulos/obtener-nombre-permiso?id=22",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"api",
-										"modulos",
-										"obtener-nombre-permiso"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "22"
-										}
-									]
-								}
-							},
-							"response": []
 						}
 					]
 				}
@@ -369,17 +343,15 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/modulos/obtener-modulo-permiso/0/1",
+											"raw": "localhost:3000/api/authadmin/login",
 											"host": [
 												"localhost"
 											],
 											"port": "3000",
 											"path": [
 												"api",
-												"modulos",
-												"obtener-modulo-permiso",
-												"0",
-												"1"
+												"authadmin",
+												"login"
 											]
 										}
 									},
