@@ -14,7 +14,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping data for table core_project_BAN_00341.mod_catalogo_categorias: ~10 rows (approximately)
+-- Dumping data for table core_project_BAN_00341.mod_catalogo_categorias: ~11 rows (approximately)
 INSERT INTO `mod_catalogo_categorias` (`id`, `nombre`, `descripcion`) VALUES
 	(1, 'Lácteos', 'Productos derivados de la leche y refrigerados'),
 	(2, 'Cárnicos', 'Carnes frías, embutidos y carnes rojas'),
@@ -27,7 +27,7 @@ INSERT INTO `mod_catalogo_categorias` (`id`, `nombre`, `descripcion`) VALUES
 	(9, 'Enlatados', 'Conservas, atún y verduras enlatadas'),
 	(10, ' Cuidado Personal', 'Jabones, champú y cremas dentales');
 
--- Dumping data for table core_project_BAN_00341.mod_catalogo_productos: ~341 rows (approximately)
+-- Dumping data for table core_project_BAN_00341.mod_catalogo_productos: ~277 rows (approximately)
 INSERT INTO `mod_catalogo_productos` (`id`, `codigo_barra`, `nombre`, `stock_minimo`, `unidad_medida`, `id_categoria`, `marca`) VALUES
 	(4049, '7701234568017', 'Jamón de Cerdo Tradicional', 20, 'paquete', 2, 'Zenu'),
 	(4050, '7701234568024', 'Salchicha Ranchera x12', 25, 'paquete', 2, 'Ranchera'),
@@ -465,7 +465,8 @@ INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`
 	(66, 'Crear', 'crear', 0, 0, 'crear', 64),
 	(67, 'Editar', 'editar', 0, 0, 'editar', 64),
 	(68, 'Eliminar (individual)', 'eliminar_individual', 0, 0, 'eliminar_individual', 64),
-	(69, 'Eliminar (multiple)', 'eliminar_multiple', 0, 0, 'eliminar_multiple', 64);
+	(69, 'Eliminar (multiple)', 'eliminar_multiple', 0, 0, 'eliminar_multiple', 64),
+	(75, 'Descargar (Reporte permisos)', 'descarga_reporte_permisos', 0, 0, 'Permiso descarga_reporte_permisos usuario, submodulo administradores, modulo usuarios', 2);
 
 -- Dumping data for table core_project_BAN_00341.mod_permisos_modulo_asignacion: ~53 rows (approximately)
 INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descripcion`, `modulo_padre_id`, `user_id`, `id_modulo`) VALUES
@@ -521,14 +522,69 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(330, 'Ver', 'ver', 'Permiso ver, submodulo registro_merma, modulo merma', 46, 1, 58),
 	(331, 'Crear', 'crear', 'Permiso crear, submodulo registro_merma, modulo merma', 46, 1, 59),
 	(332, 'Editar', 'editar', 'Permiso editar, submodulo registro_merma, modulo merma', 46, 1, 60),
-	(333, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo registro_merma, modulo merma', 46, 1, 61);
+	(333, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo registro_merma, modulo merma', 46, 1, 61),
+	(352, 'Descargar (Reporte permisos)', 'descarga_reporte_permisos', 'Permiso descarga_reporte_permisos usuario, submodulo administradores, modulo usuarios', 2, 1, 75),
+	(354, 'Usuarios', 'usuarios', 'Modulo usuarios', NULL, 2, 1),
+	(355, 'Administradores', 'administradores', 'Permiso administradores, modulo usuarios', 1, 2, 2),
+	(356, 'Ver', 'ver', 'Permiso ver, submodulo administradores, modulo usuarios', 2, 2, 3),
+	(357, 'Crear', 'crear', 'Permiso crear, submodulo administradores, modulo usuarios', 2, 2, 4),
+	(358, 'Editar', 'editar', 'Permiso editar, submodulo administradores, modulo usuarios', 2, 2, 5),
+	(359, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar individual, submodulo administradores, modulo usuarios', 2, 2, 6),
+	(360, 'Estado (usuario)', 'estado_usuario', 'Permiso estado usuario, submodulo administradores, modulo usuarios', 2, 2, 8),
+	(361, 'Permisos (asignar)', 'asignar_permisos', 'Permiso asignar_permisos usuario, submodulo administradores, modulo usuarios', 2, 2, 9),
+	(363, 'Finales', 'finales', 'Permiso finales, modulo usuarios', 1, 2, 10),
+	(364, 'Ver', 'ver', 'Permiso ver, submodulo finales, modulo usuarios', 10, 2, 11),
+	(365, 'Crear', 'crear', 'Permiso crear, submodulo finales, modulo usuarios', 10, 2, 12),
+	(366, 'Editar', 'editar', 'Permiso editar, submodulo finales, modulo usuarios', 10, 2, 13),
+	(367, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar individual, submodulo finales, modulo usuarios', 10, 2, 14),
+	(368, 'Estado (usuario)', 'estado_usuario', 'Permiso estado usuario, submodulo finales, modulo usuarios', 10, 2, 16),
+	(369, 'Modulos', 'modulos', 'Modulo modulos', NULL, 2, 17),
+	(370, 'Ver', 'ver', 'Permiso ver, modulo modulos', 17, 2, 18),
+	(371, 'Crear', 'crear', 'Permiso crear, modulo modulos', 17, 2, 19),
+	(372, 'Editar', 'editar', 'Permiso editar, modulo modulos', 17, 2, 20),
+	(373, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, modulo modulos', 17, 2, 21),
+	(374, 'Lote', 'lote', 'Modulo lote', NULL, 2, 64),
+	(375, 'Ver', 'ver', 'ver', 64, 2, 65),
+	(376, 'Crear', 'crear', 'crear', 64, 2, 66),
+	(377, 'Editar', 'editar', 'editar', 64, 2, 67),
+	(378, 'Eliminar (individual)', 'eliminar_individual', 'eliminar_individual', 64, 2, 68),
+	(379, 'Catalogo', 'catalogo', 'Modulo catalogo', NULL, 2, 22),
+	(380, 'Categorias', 'categorias', 'Permiso categorias, modulo catalogo', 22, 2, 25),
+	(381, 'Productos (asignar)', 'asignar_productos', 'Permiso asignar_productos, submodulo categorias, modulo catalogo', 25, 2, 27),
+	(383, 'Crear', 'crear', 'Permiso crear, submodulo categorias, modulo catalogo', 25, 2, 29),
+	(384, 'Ver', 'ver', 'Permiso ver, submodulo categorias, modulo catalogo', 25, 2, 28),
+	(385, 'Editar', 'editar', 'Permiso editar, submodulo categorias, modulo catalogo', 25, 2, 30),
+	(386, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo categorias, modulo catalogo', 25, 2, 31),
+	(387, 'Proveedores', 'proveedores', 'Permiso proveedores, modulo catalogo', 22, 2, 26),
+	(388, 'Ver', 'ver', 'Permiso ver, submodulo proveedores, modulo catalogo', 26, 2, 33),
+	(389, 'Crear', 'crear', 'Permiso crear, submodulo proveedores, modulo catalogo', 26, 2, 34),
+	(390, 'Editar', 'editar', 'Permiso editar, submodulo proveedores, modulo catalogo', 26, 2, 35),
+	(391, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo proveedores, modulo catalogo', 26, 2, 36),
+	(392, 'Productos', 'productos', 'Permiso productos, modulo catalogo', 22, 2, 38),
+	(393, 'Ver', 'ver', 'Permiso ver, submodulo productos, modulo catalogo', 38, 2, 39),
+	(394, 'Crear', 'crear', 'Permiso crear, submodulo productos, modulo catalogo', 38, 2, 40),
+	(395, 'Editar', 'editar', 'Permiso editar, submodulo productos, modulo catalogo', 38, 2, 41),
+	(396, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo productos, modulo catalogo', 38, 2, 42),
+	(397, 'Cargar (excel)', 'cargar_excel', 'Permiso cargar_excel, submodulo productos, modulo catalogo', 38, 2, 63),
+	(398, 'Merma', 'merma', 'Modulo merma', NULL, 2, 44),
+	(399, 'Tipos merma', 'tipo_merma', 'Permiso tipo_merma, modulo merma', 44, 2, 45),
+	(401, 'Crear', 'crear', 'Permiso crear, submodulo tipo_merma, modulo merma', 45, 2, 48),
+	(402, 'Ver', 'ver', 'Permiso ver, submodulo tipo_merma, modulo merma', 45, 2, 47),
+	(403, 'Editar', 'editar', 'Permiso editar, submodulo tipo_merma, modulo merma', 45, 2, 49),
+	(404, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo tipo_merma, modulo merma', 45, 2, 50),
+	(405, 'Registro merma', 'registro_merma', 'Permiso registro_merma, modulo merma', 44, 2, 46),
+	(406, 'Ver', 'ver', 'Permiso ver, submodulo registro_merma, modulo merma', 46, 2, 58),
+	(407, 'Crear', 'crear', 'Permiso crear, submodulo registro_merma, modulo merma', 46, 2, 59),
+	(408, 'Editar', 'editar', 'Permiso editar, submodulo registro_merma, modulo merma', 46, 2, 60),
+	(409, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo registro_merma, modulo merma', 46, 2, 61);
 
--- Dumping data for table core_project_BAN_00341.mod_usuarios_admin: ~2 rows (approximately)
+-- Dumping data for table core_project_BAN_00341.mod_usuarios_admin: ~6 rows (approximately)
 INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'Admin1', 'Principal', 'admin1@correo.com', 'Qwerty9601', 1),
-	(2, 'Admin2', 'Admin2', 'donald@correo.com', 'Qwerty9601', 0);
+	(2, 'Admin2', 'Admin2', 'donald@correo.com', 'Qwerty9601', 1),
+	(30, 'Mark', 'Zuckerberg', 'mark.zuckerbeg@correo.com', 'Qwerty9601', 0);
 
--- Dumping data for table core_project_BAN_00341.mod_usuarios_user: ~20 rows (approximately)
+-- Dumping data for table core_project_BAN_00341.mod_usuarios_user: ~13 rows (approximately)
 INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'final1', 'final1', 'final1@gmail.com', 'Qwerty9601', 1),
 	(2, 'final2', 'final2', 'final2@gmail.com', 'Qwerty9601', 1),

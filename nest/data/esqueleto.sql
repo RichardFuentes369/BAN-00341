@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `mod_permisos_modulo` (
   PRIMARY KEY (`id`),
   KEY `FK_28bd06971f76c49399db2715d90` (`modulo_padre_id`),
   CONSTRAINT `FK_28bd06971f76c49399db2715d90` FOREIGN KEY (`modulo_padre_id`) REFERENCES `mod_permisos_modulo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `mod_permisos_modulo_asignacion` (
   PRIMARY KEY (`id`),
   KEY `FK_6eb0af2f8e13274ad1819f4cfca` (`user_id`),
   CONSTRAINT `FK_6eb0af2f8e13274ad1819f4cfca` FOREIGN KEY (`user_id`) REFERENCES `mod_usuarios_admin` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=334 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=410 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -165,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `mod_usuarios_admin` (
   `isActive` tinyint(4) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_c885318c449a37e806a7f87607` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
