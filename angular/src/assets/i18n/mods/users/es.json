@@ -16,7 +16,7 @@
   "SEE_ADMIN_TITLE": "Ver usuario {{user_name}}",
   "ASSIGN_ADMIN_TITLE": "Editar usuario {{user_name}}",
   
-  "SEE_PERMISSIONS_TITLE": "List permisos asignados",
+  "SEE_PERMISSIONS_TITLE": "Permisos asignados",
 
   "CREATE_FINAL_TITLE": "Crear usuario final",
   "EDIT_FINAL_TITLE": "Editar usuario {{user_name}}",
@@ -80,6 +80,11 @@
   "BUTTON_CANCEL": "Cancelar",
   "BUTTON_BACK": "Volver",
   "BUTTON_SEARCH": "Buscar",
+
+  "COLUMN_MODULE": "Módulo",
+  "COLUMN_SUBMODULE": "Submódulo",
+  "COLUMN_PERMISSION": "Permiso",
+  "COLUMN_IDENTIFIER": "Identificador",
 
   "COLUMN_ID": "Id",
   "COLUMN_EMAIL": "Correo electrónico",

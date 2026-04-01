@@ -16,7 +16,7 @@
   "SEE_ADMIN_TITLE": "See user {{user_name}}", 
   "ASSIGN_ADMIN_TITLE": "Assign permission user {{user_name}}", 
   
-  "SEE_PERMISSIONS_TITLE": "List of assigned permissions",
+  "SEE_PERMISSIONS_TITLE": "Assigned Permissions",
 
   "CREATE_FINAL_TITLE": "Create user final", 
   "EDIT_FINAL_TITLE": "Edit user final {{user_name}}", 
@@ -78,6 +78,11 @@
   "BUTTON_CANCEL": "Cancel",
   "BUTTON_BACK": "Back",
   "BUTTON_SEARCH": "Search",
+
+  "COLUMN_MODULE": "Module",
+  "COLUMN_SUBMODULE": "Submodule",
+  "COLUMN_PERMISSION": "Permission",
+  "COLUMN_IDENTIFIER": "Identifier",
 
   "COLUMN_ID": "ID",
   "COLUMN_EMAIL": "Email address",

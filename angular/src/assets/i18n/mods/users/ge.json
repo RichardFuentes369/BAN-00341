@@ -16,7 +16,7 @@
   "SEE_ADMIN_TITLE": "Benutzer {{user_name}} bearbeiten",
   "ASSIGN_ADMIN_TITLE": "Benutzer {{user_name}} bearbeiten",
 
-  "SEE_PERMISSIONS_TITLE": "Liste der zugewiesenen Berechtigungen",
+  "SEE_PERMISSIONS_TITLE": "Zugewiesene Berechtigungen",
 
   "CREATE_FINAL_TITLE": "Benutzer final erstellen",
   "EDIT_FINAL_TITLE": "Benutzer final {{user_name}} bearbeiten",
@@ -79,6 +79,11 @@
   "BUTTON_CANCEL": "Abbrechen",
   "BUTTON_BACK": "Zurück",
   "BUTTON_SEARCH": "Suchen",
+
+  "COLUMN_MODULE": "Modul",
+  "COLUMN_SUBMODULE": "Submodul",
+  "COLUMN_PERMISSION": "Berechtigung",
+  "COLUMN_IDENTIFIER": "Kennung",
 
   "COLUMN_ID": "ID",
   "COLUMN_EMAIL": "E-Mail-Adresse",

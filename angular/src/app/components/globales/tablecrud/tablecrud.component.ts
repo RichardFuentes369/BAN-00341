@@ -87,6 +87,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
     this.dtOptions = {
       paging: true,
       ordering: false,
+      destroy: true,
       processing: true,
       searching: false,
       serverSide: true,
