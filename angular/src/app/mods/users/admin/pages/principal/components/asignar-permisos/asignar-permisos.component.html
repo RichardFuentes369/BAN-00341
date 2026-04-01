@@ -20,7 +20,7 @@
         </div>
 
         @if (modulos.mpm_toogle) {
-        <div class="card-body" [class.bg-light]="modulos.mpm_id !== 17">
+        <div class="card-body">
           <div class="row">
             @for (subModulos of modulos.children; track subModulos.mpm_permiso) {
 
