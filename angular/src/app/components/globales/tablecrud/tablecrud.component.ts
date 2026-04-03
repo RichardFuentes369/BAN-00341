@@ -113,7 +113,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
       scrollCollapse: false,
       lengthMenu: [5, 10, 20, 30, 40, 50, 100],
       pageLength: 10,
-      dom: "<'row mb-4'<'col-12 d-flex justify-content-center align-items-center custom-length-wrapper'l>>" +
+      dom: "<'row mt-4 mb-2'<'col-12 d-flex justify-content-center align-items-center custom-length-wrapper'l>>" +
        "<'row'<'col-12'rt>>" +
        "<'row mt-4'<'col-md-5'i><'col-md-7 d-flex justify-content-end'p>>",
       drawCallback: () => {
