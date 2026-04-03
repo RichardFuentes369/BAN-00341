@@ -18,5 +18,17 @@
   "PAGINATION_INFO_SHOWING": "Anzeigen",
   "PAGINATION_INFO_TO": "bis",
   "PAGINATION_INFO_OF": "von",
-  "PAGINATION_INFO_ENTRIES": "Einträge"
+  "PAGINATION_INFO_ENTRIES": "Einträge",
+
+  "TABLE_INFO_SHOW": "Anzeigen",
+  "TABLE_INFO_RECORDS": "Datensätze",
+  "TABLE_INFO_SHOWING": "Anzeigen",
+  "TABLE_INFO_TO": "bis",
+  "TABLE_INFO_OF": "von",
+  "TABLE_INFO_ENTRIES": "Einträge",
+  "TABLE_INFO_NO_INFO": "Keine Datensätze gefunden",
+  "TABLE_INFO_FIRST": "Erster",
+  "TABLE_INFO_LAST": "Letzte",
+  "TABLE_INFO_NEXT": "Nächste",
+  "TABLE_INFO_PREVIOUS": "Vorherige"
 }

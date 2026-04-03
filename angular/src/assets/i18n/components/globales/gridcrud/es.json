@@ -18,5 +18,17 @@
   "PAGINATION_INFO_SHOWING": "Mostrando",
   "PAGINATION_INFO_TO": "a",
   "PAGINATION_INFO_OF": "de",
-  "PAGINATION_INFO_ENTRIES": "entradas"
+  "PAGINATION_INFO_ENTRIES": "entradas",
+
+  "TABLE_INFO_SHOW": "Mostrar",
+  "TABLE_INFO_RECORDS": "registros",
+  "TABLE_INFO_SHOWING": "Mostrando",
+  "TABLE_INFO_TO": "a",
+  "TABLE_INFO_OF": "de",
+  "TABLE_INFO_ENTRIES": "entradas",
+  "TABLE_INFO_NO_INFO": "No se encontraron registros",
+  "TABLE_INFO_FIRST": "Primero",
+  "TABLE_INFO_LAST": "Ultimo",
+  "TABLE_INFO_NEXT": "Siguiente",
+  "TABLE_INFO_PREVIOUS": "Anterior"
 }

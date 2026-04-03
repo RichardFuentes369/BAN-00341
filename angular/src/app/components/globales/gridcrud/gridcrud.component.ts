@@ -2,8 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, SimpleChange
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environment/environment';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Subject, Subscription } from 'rxjs';
-import { Config } from 'datatables.net';
+import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 
 let ultimaUrlConsultada: string = '';
@@ -21,20 +20,19 @@ let haySeleccionados: any[] = [];
 })
 export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() title: string = '';
-  @Input() page: number = 1;
-  @Input() perPage: number = 10;
+  @Input() perPage: number = 5;
   @Input() campoFiltro: boolean = false;
   @Input() endPoint: string = '';
   @Input() filters: string = '';
   @Input() permisosAcciones: any[] = [];
 
-  data: any[] = []
+  data: any[] = [];
   url = environment.apiUrl;
   idsSeleccionados: any[] = [];
 
   paginaActual: number = 1;
-  totalRegistros: number = 20;
-  totalPaginas: number = 20;
+  totalRegistros: number = 0;
+  totalPaginas: number = 1;
   desdeConteo: number = 0;
   hastaConteo: number = 0;
 
@@ -47,20 +45,15 @@ export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
   ) { }
 
   ngOnInit() {
-    this.listar();
-    (ultimaUrlConsultada != this.endPoint) ? this.idsSeleccionados = [] : this.idsSeleccionados = [...haySeleccionados]
+    this.listar(1);
+    (ultimaUrlConsultada !== this.endPoint) ? this.idsSeleccionados = [] : this.idsSeleccionados = [...haySeleccionados];
+    
     this.langSub = this.translate.onLangChange.subscribe(() => {
       haySeleccionados = [...this.idsSeleccionados];
     });
   }
 
-  ngAfterViewInit(): void {
-  }
-
-  onPerPageChange() {
-    this.paginaActual = 1; 
-    this.listar(this.paginaActual);
-  }
+  ngAfterViewInit(): void { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['filters'] && !changes['filters'].firstChange) {
@@ -72,32 +65,34 @@ export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy() {
+    if (this.langSub) this.langSub.unsubscribe();
   }
 
   listar(page: number = 1) {
-    this.page = page;
-
+    this.paginaActual = page;
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
 
-    this.http.get<any[]>(
-      `${this.url}${this.endPoint}?page=${this.page}&limit=${this.perPage}&field=id&order=asc${this.filters}&lang=${lang}`
-    ).subscribe({
+    // Construcción de URL limpia
+    const fullUrl = `${this.url}${this.endPoint}?page=${this.paginaActual}&limit=${this.perPage}&field=id&order=asc${this.filters}&lang=${lang}`;
+
+    this.http.get<any[]>(fullUrl).subscribe({
       next: (post) => {
-        const recordsTotal = post[0].pagination.totalRecord;
+        if (post && post[0] && post[0].pagination) {
+          const pagination = post[0].pagination;
+          const result = post[0].result || [];
 
-        this.desdeConteo = ((page - 1) * this.perPage) + 1;
-        this.hastaConteo = this.desdeConteo + Math.max(0, post[0].result.length - 1);
+          this.totalRegistros = pagination.totalRecord;
+          this.totalPaginas = Math.ceil(this.totalRegistros / this.perPage) || 1;
 
-        this.totalRegistros = recordsTotal;
-        this.totalPaginas = Math.ceil(recordsTotal / this.perPage);
+          // Lógica de conteo corregida
+          this.desdeConteo = result.length > 0 ? (this.paginaActual - 1) * this.perPage + 1 : 0;
+          this.hastaConteo = Math.min(this.desdeConteo + result.length - 1, this.totalRegistros);
 
-        this.data = post[0].result.map((item: any) => {
-          return {
+          this.data = result.map((item: any) => ({
             ...item,
             selection: this.idsSeleccionados.includes(item.id)
-          };
-        });
-        
+          }));
+        }
         this.cdr.detectChanges();
       },
       error: (err) => {
@@ -107,10 +102,13 @@ export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   cambiarPagina(nuevaPagina: number) {
-    this.paginaActual = nuevaPagina
-    if (nuevaPagina > 0 && nuevaPagina <= this.totalPaginas) {
+    if (nuevaPagina >= 1 && nuevaPagina <= this.totalPaginas) {
       this.listar(nuevaPagina);
     }
+  }
+
+  onPerPageChange() {
+    this.listar(1);
   }
 
   toggleSelection(id: any) {
@@ -124,20 +122,20 @@ export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   reload() {
-    this.limpiarSeleccion()
-    this.paginaActual = 1
-    this.listar()
+    this.limpiarSeleccion();
+    this.listar(1);
   }
 
   limpiarSeleccion() {
     this.idsSeleccionados = [];
+    this.cdr.detectChanges();
   }
 
   tienePermiso(nombre: string): boolean {
     return this.permisosAcciones?.some((permiso) => permiso.permiso_permiso === nombre);
   }
 
-  // Outputs y métodos Emitters (abreviados para el ejemplo)
+  // Outputs
   @Output() verItem = new EventEmitter<string>();
   @Output() crearNuevoItem = new EventEmitter<string>();
   @Output() editarItem = new EventEmitter<string>();
@@ -150,12 +148,10 @@ export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
   editItem() { if (this.idsSeleccionados.length === 1) this.editarItem.emit(this.idsSeleccionados[0]); }
   deleteItem() { if (this.idsSeleccionados.length > 0) this.eliminarItem.emit(this.idsSeleccionados); }
   activedItem() { if (this.idsSeleccionados.length > 0) this.activarItem.emit(this.idsSeleccionados); }
+  
   assign(event: MouseEvent) {
     if (this.idsSeleccionados.length === 1) {
-      this.asignar.emit({
-        id: this.idsSeleccionados[0],
-        ctrlKey: event.ctrlKey || event.metaKey
-      });
+      this.asignar.emit({ id: this.idsSeleccionados[0], ctrlKey: event.ctrlKey || event.metaKey });
     }
   }
   selectionClear() { this.limpiarSeleccion(); }

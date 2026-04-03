@@ -18,5 +18,17 @@
   "PAGINATION_INFO_SHOWING": "Showing",
   "PAGINATION_INFO_TO": "to",
   "PAGINATION_INFO_OF": "of",
-  "PAGINATION_INFO_ENTRIES": "entries"
+  "PAGINATION_INFO_ENTRIES": "entries",
+
+  "TABLE_INFO_SHOW": "Show",
+  "TABLE_INFO_RECORDS": "records",
+  "TABLE_INFO_SHOWING": "Showing",
+  "TABLE_INFO_TO": "to",
+  "TABLE_INFO_OF": "of",
+  "TABLE_INFO_ENTRIES": "entries",
+  "TABLE_INFO_NO_INFO": "No records found",
+  "TABLE_INFO_FIRST": "First",
+  "TABLE_INFO_LAST": "Last",
+  "TABLE_INFO_NEXT": "Next",
+  "TABLE_INFO_PREVIOUS": "Previous"
 }

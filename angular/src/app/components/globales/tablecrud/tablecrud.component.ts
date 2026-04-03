@@ -113,6 +113,9 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
       scrollCollapse: false,
       lengthMenu: [5, 10, 20, 30, 40, 50, 100],
       pageLength: 10,
+      dom: "<'row mb-4'<'col-12 d-flex justify-content-center align-items-center custom-length-wrapper'l>>" +
+       "<'row'<'col-12'rt>>" +
+       "<'row mt-4'<'col-md-5'i><'col-md-7 d-flex justify-content-end'p>>",
       drawCallback: () => {
         const tableElement = document.querySelector('.table-container');
         if (tableElement) {
@@ -185,10 +188,14 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
         "emptyTable": `${this.translate.instant('global-tablecrud.TABLE_INFO_NO_INFO')}`,
         "info": `${this.translate.instant('global-tablecrud.TABLE_INFO_SHOWING')} _START_ ${this.translate.instant('global-tablecrud.TABLE_INFO_TO')} _END_ ${this.translate.instant('global-tablecrud.TABLE_INFO_OF')} _TOTAL_ ${this.translate.instant('global-tablecrud.TABLE_INFO_ENTRIES')}`,
         "paginate": {
-          "first": `${this.translate.instant('global-tablecrud.TABLE_INFO_FIRST')}`,
-          "last": `${this.translate.instant('global-tablecrud.TABLE_INFO_LAST')}`,
-          "next": `${this.translate.instant('global-tablecrud.TABLE_INFO_NEXT')}`,
-          "previous": `${this.translate.instant('global-tablecrud.TABLE_INFO_PREVIOUS')}`
+          // "first": `${this.translate.instant('global-tablecrud.TABLE_INFO_FIRST')}`,
+          // "last": `${this.translate.instant('global-tablecrud.TABLE_INFO_LAST')}`,
+          // "next": `${this.translate.instant('global-tablecrud.TABLE_INFO_NEXT')}`,
+          // "previous": `${this.translate.instant('global-tablecrud.TABLE_INFO_PREVIOUS')}`
+          "first": `<i class="fa-solid fa-angles-left"></i>`,
+          "previous": `<i class="fa-solid fa-angle-left"></i>`,
+          "next": `<i class="fa-solid fa-angle-right"></i>`,
+          "last": `<i class="fa-solid fa-angles-right"></i>`,
         }
       },
       columns: this.habilitarSeleccion ? [columnaSeleccion, ...this.columnas]  : [...this.columnas],
@@ -268,7 +275,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
         });
 
         return row;
-      }
+      },
     };
   }
 
