@@ -29,7 +29,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() filters: string = '';
   @Input() columnas: any[] = [];
   @Input() permisosAcciones: any[] = [];
-  @Input() habilitarSeleccion: boolean = true;
+  @Input() habilitarSeleccion: boolean = false;
   
   @Input() dataMapper?: (response: any) => { data: any[], total: number };
 

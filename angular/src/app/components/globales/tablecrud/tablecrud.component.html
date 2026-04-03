@@ -3,12 +3,12 @@
 
     <div class="title-container mb-2 mb-md-0">
       <h5 class="m-0 fw-bold text-secondary">{{ title }}</h5>
-      <!-- @if (idsSeleccionados.length > 0) { -->
-      <span class="text-muted animated fadeIn" style="font-size: 0.85rem;">
-        {{ 'global-tablecrud.WORD_SELECTED' | translate }}:
-        <b class="text-dark">{{idsSeleccionados.length}}</b>
-      </span>
-      <!-- } -->
+      @if(habilitarSeleccion){
+        <span class="text-muted animated fadeIn" style="font-size: 0.85rem;">
+          {{ 'global-tablecrud.WORD_SELECTED' | translate }}:
+          <b class="text-dark">{{idsSeleccionados.length}}</b>
+        </span>
+      }
     </div>
 
     <div class="actions-container d-flex flex-wrap align-items-center">
@@ -114,16 +114,18 @@
       </span>
       }
 
-      <span class="custom-tooltip tooltip-bottom my-auto"
-        [attr.data-title]="'global-tablecrud.BUTTON_OPTION_CLEAR' | translate"
-        [class.is-disabled]="idsSeleccionados.length === 0"
-        [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'">
-        <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="selectionClear()"
-          [disabled]="idsSeleccionados.length === 0">
-          <i class="fa-solid fa-broom" [class.text-secondary]="idsSeleccionados.length > 0"
-            [class.text-muted]="idsSeleccionados.length === 0" style="font-size: 1.1rem;"></i>
-        </button>
-      </span>
+      @if(habilitarSeleccion){
+        <span class="custom-tooltip tooltip-bottom my-auto"
+          [attr.data-title]="'global-tablecrud.BUTTON_OPTION_CLEAR' | translate"
+          [class.is-disabled]="idsSeleccionados.length === 0"
+          [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'">
+          <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="selectionClear()"
+            [disabled]="idsSeleccionados.length === 0">
+            <i class="fa-solid fa-broom" [class.text-secondary]="idsSeleccionados.length > 0"
+              [class.text-muted]="idsSeleccionados.length === 0" style="font-size: 1.1rem;"></i>
+          </button>
+        </span>
+      }
 
     </div>
   </div>
