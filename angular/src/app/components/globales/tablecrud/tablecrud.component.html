@@ -10,124 +10,6 @@
         </span>
       }
     </div>
-
-    <!-- <div class="actions-container d-flex flex-wrap align-items-center">
-
-      @if(tienePermiso('cargar_excel')){
-      <span class="custom-tooltip tooltip-bottom my-auto"
-        [attr.data-title]="'global-tablecrud.BUTTON_OPTION_UPLOAD' | translate"
-        [class.is-disabled]="idsSeleccionados.length >= 1"
-        [style.cursor]="idsSeleccionados.length >= 1 ? 'not-allowed' : 'pointer'">
-        <button class="btn btn-link btn-sm mx-1 p-0 text-primary border-0" (click)="uploadItem()"
-          [disabled]="idsSeleccionados.length >= 1">
-          <i class="fa fa-upload"></i>
-        </button>
-      </span>
-      }
-
-      @if(tienePermiso('crear')){
-      <span class="custom-tooltip tooltip-bottom my-auto"
-        [attr.data-title]="'global-tablecrud.BUTTON_OPTION_CREATE' | translate"
-        [class.is-disabled]="idsSeleccionados.length >= 1"
-        [style.cursor]="idsSeleccionados.length >= 1 ? 'not-allowed' : 'pointer'">
-        <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="newItem()"
-          [disabled]="idsSeleccionados.length >= 1">
-          <i class="fa fa-plus-circle text-primary" [style.opacity]="idsSeleccionados.length >= 1 ? '0.5' : '1'" style="font-size: 1.2rem;"></i>
-        </button>
-      </span>
-      }
-
-      @if(tienePermiso('ver')){
-      <span class="custom-tooltip tooltip-bottom my-auto"
-        [attr.data-title]="'global-tablecrud.BUTTON_OPTION_SEE' | translate"
-        [class.is-disabled]="idsSeleccionados.length != 1"
-        [style.cursor]="idsSeleccionados.length != 1 ? 'not-allowed' : 'pointer'">
-        <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="seeItem()"
-          [disabled]="idsSeleccionados.length != 1">
-          <i class="fa fa-eye" [class.text-primary]="idsSeleccionados.length === 1" [class.text-muted]="idsSeleccionados.length != 1" style="font-size: 1.2rem;"></i>
-        </button>
-      </span>
-      }
-
-      @if(tienePermiso('estado_usuario')){
-      <span class="custom-tooltip tooltip-bottom my-auto"
-        [attr.data-title]="'global-tablecrud.BUTTON_OPTION_STATUS' | translate"
-        [class.is-disabled]="idsSeleccionados.length === 0"
-        [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'">
-        <button class="btn btn-link btn-sm mx-1 p-0 border-0 text-decoration-none" (click)="activedItem()"
-          [disabled]="idsSeleccionados.length === 0">
-          <i class="fa fa-toggle-on" [class.text-success]="idsSeleccionados.length > 0"
-            [class.text-muted]="idsSeleccionados.length === 0" style="font-size: 1.2rem;"></i>
-        </button>
-      </span>
-      }
-
-      @if(tienePermiso('editar')){
-      <span class="custom-tooltip tooltip-bottom my-auto"
-        [attr.data-title]="'global-tablecrud.BUTTON_OPTION_EDIT' | translate"
-        [class.is-disabled]="idsSeleccionados.length != 1"
-        [style.cursor]="idsSeleccionados.length != 1 ? 'not-allowed' : 'pointer'">
-        <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="editItem()"
-          [disabled]="idsSeleccionados.length != 1">
-          <i class="fa fa-pencil" [class.text-warning]="idsSeleccionados.length === 1"
-            [class.text-muted]="idsSeleccionados.length != 1" style="font-size: 1.2rem;"></i>
-        </button>
-      </span>
-      }
-
-      @if(tienePermiso('eliminar_individual')){
-      <span class="custom-tooltip tooltip-bottom my-auto"
-        [attr.data-title]="'global-tablecrud.BUTTON_OPTION_DELETE' | translate"
-        [class.is-disabled]="idsSeleccionados.length != 1"
-        [style.cursor]="idsSeleccionados.length != 1 ? 'not-allowed' : 'pointer'">
-        <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="deleteItem()"
-          [disabled]="idsSeleccionados.length !== 1">
-          <i class="fa fa-trash" [class.text-danger]="idsSeleccionados.length === 1"
-            [class.text-muted]="idsSeleccionados.length !== 1" style="font-size: 1.2rem;"></i>
-        </button>
-      </span>
-      }
-
-      @if(tienePermiso('eliminar_multiple')){
-      <span class="custom-tooltip tooltip-bottom my-auto"
-        [attr.data-title]="'global-tablecrud.BUTTON_OPTION_DELETE' | translate"
-        [class.is-disabled]="idsSeleccionados.length == 0"
-        [style.cursor]="idsSeleccionados.length == 0 ? 'not-allowed' : 'pointer'">
-        <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="deleteItem()"
-          [disabled]="idsSeleccionados.length === 0">
-          <i class="fa fa-trash" [class.text-danger]="idsSeleccionados.length > 0"
-            [class.text-muted]="idsSeleccionados.length === 0" style="font-size: 1.2rem;"></i>
-        </button>
-      </span>
-      }
-
-      @if(tienePermiso('asignar_permisos')){
-      <span class="custom-tooltip tooltip-bottom my-auto"
-        [attr.data-title]="'global-tablecrud.BUTTON_OPTION_ASSIGN_PERMISSION' | translate"
-        [class.is-disabled]="idsSeleccionados.length !== 1"
-        [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'">
-        <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="assign($event)"
-          [disabled]="idsSeleccionados.length !== 1">
-          <i class="fa fa-key" [class.text-warning]="idsSeleccionados.length === 1"
-            [class.text-muted]="idsSeleccionados.length !== 1" style="font-size: 1.2rem;"></i>
-        </button>
-      </span>
-      }
-
-      @if(habilitarSeleccion){
-        <span class="custom-tooltip tooltip-bottom my-auto"
-          [attr.data-title]="'global-tablecrud.BUTTON_OPTION_CLEAR' | translate"
-          [class.is-disabled]="idsSeleccionados.length === 0"
-          [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'">
-          <button class="btn btn-link btn-sm mx-1 p-0 border-0" (click)="selectionClear()"
-            [disabled]="idsSeleccionados.length === 0">
-            <i class="fa-solid fa-broom" [class.text-secondary]="idsSeleccionados.length > 0"
-              [class.text-muted]="idsSeleccionados.length === 0" style="font-size: 1.1rem;"></i>
-          </button>
-        </span>
-      }
-
-    </div> -->
     <div class="actions-container d-flex flex-wrap align-items-center gap-2">
       @if(tienePermiso('cargar_excel')){
         <span class="custom-tooltip tooltip-bottom my-auto"
@@ -210,7 +92,7 @@
               [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'">
           <button class="btn btn-link p-0 border-0 action-icon-btn" 
                   (click)="deleteItem()"
-                  [disabled]="idsSeleccionados.length === 0">
+                  [disabled]="idsSeleccionados.length === 0 || idsSeleccionados.length > 1">
             <i class="fa-solid fa-trash-can" 
               [class.text-danger]="idsSeleccionados.length > 0"
               [class.text-muted]="idsSeleccionados.length === 0 || idsSeleccionados.length > 1"></i>

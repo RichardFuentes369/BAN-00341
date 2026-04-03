@@ -79,7 +79,7 @@
                   [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'">
               <button class="btn btn-link p-0 border-0 action-icon-btn" 
                       (click)="deleteItem()"
-                      [disabled]="idsSeleccionados.length === 0">
+                      [disabled]="idsSeleccionados.length === 0 || idsSeleccionados.length > 1">
                 <i class="fa-solid fa-trash-can" 
                   [class.text-danger]="idsSeleccionados.length > 0"
                   [class.text-muted]="idsSeleccionados.length === 0 || idsSeleccionados.length > 1"></i>
