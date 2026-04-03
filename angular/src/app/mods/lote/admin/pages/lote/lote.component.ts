@@ -50,6 +50,7 @@ export class LoteComponent implements OnInit, OnDestroy{
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = 'batch/obtener-registro-lotes'
+  habilitarSeleccion = true
   filters = ''
   columnas: any[] = [
     {

@@ -108,6 +108,7 @@ export class VerPermisosComponent implements OnInit{
   showcampoFiltro = false
   endPoint = ''
   filters = ''
+  habilitarSeleccion = false
   columnas: any[] = [
     {
       title: this.translate.instant('mod-users.COLUMN_MODULE'),

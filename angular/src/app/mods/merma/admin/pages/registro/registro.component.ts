@@ -50,6 +50,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = 'registro-mermas/obtener-registro-mermas'
+  habilitarSeleccion = true
   filters = ''
   columnas: any[] = [
     {

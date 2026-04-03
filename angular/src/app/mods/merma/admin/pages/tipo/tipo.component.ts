@@ -52,6 +52,7 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = 'tipos_merma/obtener-tipo-mermas'
+  habilitarSeleccion = true
   filters = ''
   columnas: any[] = [
     {

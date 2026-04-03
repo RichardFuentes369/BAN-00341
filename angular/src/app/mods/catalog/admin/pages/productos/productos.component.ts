@@ -54,6 +54,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
   showcampoFiltro = false
   endPoint = 'product/obtener-productos'
   complementoEndPoint = `&id_category=${this.route.snapshot.queryParamMap.get('id_category')}`
+  habilitarSeleccion = true
   filters = ''
   columnas: any[] = [
     {

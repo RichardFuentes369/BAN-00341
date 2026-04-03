@@ -29,6 +29,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() filters: string = '';
   @Input() columnas: any[] = [];
   @Input() permisosAcciones: any[] = [];
+  @Input() habilitarSeleccion: boolean = true;
   
   @Input() dataMapper?: (response: any) => { data: any[], total: number };
 
@@ -84,6 +85,23 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   listar() {
+    const columnaSeleccion = {
+      title: `
+        <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;">
+          <input type="checkbox" class="select-all-checkbox" style="transform: scale(0.8); margin: 0;" />
+          <span style="font-size: 10px; font-weight: bold; margin-top: 2px;">Id</span>
+        </div>
+      `,
+      data: null,
+      orderable: false,
+      className: 'text-center select-checkbox-column',
+      render: (data: any, type: any, row: any) => {
+        const id = row.id;
+        if (!id) return '';
+        return `<div class="text-center"><small>${id}</small></div>`;
+      }
+    };
+
     this.dtOptions = {
       paging: true,
       ordering: false,
@@ -173,33 +191,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
           "previous": `${this.translate.instant('global-tablecrud.TABLE_INFO_PREVIOUS')}`
         }
       },
-      columns: [
-        {
-          title: `
-            <div style="display: flex; flex-direction: column; align-items: center; line-height: 1;">
-              <input type="checkbox" class="select-all-checkbox" style="transform: scale(0.8); margin: 0;" />
-            </div>
-          `,
-          data: null,
-          orderable: false,
-          className: 'text-center select-checkbox-column',
-          render: (data: any, type: any, row: any) => {
-            const id = row.id 
-            if (id == undefined) {
-              return `
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
-                </div>
-              `;
-            }
-            return `
-              <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
-                <small>${id}</small>
-              </div>
-            `;
-          }
-        },
-        ...this.columnas
-      ],
+      columns: this.habilitarSeleccion ? [columnaSeleccion, ...this.columnas]  : [...this.columnas],
       headerCallback: (thead: Node, data: any, start: number, end: number, display: any) => {
         const $headerCheckbox = $(thead).find('.select-all-checkbox');
 
@@ -238,7 +230,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
           });
         });
       },
-      rowCallback: (row: Node, data: any, index: number) => {
+      rowCallback: !this.habilitarSeleccion ? undefined : (row: Node, data: any, index: number) => {
         const $row = $(row);
         const $checkbox = $row.find('.row-checkbox');
 

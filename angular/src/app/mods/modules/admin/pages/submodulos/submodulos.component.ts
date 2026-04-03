@@ -69,6 +69,7 @@ export class SubmodulosComponent implements OnInit {
   // inicio datos que envio al componente
   showcampoFiltro = true
   endPoint = `modulos/obtener-permisos-por-modulo/${this.route.snapshot.queryParams?.['id_module']}`
+  habilitarSeleccion = true
   columnas = [
     {
       title: this.translate.instant('mod-modules.COLUMN_SUBMODULE_NAME'),

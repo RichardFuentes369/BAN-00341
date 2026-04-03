@@ -52,6 +52,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = 'supplier/obtener-proveedores'
+  habilitarSeleccion = true
   filters = ''
   columnas: any[] = [
     {

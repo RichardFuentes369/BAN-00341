@@ -85,6 +85,7 @@ export class PermisosComponent implements OnInit {
   // inicio datos que envio al componente
   showcampoFiltro = true
   endPoint = ``
+  habilitarSeleccion = true
   columnas = [
     {
       title: this.translate.instant('mod-modules.COLUMN_PERMISSION_NAME'),

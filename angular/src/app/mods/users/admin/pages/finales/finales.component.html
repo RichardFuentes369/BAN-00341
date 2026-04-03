@@ -43,6 +43,7 @@
     @if (cargarIdioma) {
     <div class="table-container shadow-sm border rounded">
       <app-globales-tablecrud [campoFiltro]=showcampoFiltro [endPoint]=endPoint [columnas]=columnas
+        [habilitarSeleccion]="habilitarSeleccion"
         [permisosAcciones]=permisos [filters]=filters [title]=titlePage (verItem)="verData($event)"
         (crearNuevoItem)="crearData($event)" (editarItem)="editarData($event)" (activarItem)="activarData($event)"
         (eliminarItem)="eliminarData($event)">

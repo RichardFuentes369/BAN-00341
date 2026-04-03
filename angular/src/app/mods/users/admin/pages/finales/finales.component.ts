@@ -64,6 +64,7 @@ export class FinalesComponent implements OnInit{
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = 'user/obtener-usuarios-finales'
+  habilitarSeleccion = true
   filters = ''
   columnas = [
     {
