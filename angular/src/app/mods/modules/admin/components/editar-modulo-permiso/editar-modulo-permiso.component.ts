@@ -136,8 +136,8 @@ export class EditarModuloPermisoComponent implements OnInit{
   async actualizarData(){
     if(this.isFormValid){
 
-      // this.model.tiene_submodulos= (this.optionSelect == 1) ? true : false
-      // this.model.tiene_permisos = (this.optionSelect == 2) ? true : false
+      this.model.tiene_submodulos= (this.optionSelect == 1) ? true : false
+      this.model.tiene_permisos = (this.optionSelect == 2) ? true : false
 
       let endPoint = this.modulosService
       await endPoint.actualizarPermiso(
@@ -145,8 +145,8 @@ export class EditarModuloPermisoComponent implements OnInit{
           nombre: this.model.nombre,
           permiso: this.model.permiso,
           descripcion: this.model.descripcion,
-          // tiene_submodulos: this.model.tiene_submodulos,
-          // tiene_permisos: this.model.tiene_permisos
+          tiene_submodulos: this.model.tiene_submodulos,
+          tiene_permisos: this.model.tiene_permisos
         },
         this.model.id
       ).then((response) =>{
