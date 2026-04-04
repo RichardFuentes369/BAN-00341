@@ -107,8 +107,8 @@
       border: none !important;
       text-align: center;
       
-      // &:first-child { border-radius: 10px 0 0 10px; }
-      // &:last-child { border-radius: 0 10px 10px 0; }
+      &:first-child { border-radius: 10px 0 0 10px; }
+      &:last-child { border-radius: 0 10px 10px 0; }
     }
 
     /* FILAS COMO BLOQUES INDEPENDIENTES */
@@ -190,6 +190,12 @@
   .dot-red {
     background-color: #dc3545;
     box-shadow: 0 0 8px rgba(220, 53, 69, 0.5);
+    animation: pulse-red 2s infinite;
+  }
+
+  .dot-gray {
+    background-color: #c0babb;
+    box-shadow: 0 0 8px rgba(208, 184, 187, 0.5);
     animation: pulse-red 2s infinite;
   }
 

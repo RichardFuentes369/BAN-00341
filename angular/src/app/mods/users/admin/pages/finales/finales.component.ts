@@ -99,7 +99,7 @@ export class FinalesComponent implements OnInit{
             ? this.translate.instant('mod-users.WORD_ACTIVED') 
             : this.translate.instant('mod-users.WORD_INACTIVED');
           
-          const dotClass = data ? 'dot-green' : 'dot-red';
+          const dotClass = data ? 'dot-green' : 'dot-gray';
 
           return `
             <span class="custom-tooltip tooltip-bottom" data-title="${statusText}">
