@@ -77,12 +77,14 @@ export class PermisosComponent implements OnInit {
       this.cargarTabla = false;
       timer(200).subscribe(() => {
         this.listar();
+        this.cambiarTextos(); 
         this.cargarTabla = true;
       });
     });
   }
 
   // inicio datos que envio al componente
+  titlePage = this.translate.instant('mod-users.TABLE_TITLE')
   showcampoFiltro = true
   endPoint = ``
   habilitarSeleccion = true
@@ -142,6 +144,10 @@ export class PermisosComponent implements OnInit {
         className: 'text-center'
       },
     ]
+  }
+
+  cambiarTextos(){
+    this.titlePage = this.translate.instant('mod-users.TABLE_TITLE')
   }
 
   crearData(_id: string) {

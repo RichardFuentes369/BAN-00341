@@ -55,12 +55,14 @@ export class ModulosComponent implements OnInit {
       this.cargarTabla = false;
       timer(200).subscribe(() => {
         this.listar();
+        this.cambiarTextos(); 
         this.cargarTabla = true;
       });
     });
   }
 
   // inicio datos que envio al componente
+  titlePage = this.translate.instant('mod-users.TABLE_TITLE')
   showcampoFiltro = true
   endPoint = 'modulos/obtener-permisos-por-modulo/0'
   habilitarSeleccion = true
@@ -162,6 +164,10 @@ export class ModulosComponent implements OnInit {
         }
       }
     ]
+  }
+
+  cambiarTextos(){
+    this.titlePage = this.translate.instant('mod-users.TABLE_TITLE')
   }
 
   async verData(_id: string) {

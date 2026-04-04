@@ -61,12 +61,14 @@ export class SubmodulosComponent implements OnInit {
       this.cargarTabla = false;
       timer(200).subscribe(() => {
         this.listar();
+        this.cambiarTextos(); 
         this.cargarTabla = true;
       });
     });
   }
 
   // inicio datos que envio al componente
+  titlePage = this.translate.instant('mod-users.TABLE_TITLE')
   showcampoFiltro = true
   endPoint = `modulos/obtener-permisos-por-modulo/${this.route.snapshot.queryParams?.['id_module']}`
   habilitarSeleccion = true
@@ -148,6 +150,10 @@ export class SubmodulosComponent implements OnInit {
         }
       }
     ]
+  }
+
+  cambiarTextos(){
+    this.titlePage = this.translate.instant('mod-users.TABLE_TITLE')
   }
 
   verData(_id: string) {

@@ -9,6 +9,7 @@
     <div class="table-container">
       @if (cargarTabla) {
       <app-globales-tablecrud
+        [title]="titlePage"
         [campoFiltro] = showcampoFiltro
         [endPoint] = endPoint
         [columnas] = columnas
