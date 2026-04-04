@@ -15,9 +15,12 @@
   "BUTTON_SEARCH": "Suchen",
 
   "CATEGORY": {
-    "CREATE_TITLE": "Kategorie erstellen",
-    "EDIT_TITLE": "Kategorie {{category_name}} bearbeiten",
-    "SEE_TITLE": "Kategorie {{category_name}} anzeigen",
+    "CREATE_TITLE": "Erstellen",
+    "CREATE_SUBTITLE": "Neue Kategorie",
+    "SEE_TITLE": "Anzeigen",
+    "SEE_SUBTITLE": "Kategorie: {{category_name}}",
+    "EDIT_TITLE": "Bearbeiten",
+    "EDIT_SUBTITLE": "Kategorie: {{category_name}}",
 
     "COLUMN_ID": "ID",
     "COLUMN_NAME": "Name",
@@ -43,9 +46,12 @@
   },
 
   "SUPPLIER": {
-    "CREATE_TITLE": "Lieferanten erstellen",
-    "EDIT_TITLE": "Lieferant {{supplier_name}} bearbeiten",
-    "SEE_TITLE": "Lieferant {{supplier_name}} anzeigen",
+    "CREATE_TITLE": "Erstellen",
+    "CREATE_SUBTITLE": "Neuer Lieferant",
+    "SEE_TITLE": "Anzeigen",
+    "SEE_SUBTITLE": "Lieferant: {{supplier_name}}",
+    "EDIT_TITLE": "Bearbeiten",
+    "EDIT_SUBTITLE": "Lieferant: {{supplier_name}}",
 
     "COLUMN_ID": "ID",
     "COLUMN_BUSINESS_NIT": "Steuernummer",
@@ -79,9 +85,13 @@
 
   "PRODUCT": {
     "UPLOAD_TITLE": "Produkte hochladen",
-    "CREATE_TITLE": "Produkt erstellen", 
-    "EDIT_TITLE": "Produkt {{product_name}} bearbeiten", 
-    "SEE_TITLE": "Produkt {{product_name}} ansehen", 
+    "UPLOAD_SUBTITLE": "Produkte im Batch",
+    "CREATE_TITLE": "Erstellen",
+    "CREATE_SUBTITLE": "Neues Produkt",
+    "SEE_TITLE": "Anzeigen",
+    "SEE_SUBTITLE": "Produkt: {{product_name}}",
+    "EDIT_TITLE": "Bearbeiten",
+    "EDIT_SUBTITLE": "Produkt: {{product_name}}",
 
     "COLUMN_ID": "ID",
     "COLUMN_BRAND": "Marke",

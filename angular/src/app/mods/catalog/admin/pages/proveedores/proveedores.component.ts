@@ -94,6 +94,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   tamano = ""
   scrollable = false
   title = ""
+  subtitle = ""
   save = true
   buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
   edit = true
@@ -208,6 +209,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     this.tamano = "xl"
     this.scrollable = false
     this.title = this.translate.instant('mod-catalog.SUPPLIER.CREATE_TITLE')
+    this.subtitle = this.translate.instant('mod-catalog.SUPPLIER.CREATE_SUBTITLE')
     this.save = true
     this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
     this.edit = false
@@ -225,10 +227,10 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   }
 
   async verData (_id: string){
+    this.title = this.translate.instant('mod-catalog.SUPPLIER.SEE_TITLE')
     const response = await this.proveedoresService.getDataProvider(_id)
     const { razon_social } = response.data || { razon_social: 'xxxxxxx' }
-    
-    this.translate.get('mod-catalog.SUPPLIER.SEE_TITLE', { "supplier_name": razon_social }).subscribe((res: string) => {this.title = res});
+    this.translate.get('mod-catalog.SUPPLIER.EDIT_SUBTITLE', { "supplier_name": razon_social }).subscribe((res: string) => {this.subtitle = res});
     this.tamano = "xl"
     this.scrollable = false
     this.save = false
@@ -251,10 +253,10 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   }
 
   async editarData (_id: string){
+    this.title = this.translate.instant('mod-catalog.SUPPLIER.EDIT_TITLE')
     const response = await this.proveedoresService.getDataProvider(_id)
     const { razon_social } = response.data || { razon_social: 'xxxxxxx' }
-    
-    this.translate.get('mod-catalog.SUPPLIER.EDIT_TITLE', { "supplier_name": razon_social }).subscribe((res: string) => {this.title = res});
+    this.translate.get('mod-catalog.SUPPLIER.EDIT_SUBTITLE', { "supplier_name": razon_social }).subscribe((res: string) => {this.subtitle = res});
     this.tamano = "xl"
     this.scrollable = false
     this.save = false

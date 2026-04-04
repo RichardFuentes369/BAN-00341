@@ -79,6 +79,7 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
   tamano = ""
   scrollable = false
   title = ""
+  subtitle = ""
   save = true
   buttonSave = this.translate.instant('mod-merma.BUTTON_SAVE_')
   edit = true
@@ -176,6 +177,7 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
     this.tamano = "xl"
     this.scrollable = false
     this.title = this.translate.instant('mod-merma.TYPE.CREATE_TITLE')
+    this.subtitle = this.translate.instant('mod-merma.TYPE.CREATE_SUBTITLE')
     this.save = true
     this.buttonSave = this.translate.instant('mod-merma.BUTTON_SAVE_')
     this.edit = false
@@ -193,10 +195,10 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
   }
 
   async verData (_id: string){
+    this.title = this.translate.instant('mod-merma.TYPE.SEE_TITLE')
     const response = await this.tipoService.getDataTipo(_id)
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    
-    this.translate.get('mod-merma.TYPE.SEE_TITLE', { "type_name": nombre }).subscribe((res: string) => {this.title = res});
+    this.translate.get('mod-merma.TYPE.SEE_SUBTITLE', { "type_name": nombre }).subscribe((res: string) => {this.subtitle = res});
     this.tamano = "xl"
     this.scrollable = false
     this.save = false
@@ -219,10 +221,10 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
   }
 
   async editarData (_id: string){
+    this.title = this.translate.instant('mod-merma.TYPE.EDIT_TITLE')
     const response = await this.tipoService.getDataTipo(_id)
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    
-    this.translate.get('mod-merma.TYPE.EDIT_TITLE', { "type_name": nombre }).subscribe((res: string) => {this.title = res});
+    this.translate.get('mod-merma.TYPE.EDIT_SUBTITLE', { "type_name": nombre }).subscribe((res: string) => {this.subtitle = res});
     this.tamano = "xl"
     this.scrollable = false
     this.save = false

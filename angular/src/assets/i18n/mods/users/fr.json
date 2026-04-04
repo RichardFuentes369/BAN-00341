@@ -11,16 +11,13 @@
   "CARD_TOTAL_SUSPENDED_USERS": "Total des Utilisateurs Suspendus",
   "CARD_TOTAL_ACTIVED_USERS": "Total des Utilisateurs Actifs",
 
-  "CREATE_ADMIN_TITLE": "Créer un utilisateur administrateur",
-  "EDIT_ADMIN_TITLE": "Modifier l'utilisateur {{user_name}}",
-  "SEE_ADMIN_TITLE": "Modifier l'utilisateur {{user_name}}",
-  "ASSIGN_ADMIN_TITLE": "Modifier l'utilisateur {{user_name}}",
-
+  "CREATE_TITLE": "Créer",
+  "CREATE_SUBTITLE": "Nouvel enregistrement",
+  "SEE_TITLE": "Voir",
+  "SEE_SUBTITLE": "{{user_name}}",
+  "EDIT_TITLE": "Modifier",
+  "EDIT_SUBTITLE": "{{user_name}}",
   "SEE_PERMISSIONS_TITLE": "Permissions assignées",
-
-  "CREATE_FINAL_TITLE": "Créer un utilisateur final",
-  "EDIT_FINAL_TITLE": "Modifier l'utilisateur final {{user_name}}",
-  "SEE_FINAL_TITLE": "Voir l'utilisateur final {{user_name}}",
 
   "ASSIGMENT_ADMIN_TITLE_BREADCRUMB": "Attribuer des autorisations",
   "ASSIGMENT_ADMIN_TITLE": "Attribuer des autorisations à {{user_name}}",

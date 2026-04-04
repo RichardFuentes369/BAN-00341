@@ -7,10 +7,13 @@
   <div class="modal-dialog modal-dialog-centered" 
     [ngClass]="[tamano !== '' ? 'modal-' + tamano : 'modal-sm', scrollable ? 'modal-dialog-scrollable' : ''].join(' ')">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">{{title}}</h5>
+      <div class="modal-header pt-1 pb-1">
+        <div class="col-sm-12 row text-center m-0">
+          <h5 class="modal-title" id="staticBackdropLabel" [innerHTML]="title"></h5>
+          <span class="modal-title" [innerHTML]="subtitle"></span>
+        </div>
         @if(cancel){
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="buttonCloseM()">
+          <button type="button" class="close ml-md-n5" data-dismiss="modal" aria-label="Close" (click)="buttonCloseM()">
             <span aria-hidden="true">&times;</span>
           </button>
         }
@@ -18,15 +21,15 @@
       <div class="modal-body">
         <div #contenedor></div>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer pt-1 pb-1">
         @if(cancel){
-          <button type="button" class="btn btn-secondary closeModalButton btnCancel" data-dismiss="modal" (click)="buttonCloseM()">{{buttonCancel}}</button>
+          <button type="button" class="btn btn-secondary btn-sm closeModalButton btnCancel" data-dismiss="modal" (click)="buttonCloseM()">{{buttonCancel}}</button>
         }
         @if(save){
-          <button type="button" class="btn btn-primary btnSave disabled" (click)="buttonSaveM()">{{buttonSave}}</button>
+          <button type="button" class="btn btn-primary btn-sm btnSave disabled" (click)="buttonSaveM()">{{buttonSave}}</button>
         }
         @if(edit){
-          <button type="button" class="btn btn-primary btnUpdate disabled" (click)="buttonUpdateM()">{{buttonEdit}}</button>
+          <button type="button" class="btn btn-primary btn-sm btnUpdate disabled" (click)="buttonUpdateM()">{{buttonEdit}}</button>
         }
       </div>
     </div>

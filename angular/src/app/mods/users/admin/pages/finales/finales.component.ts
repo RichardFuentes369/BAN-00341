@@ -123,6 +123,7 @@ export class FinalesComponent implements OnInit{
   tamano = ""
   scrollable = false
   title = ""
+  subtitle = ""
   save = true
   buttonSave = this.translate.instant('mod-users.BUTTON_SAVE_')
   edit = true
@@ -258,7 +259,8 @@ export class FinalesComponent implements OnInit{
     localStorage.setItem(STORAGE_KEY_PROFILE, STORAGE_KEY_PROFILE_FINAL)
     this.tamano = "xl"
     this.scrollable = false
-    this.title = this.translate.instant('mod-users.CREATE_FINAL_TITLE')
+    this.title = this.translate.instant('mod-users.CREATE_TITLE')
+    this.subtitle = this.translate.instant('mod-users.CREATE_SUBTITLE')
     this.save = true
     this.buttonSave = this.translate.instant('mod-users.BUTTON_SAVE_')
     this.edit = false
@@ -276,10 +278,10 @@ export class FinalesComponent implements OnInit{
   }
 
   async verData (_id: string){
+    this.title = this.translate.instant('mod-users.SEE_TITLE')
     const response = await this.finalService.getDataUser(_id)
     const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
-    
-    this.translate.get('mod-users.SEE_FINAL_TITLE', { "user_name": firstName + ' ' + lastName }).subscribe((res: string) => {this.title = res});
+    this.translate.get('mod-users.SEE_SUBTITLE', { "user_name": firstName + ' ' + lastName }).subscribe((res: string) => {this.subtitle = res});
     this.tamano = "xl"
     this.scrollable = false
     this.save = false
@@ -301,11 +303,10 @@ export class FinalesComponent implements OnInit{
 
   async editarData (_id: string){
     localStorage.setItem(STORAGE_KEY_PROFILE, STORAGE_KEY_PROFILE_FINAL)
-
     const response = await this.finalService.getDataUser(_id)
     const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
-
-    this.translate.get('mod-users.SWAL_ARE_YOU_SURE_UPDATE_USER', { "user_name": firstName + ' ' + lastName }).subscribe((res: string) => {this.title = res});
+    this.translate.get('mod-users.EDIT_SUBTITLE', { "user_name": firstName + ' ' + lastName }).subscribe((res: string) => {this.subtitle = res});
+    this.title = this.translate.instant('mod-users.EDIT_TITLE')
     this.tamano = "xl"
     this.scrollable = false
     this.save = false

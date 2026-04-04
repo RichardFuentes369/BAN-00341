@@ -27,9 +27,12 @@
   },
 
   "TYPE": {
-    "CREATE_TITLE": "Create type", 
-    "EDIT_TITLE": "Edit type {{type_name}}", 
-    "SEE_TITLE": "See type {{type_name}}", 
+    "CREATE_TITLE": "Create",
+    "CREATE_SUBTITLE": "New shrinkage type",
+    "EDIT_TITLE": "Edit",
+    "EDIT_SUBTITLE": "Shrinkage type: {{type_name}}",
+    "SEE_TITLE": "View",
+    "SEE_SUBTITLE": "Shrinkage type: {{type_name}}",
 
     "LABEL_NAME_TYPE": "Name",
     "PLACEHOLDER_NAME_TYPE": "Enter a name",

@@ -27,9 +27,12 @@
   },
 
   "TYPE": {
-    "CREATE_TITLE": "Typ erstellen", 
-    "EDIT_TITLE": "Typ {{type_name}} bearbeiten", 
-    "SEE_TITLE": "Typ {{type_name}} anzeigen",
+    "CREATE_TITLE": "Erstellen",
+    "CREATE_SUBTITLE": "Nueva Schwundart",
+    "EDIT_TITLE": "Bearbeiten",
+    "EDIT_SUBTITLE": "Schwundart: {{type_name}}",
+    "SEE_TITLE": "Anzeigen",
+    "SEE_SUBTITLE": "Schwundart: {{type_name}}",
 
     "LABEL_NAME_TYPE": "Name",
     "PLACEHOLDER_NAME_TYPE": "Einen Namen eingeben",

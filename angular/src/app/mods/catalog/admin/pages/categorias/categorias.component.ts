@@ -61,6 +61,7 @@ export class CategoriasComponent implements OnInit, OnDestroy{
   tamano = ""
   scrollable = false
   title = ""
+  subtitle = ""
   save = true
   buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
   edit = true
@@ -140,6 +141,7 @@ export class CategoriasComponent implements OnInit, OnDestroy{
     this.tamano = "xl"
     this.scrollable = false
     this.title = this.translate.instant('mod-catalog.CATEGORY.CREATE_TITLE')
+    this.subtitle = this.translate.instant('mod-catalog.CATEGORY.CREATE_SUBTITLE')
     this.save = true
     this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
     this.edit = false
@@ -157,10 +159,10 @@ export class CategoriasComponent implements OnInit, OnDestroy{
   }
 
   async verData (_id: string){
+    this.title = this.translate.instant('mod-catalog.CATEGORY.SEE_TITLE')
     const response = await this.categoriasService.getDataCategory(_id)
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    
-    this.translate.get('mod-catalog.CATEGORY.SEE_TITLE', { "category_name": nombre }).subscribe((res: string) => {this.title = res});
+    this.translate.get('mod-catalog.CATEGORY.SEE_SUBTITLE', { "category_name": nombre }).subscribe((res: string) => {this.subtitle = res});
     this.tamano = "xl"
     this.scrollable = false
     this.save = false
@@ -183,8 +185,10 @@ export class CategoriasComponent implements OnInit, OnDestroy{
   }
 
   async editarData (_id: string){
+    this.title = this.translate.instant('mod-catalog.CATEGORY.EDIT_TITLE')
     const response = await this.categoriasService.getDataCategory(_id)
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
+    this.translate.get('mod-catalog.CATEGORY.EDIT_SUBTITLE', { "category_name": nombre }).subscribe((res: string) => {this.subtitle = res});
     
     this.translate.get('mod-catalog.CATEGORY.EDIT_TITLE', { "category_name": nombre }).subscribe((res: string) => {this.title = res});
     this.tamano = "xl"

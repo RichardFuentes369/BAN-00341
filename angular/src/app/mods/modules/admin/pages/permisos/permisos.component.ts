@@ -109,6 +109,7 @@ export class PermisosComponent implements OnInit {
   // fin datos que envio al componente
 
   tamano = ""
+  subtitle = ""
   scrollable = false
   title = ""
   save = true
@@ -153,7 +154,8 @@ export class PermisosComponent implements OnInit {
   crearData(_id: string) {
     this.tamano = "xl"
     this.scrollable = false
-    this.title = this.translate.instant('mod-modules.CREATE_PERMISSION_TITLE')
+    this.title = this.translate.instant('mod-modules.CREATE_TITLE')
+    this.subtitle = this.translate.instant('mod-modules.CREATE_SUBTITLE_PERMISSION')
     this.save = true
     this.buttonSave = this.translate.instant('mod-modules.BUTTON_SAVE_')
     this.edit = false
@@ -171,10 +173,10 @@ export class PermisosComponent implements OnInit {
   }
 
   async editarData(_id: string) {
+    this.title = this.translate.instant('mod-modules.EDIT_TITLE')
     const response = await this.modulosService.getHasSubmodule(+_id)
     const { nombre } = response.data?.[0] || { nombre: 'xxxxxxx' }
-
-    this.translate.get('mod-modules.EDIT_PERMISSION_TITLE', { "permission_name": nombre }).subscribe((res: string) => { this.title = res });
+    this.translate.get('mod-modules.EDIT_SUBTITLE_PERMISSION', { "module_name": nombre }).subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
     this.scrollable = false
     this.save = false

@@ -15,9 +15,12 @@
   "BUTTON_SEARCH": "Search",
 
   "CATEGORY": {
-    "CREATE_TITLE": "Create category", 
-    "EDIT_TITLE": "Edit category {{category_name}}", 
-    "SEE_TITLE": "See category {{category_name}}", 
+    "CREATE_TITLE": "Create",
+    "CREATE_SUBTITLE": "New category",
+    "SEE_TITLE": "View",
+    "SEE_SUBTITLE": "Category: {{category_name}}",
+    "EDIT_TITLE": "Edit",
+    "EDIT_SUBTITLE": "Category: {{category_name}}",
 
     "COLUMN_ID": "ID",
     "COLUMN_NAME": "Name",
@@ -43,9 +46,12 @@
   },
 
   "SUPPLIER": {
-    "CREATE_TITLE": "Create supplier", 
-    "EDIT_TITLE": "Edit supplier {{category_name}}", 
-    "SEE_TITLE": "See supplier {{category_name}}", 
+    "CREATE_TITLE": "Create",
+    "CREATE_SUBTITLE": "New supplier",
+    "SEE_TITLE": "View",
+    "SEE_SUBTITLE": "Supplier: {{supplier_name}}",
+    "EDIT_TITLE": "Edit",
+    "EDIT_SUBTITLE": "Supplier: {{supplier_name}}",
 
     "COLUMN_ID": "ID",
     "COLUMN_BUSINESS_NIT": "Tax ID",
@@ -78,9 +84,13 @@
 
   "PRODUCT": {
     "UPLOAD_TITLE": "Upload products",
-    "CREATE_TITLE": "Create product", 
-    "EDIT_TITLE": "Edit product {{product_name}}", 
-    "SEE_TITLE": "See product {{product_name}}", 
+    "UPLOAD_SUBTITLE": "Batch products",
+    "CREATE_TITLE": "Create",
+    "CREATE_SUBTITLE": "New product",
+    "SEE_TITLE": "View",
+    "SEE_SUBTITLE": "Product: {{product_name}}",
+    "EDIT_TITLE": "Edit",
+    "EDIT_SUBTITLE": "Product: {{product_name}}",
 
     "COLUMN_ID": "ID",
     "COLUMN_BRAND": "Brand",

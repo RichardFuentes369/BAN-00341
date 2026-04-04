@@ -2,14 +2,22 @@
   "UNKNOW_MODULE_TITLE": "Inconnu",
 
   "MODULE_TITLE": "Modules",
-  "CREATE_MODULE_TITLE": "Créer un nouveau module",
-  "EDIT_MODULE_TITLE": "Modifier le module {{module_name}}",
+
+  "CREATE_TITLE": "Créer",
+  "CREATE_SUBTITLE_MODULE": "Nouveau module",
+  "CREATE_SUBTITLE_SUBMODULE": "Nouveau sous-module",
+  "CREATE_SUBTITLE_PERMISSION": "Nouvelle permission",
+  "SEE_TITLE": "Voir",
+  "SEE_SUBTITLE_MODULE": "Module : {{module_name}}",
+  "SEE_SUBTITLE_SUBMODULE": "Sous-module : {{module_name}}",
+  "SEE_SUBTITLE_PERMISSION": "Permission : {{module_name}}",
+  "EDIT_TITLE": "Modifier",
+  "EDIT_SUBTITLE_MODULE": "Module : {{module_name}}",
+  "EDIT_SUBTITLE_SUBMODULE": "Sous-module : {{module_name}}",
+  "EDIT_SUBTITLE_PERMISSION": "Permission : {{module_name}}",
+
   "SUBMODULE_TITLE": "Sous-modules",
-  "CREATE_SUBMODULE_TITLE": "Créer un nouveau sous-module",
-  "EDIT_SUBMODULE_TITLE": "Modifier le sous-module {{submodule_name}}",
   "PERMISSION_TITLE": "Permission",
-  "CREATE_PERMISSION_TITLE": "Créer une nouvelle permission",
-  "EDIT_PERMISSION_TITLE": "Modifier la permission {{permission_name}}",
 
   "SWAL_ARE_YOU_SURE": "Êtes-vous sûr de vouloir supprimer la permission {{permission_name}}?",
   "SWAL_WARNING_REVERSE_CHANGE": "Vous ne pourrez pas annuler cette action !",

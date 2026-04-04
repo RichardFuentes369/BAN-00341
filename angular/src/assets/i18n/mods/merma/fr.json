@@ -27,9 +27,12 @@
   },
 
   "TYPE": {
-    "CREATE_TITLE": "Créer un type", 
-    "EDIT_TITLE": "Modifier le type {{type_name}}", 
-    "SEE_TITLE": "Voir le type {{type_name}}",
+    "CREATE_TITLE": "Créer",
+    "CREATE_SUBTITLE": "Nouveau type de démarque",
+    "EDIT_TITLE": "Modifier",
+    "EDIT_SUBTITLE": "Type de démarque : {{type_name}}",
+    "SEE_TITLE": "Voir",
+    "SEE_SUBTITLE": "Type de démarque : {{type_name}}",
 
     "LABEL_NAME_TYPE": "Nom",
     "PLACEHOLDER_NAME_TYPE": "Saisir un nom",

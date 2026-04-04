@@ -15,9 +15,12 @@
   "BUTTON_SEARCH": "Buscar",
 
   "CATEGORY": {
-    "CREATE_TITLE": "Crear categoría",
-    "EDIT_TITLE": "Editar categoría {{category_name}}",
-    "SEE_TITLE": "Ver categoría {{category_name}}",
+    "CREATE_TITLE": "Crear",
+    "CREATE_SUBTITLE": "Nueva categoría",
+    "SEE_TITLE": "Ver",
+    "SEE_SUBTITLE": "Categoría: {{category_name}}",
+    "EDIT_TITLE": "Editar",
+    "EDIT_SUBTITLE": "Categoría: {{category_name}}",
 
     "COLUMN_ID": "Id",
     "COLUMN_NAME": "Nombre",
@@ -43,9 +46,12 @@
   },
 
   "SUPPLIER": {
-    "CREATE_TITLE": "Crear proveedor",
-    "EDIT_TITLE": "Editar proveedor {{supplier_name}}",
-    "SEE_TITLE": "Ver proveedor {{supplier_name}}",
+    "CREATE_TITLE": "Crear",
+    "CREATE_SUBTITLE": "Nuevo proveedor",
+    "SEE_TITLE": "Ver",
+    "SEE_SUBTITLE": "Proveedor: {{supplier_name}}",
+    "EDIT_TITLE": "Editar",
+    "EDIT_SUBTITLE": "Proveedor: {{supplier_name}}",
 
     "COLUMN_ID": "ID",
     "COLUMN_BUSINESS_NIT": "NIT",
@@ -77,10 +83,14 @@
   },
 
   "PRODUCT": {
-    "UPLOAD_TITLE": "Cargar productos", 
-    "CREATE_TITLE": "Crear producto", 
-    "EDIT_TITLE": "Editar producto {{product_name}}", 
-    "SEE_TITLE": "Ver producto {{product_name}}", 
+    "UPLOAD_TITLE": "Cargar", 
+    "UPLOAD_SUBTITLE": "Productos por lote",
+    "CREATE_TITLE": "Crear",
+    "CREATE_SUBTITLE": "Nuevo producto",
+    "SEE_TITLE": "Ver",
+    "SEE_SUBTITLE": "Producto: {{product_name}}",
+    "EDIT_TITLE": "Editar",
+    "EDIT_SUBTITLE": "Producto: {{product_name}}",
 
     "COLUMN_ID": "ID",
     "COLUMN_BRAND": "Marca",

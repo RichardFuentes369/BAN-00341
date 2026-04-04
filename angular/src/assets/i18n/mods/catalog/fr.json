@@ -15,9 +15,12 @@
   "BUTTON_SEARCH": "Rechercher",
 
   "CATEGORY": {
-    "CREATE_TITLE": "Créer une catégorie",
-    "EDIT_TITLE": "Modifier la catégorie {{category_name}}",
-    "SEE_TITLE": "Voir la catégorie {{category_name}}",
+    "CREATE_TITLE": "Créer",
+    "CREATE_SUBTITLE": "Nouvelle catégorie",
+    "SEE_TITLE": "Voir",
+    "SEE_SUBTITLE": "Catégorie : {{category_name}}",
+    "EDIT_TITLE": "Modifier",
+    "EDIT_SUBTITLE": "Catégorie : {{category_name}}",
 
     "COLUMN_ID": "ID",
     "COLUMN_NAME": "Nom",
@@ -43,9 +46,12 @@
   },
 
   "SUPPLIER": {
-    "CREATE_TITLE": "Créer un fournisseur",
-    "EDIT_TITLE": "Modifier le fournisseur {{supplier_name}}",
-    "SEE_TITLE": "Voir le fournisseur {{supplier_name}}",
+    "CREATE_TITLE": "Créer",
+    "CREATE_SUBTITLE": "Nouveau fournisseur",
+    "SEE_TITLE": "Voir",
+    "SEE_SUBTITLE": "Fournisseur : {{supplier_name}}",
+    "EDIT_TITLE": "Modifier",
+    "EDIT_SUBTITLE": "Fournisseur : {{supplier_name}}",
 
     "COLUMN_ID": "ID",
     "COLUMN_BUSINESS_NIT": "Numéro d'identification fiscale",
@@ -78,9 +84,13 @@
 
   "PRODUCT": {
     "UPLOAD_TITLE": "Charger les produits",
-    "CREATE_TITLE": "Créer le produit", 
-    "EDIT_TITLE": "Modifier le produit {{product_name}}", 
-    "SEE_TITLE": "Voir le produit {{product_name}}", 
+    "UPLOAD_SUBTITLE": "Produits par lot",
+    "CREATE_TITLE": "Créer",
+    "CREATE_SUBTITLE": "Nouveau produit",
+    "SEE_TITLE": "Voir",
+    "SEE_SUBTITLE": "Produit : {{product_name}}",
+    "EDIT_TITLE": "Modifier",
+    "EDIT_SUBTITLE": "Produit : {{product_name}}",
 
     "COLUMN_ID": "ID",
     "COLUMN_BRAND": "Marque",

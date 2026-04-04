@@ -96,6 +96,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
   tamano = ""
   scrollable = false
   title = ""
+  subtitle = ""
   save = true
   buttonSave = this.translate.instant('mod-users.BUTTON_SAVE_')
   edit = true
@@ -216,6 +217,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
     this.tamano = "xl"
     this.scrollable = false
     this.title = this.translate.instant('mod-catalog.PRODUCT.CREATE_TITLE')
+    this.subtitle = this.translate.instant('mod-catalog.PRODUCT.CREATE_SUBTITLE')
     this.save = true
     this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
     this.edit = false
@@ -233,7 +235,8 @@ export class ProductosComponent implements OnInit, OnDestroy{
   }
 
   cargarData(_id: string){
-    this.translate.get('mod-catalog.PRODUCT.UPLOAD_TITLE').subscribe((res: string) => {this.title = res});
+    this.title = this.translate.instant('mod-catalog.PRODUCT.UPLOAD_TITLE')
+    this.subtitle = this.translate.instant('mod-catalog.PRODUCT.UPLOAD_SUBTITLE')
     this.tamano = "xl"
     this.scrollable = false
     this.save = true
@@ -253,10 +256,10 @@ export class ProductosComponent implements OnInit, OnDestroy{
   }
 
   async verData (_id: string){
+    this.title = this.translate.instant('mod-catalog.PRODUCT.SEE_TITLE')
     const response = await this.productosService.getDataProduct(_id)
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    
-    this.translate.get('mod-catalog.PRODUCT.SEE_TITLE', { "product_name": nombre }).subscribe((res: string) => {this.title = res});
+    this.translate.get('mod-catalog.PRODUCT.SEE_SUBTITLE', { "product_name": nombre }).subscribe((res: string) => {this.subtitle = res});
     this.tamano = "xl"
     this.scrollable = false
     this.save = false
@@ -279,9 +282,9 @@ export class ProductosComponent implements OnInit, OnDestroy{
   }
 
   async editarData (_id: string){
+    this.title = this.translate.instant('mod-catalog.PRODUCT.SEE_TITLE')
     const response = await this.productosService.getDataProduct(_id)
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    
     this.translate.get('mod-catalog.PRODUCT.EDIT_TITLE', { "product_name": nombre }).subscribe((res: string) => {this.title = res});
     this.tamano = "xl"
     this.scrollable = false

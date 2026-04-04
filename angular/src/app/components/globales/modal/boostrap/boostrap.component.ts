@@ -19,6 +19,7 @@ export class ModalBoostrapComponent implements OnDestroy {
   @Input() tamano: string = '';
   @Input() scrollable: boolean = false;
   @Input() title: string = '';
+  @Input() subtitle: string = '';
   @Input() cancel: boolean = false;
   @Input() buttonCancel: string = '';
   @Input() save: boolean = false;

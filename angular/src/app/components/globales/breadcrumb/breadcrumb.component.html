@@ -1,23 +1,30 @@
-<div class="shadow" style="background-color: #fff;">
+<nav aria-label="breadcrumb" class="breadcrumb-full-container">
   @if (breadcrumbs.length > 0) {
-    <nav aria-label="breadcrumb" class="font-italic mx-2 badge">
-     <ol class="breadcrumb mb-0">
-        @for (breadcrumb of breadcrumbs; track breadcrumb; let last = $last) {
-          <li class="breadcrumb-item">
-            @if (!last) {
-              <a [routerLink]="[breadcrumb.url]" 
-                [queryParams]="breadcrumb.queryParams"
-                style="text-decoration:none">
-                {{ breadcrumb.label | translate}}
-              </a>
-            }
-            @else {
-              <span class="alert-link text-dark">{{ breadcrumb.label | translate }}</span>
-            }
-          </li>
-        }
-      </ol>
-    </nav>
-  }
-</div>
+    <ol class="breadcrumb-nav">
+      @for (breadcrumb of breadcrumbs; track breadcrumb; let last = $last; let first = $first) {
+        <li class="breadcrumb-item">
+          
+          @if (!last) {
+            <a [routerLink]="[breadcrumb.url]" 
+               [queryParams]="breadcrumb.queryParams" 
+               class="breadcrumb-link">
+               @if (first) { <i class="fas fa-home me-1"></i> }
+               {{ breadcrumb.label | translate }}
+            </a>
+            
+            <span class="breadcrumb-separator">
+              <i class="fas fa-chevron-right"></i>
+            </span>
+          } 
+          
+          @else {
+            <span class="breadcrumb-current">
+              {{ breadcrumb.label | translate }}
+            </span>
+          }
 
+        </li>
+      }
+    </ol>
+  }
+</nav>

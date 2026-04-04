@@ -1,20 +1,70 @@
-.breadcrumb-item + .breadcrumb-item::before {
-  color: rgba(132, 128, 128, 0.7) !important;
-  content: "  >  " !important;
-  font-weight: bold;
-}
-
-.link-light {
-  text-decoration: none !important;
-}
-
-.link-light:hover {
-  text-decoration: underline !important;
-  opacity: 0.9;
-}
-
-.breadcrumb {
-  background-color: transparent !important;
+/* --- BREADCRUMB FULL WIDTH MODERNO --- */
+.breadcrumb-full-container {
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e3e6f0; // Línea sutil que conecta con tu tabla
+  padding: 0.8rem 1.5rem; // Alineado con el padding de tus tarjetas
   display: flex;
   align-items: center;
+}
+
+.breadcrumb-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  
+  /* Reset de Bootstrap para evitar la barra "/" automática al inicio */
+  &::before {
+    display: none !important;
+    content: "" !important;
+  }
+}
+
+.breadcrumb-link {
+  color: #858796 !important; // Gris suave para pasos anteriores
+  text-decoration: none !important;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    color: #4e73df !important; // Azul UTS al pasar el mouse
+    transform: translateY(-1px);
+  }
+}
+
+.breadcrumb-separator {
+  margin: 0 12px;
+  color: #d1d3e2;
+  font-size: 0.65rem; // El chevron más pequeño se ve más elegante
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.breadcrumb-current {
+  color: #4e73df; // Azul fuerte para la ubicación actual
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* Responsivo: Reducimos espacio en móviles */
+@media (max-width: 768px) {
+  .breadcrumb-full-container {
+    padding: 0.6rem 1rem;
+  }
+  .breadcrumb-separator {
+    margin: 0 8px;
+  }
 }

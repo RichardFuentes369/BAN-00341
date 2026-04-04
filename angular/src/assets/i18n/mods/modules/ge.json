@@ -3,14 +3,21 @@
 
   "MODULE_TITLE": "Module",
 
-  "CREATE_MODULE_TITLE": "Neues Modul erstellen",
-  "EDIT_MODULE_TITLE": "Modul {{module_name}} bearbeiten",
+  "CREATE_TITLE": "Erstellen",
+  "CREATE_SUBTITLE_MODULE": "Neues Modul",
+  "CREATE_SUBTITLE_SUBMODULE": "Neues Submodul",
+  "CREATE_SUBTITLE_PERMISSION": "Neue Berechtigung",
+  "SEE_TITLE": "Anzeigen",
+  "SEE_SUBTITLE_MODULE": "Modul: {{module_name}}",
+  "SEE_SUBTITLE_SUBMODULE": "Submodul: {{module_name}}",
+  "SEE_SUBTITLE_PERMISSION": "Berechtigung: {{module_name}}",
+  "EDIT_TITLE": "Bearbeiten",
+  "EDIT_SUBTITLE_MODULE": "Modul: {{module_name}}",
+  "EDIT_SUBTITLE_SUBMODULE": "Submodul: {{module_name}}",
+  "EDIT_SUBTITLE_PERMISSION": "Berechtigung: {{module_name}}",
+
   "SUBMODULE_TITLE": "Submodule",
-  "CREATE_SUBMODULE_TITLE": "Neues Submodul erstellen",
-  "EDIT_SUBMODULE_TITLE": "Submodul {{submodule_name}} bearbeiten",
   "PERMISSION_TITLE": "Berechtigung",
-  "CREATE_PERMISSION_TITLE": "Neue Berechtigung erstellen",
-  "EDIT_PERMISSION_TITLE": "Berechtigung {{permission_name}} bearbeiten",
 
   "SWAL_ARE_YOU_SURE": "Möchten Sie die Berechtigung {{permission_name}} wirklich löschen?",
   "SWAL_WARNING_REVERSE_CHANGE": "Diese Änderung kann nicht rückgängig gemacht werden!",
