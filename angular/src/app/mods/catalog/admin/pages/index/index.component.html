@@ -1,40 +1,42 @@
-<div class="card shadow">
-    <h1 class="text-center m-0 mt-4 mb-2">
-        {{ 'mod-catalog.MODULE_TITLE' | translate}}
-    </h1>
+<div class="card shadow-sm mb-4 border-0 rounded-0">
+  <div class="d-flex justify-content-between align-items-center px-4 pt-3 pb-2">
+    <h4 class="m-0 fw-bold text-bold">
+      {{ 'mod-catalog.MODULE_TITLE' | translate }}
+    </h4>
+  </div>
 
-    <div class="">
-        <div class="parent">
-            @if(tienePermiso('categorias')){
-            <a [routerLink]="MOD_CATEGORY_PAGE_CATEGORY" class="item"
-                style="text-decoration: none; color: inherit; display: block;">
-                <div class="card card-option">
-                    <div class="card-body text-center p-0 pb-3 pt-3">
-                        <img src="assets/images/img_category.png" width="80px">
-                    </div>
-                    <div class="card-footer text-center">
-                        <span>
-                            {{ 'mod-catalog.BUTTON_CATEGORY' | translate}}
-                        </span>
-                    </div>
-                </div>
-            </a>
-            }
-            @if(tienePermiso('proveedores')){
-            <a [routerLink]="MOD_CATEGORY_PAGE_SUPPLIER" class="item"
-                style="text-decoration: none; color: inherit; display: block;">
-                <div class="card card-option">
-                    <div class="card-body text-center p-0 pb-3 pt-3">
-                        <img src="assets/images/img_supplier.png" width="80px">
-                    </div>
-                    <div class="card-footer text-center">
-                        <span>
-                            {{ 'mod-catalog.BUTTON_SUPPLIER' | translate}}
-                        </span>
-                    </div>
-                </div>
-            </a>
-            }
+  <div class="">
+    <div class="parent">
+      @if(tienePermiso('categorias')){
+      <a [routerLink]="MOD_CATEGORY_PAGE_CATEGORY" class="item"
+        style="text-decoration: none; color: inherit; display: block;">
+        <div class="card card-option">
+          <div class="card-body text-center p-0 pb-3 pt-3">
+            <img src="assets/images/img_category.png" width="80px">
+          </div>
+          <div class="card-footer text-center">
+            <span>
+              {{ 'mod-catalog.BUTTON_CATEGORY' | translate}}
+            </span>
+          </div>
         </div>
+      </a>
+      }
+      @if(tienePermiso('proveedores')){
+      <a [routerLink]="MOD_CATEGORY_PAGE_SUPPLIER" class="item"
+        style="text-decoration: none; color: inherit; display: block;">
+        <div class="card card-option">
+          <div class="card-body text-center p-0 pb-3 pt-3">
+            <img src="assets/images/img_supplier.png" width="80px">
+          </div>
+          <div class="card-footer text-center">
+            <span>
+              {{ 'mod-catalog.BUTTON_SUPPLIER' | translate}}
+            </span>
+          </div>
+        </div>
+      </a>
+      }
     </div>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="card shadow-sm mb-4 border-0">
+<div class="card shadow-sm mb-4 border-0 rounded-0">
   <div class="d-flex justify-content-between align-items-center px-4 pt-3 pb-2">
     <h4 class="m-0 fw-bold text-bold">
       {{ 'mod-merma.PAGE_TYPE_TITLE' | translate }}
@@ -42,7 +42,7 @@
     </div>
 
     @if (cargarIdioma) {
-    <div class="table-container shadow-sm border rounded">
+    <div class="table-container">
       <app-globales-tablecrud 
         [campoFiltro]="showcampoFiltro" 
         [endPoint]="endPoint" 

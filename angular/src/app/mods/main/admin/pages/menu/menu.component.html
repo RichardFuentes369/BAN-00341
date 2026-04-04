@@ -1,76 +1,74 @@
-<div class="card shadow">
-  <div class="mb-2">
-    <h1 class="text-center m-0 mt-4 mb-2">
+<div class="card shadow-sm mb-4 border-0 rounded-0">
+  <div class="d-flex justify-content-between align-items-center px-4 pt-3 pb-2">
+    <h4 class="m-0 fw-bold text-bold">
       {{ 'mod-main.TITTLE_MENU' | translate }}
-    </h1>
+    </h4>
   </div>
-
-  <div class="">
-    <div class="parent">
-      @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_USERS)){
-      <a [routerLink]="LAYOUT_ADMIN_PAGE_USERS" class="item" style="text-decoration: none; color: inherit; display: block;">
-        <div class="card card-option">
-          <div class="card-body text-center p-0 pb-3 pt-3">
-            <img src="assets/images/img_users.png" width="80px">
-          </div>
-          <div class="card-footer text-center">
-            <span>{{ 'mod-main.PAGES_USERS' | translate }}</span>
-          </div>
+  
+  <div class="parent">
+    @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_USERS)){
+    <a [routerLink]="LAYOUT_ADMIN_PAGE_USERS" class="item" style="text-decoration: none; color: inherit; display: block;">
+      <div class="card card-option">
+        <div class="card-body text-center p-0 pb-3 pt-3">
+          <img src="assets/images/img_users.png" width="80px">
         </div>
-      </a>
-      }
-
-      @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_CATALOG)){
-      <a [routerLink]="LAYOUT_ADMIN_PAGE_CATALOG" class="item" style="text-decoration: none; color: inherit; display: block;">
-        <div class="card card-option">
-          <div class="card-body text-center p-0 pb-3 pt-3">
-            <img src="assets/images/img_catalog.png" width="80px">
-          </div>
-          <div class="card-footer text-center">
-            <span>{{ 'mod-main.PAGES_CATALOG' | translate }}</span>
-          </div>
+        <div class="card-footer text-center">
+          <span>{{ 'mod-main.PAGES_USERS' | translate }}</span>
         </div>
-      </a>
-      }
+      </div>
+    </a>
+    }
 
-      @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_LOTE)){
-      <a [routerLink]="LAYOUT_ADMIN_PAGE_LOTE" class="item" style="text-decoration: none; color: inherit; display: block;">
-        <div class="card card-option">
-          <div class="card-body text-center p-0 pb-3 pt-3">
-            <img src="assets/images/img_batch.png" width="80px">
-          </div>
-          <div class="card-footer text-center">
-            <span>{{ 'mod-main.PAGE_LOTE' | translate }}</span>
-          </div>
+    @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_CATALOG)){
+    <a [routerLink]="LAYOUT_ADMIN_PAGE_CATALOG" class="item" style="text-decoration: none; color: inherit; display: block;">
+      <div class="card card-option">
+        <div class="card-body text-center p-0 pb-3 pt-3">
+          <img src="assets/images/img_catalog.png" width="80px">
         </div>
-      </a>
-      }
+        <div class="card-footer text-center">
+          <span>{{ 'mod-main.PAGES_CATALOG' | translate }}</span>
+        </div>
+      </div>
+    </a>
+    }
 
-      @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_LOSS)){
-      <a [routerLink]="LAYOUT_ADMIN_PAGE_LOSS" class="item" style="text-decoration: none; color: inherit; display: block;">
-        <div class="card card-option">
-          <div class="card-body text-center p-0 pb-3 pt-3">
-            <img src="assets/images/img_averiado.png" width="80px">
-          </div>
-          <div class="card-footer text-center">
-            <span>{{ 'mod-main.PAGES_LOSS' | translate }}</span>
-          </div>
+    @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_LOTE)){
+    <a [routerLink]="LAYOUT_ADMIN_PAGE_LOTE" class="item" style="text-decoration: none; color: inherit; display: block;">
+      <div class="card card-option">
+        <div class="card-body text-center p-0 pb-3 pt-3">
+          <img src="assets/images/img_batch.png" width="80px">
         </div>
-      </a>
-      }
+        <div class="card-footer text-center">
+          <span>{{ 'mod-main.PAGE_LOTE' | translate }}</span>
+        </div>
+      </div>
+    </a>
+    }
 
-      @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_MODULES)){
-      <a [routerLink]="LAYOUT_ADMIN_PAGE_MODULES" class="item" style="text-decoration: none; color: inherit; display: block;">
-        <div class="card card-option">
-          <div class="card-body text-center p-0 pb-3 pt-3">
-            <img src="assets/images/img_modules.png" width="80px">
-          </div>
-          <div class="card-footer text-center">
-            <span>{{ 'mod-main.PAGES_MODULES' | translate }}</span>
-          </div>
+    @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_LOSS)){
+    <a [routerLink]="LAYOUT_ADMIN_PAGE_LOSS" class="item" style="text-decoration: none; color: inherit; display: block;">
+      <div class="card card-option">
+        <div class="card-body text-center p-0 pb-3 pt-3">
+          <img src="assets/images/img_averiado.png" width="80px">
         </div>
-      </a>
-      }
-    </div>
+        <div class="card-footer text-center">
+          <span>{{ 'mod-main.PAGES_LOSS' | translate }}</span>
+        </div>
+      </div>
+    </a>
+    }
+
+    @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_MODULES)){
+    <a [routerLink]="LAYOUT_ADMIN_PAGE_MODULES" class="item" style="text-decoration: none; color: inherit; display: block;">
+      <div class="card card-option">
+        <div class="card-body text-center p-0 pb-3 pt-3">
+          <img src="assets/images/img_modules.png" width="80px">
+        </div>
+        <div class="card-footer text-center">
+          <span>{{ 'mod-main.PAGES_MODULES' | translate }}</span>
+        </div>
+      </div>
+    </a>
+    }
   </div>
 </div>

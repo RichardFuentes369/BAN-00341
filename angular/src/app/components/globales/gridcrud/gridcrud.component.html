@@ -1,5 +1,5 @@
 <div class="grid-main-container">
-  <div class="grid-content-body px-4 py-4 card shadow">
+  <div class="grid-content-body px-4 py-4 card shadow rounded-0">
 
     <div class="sticky-header mb-4">
       <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between">
@@ -10,107 +10,105 @@
             <b class="text-dark">{{idsSeleccionados.length}}</b>
           </span>
         </div>
+        <div class="d-flex justify-content-center">
+          <label class="small text-muted d-flex align-items-center gap-2 bg-light px-3 py-2 rounded-pill shadow-sm my-auto">
+            {{ 'global-gridcrud.PAGINATION_INFO_SHOW' | translate }}
+            <select class="form-select form-select-sm w-auto border-0 bg-transparent fw-bold text-primary"
+              [(ngModel)]="perPage" (change)="onPerPageChange()">
+              <option [value]="4">4</option>
+              <option [value]="8">8</option>
+              <option [value]="12">12</option>
+            </select>
+          </label>
+        </div>
+
         <div class="actions-container d-flex flex-wrap align-items-center gap-2">
-          
+
           @if(tienePermiso('crear')){
-            <span class="custom-tooltip tooltip-bottom my-auto"
-                  [attr.data-title]="'global-tablecrud.BUTTON_OPTION_CREATE' | translate"
-                  [class.is-disabled]="idsSeleccionados.length >= 1"
-                  [style.cursor]="idsSeleccionados.length >= 1 ? 'not-allowed' : 'pointer'">
-              <button class="btn btn-link p-0 border-0 action-icon-btn" 
-                      (click)="newItem()" 
-                      [disabled]="idsSeleccionados.length >= 1">
-                <i class="fa-solid fa-circle-plus text-primary"
-                  [class.text-prmary]="idsSeleccionados.length === 0"
-                  [class.text-muted]="idsSeleccionados.length >= 1"></i>
-              </button>
-            </span>
+          <span class="custom-tooltip tooltip-bottom my-auto"
+            [attr.data-title]="'global-tablecrud.BUTTON_OPTION_CREATE' | translate"
+            [class.is-disabled]="idsSeleccionados.length >= 1"
+            [style.cursor]="idsSeleccionados.length >= 1 ? 'not-allowed' : 'pointer'">
+            <button class="btn btn-link p-0 border-0 action-icon-btn" (click)="newItem()"
+              [disabled]="idsSeleccionados.length >= 1">
+              <i class="fa-solid fa-circle-plus text-primary" [class.text-prmary]="idsSeleccionados.length === 0"
+                [class.text-muted]="idsSeleccionados.length >= 1"></i>
+            </button>
+          </span>
           }
 
           @if(tienePermiso('asignar_productos')){
-            <span class="custom-tooltip tooltip-bottom my-auto"
-                  [attr.data-title]="'global-tablecrud.BUTTON_OPTION_ASSIGN_PRODUCTS' | translate"
-                  [class.is-disabled]="idsSeleccionados.length !== 1"
-                  [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'">
-              <button class="btn btn-link p-0 border-0 action-icon-btn" 
-                      (click)="assign($event)"
-                      [disabled]="idsSeleccionados.length !== 1">
-                <i class="fa-solid fa-rectangle-list" 
-                  [class.text-success]="idsSeleccionados.length === 1"
-                  [class.text-muted]="idsSeleccionados.length !== 1"></i>
-              </button>
-            </span>
+          <span class="custom-tooltip tooltip-bottom my-auto"
+            [attr.data-title]="'global-tablecrud.BUTTON_OPTION_ASSIGN_PRODUCTS' | translate"
+            [class.is-disabled]="idsSeleccionados.length !== 1"
+            [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'">
+            <button class="btn btn-link p-0 border-0 action-icon-btn" (click)="assign($event)"
+              [disabled]="idsSeleccionados.length !== 1">
+              <i class="fa-solid fa-rectangle-list" [class.text-success]="idsSeleccionados.length === 1"
+                [class.text-muted]="idsSeleccionados.length !== 1"></i>
+            </button>
+          </span>
           }
 
           @if(tienePermiso('ver')){
-            <span class="custom-tooltip tooltip-bottom my-auto"
-                  [attr.data-title]="'global-tablecrud.BUTTON_OPTION_SEE' | translate"
-                  [class.is-disabled]="idsSeleccionados.length !== 1"
-                  [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'">
-              <button class="btn btn-link p-0 border-0 action-icon-btn" 
-                      (click)="seeItem()"
-                      [disabled]="idsSeleccionados.length !== 1">
-                <i class="fa-solid fa-eye" 
-                  [class.text-primary]="idsSeleccionados.length === 1"
-                  [class.text-muted]="idsSeleccionados.length !== 1"></i>
-              </button>
-            </span>
+          <span class="custom-tooltip tooltip-bottom my-auto"
+            [attr.data-title]="'global-tablecrud.BUTTON_OPTION_SEE' | translate"
+            [class.is-disabled]="idsSeleccionados.length !== 1"
+            [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'">
+            <button class="btn btn-link p-0 border-0 action-icon-btn" (click)="seeItem()"
+              [disabled]="idsSeleccionados.length !== 1">
+              <i class="fa-solid fa-eye" [class.text-primary]="idsSeleccionados.length === 1"
+                [class.text-muted]="idsSeleccionados.length !== 1"></i>
+            </button>
+          </span>
           }
 
           @if(tienePermiso('editar')){
-            <span class="custom-tooltip tooltip-bottom my-auto"
-                  [attr.data-title]="'global-tablecrud.BUTTON_OPTION_EDIT' | translate"
-                  [class.is-disabled]="idsSeleccionados.length !== 1"
-                  [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'">
-              <button class="btn btn-link p-0 border-0 action-icon-btn" 
-                      (click)="editItem()"
-                      [disabled]="idsSeleccionados.length !== 1">
-                <i class="fa-solid fa-pen-to-square" 
-                  [class.text-warning]="idsSeleccionados.length === 1"
-                  [class.text-muted]="idsSeleccionados.length !== 1"></i>
-              </button>
-            </span>
+          <span class="custom-tooltip tooltip-bottom my-auto"
+            [attr.data-title]="'global-tablecrud.BUTTON_OPTION_EDIT' | translate"
+            [class.is-disabled]="idsSeleccionados.length !== 1"
+            [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'">
+            <button class="btn btn-link p-0 border-0 action-icon-btn" (click)="editItem()"
+              [disabled]="idsSeleccionados.length !== 1">
+              <i class="fa-solid fa-pen-to-square" [class.text-warning]="idsSeleccionados.length === 1"
+                [class.text-muted]="idsSeleccionados.length !== 1"></i>
+            </button>
+          </span>
           }
 
           @if(tienePermiso('eliminar_individual')){
-            <span class="custom-tooltip tooltip-bottom my-auto"
-                  [attr.data-title]="'global-tablecrud.BUTTON_OPTION_DELETE' | translate"
-                  [class.is-disabled]="idsSeleccionados.length === 0"
-                  [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'">
-              <button class="btn btn-link p-0 border-0 action-icon-btn" 
-                      (click)="deleteItem()"
-                      [disabled]="idsSeleccionados.length === 0 || idsSeleccionados.length > 1">
-                <i class="fa-solid fa-trash-can" 
-                  [class.text-danger]="idsSeleccionados.length > 0"
-                  [class.text-muted]="idsSeleccionados.length === 0 || idsSeleccionados.length > 1"></i>
-              </button>
-            </span>
-          }          
-          
+          <span class="custom-tooltip tooltip-bottom my-auto"
+            [attr.data-title]="'global-tablecrud.BUTTON_OPTION_DELETE' | translate"
+            [class.is-disabled]="idsSeleccionados.length === 0"
+            [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'">
+            <button class="btn btn-link p-0 border-0 action-icon-btn" (click)="deleteItem()"
+              [disabled]="idsSeleccionados.length === 0 || idsSeleccionados.length > 1">
+              <i class="fa-solid fa-trash-can" [class.text-danger]="idsSeleccionados.length > 0"
+                [class.text-muted]="idsSeleccionados.length === 0 || idsSeleccionados.length > 1"></i>
+            </button>
+          </span>
+          }
+
           @if(tienePermiso('eliminar_multiple')){
-            <span class="custom-tooltip tooltip-bottom my-auto"
-                  [attr.data-title]="'global-tablecrud.BUTTON_OPTION_DELETE' | translate"
-                  [class.is-disabled]="idsSeleccionados.length === 0"
-                  [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'">
-              <button class="btn btn-link p-0 border-0 action-icon-btn" 
-                      (click)="deleteItem()"
-                      [disabled]="idsSeleccionados.length === 0">
-                <i class="fa-solid fa-trash-can" 
-                  [class.text-danger]="idsSeleccionados.length > 0"
-                  [class.text-muted]="idsSeleccionados.length === 0"></i>
-              </button>
-            </span>
+          <span class="custom-tooltip tooltip-bottom my-auto"
+            [attr.data-title]="'global-tablecrud.BUTTON_OPTION_DELETE' | translate"
+            [class.is-disabled]="idsSeleccionados.length === 0"
+            [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'">
+            <button class="btn btn-link p-0 border-0 action-icon-btn" (click)="deleteItem()"
+              [disabled]="idsSeleccionados.length === 0">
+              <i class="fa-solid fa-trash-can" [class.text-danger]="idsSeleccionados.length > 0"
+                [class.text-muted]="idsSeleccionados.length === 0"></i>
+            </button>
+          </span>
           }
 
           <span class="custom-tooltip tooltip-bottom my-auto"
-                [attr.data-title]="'global-tablecrud.BUTTON_OPTION_CLEAR' | translate"
-                [class.is-disabled]="idsSeleccionados.length === 0"
-                [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'">
-            <button class="btn btn-link p-0 border-0 action-icon-btn" 
-                    (click)="selectionClear()"
-                    [disabled]="idsSeleccionados.length === 0">
-              <i class="fa-solid fa-broom" 
-                [class.text-secondary]="idsSeleccionados.length > 0"
+            [attr.data-title]="'global-tablecrud.BUTTON_OPTION_CLEAR' | translate"
+            [class.is-disabled]="idsSeleccionados.length === 0"
+            [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'">
+            <button class="btn btn-link p-0 border-0 action-icon-btn" (click)="selectionClear()"
+              [disabled]="idsSeleccionados.length === 0">
+              <i class="fa-solid fa-broom" [class.text-secondary]="idsSeleccionados.length > 0"
                 [class.text-muted]="idsSeleccionados.length === 0"></i>
             </button>
           </span>
@@ -118,65 +116,70 @@
       </div>
     </div>
 
-    <div class="mb-4">
-      <label class="small text-muted d-flex align-items-center gap-2">
+    <!-- <div class="mb-4 d-flex justify-content-center">
+      <label class="small text-muted d-flex align-items-center gap-2 bg-light px-3 py-2 rounded-pill shadow-sm">
         {{ 'global-gridcrud.PAGINATION_INFO_SHOW' | translate }}
-        <select class="form-select form-select-sm w-auto" [(ngModel)]="perPage" (change)="onPerPageChange()">
-          <option [value]="5">5</option>
-          <option [value]="10">10</option>
-          <option [value]="20">20</option>
-          <option [value]="50">50</option>
+        <select class="form-select form-select-sm w-auto border-0 bg-transparent fw-bold text-primary"
+          [(ngModel)]="perPage" (change)="onPerPageChange()">
+          <option [value]="4">4</option>
+          <option [value]="8">8</option>
+          <option [value]="12">12</option>
         </select>
       </label>
-    </div>
+    </div> -->
 
-    <div class="row g-3">
-      @for (item of data; track item.id) {
-        <div class="col-12 col-sm-6 col-md-4 col-xl-3 col-xxl-4">
-          <div class="card card-modern h-100 shadow-sm pointer" 
-               [class.is-selected]="idsSeleccionados.includes(item.id)"
-               (click)="toggleSelection(item.id)">
-            <div class="card-body text-center d-flex flex-column align-items-center justify-content-center py-4">
-              <h6 class="fw-bold mb-1">{{item.nombre}}</h6>
-              <p class="small text-muted mb-0">{{item.descripcion}}</p>
-            </div>
-            <div class="card-footer bg-transparent border-0 text-center pb-3">
-              <span class="badge rounded-pill border fw-normal text-dark">
-                {{ 'global-gridcrud.WORD_TOTAL' | translate }}: {{item.totalProductos}}
-              </span>
-            </div>
+    <div class="row g-3"> @for (item of data; track item.id) {
+      <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 animate__fadeIn">
+        <div class="card card-modern h-100 shadow-sm pointer" [class.is-selected]="idsSeleccionados.includes(item.id)"
+          (click)="toggleSelection(item.id)">
+
+          <div class="card-body text-center d-flex flex-column align-items-center justify-content-center py-4">
+            <h6 class="fw-bold mb-1 text-truncate w-100">{{item.nombre}}</h6>
+            <p class="small text-muted mb-0 text-truncate-2">{{item.descripcion}}</p>
+          </div>
+
+          <div class="card-footer bg-transparent border-0 text-center pb-3">
+            <span class="badge rounded-pill border border-primary-subtle fw-medium text-primary bg-light px-3">
+              {{ 'global-gridcrud.WORD_TOTAL' | translate }}: {{item.totalProductos}}
+            </span>
           </div>
         </div>
+      </div>
       } @empty {
-        <div class="col-12 text-center py-5 text-muted">
-          {{ 'global-tablecrud.TABLE_INFO_NO_INFO' | translate }}
-        </div>
+      <div class="col-12 text-center py-5">
+        <i class="fa-solid fa-box-open d-block mb-2 opacity-25" style="font-size: 3rem;"></i>
+        <span class="text-muted">{{ 'global-tablecrud.TABLE_INFO_NO_INFO' | translate }}</span>
+      </div>
       }
     </div>
 
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-5 gap-3">
       <div class="text-muted small">
         @if (totalRegistros > 0) {
-          {{ 'global-gridcrud.PAGINATION_INFO_SHOWING' | translate}} {{ desdeConteo }} - {{ hastaConteo }} 
-          {{ 'global-gridcrud.TABLE_INFO_OF' | translate }} {{ totalRegistros }}
+        {{ 'global-gridcrud.PAGINATION_INFO_SHOWING' | translate}} {{ desdeConteo }} - {{ hastaConteo }}
+        {{ 'global-gridcrud.TABLE_INFO_OF' | translate }} {{ totalRegistros }}
         }
       </div>
 
       <nav>
         <ul class="pagination pagination-sm m-0 align-items-center">
-          <li class="page-item" [class.disabled]="paginaActual === 1">
-            <button class="btn btn-outline-primary  mx-1" (click)="cambiarPagina(paginaActual - 1)" [disabled]="paginaActual === 1">
-              <i class="fa fa-chevron-left"></i> {{ 'global-gridcrud.WORD_PREVIOUS' | translate}}
+          <li class="page-item btn-group-sm" [class.disabled]="paginaActual === 1">
+            <button class="btn btn-outline-primary  mx-1" (click)="cambiarPagina(paginaActual - 1)"
+              [disabled]="paginaActual === 1">
+              <!-- {{ 'global-gridcrud.WORD_PREVIOUS' | translate}} -->
+              <i class="fa fa-chevron-left"></i>
             </button>
           </li>
-          
+
           <li class="page-item active">
             <span class="page-link shadow-sm">{{ paginaActual }} / {{ totalPaginas }}</span>
           </li>
 
-          <li class="page-item" [class.disabled]="paginaActual === totalPaginas || totalRegistros === 0">
-            <button class="btn btn-outline-primary  mx-1" (click)="cambiarPagina(paginaActual + 1)" [disabled]="paginaActual === totalPaginas || totalRegistros === 0">
-              {{ 'global-gridcrud.WORD_NEXT' | translate}} <i class="fa fa-chevron-right"></i>
+          <li class="page-item btn-group-sm" [class.disabled]="paginaActual === totalPaginas || totalRegistros === 0">
+            <button class="btn btn-outline-primary  mx-1" (click)="cambiarPagina(paginaActual + 1)"
+              [disabled]="paginaActual === totalPaginas || totalRegistros === 0">
+              <!-- {{ 'global-gridcrud.WORD_NEXT' | translate}}  -->
+              <i class="fa fa-chevron-right"></i>
             </button>
           </li>
         </ul>

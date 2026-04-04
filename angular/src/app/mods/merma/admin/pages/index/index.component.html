@@ -1,41 +1,43 @@
-<div class="card shadow">
-    <h1 class="text-center m-0 mt-4 mb-2">
-        {{ 'mod-merma.MODULE_TITLE' | translate}}
-    </h1>
+<div class="card shadow rounded-0 rounded-0">
+  <div class="d-flex justify-content-between align-items-center px-4 pt-3 pb-2">
+    <h4 class="m-0 fw-bold text-bold">
+      {{ 'mod-merma.MODULE_TITLE' | translate }}
+    </h4>
+  </div>
 
-    <div class="">
-        <div class="parent">
-            @if(tienePermiso('tipo_merma')){
-            <a [routerLink]="MOD_MERMA_PAGE_TIPOS" class="item"
-                style="text-decoration: none; color: inherit; display: block;">
-                <div class="card card-option">
-                    <div class="card-body text-center p-0 pb-3 pt-3">
-                        <img src="assets/images/img_category.png" width="80px">
-                    </div>
-                    <div class="card-footer text-center">
-                        <span>
-                            {{ 'mod-merma.BUTTON_TYPE' | translate}}
-                        </span>
-                    </div>
-                </div>
-            </a>
-            }
-            @if(tienePermiso('registro_merma')){
-            <a [routerLink]="MOD_MERMA_PAGE_REGISTRO" class="item"
-                style="text-decoration: none; color: inherit; display: block;">
-                <div class="card card-option">
-                    <div class="card-body text-center p-0 pb-3 pt-3">
-                        <img src="assets/images/img_supplier.png" width="80px">
-                    </div>
-                    <div class="card-footer text-center">
-                        <span>
-                            {{ 'mod-merma.BUTTON_RECORD' | translate}}
-                        </span>
-                    </div>
-                </div>
-            </a>
-            }
+  <div class="">
+    <div class="parent">
+      @if(tienePermiso('tipo_merma')){
+      <a [routerLink]="MOD_MERMA_PAGE_TIPOS" class="item"
+        style="text-decoration: none; color: inherit; display: block;">
+        <div class="card card-option">
+          <div class="card-body text-center p-0 pb-3 pt-3">
+            <img src="assets/images/img_category.png" width="80px">
+          </div>
+          <div class="card-footer text-center">
+            <span>
+              {{ 'mod-merma.BUTTON_TYPE' | translate}}
+            </span>
+          </div>
         </div>
+      </a>
+      }
+      @if(tienePermiso('registro_merma')){
+      <a [routerLink]="MOD_MERMA_PAGE_REGISTRO" class="item"
+        style="text-decoration: none; color: inherit; display: block;">
+        <div class="card card-option">
+          <div class="card-body text-center p-0 pb-3 pt-3">
+            <img src="assets/images/img_supplier.png" width="80px">
+          </div>
+          <div class="card-footer text-center">
+            <span>
+              {{ 'mod-merma.BUTTON_RECORD' | translate}}
+            </span>
+          </div>
+        </div>
+      </a>
+      }
     </div>
+  </div>
 
 </div>

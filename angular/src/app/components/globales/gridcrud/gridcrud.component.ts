@@ -20,7 +20,7 @@ let haySeleccionados: any[] = [];
 })
 export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() title: string = '';
-  @Input() perPage: number = 5;
+  @Input() perPage: number = 4;
   @Input() campoFiltro: boolean = false;
   @Input() endPoint: string = '';
   @Input() filters: string = '';

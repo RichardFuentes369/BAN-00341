@@ -51,7 +51,7 @@ export class CategoriasComponent implements OnInit, OnDestroy{
 
   // inicio datos que envio al componente tabla
   showPage = 1
-  showperPage = 5
+  showperPage = 4
   endPoint = 'category/obtener-categorias'
   filters = ''
   permisosAcciones = this.permisos
