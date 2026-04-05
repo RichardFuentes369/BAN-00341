@@ -237,45 +237,69 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
           });
         });
       },
-      rowCallback: !this.habilitarSeleccion ? undefined : (row: Node, data: any, index: number) => {
-        const $row = $(row);
-        const $checkbox = $row.find('.row-checkbox');
+rowCallback: !this.habilitarSeleccion ? undefined : (row: Node, data: any, index: number) => {
+  const $row = $(row);
+  const $checkbox = $row.find('.row-checkbox');
 
-        const isSelected = this.idsSeleccionados.includes(data.id || data.IDENTIFICADOR);
-        $row.toggleClass('selected-row', isSelected);
-        $checkbox.prop('checked', isSelected);
+  // 1. Estado inicial de la fila
+  const isSelected = this.idsSeleccionados.includes(data.id || data.IDENTIFICADOR);
+  $row.toggleClass('selected-row', isSelected);
+  $checkbox.prop('checked', isSelected);
 
-        $row.off('click').on('click', (e: any) => {
-          if ($(e.target).hasClass('row-checkbox')) {
-            e.stopPropagation(); 
-          }
+  $row.off('click').on('click', (e: any) => {
+    // --- EFECTO VISUAL: RIPPLE SINCRONIZADO EN TODA LA FILA ---
+    const rowElement = row as HTMLElement; // Cast necesario para evitar error de 'Node'
+    const rectRow = rowElement.getBoundingClientRect();
+    const y = e.clientY - rectRow.top; // Coordenada Y relativa a la fila
 
-          const id = data.id || data.IDENTIFICADOR;
-          const idIndex = this.idsSeleccionados.indexOf(id);
-          const estaSeleccionado = idIndex !== -1;
+    // Iteramos por cada celda para que el círculo sea continuo en toda la fila
+    $row.find('td').each((i: number, tdNode: any) => {
+      const td = tdNode as HTMLElement;
+      const rectTd = td.getBoundingClientRect();
+      const relativeX = e.clientX - rectTd.left; // Coordenada X relativa a cada TD
+      
+      td.style.setProperty('--ripple-x', `${relativeX}px`);
+      td.style.setProperty('--ripple-y', `${y}px`);
+      
+      $(td).addClass('ripple-active');
+      setTimeout(() => $(td).removeClass('ripple-active'), 600);
+    });
 
-          if (estaSeleccionado) {
-            this.idsSeleccionados.splice(idIndex, 1);
-            $row.removeClass('selected-row');
-            $checkbox.prop('checked', false);
-            $('.select-all-checkbox').prop('checked', false);
-          } else {
-            this.idsSeleccionados.push(id);
-            $row.addClass('selected-row');
-            $checkbox.prop('checked', true);
-            
-            this.datatableElement.dtInstance.then((dtInstance: any) => {
-              const pageData = dtInstance.rows({ page: 'current' }).data().toArray();
-              const allChecked = pageData.every((item: any) => this.idsSeleccionados.includes(item.id || item.IDENTIFICADOR));
-              $('.select-all-checkbox').prop('checked', allChecked);
-            });
-          }
+    // --- LÓGICA DE NEGOCIO (SELECCIÓN) ---
+    if ($(e.target).hasClass('row-checkbox')) {
+      e.stopPropagation(); 
+    }
 
-          this.cdr.detectChanges();
-        });
+    const id = data.id || data.IDENTIFICADOR;
+    const idIndex = this.idsSeleccionados.indexOf(id);
+    const estaSeleccionado = idIndex !== -1;
 
-        return row;
-      },
+    if (estaSeleccionado) {
+      // Deseleccionar
+      this.idsSeleccionados.splice(idIndex, 1);
+      $row.removeClass('selected-row');
+      $checkbox.prop('checked', false);
+      $('.select-all-checkbox').prop('checked', false);
+    } else {
+      // Seleccionar
+      this.idsSeleccionados.push(id);
+      $row.addClass('selected-row');
+      $checkbox.prop('checked', true);
+      
+      this.datatableElement.dtInstance.then((dtInstance: any) => {
+        const pageData = dtInstance.rows({ page: 'current' }).data().toArray();
+        const allChecked = pageData.every((item: any) => 
+          this.idsSeleccionados.includes(item.id || item.IDENTIFICADOR)
+        );
+        $('.select-all-checkbox').prop('checked', allChecked);
+      });
+    }
+
+    this.cdr.detectChanges();
+  });
+
+  return row;
+},
     };
   }
 
