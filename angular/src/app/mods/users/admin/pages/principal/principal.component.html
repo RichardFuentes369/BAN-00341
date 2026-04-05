@@ -67,9 +67,7 @@
   @if(tienePermiso('descarga_reporte_permisos')){
   <div class="p-3 pt-0" style="position: relative;" >
     @if (cargarIdioma) {
-    <div class="table-container card shadow pt-0 px-4 rounded-0">
       <app-reporte-permisos (verItem)="verPermisos($event)"></app-reporte-permisos>
-    </div>
     }
   </div>
   }

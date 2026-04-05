@@ -4,7 +4,7 @@
   height: 100%;
 }
 
-/* Base de la tarjeta - Unificamos .card-custom con .card */
+/*Card estilo*/
 .card-custom {
   height: 100%;
   display: flex;
@@ -14,12 +14,6 @@
   background-color: #ffffff;
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  /* Eliminamos overflow: hidden si vas a usar tooltips que sobresalgan */
-}
-
-.card-custom:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
 }
 
 /* Cuerpo de la tarjeta */

@@ -31,10 +31,6 @@
   border: none;
 }
 
-.card-custom {
-  box-shadow: var(--shadow-md);
-}
-
 /* --- 3. BOTONERÍA (GLASSMORPHISM LIGHT) --- */
 .botoneria {
   display: flex;
@@ -210,6 +206,18 @@
     70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(220, 53, 69, 0); }
     100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
   }
+}
+
+/*Card estilo*/
+.card-custom {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: none;
+  background-color: #ffffff;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* --- 5. ANIMACIONES --- */
