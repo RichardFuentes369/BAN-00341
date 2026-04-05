@@ -60,118 +60,181 @@
   } 
 }
 
+/* --- FIX CRÍTICO PARA EL PADRE --- */
+/* Identifica el contenedor que corta el tooltip y aplícale esto */
+.card-body-custom, 
+.table-responsive, 
+.card-custom {
+  overflow: visible !important; 
+}
 
-/* --- LÓGICA BASE COMÚN --- */
+/* --- TOOLTIP MEJORADO --- */
 .custom-tooltip {
   position: relative;
-  display: inline-block;
+  display: inline-flex; // Mejor alineación para iconos
+  align-items: center;
+  justify-content: center;
 }
 
 .custom-tooltip::before,
 .custom-tooltip::after {
   opacity: 0;
   visibility: hidden;
-  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
   position: absolute;
   pointer-events: none;
+  z-index: 99999; /* Valor extremo para ganar a la tabla */
 }
 
 .custom-tooltip::after {
   content: attr(data-title);
-  background-color: var(--tooltip-bg, #2d3436);
+  background-color: #2d3436;
   color: #ffffff;
-  padding: 5px 10px;
-  border-radius: 6px;
-  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 11px;
   font-weight: 500;
   white-space: nowrap;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  line-height: 1.2;
 }
 
 .custom-tooltip::before {
   content: "";
-  z-index: 1001;
   border-style: solid;
 }
 
-/* --- HOVER GLOBAL --- */
+/* --- HOVER --- */
 .custom-tooltip:hover::before,
 .custom-tooltip:hover::after {
   opacity: 1;
   visibility: visible;
 }
 
-/* --- DIRECCIONES --- */
+/* --- DIRECCIONES ARREGLADAS (Para evitar cortes) --- */
 
-/* ARRIBA (Top) */
+/* ARRIBA: Subimos un poco más el margen para que respire */
 .tooltip-top::before {
   bottom: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(5px);
-  border-width: 6px 6px 0 6px;
-  border-color: var(--tooltip-bg, #2d3436) transparent transparent transparent;
+  transform: translateX(-50%) translateY(8px);
+  border-width: 5px 5px 0 5px;
+  border-color: #2d3436 transparent transparent transparent;
 }
 .tooltip-top::after {
-  bottom: calc(100% + 6px);
+  bottom: calc(100% + 5px);
   left: 50%;
-  transform: translateX(-50%) translateY(5px);
+  transform: translateX(-50%) translateY(8px);
 }
 .tooltip-top:hover::before,
 .tooltip-top:hover::after {
   transform: translateX(-50%) translateY(0);
 }
 
-/* ABAJO (Bottom) */
+/* ABAJO: Ideal para cuando el botón está al borde superior */
 .tooltip-bottom::before {
   top: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(-5px);
-  border-width: 0 6px 6px 6px;
-  border-color: transparent transparent var(--tooltip-bg, #2d3436) transparent;
+  transform: translateX(-50%) translateY(-8px);
+  border-width: 0 5px 5px 5px;
+  border-color: transparent transparent #2d3436 transparent;
 }
 .tooltip-bottom::after {
-  top: calc(100% + 6px);
+  top: calc(100% + 5px);
   left: 50%;
-  transform: translateX(-50%) translateY(-5px);
+  transform: translateX(-50%) translateY(-8px);
 }
 .tooltip-bottom:hover::before,
 .tooltip-bottom:hover::after {
   transform: translateX(-50%) translateY(0);
 }
 
-/* IZQUIERDA (Left) */
-.tooltip-left::before {
+/* DERECHA (Fixed) */
+.tooltip-right::after {
   top: 50%;
-  right: 100%;
-  transform: translateY(-50%) translateX(5px);
-  border-width: 6px 0 6px 6px;
-  border-color: transparent transparent transparent var(--tooltip-bg, #2d3436);
+  left: calc(100% + 8px);
+  transform: translateY(-50%) translateX(-8px);
 }
-.tooltip-left::after {
+.tooltip-right::before {
   top: 50%;
-  right: calc(100% + 6px);
-  transform: translateY(-50%) translateX(5px);
+  left: 100%;
+  transform: translateY(-50%) translateX(-8px);
+  border-width: 5px 5px 5px 0;
+  border-color: transparent #2d3436 transparent transparent;
 }
-.tooltip-left:hover::before,
-.tooltip-left:hover::after {
+.tooltip-right:hover::after,
+.tooltip-right:hover::before {
   transform: translateY(-50%) translateX(0);
 }
 
-/* DERECHA (Right) */
-.tooltip-right::before {
+/* --- IZQUIERDA (Corrected Left) --- */
+.tooltip-left::before {
   top: 50%;
-  left: 101%;
-  transform: translateY(-50%) translateX(-5px);
-  border-width: 6px 6px 6px 0;
-  border-color: transparent var(--tooltip-bg, #2d3436) transparent transparent;
+  right: 100%; // Se pega al borde izquierdo del botón
+  transform: translateY(-50%) translateX(8px); // Empieza un poco "adentro" para la animación
+  border-width: 5px 0 5px 5px;
+  border-color: transparent transparent transparent #2d3436;
 }
-.tooltip-right::after {
+
+.tooltip-left::after {
   top: 50%;
-  left: calc(100% + 6px);
-  transform: translateY(-50%) translateX(-5px);
+  right: calc(100% + 5px); // Separación sutil del botón
+  transform: translateY(-50%) translateX(8px);
 }
-.tooltip-right:hover::before,
-.tooltip-right:hover::after {
-  transform: translateY(-50%) translateX(0);
+
+.tooltip-left:hover::before,
+.tooltip-left:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0); // Se desliza suavemente hacia la izquierda
+}
+
+
+/* --- ENTRADA: Aparece bajando --- */
+.animate__fadeIn {
+  opacity: 1;
+  max-height: 500px; 
+  margin-top: 1rem;
+  overflow: hidden; /* Evita saltos de contenido */
+  animation: fastIn 0.25s ease-out forwards;
+}
+
+/* --- SALIDA: Desaparece subiendo --- */
+.animate__fadeOut {
+  opacity: 0;
+  max-height: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+  
+  /* Sincronizamos el cierre del espacio con el movimiento */
+  transition: max-height 0.3s ease-in, margin 0.3s ease-in;
+  animation: fastOut 0.25s ease-in forwards;
+}
+
+/* --- KEYFRAMES --- */
+
+@keyframes fastIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(-15px); /* Inicia arriba */
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); /* Termina en el centro */
+  }
+}
+
+@keyframes fastOut {
+  from { 
+    opacity: 1; 
+    transform: translateY(0); /* Inicia en el centro */
+  }
+  to { 
+    opacity: 0; 
+    transform: translateY(-20px); /* Termina más arriba para dar sensación de fuga */
+  }
 }
