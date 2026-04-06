@@ -474,7 +474,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
 
     this.translate.get('mod-users.SEE_PERMISSIONS_TITLE').subscribe((res: string) => {this.title = res});
     this.tamano = "xl"
-    this.scrollable = false
+    this.scrollable = true
     this.save = false
     this.buttonSave = this.translate.instant('mod-users.BUTTON_SAVE_')
     this.edit = false

@@ -23,6 +23,7 @@ let haySeleccionados: any[] = [];
 })
 export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() title: string = '';
+  @Input() accioneson: boolean = true;
   @Input() campoFiltro: boolean = false;
   @Input() endPoint: string = '';
   @Input() complementoEndPoint: string = '';

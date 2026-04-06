@@ -106,6 +106,7 @@ export class VerPermisosComponent implements OnInit{
 
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
+  accioneson = false
   endPoint = ''
   filters = ''
   habilitarSeleccion = false
