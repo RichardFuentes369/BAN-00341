@@ -238,3 +238,55 @@
     transform: translateY(-20px); /* Termina más arriba para dar sensación de fuga */
   }
 }
+
+
+
+
+
+/* --- SCROLLBAR MINIMALISTA Y DISCRETO --- */
+::-webkit-scrollbar {
+  /* Reducimos el tamaño a lo mínimo funcional */
+  width: 5px;  /* Scroll vertical fino */
+  height: 5px; /* Scroll horizontal fino */
+}
+
+/* Pista totalmente transparente para máxima limpieza */
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+/* La barra (Thumb) */
+::-webkit-scrollbar-thumb {
+  /* Un gris muy suave y con transparencia */
+  background-color: rgba(0, 0, 0, 0.1); 
+  border-radius: 10px;
+  
+  /* Transición suave para que no aparezca de golpe */
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    /* Al interactuar, usamos tu azul de marca pero sutil */
+    background-color: #598bcc; 
+  }
+}
+
+/* --- ADAPTACIÓN AL MODO OSCURO --- */
+:host-context([data-theme='dark']) {
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.1);
+    
+    &:hover {
+      background-color: #598bcc; 
+    }
+  }
+}
+
+/* --- FIREFOX (Ajuste de grosor) --- */
+* {
+  scrollbar-width: thin; /* Firefox solo permite 'auto' o 'thin' */
+  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+}
+
+:host-context([data-theme='dark']) {
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}

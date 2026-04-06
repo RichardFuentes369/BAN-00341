@@ -60,10 +60,9 @@
     background: white;
     box-shadow: -5px 0 15px rgba(0,0,0,0.1);
     z-index: 2000;
-    border-radius: 12px 0 0 12px;
     transition: transform 0.4s ease, visibility 0.4s;
     visibility: hidden;
-    overflow: hidden;
+    overflow: visible;
 
     &.is-visible {
       transform: translateY(-50%) translateX(0);
@@ -74,6 +73,7 @@
       margin: 0;
       padding: 12px;
       background: var(--gradient-header);
+      border-top-left-radius: 12px !important;
       color: white;
       text-align: center;
       font-size: 1.1rem;
