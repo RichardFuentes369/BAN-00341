@@ -29,6 +29,7 @@ export class ReportePermisosComponent implements OnInit{
   tamano = ""
   scrollable = false
   title = ""
+  subtitle = ""
   save = false
   buttonSave = this.translate.instant('mod-users.BUTTON_SAVE_')
   edit = false

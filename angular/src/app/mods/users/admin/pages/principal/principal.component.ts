@@ -473,6 +473,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     });
 
     this.translate.get('mod-users.SEE_PERMISSIONS_TITLE').subscribe((res: string) => {this.title = res});
+    this.subtitle = ''
     this.tamano = "xl"
     this.scrollable = true
     this.save = false
