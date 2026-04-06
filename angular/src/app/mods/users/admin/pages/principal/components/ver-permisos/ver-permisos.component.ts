@@ -103,7 +103,6 @@ export class VerPermisosComponent implements OnInit{
 
   permisos: any[] = []
   titlePage = this.translate.instant('mod-users.TABLE_TITLE')
-  subtitle = ''
 
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
