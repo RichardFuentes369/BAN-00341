@@ -30,7 +30,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() columnas: any[] = [];
   @Input() permisosAcciones: any[] = [];
   @Input() habilitarSeleccion: boolean = false;
-  
+
   @Input() dataMapper?: (response: any) => { data: any[], total: number };
 
   @ViewChild(DataTableDirective, { static: false }) datatableElement!: DataTableDirective;
@@ -52,7 +52,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit() {
     this.listar();
     (ultimaUrlConsultada != this.endPoint) ? this.idsSeleccionados = [] : this.idsSeleccionados = [...haySeleccionados]
-    
+
     this.langSub = this.translate.onLangChange.subscribe(() => {
       haySeleccionados = [...this.idsSeleccionados];
       this.recargarIdioma();
@@ -109,13 +109,13 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
       processing: true,
       searching: false,
       serverSide: true,
-      scrollY: '', 
+      scrollY: '',
       scrollCollapse: false,
       lengthMenu: [5, 10, 20, 30, 40, 50, 100],
       pageLength: 5,
-      dom: "<'row mt-3 mb-2'<'col-12 d-flex justify-content-center align-items-center custom-length-wrapper'l>>" +
-       "<'row'<'col-12'rt>>" +
-       "<'row mt-4'<'col-md-5'i><'col-md-7 d-flex justify-content-end'p>>",
+      dom: "<'row mt-3 mb-1'<'col-12 d-flex justify-content-center align-items-center custom-length-wrapper'l>>" +
+        "<'row'<'col-12'rt>>" +
+        "<'row mt-4'<'col-md-5'i><'col-md-7 d-flex justify-content-end'p>>",
       drawCallback: () => {
         const tableElement = document.querySelector('.table-container');
         if (tableElement) {
@@ -125,24 +125,24 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
       ajax: (dataTablesParameters: any, callback) => {
         const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
         const page = Math.floor(dataTablesParameters.start / dataTablesParameters.length) + 1;
-        
+
         // Mantengo tu estructura de URL original
         const separator = this.endPoint.includes('?') ? '&' : '?';
         const fullUrl = `${this.url}${this.endPoint}${separator}page=${page}&limit=${dataTablesParameters.length}&field=id&order=asc${this.filters}${this.complementoEndPoint}&lang=${lang}`;
-                
+
         this.http.get<any>(fullUrl).subscribe({
           next: (res: any) => {
             let recordsTotal = 0;
             let rawData = [];
 
             // --- LÓGICA HÍBRIDA PARA SP Y TABLAS ESTÁNDAR ---
-            
+
             // Caso 1: Se pasó un mapeador explícito (Recomendado para el Reporte)
             if (this.dataMapper) {
               const mapped = this.dataMapper(res);
               recordsTotal = mapped.total;
               rawData = mapped.data;
-            } 
+            }
             // Caso 2: Es el JSON del SP (Arreglo de arreglos) y no hay mapeador
             else if (Array.isArray(res) && Array.isArray(res[0]) && res[0][0]?.total !== undefined) {
               recordsTotal = res[0][0].total;
@@ -198,7 +198,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
           "last": `<i class="fa-solid fa-angles-right"></i>`,
         }
       },
-      columns: this.habilitarSeleccion ? [columnaSeleccion, ...this.columnas]  : [...this.columnas],
+      columns: this.habilitarSeleccion ? [columnaSeleccion, ...this.columnas] : [...this.columnas],
       headerCallback: (thead: Node, data: any, start: number, end: number, display: any) => {
         const $headerCheckbox = $(thead).find('.select-all-checkbox');
 
@@ -237,69 +237,67 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
           });
         });
       },
-rowCallback: !this.habilitarSeleccion ? undefined : (row: Node, data: any, index: number) => {
-  const $row = $(row);
-  const $checkbox = $row.find('.row-checkbox');
+      rowCallback: !this.habilitarSeleccion ? undefined : (row: Node, data: any, index: number) => {
+        const $row = $(row);
+        const $checkbox = $row.find('.row-checkbox');
 
-  // 1. Estado inicial de la fila
-  const isSelected = this.idsSeleccionados.includes(data.id || data.IDENTIFICADOR);
-  $row.toggleClass('selected-row', isSelected);
-  $checkbox.prop('checked', isSelected);
+        // 1. Estado inicial de la fila
+        const isSelected = this.idsSeleccionados.includes(data.id || data.IDENTIFICADOR);
+        $row.toggleClass('selected-row', isSelected);
+        $checkbox.prop('checked', isSelected);
 
-  $row.off('click').on('click', (e: any) => {
-    // --- EFECTO VISUAL: RIPPLE SINCRONIZADO EN TODA LA FILA ---
-    const rowElement = row as HTMLElement; // Cast necesario para evitar error de 'Node'
-    const rectRow = rowElement.getBoundingClientRect();
-    const y = e.clientY - rectRow.top; // Coordenada Y relativa a la fila
+        $row.off('click').on('click', (e: any) => {
+          const rowElement = row as HTMLElement; 
+          const rectRow = rowElement.getBoundingClientRect();
+          const y = e.clientY - rectRow.top;
 
-    // Iteramos por cada celda para que el círculo sea continuo en toda la fila
-    $row.find('td').each((i: number, tdNode: any) => {
-      const td = tdNode as HTMLElement;
-      const rectTd = td.getBoundingClientRect();
-      const relativeX = e.clientX - rectTd.left; // Coordenada X relativa a cada TD
-      
-      td.style.setProperty('--ripple-x', `${relativeX}px`);
-      td.style.setProperty('--ripple-y', `${y}px`);
-      
-      $(td).addClass('ripple-active');
-      setTimeout(() => $(td).removeClass('ripple-active'), 600);
-    });
+          $row.find('td').each((i: number, tdNode: any) => {
+            const td = tdNode as HTMLElement;
+            const rectTd = td.getBoundingClientRect();
+            const relativeX = e.clientX - rectTd.left;
 
-    // --- LÓGICA DE NEGOCIO (SELECCIÓN) ---
-    if ($(e.target).hasClass('row-checkbox')) {
-      e.stopPropagation(); 
-    }
+            td.style.setProperty('--ripple-x', `${relativeX}px`);
+            td.style.setProperty('--ripple-y', `${y}px`);
 
-    const id = data.id || data.IDENTIFICADOR;
-    const idIndex = this.idsSeleccionados.indexOf(id);
-    const estaSeleccionado = idIndex !== -1;
+            $(td).addClass('ripple-active');
+            setTimeout(() => $(td).removeClass('ripple-active'), 600);
+          });
 
-    if (estaSeleccionado) {
-      // Deseleccionar
-      this.idsSeleccionados.splice(idIndex, 1);
-      $row.removeClass('selected-row');
-      $checkbox.prop('checked', false);
-      $('.select-all-checkbox').prop('checked', false);
-    } else {
-      // Seleccionar
-      this.idsSeleccionados.push(id);
-      $row.addClass('selected-row');
-      $checkbox.prop('checked', true);
-      
-      this.datatableElement.dtInstance.then((dtInstance: any) => {
-        const pageData = dtInstance.rows({ page: 'current' }).data().toArray();
-        const allChecked = pageData.every((item: any) => 
-          this.idsSeleccionados.includes(item.id || item.IDENTIFICADOR)
-        );
-        $('.select-all-checkbox').prop('checked', allChecked);
-      });
-    }
+          // --- LÓGICA DE NEGOCIO (SELECCIÓN) ---
+          if ($(e.target).hasClass('row-checkbox')) {
+            e.stopPropagation();
+          }
 
-    this.cdr.detectChanges();
-  });
+          const id = data.id || data.IDENTIFICADOR;
+          const idIndex = this.idsSeleccionados.indexOf(id);
+          const estaSeleccionado = idIndex !== -1;
 
-  return row;
-},
+          if (estaSeleccionado) {
+            // Deseleccionar
+            this.idsSeleccionados.splice(idIndex, 1);
+            $row.removeClass('selected-row');
+            $checkbox.prop('checked', false);
+            $('.select-all-checkbox').prop('checked', false);
+          } else {
+            // Seleccionar
+            this.idsSeleccionados.push(id);
+            $row.addClass('selected-row');
+            $checkbox.prop('checked', true);
+
+            this.datatableElement.dtInstance.then((dtInstance: any) => {
+              const pageData = dtInstance.rows({ page: 'current' }).data().toArray();
+              const allChecked = pageData.every((item: any) =>
+                this.idsSeleccionados.includes(item.id || item.IDENTIFICADOR)
+              );
+              $('.select-all-checkbox').prop('checked', allChecked);
+            });
+          }
+
+          this.cdr.detectChanges();
+        });
+
+        return row;
+      },
     };
   }
 
@@ -338,7 +336,7 @@ rowCallback: !this.habilitarSeleccion ? undefined : (row: Node, data: any, index
   editItem() { if (this.idsSeleccionados.length === 1) this.editarItem.emit(this.idsSeleccionados[0]); }
   deleteItem() { if (this.idsSeleccionados.length > 0) this.eliminarItem.emit(this.idsSeleccionados); }
   activedItem() { if (this.idsSeleccionados.length > 0) this.activarItem.emit(this.idsSeleccionados); }
-  
+
   assign(event: MouseEvent) {
     if (this.idsSeleccionados.length === 1) {
       this.asignar.emit({
@@ -347,6 +345,6 @@ rowCallback: !this.habilitarSeleccion ? undefined : (row: Node, data: any, index
       });
     }
   }
-  
+
   selectionClear() { this.limpiarSeleccion(); }
 }

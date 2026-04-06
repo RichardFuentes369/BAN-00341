@@ -1,67 +1,82 @@
+/* --- (Tu sección :host se mantiene igual) --- */
 :host {
-  /* --- 1. VARIABLES DE MARCA Y ESTADO --- */
+  --layout-topbar-height: 4rem;
+  --botoneria-height: 72px;
   --primary-gradient: radial-gradient(circle at center, #598bcc 16%, #224abe 100%);
-  --bg-selected: #eb2525; /* Azul sólido uniforme para selección */
+  --bg-selected: #d51c1c;
   --bg-row: #ffffff;
   --bg-table-container: #f8fafc;
+  --bg-text-selected: #fff;
   --text-main: #1e293b;
   --text-muted: #64748b;
   --border-color: rgba(0, 0, 0, 0.05);
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
-  --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.08);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+  display: block;
 
-  &[data-theme='dark'], 
+  &[data-theme='dark'],
   &:host-context([data-theme='dark']) {
     --primary-gradient: radial-gradient(circle at center, #1a1a1a 16%, #000 100%);
-    --bg-selected: #334155; /* Gris azulado profundo para dark mode */
+    --bg-selected: #334155;
     --bg-row: #ffffff;
+    /* Ajustado para modo oscuro real */
     --bg-table-container: #0f172a;
+    --bg-text-selected: #fff;
     --text-main: #1e293b;
     --text-muted: #94a3b8;
     --border-color: rgba(255, 255, 255, 0.05);
   }
 }
 
-/* --- 2. CONTENEDOR PRINCIPAL --- */
+/* --- (Tus contenedores y botonería se mantienen igual) --- */
+.card-custom {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: none;
+  background-color: var(--bg-row);
+  overflow: visible !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
 .table-container {
-  position: relative; 
+  position: relative;
   width: 100%;
   border-radius: 16px;
-  overflow: visible !important; /* Vital para el sticky */
+  overflow: visible !important;
   border: none;
 }
 
-/* --- 3. BOTONERÍA (GLASSMORPHISM LIGHT) --- */
 .botoneria {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 12px;
-  position: sticky;
-  top: 4rem!important;
-  z-index: 2;
-  background-color: rgba(255, 255, 255, 0.9) !important;
+  position: sticky !important;
+  top: var(--layout-topbar-height) !important;
+  z-index: 1;
+  /* Valor alto para asegurar que nada pase por encima */
+  background-color: rgba(255, 255, 255, 0.95) !important;
   backdrop-filter: blur(8px);
   padding: 18px 25px;
   border-bottom: 1px solid var(--border-color);
 
+
   .title-container {
-    margin-right: auto; /* ESTA ES LA CLAVE: Empuja todo lo demás a la derecha */
-    padding-left: 5px;
-    
+    margin-right: auto;
+
     h5 {
       font-size: 1.1rem;
       color: var(--text-main);
-      letter-spacing: -0.5px;
+      font-weight: 700;
+      margin: 0;
     }
-  }
-
-  &[data-theme='dark'], 
-  &:host-context([data-theme='dark']) {
-    background-color: rgba(26, 26, 26, 0.9) !important;
   }
 
   button {
     transition: transform 0.2s ease, filter 0.2s ease;
+
     &:hover:not(:disabled) {
       transform: scale(1.1);
       filter: brightness(1.1);
@@ -69,159 +84,126 @@
   }
 }
 
-/* --- 4. DISEÑO DE LA TABLA (CARD-ROW STYLE) --- */
+/* --- 4. DISEÑO DE LA TABLA + CLASE DE SELECCIÓN --- */
 ::ng-deep {
   .table-responsive {
     overflow-y: visible !important;
     padding: 0 15px 15px 15px;
+
+    @media (max-width: 992px) {
+      overflow-x: auto !important;
+    }
   }
 
   .tableDatatable {
     border-collapse: separate !important;
-    border-spacing: 0 1px !important; /* Espacio entre filas */
+    border-spacing: 0 4px !important;
     width: 100% !important;
     background-color: transparent !important;
 
-    /* HEADER STICKY REFINADO */
-    thead tr {
-      top: 80px; /* Sincronizado con la botonería */
-      z-index: 1;
-    }
-
-    thead tr {
+    thead {
       background: var(--primary-gradient) !important;
+      z-index: 1060;
     }
 
     thead th {
-      background: transparent !important; /* Quitamos el fondo individual */
+      background: transparent !important; 
+      
       color: #ffffff !important;
       font-weight: 600;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 16px 12px !important;
-      border: none !important;
       text-align: center;
+      white-space: nowrap;
+      padding: 12px 12px !important; /* Un poco más delgado como pediste antes */
+      border: none !important;
       
-      &:first-child { border-radius: 10px 0 0 10px; }
-      &:last-child { border-radius: 0 10px 10px 0; }
+      /* Quitamos la sombra individual y la dejamos solo si es necesaria */
+      box-shadow: none !important; 
     }
 
-    /* FILAS COMO BLOQUES INDEPENDIENTES */
     tbody tr {
-      background-color: transparent !important;
       transition: all 0.2s ease;
 
       td {
         background-color: var(--bg-row) !important;
         color: var(--text-main);
+        font-size: 0.9rem;
+        padding: 4px 12px !important;
         border-top: 1px solid var(--border-color) !important;
         border-bottom: 1px solid var(--border-color) !important;
-        box-shadow: var(--shadow-sm);
         vertical-align: middle;
-        font-size: 0.9rem;
-        position: relative;
-      overflow: hidden; // Mantiene el efecto dentro de la fila
-      z-index: 1;
 
-        &:first-child { 
+        &:first-child {
+          border-radius: 10px 0 0 10px;
           border-left: 1px solid var(--border-color) !important;
-          border-radius: 10px 0 0 10px; 
         }
-        &:last-child { 
+
+        &:last-child {
+          border-radius: 0 10px 10px 0;
           border-right: 1px solid var(--border-color) !important;
-          border-radius: 0 10px 10px 0; 
         }
-
-        &::before {
-        content: "";
-        position: absolute;
-        left: var(--ripple-x);
-        top: var(--ripple-y);
-        width: 1px;
-        height: 1px;
-        background: rgba(255, 255, 255, 0.4); // Destello blanco sutil
-        border-radius: 50%;
-        transform: translate(-50%, -50%) scale(0);
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      &.ripple-active::before {
-        animation: rippleEffect 0.6s ease-out;
-      }
-
-      /* Importante: Protege la visibilidad del contenido */
-      span, small, i, div, .row-checkbox, .badge {
-        position: relative;
-        z-index: 2;
-      }
       }
 
       /* EFECTO HOVER */
-      &:hover {
-        td {
-          cursor: pointer;
-          background-color: rgba(89, 139, 204, 0.04) !important;
-          border-color: rgba(89, 139, 204, 0.2) !important;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
+      &:hover td {
+        background-color: rgba(89, 139, 204, 0.05) !important;
+        cursor: pointer;
       }
 
-      /* SELECCIONADO: COLOR UNIFORME SÓLIDO */
-      &.selected-row {
-        td {
-          background-color: var(--bg-selected) !important;
-          background-image: none !important; /* Asegura color sólido */
-          color: #ffffff !important;
-          border-color: var(--bg-selected) !important;
-          font-weight: 500;
+      /* --- FILA SELECCIONADA (EL CAMBIO QUE PEDISTE) --- */
+      &.selected-row td {
+        background-color: var(--bg-selected) !important;
+        color: var(--bg-text-selected);
+        border-color: var(--bg-selected) !important;
+        font-weight: 500;
 
-          /* Elementos internos en la fila seleccionada */
-          .text-muted, small, i, .fa {
-            color: rgba(255, 255, 255, 0.8) !important;
-          }
-          
-          .badge.bg-danger {
-            background-color: #ffffff !important;
-            color: var(--bg-selected) !important;
-          }
+        /* Aseguramos que elementos internos (iconos, texto pequeño) también cambien a blanco */
+        .text-muted,
+        i,
+        small,
+        span,
+        .fa {
+          color: rgba(255, 255, 255, 0.9) !important;
+        }
 
-          .row-checkbox {
-            accent-color: #ffffff;
-          }
+        /* Si tienes badges, podemos invertir su color para que resalten */
+        .badge {
+          background-color: #ffffff !important;
+          color: var(--bg-selected) !important;
         }
       }
     }
   }
 
+  /* --- 5. PUNTOS DE ESTADO --- */
   .status-dot {
     display: inline-block;
     width: 10px;
     height: 10px;
     border-radius: 50%;
     vertical-align: middle;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    margin-right: 8px;
   }
 
-  .dot-green {
-    background-color: #28a745;
+  .dot-green { 
+    background-color: #28a745; 
     box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
-    animation: pulse-green 2s infinite;
+    animation: pulse-green 2s infinite; 
   }
 
-  .dot-red {
-    background-color: #dc3545;
+  .dot-red { 
+    background-color: #dc3545; 
     box-shadow: 0 0 8px rgba(220, 53, 69, 0.5);
-    animation: pulse-red 2s infinite;
+    animation: pulse-red 2s infinite; 
   }
 
-  .dot-gray {
-    background-color: #c0babb;
-    box-shadow: 0 0 8px rgba(208, 184, 187, 0.5);
-    animation: pulse-red 2s infinite;
+  /* AHORA EL GRIS TIENE EL MISMO EFECTO */
+  .dot-gray { 
+    background-color: #6c757d; 
+    box-shadow: 0 0 8px rgba(108, 117, 125, 0.5);
+    animation: pulse-gray 2s infinite; 
   }
 
+  /* --- ANIMACIONES DE PULSO --- */
   @keyframes pulse-green {
     0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
     70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(40, 167, 69, 0); }
@@ -233,37 +215,10 @@
     70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(220, 53, 69, 0); }
     100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
   }
-}
 
-/*Card estilo*/
-.card-custom {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  border-radius: 12px;
-  border: none;
-  background-color: #ffffff;
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- 6. RESPONSIVO --- */
-@media (max-width: 768px) { 
-  .botoneria { 
-    justify-content: center; 
-    padding: 10px;
-    top: 0;
+  @keyframes pulse-gray {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(108, 117, 125, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(108, 117, 125, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(108, 117, 125, 0); }
   }
-  ::ng-deep .tableDatatable thead tr {
-    top: 110px; /* Ajuste si la botonería crece en móvil */
-  }
-}
-@keyframes rippleEffect {
-  0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-  100% { transform: translate(-50%, -50%) scale(800); opacity: 0; }
 }

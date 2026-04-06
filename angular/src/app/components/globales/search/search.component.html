@@ -17,8 +17,10 @@
     </button>
     <h3 class="header">{{ 'global-search.TITTLE_COMPONENT' | translate }}</h3>
     <div class="card-body">
-      <div #contenedorFilter></div>
-      <div class="mt-3">
+      <div class="container mt-2">
+        <div #contenedorFilter></div>
+      </div>
+      <div class="container mt-3 mb-2">
         <button (click)="clearFilter()" class="btn btn-sm btn-secondary">
           {{ 'global-search.BUTTON_CLEAR' | translate }}
         </button>
