@@ -11,8 +11,8 @@ export const LAYOUT_ADMIN_PAGE_MODULES = '/admin/mod/modules';
 export const LAYOUT_ADMIN_PAGE_LOTE = '/admin/mod/lote';
 
 // Routes
-export const BREADCRUMB_PATH_PROFILE = 'Perfil';
-export const BREADCRUMB_PATH_SETTINGS = 'Ajustes';
+export const BREADCRUMB_PATH_PROFILE = 'mod-main.PAGES_PROFILE';
+export const BREADCRUMB_PATH_SETTINGS = 'mod-main.PAGES_SETTINGS';
 
 export const PATH_USERS = 'users';  
 export const TITLE_PATH_USERS = 'Usuarios';

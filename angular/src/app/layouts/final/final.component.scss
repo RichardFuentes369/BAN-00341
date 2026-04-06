@@ -1,62 +1,83 @@
 :host {
   display: block;
   height: 100vh;
-  width: 100vw;
   overflow: hidden;
+
+  .bg-gradient-primary {
+    background: linear-gradient(180deg, #007bff 20%, #007bff 100%) !important;
+  }
+
+  &[data-theme='dark'], 
+  &:host-context([data-theme='dark']) {
+    .bg-gradient-primary {
+      background: linear-gradient(180deg, #000 20%, #000 100%) !important;
+    }
+  }
 }
 
 #wrapper {
-  height: 100vh;
-  width: 100vw;
   display: flex;
+  height: 100vh;
   overflow: hidden;
+}
+
+#accordionSidebar {
+  height: 100vh;
+  overflow-y: auto;
+  flex-shrink: 0;
+  z-index: 1040; // Sidebar por debajo del Topbar dropdown
 }
 
 #content-wrapper {
   flex: 1;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
-  width: 100%;
   overflow: hidden;
 }
 
-#content-main-area {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-/* El Topbar se mantiene arriba sin comprimirse */
 .topbar {
   flex-shrink: 0;
-  z-index: 10;
+  z-index: 1030; // Nivel suficiente para estar sobre el contenido
+
+  .dropdown-menu {
+    z-index: 1060 !important; // Por encima de todo en el layout
+  }
 }
 
-/* ZONA DE SCROLL CORREGIDA */
-#scrollable-content {
+#content-scroll-area {
   flex: 1;
-  overflow-y: auto !important;
-  overflow-x: hidden;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   background-color: #f8f9fc;
-  
-  /* Esto asegura que el scroll sea fluido */
+  z-index: 1; 
+  position: relative;
   -webkit-overflow-scrolling: touch;
 }
 
-.container-fluid {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-  flex: 1; /* Esto empuja al footer hacia abajo si hay poco contenido */
+#content {
+  flex: 1;
 }
 
 .sticky-footer {
   flex-shrink: 0;
-  padding: 1.5rem 0;
-  border-top: 1px solid #e3e6f0;
+  padding: 1rem 0;
 }
 
-/* Tus estilos de colores personalizados */
-.bg-gradient-primary {
-  background: linear-gradient(180deg, #007bff 20%, #007bff 100%) !important;
+// Forzamos que el modal esté por encima de nuestro layout fijo
+::ng-deep {
+  .modal {
+    z-index: 2000 !important;
+  }
+  // El fondo oscuro del modal (backdrop) debe subir también
+  .modal-backdrop {
+    z-index: 1900 !important;
+  }
+
+  // Evita que el cuerpo se mueva cuando el modal está abierto
+  .modal-open {
+    overflow: hidden !important;
+    padding-right: 0 !important;
+  }
 }

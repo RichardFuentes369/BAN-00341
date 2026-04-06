@@ -37,7 +37,7 @@
   justify-content: flex-end;
   gap: 12px;
   position: sticky;
-  top: 0;
+  top: 4rem!important;
   z-index: 2;
   background-color: rgba(255, 255, 255, 0.9) !important;
   backdrop-filter: blur(8px);
@@ -84,7 +84,7 @@
 
     /* HEADER STICKY REFINADO */
     thead tr {
-      top: 65px; /* Sincronizado con la botonería */
+      top: 80px; /* Sincronizado con la botonería */
       z-index: 1;
     }
 

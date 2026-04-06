@@ -1,8 +1,7 @@
 <div class="">
   <div id="wrapper">
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" 
-        [ngClass]="minimizarSliderbar == false ? 'toggled': ''" 
-        id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+      [ngClass]="minimizarSliderbar == false ? 'toggled': ''" id="accordionSidebar">
 
       <a class="sidebar-brand d-flex align-items-center justify-content-center" [routerLink]="LAYOUT_PAGE_PROFILE">
         <div class="sidebar-brand-icon rotate-n-15">
@@ -34,61 +33,61 @@
 
     </ul>
     <div id="content-wrapper" class="d-flex flex-column">
-      
-      <nav class="navbar navbar-expand navbar-light bg-white topbar static-top mb-1">
-
-        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3"
-          (click)="mostrarMenuLateral()">
-          <i class="fa fa-bars"></i>
-        </button>
-
-        <ul class="navbar-nav mr-auto">
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </ul>
-        <ul class="navbar-nav ml-auto">     
-          <li class="nav-item dropdown no-arrow my-auto text-center pl-2 pr-2">
-            <app-globales-colormode></app-globales-colormode>
-            <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
-          </li>     
-          <div class="topbar-divider d-none d-sm-block"></div>
-          <li class="nav-item dropdown no-arrow my-auto text-center pl-2 pr-2">
-            <a class="nav-link dropdown-toggle h-100" id="userDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-              <img class="img-profile rounded-circle" src="../../../assets/images/undraw_profile.svg">
-            </a>
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-              <a class="dropdown-item" routerLinkActive="active" [routerLink]="LAYOUT_PAGE_PROFILE">
-                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                {{ 'layout-admin.DRADROPDOW_MENU_PROFILE' | translate}}
-              </a>
-              <a class="dropdown-item" routerLinkActive="active" [routerLink]="LAYOUT_PAGE_SETTINGS">
-                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                {{ 'layout-admin.DRADROPDOW_MENU_SETTING' | translate}}
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" (click)="cerrarSession()" style="cursor: pointer;">
-                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                {{ 'layout-admin.DRADROPDOW_MENU_LOGOUT' | translate}}
-              </a>
-            </div>
-          </li>
-        </ul>
-      </nav>
-
-      <app-globales-breadcrumbs></app-globales-breadcrumbs>
-      
       <div id="content-scroll-area">
+
+        <nav class="navbar navbar-expand navbar-light bg-white topbar static-top mb-1 sticky-top">
+
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3"
+            (click)="mostrarMenuLateral()">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <ul class="navbar-nav mr-auto">
+            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+              <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                  aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="button">
+                    <i class="fas fa-search fa-sm"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown no-arrow my-auto text-center pl-2 pr-2">
+              <app-globales-colormode></app-globales-colormode>
+              <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
+            </li>
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item dropdown no-arrow my-auto text-center pl-2 pr-2">
+              <a class="nav-link dropdown-toggle h-100" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                <img class="img-profile rounded-circle" src="../../../assets/images/undraw_profile.svg">
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" routerLinkActive="active" [routerLink]="LAYOUT_PAGE_PROFILE">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  {{ 'layout-admin.DRADROPDOW_MENU_PROFILE' | translate}}
+                </a>
+                <a class="dropdown-item" routerLinkActive="active" [routerLink]="LAYOUT_PAGE_SETTINGS">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  {{ 'layout-admin.DRADROPDOW_MENU_SETTING' | translate}}
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="cerrarSession()" style="cursor: pointer;">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  {{ 'layout-admin.DRADROPDOW_MENU_LOGOUT' | translate}}
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+
+        <app-globales-breadcrumbs></app-globales-breadcrumbs>
+
         <div id="content">
           <div class="container-fluid  p-1 mt-1">
             <router-outlet></router-outlet>
@@ -103,6 +102,6 @@
           </div>
         </footer>
       </div>
-      </div>
     </div>
   </div>
+</div>

@@ -23,7 +23,7 @@
 
 .sticky-header {
   position: sticky;
-  top: 0;
+  top: 4rem!important;
   z-index: 2; 
   background-color: var(--sticky-bg) !important;
   border-bottom: 1px solid var(--border-color);

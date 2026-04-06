@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_TOKEN_ADMIN } from '@const/app.const';
 import { AuthService } from '@guard/service/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 
 @Component({
   selector: 'app-mod-admin-final-pages-profile',
   standalone: true,
+  imports: [TranslateModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })
