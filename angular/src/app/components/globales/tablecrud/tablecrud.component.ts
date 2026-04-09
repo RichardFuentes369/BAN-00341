@@ -36,10 +36,9 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild(DataTableDirective, { static: false }) datatableElement!: DataTableDirective;
 
-  responsive = "table-responsive-xl"
   url = environment.apiUrl;
   idsSeleccionados: any[] = [];
-  dtOptions: Config = {};
+  dtOptions: Config & { responsive?: boolean; autoWidth?: boolean } = {};
   dtTrigger: Subject<any> = new Subject<any>();
 
   private langSub: Subscription | undefined;
@@ -110,6 +109,9 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
       processing: true,
       searching: false,
       serverSide: true,
+      responsive: true,    
+      autoWidth: false,    
+      scrollX: true,       
       scrollY: '',
       scrollCollapse: false,
       lengthMenu: [5, 10, 20, 30, 40, 50, 100],
