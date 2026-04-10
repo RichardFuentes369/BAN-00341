@@ -11,8 +11,8 @@ export class Merma {
   @Column({ type: 'int', nullable: false, default: 0 })
   cantidad: number;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  fecha_reporte: Date;
+  @Column({ type: 'bigint', nullable: false })
+  fecha_reporte: number;
 
   @Column({ type: 'decimal', precision: 10, scale: 2, default: 0.00 })
   valor_perdido: number;
