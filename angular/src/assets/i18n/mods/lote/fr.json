@@ -4,24 +4,49 @@
 	"MODULE_TITLE": "Lot",
 	"TABLE_TITLE": "Registres",
 
+ 	"REPORT_PERMISSION_TITLE": "Rapport",
+  	"REPORT_PERMISSION_SUBTITLE": "de traçabilité",
+
 	"BUTTON_SAVE_": "Enregistrer",
 	"BUTTON_UPDATE_": "Mettre à jour",
 	"BUTTON_CANCEL": "Annuler",
 	"BUTTON_BACK": "Retour",
 	"BUTTON_SEARCH": "Rechercher",
-	"COLUMN_ID": "ID",
 
+	"CREATE_TITLE": "Créer",
+	"CREATE_SUBTITLE": "Nouveau lot",
+	"SEE_TITLE": "Voir",
+	"SEE_SUBTITLE": "Lot: {{batch_code}}",
+	"EDIT_TITLE": "Modifier",
+	"EDIT_SUBTITLE": "Lot: {{batch_code}}",
+
+	"COLUMN_ID": "ID",
 	"COLUMN_REPORT_DATE": "Date d'entrée",
 	"COLUMN_EXPIRATION_DATE": "Date d'expiration",
 	"COLUMN_UNIT_COST": "Coût unitaire",
 	"COLUMN_SUGGESTED_RETAIL_PRICE": "Prix de vente conseillé",
 	"COLUMN_STATUS": "État",
-	"COLUMN_PRODUCT": "ID Produit",
-	"COLUMN_SUPPLIER": "ID Fournisseur",
+	"COLUMN_PRODUCT": "Produit",
+	"COLUMN_SUPPLIER": "Fournisseur",
 	"COLUMN_BATCH": "Lot",
 	"COLUMN_QUANTITY_PURCHASED": "Quantité achetée",
 	"COLUMN_QUANTITY_SOLD": "Quantité vendue",
 	"COLUMN_STOCK": "Stock",
+
+	"LABEL_LOTE": "Lot",
+	"LABEL_FECHA_ENTRADA": "Date d'entrée",
+	"LABEL_FECHA_VENCIMIENTO": "Date de péremption",
+	"LABEL_CANTIDAD_COMPRADA": "Quantité achetée",
+	"LABEL_CANTIDAD_VENDIDA": "Quantité vendue",
+	"LABEL_STOCK": "Stock",
+	"LABEL_COSTO_UNITARIO": "Coût unitaire",
+	"LABEL_PRECIO_VENTA_SUGERIDO": "Prix de vente suggéré",
+	"LABEL_ESTADO": "État",
+
+	"SELECT_SELECT_OPTION": "Sélectionner", 
+	"SELECT_AVAILABLE_OPTION": "Disponible", 
+	"SELECT_UNAVAILABLE_OPTION": "Expiré", 
+	"SELECT_EXPIRED_OPTION": "Épuisé",
 
 	"CARD_TOTAL_REGISTER_TITLE": "Total des enregistrements"
 }

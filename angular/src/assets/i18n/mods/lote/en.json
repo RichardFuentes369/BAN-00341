@@ -4,11 +4,21 @@
   "MODULE_TITLE": "Batch",
   "TABLE_TITLE": "Records",
 
+  "REPORT_PERMISSION_TITLE": "Report",
+  "REPORT_PERMISSION_SUBTITLE": "traceability",
+
   "BUTTON_SAVE_": "Save",
   "BUTTON_UPDATE_": "Update",
   "BUTTON_CANCEL": "Cancel",
   "BUTTON_BACK": "Back",
   "BUTTON_SEARCH": "Search",
+
+  "CREATE_TITLE": "Create",
+  "CREATE_SUBTITLE": "New batch",
+  "SEE_TITLE": "View",
+  "SEE_SUBTITLE": "Batch: {{batch_code}}",
+  "EDIT_TITLE": "Edit",
+  "EDIT_SUBTITLE": "Batch: {{batch_code}}",
 
   "COLUMN_ID": "ID",
   "COLUMN_REPORT_DATE": "Entry date",
@@ -16,12 +26,27 @@
   "COLUMN_UNIT_COST": "Unit cost",
   "COLUMN_SUGGESTED_RETAIL_PRICE": "Suggested retail price",
   "COLUMN_STATUS": "Status",
-  "COLUMN_PRODUCT": "Product ID",
-  "COLUMN_SUPPLIER": "Supplier ID",
+  "COLUMN_PRODUCT": "Product",
+  "COLUMN_SUPPLIER": "Supplier",
   "COLUMN_BATCH": "Batch",
   "COLUMN_QUANTITY_PURCHASED": "Quantity purchased",
   "COLUMN_QUANTITY_SOLD": "Quantity sold",
   "COLUMN_STOCK": "Stock",
+
+  "LABEL_LOTE": "Batch",
+  "LABEL_FECHA_ENTRADA": "Entry date",
+  "LABEL_FECHA_VENCIMIENTO": "Expiry date",
+  "LABEL_CANTIDAD_COMPRADA": "Quantity purchased",
+  "LABEL_CANTIDAD_VENDIDA": "Quantity sold",
+  "LABEL_STOCK": "Stock",
+  "LABEL_COSTO_UNITARIO": "Unit cost",
+  "LABEL_PRECIO_VENTA_SUGERIDO": "Suggested retail price",
+  "LABEL_ESTADO": "Status",
+
+  "SELECT_SELECT_OPTION": "Select", 
+  "SELECT_AVAILABLE_OPTION": "Available", 
+  "SELECT_UNAVAILABLE_OPTION": "Expired", 
+  "SELECT_EXPIRED_OPTION": "Sold out", 
 
   "CARD_TOTAL_LOT_TITLE": "Total records"
 }

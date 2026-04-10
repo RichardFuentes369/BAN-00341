@@ -1,0 +1,64 @@
+<div class="">
+  @for (item of lote; track item; let  i = $index) {
+  <div class="col-xl-12 col-sm-12 row">
+    <div class="col-xl col-sm-12">
+      <div class="col-sm-12 row p-0">
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_LOTE' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.lote}}" readonly>
+        </div>        
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_FECHA_ENTRADA' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.fecha_entrada}}" readonly>
+        </div>        
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_FECHA_VENCIMIENTO' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.fecha_vencimiento}}" readonly>
+        </div>        
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_CANTIDAD_COMPRADA' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.cantidad_comprada}}" readonly>
+        </div>       
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_CANTIDAD_VENDIDA' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.cantidad_vendida}}" readonly>
+        </div>        
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_STOCK' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.stock}}" readonly>
+        </div>        
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_COSTO_UNITARIO' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.costo_unitario}}" readonly>
+        </div>        
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_PRECIO_VENTA_SUGERIDO' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.precio_venta_sugerido}}" readonly>
+        </div>        
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_ESTADO' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.estado}}" readonly>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>

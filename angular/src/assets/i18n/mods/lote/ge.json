@@ -4,12 +4,21 @@
   "MODULE_TITLE": "Charge",
   "TABLE_TITLE": "Datensätze",
 
+  "REPORT_PERMISSION_TITLE": "Bericht",
+  "REPORT_PERMISSION_SUBTITLE": "rückverfolgbarkeits",
+
   "BUTTON_SAVE_": "Speichern",
   "BUTTON_UPDATE_": "Aktualisieren",
   "BUTTON_CANCEL": "Abbrechen",
   "BUTTON_BACK": "Zurück",
-
   "BUTTON_SEARCH": "Suchen",
+
+  "CREATE_TITLE": "Erstellen",
+  "CREATE_SUBTITLE": "Charge anlegen",
+  "SEE_TITLE": "Ansehen",
+  "SEE_SUBTITLE": "Charge: {{batch_code}}",
+  "EDIT_TITLE": "Bearbeiten",
+  "EDIT_SUBTITLE": "Charge: {{batch_code}}",
 
   "COLUMN_ID": "ID",
   "COLUMN_REPORT_DATE": "Eingangsdatum",
@@ -17,12 +26,27 @@
   "COLUMN_UNIT_COST": "Stückkosten",
   "COLUMN_SUGGESTED_RETAIL_PRICE": "Unverbindliche Preisempfehlung",
   "COLUMN_STATUS": "Status",
-  "COLUMN_PRODUCT": "Produkt-ID",
-  "COLUMN_SUPPLIER": "Lieferanten-ID",
+  "COLUMN_PRODUCT": "Produkt",
+  "COLUMN_SUPPLIER": "Lieferanten",
   "COLUMN_BATCH": "Charge",
   "COLUMN_QUANTITY_PURCHASED": "Gekaufte Menge",
   "COLUMN_QUANTITY_SOLD": "Verkaufte Menge",
   "COLUMN_STOCK": "Lagerbestand",
+
+  "LABEL_LOTE": "Charge",
+  "LABEL_FECHA_ENTRADA": "Eingangsdatum",
+  "LABEL_FECHA_VENCIMIENTO": "Ablaufdatum",
+  "LABEL_CANTIDAD_COMPRADA": "Einkaufsmenge",
+  "LABEL_CANTIDAD_VENDIDA": "Verkaufsmenge",
+  "LABEL_STOCK": "Lagerbestand",
+  "LABEL_COSTO_UNITARIO": "Stückkosten",
+  "LABEL_PRECIO_VENTA_SUGERIDO": "Unverbindliche Preisempfehlung",
+  "LABEL_ESTADO": "Status",
+
+  "SELECT_SELECT_OPTION": "Auswählen", 
+  "SELECT_AVAILABLE_OPTION": "Verfügbar", 
+  "SELECT_UNAVAILABLE_OPTION": "Abgelaufen", 
+  "SELECT_EXPIRED_OPTION": "Ausverkauft",
 
   "CARD_TOTAL_REGISTER_TITLE": "Gesamtregister"
 }

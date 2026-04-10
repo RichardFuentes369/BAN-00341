@@ -105,4 +105,25 @@ export class BatchService {
     );
     return category;
   }
+
+  async create(
+    lang: string, 
+    batchData: CreateBatchDto, 
+    userId: number
+  ) {
+    try {
+      await this.batchRepository.save(batchData);
+      return {
+        'title': this.i18n.t('supplier.MSJ_TITTLE', { lang }),
+        'message': this.i18n.t('supplier.MSJ_CREADO_EXITOSAMENTE', { lang }),
+        'status': 200,
+      };
+    } catch (error) {
+      return {
+        'title': 'Error',
+        'message': error.response?.message || error.message,
+        'status': 404,
+      };
+    }
+  }
 }

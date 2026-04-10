@@ -3,7 +3,7 @@ import { Producto } from '@module/catalogo/product/entities/product.entity';
 import { Proveedor } from '@module/catalogo/supplier/entities/supplier.entity';
 import { Merma } from '@module/merma/mermas/entities/merma.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn, OneToOne } from 'typeorm';
-import { EstadoProducto } from '../enums/EstadoProducto';
+import { EstadoLote } from '../enums/EstadoLote';
 
 @Entity('mod_lote')
 export class Lote {
@@ -13,11 +13,11 @@ export class Lote {
   @Column({ type: 'varchar', length: 50, unique: true })
   lote: string;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  fecha_entrada: Date;
+  @Column({ type: 'bigint', nullable: false })
+  fecha_entrada: number;
 
-  @Column({ type: 'timestamp',nullable: false })
-  fecha_vencimiento: Date;
+  @Column({ type: 'bigint', nullable: true })
+  fecha_vencimiento: number;
 
   @Column({ type: 'int', nullable: false, default: 0 })
   cantidad_comprada;
@@ -34,8 +34,8 @@ export class Lote {
   @Column({ type: 'decimal', precision: 10, scale: 2, default: 0.00 })
   precio_venta_sugerido;
 
-  @Column({ type: 'enum', enum: EstadoProducto, default: EstadoProducto.DISPONIBLE })
-  estado: EstadoProducto;
+  @Column({ type: 'enum', enum: EstadoLote, default: EstadoLote.DISPONIBLE })
+  estado: EstadoLote;
 
   // Relation
   @ManyToOne(() => Producto, (producto) => producto.id, {

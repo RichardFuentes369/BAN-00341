@@ -24,6 +24,11 @@ import { CrearTipoMermaComponent } from './merma/admin/pages/tipo/components/cre
 import { ReporteUsuarioComponent } from './users/admin/components/reporte/reporte.component';
 import { CargarProductoComponent } from './catalog/admin/pages/productos/components/cargar-producto/cargar-producto.component';
 import { VerPermisosComponent } from './users/admin/pages/principal/components/ver-permisos/ver-permisos.component';
+import { CrearLoteComponent } from './lote/admin/pages/lote/components/crear-lote/crear-lote.component';
+import { EditarLoteComponent } from './lote/admin/pages/lote/components/editar-lote/editar-lote.component';
+import { FiltroLoteComponent } from './lote/admin/pages/lote/components/filtro/filtro.component';
+import { ReporteLoteComponent } from './lote/admin/pages/lote/components/reporte/reporte.component';
+import { VerLoteComponent } from './lote/admin/pages/lote/components/ver-lote/ver-lote.component';
 
 export class ListaComponentes {
 
@@ -142,6 +147,27 @@ export class ListaComponentes {
     {
       name: 'CrearTipoMermaComponent',
       componente: CrearTipoMermaComponent
+    },  
+    // modulo lote
+    {
+      name: 'CrearLoteComponent',
+      componente: CrearLoteComponent
+    },  
+    {
+      name: 'EditarLoteComponent',
+      componente: EditarLoteComponent
+    },  
+    {
+      name: 'FiltroLoteComponent',
+      componente: FiltroLoteComponent
+    },  
+    {
+      name: 'ReporteLoteComponent',
+      componente: ReporteLoteComponent
+    },  
+    {
+      name: 'VerLoteComponent',
+      componente: VerLoteComponent
     },  
   ];
 

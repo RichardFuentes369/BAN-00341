@@ -17,7 +17,7 @@ export const TITLE_PATH_ADMIN_PRODUCT = 'productos';
 export const BREADCRUMB_PATH_ADMIN_PRODUCT = 'mod-catalog.PAGE_PRODUCT_TITLE';
 
 export const PATH_ADMIN_LOTE = 'lote';
-export const TITLE_PATH_ADMIN_LOTE = 'lote';
+export const TITLE_PATH_ADMIN_LOTE = 'Lote';
 export const BREADCRUMB_PATH_ADMIN_LOTE = 'Lote';
 
 export const MOD_CATEGORY_PAGE_CATEGORY =  '/admin/mod/catalog/categorias/';

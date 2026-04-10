@@ -44,13 +44,11 @@
     @if (cargarIdioma) {
     <div class="table-container">
       <app-globales-tablecrud 
-        [campoFiltro]="showcampoFiltro" 
-        [endPoint]="endPoint" 
-        [columnas]="columnas"
+        [campoFiltro]="showcampoFiltro" [endPoint]="endPoint" [columnas]="columnas"
         [habilitarSeleccion]="habilitarSeleccion"
-        [permisosAcciones]="permisos" 
-        [filters]="filters" 
-        [title]="titlePage">
+        [permisosAcciones]="permisos" [filters]="filters" [title]="titlePage" 
+        (verItem)="verData($event)" (crearNuevoItem)="crearData($event)" 
+        (editarItem)="editarData($event)" (eliminarItem)="eliminarData($event)">
       </app-globales-tablecrud>
     </div>
     } @else {
@@ -59,9 +57,18 @@
     </div>
     }
   </div>
+  
+  <!-- Inició reporte permisos -->
+  @if(tienePermiso('descarga_reporte_trazabilidad')){
+  <div class="p-3 pt-0" style="position: relative;" >
+    @if (cargarIdioma) {
+      <app-reporte-trazabilidad></app-reporte-trazabilidad>
+    }
+  </div>
+  }
+  <!-- Fin reporte permisos -->
 
-  <app-globales-modal-boostrap 
-    [tamano]="tamano" [scrollable]="scrollable" [title]="title" [save]="save"
+  <app-globales-modal-boostrap [tamano]="tamano" [scrollable]="scrollable" [title]="title" [subtitle]="subtitle" [save]="save"
     [buttonSave]="buttonSave" [edit]="edit" [buttonEdit]="buttonEdit" [cancel]="cancel" [buttonCancel]="buttonCancel"
     [componentePrecargado]="componentePrecargado" [cierreModal]="cierreModal" (actualizarTabla)="refrescarTabla()">
   </app-globales-modal-boostrap>

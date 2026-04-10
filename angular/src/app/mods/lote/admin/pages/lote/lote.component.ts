@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CardComponent } from '@component/globales/card/card.component';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
@@ -10,7 +10,10 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { LoteService } from './service/lote.service';
 import { Subscription, timer } from 'rxjs';
-import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
+import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
+import { CREAR_LOTE_COMPONENT, EDITAR_LOTE_COMPONENT, FILTRO_LOTE_COMPONENT, VER_LOTE_COMPONENT } from '@mod/lote/const/lote.const';
+import Swal from 'sweetalert2';
+import { ReporteTrazabilidadComponent } from './components/reporte-trazabilidad/reporte-trazabilidad.component';
 
 @Component({
   selector: 'app-lote-lote',
@@ -21,7 +24,8 @@ import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH } from '@const/a
     LoadingComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
-    CardComponent
+    CardComponent,
+    ReporteTrazabilidadComponent
   ],
   templateUrl: './lote.component.html',
   styleUrl: './lote.component.scss',
@@ -31,6 +35,7 @@ export class LoteComponent implements OnInit, OnDestroy{
   // construcator
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private userService :AuthService,
     private permisosService :PermisosService,
     private loteService :LoteService,
@@ -44,12 +49,13 @@ export class LoteComponent implements OnInit, OnDestroy{
   search = true
   buttonSearch = this.translate.instant('mod-lote.BUTTON_SEARCH')
   iconFilter="fa fa-filter"
-  componenteFilter=''
+  componenteFilter=FILTRO_LOTE_COMPONENT
   // fin datos envio al filtro
 
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = 'batch/obtener-registro-lotes'
+  complementoEndPoint = ``
   habilitarSeleccion = true
   filters = ''
   columnas: any[] = [
@@ -65,12 +71,12 @@ export class LoteComponent implements OnInit, OnDestroy{
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-lote.COLUMN_BATCH'),
+      title: this.translate.instant('mod-lote.COLUMN_PRODUCT'),
       data: 'id_producto.nombre',
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-lote.COLUMN_BATCH'),
+      title: this.translate.instant('mod-lote.COLUMN_SUPPLIER'),
       data: 'id_proveedor.razon_social',
       className: 'text-center'
     },
@@ -87,11 +93,13 @@ export class LoteComponent implements OnInit, OnDestroy{
     {
       title: this.translate.instant('mod-lote.COLUMN_UNIT_COST'),
       data: 'costo_unitario',
+      visible: false,
       className: 'text-center'
     },
     {
       title: this.translate.instant('mod-lote.COLUMN_SUGGESTED_RETAIL_PRICE'),
       data: 'precio_venta_sugerido',
+      visible: false,
       className: 'text-center'
     },
     {
@@ -107,6 +115,7 @@ export class LoteComponent implements OnInit, OnDestroy{
     {
       title: this.translate.instant('mod-lote.COLUMN_SUGGESTED_RETAIL_PRICE'),
       data: 'precio_venta_sugerido',
+      visible: false,
       className: 'text-center'
     },
     {
@@ -122,6 +131,7 @@ export class LoteComponent implements OnInit, OnDestroy{
   tamano = ""
   scrollable = false
   title = ""
+  subtitle = ""
   save = true
   buttonSave = this.translate.instant('mod-lote.BUTTON_SAVE_')
   edit = true
@@ -165,7 +175,8 @@ export class LoteComponent implements OnInit, OnDestroy{
     }
 
     const permisos = await this.permisosService.permisos(userData.data.id,'lote')
-    this.permisos = permisos.data
+    this.permisos = permisos.data;
+    this.permisosAcciones = this.permisos;
     // sessionStorage.removeItem('nit')
     // sessionStorage.removeItem('razon_social')
     // sessionStorage.removeItem('correo')
@@ -189,7 +200,6 @@ export class LoteComponent implements OnInit, OnDestroy{
     }
   }
 
-  // metodos Componente
   listar(){
     this.columnas = [
       {
@@ -204,12 +214,12 @@ export class LoteComponent implements OnInit, OnDestroy{
         className: 'text-center'
       },
       {
-        title: this.translate.instant('mod-lote.COLUMN_BATCH'),
+        title: this.translate.instant('mod-lote.COLUMN_PRODUCT'),
         data: 'id_producto.nombre',
         className: 'text-center'
       },
       {
-        title: this.translate.instant('mod-lote.COLUMN_BATCH'),
+        title: this.translate.instant('mod-lote.COLUMN_SUPPLIER'),
         data: 'id_proveedor.razon_social',
         className: 'text-center'
       },
@@ -226,11 +236,13 @@ export class LoteComponent implements OnInit, OnDestroy{
       {
         title: this.translate.instant('mod-lote.COLUMN_UNIT_COST'),
         data: 'costo_unitario',
+        visible: false,
         className: 'text-center'
       },
       {
         title: this.translate.instant('mod-lote.COLUMN_SUGGESTED_RETAIL_PRICE'),
         data: 'precio_venta_sugerido',
+        visible: false,
         className: 'text-center'
       },
       {
@@ -246,6 +258,7 @@ export class LoteComponent implements OnInit, OnDestroy{
       {
         title: this.translate.instant('mod-lote.COLUMN_SUGGESTED_RETAIL_PRICE'),
         data: 'precio_venta_sugerido',
+        visible: false,
         className: 'text-center'
       },
       {
@@ -256,14 +269,122 @@ export class LoteComponent implements OnInit, OnDestroy{
     ];  
   }
 
+  // metodos Componente
   cambiarTextos(){
     this.titlePage = this.translate.instant('mod-lote.TABLE_TITLE')
     this.titleTotalLot = this.translate.instant('mod-lote.CARD_TOTAL_LOT_TITLE')
   }
 
+  tienePermiso(nombre: string): boolean {
+    return this.permisosAcciones?.some((permiso) => permiso.permiso_permiso === nombre);
+  }
+
+
+  crearData (_id: string){
+    this.tamano = "xl"
+    this.scrollable = true
+    this.title = this.translate.instant('mod-lote.CREATE_TITLE')
+    this.subtitle = this.translate.instant('mod-lote.CREATE_SUBTITLE')
+    this.save = true
+    this.buttonSave = this.translate.instant('mod-lote.BUTTON_SAVE_')
+    this.edit = false
+    this.buttonEdit = this.translate.instant('mod-lote.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-lote.BUTTON_CANCEL')
+    this.cierreModal = "true"
+    this.componentePrecargado = CREAR_LOTE_COMPONENT
+
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if(idButton){
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
+  }
+
+  async verData (_id: string){
+    this.title = this.translate.instant('mod-lote.SEE_TITLE')
+    const response = await this.loteService.getDataLote(_id)
+    const { lote } = response.data || { nombre: 'xxxxxxx' }
+    this.translate.get('mod-lote.SEE_SUBTITLE', { "batch_code": lote }).subscribe((res: string) => {this.subtitle = res});
+    this.tamano = "xl"
+    this.scrollable = true
+    this.save = false
+    this.buttonSave = this.translate.instant('mod-lote.BUTTON_SAVE_')
+    this.edit = false
+    this.buttonEdit = this.translate.instant('mod-lote.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-lote.BUTTON_CANCEL')
+    this.cierreModal = "true"
+    this.componentePrecargado = VER_LOTE_COMPONENT
+
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if(idButton){
+      this.router.navigate([], {
+        queryParams: { id_lote: _id },
+      });
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
+  }
+
+  async editarData (_id: string){
+    this.title = this.translate.instant('mod-lote.EDIT_TITLE')
+    const response = await this.loteService.getDataLote(_id)
+    const { lote } = response.data || { nombre: 'xxxxxxx' }
+    this.translate.get('mod-lote.EDIT_SUBTITLE', { "batch_code": lote }).subscribe((res: string) => {this.subtitle = res});
+    this.tamano = "xl"
+    this.scrollable = true
+    this.save = false
+    this.buttonSave = this.translate.instant('mod-lote.BUTTON_SAVE_')
+    this.edit = true
+    this.buttonEdit = this.translate.instant('mod-lote.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-lote.BUTTON_CANCEL')
+    this.componentePrecargado = EDITAR_LOTE_COMPONENT
+
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if(idButton){
+      this.router.navigate([], {
+        queryParams: { id_lote: _id },
+      });
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
+  }
+
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
-  
+  async eliminarData (_id: string[]){
+    // const response = await this.productosService.getDataProduct(_id[0])
+    // const { nombre } = response.data || { nombre: 'xxxxxxx' }
+    // const name_user = (_id.length === 1) ? nombre: "("+_id.length+")"
+    const count_users = (_id.length === 1) ? 'el' : 'los'
+    const plural = (_id.length === 1) ? '' : 's'
+    
+    this.translate.get('mod-lote.PRODUCT.SWAL_ARE_YOU_SURE_DELETE',{ "art_the": count_users, "plural": plural, "product_name": ""}).subscribe((translatedTitle: string) => {
+      Swal.fire({
+        // title: translatedTitle,
+        text: this.translate.instant('mod-lote.SWAL_WARNING_REVERSE_CHANGE'),
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: this.translate.instant('mod-lote.SWAL_BUTTON_DELETE'),
+        cancelButtonText: this.translate.instant('mod-lote.SWAL_BUTTON_CANCEL')
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          if (result.isConfirmed) {
+            // await this.productosService.deleteProduct(_id)
+            await this.someInput.reload()
+            Swal.fire({
+              title: this.translate.instant('mod-lote.PRODUCT.SWAL_DELETED'),
+              text: this.translate.instant('mod-lote.SWAL_DELETED_RECORD'),
+              icon: "success"
+            });
+          }
+        }
+      });
+    });
+  }
+
   async filtroData(){
     let filtros = await $('.complementoRuta').val();
     this.router.navigate([], { queryParams: { search: (filtros) ? filtros : null }, });

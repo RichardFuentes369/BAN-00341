@@ -1,0 +1,96 @@
+<div class="">
+  @for (item of lote; track item; let  i = $index) {
+  <div class="col-xl-12 col-sm-12 row">
+    <div class="col-xl col-sm-12">
+      <div class="col-sm-12 row p-0">
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_LOTE' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.lote}}">
+          <!-- @if(validators.nombre) {
+            <span class="text-danger small">{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}</span>
+          } -->
+        </div>        
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_FECHA_ENTRADA' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.fecha_entrada}}">
+          <!-- @if(validators.nombre) {
+            <span class="text-danger small">{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}</span>
+          } -->
+        </div>        
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_FECHA_VENCIMIENTO' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.fecha_vencimiento}}">
+          <!-- @if(validators.nombre) {
+            <span class="text-danger small">{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}</span>
+          } -->
+        </div>        
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_CANTIDAD_COMPRADA' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.cantidad_comprada}}">
+          <!-- @if(validators.nombre) {
+            <span class="text-danger small">{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}</span>
+          } -->
+        </div>       
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_CANTIDAD_VENDIDA' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.cantidad_vendida}}">
+          <!-- @if(validators.nombre) {
+            <span class="text-danger small">{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}</span>
+          } -->
+        </div>        
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_STOCK' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.stock}}">
+          <!-- @if(validators.nombre) {
+            <span class="text-danger small">{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}</span>
+          } -->
+        </div>        
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_COSTO_UNITARIO' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.costo_unitario}}">
+          <!-- @if(validators.nombre) {
+            <span class="text-danger small">{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}</span>
+          } -->
+        </div>        
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_PRECIO_VENTA_SUGERIDO' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.precio_venta_sugerido}}">
+          <!-- @if(validators.nombre) {
+            <span class="text-danger small">{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}</span>
+          } -->
+        </div>        
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-lote.LABEL_ESTADO' | translate}}
+          </label>
+          <select name="" id="" class="form-control" [(ngModel)]="model.estado" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.estado" >
+            <option value="">{{ 'mod-lote.SELECT_SELECT_OPTION' | translate}}</option>
+            <option value="disponible">{{ 'mod-lote.SELECT_AVAILABLE_OPTION' | translate}}</option>
+            <option value="vencido">{{ 'mod-lote.SELECT_UNAVAILABLE_OPTION' | translate}}</option>
+            <option value="agotado">{{ 'mod-lote.SELECT_EXPIRED_OPTION' | translate}}</option>
+          </select>
+          <!-- @if(validators.nombre) {
+            <span class="text-danger small">{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}</span>
+          } -->
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>

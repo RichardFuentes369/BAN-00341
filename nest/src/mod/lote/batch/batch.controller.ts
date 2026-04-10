@@ -35,4 +35,14 @@ export class BatchController {
     );
   }
 
+  @UseGuards(AdminGuard)
+  @Post('crear-lote')
+  create(
+    @Query('lang') lang: string,
+    @Body() batchData: CreateBatchDto,
+    @GetUser('id') userId: number
+  ) {
+    return this.batchService.create(lang, batchData, userId);
+  }
+
 }
