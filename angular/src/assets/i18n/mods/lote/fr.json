@@ -48,5 +48,15 @@
 	"SELECT_UNAVAILABLE_OPTION": "Expiré", 
 	"SELECT_EXPIRED_OPTION": "Épuisé",
 
+	"PLACEHOLDER_LOTE": "Entrer le numéro de lot",
+	"PLACEHOLDER_FECHA_ENTRADA": "Choisir la date d'entrée",
+	"PLACEHOLDER_FECHA_VENCIMIENTO": "Choisir la date d'expiration",
+	"PLACEHOLDER_CANTIDAD_COMPRADA": "Entrer la quantité achetée",
+	"PLACEHOLDER_CANTIDAD_VENDIDA": "Entrer la quantité vendue",
+	"PLACEHOLDER_STOCK": "Entrer la quantité en stock",
+	"PLACEHOLDER_COSTO_UNITARIO": "Entrer le coût unitaire",
+	"PLACEHOLDER_PRECIO_VENTA_SUGERIDO": "Entrer le prix de vente suggéré",
+	"PLACEHOLDER_ESTADO": "Choisir l'état",
+
 	"CARD_TOTAL_REGISTER_TITLE": "Total des enregistrements"
 }

@@ -48,5 +48,15 @@
   "SELECT_UNAVAILABLE_OPTION": "Abgelaufen", 
   "SELECT_EXPIRED_OPTION": "Ausverkauft",
 
+  "PLACEHOLDER_LOTE": "Chargennummer eingeben",
+  "PLACEHOLDER_FECHA_ENTRADA": "Eingangsdatum wählen",
+  "PLACEHOLDER_FECHA_VENCIMIENTO": "Ablaufdatum wählen",
+  "PLACEHOLDER_CANTIDAD_COMPRADA": "Einkaufsmenge eingeben",
+  "PLACEHOLDER_CANTIDAD_VENDIDA": "Verkaufsmenge eingeben",
+  "PLACEHOLDER_STOCK": "Lagerbestand eingeben",
+  "PLACEHOLDER_COSTO_UNITARIO": "Stückkosten eingeben",
+  "PLACEHOLDER_PRECIO_VENTA_SUGERIDO": "Verkaufspreis eingeben",
+  "PLACEHOLDER_ESTADO": "Status wählen",
+
   "CARD_TOTAL_REGISTER_TITLE": "Gesamtregister"
 }

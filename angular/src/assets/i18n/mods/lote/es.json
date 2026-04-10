@@ -48,5 +48,15 @@
   "SELECT_UNAVAILABLE_OPTION": "Vencido", 
   "SELECT_EXPIRED_OPTION": "Agotado",
 
+  "PLACEHOLDER_LOTE": "Ingrese el número de lote",
+  "PLACEHOLDER_FECHA_ENTRADA": "Seleccione la fecha de entrada",
+  "PLACEHOLDER_FECHA_VENCIMIENTO": "Seleccione la fecha de vencimiento",
+  "PLACEHOLDER_CANTIDAD_COMPRADA": "Ingrese la cantidad comprada",
+  "PLACEHOLDER_CANTIDAD_VENDIDA": "Ingrese la cantidad vendida",
+  "PLACEHOLDER_STOCK": "Ingrese la cantidad en stock",
+  "PLACEHOLDER_COSTO_UNITARIO": "Ingrese el costo unitario",
+  "PLACEHOLDER_PRECIO_VENTA_SUGERIDO": "Ingrese el precio de venta sugerido",
+  "PLACEHOLDER_ESTADO": "Seleccione el estado",
+
   "CARD_TOTAL_LOT_TITLE": "Total registros"
 }
