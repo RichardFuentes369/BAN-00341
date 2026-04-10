@@ -14,381 +14,127 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping data for table core_project_BAN_00341.mod_catalogo_categorias: ~11 rows (approximately)
-INSERT INTO `mod_catalogo_categorias` (`id`, `nombre`, `descripcion`) VALUES
-	(1, 'Lácteos', 'Productos derivados de la leche y refrigerados'),
-	(2, 'Cárnicos', 'Carnes frías, embutidos y carnes rojas'),
-	(3, 'Bebidas', 'Jugos, gaseosas, aguas y licores'),
-	(4, 'Panadería', 'Panes frescos, galletas y repostería'),
-	(5, 'Aseo Hogar', 'Productos de limpieza y desinfección'),
-	(6, 'Granos', 'Arroz, lentejas, frijoles y cereales'),
-	(7, 'Snacks', 'Papas fritas, dulces y pasabocas'),
-	(8, 'Frutas y Verduras', 'Productos frescos del campo'),
-	(9, 'Enlatados', 'Conservas, atún y verduras enlatadas'),
-	(10, ' Cuidado Personal', 'Jabones, champú y cremas dentales');
 
--- Dumping data for table core_project_BAN_00341.mod_catalogo_productos: ~277 rows (approximately)
+-- Dumping database structure for core_project_BAN_00341
+CREATE DATABASE IF NOT EXISTS `core_project_BAN_00341` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `core_project_BAN_00341`;
+
+-- Dumping structure for table core_project_BAN_00341.mod_catalogo_categorias
+CREATE TABLE IF NOT EXISTS `mod_catalogo_categorias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_1fd4865dcbc2b7722b210d9a08` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table core_project_BAN_00341.mod_catalogo_categorias: ~9 rows (approximately)
+INSERT INTO `mod_catalogo_categorias` (`id`, `nombre`, `descripcion`) VALUES
+	(2, 'Cárnicos', 'Carnes frías, embutidos y carnes rojas'),
+	(66, 'blaSD', 'bla'),
+	(67, 'ble', 'ble'),
+	(68, 'bli', 'bli'),
+	(69, 'blo', 'blo'),
+	(70, 'll', 'll'),
+	(71, 'lolo', 'lolo'),
+	(72, 'uiu', 'iuiu'),
+	(73, 'sds', 'sdsd');
+
+-- Dumping structure for table core_project_BAN_00341.mod_catalogo_productos
+CREATE TABLE IF NOT EXISTS `mod_catalogo_productos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `codigo_barra` varchar(50) NOT NULL,
+  `nombre` varchar(150) NOT NULL,
+  `stock_minimo` int(11) NOT NULL,
+  `unidad_medida` enum('unidad','kg','litro','paquete') NOT NULL DEFAULT 'kg',
+  `id_categoria` int(11) NOT NULL,
+  `marca` varchar(150) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_58c1252afc49ad323e7c5a3c0a` (`codigo_barra`),
+  KEY `FK_e442e00427c9f85b6c8767ef9be` (`id_categoria`),
+  CONSTRAINT `FK_e442e00427c9f85b6c8767ef9be` FOREIGN KEY (`id_categoria`) REFERENCES `mod_catalogo_categorias` (`id`) ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=7441 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table core_project_BAN_00341.mod_catalogo_productos: ~4 rows (approximately)
 INSERT INTO `mod_catalogo_productos` (`id`, `codigo_barra`, `nombre`, `stock_minimo`, `unidad_medida`, `id_categoria`, `marca`) VALUES
 	(4049, '7701234568017', 'Jamón de Cerdo Tradicional', 20, 'paquete', 2, 'Zenu'),
-	(4050, '7701234568024', 'Salchicha Ranchera x12', 25, 'paquete', 2, 'Ranchera'),
-	(4051, '7701234568031', 'Chorizo Santarrosano', 15, 'paquete', 2, 'Santa Rosano'),
-	(4052, '7701234568048', 'Lomo de Res (Baby Beef)', 10, 'kg', 2, 'Carnes Prime'),
-	(4053, '7701234568055', 'Salchichón Cervecero', 12, 'unidad', 2, 'Pietrán'),
-	(4054, '7701234568062', 'Mortadela Especial', 20, 'paquete', 2, 'Rica'),
-	(4055, '7701234568079', 'Carne Molida de Res (90/10)', 15, 'kg', 2, 'Carnes de la Finca'),
-	(4056, '7701234568086', 'Tocineta Ahumada Lonjas', 30, 'paquete', 2, 'Zenu'),
-	(4057, '7701234568093', 'Costilla de Cerdo BBQ', 12, 'kg', 2, 'Porky'),
 	(4058, '7701234568109', 'Jamón de Pavo Desgrasado', 15, 'paquete', 2, 'Pietrán'),
-	(4059, '7701234568116', 'Salami tipo Italiano', 10, 'paquete', 2, 'Vilaseca'),
-	(4060, '7701234568123', 'Cabano Tradicional', 50, 'unidad', 2, 'Zenu'),
 	(4061, '7701234568130', 'Muchacho de Res', 8, 'kg', 2, 'Carnes Bog'),
-	(4062, '7701234568147', 'Bondiola de Cerdo', 7, 'kg', 2, 'Mr. Pork'),
-	(4063, '7701234568154', 'Pastrami de Ternera', 5, 'paquete', 2, 'Delicatessen'),
-	(4064, '7701234568161', 'Jamón Serrano Reserva', 10, 'paquete', 2, 'Noel'),
-	(4065, '7701234568178', 'Pechuga de Pollo Entera', 20, 'kg', 2, 'Pollos Fiesta'),
-	(4066, '7701234568185', 'Churrasco de Res Mariposa', 12, 'kg', 2, 'Angus Gold'),
-	(4067, '7701234568192', 'Punta de Anca Selección', 10, 'kg', 2, 'Carnes Elite'),
-	(4068, '7701234568208', 'Salchicha Suiza Ahumada', 15, 'paquete', 2, 'Setas'),
-	(4069, '7701234568215', 'Longaniza Premium', 10, 'kg', 2, 'El Embutido'),
-	(4070, '7701234568222', 'Morcilla con Arroz y Poleo', 15, 'paquete', 2, 'Tradición'),
-	(4071, '7701234568239', 'Roast Beef Horneado', 8, 'paquete', 2, 'Gourmet'),
-	(4072, '7701234568246', 'Carne Hamburguesa x4', 40, 'paquete', 2, 'Presto'),
-	(4073, '7701234568253', 'Sobrebarriga Gruesa', 10, 'kg', 2, 'Ganadería Real'),
-	(4074, '7701234568260', 'Costillitas de Cerdo Baby', 15, 'kg', 2, 'BBQ Master'),
-	(4075, '7701234568277', 'Jamón de Pierna x500g', 20, 'paquete', 2, 'Koller'),
-	(4076, '7701234568284', 'Pepperoni en Rodajas', 15, 'paquete', 2, 'Pizza Topping'),
-	(4077, '7701234568291', 'Chicharrón de Cerdo', 12, 'paquete', 2, 'Doña Maruja'),
-	(4078, '7701234568307', 'Entrecot de Res Premium', 8, 'kg', 2, 'Corte Argentino'),
-	(4079, '7701234568314', 'Solomito de Cerdo', 10, 'kg', 2, 'Pork Colombia'),
-	(4080, '7701234568321', 'Butifarra de la Costa', 20, 'paquete', 2, 'La Especial'),
-	(4081, '7701234568338', 'Jamonada de Pollo', 15, 'paquete', 2, 'Pietrán'),
-	(4082, '7701234568345', 'Pulpa de Cerdo en Trozos', 15, 'kg', 2, 'Carne Express'),
-	(4083, '7701234568352', 'Lomo Ancho de Res', 10, 'kg', 2, 'Prime Beef'),
-	(4084, '7701234568369', 'Salchicha Viena Mini', 20, 'unidad', 2, 'Zenu'),
-	(4085, '7701234568376', 'Carne de Búfalo Magra', 5, 'kg', 2, 'Búfalo Real'),
-	(4086, '7701234568383', 'Prosciutto Crudo Italiano', 5, 'paquete', 2, 'Negroni'),
-	(4087, '7701234568390', 'Albóndigas de Res Precocidas', 15, 'paquete', 2, 'Rica'),
-	(4088, '7701234568406', 'Matambre de Res', 6, 'kg', 2, 'Parrilla Sur'),
-	(4089, '7701234568413', 'Mortadela con Pistacho', 10, 'paquete', 2, 'Premium Deli'),
-	(4090, '7701234568420', 'Tocino Barriguero', 15, 'kg', 2, 'Cerdo Paisa'),
-	(4091, '7701234568437', 'Salchicha Manguera Granel', 10, 'kg', 2, 'Popular'),
-	(4092, '7701234568444', 'Carne para Brochetas', 12, 'kg', 2, 'Grill Mix'),
-	(4093, '7701234568451', 'Chorizo con Ternera', 15, 'paquete', 2, 'Santa Cruz'),
-	(4094, '7701234568468', 'Sangre Liquida para Morcilla', 5, 'litro', 2, 'Matadero Central'),
-	(4095, '7701234568475', 'Codillo de Cerdo Curado', 8, 'unidad', 2, 'EuroMeat'),
-	(4096, '7701234568482', 'Lengua de Res Fresca', 5, 'kg', 2, 'Carnes Selectas'),
-	(4097, '7701234568499', 'Bresaola Tajada', 6, 'paquete', 2, 'Artisan'),
-	(4098, '7701234568505', 'Milanesa de Cerdo', 12, 'paquete', 2, 'Swift'),
-	(4099, '7702123456012', 'Agua Mineral sin Gas 600ml', 50, 'unidad', 3, 'Cristal'),
-	(4100, '7702123456029', 'Agua con Gas 1.5L', 30, 'unidad', 3, 'Manantial'),
-	(4101, '7702123456036', 'Jugo de Naranja 100% Natural', 20, 'litro', 3, 'Cosecha Pura'),
-	(4102, '7702123456043', 'Bebida Energizante 250ml', 48, 'unidad', 3, 'Red Bull'),
-	(4103, '7702123456050', 'Whisky Escocés 12 Años 750ml', 10, 'unidad', 3, 'Old Parr'),
-	(4104, '7702123456067', 'Cerveza Lager Six-Pack', 25, 'paquete', 3, 'Aguila'),
-	(4105, '7702123456074', 'Jugo de Mora en Caja', 15, 'litro', 3, 'Hit'),
-	(4106, '7702123456081', 'Agua Purificada Bidón 20L', 10, 'unidad', 3, 'Brisa'),
-	(4107, '7702123456098', 'Energizante Monster Green', 24, 'unidad', 3, 'Monster'),
-	(4108, '7702123456104', 'Aguardiente Antioqueño Sin Azúcar', 15, 'litro', 3, 'FLA'),
-	(4109, '7702123456111', 'Vino Tinto Cabernet Sauvignon', 12, 'unidad', 3, 'Gato Negro'),
-	(4110, '7702123456128', 'Jugo de Manzana Light', 20, 'litro', 3, 'Country Hill'),
-	(4111, '7702123456135', 'Agua Saborizada Limón 500ml', 30, 'unidad', 3, 'H2Oh!'),
-	(4112, '7702123456142', 'Bebida Hidratante Blue', 24, 'unidad', 3, 'Gatorade'),
-	(4113, '7702123456159', 'Ron Añejo 8 Años', 8, 'unidad', 3, 'La Hechicera'),
-	(4114, '7702123456166', 'Tequila Reposado 700ml', 6, 'unidad', 3, 'José Cuervo'),
-	(4115, '7702123456173', 'Jugo de Mango Frasco', 20, 'unidad', 3, 'California'),
-	(4116, '7702123456180', 'Agua de Coco Orgánica', 15, 'unidad', 3, 'GoCoCo'),
-	(4117, '7702123456197', 'Energizante Vive 100', 40, 'unidad', 3, 'Quala'),
-	(4118, '7702123456203', 'Vodka Triple Destilado', 10, 'unidad', 3, 'Absolut'),
-	(4119, '7702123456210', 'Ginebra London Dry', 5, 'unidad', 3, 'Tanqueray'),
-	(4120, '7702123456227', 'Jugo de Piña Tropical', 15, 'litro', 3, 'Del Valle'),
-	(4121, '7702123456234', 'Pack Agua Mineral x12', 15, 'paquete', 3, 'Evian'),
-	(4122, '7702123456241', 'Bebida Energizante Sugar Free', 20, 'unidad', 3, 'V Max'),
-	(4123, '7702123456258', 'Mezcal Artesanal', 4, 'unidad', 3, '400 Conejos'),
-	(4124, '7702123456265', 'Vino Blanco Chardonnay', 12, 'unidad', 3, 'Casillero del Diablo'),
-	(4125, '7702123456272', 'Jugo de Guayaba Casero', 18, 'litro', 3, 'Frutto'),
-	(4126, '7702123456289', 'Agua Tónica Botella', 24, 'unidad', 3, 'Schweppes'),
-	(4127, '7702123456296', 'Té Helado de Limón', 20, 'litro', 3, 'Lipton'),
-	(4128, '7702123456302', 'Brandy Solera', 8, 'unidad', 3, 'Domecq'),
-	(4129, '7702123456319', 'Cerveza Artesanal IPA', 30, 'unidad', 3, 'BBC'),
-	(4130, '7702123456326', 'Néctar de Pera en Caja', 15, 'litro', 3, 'Jumex'),
-	(4131, '7702123456333', 'Pack Jugos Surtidos x6', 12, 'paquete', 3, 'Tampico'),
-	(4132, '7702123456340', 'Agua Alcalina PH9', 15, 'unidad', 3, 'Essentia'),
-	(4133, '7702123456357', 'Energizante Taurina + Cafeína', 24, 'unidad', 3, 'Peak'),
-	(4134, '7702123456364', 'Crema de Whisky', 10, 'unidad', 3, 'Baileys'),
-	(4135, '7702123456371', 'Champaña Brut', 6, 'unidad', 3, 'Moët & Chandon'),
-	(4136, '7702123456388', 'Jugo de Arándanos (Cranberry)', 10, 'litro', 3, 'Ocean Spray'),
-	(4137, '7702123456395', 'Agua con Gas Limón Lata', 36, 'unidad', 3, 'Perrier'),
-	(4138, '7702123456401', 'Bebida de Aloe Vera', 15, 'unidad', 3, 'OKF'),
-	(4139, '7702123456418', 'Ron Blanco para Coctel', 12, 'unidad', 3, 'Bacardí'),
-	(4140, '7702123456425', 'Pisco Especial', 5, 'unidad', 3, 'Control C'),
-	(4141, '7702123456432', 'Jugo de Uva x1.5L', 12, 'litro', 3, 'Welch\'s'),
-	(4142, '7702123456449', 'Soda Michelada Pack', 10, 'paquete', 3, 'Bretaña'),
-	(4143, '7702123456456', 'Energizante Natural Guaraná', 20, 'unidad', 3, 'Volt'),
-	(4144, '7702123456463', 'Licor de Café', 8, 'unidad', 3, 'Kahlúa'),
-	(4145, '7702123456470', 'Vino Rosado Malbec', 10, 'unidad', 3, 'Santa Julia'),
-	(4146, '7702123456487', 'Jugo Verde Detox', 15, 'litro', 3, 'Natura'),
-	(4147, '7702123456494', 'Agua de Manantial con Gas', 25, 'unidad', 3, 'San Pellegrino'),
-	(4148, '7702123456500', 'Aperitivo Amargo', 12, 'unidad', 3, 'Campari'),
-	(4149, '7703123457018', 'Pan Tajado Blanco', 30, 'paquete', 4, 'Bimbo'),
-	(4150, '7703123457025', 'Pan Integral con Semillas', 25, 'paquete', 4, 'Comapan'),
-	(4151, '7703123457032', 'Pan de Bono Congelado', 15, 'paquete', 4, 'El Noble'),
-	(4152, '7703123457049', 'Baguette Tradicional', 20, 'unidad', 4, 'Pan Artesanal'),
-	(4153, '7703123457056', 'Pan para Hamburguesa x4', 40, 'paquete', 4, 'Bimbo'),
-	(4154, '7703123457063', 'Pan para Perro Caliente x6', 35, 'paquete', 4, 'Wonder'),
-	(4155, '7703123457070', 'Croissant de Mantequilla', 15, 'unidad', 4, 'Delipan'),
-	(4156, '7703123457087', 'Harina de Trigo Todo Uso', 12, 'kg', 4, 'Haz de Oros'),
-	(4157, '7703123457094', 'Galletas de Avena y Pasas', 20, 'paquete', 4, 'Tosh'),
-	(4158, '7703123457100', 'Tostadas de Pan Blanco', 25, 'paquete', 4, 'Susanita'),
-	(4159, '7703123457117', 'Pan de Molde Artesano', 15, 'paquete', 4, 'Bimbo'),
-	(4160, '7703123457124', 'Pan Arabe (Pita)', 12, 'paquete', 4, 'Libanés'),
-	(4161, '7703123457131', 'Ponqué Tradicional Vainilla', 10, 'unidad', 4, 'Ramo'),
-	(4162, '7703123457148', 'Rosquillas de Queso', 20, 'paquete', 4, 'La Calera'),
-	(4163, '7703123457155', 'Pan Blandito x10', 25, 'paquete', 4, 'Pan Familiar'),
-	(4164, '7703123457162', 'Mezcla para Pan de Yuca', 10, 'kg', 4, 'Maizena'),
-	(4165, '7703123457179', 'Mogolla Integral', 30, 'unidad', 4, 'Comapan'),
-	(4166, '7703123457186', 'Pan de Leche', 15, 'paquete', 4, 'Bimbo'),
-	(4167, '7703123457193', 'Masa para Pizza Precocida', 12, 'unidad', 4, 'JGB'),
-	(4168, '7703123457209', 'Muffins de Chocolate x4', 10, 'paquete', 4, 'Dulce Día'),
-	(4169, '7704123458014', 'Detergente Líquido Ropa Color', 15, 'litro', 5, 'Ariel'),
-	(4170, '7704123458021', 'Jabón Lavaloza de Limón', 20, 'unidad', 5, 'Axion'),
-	(4171, '7704123458038', 'Desinfectante Multiusos Lavanda', 12, 'litro', 5, 'Fabuloso'),
-	(4172, '7704123458045', 'Papel Higiénico x4 Rollos', 40, 'paquete', 5, 'Familia'),
-	(4173, '7704123458052', 'Cloro Blanqueador', 10, 'litro', 5, 'Clorox'),
-	(4174, '7704123458069', 'Suavizante de Telas Floral', 15, 'litro', 5, 'Suavitel'),
-	(4175, '7704123458076', 'Jabón de Baño en Barra', 50, 'unidad', 5, 'Protex'),
-	(4176, '7704123458083', 'Esponja para Loza x3', 25, 'paquete', 5, 'Scotch-Brite'),
-	(4177, '7704123458090', 'Limpiavidrios con Atomizador', 12, 'unidad', 5, 'Windex'),
-	(4178, '7704123458106', 'Toallas de Cocina Absorbentes', 20, 'paquete', 5, 'Scott'),
-	(4179, '7704123458113', 'Detergente en Polvo 1kg', 30, 'kg', 5, 'Fab'),
-	(4180, '7704123458120', 'Desengrasante de Cocina', 10, 'unidad', 5, 'Mr. Músculo'),
-	(4181, '7704123458137', 'Bolsas para Basura Grande x10', 15, 'paquete', 5, 'Extrapack'),
-	(4182, '7704123458144', 'Ambientador en Aerosol', 18, 'unidad', 5, 'Glade'),
-	(4183, '7704123458151', 'Crema Dental Triple Acción', 24, 'unidad', 5, 'Colgate'),
-	(4184, '7704123458168', 'Cepillo Dental Medio', 20, 'unidad', 5, 'Oral-B'),
-	(4185, '7704123458175', 'Jabón Líquido para Manos', 12, 'litro', 5, 'Savlon'),
-	(4186, '7704123458182', 'Limpiador de Baños Antisarro', 8, 'unidad', 5, 'Harpic'),
-	(4187, '7704123458199', 'Lustramuebles en Spray', 10, 'unidad', 5, 'Pledge'),
-	(4188, '7704123458205', 'Champú para Cabello Seco', 15, 'unidad', 5, 'Pantene'),
-	(4189, '7704123458212', 'Guantes de Goma para Aseo', 12, 'unidad', 5, 'Vileda'),
-	(4190, '7704123458229', 'Escoba Multiusos', 10, 'unidad', 5, 'Reynera'),
-	(4191, '7704123458236', 'Recogedor de Basura', 10, 'unidad', 5, 'Rimax'),
-	(4192, '7704123458243', 'Insecticida en Aerosol', 12, 'unidad', 5, 'Raid'),
-	(4193, '7704123458250', 'Alcohol Antiséptico 70%', 20, 'litro', 5, 'JGB'),
-	(4194, '7704123458267', 'Trapero de Algodón', 15, 'unidad', 5, 'El Galán'),
-	(4195, '7704123458274', 'Quitamanchas para Ropa Blanca', 10, 'litro', 5, 'Vanish'),
-	(4196, '7704123458281', 'Cera para Pisos Autobrillante', 8, 'litro', 5, 'Beisbol'),
-	(4197, '7704123458298', 'Paños Húmedos Desinfectantes', 20, 'paquete', 5, 'Lysol'),
-	(4198, '7704123458304', 'Jabón Rey Tradicional', 60, 'unidad', 5, 'Jabonería Central'),
-	(4199, '7705123459011', 'Arroz Blanco Premium', 100, 'kg', 6, 'Diana'),
-	(4200, '7705123459028', 'Lenteja Amarilla', 50, 'kg', 6, 'Aburrá'),
-	(4201, '7705123459035', 'Frijol Cargamanto Rojo', 40, 'kg', 6, 'El Castillo'),
-	(4202, '7705123459042', 'Aceite Vegetal de Girasol', 24, 'litro', 6, 'Gourmet'),
-	(4203, '7705123459059', 'Azúcar Blanca Refinada', 60, 'kg', 6, 'Incauca'),
-	(4204, '7705123459066', 'Sal Refinada Yodada', 30, 'kg', 6, 'Refisal'),
-	(4205, '7705123459073', 'Pasta Tipo Espagueti', 40, 'paquete', 6, 'Doria'),
-	(4206, '7705123459080', 'Café Tostado y Molido', 25, 'paquete', 6, 'Sello Rojo'),
-	(4207, '7705123459097', 'Harina de Maíz Precortada', 50, 'kg', 6, 'P.A.N.'),
-	(4208, '7705123459103', 'Garbanzo Importado', 30, 'kg', 6, 'Nutresa'),
-	(4209, '7705123459110', 'Arveja Verde Seca', 25, 'kg', 6, 'Aburrá'),
-	(4210, '7705123459127', 'Chocolate de Mesa en Pastillas', 20, 'paquete', 6, 'Corona'),
-	(4211, '7705123459134', 'Atún en Lata en Aceite', 48, 'unidad', 6, 'Van Camp\'s'),
-	(4212, '7705123459141', 'Panela Cuadrada', 30, 'unidad', 6, 'La Palestina'),
-	(4213, '7705123459158', 'Salsa de Tomate Doypack', 20, 'unidad', 6, 'Fruco'),
-	(4214, '7705123459165', 'Mayonesa Clásica', 15, 'unidad', 6, 'Hellmann\'s'),
-	(4215, '7705123459172', 'Avena en Hojuelas', 20, 'paquete', 6, 'Quaker'),
-	(4216, '7705123459189', 'Pasta Tipo Macarrón', 30, 'paquete', 6, 'La Muñeca'),
-	(4217, '7705123459196', 'Leche en Polvo Entera', 25, 'paquete', 6, 'Colanta'),
-	(4218, '7705123459202', 'Vinagre Blanco de Manzana', 10, 'litro', 6, 'JGB'),
-	(4219, '7705123459219', 'Maíz Pira (Cotufas)', 15, 'kg', 6, 'Act II'),
-	(4220, '7705123459226', 'Cubos de Caldo de Gallina', 50, 'paquete', 6, 'Maggi'),
-	(4221, '7705123459233', 'Pasta de Tornillos', 25, 'paquete', 6, 'Conzazoni'),
-	(4222, '7705123459240', 'Sardinas en Salsa de Tomate', 24, 'unidad', 6, 'Isabel'),
-	(4223, '7705123459257', 'Miel de Abejas Natural', 10, 'unidad', 6, 'Apícola Real'),
-	(4224, '7705123459264', 'Gelatina Varios Sabores', 40, 'paquete', 6, 'Gel\'hada'),
-	(4225, '7705123459271', 'Salsa de Soya', 12, 'unidad', 6, 'San Jorge'),
-	(4226, '7705123459288', 'Harina de Trigo Fortificada', 30, 'kg', 6, 'Haz de Oros'),
-	(4227, '7705123459295', 'Almidón de Yuca', 15, 'kg', 6, 'El Rey'),
-	(4228, '7705123459301', 'Pasta de Ajo Natural', 15, 'unidad', 6, 'El Mago'),
-	(4229, '7706123460314', 'Jabón en Barra Original x3', 40, 'paquete', 10, 'Dove'),
-	(4230, '7706123460321', 'Desodorante Clinical Hombre', 15, 'unidad', 10, 'Rexona'),
-	(4231, '7706123460338', 'Crema Facial Antiarrugas', 10, 'unidad', 10, 'Pond\'s'),
-	(4232, '7706123460345', 'Champú Reconstrucción Completa', 25, 'unidad', 10, 'Dove'),
-	(4233, '7706123460352', 'Acondicionador Brillo Sedoso', 20, 'unidad', 10, 'Pantene'),
-	(4234, '7706123460369', 'Crema Dental Niños Fresa', 30, 'unidad', 10, 'Colgate'),
-	(4235, '7706123460376', 'Cepillo Dental Eléctrico', 5, 'unidad', 10, 'Oral-B'),
-	(4236, '7706123460383', 'Repuesto Máquina Afeitar x4', 20, 'paquete', 10, 'Gillette'),
-	(4237, '7706123460390', 'Toallas Higiénicas Nocturnas', 45, 'paquete', 10, 'Nosotras'),
-	(4238, '7706123460406', 'Enjuague Bucal Zero Alcohol', 12, 'litro', 10, 'Listerine'),
-	(4239, '7706123460413', 'Jabón Líquido Antibacterial', 20, 'litro', 10, 'Protex'),
-	(4240, '7706123460420', 'Loción Corporal Avena', 18, 'unidad', 10, 'St. Ives'),
-	(4241, '7706123460437', 'Gel de Baño Exfoliante', 15, 'unidad', 10, 'Palmolive'),
-	(4242, '7706123460444', 'Protector Solar Toque Seco', 12, 'unidad', 10, 'La Roche-Posay'),
-	(4243, '7706123460451', 'Talco Desodorante Pies', 25, 'unidad', 10, 'Yodora'),
-	(4244, '7706123460468', 'Toallitas Desmaquillantes', 30, 'paquete', 10, 'Neutrogena'),
-	(4245, '7706123460475', 'Champú Seco en Spray', 10, 'unidad', 10, 'Batiste'),
-	(4246, '7706123460482', 'Crema para Peinar Rizos', 20, 'unidad', 10, 'Skala'),
-	(4247, '7706123460499', 'Aceite Corporal para Bebé', 15, 'unidad', 10, 'Johnson\'s'),
-	(4248, '7706123460505', 'Crema Antipañalitis', 25, 'unidad', 10, 'Desitin'),
-	(4249, '7706123460512', 'Mascarilla Capilar Keratina', 15, 'unidad', 10, 'Schwarzkopf'),
-	(4250, '7706123460529', 'Agua Micelar Todo en 1', 20, 'unidad', 10, 'Garnier'),
-	(4251, '7706123460536', 'Desodorante en Barra Mujer', 30, 'unidad', 10, 'Lady Speed Stick'),
-	(4252, '7706123460543', 'Espuma de Afeitar Piel Sensible', 15, 'unidad', 10, 'Nivea'),
-	(4253, '7706123460550', 'Hilo Dental con Cera 100m', 40, 'unidad', 10, 'Colgate'),
-	(4254, '7706123460567', 'Gel Antibacterial 500ml', 50, 'unidad', 10, 'Tork'),
-	(4255, '7706123460574', 'Crema de Manos Anti-edad', 20, 'unidad', 10, 'Eucerin'),
-	(4256, '7706123460581', 'Tinte para Barba Castaño', 10, 'unidad', 10, 'Just For Men'),
-	(4257, '7706123460598', 'Fijador Extra Firme', 15, 'unidad', 10, 'Tresemmé'),
-	(4258, '7706123460604', 'Jabón de Glicerina Neutro', 30, 'unidad', 10, 'Pears'),
-	(4259, '7706123460611', 'Vaselina Pura 100g', 25, 'unidad', 10, 'Vaseline'),
-	(4260, '7706123460628', 'Algodón en Láminas', 20, 'paquete', 10, 'Sky'),
-	(4261, '7706123460635', 'Limpiador Facial Espumoso', 12, 'unidad', 10, 'CeraVe'),
-	(4262, '7706123460642', 'Bálsamo Labial Humectante', 50, 'unidad', 10, 'ChapStick'),
-	(4263, '7706123460659', 'Cortauñas de Acero', 15, 'unidad', 10, 'Trim'),
-	(4264, '7706123460666', 'Perfume Corporal Mist', 20, 'unidad', 10, 'Victoria\'s Secret'),
-	(4265, '7706123460673', 'Keratina Líquida Spray', 10, 'unidad', 10, 'Recamier'),
-	(4266, '7706123460680', 'Champú Matizante Canas', 8, 'unidad', 10, 'Naissant'),
-	(4267, '7706123460697', 'Crema Facial Hidratante Día', 15, 'unidad', 10, 'L\'Oréal'),
-	(4268, '7706123460703', 'Serum Vitamina C', 10, 'unidad', 10, 'Vichy'),
-	(4269, '7706123460710', 'Exfoliante de Pies', 12, 'unidad', 10, 'Dr. Scholl\'s'),
-	(4270, '7706123460727', 'Bandas para Puntos Negros', 25, 'paquete', 10, 'Bioré'),
-	(4271, '7706123460734', 'Gel para Cejas Transparente', 15, 'unidad', 10, 'Maybelline'),
-	(4272, '7706123460741', 'Champú Sin Sal', 20, 'litro', 10, 'OGX'),
-	(4273, '7706123460758', 'Acondicionador de Coco', 20, 'unidad', 10, 'Maui'),
-	(4274, '7706123460765', 'Desodorante Pies Spray', 30, 'unidad', 10, 'Funat'),
-	(4275, '7706123460772', 'Toallitas Húmedas Faciales', 40, 'paquete', 10, 'Pond\'s'),
-	(4276, '7706123460789', 'Crema para Afeitar Tubo', 15, 'unidad', 10, 'La Toja'),
-	(4277, '7706123460796', 'Jabón Líquido de Manos Eco', 10, 'litro', 10, 'Bio-Expert'),
-	(4278, '7706123460802', 'Pasta Dental Blanqueadora', 35, 'unidad', 10, 'Oral-B'),
-	(7330, '7702123451010', 'Arroz Blanco Premium 1kg', 50, 'kg', 1, 'Roa'),
-	(7331, '7702123451027', 'Frijol Cargamanto 500g', 30, 'paquete', 1, 'Diana'),
-	(7332, '7702123451034', 'Lenteja Nacional 500g', 25, 'paquete', 1, 'Aburrá'),
-	(7333, '7702123451041', 'Aceite de Girasol 1L', 20, 'litro', 1, 'Premier'),
-	(7334, '7701000004', 'Leche Entera Caja 1L', 24, 'litro', 1, 'Alquería'),
-	(7335, '7702123451065', 'Azúcar Blanca Especial 1kg', 35, 'kg', 1, 'Manuelita'),
-	(7336, '7702123451072', 'Pasta Spaguetti 500g', 45, 'paquete', 1, 'Doria'),
-	(7337, '7702123451089', 'Harina de Maíz Precocida', 50, 'kg', 1, 'P.A.N.'),
-	(7338, '7702123451096', 'Café Tostado y Molido 500g', 15, 'unidad', 1, 'Sello Rojo'),
-	(7339, '7702123451102', 'Chocolate en Pastilla x12', 20, 'paquete', 1, 'Corona'),
-	(7340, '7702123451119', 'Atún en Aceite 170g', 60, 'unidad', 1, 'Van Camp\'s'),
-	(7341, '7702123451126', 'Panela Redonda 1kg', 20, 'unidad', 1, ''),
-	(7342, '7701000001', 'Leche Entera 1L Bolsa', 50, 'litro', 1, 'Alpina'),
-	(7343, '7701000002', 'Leche Deslactosada 1L Bolsa', 45, 'litro', 1, 'Alpina'),
-	(7344, '7701000003', 'Leche Semidescremada 1L', 30, 'litro', 1, 'Alquería'),
-	(7345, '7701000005', 'Leche Deslactosada Caja 1L', 24, 'litro', 1, 'Colanta'),
-	(7346, '7701000006', 'Leche con Calcio 1L', 15, 'litro', 1, 'Parmalat'),
-	(7347, '7701000007', 'Leche en Polvo 400g', 20, 'paquete', 1, 'Nestlé'),
-	(7348, '7701000008', 'Leche en Polvo 900g', 10, 'paquete', 1, 'Klim'),
-	(7349, '7701000009', 'Leche Condensada 100g', 25, 'unidad', 1, 'Nestlé'),
-	(7350, '7701000010', 'Crema de Leche 200ml', 30, 'unidad', 1, 'Alquería'),
-	(7351, '7701000011', 'Crema de Leche 400ml', 15, 'unidad', 1, 'Colanta'),
-	(7352, '7701000012', 'Yogur Fresa Vaso 150g', 40, 'unidad', 1, 'Alpina'),
-	(7353, '7701000013', 'Yogur Melocotón Vaso 150g', 40, 'unidad', 1, 'Alpina'),
-	(7354, '7701000014', 'Yogur Mora Vaso 150g', 40, 'unidad', 1, 'Colanta'),
-	(7355, '7701000015', 'Yogur Griego Natural 150g', 20, 'unidad', 1, 'Zorba'),
-	(7356, '7701000016', 'Yogur Griego Arándanos 150g', 20, 'unidad', 1, 'Zorba'),
-	(7357, '7701000017', 'Yogur con Cereal 150g', 30, 'unidad', 1, 'Alpina'),
-	(7358, '7701000018', 'Yogur de Coco 1L', 12, 'litro', 1, 'Colanta'),
-	(7359, '7701000019', 'Kumis 1L', 10, 'litro', 1, 'Alpina'),
-	(7360, '7701000020', 'Kumis Vaso 200ml', 25, 'unidad', 1, 'Colanta'),
-	(7361, '7701000021', 'Avena Canela 250ml', 50, 'unidad', 1, 'Alpina'),
-	(7362, '7701000022', 'Avena Original 1L', 15, 'litro', 1, 'Alquería'),
-	(7363, '7701000023', 'Queso Campesino 500g', 12, 'unidad', 1, 'Colanta'),
-	(7364, '7701000024', 'Queso Doble Crema 400g', 15, 'unidad', 1, 'Alpina'),
-	(7365, '7701000025', 'Queso Mozzarella Tajado', 20, 'paquete', 1, 'Zenu'),
-	(7366, '7701000026', 'Queso Parmesano 100g', 10, 'paquete', 1, 'Kraft'),
-	(7367, '7701000027', 'Quesito Tradicional 250g', 25, 'unidad', 1, 'Colanta'),
-	(7368, '7701000028', 'Queso Crema 200g', 15, 'unidad', 1, 'Alpina'),
-	(7369, '7701000029', 'Mantequilla con Sal 250g', 20, 'unidad', 1, 'Flor de Altagracia'),
-	(7370, '7701000030', 'Mantequilla sin Sal 250g', 10, 'unidad', 1, 'Alpina'),
-	(7371, '7701000031', 'Suero Costeño 250g', 15, 'unidad', 1, 'Alquería'),
-	(7372, '7701000032', 'Arequipe 250g', 12, 'unidad', 1, 'Alpina'),
-	(7373, '7701000033', 'Arequipe 500g', 8, 'unidad', 1, 'Colanta'),
-	(7374, '7701000034', 'Gelatina con Leche', 30, 'unidad', 1, 'Alpina'),
-	(7375, '7701000035', 'Flan de Caramelo', 20, 'unidad', 1, 'Nestlé'),
-	(7376, '7701000036', 'Arroz con Leche 200g', 15, 'unidad', 1, 'Santa Clara'),
-	(7377, '7701000037', 'Bebida de Almendras 1L', 10, 'litro', 1, 'Silk'),
-	(7378, '7701000038', 'Bebida de Coco 1L', 10, 'litro', 1, 'Silk'),
-	(7379, '7701000039', 'Queso Ricotta 250g', 5, 'unidad', 1, 'Alpina'),
-	(7380, '7701000040', 'Queso Pera Unidad', 30, 'unidad', 1, 'Del Vecchio'),
-	(7381, '7701000041', 'Leche Chocolatada 200ml', 40, 'unidad', 1, 'Cacaíto'),
-	(7382, '7701000042', 'Leche Chocolatada 1L', 15, 'litro', 1, 'Alquería'),
-	(7383, '7701000043', 'Yogur de Vainilla 1L', 12, 'litro', 1, 'Colanta'),
-	(7384, '7701000044', 'Queso Azul 100g', 5, 'unidad', 1, 'Importado'),
-	(7385, '7701000045', 'Queso Brie 125g', 5, 'unidad', 1, 'President'),
-	(7386, '7701000046', 'Queso Cheddar Tajado', 20, 'paquete', 1, 'Kraft'),
-	(7387, '7701000047', 'Yogur de Frutos Rojos 1L', 12, 'litro', 1, 'Alpina'),
-	(7388, '7701000048', 'Leche Desnatada 1L', 20, 'litro', 1, 'Parmalat'),
-	(7389, '7701000049', 'Mantequilla de Ajo 150g', 8, 'unidad', 1, 'Alpina'),
-	(7390, '7701000050', 'Queso de Cabra 200g', 5, 'unidad', 1, 'Artesanal'),
-	(7391, '7701000051', 'Leche con Fibra 1L', 10, 'litro', 1, 'Alquería'),
-	(7392, '7701000052', 'Yogur con Aloe Vera', 15, 'unidad', 1, 'Alpina'),
-	(7393, '7701000053', 'Queso Tilsit 200g', 7, 'unidad', 1, 'Alpina'),
-	(7394, '7701000054', 'Crema Agria 200g', 12, 'unidad', 1, 'Colanta'),
-	(7395, '7701000055', 'Yogur Light Fresa', 25, 'unidad', 1, 'Alpina'),
-	(7396, '7701000056', 'Queso Costeño (Bloque)', 20, 'kg', 1, 'Local'),
-	(7397, '7701000057', 'Cuajada Fresca', 10, 'kg', 1, 'San Fernando'),
-	(7398, '7701000058', 'Bebida de Avena c/ Fruta', 20, 'unidad', 1, 'Alpina'),
-	(7399, '7701000059', 'Postre de Natas', 10, 'unidad', 1, 'Doña Leche'),
-	(7400, '7701000060', 'Queso Provolone 200g', 6, 'unidad', 1, 'Del Vecchio'),
-	(7401, '7701000061', 'Leche Condensada Tubo', 30, 'unidad', 1, 'Nestlé'),
-	(7402, '7701000062', 'Mantequilla de Búfala', 5, 'unidad', 1, 'Planeta Rica'),
-	(7403, '7701000063', 'Yogur Griego Miel', 15, 'unidad', 1, 'Zorba'),
-	(7404, '7701000064', 'Leche Evaporada 400g', 12, 'unidad', 1, 'Carnation'),
-	(7405, '7701000065', 'Queso Gouda Tajado', 15, 'paquete', 1, 'Alpina'),
-	(7406, '7701000066', 'Batido de Proteína', 20, 'unidad', 1, 'Alpina'),
-	(7407, '7701000067', 'Queso Gruyere 200g', 4, 'unidad', 1, 'Importado'),
-	(7408, '7701000068', 'Queso Holandés Rojo', 8, 'kg', 1, 'Alpina'),
-	(7409, '7701000069', 'Suero de Mantequilla', 5, 'litro', 1, 'Colanta'),
-	(7410, '7701000070', 'Leche Orgánica 1L', 8, 'litro', 1, 'Pomar'),
-	(7411, '7701000071', 'Yogur de Guanábana 1L', 10, 'litro', 1, 'Colanta'),
-	(7412, '7701000072', 'Queso Sabanero', 15, 'kg', 1, 'Alpina'),
-	(7413, '7701000073', 'Crema Chantilly Spray', 10, 'unidad', 1, 'Kraft'),
-	(7414, '7701000074', 'Leche de Soja 1L', 12, 'litro', 1, 'Ades'),
-	(7415, '7701000075', 'Queso Feta 200g', 6, 'unidad', 1, 'Importado'),
-	(7416, '7701000076', 'Yogur Sin Dulce Natural', 20, 'litro', 1, 'Alpina'),
-	(7417, '7701000077', 'Queso Mascarpone 250g', 5, 'unidad', 1, 'Zanetti'),
-	(7418, '7701000078', 'Leche de Cabra 1L', 4, 'litro', 1, 'Artesanal'),
-	(7419, '7701000079', 'Margarina Multiuso 500g', 25, 'unidad', 1, 'La Fina'),
-	(7420, '7701000080', 'Queso Manchego 200g', 5, 'unidad', 1, 'Importado'),
-	(7421, '7701000081', 'Batido Energético Lácteo', 15, 'unidad', 1, 'Milo'),
-	(7422, '7701000082', 'Queso Emmental 200g', 5, 'unidad', 1, 'Alpina'),
-	(7423, '7701000083', 'Leche en Polvo Deslact.', 10, 'paquete', 1, 'Klim'),
-	(7424, '7701000084', 'Yogur de Kiwi 150g', 15, 'unidad', 1, 'Colanta'),
-	(7425, '7701000085', 'Helado de Vainilla 1L', 10, 'unidad', 1, 'Crem Helado'),
-	(7426, '7701000086', 'Helado de Chocolate 1L', 10, 'unidad', 1, 'Popsy'),
-	(7427, '7701000087', 'Queso Edam Tajado', 12, 'paquete', 1, 'Alpina'),
-	(7428, '7701000088', 'Bebida de Arroz 1L', 10, 'litro', 1, 'Jappi'),
-	(7429, '7701000089', 'Crema para Café', 30, 'unidad', 1, 'Coffee Mate'),
-	(7430, '7701000090', 'Queso Philadelphia 150g', 20, 'unidad', 1, 'Mondelēz'),
-	(7431, '7701000091', 'Yogur de Ciruela 1L', 10, 'litro', 1, 'Alquería'),
-	(7432, '7701000092', 'Leche con Prebióticos', 12, 'litro', 1, 'Alpina'),
-	(7433, '7701000093', 'Queso Petit Suisse', 25, 'paquete', 1, 'Danonino'),
-	(7434, '7701000094', 'Arequipe con Coco', 10, 'unidad', 1, 'Alpina'),
-	(7435, '7701000095', 'Leche de Búfala 1L', 5, 'litro', 1, 'Planeta Rica'),
-	(7436, '7701000096', 'Yogur de Mango 150g', 20, 'unidad', 1, 'Colanta'),
-	(7437, '7701000097', 'Queso Oaxaca', 8, 'kg', 1, 'Artesanal'),
-	(7438, '7701000098', 'Mantequilla de Campo', 12, 'unidad', 1, 'Colanta'),
-	(7439, '7701000099', 'Kefir Natural 500ml', 10, 'unidad', 1, 'Saludable'),
-	(7440, '7701000100', 'Queso Paipa Madurado', 8, 'kg', 1, 'Boyacá');
+	(4080, '7701234568321', 'Butifarra de la Costa', 20, 'paquete', 2, 'La Especial');
+
+-- Dumping structure for table core_project_BAN_00341.mod_catalogo_proveedores
+CREATE TABLE IF NOT EXISTS `mod_catalogo_proveedores` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nit` bigint(20) NOT NULL,
+  `razon_social` varchar(255) NOT NULL,
+  `direccion` varchar(255) NOT NULL,
+  `correo` varchar(150) NOT NULL,
+  `telefono` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_20124d60355ae6fbf4410be1f5` (`nit`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table core_project_BAN_00341.mod_catalogo_proveedores: ~2 rows (approximately)
 INSERT INTO `mod_catalogo_proveedores` (`id`, `nit`, `razon_social`, `direccion`, `correo`, `telefono`) VALUES
 	(1, 9001234561, 'Distribuidora Alimentos Express S.A.', 'Calle 45 #10-20', 'ventas@alimentos.com', '6012345678'),
 	(2, 1098785729, 'Industrias JB Sas', 'Calle 6 # 12 - 72 villabel', 'jb.business@gmail.com', '3504284093');
 
--- Dumping data for table core_project_BAN_00341.mod_lote: ~4 rows (approximately)
-INSERT INTO `mod_lote` (`id`, `fecha_entrada`, `fecha_vencimiento`, `costo_unitario`, `precio_venta_sugerido`, `estado`, `id_producto`, `id_proveedor`, `lote`, `cantidad_comprada`, `cantidad_vendida`, `stock`) VALUES
-	(1, '2026-03-01 16:57:42', '2026-05-19 23:58:17', 5000.00, 5450.00, 'disponible', 4049, 1, '20000000001', 25, 0, 25),
-	(2, '2026-01-01 16:57:42', '2026-03-19 23:58:17', 5000.00, 5450.00, 'disponible', 4058, 2, '20000000002', 25, 0, 25),
-	(3, '2026-01-01 16:57:42', '2026-03-15 23:58:17', 5000.00, 5450.00, 'disponible', 4061, 2, '20000000003', 25, 0, 25),
-	(4, '2026-03-01 16:57:42', '2026-05-19 23:58:17', 5000.00, 5450.00, 'disponible', 4080, 1, '20000000004', 25, 0, 25);
+-- Dumping structure for table core_project_BAN_00341.mod_lote
+CREATE TABLE IF NOT EXISTS `mod_lote` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `costo_unitario` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `precio_venta_sugerido` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `estado` enum('disponible','vencido','agotado') NOT NULL DEFAULT 'disponible',
+  `id_producto` int(11) NOT NULL,
+  `id_proveedor` int(11) NOT NULL,
+  `lote` varchar(50) NOT NULL,
+  `cantidad_comprada` int(11) NOT NULL DEFAULT 0,
+  `cantidad_vendida` int(11) NOT NULL DEFAULT 0,
+  `stock` int(11) NOT NULL DEFAULT 0,
+  `fecha_entrada` bigint(20) NOT NULL,
+  `fecha_vencimiento` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_0fa3203835ac3fa160d1931dbb` (`lote`),
+  KEY `FK_c092e4d64074c5be85e9116dd94` (`id_producto`),
+  KEY `FK_2a6dab7c1ebe24649a8d88a5e51` (`id_proveedor`),
+  CONSTRAINT `FK_2a6dab7c1ebe24649a8d88a5e51` FOREIGN KEY (`id_proveedor`) REFERENCES `mod_catalogo_proveedores` (`id`) ON UPDATE NO ACTION,
+  CONSTRAINT `FK_c092e4d64074c5be85e9116dd94` FOREIGN KEY (`id_producto`) REFERENCES `mod_catalogo_productos` (`id`) ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table core_project_BAN_00341.mod_merma_mermas: ~4 rows (approximately)
-INSERT INTO `mod_merma_mermas` (`id`, `cantidad`, `fecha_reporte`, `valor_perdido`, `observaciones`, `id_tipo_merma`, `id_lote`) VALUES
-	(1, 5, '2026-03-20 00:04:10', 10000.00, 'Sin observación', 1, 1),
-	(2, 5, '2026-03-20 00:04:10', 10000.00, 'Sin observación', 1, 3),
-	(3, 5, '2026-03-20 00:04:10', 10000.00, 'Sin observación', 1, 3),
-	(4, 2, '2026-03-20 00:04:10', 10000.00, 'Sin observación', 1, 2);
+-- Dumping data for table core_project_BAN_00341.mod_lote: ~3 rows (approximately)
+INSERT INTO `mod_lote` (`id`, `costo_unitario`, `precio_venta_sugerido`, `estado`, `id_producto`, `id_proveedor`, `lote`, `cantidad_comprada`, `cantidad_vendida`, `stock`, `fecha_entrada`, `fecha_vencimiento`) VALUES
+	(16, 3000.00, 6850.00, 'disponible', 4049, 1, '20000000001', 250, 0, 250, 1775778954, 1775692554),
+	(18, 3000.00, 6850.00, 'disponible', 4049, 1, '20000000002', 250, 0, 250, 1775192154, 1776210954),
+	(19, 3000.00, 6850.00, 'disponible', 4049, 1, '20000000003', 250, 0, 250, 1775192154, NULL),
+	(21, 3000.00, 6850.00, 'disponible', 4049, 1, '20000000004', 250, 0, 250, 1775192154, 1776902154),
+	(23, 3000.00, 6850.00, 'disponible', 4049, 1, '20000000005', 250, 0, 250, 1775192154, 1776902154),
+	(24, 3000.00, 6850.00, 'disponible', 4049, 1, '20000000006', 250, 0, 250, 1775192154, 1777506954);
+
+-- Dumping structure for table core_project_BAN_00341.mod_merma_mermas
+CREATE TABLE IF NOT EXISTS `mod_merma_mermas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cantidad` int(11) NOT NULL DEFAULT 0,
+  `fecha_reporte` timestamp NOT NULL DEFAULT current_timestamp(),
+  `valor_perdido` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `observaciones` text NOT NULL,
+  `id_tipo_merma` int(11) NOT NULL,
+  `id_lote` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_f936b059227146a8e5f1ffaec0a` (`id_tipo_merma`),
+  KEY `FK_c43c67defe5b3af684b4065015b` (`id_lote`),
+  CONSTRAINT `FK_c43c67defe5b3af684b4065015b` FOREIGN KEY (`id_lote`) REFERENCES `mod_lote` (`id`) ON UPDATE NO ACTION,
+  CONSTRAINT `FK_f936b059227146a8e5f1ffaec0a` FOREIGN KEY (`id_tipo_merma`) REFERENCES `mod_merma_tipos` (`id`) ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table core_project_BAN_00341.mod_merma_mermas: ~0 rows (approximately)
+
+-- Dumping structure for table core_project_BAN_00341.mod_merma_tipos
+CREATE TABLE IF NOT EXISTS `mod_merma_tipos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_d4131d037acc1ff2cb862fe550` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table core_project_BAN_00341.mod_merma_tipos: ~10 rows (approximately)
 INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
@@ -403,7 +149,21 @@ INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
 	(11, 'Robo o Extravío'),
 	(4, 'Vencimiento');
 
--- Dumping data for table core_project_BAN_00341.mod_permisos_modulo: ~61 rows (approximately)
+-- Dumping structure for table core_project_BAN_00341.mod_permisos_modulo
+CREATE TABLE IF NOT EXISTS `mod_permisos_modulo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) DEFAULT NULL,
+  `permiso` varchar(255) DEFAULT NULL,
+  `tiene_submodulos` tinyint(4) NOT NULL DEFAULT 0,
+  `tiene_permisos` tinyint(4) NOT NULL DEFAULT 0,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `modulo_padre_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_28bd06971f76c49399db2715d90` (`modulo_padre_id`),
+  CONSTRAINT `FK_28bd06971f76c49399db2715d90` FOREIGN KEY (`modulo_padre_id`) REFERENCES `mod_permisos_modulo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table core_project_BAN_00341.mod_permisos_modulo: ~62 rows (approximately)
 INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`, `tiene_permisos`, `descripcion`, `modulo_padre_id`) VALUES
 	(1, 'Usuarios', 'usuarios', 1, 0, 'Modulo usuarios', NULL),
 	(2, 'Administradores', 'administradores', 0, 1, 'Permiso administradores, modulo usuarios', 1),
@@ -466,9 +226,24 @@ INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`
 	(67, 'Editar', 'editar', 0, 0, 'editar', 64),
 	(68, 'Eliminar (individual)', 'eliminar_individual', 0, 0, 'eliminar_individual', 64),
 	(69, 'Eliminar (multiple)', 'eliminar_multiple', 0, 0, 'eliminar_multiple', 64),
-	(75, 'Descargar (Reporte permisos)', 'descarga_reporte_permisos', 0, 0, 'Permiso descarga_reporte_permisos usuario, submodulo administradores, modulo usuarios', 2);
+	(75, 'Descargar (Reporte permisos)', 'descarga_reporte_permisos', 0, 0, 'Permiso descarga_reporte_permisos usuario, submodulo administradores, modulo usuarios', 2),
+	(78, 'Descargar (Reporte trazabilidad)', 'descarga_reporte_trazabilidad', 1, 0, 'descarga_reporte_trazabilidad', 64);
 
--- Dumping data for table core_project_BAN_00341.mod_permisos_modulo_asignacion: ~53 rows (approximately)
+-- Dumping structure for table core_project_BAN_00341.mod_permisos_modulo_asignacion
+CREATE TABLE IF NOT EXISTS `mod_permisos_modulo_asignacion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) DEFAULT NULL,
+  `permiso` varchar(255) DEFAULT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `modulo_padre_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `id_modulo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_6eb0af2f8e13274ad1819f4cfca` (`user_id`),
+  CONSTRAINT `FK_6eb0af2f8e13274ad1819f4cfca` FOREIGN KEY (`user_id`) REFERENCES `mod_usuarios_admin` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=426 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table core_project_BAN_00341.mod_permisos_modulo_asignacion: ~107 rows (approximately)
 INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descripcion`, `modulo_padre_id`, `user_id`, `id_modulo`) VALUES
 	(1, 'Usuarios', 'usuarios', 'Modulo usuarios', NULL, 1, 1),
 	(2, 'Administradores', 'administradores', 'Permiso administradores, modulo usuarios', 1, 1, 2),
@@ -484,7 +259,6 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(249, 'Editar', 'editar', 'Permiso editar, submodulo finales, modulo usuarios', 10, 1, 13),
 	(250, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar individual, submodulo finales, modulo usuarios', 10, 1, 14),
 	(252, 'Estado (usuario)', 'estado_usuario', 'Permiso estado usuario, submodulo finales, modulo usuarios', 10, 1, 16),
-	(257, 'Lote', 'lote', 'Modulo lote', NULL, 1, 64),
 	(258, 'Ver', 'ver', 'ver', 64, 1, 65),
 	(259, 'Crear', 'crear', 'crear', 64, 1, 66),
 	(260, 'Editar', 'editar', 'editar', 64, 1, 67),
@@ -493,14 +267,11 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(264, 'Crear', 'crear', 'Permiso crear, modulo modulos', 17, 1, 19),
 	(265, 'Editar', 'editar', 'Permiso editar, modulo modulos', 17, 1, 20),
 	(266, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, modulo modulos', 17, 1, 21),
-	(268, 'Modulos', 'modulos', 'Modulo modulos', NULL, 1, 17),
-	(304, 'Catalogo', 'catalogo', 'Modulo catalogo', NULL, 1, 22),
 	(305, 'Categorias', 'categorias', 'Permiso categorias, modulo catalogo', 22, 1, 25),
 	(306, 'Productos (asignar)', 'asignar_productos', 'Permiso asignar_productos, submodulo categorias, modulo catalogo', 25, 1, 27),
 	(307, 'Ver', 'ver', 'Permiso ver, submodulo categorias, modulo catalogo', 25, 1, 28),
 	(308, 'Crear', 'crear', 'Permiso crear, submodulo categorias, modulo catalogo', 25, 1, 29),
 	(309, 'Editar', 'editar', 'Permiso editar, submodulo categorias, modulo catalogo', 25, 1, 30),
-	(310, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo categorias, modulo catalogo', 25, 1, 31),
 	(311, 'Proveedores', 'proveedores', 'Permiso proveedores, modulo catalogo', 22, 1, 26),
 	(312, 'Ver', 'ver', 'Permiso ver, submodulo proveedores, modulo catalogo', 26, 1, 33),
 	(313, 'Crear', 'crear', 'Permiso crear, submodulo proveedores, modulo catalogo', 26, 1, 34),
@@ -510,20 +281,17 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(317, 'Ver', 'ver', 'Permiso ver, submodulo productos, modulo catalogo', 38, 1, 39),
 	(318, 'Crear', 'crear', 'Permiso crear, submodulo productos, modulo catalogo', 38, 1, 40),
 	(319, 'Editar', 'editar', 'Permiso editar, submodulo productos, modulo catalogo', 38, 1, 41),
-	(320, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo productos, modulo catalogo', 38, 1, 42),
 	(321, 'Cargar (excel)', 'cargar_excel', 'Permiso cargar_excel, submodulo productos, modulo catalogo', 38, 1, 63),
 	(322, 'Tipos merma', 'tipo_merma', 'Permiso tipo_merma, modulo merma', 44, 1, 45),
 	(323, 'Ver', 'ver', 'Permiso ver, submodulo tipo_merma, modulo merma', 45, 1, 47),
 	(324, 'Crear', 'crear', 'Permiso crear, submodulo tipo_merma, modulo merma', 45, 1, 48),
 	(325, 'Editar', 'editar', 'Permiso editar, submodulo tipo_merma, modulo merma', 45, 1, 49),
 	(326, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo tipo_merma, modulo merma', 45, 1, 50),
-	(328, 'Merma', 'merma', 'Modulo merma', NULL, 1, 44),
 	(329, 'Registro merma', 'registro_merma', 'Permiso registro_merma, modulo merma', 44, 1, 46),
 	(330, 'Ver', 'ver', 'Permiso ver, submodulo registro_merma, modulo merma', 46, 1, 58),
 	(331, 'Crear', 'crear', 'Permiso crear, submodulo registro_merma, modulo merma', 46, 1, 59),
 	(332, 'Editar', 'editar', 'Permiso editar, submodulo registro_merma, modulo merma', 46, 1, 60),
 	(333, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo registro_merma, modulo merma', 46, 1, 61),
-	(352, 'Descargar (Reporte permisos)', 'descarga_reporte_permisos', 'Permiso descarga_reporte_permisos usuario, submodulo administradores, modulo usuarios', 2, 1, 75),
 	(354, 'Usuarios', 'usuarios', 'Modulo usuarios', NULL, 2, 1),
 	(355, 'Administradores', 'administradores', 'Permiso administradores, modulo usuarios', 1, 2, 2),
 	(356, 'Ver', 'ver', 'Permiso ver, submodulo administradores, modulo usuarios', 2, 2, 3),
@@ -576,13 +344,44 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(406, 'Ver', 'ver', 'Permiso ver, submodulo registro_merma, modulo merma', 46, 2, 58),
 	(407, 'Crear', 'crear', 'Permiso crear, submodulo registro_merma, modulo merma', 46, 2, 59),
 	(408, 'Editar', 'editar', 'Permiso editar, submodulo registro_merma, modulo merma', 46, 2, 60),
-	(409, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo registro_merma, modulo merma', 46, 2, 61);
+	(409, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo registro_merma, modulo merma', 46, 2, 61),
+	(411, 'Descargar (Reporte permisos)', 'descarga_reporte_permisos', 'Permiso descarga_reporte_permisos usuario, submodulo administradores, modulo usuarios', 2, 1, 75),
+	(418, 'Eliminar (multiple)', 'eliminar_multiple', 'Permiso eliminar_multiple, submodulo productos, modulo catalogo', 38, 1, 43),
+	(420, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo categorias, modulo catalogo', 25, 1, 31),
+	(421, 'Modulos', 'modulos', 'Modulo modulos', NULL, 1, 17),
+	(422, 'Catalogo', 'catalogo', 'Modulo catalogo', NULL, 1, 22),
+	(423, 'Merma', 'merma', 'Modulo merma', NULL, 1, 44),
+	(424, 'Lote', 'lote', 'Modulo lote', NULL, 1, 64);
 
--- Dumping data for table core_project_BAN_00341.mod_usuarios_admin: ~6 rows (approximately)
+-- Dumping structure for table core_project_BAN_00341.mod_usuarios_admin
+CREATE TABLE IF NOT EXISTS `mod_usuarios_admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(255) NOT NULL,
+  `lastName` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `isActive` tinyint(4) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_c885318c449a37e806a7f87607` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table core_project_BAN_00341.mod_usuarios_admin: ~3 rows (approximately)
 INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'Admin1', 'Principal', 'admin1@correo.com', 'Qwerty9601', 1),
 	(2, 'Admin2', 'Admin2', 'donald@correo.com', 'Qwerty9601', 1),
 	(30, 'Mark', 'Zuckerberg', 'mark.zuckerbeg@correo.com', 'Qwerty9601', 0);
+
+-- Dumping structure for table core_project_BAN_00341.mod_usuarios_user
+CREATE TABLE IF NOT EXISTS `mod_usuarios_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(255) NOT NULL,
+  `lastName` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `isActive` tinyint(4) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_129e1f78d9bf43c04689f16cf8` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table core_project_BAN_00341.mod_usuarios_user: ~13 rows (approximately)
 INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
@@ -606,6 +405,92 @@ INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `passwo
 	(24, 'final23', 'final23', '23@gmail.com', 'Qwerty9601', 0),
 	(25, 'final24', 'final24', '24@gmail.com', 'Qwerty9601', 0),
 	(26, 'final25', 'final25', '25@gmail.com', 'Qwerty9601', 0);
+
+-- Dumping structure for procedure core_project_BAN_00341.sp_reporte_permisos_paginado
+DELIMITER //
+CREATE PROCEDURE `sp_reporte_permisos_paginado`(
+    IN p_pagina_actual INT,
+    IN p_registros_por_pagina INT,
+    IN p_modulo VARCHAR(100),
+    IN p_submodulo VARCHAR(100),
+    IN p_permiso VARCHAR(100)
+)
+BEGIN
+    -- Usamos INT normales para evitar conflictos de rango
+    DECLARE v_offset INT;
+    DECLARE v_limit INT;
+    DECLARE v_total_registros INT;
+    
+    -- 1. LÓGICA DE PAGINACIÓN SEGURA
+    -- Si no mandas límite, usamos 999,999,999 (Suficiente para cualquier reporte)
+    IF p_registros_por_pagina IS NULL OR p_registros_por_pagina <= 0 THEN
+        SET v_limit = 999999999; 
+        SET v_offset = 0;
+    ELSE
+        SET v_limit = p_registros_por_pagina;
+        SET v_offset = (IFNULL(p_pagina_actual, 1) - 1) * p_registros_por_pagina;
+    END IF;
+
+    -- 2. TABLA TEMPORAL
+    DROP TEMPORARY TABLE IF EXISTS temp_reporte;
+    
+    CREATE TEMPORARY TABLE temp_reporte AS
+    SELECT t.* FROM (
+        SELECT
+            CASE 
+                WHEN mpma.modulo_padre_id IS NULL THEN (
+                    SELECT mpm.nombre FROM mod_permisos_modulo mpm WHERE mpm.id = mpma.id_modulo
+                )
+                WHEN mpma.modulo_padre_id IN (SELECT id FROM mod_permisos_modulo WHERE modulo_padre_id IS NULL) THEN (
+                    SELECT mpm.nombre FROM mod_permisos_modulo mpm WHERE mpm.id = mpma.modulo_padre_id
+                )
+                ELSE (
+                    SELECT m_abuelo.nombre 
+                    FROM mod_permisos_modulo m_padre
+                    INNER JOIN mod_permisos_modulo m_abuelo ON m_padre.modulo_padre_id = m_abuelo.id
+                    WHERE m_padre.id = mpma.modulo_padre_id
+                )
+            END AS MODULO,
+            CASE
+                WHEN mpma.modulo_padre_id IS NULL THEN '---'
+                WHEN mpma.modulo_padre_id IS NOT NULL  
+                    AND mpma.modulo_padre_id IN (SELECT id FROM mod_permisos_modulo WHERE modulo_padre_id IS NULL)
+                    THEN (SELECT mpm.nombre FROM mod_permisos_modulo mpm WHERE mpm.id = mpma.id_modulo)
+                ELSE (SELECT mpm.nombre FROM mod_permisos_modulo mpm WHERE mpm.id = mpma.modulo_padre_id)
+            END AS SUBMODULO,
+            mpma.nombre AS PERMISO,
+            mpma.permiso AS IDENTIFICADOR,
+            mua.email AS CORREO_USUARIO,
+            CASE mua.isActive WHEN 1 THEN 'ACTIVO' ELSE 'INACTIVO' END AS ESTADO_USUARIO
+        FROM mod_permisos_modulo_asignacion mpma
+        INNER JOIN mod_usuarios_admin mua ON mpma.user_id = mua.id
+    ) AS t
+    WHERE 
+        (p_modulo IS NULL OR t.MODULO = p_modulo) AND
+        (p_submodulo IS NULL OR t.SUBMODULO = p_submodulo) AND
+        (p_permiso IS NULL OR t.PERMISO LIKE CONCAT('%', p_permiso, '%'));
+
+    -- 3. TOTALES
+    SELECT COUNT(*) INTO v_total_registros FROM temp_reporte;
+
+    -- 4. RESULTADO 1: METADATOS
+    SELECT 
+        v_total_registros AS total,
+        IFNULL(p_registros_por_pagina, v_total_registros) AS perPage,
+        IFNULL(p_pagina_actual, 1) AS currentPage,
+        CEIL(v_total_registros / IFNULL(p_registros_por_pagina, v_total_registros)) AS lastPage;
+
+    -- 5. RESULTADO 2: DATOS (Usando variables de usuario @ para el EXECUTE)
+    SET @l = v_limit;
+    SET @o = v_offset;
+    
+    PREPARE stmt FROM 'SELECT * FROM temp_reporte LIMIT ? OFFSET ?';
+    EXECUTE stmt USING @l, @o;
+    DEALLOCATE PREPARE stmt;
+
+    DROP TEMPORARY TABLE IF EXISTS temp_reporte;
+END//
+DELIMITER ;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
