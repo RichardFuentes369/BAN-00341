@@ -11,21 +11,33 @@ export class Producto {
 
   @Column({ type: 'varchar', length: 50, unique: true })
   codigo_barra: string;
-
+  
   @Column({ type: 'varchar', length: 150 })
   nombre: string;
 
-  @Column({ type: 'varchar', length: 150 })
+  @Column({ type:  'varchar', length: 150 })
   marca: string;
+
+  @Column({ type: 'enum', enum: UnidadMedida, default: UnidadMedida.KG })
+  unidad_medida: UnidadMedida;
 
   @Column()
   stock_minimo: number;
 
+  @Column({ default: false })
+  es_perecedero: boolean;
+
+  @Column({ nullable: true })
+  alerta_amarilla: number;
+
+  @Column({ nullable: true })
+  alerta_naranja: number;
+
+  @Column({ default: true })
+  estado: boolean;
+
   @Column()
   id_categoria: number;
-
-  @Column({ type: 'enum', enum: UnidadMedida, default: UnidadMedida.KG })
-  unidad_medida: UnidadMedida;
 
   // Relation
   @ManyToOne(() => Categoria, (tipo_categoria) => tipo_categoria.id, {
