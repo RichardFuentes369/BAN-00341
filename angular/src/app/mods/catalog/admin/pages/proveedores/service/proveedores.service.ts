@@ -56,7 +56,6 @@ export class ProveedoresService {
     let complemento = `supplier/editar-proveedor`
     let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
-
     return await axios.request({
       headers: {
         [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,

@@ -113,7 +113,13 @@ export class SupplierService {
     supplierData: UpdateSupplierDto, 
     userId: number
   ) {
+
     const supplier = await this.findOne(lang, id);
+    const exists = await this.supplierRepository.findOne({ where: { nit: supplierData.nit } });
+
+    if (supplier.nit != supplierData.nit && exists) throw new NotFoundException(
+      this.i18n.t('proveedores.MSJ_ERROR_NIT_EXISTE', { lang })
+    );
 
     return this.supplierRepository.save({
       ...supplier,

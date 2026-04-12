@@ -110,7 +110,7 @@ export class EditarProveedorComponent implements OnInit{
     this.proveedor.push(this.proveedorReal.data)
 
     this.model.id = this.proveedorReal.data.id
-    this.model.nit = BigInt(this.proveedorReal.data.nit)
+    this.model.nit = this.proveedorReal.data.nit
     this.model.dv = this.proveedorReal.data.dv
     this.model.razon_social = this.proveedorReal.data.razon_social
     this.model.direccion = this.proveedorReal.data.direccion
