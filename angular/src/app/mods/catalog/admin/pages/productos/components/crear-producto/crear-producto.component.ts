@@ -40,6 +40,8 @@ export class CrearProductoComponent {
   }
 
   model = {
+    es_perecedero: false,
+    estado: 0,
     codigo_barra: '',
     nombre: '',
     marca: '',
@@ -49,6 +51,7 @@ export class CrearProductoComponent {
   }
 
   validators = {
+    estado: false,
     codigo_barra: false,
     nombre: false,
     marca: false,

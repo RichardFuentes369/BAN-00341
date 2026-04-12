@@ -103,8 +103,12 @@
     "COLUMN_STOCK": "Lagerbestand",
     "COLUMN_UNIT_OF_MEASUREMENT": "Maßeinheit",
 
+    "LABEL_CHECK_PERISHABLE": "Ist verderblich",
     "LABEL_NAME_PRODUCT": "Name",
     "LABEL_BRAND_PRODUCT": "Marke",
+    "LABEL_BRAND_YELLOW_ALERT": "Gelber Alarm (Tage)",
+    "LABEL_BRAND_ORANGE_ALERT": "Oranger Alarm (Tage)",
+    "LABEL_BRAND_STATUS": "Status",
     "LABEL_COD_BAR_PRODUCT": "Barcode",
     "LABEL_STOCK_PRODUCT": "Lagerbestand",
     "LABEL_UNIT_OF_MEASUREMENT_PRODUCT": "Maßeinheit",
@@ -114,6 +118,11 @@
     "PLACEHOLDER_COD_BAR_PRODUCT": "Barcode eingeben",
     "PLACEHOLDER_STOCK_PRODUCT": "Anzahl eingeben",
     "PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT": "Wählen Sie eine Maßeinheit aus",
+    "PLACEHOLDER_STATUS_PRODUCT": "Status auswählen",
+
+    "SELECT_PRODUCT_STATUS": "Auswählen", 
+    "SELECT_PRODUCT_OPTION_ACTIVED": "Aktiv", 
+    "SELECT_PRODUCT_OPTION_INACTIVED": "Inaktiv",
 
     "SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION": "Auswählen", 
     "SELECT_UNIT_OF_MEASUREMENT_UNIT_OPTION": "Einheit", 
