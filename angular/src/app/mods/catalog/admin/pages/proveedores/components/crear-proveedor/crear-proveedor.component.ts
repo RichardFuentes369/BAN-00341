@@ -7,11 +7,8 @@ import { debounceTime, map } from 'rxjs/operators';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import Swal from 'sweetalert2'
-import { PrincipalService } from '@mod/users/admin/pages/principal/service/principal.service';
 import { Router } from '@angular/router';
 import { ocultarModalOscura } from '@function/System'
-import { FinalService } from '@mod/users/admin/pages/finales/service/final.service';
-import { STORAGE_KEY_PROFILE } from '@const/app.const';
 import { ProveedoresService } from '../../service/proveedores.service';
 
 @Component({
@@ -41,12 +38,14 @@ export class CrearProveedorComponent {
 
   model: {
     nit: bigint | null;
+    dv: number | null;
     razon_social: string,
     direccion: string,
     telefono: string,
     correo: string,
   } = {
     nit: null,
+    dv: null,
     razon_social: '',
     direccion: '',
     telefono: '',
@@ -55,6 +54,7 @@ export class CrearProveedorComponent {
 
   validators = {
     nit: false,
+    dv: false,
     razon_social: false,
     direccion: false,
     telefono: false,
@@ -78,18 +78,21 @@ export class CrearProveedorComponent {
   checkValidation(): boolean {
 
     const regexNIT = /^[0-9]{8,15}$/;
+    const regexDV = /^[0-9]{1}$/;
     const regexPhoneCO = /^(\+57)?3\d{9}$/;
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
     this.validators.nit = (this.model.nit === null || !regexNIT.test((this.model.nit as any).toString()));
+    this.validators.dv = (this.model.dv === null || !regexDV.test((this.model.dv as any).toString()));
     this.validators.razon_social = (this.model.razon_social.trim().length === 0)
     this.validators.direccion = (this.model.direccion.trim().length === 0)
     this.validators.telefono = (this.model.telefono.trim().length === 0 || !regexPhoneCO.test(this.model.telefono))
     this.validators.correo = (this.model.correo.trim().length === 0 || !regexEmail.test(this.model.correo))
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
-    (!this.validators.nit && !this.validators.razon_social && !this.validators.direccion && !this.validators.telefono && !this.validators.correo) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+    (!this.validators.nit && !this.validators.dv && !this.validators.razon_social && !this.validators.direccion && !this.validators.telefono && !this.validators.correo) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
     
-    return !this.validators.nit && !this.validators.razon_social && !this.validators.direccion && !this.validators.telefono && !this.validators.correo
+    return !this.validators.nit && !this.validators.dv && !this.validators.razon_social && !this.validators.direccion && !this.validators.telefono && !this.validators.correo
   }
 
   async crearProveedor(){

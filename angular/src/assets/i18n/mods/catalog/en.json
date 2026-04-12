@@ -54,19 +54,21 @@
     "EDIT_SUBTITLE": "Supplier: {{supplier_name}}",
 
     "COLUMN_ID": "ID",
-    "COLUMN_BUSINESS_NIT": "Tax ID",
+    "COLUMN_BUSINESS_NIT": "TIN",
     "COLUMN_BUSINESS_NAME": "Bussines Name",
     "COLUMN_BUSINESS_ADDRESS": "Bussiness Address",
     "COLUMN_BUSINESS_PHONE": "Bussines Phone",
     "COLUMN_BUSINESS_EMAIL": "Bussiness Email",
 
-    "LABEL_BUSINESS_NIT": "Tax ID",
+    "LABEL_BUSINESS_NIT": "Tax Identification Number (TIN)",
+    "LABEL_BUSINESS_DV": "Verification Digit (DV)",
     "LABEL_BUSINESS_NAME": "Bussines Name",
     "LABEL_BUSINESS_EMAIL": "Bussiness Email",
     "LABEL_BUSINESS_PHONE": "Bussiness Phone",
     "LABEL_BUSINESS_ADDRESS": "Bussiness Address",
 
     "PLACEHOLDER_BUSINESS_NIT": "Enter Tax ID number",
+    "PLACEHOLDER_BUSINESS_DV": "Enter the verification digit",
     "PLACEHOLDER_BUSINESS_NAME": "Enter business or legal name",
     "PLACEHOLDER_BUSINESS_EMAIL": "example@company.com",
     "PLACEHOLDER_BUSINESS_PHONE": "e.g., +1 555 123 4567",

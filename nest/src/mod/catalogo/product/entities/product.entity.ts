@@ -9,9 +9,10 @@ export class Producto {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column({ type: 'varchar', length: 50, unique: true })
+  // EAN-13
+  @Column({ type: 'varchar', length: 13, unique: true })
   codigo_barra: string;
-  
+
   @Column({ type: 'varchar', length: 150 })
   nombre: string;
 

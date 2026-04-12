@@ -54,19 +54,21 @@
     "EDIT_SUBTITLE": "Lieferant: {{supplier_name}}",
 
     "COLUMN_ID": "ID",
-    "COLUMN_BUSINESS_NIT": "Steuernummer",
+    "COLUMN_BUSINESS_NIT": "St.-Nr.",
     "COLUMN_BUSINESS_NAME": "Firmenname",
     "COLUMN_BUSINESS_ADDRESS": "Geschäftsadresse",
     "COLUMN_BUSINESS_PHONE": "Geschäftstelefon",
     "COLUMN_BUSINESS_EMAIL": "Geschäfts-E-Mail",
 
-    "LABEL_BUSINESS_NIT": "Steuernummer",
+    "LABEL_BUSINESS_NIT": "Steuernummer (St.-Nr.)",
+    "LABEL_BUSINESS_DV": "Prüfziffer (DV)",
     "LABEL_BUSINESS_NAME": "Unternehmensname",
     "LABEL_BUSINESS_EMAIL": "Geschäftliche E-Mail",
     "LABEL_BUSINESS_PHONE": "Geschäftliche Telefonnummer",
     "LABEL_BUSINESS_ADDRESS": "Unternehmensadresse",
 
     "PLACEHOLDER_BUSINESS_NIT": "Steuernummer eingeben",
+    "PLACEHOLDER_BUSINESS_DV": "Prüfziffer eingeben",
     "PLACEHOLDER_BUSINESS_NAME": "Unternehmens- oder Firmenname eingeben",
     "PLACEHOLDER_BUSINESS_EMAIL": "beispiel@firma.de",
     "PLACEHOLDER_BUSINESS_PHONE": "z. B. +49 30 1234567",

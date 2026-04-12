@@ -6,9 +6,12 @@ export class Proveedor {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column({ type: 'bigint', unique: true }) // NIT suele ser un número largo
-  nit: number;
+  @Column({ type: 'varchar', length: 10, unique: true })
+  nit: string;
 
+  @Column({ type: 'char', length: 1 })
+  dv: string;
+  
   @Column({ type: 'varchar', length: 255 })
   razon_social: string;
 
@@ -24,4 +27,8 @@ export class Proveedor {
   // Relation
   @OneToMany(() => Lote, (lote) => lote.id_proveedor)
   lote: Lote[];
+
+  get fullNit(): string {
+    return `${this.nit}-${this.dv}`;
+  }
 }

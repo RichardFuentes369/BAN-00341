@@ -61,12 +61,14 @@
     "COLUMN_BUSINESS_EMAIL": "Correo Electrónico de la Empresa",
 
     "LABEL_BUSINESS_NIT": "Identificación tributaria (NIT)",
+    "LABEL_BUSINESS_DV": "Dígito de verificación (DV)",
     "LABEL_BUSINESS_NAME": "Nombre de la empresa",
     "LABEL_BUSINESS_EMAIL": "Correo electrónico de la empresa",
     "LABEL_BUSINESS_PHONE": "Teléfono de la empresa",
     "LABEL_BUSINESS_ADDRESS": "Dirección de la empresa",
     
     "PLACEHOLDER_BUSINESS_NIT": "Ingrese el número de identificación tributaria",
+    "PLACEHOLDER_BUSINESS_DV": "Ingrese el dígito de verificación",
     "PLACEHOLDER_BUSINESS_NAME": "Ingrese la razón social o nombre comercial",
     "PLACEHOLDER_BUSINESS_EMAIL": "ejemplo@empresa.com",
     "PLACEHOLDER_BUSINESS_PHONE": "Ej: +57 300 123 4567",

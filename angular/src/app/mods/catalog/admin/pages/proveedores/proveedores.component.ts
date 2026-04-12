@@ -63,7 +63,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     },
     {
       title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NIT'),
-      data: 'nit',
+      data: 'nitCompleto',
       className: 'text-center'
     },
     {
@@ -174,7 +174,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
       },
       {
         title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NIT'),
-        data: 'nit',
+        data: 'nitCompleto',
         className: 'text-center'
       },
       {
@@ -281,8 +281,8 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   someInput!: TablecrudComponent
   async eliminarData (_id: string[]){
     const response = await this.proveedoresService.getDataProvider(_id[0])
-    const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
-    const name_user = (_id.length === 1) ? firstName+" "+lastName : "("+_id.length+")"
+    const { razon_social } = response.data || { razon_social: 'xxxxxxx' }
+    const name_user = (_id.length === 1) ? razon_social : "("+_id.length+")"
     const count_users = (_id.length === 1) ? 'el' : 'los'
     const plural = (_id.length === 1) ? '' : 's'
     

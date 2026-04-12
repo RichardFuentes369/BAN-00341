@@ -54,19 +54,21 @@
     "EDIT_SUBTITLE": "Fournisseur : {{supplier_name}}",
 
     "COLUMN_ID": "ID",
-    "COLUMN_BUSINESS_NIT": "Numéro d'identification fiscale",
+    "COLUMN_BUSINESS_NIT": "NIF",
     "COLUMN_BUSINESS_NAME": "Raison sociale",
     "COLUMN_BUSINESS_ADDRESS": "Adresse de l'entreprise",
     "COLUMN_BUSINESS_PHONE": "Téléphone de l'entreprise",
     "COLUMN_BUSINESS_EMAIL": "E-mail de l'entreprise",
 
-    "LABEL_BUSINESS_NIT": "Identifiant fiscal",
+    "LABEL_BUSINESS_NIT": "Numéro d'identification fiscale (NIF)",
+    "LABEL_BUSINESS_DV": "Chiffre de vérification (DV)",
     "LABEL_BUSINESS_NAME": "Nom de l'entreprise",
     "LABEL_BUSINESS_EMAIL": "E-mail professionnel",
     "LABEL_BUSINESS_PHONE": "Téléphone professionnel",
     "LABEL_BUSINESS_ADDRESS": "Adresse de l'entreprise",
 
     "PLACEHOLDER_BUSINESS_NIT": "Entrez le numéro d'identification fiscale",
+    "PLACEHOLDER_BUSINESS_DV": "Entrez le chiffre de vérification",
     "PLACEHOLDER_BUSINESS_NAME": "Entrez la raison sociale de l'entreprise",
     "PLACEHOLDER_BUSINESS_EMAIL": "exemple@entreprise.fr",
     "PLACEHOLDER_BUSINESS_PHONE": "Ex: +33 1 23 45 67 89",

@@ -1,44 +1,50 @@
 <div class="">
-  
   @for (item of proveedor; track item; let  i = $index) {
-    <div class="col-xl-12 col-sm-12 row">
-      <div class="col-xl col-sm-12">
-        <div class="col-sm-12 row p-0">
-          <div class="col-sm-12 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}
-            </label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.nit}}" readonly>
+    <div class="col-xl-12 col-sm-12">
+      <div class="col-sm-12 p-0">
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NAME' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.razon_social}}" readonly>
+        </div>
+        <div class="col-sm-12 form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <label for="exampleInputEmail1">
+                {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}
+              </label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.nit}}" readonly>
+            </div>
+            <div class="col-sm-6">
+              <label for="exampleInputEmail1">
+                {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_DV' | translate}}
+              </label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.dv}}" readonly>
+            </div>
           </div>
-          <div class="col-sm-12 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NAME' | translate}}
-            </label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.razon_social}}" readonly>
-          </div>
-          <div class="col-sm-12 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_ADDRESS' | translate}}
-            </label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.direccion}}" readonly>
-          </div>
-          <div class="col-sm-12 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_EMAIL' | translate}}
-            </label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.correo}}" readonly>
-          </div>
-          <div class="col-sm-12 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_PHONE' | translate}}
-            </label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.telefono}}" readonly>
-          </div>
+        </div>
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_ADDRESS' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.direccion}}" readonly>
+        </div>
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_EMAIL' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.correo}}" readonly>
+        </div>
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_PHONE' | translate}}
+          </label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.telefono}}" readonly>
         </div>
       </div>
     </div>
   }
-
 </div>
 
 

@@ -54,8 +54,13 @@ export class SupplierService {
       order: { [field]: order }
     });
 
+    const data = result.map(s => ({
+      ...s,
+      nitCompleto: s.fullNit 
+    }));
+
     return [{
-      'result': result,
+      'result': data,
       'pagination': {
         'page': page,
         'perPage': limit,

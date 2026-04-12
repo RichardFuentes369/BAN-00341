@@ -13,8 +13,9 @@ import { AuthService } from '@guard/service/auth.service';
 import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 
 interface ProveedorInterface {
-  'id': number,
+  'id': string,
   'nit': string,
+  'dv': string,
   'razon_social': string,
   'direccion': string,
   'correo': string,
@@ -51,6 +52,7 @@ export class EditarProveedorComponent implements OnInit{
   model: {
     id: string;
     nit: bigint | null;
+    dv: number | null;
     razon_social: string,
     direccion: string,
     telefono: string,
@@ -58,6 +60,7 @@ export class EditarProveedorComponent implements OnInit{
   } = {
     id: '',
     nit: null,
+    dv: null,
     razon_social: '',
     direccion: '',
     telefono: '',
@@ -66,6 +69,7 @@ export class EditarProveedorComponent implements OnInit{
 
   validators = {
     nit: false,
+    dv: false,
     razon_social: false,
     direccion: false,
     telefono: false,
@@ -82,18 +86,21 @@ export class EditarProveedorComponent implements OnInit{
   checkValidation(): boolean {
 
     const regexNIT = /^[0-9]{8,15}$/;
+    const regexDV = /^[0-9]{1}$/;
     const regexPhoneCO = /^(\+57)?3\d{9}$/;
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
     this.validators.nit = (this.model.nit === null || !regexNIT.test((this.model.nit as any).toString()));
+    this.validators.dv = (this.model.dv === null || !regexDV.test((this.model.dv as any).toString()));
     this.validators.razon_social = (this.model.razon_social.length === 0)
     this.validators.direccion = (this.model.direccion.length === 0)
     this.validators.telefono = (this.model.telefono.length === 0 || !regexPhoneCO.test(this.model.telefono))
     this.validators.correo = (this.model.correo.length === 0 || !regexEmail.test(this.model.correo))
 
     const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
-    (!this.validators.nit && !this.validators.razon_social && !this.validators.direccion && !this.validators.telefono && !this.validators.correo) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+    (!this.validators.nit && !this.validators.dv && !this.validators.razon_social && !this.validators.direccion && !this.validators.telefono && !this.validators.correo) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
     
-    return !this.validators.nit && !this.validators.razon_social && !this.validators.direccion && !this.validators.telefono && !this.validators.correo
+    return !this.validators.nit && !this.validators.dv && !this.validators.razon_social && !this.validators.direccion && !this.validators.telefono && !this.validators.correo
   }
 
   async ngOnInit() {
@@ -104,6 +111,7 @@ export class EditarProveedorComponent implements OnInit{
 
     this.model.id = this.proveedorReal.data.id
     this.model.nit = BigInt(this.proveedorReal.data.nit)
+    this.model.dv = this.proveedorReal.data.dv
     this.model.razon_social = this.proveedorReal.data.razon_social
     this.model.direccion = this.proveedorReal.data.direccion
     this.model.telefono = this.proveedorReal.data.telefono
@@ -118,6 +126,7 @@ export class EditarProveedorComponent implements OnInit{
       await endPoint.updateProvider(
         {
           "nit": this.model.nit,
+          "dv": this.model.dv,
           "razon_social": this.model.razon_social,
           "direccion": this.model.direccion,
           "telefono": this.model.telefono,

@@ -12,6 +12,7 @@ import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 interface ProveedorInterface {
   'id': number,
   'nit': string,
+  'dv': string,
   'razon_social': string,
   'direccion': string,
   'correo': string,
