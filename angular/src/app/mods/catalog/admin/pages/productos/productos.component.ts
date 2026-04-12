@@ -215,7 +215,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
 
   crearData (_id: string){
     this.tamano = "xl"
-    this.scrollable = false
+    this.scrollable = true
     this.title = this.translate.instant('mod-catalog.PRODUCT.CREATE_TITLE')
     this.subtitle = this.translate.instant('mod-catalog.PRODUCT.CREATE_SUBTITLE')
     this.save = true
@@ -261,7 +261,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
     this.translate.get('mod-catalog.PRODUCT.SEE_SUBTITLE', { "product_name": nombre }).subscribe((res: string) => {this.subtitle = res});
     this.tamano = "xl"
-    this.scrollable = false
+    this.scrollable = true
     this.save = false
     this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
     this.edit = false
@@ -287,7 +287,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
     this.translate.get('mod-catalog.PRODUCT.EDIT_TITLE', { "product_name": nombre }).subscribe((res: string) => {this.title = res});
     this.tamano = "xl"
-    this.scrollable = false
+    this.scrollable = true
     this.save = false
     this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
     this.edit = true

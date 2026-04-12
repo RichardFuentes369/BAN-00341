@@ -1,73 +1,69 @@
 <div class="">
   @for (item of proveedor; track item; let  i = $index) {
-    <div class="col-xl-12 col-sm-12 ">
-      <div class="col-xl col-sm-12">
-        <div class="col-sm-12  p-0">
-          <div class="col-sm-12 form-group">
+    <div class="col-sm-12  p-0">
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NAME' | translate}}
+        </label>
+        <input type="text" class="form-control" [(ngModel)]="model.razon_social" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.razon_social" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NAME' | translate}}">
+        @if(validators.razon_social) {
+          <span class="text-danger small">{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NAME' | translate }}</span>
+        }
+      </div>
+      <div class="col-sm-12 form-group">
+        <div class="row">
+          <div class="col-sm-6">
             <label for="exampleInputEmail1">
-              {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NAME' | translate}}
+              {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}
             </label>
-            <input type="text" class="form-control" [(ngModel)]="model.razon_social" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.razon_social" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NAME' | translate}}">
-            @if(validators.razon_social) {
-              <span class="text-danger small">{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NAME' | translate }}</span>
+            <input type="number" class="form-control" [(ngModel)]="model.nit" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nit" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate}}">
+            @if(validators.nit) {
+              <span class="text-danger small">{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate }}</span>
             }
           </div>
-          <div class="col-sm-12 form-group">
-            <div class="row">
-              <div class="col-sm-6">
-                <label for="exampleInputEmail1">
-                  {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}
-                </label>
-                <input type="number" class="form-control" [(ngModel)]="model.nit" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nit" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate}}">
-                @if(validators.nit) {
-                  <span class="text-danger small">{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate }}</span>
-                }
-              </div>
-              <div class="col-sm-6">
-                <label for="exampleInputEmail1">
-                  {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_DV' | translate}}
-                </label>
-                <input type="text" class="form-control" [(ngModel)]="model.dv" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.dv" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_DV' | translate}}">
-                @if(validators.dv) {
-                  <span class="text-danger small">{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate }}</span>
-                }
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-12 form-group">
+          <div class="col-sm-6">
             <label for="exampleInputEmail1">
-              {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_ADDRESS' | translate}}
+              {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_DV' | translate}}
             </label>
-            <input type="text" class="form-control" [(ngModel)]="model.direccion" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.direccion" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_ADDRESS' | translate}}">
-            @if(validators.direccion) {
-              <span class="text-danger small">{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_ADDRESS' | translate }}</span>
+            <input type="text" class="form-control" [(ngModel)]="model.dv" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.dv" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_DV' | translate}}">
+            @if(validators.dv) {
+              <span class="text-danger small">{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate }}</span>
             }
           </div>
-          <div class="col-sm-12 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_EMAIL' | translate}}
-            </label>
-            <input type="text" class="form-control" [(ngModel)]="model.correo" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.correo" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_EMAIL' | translate}}">
-            @if(validators.correo) {
-              <span class="text-danger small">{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_EMAIL' | translate }}</span>
-            }
-          </div>
-          <div class="col-sm-12 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_PHONE' | translate}}
-            </label>
-            <input type="text" class="form-control" [(ngModel)]="model.telefono" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.telefono" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_PHONE' | translate}}">
-            @if(validators.telefono) {
-              <span class="text-danger small">{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_PHONE' | translate }}</span>
-            }
-          </div>
-          <div class="col-sm-12 row p-0">
-            <div class="col-sm-12">
-              <button class="btn btn-sm btn-primary btnAction d-none" (click)="actualizarData()">
-                {{ 'mod-catalog.BUTTON_EDIT' | translate}}
-              </button>
-            </div>
-          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_ADDRESS' | translate}}
+        </label>
+        <input type="text" class="form-control" [(ngModel)]="model.direccion" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.direccion" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_ADDRESS' | translate}}">
+        @if(validators.direccion) {
+          <span class="text-danger small">{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_ADDRESS' | translate }}</span>
+        }
+      </div>
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_EMAIL' | translate}}
+        </label>
+        <input type="text" class="form-control" [(ngModel)]="model.correo" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.correo" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_EMAIL' | translate}}">
+        @if(validators.correo) {
+          <span class="text-danger small">{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_EMAIL' | translate }}</span>
+        }
+      </div>
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_PHONE' | translate}}
+        </label>
+        <input type="text" class="form-control" [(ngModel)]="model.telefono" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.telefono" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_PHONE' | translate}}">
+        @if(validators.telefono) {
+          <span class="text-danger small">{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_PHONE' | translate }}</span>
+        }
+      </div>
+      <div class="col-sm-12 row p-0">
+        <div class="col-sm-12">
+          <button class="btn btn-sm btn-primary btnAction d-none" (click)="actualizarData()">
+            {{ 'mod-catalog.BUTTON_EDIT' | translate}}
+          </button>
         </div>
       </div>
     </div>

@@ -1,21 +1,17 @@
 <div class="">
   @for (item of categoria; track item; let  i = $index) {
-    <div class="col-xl-12 col-sm-12 row">
-      <div class="col-xl col-sm-12">
-        <div class="col-sm-12 row p-0">
-          <div class="col-sm-12 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-catalog.CATEGORY.LABEL_NAME_CATEGORY' | translate}}
-            </label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.nombre}}" readonly>
-          </div>
-          <div class="col-sm-12 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-catalog.CATEGORY.LABEL_DESCRIPTION_CATEGORY' | translate}}
-            </label>
-            <textarea class="form-control" id="exampleInputEmail1" rows="3" readonly>{{item.descripcion}}</textarea>
-          </div>
-        </div>
+    <div class="col-sm-12 p-0">
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-catalog.CATEGORY.LABEL_NAME_CATEGORY' | translate}}
+        </label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.nombre}}" readonly>
+      </div>
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-catalog.CATEGORY.LABEL_DESCRIPTION_CATEGORY' | translate}}
+        </label>
+        <textarea class="form-control" id="exampleInputEmail1" rows="3" readonly>{{item.descripcion}}</textarea>
       </div>
     </div>
   }

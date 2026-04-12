@@ -10,6 +10,8 @@ export { AsignacionModule } from './user/admin/permission/asignacion/asignacion.
 export { CategoryModule } from './catalogo/category/category.module';
 export { ProductModule } from './catalogo/product/product.module';
 export { SupplierModule } from './catalogo/supplier/supplier.module';
+export { BrandModule } from './catalogo/brand/brand.module';
+
 
 export { BatchModule } from './lote/batch//batch.module';
 export { TiposModule } from './merma/tipos/tipos.module';
