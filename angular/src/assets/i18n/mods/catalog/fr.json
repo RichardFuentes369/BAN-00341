@@ -4,6 +4,7 @@
   "PAGE_CATEGORY_TITLE": "Catégories",
   "PAGE_SUPPLIER_TITLE": "Fournisseurs",
   "PAGE_PRODUCT_TITLE": "Produits",
+  "PAGE_BRAND_TITLE": "Marques",
 
   "MODULE_TITLE": "Catalogue",
   "TABLE_TITLE": "Registres",
@@ -129,6 +130,32 @@
     "CARD_TOTAL_PRODUCTS_TITLE": "Total des produits"
   },
 
+  "BRAND": {
+    "CREATE_TITLE": "Créer",
+    "CREATE_SUBTITLE": "Nouvelle marque",
+    "SEE_TITLE": "Voir",
+    "SEE_SUBTITLE": "Marque : {{brand_name}}",
+    "EDIT_TITLE": "Modifier",
+    "EDIT_SUBTITLE": "Marque : {{brand_name}}",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_BRAND_NAME": "Marque",
+    "COLUMN_TOTAL_PRODUCTS": "Total des produits",
+
+    "LABEL_BRAND_NAME": "Marque",
+
+    "PLACEHOLDER_BRAND_NAME": "Entrez une marque",
+
+    "SWAL_CREATED": "MARQUE !",
+    "SWAL_UPDATED": "MARQUE !",
+    "SWAL_DELETED": "MARQUE !",
+    
+    "SWAL_ARE_YOU_SURE_UPDATE": "Êtes-vous sûr de vouloir mettre à jour la marque {{brand_name}} ?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Êtes-vous sûr de vouloir supprimer {{art_the}} marque{{plural}} {{brand_name}} ?",
+
+    "CARD_TOTAL_BRANDS_TITLE": "Total des marques"
+  },
+
   "SWAL_WARNING_REVERSE_CHANGE": "Cette action est irréversible!",
   "SWAL_CREATED_RECORD": "Enregistrement créé avec succès.",
   "SWAL_DELETED_RECORD": "Supprimé avec succès.",
@@ -140,6 +167,7 @@
   "BUTTON_EDIT": "Modifier",
 
   "BUTTON_CATEGORY": "Catégories",
+  "BUTTON_BRAND": "Marques",
   "BUTTON_SUPPLIER": "Fournisseurs",
   "BUTTON_LOTE": "Lot"  
 }

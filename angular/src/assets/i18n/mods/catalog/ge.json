@@ -4,6 +4,7 @@
   "PAGE_CATEGORY_TITLE": "Kategorien",
   "PAGE_SUPPLIER_TITLE": "Lieferanten",
   "PAGE_PRODUCT_TITLE": "Produkte",
+  "PAGE_BRAND_TITLE": "Marken",
 
   "MODULE_TITLE": "Katalog",
   "TABLE_TITLE": "Datensätze",
@@ -130,6 +131,32 @@
     "CARD_TOTAL_PRODUCTS_TITLE": "Gesamtprodukte"
   },
 
+  "BRAND": {
+    "CREATE_TITLE": "Erstellen",
+    "CREATE_SUBTITLE": "Neue Marke",
+    "SEE_TITLE": "Ansehen",
+    "SEE_SUBTITLE": "Marke: {{brand_name}}",
+    "EDIT_TITLE": "Bearbeiten",
+    "EDIT_SUBTITLE": "Marke: {{brand_name}}",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_BRAND_NAME": "Marke",
+    "COLUMN_TOTAL_PRODUCTS": "Produkte insgesamt",
+
+    "LABEL_BRAND_NAME": "Marke",
+
+    "PLACEHOLDER_BRAND_NAME": "Marke eingeben",
+
+    "SWAL_CREATED": "MARKE!",
+    "SWAL_UPDATED": "MARKE!",
+    "SWAL_DELETED": "MARKE!",
+    
+    "SWAL_ARE_YOU_SURE_UPDATE": "Sind Sie sicher, dass Sie die Marke {{brand_name}} aktualisieren möchten?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Sind Sie sicher, dass Sie {{art_the}} Marke{{plural}} {{brand_name}} löschen möchten?",
+
+    "CARD_TOTAL_BRANDS_TITLE": "Marken insgesamt"
+  },
+
   "SWAL_WARNING_REVERSE_CHANGE": "Diese Änderung kann nicht rückgängig gemacht werden!",
   "SWAL_CREATED_RECORD": "Datensatz erfolgreich erstellt.",
   "SWAL_DELETED_RECORD": "Erfolgreich gelöscht.",
@@ -141,6 +168,7 @@
   "BUTTON_EDIT": "Bearbeiten",
 
   "BUTTON_CATEGORY": "Kategorien",
+  "BUTTON_BRAND": "Marken",
   "BUTTON_SUPPLIER": "Lieferanten",
   "BUTTON_LOTE": "Batch"
 }

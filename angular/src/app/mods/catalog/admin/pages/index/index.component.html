@@ -8,16 +8,16 @@
 
   <div class="">
     <div class="parent">
-      @if(tienePermiso('categorias')){
-      <a [routerLink]="MOD_CATEGORY_PAGE_CATEGORY" class="item"
+      @if(tienePermiso('marcas')){
+      <a [routerLink]="MOD_CATEGORY_PAGE_BRAND" class="item"
         style="text-decoration: none; color: inherit; display: block;">
         <div class="card card-option">
           <div class="card-body text-center p-0 pb-3 pt-3">
-            <img src="assets/images/img_category.png" width="80px">
+            <img src="assets/images/img_brands.png" width="80px">
           </div>
           <div class="card-footer text-center">
             <span>
-              {{ 'mod-catalog.BUTTON_CATEGORY' | translate}}
+              {{ 'mod-catalog.BUTTON_BRAND' | translate}}
             </span>
           </div>
         </div>
@@ -33,6 +33,21 @@
           <div class="card-footer text-center">
             <span>
               {{ 'mod-catalog.BUTTON_SUPPLIER' | translate}}
+            </span>
+          </div>
+        </div>
+      </a>
+      }
+      @if(tienePermiso('categorias')){
+      <a [routerLink]="MOD_CATEGORY_PAGE_CATEGORY" class="item"
+        style="text-decoration: none; color: inherit; display: block;">
+        <div class="card card-option">
+          <div class="card-body text-center p-0 pb-3 pt-3">
+            <img src="assets/images/img_category.png" width="80px">
+          </div>
+          <div class="card-footer text-center">
+            <span>
+              {{ 'mod-catalog.BUTTON_CATEGORY' | translate}}
             </span>
           </div>
         </div>

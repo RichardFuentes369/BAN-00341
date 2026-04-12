@@ -29,6 +29,10 @@ import { EditarLoteComponent } from './lote/admin/pages/lote/components/editar-l
 import { FiltroLoteComponent } from './lote/admin/pages/lote/components/filtro/filtro.component';
 import { ReporteLoteComponent } from './lote/admin/pages/lote/components/reporte/reporte.component';
 import { VerLoteComponent } from './lote/admin/pages/lote/components/ver-lote/ver-lote.component';
+import { FiltroMarcaComponent } from './catalog/admin/pages/marcas/components/filtro/filtro.component';
+import { CrearMarcaComponent } from './catalog/admin/pages/marcas/components/crear-marca/crear-marca.component';
+import { VerMarcaComponent } from './catalog/admin/pages/marcas/components/ver-marca/ver-marca.component';
+import { EditarMarcaComponent } from './catalog/admin/pages/marcas/components/editar-marca/editar-marca.component';
 
 export class ListaComponentes {
 
@@ -129,7 +133,26 @@ export class ListaComponentes {
     {
       name: 'EditarProductoComponent',
       componente: EditarProductoComponent  
+    }, 
+    // modulo catalogo
+    // marca
+    {
+      name: 'FiltroMarcaComponent',
+      componente: FiltroMarcaComponent
+    },  
+    {
+      name: 'CrearMarcaComponent',
+      componente: CrearMarcaComponent 
+    }, 
+    {
+      name: 'VerMarcaComponent',
+      componente: VerMarcaComponent 
     },
+    {
+      name: 'EditarMarcaComponent',
+      componente: EditarMarcaComponent  
+    },
+
     // modulo merma
     // tipo
     {
