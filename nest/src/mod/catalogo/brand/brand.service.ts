@@ -149,4 +149,16 @@ export class BrandService {
     //     'status': 200,
     // };
   }
+
+  async contadoresMarcas(
+    lang: string
+  ){
+    const cont1 =  await this.brandRepository.count()
+
+    const data = {
+      "count_total_brands": cont1
+    }
+
+    return data
+  }
 }

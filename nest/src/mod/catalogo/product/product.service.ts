@@ -199,5 +199,16 @@ export class ProductService {
       throw error;
     }
   }
+  
+  async contadoresProductos(
+    lang: string
+  ){
+    const cont1 =  await this.productRepository.count()
+    
+    const data = {
+      "count_total_products": cont1,
+    }
 
+    return data
+  }
 }

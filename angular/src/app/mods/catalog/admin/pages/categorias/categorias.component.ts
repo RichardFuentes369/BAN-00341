@@ -13,6 +13,7 @@ import { CREAR_CATEGORIA_COMPONENT, EDITAR_CATEGORIA_COMPONENT, FILTRO_CATEGORIA
 import Swal from 'sweetalert2';
 import { CardComponent } from '@component/globales/card/card.component';
 import { GridcrudComponent } from '@component/globales/gridcrud/gridcrud.component';
+import { ProductosService } from '../productos/service/productos.service';
 
 @Component({
   selector: 'app-categorias',
@@ -36,6 +37,7 @@ export class CategoriasComponent implements OnInit, OnDestroy{
     private userService :AuthService,
     private permisosService :PermisosService,
     private categoriasService :CategoriasService,
+    private productosService :ProductosService,
     private translate: TranslateService
   ) { }
 
@@ -78,7 +80,7 @@ export class CategoriasComponent implements OnInit, OnDestroy{
   titleTotalCategorys = this.translate.instant('mod-catalog.CATEGORY.CARD_TOTAL_CATEGORIES_TITLE')
   titleTotalProducts = this.translate.instant('mod-catalog.CATEGORY.CARD_TOTAL_PRODUCTS_TITLE')
   count_total_categorys = '0'
-  count_actived_products = '0'
+  count_total_products = '0'
   // fin datos envio card information
 
   cargarIdioma = true;
@@ -277,5 +279,11 @@ export class CategoriasComponent implements OnInit, OnDestroy{
   }
 
   async actualizarContadores (){
+    const data = await this.categoriasService.obtenerTotale()
+    const data2 = await this.productosService.obtenerTotale()
+    console.log(data)
+    console.log(data2)
+    this.count_total_categorys = data.data.count_total_categorys
+    this.count_total_products = data2.data.count_total_products
   }
 }

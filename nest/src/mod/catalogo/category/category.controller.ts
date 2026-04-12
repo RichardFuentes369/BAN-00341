@@ -81,4 +81,12 @@ export class CategoryController {
       userId
     );
   }
+
+  // contadores
+  @Get('obtener-contadores-categorias')
+  async contadores(
+    @Query('lang') lang:string,
+  ) {
+    return this.categoryService.contadoresCategorias(lang);
+  }
 }

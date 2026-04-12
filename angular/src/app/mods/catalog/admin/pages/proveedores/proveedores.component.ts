@@ -109,7 +109,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   img_user_actived = "assets/images/img_admin.png"
   titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
   titleTotalSuppliers = this.translate.instant('mod-catalog.SUPPLIER.CARD_TOTAL_SUPPLIERS_TITLE')
-  count_total_products = '0'
+  count_total_suppliers = '0'
   // fin datos envio card information
 
   cargarIdioma = true;
@@ -325,5 +325,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   }
 
   async actualizarContadores (){
+    const data = await this.proveedoresService.obtenerTotale()
+    this.count_total_suppliers = data.data.count_total_suppliers
   }
 }

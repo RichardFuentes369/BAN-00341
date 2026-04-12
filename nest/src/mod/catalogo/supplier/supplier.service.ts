@@ -130,4 +130,16 @@ export class SupplierService {
   async remove(lang: string, ids: number[], userId: number) {
     return this.supplierRepository.delete({ id: In(ids) });
   }
+
+  async contadoresProveedores(
+    lang: string
+  ){
+    const cont1 =  await this.supplierRepository.count()
+    
+    const data = {
+      "count_total_suppliers": cont1,
+    }
+
+    return data
+  }
 }

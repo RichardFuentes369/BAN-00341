@@ -165,4 +165,16 @@ export class CategoryService {
         'status': 200,
     };
   }
+
+  async contadoresCategorias(
+    lang: string
+  ){
+    const cont1 =  await this.categoryRepository.count()
+    
+    const data = {
+      "count_total_categorys": cont1,
+    }
+
+    return data
+  }
 }

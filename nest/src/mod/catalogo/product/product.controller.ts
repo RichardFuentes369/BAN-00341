@@ -83,4 +83,12 @@ export class ProductController {
   ) {
     return this.productService.processExcel(file.buffer as any, id_category);
   }
+
+  // contadores
+  @Get('obtener-contadores-productos')
+  async contadores(
+    @Query('lang') lang:string,
+  ) {
+    return this.productService.contadoresProductos(lang);
+  }
 }

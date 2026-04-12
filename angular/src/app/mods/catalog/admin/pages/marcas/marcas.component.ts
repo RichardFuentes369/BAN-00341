@@ -89,7 +89,7 @@ export class MarcasComponent implements OnInit, OnDestroy{
   img_user_actived = "assets/images/img_admin.png"
   titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
   titleTotalSuppliers = this.translate.instant('mod-catalog.BRAND.CARD_TOTAL_BRANDS_TITLE')
-  count_total_products = '0'
+  count_total_brands = '0'
   // fin datos envio card information
 
   cargarIdioma = true;
@@ -285,6 +285,8 @@ export class MarcasComponent implements OnInit, OnDestroy{
   }
 
   async actualizarContadores (){
+    const data = await this.marcaService.obtenerTotale()
+    this.count_total_brands = data.data.count_total_brands
   }
 
 }

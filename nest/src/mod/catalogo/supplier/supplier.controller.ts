@@ -62,4 +62,13 @@ export class SupplierController {
     const idsNumeros: number[] = _id.split(',').map(str => parseInt(str.trim(), 10));
     return this.supplierService.remove(lang, idsNumeros, userId);
   }
+
+  // contadores
+  @Get('obtener-contadores-proveedores')
+  async contadores(
+    @Query('lang') lang:string,
+  ) {
+    return this.supplierService.contadoresProveedores(lang);
+  }
+  
 }

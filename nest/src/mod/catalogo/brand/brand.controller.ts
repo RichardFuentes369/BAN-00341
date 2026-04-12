@@ -79,4 +79,12 @@ export class BrandController {
       userId
     );
   }
+
+  // contadores
+  @Get('obtener-contadores-marcas')
+  async contadores(
+    @Query('lang') lang:string,
+  ) {
+    return this.brandService.contadoresMarcas(lang);
+  }
 }
