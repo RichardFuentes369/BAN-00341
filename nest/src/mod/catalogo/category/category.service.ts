@@ -98,7 +98,7 @@ export class CategoryService {
     try {
       const exists = await this.categoryRepository.findOne({ where: { nombre: categoryData.nombre } });
       if (exists) throw new NotFoundException(
-        this.i18n.t('category.MSJ_ERROR_EXISTE', { lang })
+        this.i18n.t('categoria.MSJ_ERROR_CATEGORY_EXISTE', { lang })
       );
 
       await this.categoryRepository.save(categoryData);
@@ -122,6 +122,11 @@ export class CategoryService {
     categoryData: UpdateCategoryDto, 
     userId: number
   ) {
+    const exists = await this.categoryRepository.findOne({ where: { nombre: categoryData.nombre } });
+    if (exists) throw new NotFoundException(
+      this.i18n.t('categoria.MSJ_ERROR_CATEGORY_EXISTE', { lang })
+    );
+
     const category = await this.findOne(lang, id);
     
     return this.categoryRepository.save({

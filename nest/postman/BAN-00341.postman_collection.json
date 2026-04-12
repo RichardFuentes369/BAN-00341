@@ -1986,7 +1986,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"nit\": \"10000{{provider_id}}\",\r\n    \"razon_social\": \"Proveedor {{provider_id}}\",\r\n    \"direccion\": \"calle 32 a # 52 - 105\",\r\n    \"telefono\": \"607 38542525\",\r\n    \"correo\": \"proveedor{{provider_id}}@gmail.com\"\r\n}",
+											"raw": "{\r\n    \"razon_social\": \"Proveedor {{provider_id}}\",\r\n    \"direccion\": \"calle 32 a # 52 - 105\",\r\n    \"correo\": \"proveedor{{provider_id}}@gmail.com\",\r\n    \"telefono\": \"607 358 9636\",\r\n    \"dv\":\"1\",\r\n    \"nit\": \"1000241004\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2031,7 +2031,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"nit\": \"252525225\",\r\n    \"razon_social\": \"Limpieza e Higiene\",\r\n    \"direccion\": \"Limpieza e Higiene\",\r\n    \"telefono\": \"Limpieza e Higiene\",\r\n    \"correo\": \"Limpieza e Higiene\"\r\n}",
+											"raw": "{\r\n    \"razon_social\": \"Proveedor {{provider_id}}\",\r\n    \"direccion\": \"calle 3 # 23 - 75\",\r\n    \"correo\": \"proveedor{{provider_id}}@gmail.com\",\r\n    \"telefono\": \"3168955632\",\r\n    \"dv\":\"1\",\r\n    \"nit\": \"1000241001\"\r\n}\r\n\r\n// 1000241005 nit 1\r\n// 1000241001 nit 2",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2039,7 +2039,7 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/supplier/editar-proveedor?_id=1&lang=es",
+											"raw": "localhost:3000/api/supplier/editar-proveedor?_id=2&lang=es",
 											"host": [
 												"localhost"
 											],
@@ -2052,7 +2052,7 @@
 											"query": [
 												{
 													"key": "_id",
-													"value": "1"
+													"value": "2"
 												},
 												{
 													"key": "lang",
@@ -2093,6 +2093,238 @@
 												{
 													"key": "_id",
 													"value": "1,2,3"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "brand",
+							"item": [
+								{
+									"name": "obtener-marcas",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/brand/obtener-marcas?page=1&limit=10&field=id&order=asc",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"brand",
+												"obtener-marcas"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "10"
+												},
+												{
+													"key": "field",
+													"value": "id"
+												},
+												{
+													"key": "order",
+													"value": "asc"
+												},
+												{
+													"key": "id_category",
+													"value": "1",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-marca",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/brand/obtener-marca?_id=5&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"brand",
+												"obtener-marca"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "5"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "crear-marca",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Desconocida\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/brand/crear-marca?lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"brand",
+												"crear-marca"
+											],
+											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "actualizar-marca",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Desconocida\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/brand/editar-marca?_id=5&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"brand",
+												"editar-marca"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "5"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "eliminar-marca",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/brand/eliminar-marca?_id=13,14,15&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"brand",
+												"eliminar-marca"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "13,14,15"
 												},
 												{
 													"key": "lang",

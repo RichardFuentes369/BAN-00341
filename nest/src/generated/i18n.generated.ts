@@ -21,6 +21,8 @@ export type I18nTranslations = {
         "ERROR": string;
         "MSJ_CATEGORY_TITTLE": string;
         "MSN_CATEGORY_REMOVIDO_OK": string;
+        "MSJ_ERROR_BRAND_EXISTE": string;
+        "MSJ_ERROR_CATEGORY_EXISTE": string;
         "MSJ_ERROR_PERMISO_TIENE_PRODUCTOS_HIJOS": string;
     };
     "modulo": {

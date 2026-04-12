@@ -3,5 +3,7 @@
   "MSJ_CATEGORY_TITTLE": "Category",
   "MSN_CATEGORY_REMOVIDO_OK": "successfully removed",
 
+  "MSJ_ERROR_BRAND_EXISTE": "The brand already exists.",
+  "MSJ_ERROR_CATEGORY_EXISTE": "The category already exists.",
   "MSJ_ERROR_PERMISO_TIENE_PRODUCTOS_HIJOS": "No action can be taken, this category contains products."
 }

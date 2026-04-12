@@ -82,7 +82,7 @@ export class BrandService {
     try {
       const exists = await this.brandRepository.findOne({ where: { nombre: brandData.nombre } });
       if (exists) throw new NotFoundException(
-        this.i18n.t('category.MSJ_ERROR_EXISTE', { lang })
+        this.i18n.t('categoria.MSJ_ERROR_BRAND_EXISTE', { lang })
       );
 
       await this.brandRepository.save(brandData);
@@ -106,6 +106,11 @@ export class BrandService {
     brandData: UpdateBrandDto, 
     userId: number
   ) {
+    const exists = await this.brandRepository.findOne({ where: { nombre: brandData.nombre } });
+    if (exists) throw new NotFoundException(
+      this.i18n.t('categoria.MSJ_ERROR_BRAND_EXISTE', { lang })
+    );
+
     const brand = await this.findOne(lang, id);
     
     return this.brandRepository.save({
