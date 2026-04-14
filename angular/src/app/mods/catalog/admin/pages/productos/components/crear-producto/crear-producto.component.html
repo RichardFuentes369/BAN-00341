@@ -1,108 +1,96 @@
-<div class="">
-  <div class="col-sm-12 p-0">
-    <div class="col-sm-12 form-group">
-      <label for="exampleInputEmail1">
-        {{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate}}
-      </label>
-      <input type="text" class="form-control" [(ngModel)]="model.nombre" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nombre" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_NAME_PRODUCT' | translate}}">
+<div class="container-fluid p-0">
+  <div class="row">
+    <div class="col-sm-12 form-group mb-3">
+      <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
+      <input type="text" class="form-control" [(ngModel)]="model.nombre" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nombre" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_NAME_PRODUCT' | translate }}">
       @if(validators.nombre) {
         <span class="text-danger small">{{ 'mod-catalog.PRODUCT.PLACEHOLDER_NAME_PRODUCT' | translate }}</span>
       }
     </div>
-    <div class="col-sm-12 form-group">
-      <label for="exampleInputEmail1">
-        {{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate}}
-      </label>
-      <input type="text" class="form-control" [(ngModel)]="model.marca" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.marca" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_BRAND_PRODUCT' | translate}}">
+
+    <div class="col-sm-12 form-group mb-3">
+      <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
+      <ng-select 
+        [items]="marcas"  
+        bindLabel="nombre" 
+        bindValue="id" 
+        [(ngModel)]="model.marca"
+        appendTo="body" 
+        class="custom-select-filter"
+        (search)="onSearch($event)"
+        (change)="onSelectChange($event)">
+        
+        <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+          <div class="ng-option disabled">
+            No se encontró "{{searchTerm}}"
+          </div>
+        </ng-template>
+      </ng-select>
       @if(validators.marca) {
         <span class="text-danger small">{{ 'mod-catalog.PRODUCT.PLACEHOLDER_BRAND_PRODUCT' | translate }}</span>
       }
     </div>
-    <div class="col-sm-12 form-group">
-      <label for="exampleInputEmail1">
-        {{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate}}
-      </label>
-      <select name="" id="" class="form-control" [(ngModel)]="model.unidad_medida" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.unidad_medida">
-        <option value="">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION' | translate}}</option>
-        <option value="unidad">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_UNIT_OPTION' | translate}}</option>
-        <option value="kg">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_KG_OPTION' | translate}}</option>
-        <option value="litro">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_LITER_OPTION' | translate}}</option>
-        <option value="paquete">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_PACKAGE_OPTION' | translate}}</option>
+
+    <div class="col-sm-12 form-group mb-3">
+      <label>{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</label>
+      <select class="form-control" [(ngModel)]="model.unidad_medida" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.unidad_medida">
+        <option value="">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION' | translate }}</option>
+        <option value="unidad">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_UNIT_OPTION' | translate }}</option>
+        <option value="kg">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_KG_OPTION' | translate }}</option>
+        <option value="litro">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_LITER_OPTION' | translate }}</option>
+        <option value="paquete">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_PACKAGE_OPTION' | translate }}</option>
       </select>
       @if(validators.unidad_medida) {
         <span class="text-danger small">{{ 'mod-catalog.PRODUCT.PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</span>
       }
     </div>
-    <div class="col-sm-12 form-group">
-      <label for="exampleInputEmail1">
-        {{ 'mod-catalog.PRODUCT.LABEL_STOCK_PRODUCT' | translate}}
-      </label>
-      <input type="number" min="1" class="form-control" [(ngModel)]="model.stock_minimo" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.stock_minimo" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate}}">
-      @if(validators.stock_minimo) {
-        <span class="text-danger small">{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate }}</span>
-      }
+
+    <div class="col-sm-12 form-group mb-3">
+      <label>{{ 'mod-catalog.PRODUCT.LABEL_STOCK_PRODUCT' | translate }}</label>
+      <input type="number" min="1" class="form-control" [(ngModel)]="model.stock_minimo" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.stock_minimo" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate }}">
     </div>
-    <div class="col-sm-12 form-group">
-      <div class="card text-center">
-        <div class="container mt-4 mb-4">
-          <label for="exampleInputEmail1">
-            {{ 'mod-catalog.PRODUCT.LABEL_CHECK_PERISHABLE' | translate}}
-          </label>
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" checked [(ngModel)]="model.es_perecedero">
+
+    <div class="col-sm-12 form-group mb-3">
+      <div class="card border-light shadow-sm">
+        <div class="card-body text-center">
+          <label class="d-block mb-2">{{ 'mod-catalog.PRODUCT.LABEL_CHECK_PERISHABLE' | translate }}</label>
+          <div class="form-check form-switch d-flex justify-content-center">
+            <input class="form-check-input" type="checkbox" role="switch" [(ngModel)]="model.es_perecedero">
           </div>
-          @if(model.es_perecedero){
-            <div class="col-sm-12 row">
-              <div class="col-sm">
-                <label for="exampleInputEmail1">
-                  {{ 'mod-catalog.PRODUCT.LABEL_BRAND_YELLOW_ALERT' | translate}}
-                </label>
-                <input type="number" min="1" class="form-control" [(ngModel)]="model.stock_minimo" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.stock_minimo" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate}}" minlength="1">
-                @if(validators.stock_minimo) {
-                  <span class="text-danger small">{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate }}</span>
-                }
+
+          @if(model.es_perecedero) {
+            <div class="row mt-3">
+              <div class="col-sm-6">
+                <label class="small text-muted">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_YELLOW_ALERT' | translate }}</label>
+                <input type="number" min="1" class="form-control form-control-sm" [(ngModel)]="model.alerta_amarilla">
               </div>
-              <div class="col-sm">
-                <label for="exampleInputEmail1">
-                  {{ 'mod-catalog.PRODUCT.LABEL_BRAND_ORANGE_ALERT' | translate}}
-                </label>
-                <input type="number" min="1" class="form-control" [(ngModel)]="model.stock_minimo" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.stock_minimo" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate}}" minlength="1">
-                @if(validators.stock_minimo) {
-                  <span class="text-danger small">{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate }}</span>
-                } 
+              <div class="col-sm-6">
+                <label class="small text-muted">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_ORANGE_ALERT' | translate }}</label>
+                <input type="number" min="1" class="form-control form-control-sm" [(ngModel)]="model.alerta_naranja">
               </div>
             </div>
           }
         </div>
       </div>
     </div>
-    <div class="col-sm-12 form-group">
-      <label for="exampleInputEmail1">
-        {{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate}}
-      </label>
-      <input type="text" class="form-control" [(ngModel)]="model.codigo_barra" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.codigo_barra" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate}}">
-      @if(validators.codigo_barra) {
-        <span class="text-danger small">{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}</span>
-      }
+
+    <div class="col-sm-12 form-group mb-3">
+      <label>{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }}</label>
+      <input type="text" class="form-control" [(ngModel)]="model.codigo_barra" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.codigo_barra" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}">
     </div>
-    <div class="col-sm-12 form-group">
-      <label for="exampleInputEmail1">
-        {{ 'mod-catalog.PRODUCT.LABEL_BRAND_STATUS' | translate}}
-      </label>
+
+    <div class="col-sm-12 form-group mb-3">
+      <label>{{ 'mod-catalog.PRODUCT.LABEL_BRAND_STATUS' | translate }}</label>
       <select class="form-control" [(ngModel)]="model.estado" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.estado">
-        <option [ngValue]="0" selected>{{'mod-catalog.PRODUCT.SELECT_PRODUCT_STATUS' | translate}}</option>
-        <option [ngValue]="1">{{'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_ACTIVED' | translate}}</option>
-        <option [ngValue]="2">{{'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_INACTIVED' | translate}}</option>
+        <option [ngValue]="0">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_STATUS' | translate }}</option>
+        <option [ngValue]="1">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_ACTIVED' | translate }}</option>
+        <option [ngValue]="2">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_INACTIVED' | translate }}</option>
       </select>
-      @if(validators.estado) {
-        <span class="text-danger small">{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STATUS_PRODUCT' | translate }}</span>
-      }
     </div>
-  </div>
-  <div class="col-sm-12 p-0">
-    <div class="col-sm-12">
-      <button class="btn btn-sm btn-primary btnAction d-none" (click)="crearProducto()">
-        {{ 'mod-catalog.BUTTON_USER_CREATE' | translate}}
+
+    <div class="col-sm-12 mt-4">
+      <button class="btn btn-primary w-100" [disabled]="!isFormValid" (click)="crearProducto()">
+        {{ 'mod-catalog.BUTTON_USER_CREATE' | translate }}
       </button>
     </div>
   </div>

@@ -80,6 +80,11 @@ export class BrandController {
     );
   }
 
+  @Get('marcas-disponibles')
+  async getBrandsList(@Query('search') search: string) {
+    return await this.brandService.listaMarcas(search);
+  }
+
   // contadores
   @Get('obtener-contadores-marcas')
   async contadores(

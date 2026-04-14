@@ -150,6 +150,13 @@ export class BrandService {
     // };
   }
 
+  async listaMarcas(search: string) {
+    return await this.brandRepository.find({
+      where: { nombre: Like(`%${search}%`) },
+      take: 20 
+    });
+  }
+
   async contadoresMarcas(
     lang: string
   ){

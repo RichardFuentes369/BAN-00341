@@ -13,6 +13,7 @@
   "dependencies": {
     "@date-fns/tz": "^1.2.0",
     "@nestjs/mapped-types": "*",
+    "@ng-select/ng-select": "^21.8.0",
     "axios": "^1.6.7",
     "date-fns": "^4.1.0",
     "rxjs": "^7.8.1"

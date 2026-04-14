@@ -12,6 +12,22 @@ export class ProductosService {
   
   constructor(private translate: TranslateService) {}
 
+  async getDataBrand(term: string = ''){
+    let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = `brand/marcas-disponibles?search=${term}`
+    let urlCopleta = environment.apiUrl+complemento
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
+    return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
+      method: 'get',
+      url: urlCopleta,
+    })
+  }
+
   async getDataProduct(id: string){
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'product/obtener-producto/'
