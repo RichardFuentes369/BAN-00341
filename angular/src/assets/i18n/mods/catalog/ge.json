@@ -115,8 +115,9 @@
 
     "PLACEHOLDER_NAME_PRODUCT": "Namen eingeben",
     "PLACEHOLDER_BRAND_PRODUCT": "Marke eingeben",
-    "PLACEHOLDER_COD_BAR_PRODUCT": "Barcode eingeben",
-    "PLACEHOLDER_STOCK_PRODUCT": "Anzahl eingeben",
+    "PLACEHOLDER_COD_BAR_INPUT": "Eingegebene Code-Zeichen",
+    "PLACEHOLDER_COD_BAR_PRODUCT": "Geben Sie einen gültigen EAN-13-Barcode ein (13 Stellen)",
+    "PLACEHOLDER_STOCK_PRODUCT": "Geben Sie die Mindestproduktmenge ein",
     "PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT": "Wählen Sie eine Maßeinheit aus",
     "PLACEHOLDER_STATUS_PRODUCT": "Status auswählen",
 

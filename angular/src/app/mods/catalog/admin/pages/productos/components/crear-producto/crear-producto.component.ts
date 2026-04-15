@@ -69,22 +69,21 @@ export class CrearProductoComponent implements OnInit {
     this.validationSubject.next();
   }
 
+  // this.validators.nit = (this.model.nit === null || !regexNIT.test((this.model.nit as any).toString()));
+  
   checkValidation(): boolean {
-    // Validamos cada campo
-    this.validators.nombre = (!this.model.nombre || this.model.nombre.trim().length === 0);
-    this.validators.marca = !this.model.marca; // Ahora valida que haya un ID seleccionado
-    this.validators.codigo_barra = (!this.model.codigo_barra || this.model.codigo_barra.trim().length === 0);
+    const regexBarCode = /^[0-9]{13}$/;
+    this.validators.nombre = (this.model.nombre.trim().length === 0)
+    this.validators.marca = (this.model.marca == null)
+    this.validators.codigo_barra = (this.model.codigo_barra === null || !regexBarCode.test((this.model.codigo_barra as any).toString()))
     this.validators.stock_minimo = (this.model.stock_minimo <= 0);
     this.validators.unidad_medida = (this.model.unidad_medida === '');
     this.validators.estado = (this.model.estado === 0);
 
-    // Retornamos si todo es válido (sin usar document.querySelector)
-    return !this.validators.nombre && 
-           !this.validators.marca && 
-           !this.validators.codigo_barra && 
-           !this.validators.stock_minimo && 
-           !this.validators.unidad_medida &&
-           !this.validators.estado;
+    const boton = document.querySelector('.btnSave') as HTMLButtonElement
+    (!this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.unidad_medida && !this.validators.estado) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+
+    return !this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.unidad_medida && !this.validators.estado
   }
 
   async crearProducto() {
@@ -130,6 +129,7 @@ export class CrearProductoComponent implements OnInit {
   }
 
   onSelectChange(item: any) {
-    console.log('Seleccionado:', item ? item.id : 'Ninguno');
+    this.model.marca = (item != undefined) ? item.id : null
+    this.checkValidation()
   }
 }

@@ -48,6 +48,9 @@
     <div class="col-sm-12 form-group mb-3">
       <label>{{ 'mod-catalog.PRODUCT.LABEL_STOCK_PRODUCT' | translate }}</label>
       <input type="number" min="1" class="form-control" [(ngModel)]="model.stock_minimo" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.stock_minimo" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate }}">
+      @if(validators.stock_minimo) {
+        <span class="text-danger small">{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate }}</span>
+      }
     </div>
 
     <div class="col-sm-12 form-group mb-3">
@@ -77,6 +80,11 @@
     <div class="col-sm-12 form-group mb-3">
       <label>{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }}</label>
       <input type="text" class="form-control" [(ngModel)]="model.codigo_barra" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.codigo_barra" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}">
+      @if(validators.codigo_barra) {
+        <span class="text-danger small"> {{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }} </span>
+        <br>
+        <span class="text-danger small"> {{model.codigo_barra.length}} </span>
+      }
     </div>
 
     <div class="col-sm-12 form-group mb-3">
@@ -89,7 +97,7 @@
     </div>
 
     <div class="col-sm-12 mt-4">
-      <button class="btn btn-primary w-100" [disabled]="!isFormValid" (click)="crearProducto()">
+      <button class="btn btn-primary btnAction w-100 d-none" (click)="crearProducto()">
         {{ 'mod-catalog.BUTTON_USER_CREATE' | translate }}
       </button>
     </div>

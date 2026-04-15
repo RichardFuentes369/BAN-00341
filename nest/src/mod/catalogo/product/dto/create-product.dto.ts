@@ -1,17 +1,33 @@
-import { IsEnum, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsEnum, IsNumber, IsString } from "class-validator";
 import { UnidadMedida } from "../enums/UnidadMedida";
 
 export class CreateProductDto {
+
+  @IsBoolean()
+  // @Transform(({value}) => value.trim())
+  readonly es_perecedero;
+
+  @IsNumber()
+  // @Transform(({value}) => value.trim())
+  readonly alerta_amarilla;
+
+  @IsNumber()
+  // @Transform(({value}) => value.trim())
+  readonly alerta_naranja;  
+  
+  @IsNumber()
+  // @Transform(({value}) => value.trim())
+  readonly estado;
+
+  @IsString()
+  // @Transform(({value}) => value.trim())
+  readonly nombre;
   
   @IsString()
   // @Transform(({value}) => value.trim())
   readonly codigo_barra;
 
-  @IsString()
-  // @Transform(({value}) => value.trim())
-  readonly nombre;
-
-  @IsString()
+  @IsNumber()
   // @Transform(({value}) => value.trim())
   readonly marca;
 

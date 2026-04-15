@@ -114,8 +114,9 @@
     
     "PLACEHOLDER_NAME_PRODUCT": "Saisir un nom",
     "PLACEHOLDER_BRAND_PRODUCT": "Saisir une marque",
-    "PLACEHOLDER_COD_BAR_PRODUCT": "Saisir un code-barres",
-    "PLACEHOLDER_STOCK_PRODUCT": "Saisir un nombre",
+    "PLACEHOLDER_COD_BAR_INPUT": "Caractères du code saisis",
+    "PLACEHOLDER_COD_BAR_PRODUCT": "Saisissez un code-barres EAN-13 valide (13 chiffres)",
+    "PLACEHOLDER_STOCK_PRODUCT": "Saisissez la quantité minimale de produits",
     "PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT": "Sélectionnez une unité de mesure",
     "PLACEHOLDER_STATUS_PRODUCT": "Sélectionnez un état",
 

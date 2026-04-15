@@ -93,10 +93,16 @@ export class ProductService {
     userId: number
   ) {
     try {
+
       const exists = await this.productRepository.findOne({ where: { codigo_barra: productData.codigo_barra } });
       if (exists) throw new NotFoundException(
-        this.i18n.t('supplier.MSJ_ERROR_NIT_EXISTE', { lang })
+        this.i18n.t('categoria.MSJ_ERROR_PRODUCT_EXISTE', { lang })
       );
+
+      if(productData.es_perecedero == false){
+        productData.alerta_amarilla == null
+        productData.alerta_naranja == null
+      }
 
       await this.productRepository.save(productData);
       return {

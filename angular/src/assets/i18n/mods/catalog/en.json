@@ -114,8 +114,9 @@
 
     "PLACEHOLDER_NAME_PRODUCT": "Enter a name",
     "PLACEHOLDER_BRAND_PRODUCT": "Enter a brand",
-    "PLACEHOLDER_COD_BAR_PRODUCT": "Enter a barcode",
-    "PLACEHOLDER_STOCK_PRODUCT": "Enter a number",
+    "PLACEHOLDER_COD_BAR_INPUT": "Barcode characters entered",
+    "PLACEHOLDER_COD_BAR_PRODUCT": "Enter a valid EAN-13 barcode (13 digits)",
+    "PLACEHOLDER_STOCK_PRODUCT": "Enter the minimum quantity of products",
     "PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT": "Select a unit of measurement",
     "PLACEHOLDER_STATUS_PRODUCT": "Select a status",
 
