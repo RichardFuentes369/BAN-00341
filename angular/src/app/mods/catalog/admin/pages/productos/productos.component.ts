@@ -65,7 +65,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
     },
     {
       title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
-      data: 'marca',
+      data: 'marca.nombre',
       className: 'text-center'
     },
     {
@@ -181,7 +181,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
       },
       {
         title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
-        data: 'marca',
+        data: 'marca.nombre',
         className: 'text-center'
       },
       {
@@ -282,10 +282,10 @@ export class ProductosComponent implements OnInit, OnDestroy{
   }
 
   async editarData (_id: string){
-    this.title = this.translate.instant('mod-catalog.PRODUCT.SEE_TITLE')
+    this.title = this.translate.instant('mod-catalog.PRODUCT.EDIT_TITLE')
     const response = await this.productosService.getDataProduct(_id)
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    this.translate.get('mod-catalog.PRODUCT.EDIT_TITLE', { "product_name": nombre }).subscribe((res: string) => {this.title = res});
+    this.translate.get('mod-catalog.PRODUCT.EDIT_SUBTITLE', { "product_name": nombre }).subscribe((res: string) => {this.subtitle = res});
     this.tamano = "xl"
     this.scrollable = true
     this.save = false

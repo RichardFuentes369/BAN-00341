@@ -63,6 +63,9 @@ export class ProductService {
       skip: skipReal,
       take: limit,
       where: where,
+      relations: {
+        marca: true, 
+      },
       order: { [field]: order }
     });
 
@@ -80,7 +83,7 @@ export class ProductService {
   }
 
   async findOne(lang: string, id: number) {
-    const prodcut = await this.productRepository.findOne({ where: { id } });
+    const prodcut = await this.productRepository.findOne({ where: { id }, relations: { marca: true } });
     if (!prodcut) throw new NotFoundException(
       this.i18n.t('supplier.MSJ_PROVEEDOR_NO_ENCONTRADO', { lang })
     );
@@ -127,10 +130,10 @@ export class ProductService {
   ) {
     const product = await this.findOne(lang, id);
 
-    return this.productRepository.save({
-      ...product,
-      ...productData
-    });
+    // return this.productRepository.save({
+    //   ...product,
+    //   ...productData
+    // });
   }
 
   async remove(lang: string, ids: number[], userId: number) {

@@ -3,6 +3,7 @@ import { Lote } from '@module/lote/batch/entities/batch.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn, OneToOne, Batch } from 'typeorm';
 import { UnidadMedida } from '../enums/UnidadMedida';
 import { Categoria } from '@module/catalogo/category/entities/category.entity';
+import { Marca } from '@module/catalogo/brand/entities/brand.entity';
 
 @Entity('mod_catalogo_productos')
 export class Producto {
@@ -16,8 +17,8 @@ export class Producto {
   @Column({ type: 'varchar', length: 150 })
   nombre: string;
 
-  @Column({ type:  'varchar', length: 150 })
-  marca: string;
+  @Column()
+  id_marca: number;
 
   @Column({ type: 'enum', enum: UnidadMedida, default: UnidadMedida.KG })
   unidad_medida: UnidadMedida;
@@ -47,6 +48,13 @@ export class Producto {
   })
   @JoinColumn({ name: 'id_categoria' })
   categoria: Categoria;
+
+  @ManyToOne(() => Marca, (marca) => marca.id, {
+    onDelete: 'RESTRICT', 
+    nullable: false
+  })
+  @JoinColumn({ name: 'id_marca' })
+  marca: Categoria;
 
   @OneToMany(() => Lote, (lote) => lote.id_producto)
   lote: Lote[];

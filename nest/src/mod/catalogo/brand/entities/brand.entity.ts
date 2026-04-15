@@ -9,4 +9,8 @@ export class Marca {
 
   @Column({ type: 'varchar', length: 255, unique: true })
   nombre: string; 
+
+  // Relation
+  @OneToMany(() => Producto, (producto) => producto.marca)
+  productos: Producto[];
 }

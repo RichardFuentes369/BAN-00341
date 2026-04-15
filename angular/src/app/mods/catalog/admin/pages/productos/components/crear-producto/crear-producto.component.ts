@@ -10,11 +10,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ocultarModalOscura } from '@function/System'
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ProductosService } from '../../service/productos.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-crear-producto',
   standalone: true,
-  imports: [TranslateModule, FormsModule, NgSelectModule],
+  imports: [TranslateModule, FormsModule, NgSelectModule, CommonModule],
   templateUrl: './crear-producto.component.html',
   styleUrl: './crear-producto.component.scss',
 })

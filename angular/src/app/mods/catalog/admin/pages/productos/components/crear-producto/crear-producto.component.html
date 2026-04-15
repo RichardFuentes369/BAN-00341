@@ -17,6 +17,7 @@
         [(ngModel)]="model.marca"
         appendTo="body" 
         class="custom-select-filter"
+        [loading]="isLoading"
         (search)="onSearch($event)"
         (change)="onSelectChange($event)">
         
@@ -81,9 +82,11 @@
       <label>{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }}</label>
       <input type="text" class="form-control" [(ngModel)]="model.codigo_barra" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.codigo_barra" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}">
       @if(validators.codigo_barra) {
-        <span class="text-danger small"> {{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }} </span>
-        <br>
-        <span class="text-danger small"> {{model.codigo_barra.length}} </span>
+      <div class="d-flex justify-content-between">
+        <small [ngClass]="((model?.codigo_barra || '').toString().length === 13) ? 'text-success font-weight-bold' : 'text-danger'">
+          {{ model?.codigo_barra?.length || 0 }} / 13
+        </small>
+      </div>
       }
     </div>
 
