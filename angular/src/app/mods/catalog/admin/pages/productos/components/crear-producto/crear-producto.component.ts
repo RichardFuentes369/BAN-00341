@@ -118,6 +118,15 @@ export class CrearProductoComponent implements OnInit {
     }
   }
 
+  get esCodigoValido(): boolean {
+    const codigo = (this.model?.codigo_barra || '').toString();
+    return codigo.length === 13;
+  }
+
+  get longitudCodigo(): number {
+    return (this.model?.codigo_barra || '').toString().length;
+  }
+
   async getMarcas() {
 
     this.isLoading = true;

@@ -83,8 +83,8 @@
       <input type="text" class="form-control" [(ngModel)]="model.codigo_barra" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.codigo_barra" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}">
       @if(validators.codigo_barra) {
       <div class="d-flex justify-content-between">
-        <small [ngClass]="((model?.codigo_barra || '').toString().length === 13) ? 'text-success font-weight-bold' : 'text-danger'">
-          {{ model?.codigo_barra?.length || 0 }} / 13
+        <small [ngClass]="esCodigoValido ? 'text-success font-weight-bold' : 'text-danger'">
+          {{ longitudCodigo }} / 13
         </small>
       </div>
       }
