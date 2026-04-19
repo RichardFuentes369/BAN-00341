@@ -36,6 +36,10 @@ export class FilterProductrDto {
   codigo_barra?: string;   
 
   @IsOptional()
+  @IsNumber()
+  id_marca?: number;
+
+  @IsOptional()
   @IsString()
   marca?: string;   
 

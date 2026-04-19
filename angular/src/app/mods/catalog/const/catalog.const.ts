@@ -24,6 +24,11 @@ export const MOD_CATEGORY_PAGE_BRAND =  '/admin/mod/catalog/marcas/';
 export const MOD_CATEGORY_PAGE_PRODUCT =  '/admin/mod/catalog/productos';
 export const MOD_CATEGORY_PAGE_SUPPLIER =  '/admin/mod/catalog/proveedores/';
 export const MOD_CATEGORY_PAGE_LOTE =  '/admin/mod/catalog/lote/';
+export const MOD_CATEGORY_PAGE_PRODUCT_FOR_BRAND =  '/admin/mod/catalog/marcas/productos/';
+
+export const PATH_ASSIGN_PRODUCT_USERS = 'productos';
+export const TITLE_PATH_ASSIGN_PRODUCT_USERS = 'Asignar productos';
+export const BREADCRUMB_PATH_ASSIGN_PRODUCT_USERS = 'mod-catalog.PRODUCT.ASSIGMENT_PRODUCT_TITLE_BREADCRUMB';
 
 export const CARGAR_PRODUCT_COMPONENT = 'CargarProductoComponent';
 export const CREAR_PRODUCT_COMPONENT = 'CrearProductoComponent';

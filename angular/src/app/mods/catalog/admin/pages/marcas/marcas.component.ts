@@ -10,7 +10,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { MarcaService } from './service/marca.service';
 import { Subscription, timer } from 'rxjs';
-import { CREAR_MARCA_COMPONENT, EDITAR_MARCA_COMPONENT, FILTRO_MARCA_COMPONENT, VER_MARCA_COMPONENT } from '@mod/catalog/const/catalog.const';
+import { CREAR_MARCA_COMPONENT, EDITAR_MARCA_COMPONENT, FILTRO_MARCA_COMPONENT, MOD_CATEGORY_PAGE_PRODUCT_FOR_BRAND, VER_MARCA_COMPONENT } from '@mod/catalog/const/catalog.const';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import Swal from 'sweetalert2';
 
@@ -289,6 +289,15 @@ export class MarcasComponent implements OnInit, OnDestroy{
         }
       });
     });
+  }
+
+  asignarData (data: { id: string, ctrlKey: boolean }){
+    const url = `${MOD_CATEGORY_PAGE_PRODUCT_FOR_BRAND}?id_brand=${data.id}`;
+    if (data.ctrlKey) {
+      window.open(url, '_blank');
+    } else {
+      this.router.navigate([MOD_CATEGORY_PAGE_PRODUCT_FOR_BRAND], { queryParams: { id_brand: data.id } });
+    }
   }
 
   async filtroData(){

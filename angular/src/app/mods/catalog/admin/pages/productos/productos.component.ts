@@ -11,8 +11,9 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { ProductosService } from './service/productos.service';
 import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
-import { CARGAR_PRODUCT_COMPONENT, CREAR_PRODUCT_COMPONENT, EDITAR_PRODUCT_COMPONENT, FILTRO_PRODUCT_COMPONENT, VER_PRODUCT_COMPONENT } from '@mod/catalog/const/catalog.const';
+import { CARGAR_PRODUCT_COMPONENT, CREAR_PRODUCT_COMPONENT, EDITAR_PRODUCT_COMPONENT, FILTRO_PRODUCT_COMPONENT, MOD_CATEGORY_PAGE_BRAND, VER_PRODUCT_COMPONENT } from '@mod/catalog/const/catalog.const';
 import Swal from 'sweetalert2';
+import { MarcaService } from '../marcas/service/marca.service';
 
 @Component({
   selector: 'app-productos',
@@ -37,6 +38,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
     private userService :AuthService,
     private permisosService :PermisosService,
     private productosService :ProductosService,
+    private brandService :MarcaService,
     private translate: TranslateService
   ) { }
   
@@ -53,7 +55,8 @@ export class ProductosComponent implements OnInit, OnDestroy{
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = 'product/obtener-productos'
-  complementoEndPoint = ``
+  idBrand = this.route.snapshot.queryParams?.['id_brand'];
+  complementoEndPoint = this.idBrand ? `&id_marca=${this.idBrand}` : '';
   habilitarSeleccion = true
   filters = ''
   columnas: any[] = [
@@ -138,6 +141,14 @@ export class ProductosComponent implements OnInit, OnDestroy{
 
     if (permiso_modulo.data === "" || permiso_submodulo.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
+    }
+    
+    if(this.route.snapshot.queryParams?.['id_brand']){
+      try {
+        const existBrand = await this.brandService.getDataBrand(this.route.snapshot.queryParams?.['id_brand']);
+      } catch (error) {
+        this.router.navigate([MOD_CATEGORY_PAGE_BRAND]);
+      }
     }
 
     const permisos = await this.permisosService.permisos(userData.data.id,'productos')

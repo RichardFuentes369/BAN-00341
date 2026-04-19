@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { BREADCRUMB_PATH_MENU } from '@const/app.const';
+import { BREADCRUMB_PATH_ADMIN_BRAND } from '@mod/catalog/const/catalog.const';
 import { BREADCRUMB_PATH_CATALOG, BREADCRUMB_PATH_MODULES, BREADCRUMB_PATH_USERS } from '@mod/main/const/main.const';
 import { BREADCRUMB_PATH_SUBMODULES } from '@mod/modules/const/modules.const';
 import { BREADCRUMB_PATH_ADMIN_USERS, BREADCRUMB_PATH_ASSIGN_ADMIN_USERS, BREADCRUMB_PATH_FINAL_USERS } from '@mod/users/const/users.const';
@@ -50,7 +51,8 @@ export class BreadcrumbService {
           label === BREADCRUMB_PATH_ADMIN_USERS || 
           label === BREADCRUMB_PATH_FINAL_USERS ||
           label === BREADCRUMB_PATH_CATALOG ||
-          label === BREADCRUMB_PATH_MODULES
+          label === BREADCRUMB_PATH_MODULES || 
+          label === BREADCRUMB_PATH_ADMIN_BRAND 
         ) {
           params = {}
         }

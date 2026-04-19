@@ -55,6 +55,7 @@
   },
 
   "PRODUCT": {
+    "ASSIGMENT_PRODUCT_TITLE_BREADCRUMB": "Produkte",
     "UPLOAD_TITLE": "Produkte hochladen",
     "UPLOAD_SUBTITLE": "Produkte im Batch",
     "CREATE_TITLE": "Erstellen",

@@ -54,6 +54,9 @@ export class ProductService {
     if (filterDto['unidad_medida']) {
       where.unidad_medida = Like(`%${filterDto['unidad_medida']}%`);
     }
+    if (filterDto['id_marca']) {
+      where.id_marca = filterDto['id_marca'];
+    }
 
     const totalRecords = await this.productRepository.count({ where });
     const result = await this.productRepository.find({

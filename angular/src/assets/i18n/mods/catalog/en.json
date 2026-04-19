@@ -54,6 +54,7 @@
   },
 
   "PRODUCT": {
+    "ASSIGMENT_PRODUCT_TITLE_BREADCRUMB": "Products",
     "UPLOAD_TITLE": "Upload products",
     "UPLOAD_SUBTITLE": "Batch products",
     "CREATE_TITLE": "Create",

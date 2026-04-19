@@ -20,15 +20,14 @@ DROP DATABASE IF EXISTS `BAN_00341`;
 CREATE DATABASE IF NOT EXISTS `BAN_00341` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `BAN_00341`;
 
--- Dumping structure for table BAN_00341.mod_catalogo_categorias
-DROP TABLE IF EXISTS `mod_catalogo_categorias`;
-CREATE TABLE IF NOT EXISTS `mod_catalogo_categorias` (
+-- Dumping structure for table BAN_00341.mod_catalogo_marcas
+DROP TABLE IF EXISTS `mod_catalogo_marcas`;
+CREATE TABLE IF NOT EXISTS `mod_catalogo_marcas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
-  `descripcion` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `IDX_1fd4865dcbc2b7722b210d9a08` (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  UNIQUE KEY `IDX_09768fd7375b60a05e91503d04` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -36,21 +35,20 @@ CREATE TABLE IF NOT EXISTS `mod_catalogo_categorias` (
 DROP TABLE IF EXISTS `mod_catalogo_productos`;
 CREATE TABLE IF NOT EXISTS `mod_catalogo_productos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `codigo_barra` varchar(50) NOT NULL,
   `nombre` varchar(150) NOT NULL,
-  `marca` varchar(150) NOT NULL,
   `unidad_medida` enum('unidad','kg','litro','paquete') NOT NULL DEFAULT 'kg',
   `stock_minimo` int(11) NOT NULL,
   `es_perecedero` tinyint(4) NOT NULL DEFAULT 0,
   `alerta_amarilla` int(11) DEFAULT NULL,
   `alerta_naranja` int(11) DEFAULT NULL,
   `estado` tinyint(4) NOT NULL DEFAULT 1,
-  `id_categoria` int(11) NOT NULL,
+  `codigo_barra` varchar(13) NOT NULL,
+  `id_marca` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_58c1252afc49ad323e7c5a3c0a` (`codigo_barra`),
-  KEY `FK_e442e00427c9f85b6c8767ef9be` (`id_categoria`),
-  CONSTRAINT `FK_e442e00427c9f85b6c8767ef9be` FOREIGN KEY (`id_categoria`) REFERENCES `mod_catalogo_categorias` (`id`) ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `FK_f3087ae9693d048e2a9aba091a5` (`id_marca`),
+  CONSTRAINT `FK_f3087ae9693d048e2a9aba091a5` FOREIGN KEY (`id_marca`) REFERENCES `mod_catalogo_marcas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -58,14 +56,15 @@ CREATE TABLE IF NOT EXISTS `mod_catalogo_productos` (
 DROP TABLE IF EXISTS `mod_catalogo_proveedores`;
 CREATE TABLE IF NOT EXISTS `mod_catalogo_proveedores` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nit` bigint(20) NOT NULL,
   `razon_social` varchar(255) NOT NULL,
   `direccion` varchar(255) NOT NULL,
   `correo` varchar(150) NOT NULL,
   `telefono` varchar(50) NOT NULL,
+  `dv` char(1) NOT NULL,
+  `nit` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_20124d60355ae6fbf4410be1f5` (`nit`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -137,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `mod_permisos_modulo` (
   PRIMARY KEY (`id`),
   KEY `FK_28bd06971f76c49399db2715d90` (`modulo_padre_id`),
   CONSTRAINT `FK_28bd06971f76c49399db2715d90` FOREIGN KEY (`modulo_padre_id`) REFERENCES `mod_permisos_modulo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -154,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `mod_permisos_modulo_asignacion` (
   PRIMARY KEY (`id`),
   KEY `FK_6eb0af2f8e13274ad1819f4cfca` (`user_id`),
   CONSTRAINT `FK_6eb0af2f8e13274ad1819f4cfca` FOREIGN KEY (`user_id`) REFERENCES `mod_usuarios_admin` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=428 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=467 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -169,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `mod_usuarios_admin` (
   `isActive` tinyint(4) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_c885318c449a37e806a7f87607` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -187,6 +186,93 @@ CREATE TABLE IF NOT EXISTS `mod_usuarios_user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
+
+-- Dumping structure for procedure BAN_00341.sp_reporte_permisos_paginado
+DROP PROCEDURE IF EXISTS `sp_reporte_permisos_paginado`;
+DELIMITER //
+CREATE PROCEDURE `sp_reporte_permisos_paginado`(
+    IN p_pagina_actual INT,
+    IN p_registros_por_pagina INT,
+    IN p_modulo VARCHAR(100),
+    IN p_submodulo VARCHAR(100),
+    IN p_permiso VARCHAR(100)
+)
+BEGIN
+    -- Usamos INT normales para evitar conflictos de rango
+    DECLARE v_offset INT;
+    DECLARE v_limit INT;
+    DECLARE v_total_registros INT;
+    
+    -- 1. LÓGICA DE PAGINACIÓN SEGURA
+    -- Si no mandas límite, usamos 999,999,999 (Suficiente para cualquier reporte)
+    IF p_registros_por_pagina IS NULL OR p_registros_por_pagina <= 0 THEN
+        SET v_limit = 999999999; 
+        SET v_offset = 0;
+    ELSE
+        SET v_limit = p_registros_por_pagina;
+        SET v_offset = (IFNULL(p_pagina_actual, 1) - 1) * p_registros_por_pagina;
+    END IF;
+
+    -- 2. TABLA TEMPORAL
+    DROP TEMPORARY TABLE IF EXISTS temp_reporte;
+    
+    CREATE TEMPORARY TABLE temp_reporte AS
+    SELECT t.* FROM (
+        SELECT
+            CASE 
+                WHEN mpma.modulo_padre_id IS NULL THEN (
+                    SELECT mpm.nombre FROM mod_permisos_modulo mpm WHERE mpm.id = mpma.id_modulo
+                )
+                WHEN mpma.modulo_padre_id IN (SELECT id FROM mod_permisos_modulo WHERE modulo_padre_id IS NULL) THEN (
+                    SELECT mpm.nombre FROM mod_permisos_modulo mpm WHERE mpm.id = mpma.modulo_padre_id
+                )
+                ELSE (
+                    SELECT m_abuelo.nombre 
+                    FROM mod_permisos_modulo m_padre
+                    INNER JOIN mod_permisos_modulo m_abuelo ON m_padre.modulo_padre_id = m_abuelo.id
+                    WHERE m_padre.id = mpma.modulo_padre_id
+                )
+            END AS MODULO,
+            CASE
+                WHEN mpma.modulo_padre_id IS NULL THEN '---'
+                WHEN mpma.modulo_padre_id IS NOT NULL  
+                    AND mpma.modulo_padre_id IN (SELECT id FROM mod_permisos_modulo WHERE modulo_padre_id IS NULL)
+                    THEN (SELECT mpm.nombre FROM mod_permisos_modulo mpm WHERE mpm.id = mpma.id_modulo)
+                ELSE (SELECT mpm.nombre FROM mod_permisos_modulo mpm WHERE mpm.id = mpma.modulo_padre_id)
+            END AS SUBMODULO,
+            mpma.nombre AS PERMISO,
+            mpma.permiso AS IDENTIFICADOR,
+            mua.email AS CORREO_USUARIO,
+            CASE mua.isActive WHEN 1 THEN 'ACTIVO' ELSE 'INACTIVO' END AS ESTADO_USUARIO
+        FROM mod_permisos_modulo_asignacion mpma
+        INNER JOIN mod_usuarios_admin mua ON mpma.user_id = mua.id
+    ) AS t
+    WHERE 
+        (p_modulo IS NULL OR t.MODULO = p_modulo) AND
+        (p_submodulo IS NULL OR t.SUBMODULO = p_submodulo) AND
+        (p_permiso IS NULL OR t.PERMISO LIKE CONCAT('%', p_permiso, '%'));
+
+    -- 3. TOTALES
+    SELECT COUNT(*) INTO v_total_registros FROM temp_reporte;
+
+    -- 4. RESULTADO 1: METADATOS
+    SELECT 
+        v_total_registros AS total,
+        IFNULL(p_registros_por_pagina, v_total_registros) AS perPage,
+        IFNULL(p_pagina_actual, 1) AS currentPage,
+        CEIL(v_total_registros / IFNULL(p_registros_por_pagina, v_total_registros)) AS lastPage;
+
+    -- 5. RESULTADO 2: DATOS (Usando variables de usuario @ para el EXECUTE)
+    SET @l = v_limit;
+    SET @o = v_offset;
+    
+    PREPARE stmt FROM 'SELECT * FROM temp_reporte LIMIT ? OFFSET ?';
+    EXECUTE stmt USING @l, @o;
+    DEALLOCATE PREPARE stmt;
+
+    DROP TEMPORARY TABLE IF EXISTS temp_reporte;
+END//
+DELIMITER ;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
