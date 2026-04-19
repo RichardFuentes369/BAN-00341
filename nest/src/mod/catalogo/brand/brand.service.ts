@@ -133,34 +133,42 @@ export class BrandService {
   }
 
   async remove(lang: string, ids: number[], userId: number) {
+    try {
+      const marcas = await this.brandRepository.find({
+        where: { id: In(ids) },
+        relations: { productos: true },
+      });
+      
+      const resultado = marcas.map(mar => ({
+        ...mar,
+        total_productos: mar.productos.length
+      }));
+  
+      const tieneHijos = marcas.some(cat => cat.productos.length > 0);
+      
+      if (tieneHijos) {
+        return {
+          title: this.i18n.t('categoria.MSJ_MARCA_TITTLE', { lang }),
+          message: this.i18n.t('categoria.MSJ_ERROR_MARCA_TIENE_PRODUCTOS_HIJOS', { lang }),
+          status: 404, 
+        };
+      }
+  
+      this.brandRepository.delete({ id: In(ids) })
+  
+      return {
+          'title': this.i18n.t('categoria.MSJ_CATEGORY_TITTLE', { lang }),
+          'message': this.i18n.t('categoria.MSN_PERMISO_REMOVIDO_OK', { lang }),
+          'status': 200,
+      };
+    } catch (error) {
+      return {
+        'title': this.i18n.t('categoria.MSJ_MARCA_TITTLE', { lang }),
+        'message': this.i18n.t('categoria.MSJ_ERROR_MARCA_TIENE_PRODUCTOS_HIJOS', { lang }),
+        'status': 404,
+      }
+    }
 
-    // const categorias = await this.categoryRepository.find({
-    //   where: { id: In(ids) },
-    //   relations: { productos: true },
-    // });
-    
-    // const resultado = categorias.map(cat => ({
-    //   ...cat,
-    //   total_productos: cat.productos.length
-    // }));
-
-    // const tieneHijos = categorias.some(cat => cat.productos.length > 0);
-    
-    // if (tieneHijos) {
-    //   return {
-    //     title: this.i18n.t('categoria.MSJ_PERMISO_TITTLE', { lang }),
-    //     message: this.i18n.t('categoria.MSJ_ERROR_PERMISO_TIENE_PRODUCTOS_HIJOS', { lang }),
-    //     status: 400, 
-    //   };
-    // }
-
-    // this.categoryRepository.delete({ id: In(ids) })
-
-    // return {
-    //     'title': this.i18n.t('categoria.MSJ_CATEGORY_TITTLE', { lang }),
-    //     'message': this.i18n.t('categoria.MSN_PERMISO_REMOVIDO_OK', { lang }),
-    //     'status': 200,
-    // };
   }
 
   async listaMarcas(search: string) {

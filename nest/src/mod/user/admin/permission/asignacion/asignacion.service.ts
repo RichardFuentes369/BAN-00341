@@ -2,7 +2,7 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateAsignacionDto } from './dto/create-asignacion.dto';
 import { UpdateAsignacionDto } from './dto/update-asignacion.dto';
 
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Asignacion } from './entities/asignacion.entity';
 import { Modulo } from '@module/modules/entities/modulo.entity';
 import { I18nService } from 'nestjs-i18n';
@@ -221,5 +221,11 @@ export class AsignacionService {
       console.error('Error detallado:', error);
       throw new NotFoundException('Error en el reporte de permisos');
     }
+  }
+
+  async eliminarAsignadosPorUsuario(id: number[]){
+    return await this.asignacionRepository.delete({
+      user_id: In(id)
+    });
   }
 }

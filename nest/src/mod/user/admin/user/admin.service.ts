@@ -196,11 +196,12 @@ export class AdminService {
     );
   }  
   
-  remove(
+  async remove(
     lang: string,
     id: number[],
     userId: number
   ) {
+    await this.asignacionService.eliminarAsignadosPorUsuario(id)
     return this.adminRepository.delete({id: In(id)})
   }
 

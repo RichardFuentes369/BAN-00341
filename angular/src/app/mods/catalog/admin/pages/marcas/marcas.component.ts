@@ -249,36 +249,47 @@ export class MarcasComponent implements OnInit, OnDestroy{
 
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
-  // async eliminarData (_id: string[]){
-  //   const response = await this.proveedoresService.getDataProvider(_id[0])
-  //   const { razon_social } = response.data || { razon_social: 'xxxxxxx' }
-  //   const name_user = (_id.length === 1) ? razon_social : "("+_id.length+")"
-  //   const count_users = (_id.length === 1) ? 'el' : 'los'
-  //   const plural = (_id.length === 1) ? '' : 's'
-    
-  //   this.translate.get('mod-catalog.BRAND.SWAL_ARE_YOU_SURE_DELETE',{ "art_the": count_users, "plural": plural, "user_name": name_user}).subscribe((translatedTitle: string) => {
-  //     Swal.fire({
-  //       title: translatedTitle,
-  //       text: this.translate.instant('mod-catalog.SWAL_WARNING_REVERSE_CHANGE'),
-  //       icon: 'warning',
-  //       showCancelButton: true,
-  //       confirmButtonText: this.translate.instant('mod-catalog.SWAL_BUTTON_DELETE'),
-  //       cancelButtonText: this.translate.instant('mod-catalog.SWAL_BUTTON_CANCEL')
-  //     }).then(async (result) => {
-  //       if (result.isConfirmed) {
-  //         if (result.isConfirmed) {
-  //           await this.proveedoresService.deleteProvider(_id)
-  //           await this.someInput.reload()
-  //           Swal.fire({
-  //             title: this.translate.instant('mod-catalog.BRAND.SWAL_DELETED'),
-  //             text: this.translate.instant('mod-catalog.SWAL_DELETED_RECORD'),
-  //             icon: "success"
-  //           });
-  //         }
-  //       }
-  //     });
-  //   });
-  // }
+  async eliminarData (_id: string[]){
+    const response = await this.marcaService.getDataBrand(_id[0])
+    const { nombre } = response.data || { nombre: 'xxxxxxx' }
+    const brand_name = (_id.length === 1) ? nombre : "("+_id.length+")"
+    const count_users = (_id.length === 1) ? 'el' : 'los'
+    const plural = (_id.length === 1) ? '' : 's'
+
+    this.translate.get('mod-catalog.BRAND.SWAL_ARE_YOU_SURE_DELETE',{ "art_the": count_users, "plural": plural, "brand_name": brand_name}).subscribe((translatedTitle: string) => {
+      Swal.fire({
+        title: translatedTitle,
+        text: this.translate.instant('mod-catalog.SWAL_WARNING_REVERSE_CHANGE'),
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: this.translate.instant('mod-catalog.SWAL_BUTTON_DELETE'),
+        cancelButtonText: this.translate.instant('mod-catalog.SWAL_BUTTON_CANCEL')
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          if (result.isConfirmed) {
+            let response = await this.marcaService.deleteBrand(_id)
+            await this.someInput.reload()
+
+            if (response.data.status == 200) {
+              Swal.fire({
+                title: this.translate.instant('mod-catalog.BRAND.SWAL_DELETED'),
+                text: this.translate.instant('mod-catalog.SWAL_DELETED_RECORD'),
+                icon: "success"
+              });
+            }
+            
+            if (response.data.status == 404) {
+              Swal.fire({
+                title: this.translate.instant('mod-catalog.BRAND.SWAL_DELETED'),
+                text: response.data.message,
+                icon: "error"
+              });
+            }
+          }
+        }
+      });
+    });
+  }
 
   async filtroData(){
     let filtros = await $('.complementoRuta').val();
