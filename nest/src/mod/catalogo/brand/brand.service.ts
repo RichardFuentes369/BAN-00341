@@ -5,12 +5,15 @@ import { I18nService } from 'nestjs-i18n';
 import { CreateBrandDto } from './dto/create-brand.dto';
 import { UpdateBrandDto } from './dto/update-brand.dto';
 import { FilterBrandDto } from './dto/filter-category.dto';
+import { Producto } from '../product/entities/product.entity';
 
 @Injectable()
 export class BrandService {
   constructor(
     @Inject('BRAND_REPOSITORY')
     private brandRepository: Repository<Marca>,
+    @Inject('PRODUCT_REPOSITORY')
+    private productRepository: Repository<Producto>,
     private i18n: I18nService
   ) {}
 
@@ -41,11 +44,21 @@ export class BrandService {
     }
 
     const totalRecords = await this.brandRepository.count({ where });
-    const result = await this.brandRepository.find({
+
+    const [registros, total] = await this.brandRepository.findAndCount({
       skip: skipReal,
       take: limit,
       where: where,
-      order: { [field]: order }
+      order: { [field]: order },
+      relations: { productos: true } 
+    });
+
+    const result = registros.map(marcas => {
+      return {
+        ...marcas,
+        totalProductos: marcas.productos ? marcas.productos.length : 0,
+        productos: undefined 
+      };
     });
 
     return [{

@@ -1,6 +1,7 @@
 // import { PermisosModulos } from 'src/mod/permisos/modulos/entities/modulo.entity';
 import { Producto } from '@module/catalogo/product/entities/product.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { forwardRef } from '@nestjs/common';
 
 @Entity('mod_catalogo_marcas')
 export class Marca {

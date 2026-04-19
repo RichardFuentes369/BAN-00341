@@ -3,6 +3,7 @@ import { Lote } from '@module/lote/batch/entities/batch.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn, OneToOne, Batch } from 'typeorm';
 import { UnidadMedida } from '../enums/UnidadMedida';
 import { Marca } from '@module/catalogo/brand/entities/brand.entity';
+import { forwardRef } from '@nestjs/common';
 
 @Entity('mod_catalogo_productos')
 export class Producto {
@@ -37,10 +38,13 @@ export class Producto {
   @Column({ default: true })
   estado: boolean;
 
-  @ManyToOne(() => Marca, (marca) => marca.id, {
-    onDelete: 'RESTRICT', 
-    nullable: false
-  })
+  // @ManyToOne(() => Marca, (marca) => marca.id, {
+  //   onDelete: 'RESTRICT', 
+  //   nullable: false
+  // })
+  // @JoinColumn({ name: 'id_marca' })
+  // marca: Marca;
+  @ManyToOne(() => Marca, (marca) => marca.productos)
   @JoinColumn({ name: 'id_marca' })
   marca: Marca;
 
