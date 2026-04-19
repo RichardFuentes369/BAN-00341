@@ -37,19 +37,6 @@
           </span>
           }
 
-          @if(tienePermiso('asignar_productos')){
-          <span class="custom-tooltip tooltip-bottom my-auto"
-            [attr.data-title]="'global-tablecrud.BUTTON_OPTION_ASSIGN_PRODUCTS' | translate"
-            [class.is-disabled]="idsSeleccionados.length !== 1"
-            [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'">
-            <button class="btn btn-link p-0 border-0 action-icon-btn" (click)="assign($event)"
-              [disabled]="idsSeleccionados.length !== 1">
-              <i class="fa-solid fa-rectangle-list" [class.text-success]="idsSeleccionados.length === 1"
-                [class.text-muted]="idsSeleccionados.length !== 1"></i>
-            </button>
-          </span>
-          }
-
           @if(tienePermiso('ver')){
           <span class="custom-tooltip tooltip-bottom my-auto"
             [attr.data-title]="'global-tablecrud.BUTTON_OPTION_SEE' | translate"

@@ -7,7 +7,6 @@ export { UserModule } from './user/final/user/user.module';
 export { ModulosModule } from './modules/modulos.module'
 export { AsignacionModule } from './user/admin/permission/asignacion/asignacion.module';
 
-export { CategoryModule } from './catalogo/category/category.module';
 export { ProductModule } from './catalogo/product/product.module';
 export { SupplierModule } from './catalogo/supplier/supplier.module';
 export { BrandModule } from './catalogo/brand/brand.module';

@@ -39,9 +39,6 @@ export class ProductService {
     const skipReal = (page == 1) ? 0 : (page - 1) * limit;
     const where: any = {};
 
-    if (filterDto['id_category']) {
-      where.id_categoria = filterDto['id_category'];
-    }
     if (filterDto['marca']) {
       where.marca = Like(`%${filterDto['marca']}%`);
     }

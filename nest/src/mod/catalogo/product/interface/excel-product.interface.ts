@@ -3,6 +3,5 @@ export interface ProductExcel {
   nombre: string;
   marca: string;
   stock_minimo: string;
-  id_categoria: string;
   unidad_medida: string;
 }

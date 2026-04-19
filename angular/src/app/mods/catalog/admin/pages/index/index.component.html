@@ -38,16 +38,16 @@
         </div>
       </a>
       }
-      @if(tienePermiso('categorias')){
-      <a [routerLink]="MOD_CATEGORY_PAGE_CATEGORY" class="item"
+      @if(tienePermiso('productos')){
+      <a [routerLink]="MOD_CATEGORY_PAGE_PRODUCT_ASSIGMENT" class="item"
         style="text-decoration: none; color: inherit; display: block;">
         <div class="card card-option">
           <div class="card-body text-center p-0 pb-3 pt-3">
-            <img src="assets/images/img_category.png" width="80px">
+            <img src="assets/images/img_product.png" width="80px">
           </div>
           <div class="card-footer text-center">
             <span>
-              {{ 'mod-catalog.BUTTON_CATEGORY' | translate}}
+              {{ 'mod-catalog.BUTTON_PRODUCT' | translate}}
             </span>
           </div>
         </div>

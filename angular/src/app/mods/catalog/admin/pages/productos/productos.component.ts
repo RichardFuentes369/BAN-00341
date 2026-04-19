@@ -11,7 +11,7 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { ProductosService } from './service/productos.service';
 import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
-import { CARGAR_PRODUCT_COMPONENT, CREAR_PRODUCT_COMPONENT, EDITAR_PRODUCT_COMPONENT, FILTRO_PRODUCT_COMPONENT, MOD_CATEGORY_PAGE_CATEGORY, VER_PRODUCT_COMPONENT } from '@mod/catalog/const/catalog.const';
+import { CARGAR_PRODUCT_COMPONENT, CREAR_PRODUCT_COMPONENT, EDITAR_PRODUCT_COMPONENT, FILTRO_PRODUCT_COMPONENT, VER_PRODUCT_COMPONENT } from '@mod/catalog/const/catalog.const';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -53,7 +53,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = 'product/obtener-productos'
-  complementoEndPoint = `&id_category=${this.route.snapshot.queryParamMap.get('id_category')}`
+  complementoEndPoint = ``
   habilitarSeleccion = true
   filters = ''
   columnas: any[] = [
@@ -140,9 +140,9 @@ export class ProductosComponent implements OnInit, OnDestroy{
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     }
 
-    if(!this.route.snapshot.queryParamMap.get('id_category')){
-      this.router.navigate([MOD_CATEGORY_PAGE_CATEGORY]);
-    }
+    // if(!this.route.snapshot.queryParamMap.get('id_category')){
+    //   this.router.navigate([MOD_CATEGORY_PAGE_CATEGORY]);
+    // }
 
     const permisos = await this.permisosService.permisos(userData.data.id,'productos')
     this.permisos = permisos.data
@@ -274,7 +274,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
-        queryParams: { id_category: this.route.snapshot.queryParams?.['id_category'], id_product: _id },
+        queryParams: { id_product: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
@@ -299,7 +299,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
-        queryParams: { id_category: this.route.snapshot.queryParams?.['id_category'], id_product: _id },
+        queryParams: { id_product: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()

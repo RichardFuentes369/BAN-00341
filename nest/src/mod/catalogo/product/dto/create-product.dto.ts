@@ -34,9 +34,6 @@ export class CreateProductDto {
   @IsNumber()
   // @Transform(({value}) => value.trim())
   readonly stock_minimo;  
-  
-  @IsNumber()
-  readonly id_categoria;
 
   @IsEnum(UnidadMedida)
   readonly unidad_medida: UnidadMedida;

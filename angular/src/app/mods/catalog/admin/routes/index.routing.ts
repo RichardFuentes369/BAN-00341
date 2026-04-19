@@ -6,14 +6,17 @@ import {
   BREADCRUMB_PATH_ADMIN_BRAND,
   BREADCRUMB_PATH_ADMIN_CATEGORY,
   BREADCRUMB_PATH_ADMIN_LOTE,
+  BREADCRUMB_PATH_ADMIN_PRODUCT,
   BREADCRUMB_PATH_ADMIN_SUPPLIER,
   PATH_ADMIN_BRAND,
   PATH_ADMIN_CATEGORY,
   PATH_ADMIN_LOTE,
+  PATH_ADMIN_PRODUCT,
   PATH_ADMIN_SUPPLIER,
   TITLE_PATH_ADMIN_BRAND,
   TITLE_PATH_ADMIN_CATEGORY,
   TITLE_PATH_ADMIN_LOTE,
+  TITLE_PATH_ADMIN_PRODUCT,
   TITLE_PATH_ADMIN_SUPPLIER,
   TITLE_PATH_CATALOG_INDEX 
 } from '@mod/catalog/const/catalog.const';
@@ -29,13 +32,13 @@ export const CatalogRoutes: Routes = [
     component: IndexComponent,
   },
   {
-    path: PATH_ADMIN_CATEGORY,
-    title: TITLE_PATH_ADMIN_CATEGORY,
-    data: { breadcrumb: BREADCRUMB_PATH_ADMIN_CATEGORY },
+    path: PATH_ADMIN_PRODUCT,
+    title: TITLE_PATH_ADMIN_PRODUCT,
+    data: { breadcrumb: BREADCRUMB_PATH_ADMIN_PRODUCT },
     canActivate: [
       adminGuard
     ],
-    loadChildren: () => import('./categorias.routing').then(x=>x.CatalogoCategoriasRoutes)
+    loadChildren: () => import('./productos.routing').then(x=>x.CatalogoProductosRoutes)
   },
   {
     path: PATH_ADMIN_SUPPLIER,

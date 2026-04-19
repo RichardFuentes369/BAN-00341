@@ -24,9 +24,8 @@ export const PATH_ADMIN_LOTE = 'lote';
 export const TITLE_PATH_ADMIN_LOTE = 'Lote';
 export const BREADCRUMB_PATH_ADMIN_LOTE = 'Lote';
 
-export const MOD_CATEGORY_PAGE_CATEGORY =  '/admin/mod/catalog/categorias/';
 export const MOD_CATEGORY_PAGE_BRAND =  '/admin/mod/catalog/marcas/';
-export const MOD_CATEGORY_PAGE_PRODUCT_ASSIGMENT =  '/admin/mod/catalog/categorias/productos';
+export const MOD_CATEGORY_PAGE_PRODUCT_ASSIGMENT =  '/admin/mod/catalog/productos';
 export const MOD_CATEGORY_PAGE_SUPPLIER =  '/admin/mod/catalog/proveedores/';
 export const MOD_CATEGORY_PAGE_LOTE =  '/admin/mod/catalog/lote/';
 
