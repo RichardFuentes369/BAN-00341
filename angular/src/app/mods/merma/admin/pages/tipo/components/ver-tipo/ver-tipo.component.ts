@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { CategoriasService } from '@mod/catalog/admin/pages/categorias/service/categorias.service';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { AuthService } from '@guard/service/auth.service';
 

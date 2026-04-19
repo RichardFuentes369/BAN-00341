@@ -4,10 +4,6 @@ export const STORAGE_KEY_PROFILE_FINAL = 'user';
 export const TITLE_PATH_CATALOG_INDEX = 'Catalogo';
 export const BREADCRUMB_PATH_CATALOG_INDEX = 'Index';
 
-export const PATH_ADMIN_CATEGORY = 'categorias';
-export const TITLE_PATH_ADMIN_CATEGORY = 'Categorias';
-export const BREADCRUMB_PATH_ADMIN_CATEGORY = 'mod-catalog.PAGE_CATEGORY_TITLE';
-
 export const PATH_ADMIN_SUPPLIER = 'proveedores';
 export const TITLE_PATH_ADMIN_SUPPLIER = 'Proveedores';
 export const BREADCRUMB_PATH_ADMIN_SUPPLIER = 'mod-catalog.PAGE_SUPPLIER_TITLE';
@@ -25,7 +21,7 @@ export const TITLE_PATH_ADMIN_LOTE = 'Lote';
 export const BREADCRUMB_PATH_ADMIN_LOTE = 'Lote';
 
 export const MOD_CATEGORY_PAGE_BRAND =  '/admin/mod/catalog/marcas/';
-export const MOD_CATEGORY_PAGE_PRODUCT_ASSIGMENT =  '/admin/mod/catalog/productos';
+export const MOD_CATEGORY_PAGE_PRODUCT =  '/admin/mod/catalog/productos';
 export const MOD_CATEGORY_PAGE_SUPPLIER =  '/admin/mod/catalog/proveedores/';
 export const MOD_CATEGORY_PAGE_LOTE =  '/admin/mod/catalog/lote/';
 

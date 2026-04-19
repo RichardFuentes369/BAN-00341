@@ -1,7 +1,6 @@
 {
   "UNKNOW_MODULE_TITLE": "Unknown",
 
-  "PAGE_CATEGORY_TITLE": "Categories",
   "PAGE_SUPPLIER_TITLE": "Suppliers",
   "PAGE_PRODUCT_TITLE": "Products",
   "PAGE_BRAND_TITLE": "Brands",
@@ -14,37 +13,6 @@
   "BUTTON_CANCEL": "Cancel",
   "BUTTON_BACK": "Back",
   "BUTTON_SEARCH": "Search",
-
-  "CATEGORY": {
-    "CREATE_TITLE": "Create",
-    "CREATE_SUBTITLE": "New category",
-    "SEE_TITLE": "View",
-    "SEE_SUBTITLE": "Category: {{category_name}}",
-    "EDIT_TITLE": "Edit",
-    "EDIT_SUBTITLE": "Category: {{category_name}}",
-
-    "COLUMN_ID": "ID",
-    "COLUMN_NAME": "Name",
-    "COLUMN_DESCRIPTION": "Description",
-    "COLUMN_TOTAL_PRODUCTOS": "# Products",
-    "COLUMN_STATUS": "Status",
-
-    "LABEL_NAME_CATEGORY": "Name",
-    "LABEL_DESCRIPTION_CATEGORY": "Description",
-
-    "PLACEHOLDER_NAME_CATEGORY": "Enter a name",
-    "PLACEHOLDER_DESCRIPTION_CATEGORY": "Enter a description",
-
-    "SWAL_CREATED": "CATEGORY!",
-    "SWAL_UPDATED": "CATEGORY!",
-    "SWAL_DELETED": "CATEGORY!",
-    
-    "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the category{{plural}} {{user_name}}?",
-    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete the category{{plural}} {{user_name}}?",
-
-    "CARD_TOTAL_CATEGORIES_TITLE": "Total categories",
-    "CARD_TOTAL_PRODUCTS_TITLE": "Total products"
-  },
 
   "SUPPLIER": {
     "CREATE_TITLE": "Create",

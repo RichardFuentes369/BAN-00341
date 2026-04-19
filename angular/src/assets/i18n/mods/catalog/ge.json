@@ -1,7 +1,6 @@
 {
   "UNKNOW_MODULE_TITLE": "Unbekannt",
 
-  "PAGE_CATEGORY_TITLE": "Kategorien",
   "PAGE_SUPPLIER_TITLE": "Lieferanten",
   "PAGE_PRODUCT_TITLE": "Produkte",
   "PAGE_BRAND_TITLE": "Marken",
@@ -14,37 +13,6 @@
   "BUTTON_CANCEL": "Abbrechen",
   "BUTTON_BACK": "Zurück",
   "BUTTON_SEARCH": "Suchen",
-
-  "CATEGORY": {
-    "CREATE_TITLE": "Erstellen",
-    "CREATE_SUBTITLE": "Neue Kategorie",
-    "SEE_TITLE": "Anzeigen",
-    "SEE_SUBTITLE": "Kategorie: {{category_name}}",
-    "EDIT_TITLE": "Bearbeiten",
-    "EDIT_SUBTITLE": "Kategorie: {{category_name}}",
-
-    "COLUMN_ID": "ID",
-    "COLUMN_NAME": "Name",
-    "COLUMN_DESCRIPTION": "Beschreibung",
-    "COLUMN_TOTAL_PRODUCTOS": "# Produkte", 
-    "COLUMN_STATUS": "Status",
-
-    "LABEL_NAME_CATEGORY": "Name",
-    "LABEL_DESCRIPTION_CATEGORY": "Beschreibung",
-
-    "PLACEHOLDER_NAME_CATEGORY": "Einen Namen eingeben",
-    "PLACEHOLDER_DESCRIPTION_CATEGORY": "Eine Beschreibung eingeben",
-
-    "SWAL_CREATED": "KATEGORIE!",
-    "SWAL_UPDATED": "KATEGORIE!",
-    "SWAL_DELETED": "KATEGORIE!",
-
-    "SWAL_ARE_YOU_SURE_UPDATE": "Sind Sie sicher, dass Sie den Kategorie {{user_name}} aktualisieren möchten?",
-    "SWAL_ARE_YOU_SURE_DELETE": "Sind Sie sicher, dass Sie den Kategorie{{plural}} {{user_name}} löschen möchten?",
-
-    "CARD_TOTAL_CATEGORIES_TITLE": "Kategorien insgesamt",
-    "CARD_TOTAL_PRODUCTS_TITLE": "Produkte insgesamt"
-  },
 
   "SUPPLIER": {
     "CREATE_TITLE": "Erstellen",

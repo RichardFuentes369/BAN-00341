@@ -81,14 +81,12 @@ export class CargarProductoComponent {
   }
 
   async descargarPlantilla(){
-    let id_categoria = Number(this.route.snapshot.queryParams?.['id_category']);
-    await this.productosService.descargarPlantilla(id_categoria);
+    await this.productosService.descargarPlantilla();
   }
 
   async subirArchivo() {
     if (!this.isFormValid || !this.fileToUpload) return;
 
-    let id_categoria = Number(this.route.snapshot.queryParams?.['id_category']);
 
     Swal.fire({
       title: 'Procesando archivo masivo...',
@@ -100,7 +98,7 @@ export class CargarProductoComponent {
     });
 
     try {
-      const res = await this.productosService.cargarExcelProductos(this.fileToUpload, id_categoria);
+      const res = await this.productosService.cargarExcelProductos(this.fileToUpload);
       
       Swal.close(); 
 

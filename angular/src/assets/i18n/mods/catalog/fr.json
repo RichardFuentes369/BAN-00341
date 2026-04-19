@@ -1,7 +1,6 @@
 {
   "UNKNOW_MODULE_TITLE": "Inconnu",
 
-  "PAGE_CATEGORY_TITLE": "Catégories",
   "PAGE_SUPPLIER_TITLE": "Fournisseurs",
   "PAGE_PRODUCT_TITLE": "Produits",
   "PAGE_BRAND_TITLE": "Marques",
@@ -14,37 +13,6 @@
   "BUTTON_CANCEL": "Annuler",
   "BUTTON_BACK": "Retour",
   "BUTTON_SEARCH": "Rechercher",
-
-  "CATEGORY": {
-    "CREATE_TITLE": "Créer",
-    "CREATE_SUBTITLE": "Nouvelle catégorie",
-    "SEE_TITLE": "Voir",
-    "SEE_SUBTITLE": "Catégorie : {{category_name}}",
-    "EDIT_TITLE": "Modifier",
-    "EDIT_SUBTITLE": "Catégorie : {{category_name}}",
-
-    "COLUMN_ID": "ID",
-    "COLUMN_NAME": "Nom",
-    "COLUMN_DESCRIPTION": "Description",
-    "COLUMN_TOTAL_PRODUCTOS": "# Produits", 
-    "COLUMN_STATUS": "État",
-
-    "LABEL_NAME_CATEGORY": "Nom",
-    "LABEL_DESCRIPTION_CATEGORY": "Description",
-
-    "PLACEHOLDER_NAME_CATEGORY": "Saisir un nom",
-    "PLACEHOLDER_DESCRIPTION_CATEGORY": "Saisir une description",
-
-    "SWAL_CREATED": "CATÉGORIE!",
-    "SWAL_UPDATED": "CATÉGORIE!",
-    "SWAL_DELETED": "CATÉGORIE!",
-
-    "SWAL_ARE_YOU_SURE_UPDATE": "Êtes-vous sûr de vouloir mettre à jour le catégorie {{user_name}} ?",
-    "SWAL_ARE_YOU_SURE_DELETE": "Êtes-vous sûr de vouloir supprimer le catégorie{{plural}} {{user_name}} ?",
-
-    "CARD_TOTAL_CATEGORIES_TITLE": "Total des catégories",
-    "CARD_TOTAL_PRODUCTS_TITLE": "Total des produits"
-  },
 
   "SUPPLIER": {
     "CREATE_TITLE": "Créer",

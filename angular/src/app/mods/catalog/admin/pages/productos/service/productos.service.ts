@@ -109,7 +109,7 @@ export class ProductosService {
     })
   }
 
-  async descargarPlantilla(id_categoria: number) {
+  async descargarPlantilla() {
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     const urlCompleta = `${environment.apiUrl}product/plantilla-productos/`;
     const token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN);
@@ -119,7 +119,6 @@ export class ProductosService {
         headers: {
           [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
         },
-        params: { lang, id_categoria },
         responseType: 'blob' // CRÍTICO: Para manejar datos binarios
       });
 
@@ -145,7 +144,7 @@ export class ProductosService {
     }
   }
 
-  async cargarExcelProductos(file: File, idCategory: number) {
+  async cargarExcelProductos(file: File) {
     const lang = this.translate.currentLang || 'es';
     const urlCompleta = `${environment.apiUrl}product/cargar-productos`;
     const token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN);
@@ -159,7 +158,6 @@ export class ProductosService {
           [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
         },
         params: {
-          id_category: idCategory, 
           lang: lang
         },
         timeout: 300000 

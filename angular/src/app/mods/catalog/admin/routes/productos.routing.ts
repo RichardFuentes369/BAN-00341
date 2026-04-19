@@ -3,12 +3,10 @@ import { Routes } from '@angular/router';
 import { 
   BREADCRUMB_PATH_ADMIN_PRODUCT,
   PATH_ADMIN_PRODUCT,
-  TITLE_PATH_ADMIN_CATEGORY,
   TITLE_PATH_ADMIN_PRODUCT, 
 } from '@mod/catalog/const/catalog.const';
 
 // componentes
-import { CategoriasComponent } from '@mod/catalog/admin/pages/categorias/categorias.component';
 import { adminGuard } from '@guard/roles/admin/admin.guard';
 import { ProductosComponent } from '../pages/productos/productos.component';
 

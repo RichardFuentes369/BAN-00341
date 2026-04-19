@@ -140,10 +140,6 @@ export class ProductosComponent implements OnInit, OnDestroy{
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     }
 
-    // if(!this.route.snapshot.queryParamMap.get('id_category')){
-    //   this.router.navigate([MOD_CATEGORY_PAGE_CATEGORY]);
-    // }
-
     const permisos = await this.permisosService.permisos(userData.data.id,'productos')
     this.permisos = permisos.data
     sessionStorage.removeItem('nombre')
@@ -342,7 +338,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
   async filtroData(){
     let filtros = await $('.complementoRuta').val();
     this.router.navigate([], {
-      queryParams: { id_category: this.route.snapshot.queryParams?.['id_category'], search: filtros },
+      queryParams: { search: filtros },
     });
     if(typeof filtros === 'string'){
       this.filters = filtros

@@ -34,7 +34,6 @@ export class CrearProductoComponent implements OnInit {
     marca: null, 
     stock_minimo: 1,
     unidad_medida: '',
-    id_categoria: 0,
     alerta_amarilla: 1, 
     alerta_naranja: 1
   };
@@ -89,7 +88,6 @@ export class CrearProductoComponent implements OnInit {
 
   async crearProducto() {
     if (this.isFormValid) {
-      this.model.id_categoria = Number(this.route.snapshot.queryParams?.['id_category']);
       const response = await this.productosService.createProduct(this.model);
       
       if (response.data.status == 200) {
