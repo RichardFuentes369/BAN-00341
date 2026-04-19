@@ -31,7 +31,7 @@ export class CrearProductoComponent implements OnInit {
     estado: 0,
     codigo_barra: '',
     nombre: '',
-    marca: null, 
+    id_marca: null, 
     stock_minimo: 1,
     unidad_medida: '',
     alerta_amarilla: 1, 
@@ -74,7 +74,7 @@ export class CrearProductoComponent implements OnInit {
   checkValidation(): boolean {
     const regexBarCode = /^[0-9]{13}$/;
     this.validators.nombre = (this.model.nombre.trim().length === 0)
-    this.validators.marca = (this.model.marca == null)
+    this.validators.marca = (this.model.id_marca == null)
     this.validators.codigo_barra = (this.model.codigo_barra === null || !regexBarCode.test((this.model.codigo_barra as any).toString()))
     this.validators.stock_minimo = (this.model.stock_minimo <= 0);
     this.validators.unidad_medida = (this.model.unidad_medida === '');
@@ -137,7 +137,7 @@ export class CrearProductoComponent implements OnInit {
   }
 
   onSelectChange(item: any) {
-    this.model.marca = (item != undefined) ? item.id : null
+    this.model.id_marca = (item != undefined) ? item.id : null
     this.checkValidation()
   }
 }

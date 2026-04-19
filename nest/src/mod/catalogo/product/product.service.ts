@@ -99,9 +99,9 @@ export class ProductService {
         this.i18n.t('categoria.MSJ_ERROR_PRODUCT_EXISTE', { lang })
       );
 
-      if(productData.es_perecedero == false){
-        productData.alerta_amarilla == null
-        productData.alerta_naranja == null
+      if(productData.es_perecedero === false || productData.es_perecedero === 0){
+        productData.alerta_amarilla = null
+        productData.alerta_naranja = null
       }
 
       await this.productRepository.save(productData);

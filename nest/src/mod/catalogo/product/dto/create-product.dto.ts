@@ -1,4 +1,4 @@
-import { IsBoolean, IsEnum, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsEnum, IsNumber, IsOptional, IsString } from "class-validator";
 import { UnidadMedida } from "../enums/UnidadMedida";
 
 export class CreateProductDto {
@@ -7,13 +7,15 @@ export class CreateProductDto {
   // @Transform(({value}) => value.trim())
   readonly es_perecedero;
 
+  @IsOptional()
   @IsNumber()
   // @Transform(({value}) => value.trim())
-  readonly alerta_amarilla;
-
+  alerta_amarilla: number | null;
+  
+  @IsOptional()
   @IsNumber()
   // @Transform(({value}) => value.trim())
-  readonly alerta_naranja;  
+  alerta_naranja: number | null;
   
   @IsNumber()
   // @Transform(({value}) => value.trim())
@@ -29,7 +31,7 @@ export class CreateProductDto {
 
   @IsNumber()
   // @Transform(({value}) => value.trim())
-  readonly marca;
+  readonly id_marca;
 
   @IsNumber()
   // @Transform(({value}) => value.trim())

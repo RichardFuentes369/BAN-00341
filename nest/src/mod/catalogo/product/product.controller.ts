@@ -37,10 +37,10 @@ export class ProductController {
   @Post('crear-producto')
   create(
     @Query('lang') lang: string,
-    @Body() supplierData: CreateProductDto,
+    @Body() productData: CreateProductDto,
     @GetUser('id') userId: number
   ) {
-    return this.productService.create(lang, supplierData, userId);
+    return this.productService.create(lang, productData, userId);
   }
 
   @UseGuards(AdminGuard)
