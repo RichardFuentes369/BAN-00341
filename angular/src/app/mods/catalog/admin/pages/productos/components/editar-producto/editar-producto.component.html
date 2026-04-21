@@ -25,7 +25,8 @@
         class="custom-select-filter"
         [loading]="isLoading"
         (search)="onSearch($event)"
-        (change)="onSelectChange($event, item)">
+        (change)="onSelectChange($event, item)"
+        [readonly]="isReadonly">
         
         <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
           <div class="ng-option disabled">

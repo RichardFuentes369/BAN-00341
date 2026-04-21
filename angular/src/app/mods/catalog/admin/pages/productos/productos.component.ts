@@ -257,6 +257,9 @@ export class ProductosComponent implements OnInit, OnDestroy{
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
+      this.router.navigate([], {
+        queryParams: { id_brand: this.route.snapshot.queryParams?.['id_brand'], id_product: _id },
+      });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
@@ -281,7 +284,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
-        queryParams: { id_product: _id },
+        queryParams: { id_brand: this.route.snapshot.queryParams?.['id_brand'], id_product: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
@@ -306,7 +309,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
-        queryParams: { id_product: _id },
+        queryParams: { id_brand: this.route.snapshot.queryParams?.['id_brand'], id_product: _id},
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()

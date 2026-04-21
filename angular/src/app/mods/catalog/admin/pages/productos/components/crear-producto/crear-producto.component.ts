@@ -25,13 +25,14 @@ export class CrearProductoComponent implements OnInit {
   marcas: any[] = [];
   isLoading: boolean = false
   filtro: string = ''
+  isReadonly:boolean = false
 
   model = {
     es_perecedero: false,
     estado: null,
     codigo_barra: '',
     nombre: '',
-    id_marca: (this.route.snapshot.queryParams?.['id_brand']) ? this.route.snapshot.queryParams?.['id_brand'] : null, 
+    id_marca: null, 
     stock_minimo: 1,
     unidad_medida: '',
     alerta_amarilla: 1, 
@@ -62,7 +63,13 @@ export class CrearProductoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getMarcas();
+    if(!this.route.snapshot.queryParams?.['id_brand']){
+      this.isReadonly = false
+      this.getMarcas();
+    }else{
+      this.isReadonly = true
+      this.getMarca()
+    }
   }
 
   onInputChange() {
@@ -124,13 +131,30 @@ export class CrearProductoComponent implements OnInit {
   }
 
   async getMarcas() {
-
     this.isLoading = true;
     try {
-      const marcasList = await this.productosService.getDataBrand(this.filtro)
+      const marcasList = await this.productosService.getDataBrandSearch(this.filtro)
       this.marcas = [...marcasList.data];
     } finally {
       this.isLoading = false;
+    }
+  }
+
+  async getMarca() {
+    if (!this.route.snapshot.queryParams?.['id_brand']) return;
+
+    try {
+      const response = await this.productosService.getDataBrand(this.route.snapshot.queryParams?.['id_brand']);
+      const marca = response.data; 
+
+      const exists = this.marcas.find(m => m.id === marca.id);
+      if (!exists) {
+        this.marcas = [...this.marcas, marca]; 
+      }
+      
+      this.model.id_marca = marca.id; 
+    } catch (error) {
+      console.error("Error al cargar la marca inicial", error);
     }
   }
 

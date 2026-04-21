@@ -19,7 +19,8 @@
         class="custom-select-filter"
         [loading]="isLoading"
         (search)="onSearch($event)"
-        (change)="onSelectChange($event)">
+        (change)="onSelectChange($event)"
+        [readonly]="isReadonly">
         
         <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
           <div class="ng-option disabled">

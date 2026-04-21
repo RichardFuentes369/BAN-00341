@@ -27,6 +27,7 @@ export class EditarProductoComponent implements OnInit {
   marcas: any[] = [];
   isLoading: boolean = false
   filtro: string = ''
+  isReadonly:boolean = false
   
   // Arreglo para el loop y objeto para validación/envío
   producto: any[] = [];
@@ -58,6 +59,15 @@ export class EditarProductoComponent implements OnInit {
   }
 
   async ngOnInit() {
+
+    if(!this.route.snapshot.queryParams?.['id_brand']){
+      this.isReadonly = false
+      this.getMarcas();
+    }else{
+      this.isReadonly = true
+      this.getMarca()
+    }
+    
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const idParam = this.route.snapshot.queryParams?.['id_product'];
     
@@ -87,7 +97,7 @@ export class EditarProductoComponent implements OnInit {
 
   onSearch(event: any) {
     const term = event.term;
-    if (term && term.length >= 3) {
+    if (term && term.length >= 1) {
       this.filtro = term;
       this.getMarcas();
     }
@@ -96,13 +106,31 @@ export class EditarProductoComponent implements OnInit {
   async getMarcas() {
     this.isLoading = true;
     try {
-      const marcasList = await this.productosService.getDataBrand(this.filtro);
+      const marcasList = await this.productosService.getDataBrandSearch(this.filtro);
       const actual = this.producto[0]?.marca;
       this.marcas = actual 
         ? [actual, ...marcasList.data.filter((m: any) => m.id !== actual.id)]
         : [...marcasList.data];
     } finally {
       this.isLoading = false;
+    }
+  }
+
+  async getMarca() {
+    if (!this.route.snapshot.queryParams?.['id_brand']) return;
+
+    try {
+      const response = await this.productosService.getDataBrand(this.route.snapshot.queryParams?.['id_brand']);
+      const marca = response.data; 
+
+      const exists = this.marcas.find(m => m.id === marca.id);
+      if (!exists) {
+        this.marcas = [...this.marcas, marca]; 
+      }
+      
+      this.model.id_marca = marca.id; 
+    } catch (error) {
+      console.error("Error al cargar la marca inicial", error);
     }
   }
 
