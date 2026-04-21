@@ -23,13 +23,13 @@ export class SupplierService {
     const { limit, page, field = 'id', order = 'ASC' } = filterDto;
 
     if (!page || !limit) throw new NotFoundException(
-      this.i18n.t('supplier.MSJ_ERROR_PARAMETRO_LISTA_NO_ENVIADO', { lang })
+      this.i18n.t('proveedor.MSJ_ERROR_PARAMETRO_LISTA_NO_ENVIADO', { lang })
     );
 
     const propiedades = this.listarPropiedadesTabla(this.supplierRepository);
     if (!propiedades.includes(field)) {
       throw new NotFoundException(
-        this.i18n.t('supplier.MSJ_ERROR_PARAMETRO_NO_EXISTE', { lang, args: { field } })
+        this.i18n.t('proveedor.MSJ_ERROR_PARAMETRO_NO_EXISTE', { lang, args: { field } })
       );
     }
 
@@ -75,7 +75,7 @@ export class SupplierService {
   async findOne(lang: string, id: number) {
     const supplier = await this.supplierRepository.findOne({ where: { id } });
     if (!supplier) throw new NotFoundException(
-      this.i18n.t('supplier.MSJ_PROVEEDOR_NO_ENCONTRADO', { lang })
+      this.i18n.t('proveedor.MSJ_PROVEEDOR_NO_ENCONTRADO', { lang })
     );
     return supplier;
   }
@@ -89,13 +89,13 @@ export class SupplierService {
       // Validar si el NIT ya existe
       const exists = await this.supplierRepository.findOne({ where: { nit: supplierData.nit } });
       if (exists) throw new NotFoundException(
-        this.i18n.t('supplier.MSJ_ERROR_NIT_EXISTE', { lang })
+        this.i18n.t('proveedor.MSJ_ERROR_NIT_EXISTE', { lang })
       );
 
       await this.supplierRepository.save(supplierData);
       return {
-        'title': this.i18n.t('supplier.MSJ_TITTLE', { lang }),
-        'message': this.i18n.t('supplier.MSJ_CREADO_EXITOSAMENTE', { lang }),
+        'title': this.i18n.t('proveedor.MSJ_TITTLE', { lang }),
+        'message': this.i18n.t('proveedor.MSJ_CREADO_EXITOSAMENTE', { lang }),
         'status': 200,
       };
     } catch (error) {
@@ -118,7 +118,7 @@ export class SupplierService {
     const exists = await this.supplierRepository.findOne({ where: { nit: supplierData.nit } });
 
     if (supplier.nit != supplierData.nit && exists) throw new NotFoundException(
-      this.i18n.t('proveedores.MSJ_ERROR_NIT_EXISTE', { lang })
+      this.i18n.t('proveedor.MSJ_ERROR_NIT_EXISTE', { lang })
     );
 
     return this.supplierRepository.save({

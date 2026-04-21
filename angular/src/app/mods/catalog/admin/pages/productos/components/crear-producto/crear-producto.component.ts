@@ -31,7 +31,7 @@ export class CrearProductoComponent implements OnInit {
     estado: null,
     codigo_barra: '',
     nombre: '',
-    id_marca: null, 
+    id_marca: (this.route.snapshot.queryParams?.['id_brand']) ? this.route.snapshot.queryParams?.['id_brand'] : null, 
     stock_minimo: 1,
     unidad_medida: '',
     alerta_amarilla: 1, 

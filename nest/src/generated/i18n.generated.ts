@@ -49,7 +49,7 @@ export type I18nTranslations = {
         "MSJ_PERMISO_REMOVIDO_MESSAGE": string;
         "MSJ_ERROR_PERMISO_NO_EXISTENTE": string;
     };
-    "proveedores": {
+    "proveedor": {
         "MSJ_ERROR_NIT_EXISTE": string;
     };
     "user": {
