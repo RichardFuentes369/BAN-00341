@@ -25,7 +25,7 @@ export class CardComponent {
   }
 
   private animateCount(endValue: number) {
-    const duration = 1500; // 1.5 segundos
+    const duration = 500; // 1.5 segundos
     const startValue = this.displayValue;
     const startTime = performance.now();
 

@@ -306,6 +306,8 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     if(idButton){
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
+
+      this.actualizarContadores()
     }
   }
 
@@ -386,6 +388,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
               text: this.translate.instant('mod-users.SWAL_DELETED_RECORD'),
               icon: "success"
             });
+            await this.actualizarContadores()
           }
        }
       });
