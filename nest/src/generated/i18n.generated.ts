@@ -23,7 +23,9 @@ export type I18nTranslations = {
         "MSN_CATEGORY_REMOVIDO_OK": string;
         "MSJ_ERROR_BRAND_EXISTE": string;
         "MSJ_ERROR_CATEGORY_EXISTE": string;
+        "MSJ_ERROR_CATEGORY_BAR_CODE_EXISTE": string;
         "MSJ_ERROR_PRODUCT_EXISTE": string;
+        "MSJ_ERROR_PRODUCT_NOT_EXISTS": string;
         "MSJ_MARCA_TITTLE": string;
         "MSJ_ERROR_MARCA_TIENE_PRODUCTOS_HIJOS": string;
     };

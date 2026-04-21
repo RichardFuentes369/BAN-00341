@@ -28,7 +28,7 @@ export class CrearProductoComponent implements OnInit {
 
   model = {
     es_perecedero: false,
-    estado: 0,
+    estado: null,
     codigo_barra: '',
     nombre: '',
     id_marca: null, 
@@ -69,8 +69,6 @@ export class CrearProductoComponent implements OnInit {
     this.validationSubject.next();
   }
 
-  // this.validators.nit = (this.model.nit === null || !regexNIT.test((this.model.nit as any).toString()));
-  
   checkValidation(): boolean {
     const regexBarCode = /^[0-9]{13}$/;
     this.validators.nombre = (this.model.nombre.trim().length === 0)
@@ -78,7 +76,7 @@ export class CrearProductoComponent implements OnInit {
     this.validators.codigo_barra = (this.model.codigo_barra === null || !regexBarCode.test((this.model.codigo_barra as any).toString()))
     this.validators.stock_minimo = (this.model.stock_minimo <= 0);
     this.validators.unidad_medida = (this.model.unidad_medida === '');
-    this.validators.estado = (this.model.estado === 0);
+    this.validators.estado = (this.model.estado === null);
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
     (!this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.unidad_medida && !this.validators.estado) ? boton.classList.remove('disabled') : boton.classList.add('disabled')

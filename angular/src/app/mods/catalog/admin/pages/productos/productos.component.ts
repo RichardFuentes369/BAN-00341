@@ -364,5 +364,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
   }
 
   async actualizarContadores (){
+    const data = await this.productosService.obtenerTotale()
+    this.count_total_products = data.data.count_total_products
   }
 }

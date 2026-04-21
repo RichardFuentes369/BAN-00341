@@ -17,7 +17,7 @@ export class CreateProductDto {
   // @Transform(({value}) => value.trim())
   alerta_naranja: number | null;
   
-  @IsNumber()
+  @IsBoolean()
   // @Transform(({value}) => value.trim())
   readonly estado;
 

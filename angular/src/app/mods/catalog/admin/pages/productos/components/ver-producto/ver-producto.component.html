@@ -77,8 +77,8 @@
     <div class="col-sm-12 form-group mb-3">
       <label class="font-weight-bold text-gray-600">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_STATUS' | translate }}</label>
       <select class="form-control bg-light" [ngModel]="item.estado" disabled>
-        <option [ngValue]="true">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_ACTIVED' | translate }}</option>
-        <option [ngValue]="false">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_INACTIVED' | translate }}</option>
+        <option [ngValue]="1">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_ACTIVED' | translate }}</option>
+        <option [ngValue]="0">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_INACTIVED' | translate }}</option>
       </select>
     </div>
 

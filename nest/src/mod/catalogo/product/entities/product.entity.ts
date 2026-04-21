@@ -26,7 +26,7 @@ export class Producto {
   @Column()
   stock_minimo: number;
 
-  @Column({ default: false })
+  @Column({ type: 'tinyint', width: 1, default: 1 })
   es_perecedero: boolean;
 
   @Column({ nullable: true })
@@ -35,7 +35,7 @@ export class Producto {
   @Column({ nullable: true })
   alerta_naranja: number;
 
-  @Column({ default: true })
+  @Column({ type: 'tinyint', width: 1, default: 1 })
   estado: boolean;
 
   // @ManyToOne(() => Marca, (marca) => marca.id, {

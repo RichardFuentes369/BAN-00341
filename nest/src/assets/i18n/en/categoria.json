@@ -5,7 +5,9 @@
 
   "MSJ_ERROR_BRAND_EXISTE": "The brand already exists.",
   "MSJ_ERROR_CATEGORY_EXISTE": "The category already exists.",
+  "MSJ_ERROR_CATEGORY_BAR_CODE_EXISTE": "The barcode is already assigned to another product.",
   "MSJ_ERROR_PRODUCT_EXISTE": "The product already exists.",
+  "MSJ_ERROR_PRODUCT_NOT_EXISTS": "The product not exists.",
   
   "MSJ_MARCA_TITTLE": "Brand",
   "MSJ_ERROR_MARCA_TIENE_PRODUCTOS_HIJOS": "No action can be taken, this brand contains products."

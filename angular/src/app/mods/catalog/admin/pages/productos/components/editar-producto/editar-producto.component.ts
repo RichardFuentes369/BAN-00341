@@ -97,14 +97,10 @@ export class EditarProductoComponent implements OnInit {
     this.isLoading = true;
     try {
       const marcasList = await this.productosService.getDataBrand(this.filtro);
-      
-      // Mantenemos la marca actual del producto en la lista para que no desaparezca 
-      // mientras el usuario busca otras.
       const actual = this.producto[0]?.marca;
       this.marcas = actual 
         ? [actual, ...marcasList.data.filter((m: any) => m.id !== actual.id)]
         : [...marcasList.data];
-
     } finally {
       this.isLoading = false;
     }
@@ -118,16 +114,19 @@ export class EditarProductoComponent implements OnInit {
   checkValidation(): boolean {
     const regexBarCode = /^[0-9]{13}$/;
     this.validators.nombre = (this.model.nombre.trim().length === 0)
-    this.validators.marca = (this.model.marca == null)
+    this.validators.marca = (this.model.id_marca == null)
     this.validators.codigo_barra = (this.model.codigo_barra === null || !regexBarCode.test((this.model.codigo_barra as any).toString()))
     this.validators.stock_minimo = (this.model.stock_minimo <= 0);
     this.validators.unidad_medida = (this.model.unidad_medida === '');
-    this.validators.estado = (this.model.estado === 0);
-    
-    const boton = document.querySelector('.btnSave') as HTMLButtonElement
+    this.validators.estado = (this.model.estado === null);
+
+    // this.validators.es_perecedero = (this.model.estado === 0);
+    // this.validators.alerta_amarilla = (this.model.estado === 0);
+    // this.validators.alerta_naranja = (this.model.estado === 0);
+
+    const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
     (!this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.unidad_medida && !this.validators.estado) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
-    
-    console.log(this.model)
+
     return !this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.unidad_medida && !this.validators.estado
   }
 

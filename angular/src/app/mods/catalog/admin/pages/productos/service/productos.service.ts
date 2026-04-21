@@ -91,7 +91,7 @@ export class ProductosService {
 
   async deleteProduct(id: string[]){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = 'product/eliminar-producto/'
+    let complemento = 'product/eliminar-producto'
     let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
@@ -108,6 +108,26 @@ export class ProductosService {
       },
     })
   }
+
+  async obtenerTotale(){
+    let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = 'product/obtener-contadores-productos/'
+    let urlCopleta = environment.apiUrl+complemento
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
+    return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
+      method: 'get',
+      url: urlCopleta,
+      params: {
+        lang: lang,
+      }
+    })
+  }
+
 
   async descargarPlantilla() {
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
@@ -168,24 +188,4 @@ export class ProductosService {
       throw error;
     }
   }
-
-  async obtenerTotale(){
-    let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = 'product/obtener-contadores-productos/'
-    let urlCopleta = environment.apiUrl+complemento
-    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
-
-    return await axios.request({
-      headers: {
-        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
-        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
-      },
-      method: 'get',
-      url: urlCopleta,
-      params: {
-        lang: lang,
-      }
-    })
-  }
-
 }

@@ -48,10 +48,10 @@ export class ProductController {
   update(
     @Query('lang') lang: string,
     @Query('_id') _id: string,
-    @Body() supplierData: UpdateProductDto,
+    @Body() productData: UpdateProductDto,
     @GetUser('id') userId: number
   ) {
-    return this.productService.update(lang, +_id, supplierData, userId);
+    return this.productService.update(lang, +_id, productData, userId);
   }
 
   @UseGuards(AdminGuard)

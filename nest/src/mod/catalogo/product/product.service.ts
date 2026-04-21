@@ -85,7 +85,7 @@ export class ProductService {
   async findOne(lang: string, id: number) {
     const prodcut = await this.productRepository.findOne({ where: { id }, relations: { marca: true } });
     if (!prodcut) throw new NotFoundException(
-      this.i18n.t('supplier.MSJ_PROVEEDOR_NO_ENCONTRADO', { lang })
+      this.i18n.t('categoria.MSJ_ERROR_PRODUCT_NOT_EXISTS', { lang })
     );
     return prodcut;
   }
@@ -96,13 +96,12 @@ export class ProductService {
     userId: number
   ) {
     try {
-
       const exists = await this.productRepository.findOne({ where: { codigo_barra: productData.codigo_barra } });
       if (exists) throw new NotFoundException(
         this.i18n.t('categoria.MSJ_ERROR_PRODUCT_EXISTE', { lang })
       );
 
-      if(productData.es_perecedero === false || productData.es_perecedero === 0){
+      if(productData.es_perecedero === false){
         productData.alerta_amarilla = null
         productData.alerta_naranja = null
       }
@@ -128,12 +127,22 @@ export class ProductService {
     productData: UpdateProductDto, 
     userId: number
   ) {
-    const product = await this.findOne(lang, id);
+    const prodcut = await this.productRepository.findOne({ where: { id }});
+    const exists = await this.productRepository.findOne({ where: { codigo_barra: productData.codigo_barra } });
 
-    // return this.productRepository.save({
-    //   ...product,
-    //   ...productData
-    // });
+    if (prodcut.codigo_barra != productData.codigo_barra && exists) throw new NotFoundException(
+      this.i18n.t('categoria.MSJ_ERROR_CATEGORY_BAR_CODE_EXISTE', { lang })
+    );
+
+    if(productData.es_perecedero === false){
+      productData.alerta_amarilla = null
+      productData.alerta_naranja = null
+    }
+
+    return this.productRepository.save({
+      ...prodcut,
+      ...productData
+    });
   }
 
   async remove(lang: string, ids: number[], userId: number) {

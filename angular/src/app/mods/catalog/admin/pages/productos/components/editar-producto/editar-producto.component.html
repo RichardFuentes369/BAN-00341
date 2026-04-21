@@ -109,16 +109,14 @@
       <select class="form-control" 
               [(ngModel)]="item.estado" 
               (ngModelChange)="onInputChange(item)">
-        <option [ngValue]="true">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_ACTIVED' | translate }}</option>
-        <option [ngValue]="false">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_INACTIVED' | translate }}</option>
+        <option [ngValue]="1">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_ACTIVED' | translate }}</option>
+        <option [ngValue]="0">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_INACTIVED' | translate }}</option>
       </select>
     </div>
 
     <div class="col-sm-12 mt-4">
-      <button class="btn btn-primary btnAction w-100 shadow-sm d-none" 
-              (click)="actualizarData()" 
-              [disabled]="!isFormValid">
-        <i class="fas fa-save mr-2"></i> {{ 'mod-catalog.BUTTON_USER_UPDATE' | translate }}
+      <button class="btn btn-sm btn-primary btnAction d-none" (click)="actualizarData()">
+        {{ 'mod-catalog.BUTTON_EDIT' | translate}}
       </button>
     </div>
 
