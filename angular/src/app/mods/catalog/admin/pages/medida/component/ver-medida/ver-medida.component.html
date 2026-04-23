@@ -1,1 +1,15 @@
-<p>ver-medida works!</p>
+<div class="">
+  @for (item of medida; track item; let  i = $index) {
+    <div class="col-sm-12 p-0">
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-catalog.BRAND.LABEL_BRAND_NAME' | translate}}
+        </label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.nombre}}" readonly>
+      </div>
+    </div>
+  }
+</div>
+
+
+

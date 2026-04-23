@@ -29,7 +29,7 @@ import { FiltroMarcaComponent } from './catalog/admin/pages/marcas/components/fi
 import { CrearMarcaComponent } from './catalog/admin/pages/marcas/components/crear-marca/crear-marca.component';
 import { VerMarcaComponent } from './catalog/admin/pages/marcas/components/ver-marca/ver-marca.component';
 import { EditarMarcaComponent } from './catalog/admin/pages/marcas/components/editar-marca/editar-marca.component';
-import { FiltroUnidadMedidaComponent } from './catalog/admin/pages/medida/component/filtro/filtro.component';
+import { FiltroMedidaComponent } from './catalog/admin/pages/medida/component/filtro/filtro.component';
 import { CrearMedidaComponent } from './catalog/admin/pages/medida/component/crear-medida/crear-medida.component';
 import { VerMedidaComponent } from './catalog/admin/pages/medida/component/ver-medida/ver-medida.component';
 import { EditarMedidaComponent } from './catalog/admin/pages/medida/component/editar-medida/editar-medida.component';
@@ -137,8 +137,8 @@ export class ListaComponentes {
     // modulo catalogo
     // unidad medida
     {
-      name: 'FiltroUnidadMedidaComponent',
-      componente: FiltroUnidadMedidaComponent
+      name: 'FiltroMedidaComponent',
+      componente: FiltroMedidaComponent
     },  
     {
       name: 'CrearMedidaComponent',

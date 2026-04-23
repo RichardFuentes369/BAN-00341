@@ -80,4 +80,12 @@ export class ExtentController {
     );
   }
 
+  // contadores
+  @Get('obtener-contadores-unidad-de-medida')
+  async contadores(
+    @Query('lang') lang:string,
+  ) {
+    return this.extentService.contadoresExtent(lang);
+  }
+
 }

@@ -2150,6 +2150,46 @@
 										"method": "GET",
 										"header": [],
 										"url": {
+											"raw": "localhost:3000/api/extent/obtener-unidad-de-medida?_id=1&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"extent",
+												"obtener-unidad-de-medida"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-unidades-medida",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
 											"raw": "localhost:3000/api/extent/obtener-unidades-de-medida?page=1&limit=10&field=id&order=asc",
 											"host": [
 												"localhost"
@@ -2176,46 +2216,6 @@
 												{
 													"key": "order",
 													"value": "asc"
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "obtener-unidades-medida",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{tokenAdmin}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "localhost:3000/api/extent/obtener-unidad-de-medida?_id=1&lang=es",
-											"host": [
-												"localhost"
-											],
-											"port": "3000",
-											"path": [
-												"api",
-												"extent",
-												"obtener-unidad-de-medida"
-											],
-											"query": [
-												{
-													"key": "_id",
-													"value": "1"
-												},
-												{
-													"key": "lang",
-													"value": "es"
 												}
 											]
 										}

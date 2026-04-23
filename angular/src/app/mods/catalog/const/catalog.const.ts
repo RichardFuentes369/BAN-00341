@@ -55,3 +55,8 @@ export const VER_CATEGORIA_COMPONENT = 'VerCategoriaComponent';
 export const CREAR_CATEGORIA_COMPONENT = 'CrearCategoriaComponent';
 export const EDITAR_CATEGORIA_COMPONENT = 'EditarCategoriaComponent';
 export const FILTRO_CATEGORIA_COMPONENT = 'FiltroCategoriaComponent';
+
+export const CREAR_MEDIDA_COMPONENT = 'CrearMedidaComponent';
+export const VER_MEDIDA_COMPONENT = 'VerMedidaComponent';
+export const EDITAR_MEDIDA_COMPONENT = 'EditarMedidaComponent';
+export const FILTRO_MEDIDA_COMPONENT = 'FiltroMedidaComponent';

@@ -135,6 +135,31 @@
 
     "CARD_TOTAL_BRANDS_TITLE": "Total marcas"
   },
+  
+  "EXTENT": {
+    "CREATE_TITLE": "Crear",
+    "CREATE_SUBTITLE": "Nueva medida",
+    "SEE_TITLE": "Ver",
+    "SEE_SUBTITLE": "Medida: {{extent_name}}",
+    "EDIT_TITLE": "Editar",
+    "EDIT_SUBTITLE": "Medida: {{extent_name}}",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_EXTENT_NAME": "Medida",
+    "COLUMN_TOTAL_EXTENT": "Total medida",
+
+    "LABEL_EXTENT_NAME": "MEDIDA",
+
+    "PLACEHOLDER_EXTENT_NAME": "Ingrese una medida",
+
+    "SWAL_CREATED": "¡MEDIDA CREADA!",
+    "SWAL_UPDATED": "¡MEDIDA ACTUALIZADA!",
+    "SWAL_DELETED": "¡MEDIDA ELIMINADA!",
+    "SWAL_ARE_YOU_SURE_UPDATE": "¿Está seguro de actualizar la medida {{extent_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "¿Está seguro de eliminar {{art_the}} medida{{plural}} {{extent_name}}?",
+    
+    "CARD_TOTAL_EXTENT_TITLE": "Total medida"
+  },
 
   "SWAL_WARNING_REVERSE_CHANGE": "¡No podrás revertir esto!",
   "SWAL_CREATED_RECORD": "Registro creado con éxito.",

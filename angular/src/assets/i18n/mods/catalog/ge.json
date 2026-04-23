@@ -137,6 +137,31 @@
     "CARD_TOTAL_BRANDS_TITLE": "Marken insgesamt"
   },
 
+  "EXTENT": {
+    "CREATE_TITLE": "Erstellen",
+    "CREATE_SUBTITLE": "Neue Maßeinheit",
+    "SEE_TITLE": "Anzeigen",
+    "SEE_SUBTITLE": "Maßeinheit: {{extent_name}}",
+    "EDIT_TITLE": "Bearbeiten",
+    "EDIT_SUBTITLE": "Maßeinheit: {{extent_name}}",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_EXTENT_NAME": "Maßeinheit",
+    "COLUMN_TOTAL_EXTENT": "Gesamtmaß",
+
+    "LABEL_EXTENT_NAME": "MAẞEINHEIT",
+
+    "PLACEHOLDER_EXTENT_NAME": "Maßeinheit eingeben",
+
+    "SWAL_CREATED": "¡MAẞEINHEIT ERSTELLT!",
+    "SWAL_UPDATED": "¡MAẞEINHEIT AKTUALISIERT!",
+    "SWAL_DELETED": "¡MAẞEINHEIT GELÖSCHT!",
+    "SWAL_ARE_YOU_SURE_UPDATE": "Sind Sie sicher, dass Sie die Maßeinheit {{extent_name}} aktualisieren möchten?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Sind Sie sicher, dass Sie {{art_the}} Maßeinheit{{plural}} {{extent_name}} löschen möchten?",
+    
+    "CARD_TOTAL_EXTENT_TITLE": "Gesamtmaß"
+  },
+
   "SWAL_WARNING_REVERSE_CHANGE": "Diese Änderung kann nicht rückgängig gemacht werden!",
   "SWAL_CREATED_RECORD": "Datensatz erfolgreich erstellt.",
   "SWAL_DELETED_RECORD": "Erfolgreich gelöscht.",

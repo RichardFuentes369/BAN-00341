@@ -136,6 +136,31 @@
     "CARD_TOTAL_BRANDS_TITLE": "Total des marques"
   },
 
+  "EXTENT": {
+    "CREATE_TITLE": "Créer",
+    "CREATE_SUBTITLE": "Nouvelle mesure",
+    "SEE_TITLE": "Voir",
+    "SEE_SUBTITLE": "Mesure : {{extent_name}}",
+    "EDIT_TITLE": "Modifier",
+    "EDIT_SUBTITLE": "Mesure : {{extent_name}}",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_EXTENT_NAME": "Mesure",
+    "COLUMN_TOTAL_EXTENT": "Total mesure",
+
+    "LABEL_EXTENT_NAME": "MESURE",
+
+    "PLACEHOLDER_EXTENT_NAME": "Entrez une mesure",
+
+    "SWAL_CREATED": "¡MESURE CRÉÉE!",
+    "SWAL_UPDATED": "¡MESURE MISE À JOUR!",
+    "SWAL_DELETED": "¡MESURE SUPPRIMÉE!",
+    "SWAL_ARE_YOU_SURE_UPDATE": "Êtes-vous sûr de vouloir mettre à jour la mesure {{extent_name}} ?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Êtes-vous sûr de vouloir supprimer {{art_the}} mesure{{plural}} {{extent_name}} ?",
+    
+    "CARD_TOTAL_EXTENT_TITLE": "Total mesure"
+  },
+
   "SWAL_WARNING_REVERSE_CHANGE": "Cette action est irréversible!",
   "SWAL_CREATED_RECORD": "Enregistrement créé avec succès.",
   "SWAL_DELETED_RECORD": "Supprimé avec succès.",

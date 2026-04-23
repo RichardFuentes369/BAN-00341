@@ -14,17 +14,23 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping data for table BAN_00341.mod_catalogo_marcas: ~1 rows (approximately)
+-- Dumping data for table BAN_00341.mod_catalogo_marcas: ~2 rows (approximately)
 INSERT INTO `mod_catalogo_marcas` (`id`, `nombre`) VALUES
 	(1, 'Alqueria'),
 	(9, 'Duo');
 
--- Dumping data for table BAN_00341.mod_catalogo_productos: ~3 rows (approximately)
+-- Dumping data for table BAN_00341.mod_catalogo_medida: ~6 rows (approximately)
+INSERT INTO `mod_catalogo_medida` (`id`, `nombre`) VALUES
+	(4, 'Gramo'),
+	(3, 'Kilogramo'),
+	(2, 'Litro'),
+	(5, 'Mililitro'),
+	(1, 'Unidad');
+
+-- Dumping data for table BAN_00341.mod_catalogo_productos: ~2 rows (approximately)
 INSERT INTO `mod_catalogo_productos` (`id`, `nombre`, `unidad_medida`, `stock_minimo`, `es_perecedero`, `alerta_amarilla`, `alerta_naranja`, `estado`, `codigo_barra`, `id_marca`) VALUES
-	(17, 'Leche entera 1 Litro', 'unidad', 10, 1, 25, 10, 0, '2563395689632', 1),
-	(18, 'Quesillo 250grs', 'unidad', 5, 1, 15, 7, 0, '5622693356526', 1),
-	(19, 'Yogur fresa 230 grs', 'unidad', 8, 1, 10, 8, 0, '2633326595964', 1),
-	(20, 'Condones * 12', 'unidad', 12, 0, NULL, NULL, 0, '6363636363636', 9);
+	(25, 'Leche entera 1 ltr', 'unidad', 15, 1, 15, 19, 1, '5959595959599', 1),
+	(26, 'Papel higienico', 'unidad', 25, 0, NULL, NULL, 1, '8989898989495', 9);
 
 -- Dumping data for table BAN_00341.mod_catalogo_proveedores: ~4 rows (approximately)
 INSERT INTO `mod_catalogo_proveedores` (`id`, `razon_social`, `direccion`, `correo`, `telefono`, `dv`, `nit`) VALUES
@@ -50,7 +56,7 @@ INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
 	(9, 'Robo o Extravío'),
 	(10, 'Vencimiento');
 
--- Dumping data for table BAN_00341.mod_permisos_modulo: ~62 rows (approximately)
+-- Dumping data for table BAN_00341.mod_permisos_modulo: ~68 rows (approximately)
 INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`, `tiene_permisos`, `descripcion`, `modulo_padre_id`) VALUES
 	(1, 'Usuarios', 'usuarios', 1, 0, 'Modulo usuarios', NULL),
 	(2, 'Administradores', 'administradores', 0, 1, 'Permiso administradores, modulo usuarios', 1),
@@ -114,9 +120,14 @@ INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`
 	(82, 'Editar', 'editar', 0, 1, 'Permiso editar, submodulo marcas, modulo catalogo', 79),
 	(83, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo marcas, modulo catalogo', 79),
 	(84, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso eliminar_multiple, submodulo marcas, modulo catalogo', 79),
-	(85, 'asignar_productos', 'asignar_productos', 0, 1, 'Permiso asignar_productos, submodulo marcas, modulo catalogo', 79);
+	(85, 'asignar_productos', 'asignar_productos', 0, 1, 'Permiso asignar_productos, submodulo marcas, modulo catalogo', 79),
+	(86, 'Unidad de medida', 'unidad_de_medida', 0, 1, 'Permiso unidad_de_medida, modulo catalogo', 22),
+	(87, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo unidad_de_medida, modulo catalogo', 86),
+	(88, 'Crear', 'crear', 0, 1, 'Permiso crear, submodulo unidad_de_medida, modulo catalogo', 86),
+	(89, 'Editar', 'editar', 0, 1, 'Permiso editar, submodulo unidad_de_medida, modulo catalogo', 86),
+	(90, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo unidad_de_medida, modulo catalogo', 86);
 
--- Dumping data for table BAN_00341.mod_permisos_modulo_asignacion: ~53 rows (approximately)
+-- Dumping data for table BAN_00341.mod_permisos_modulo_asignacion: ~59 rows (approximately)
 INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descripcion`, `id_modulo`, `modulo_padre_id`, `user_id`) VALUES
 	(1, 'Usuarios', 'usuarios', 'Modulo usuarios', 1, NULL, 1),
 	(3, 'Permisos (asignar)\r\n', 'asignar_permisos', 'Permiso asignar_permisos usuario, submodulo administradores, modulo usuarios', 9, 2, 1),
@@ -142,11 +153,6 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(312, 'Ver', 'ver', 'Permiso ver, submodulo proveedores, modulo catalogo', 33, 26, 1),
 	(313, 'Crear', 'crear', 'Permiso crear, submodulo proveedores, modulo catalogo', 34, 26, 1),
 	(314, 'Editar', 'editar', 'Permiso editar, submodulo proveedores, modulo catalogo', 35, 26, 1),
-	(316, 'Productos', 'productos', 'Permiso productos, modulo catalogo', 38, 22, 1),
-	(317, 'Ver', 'ver', 'Permiso ver, submodulo productos, modulo catalogo', 39, 38, 1),
-	(318, 'Crear', 'crear', 'Permiso crear, submodulo productos, modulo catalogo', 40, 38, 1),
-	(319, 'Editar', 'editar', 'Permiso editar, submodulo productos, modulo catalogo', 41, 38, 1),
-	(321, 'Cargar (excel)', 'cargar_excel', 'Permiso cargar_excel, submodulo productos, modulo catalogo', 63, 38, 1),
 	(322, 'Tipos merma', 'tipo_merma', 'Permiso tipo_merma, modulo merma', 45, 44, 1),
 	(323, 'Ver', 'ver', 'Permiso ver, submodulo tipo_merma, modulo merma', 47, 45, 1),
 	(324, 'Crear', 'crear', 'Permiso crear, submodulo tipo_merma, modulo merma', 48, 45, 1),
@@ -157,7 +163,6 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(331, 'Crear', 'crear', 'Permiso crear, submodulo registro_merma, modulo merma', 59, 46, 1),
 	(332, 'Editar', 'editar', 'Permiso editar, submodulo registro_merma, modulo merma', 60, 46, 1),
 	(333, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo registro_merma, modulo merma', 61, 46, 1),
-	(418, 'Eliminar (multiple)', 'eliminar_multiple', 'Permiso eliminar_multiple, submodulo productos, modulo catalogo', 43, 38, 1),
 	(422, 'Catalogo', 'catalogo', 'Modulo catalogo', 22, NULL, 1),
 	(426, 'Administradores', 'administradores', 'Permiso administradores, modulo usuarios', 2, 1, 1),
 	(427, 'Finales', 'finales', 'Permiso finales, modulo usuarios', 10, 1, 1),
@@ -171,12 +176,23 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(437, 'Merma', 'merma', 'Modulo merma', 44, NULL, 1),
 	(438, 'Lote', 'lote', 'Modulo lote', 64, NULL, 1),
 	(441, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo proveedores, modulo catalogo', 36, 26, 1),
-	(466, 'asignar_productos', 'asignar_productos', 'Permiso asignar_productos, submodulo marcas, modulo catalogo', 85, 79, 1);
+	(466, 'asignar_productos', 'asignar_productos', 'Permiso asignar_productos, submodulo marcas, modulo catalogo', 85, 79, 1),
+	(467, 'Productos', 'productos', 'Permiso productos, modulo catalogo', 38, 22, 1),
+	(468, 'Ver', 'ver', 'Permiso ver, submodulo productos, modulo catalogo', 39, 38, 1),
+	(469, 'Crear', 'crear', 'Permiso crear, submodulo productos, modulo catalogo', 40, 38, 1),
+	(470, 'Editar', 'editar', 'Permiso editar, submodulo productos, modulo catalogo', 41, 38, 1),
+	(471, 'Cargar (excel)', 'cargar_excel', 'Permiso cargar_excel, submodulo productos, modulo catalogo', 63, 38, 1),
+	(472, 'Eliminar (multiple)', 'eliminar_multiple', 'Permiso eliminar_multiple, submodulo productos, modulo catalogo', 43, 38, 1),
+	(473, 'Unidad de medida', 'unidad_de_medida', 'Permiso unidad_de_medida, modulo catalogo', 86, 22, 1),
+	(474, 'Ver', 'ver', 'Permiso ver, submodulo unidad_de_medida, modulo catalogo', 87, 86, 1),
+	(475, 'Crear', 'crear', 'Permiso crear, submodulo unidad_de_medida, modulo catalogo', 88, 86, 1),
+	(476, 'Editar', 'editar', 'Permiso editar, submodulo unidad_de_medida, modulo catalogo', 89, 86, 1),
+	(477, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo unidad_de_medida, modulo catalogo', 90, 86, 1);
 
--- Dumping data for table BAN_00341.mod_usuarios_admin: ~2 rows (approximately)
+-- Dumping data for table BAN_00341.mod_usuarios_admin: ~3 rows (approximately)
 INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'Admin1', 'Principal', 'admin1@correo.com', 'Qwerty9601', 1),
-	(9, 'admin2', 'admin2', 'admin2@correo.com', 'Qwerty9601', 1);
+	(9, 'admin2', 'admin2', 'admin2@correo.com', 'Qwerty9601', 0);
 
 -- Dumping data for table BAN_00341.mod_usuarios_user: ~3 rows (approximately)
 INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES

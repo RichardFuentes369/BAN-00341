@@ -140,7 +140,7 @@ export class ExtentService {
 
   }
   
-  async contadoresMarcas(
+  async contadoresExtent(
     lang: string
   ){
     const cont1 =  await this.extentRepository.count()

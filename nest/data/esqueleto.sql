@@ -31,6 +31,17 @@ CREATE TABLE IF NOT EXISTS `mod_catalogo_marcas` (
 
 -- Data exporting was unselected.
 
+-- Dumping structure for table BAN_00341.mod_catalogo_medida
+DROP TABLE IF EXISTS `mod_catalogo_medida`;
+CREATE TABLE IF NOT EXISTS `mod_catalogo_medida` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_c279395252b4528e7bf8594d23` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Data exporting was unselected.
+
 -- Dumping structure for table BAN_00341.mod_catalogo_productos
 DROP TABLE IF EXISTS `mod_catalogo_productos`;
 CREATE TABLE IF NOT EXISTS `mod_catalogo_productos` (
@@ -38,17 +49,17 @@ CREATE TABLE IF NOT EXISTS `mod_catalogo_productos` (
   `nombre` varchar(150) NOT NULL,
   `unidad_medida` enum('unidad','kg','litro','paquete') NOT NULL DEFAULT 'kg',
   `stock_minimo` int(11) NOT NULL,
-  `es_perecedero` tinyint(4) NOT NULL DEFAULT 0,
+  `es_perecedero` tinyint(1) NOT NULL DEFAULT 1,
   `alerta_amarilla` int(11) DEFAULT NULL,
   `alerta_naranja` int(11) DEFAULT NULL,
-  `estado` tinyint(4) NOT NULL DEFAULT 1,
+  `estado` tinyint(1) NOT NULL DEFAULT 1,
   `codigo_barra` varchar(13) NOT NULL,
   `id_marca` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_58c1252afc49ad323e7c5a3c0a` (`codigo_barra`),
   KEY `FK_f3087ae9693d048e2a9aba091a5` (`id_marca`),
   CONSTRAINT `FK_f3087ae9693d048e2a9aba091a5` FOREIGN KEY (`id_marca`) REFERENCES `mod_catalogo_marcas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -136,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `mod_permisos_modulo` (
   PRIMARY KEY (`id`),
   KEY `FK_28bd06971f76c49399db2715d90` (`modulo_padre_id`),
   CONSTRAINT `FK_28bd06971f76c49399db2715d90` FOREIGN KEY (`modulo_padre_id`) REFERENCES `mod_permisos_modulo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -153,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `mod_permisos_modulo_asignacion` (
   PRIMARY KEY (`id`),
   KEY `FK_6eb0af2f8e13274ad1819f4cfca` (`user_id`),
   CONSTRAINT `FK_6eb0af2f8e13274ad1819f4cfca` FOREIGN KEY (`user_id`) REFERENCES `mod_usuarios_admin` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=467 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=478 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -168,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `mod_usuarios_admin` (
   `isActive` tinyint(4) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_c885318c449a37e806a7f87607` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 

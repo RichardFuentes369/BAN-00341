@@ -135,6 +135,32 @@
 
     "CARD_TOTAL_BRANDS_TITLE": "Total brands"
   },
+
+  "EXTENT": {
+    "CREATE_TITLE": "Create",
+    "CREATE_SUBTITLE": "New extent",
+    "SEE_TITLE": "View",
+    "SEE_SUBTITLE": "Extent: {{extent_name}}",
+    "EDIT_TITLE": "Edit",
+    "EDIT_SUBTITLE": "Extent: {{extent_name}}",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_EXTENT_NAME": "Extent",
+    "COLUMN_TOTAL_EXTENT": "Total Extent",
+
+    "LABEL_EXTENT_NAME": "EXTENT",
+
+    "PLACEHOLDER_EXTENT_NAME": "Enter a extent",
+
+    "SWAL_CREATED": "EXTENT!",
+    "SWAL_UPDATED": "EXTENT!",
+    "SWAL_DELETED": "EXTENT!",
+    
+    "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the extent {{extent_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete {{art_the}} extent{{plural}} {{extent_name}}?",
+
+    "CARD_TOTAL_BRANDS_TITLE": "Total extent"
+  },
   
   "SWAL_WARNING_REVERSE_CHANGE": "You cannot reverse this!",
   "SWAL_CREATED_RECORD": "Record successfully created.",
