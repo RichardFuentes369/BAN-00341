@@ -4,14 +4,17 @@ import { adminGuard } from '@guard/roles/admin/admin.guard';
 
 import { 
   BREADCRUMB_PATH_ADMIN_BRAND,
+  BREADCRUMB_PATH_ADMIN_EXTENT,
   BREADCRUMB_PATH_ADMIN_LOTE,
   BREADCRUMB_PATH_ADMIN_PRODUCT,
   BREADCRUMB_PATH_ADMIN_SUPPLIER,
   PATH_ADMIN_BRAND,
+  PATH_ADMIN_EXTENT,
   PATH_ADMIN_LOTE,
   PATH_ADMIN_PRODUCT,
   PATH_ADMIN_SUPPLIER,
   TITLE_PATH_ADMIN_BRAND,
+  TITLE_PATH_ADMIN_EXTENT,
   TITLE_PATH_ADMIN_LOTE,
   TITLE_PATH_ADMIN_PRODUCT,
   TITLE_PATH_ADMIN_SUPPLIER,
@@ -54,5 +57,14 @@ export const CatalogRoutes: Routes = [
       adminGuard
     ],
     loadChildren: () => import('./marcas.routing').then(x=>x.CatalogoMarcasRoutes)
+  },
+  {
+    path: PATH_ADMIN_EXTENT,
+    title: TITLE_PATH_ADMIN_EXTENT,
+    data: { breadcrumb: BREADCRUMB_PATH_ADMIN_EXTENT },
+    canActivate: [
+      adminGuard
+    ],
+    loadChildren: () => import('./medida.routing').then(x=>x.CatalogoMedidaRoutes)
   },
 ];

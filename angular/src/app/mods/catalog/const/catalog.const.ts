@@ -20,8 +20,13 @@ export const PATH_ADMIN_LOTE = 'lote';
 export const TITLE_PATH_ADMIN_LOTE = 'Lote';
 export const BREADCRUMB_PATH_ADMIN_LOTE = 'Lote';
 
+export const PATH_ADMIN_EXTENT = 'unidad_de_medida';
+export const TITLE_PATH_ADMIN_EXTENT = 'Unidad de medida';
+export const BREADCRUMB_PATH_ADMIN_EXTENT = 'mod-catalog.PAGE_EXTENT_TITLE';
+
 export const MOD_CATEGORY_PAGE_BRAND =  '/admin/mod/catalog/marcas/';
 export const MOD_CATEGORY_PAGE_PRODUCT =  '/admin/mod/catalog/productos';
+export const MOD_CATEGORY_PAGE_EXTENT =  '/admin/mod/catalog/unidad_de_medida';
 export const MOD_CATEGORY_PAGE_SUPPLIER =  '/admin/mod/catalog/proveedores/';
 export const MOD_CATEGORY_PAGE_LOTE =  '/admin/mod/catalog/lote/';
 export const MOD_CATEGORY_PAGE_PRODUCT_FOR_BRAND =  '/admin/mod/catalog/marcas/productos/';

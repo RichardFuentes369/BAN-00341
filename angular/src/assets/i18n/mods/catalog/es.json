@@ -4,6 +4,7 @@
   "PAGE_SUPPLIER_TITLE": "Proveedores",
   "PAGE_PRODUCT_TITLE": "Productos",
   "PAGE_BRAND_TITLE": "Marcas",
+  "PAGE_EXTENT_TITLE": "Unidad de medida",
 
   "MODULE_TITLE": "Catálogo",
   "TABLE_TITLE": "Registros",
@@ -147,6 +148,7 @@
 
   "BUTTON_PRODUCT": "Productos",
   "BUTTON_BRAND": "Marcas",
+  "BUTTON_EXTENT": "Unidad de medida",
   "BUTTON_SUPPLIER": "Proveedores",
   "BUTTON_LOTE": "Lote"
 }

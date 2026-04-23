@@ -1374,233 +1374,6 @@
 					"name": "admin",
 					"item": [
 						{
-							"name": "category",
-							"item": [
-								{
-									"name": "obtener-categorias",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{tokenAdmin}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "localhost:3000/api/category/obtener-categorias?page=1&limit=10&field=id&order=asc",
-											"host": [
-												"localhost"
-											],
-											"port": "3000",
-											"path": [
-												"api",
-												"category",
-												"obtener-categorias"
-											],
-											"query": [
-												{
-													"key": "page",
-													"value": "1"
-												},
-												{
-													"key": "limit",
-													"value": "10"
-												},
-												{
-													"key": "field",
-													"value": "id"
-												},
-												{
-													"key": "order",
-													"value": "asc"
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "obtener-categoria",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{tokenAdmin}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "localhost:3000/api/category/obtener-categoria?_id=1&lang=es",
-											"host": [
-												"localhost"
-											],
-											"port": "3000",
-											"path": [
-												"api",
-												"category",
-												"obtener-categoria"
-											],
-											"query": [
-												{
-													"key": "_id",
-													"value": "1"
-												},
-												{
-													"key": "lang",
-													"value": "es"
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "crear-categoria",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{tokenAdmin}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"nombre\": \"Papelería y Oficina\",\r\n    \"descripcion\": \"Papelería y Oficina\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "localhost:3000/api/category/crear-categoria?lang=es",
-											"host": [
-												"localhost"
-											],
-											"port": "3000",
-											"path": [
-												"api",
-												"category",
-												"crear-categoria"
-											],
-											"query": [
-												{
-													"key": "lang",
-													"value": "es"
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "actualizar-categoria",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{tokenAdmin}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "PATCH",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"nombre\": \"Limpieza e Higiene\",\r\n    \"descripcion\": \"Limpieza e Higiene2\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "localhost:3000/api/category/editar-categoria?_id=4&lang=es",
-											"host": [
-												"localhost"
-											],
-											"port": "3000",
-											"path": [
-												"api",
-												"category",
-												"editar-categoria"
-											],
-											"query": [
-												{
-													"key": "_id",
-													"value": "4"
-												},
-												{
-													"key": "lang",
-													"value": "es"
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "eliminar-categoria",
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{tokenAdmin}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "DELETE",
-										"header": [],
-										"url": {
-											"raw": "localhost:3000/api/category/eliminar-categoria?_id=1,57&lang=es",
-											"host": [
-												"localhost"
-											],
-											"port": "3000",
-											"path": [
-												"api",
-												"category",
-												"eliminar-categoria"
-											],
-											"query": [
-												{
-													"key": "_id",
-													"value": "1,57"
-												},
-												{
-													"key": "lang",
-													"value": "es"
-												}
-											]
-										}
-									},
-									"response": []
-								}
-							]
-						},
-						{
 							"name": "product",
 							"item": [
 								{
@@ -1619,7 +1392,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/product/obtener-productos?page=1&limit=10&field=id&order=asc",
+											"raw": "localhost:3000/api/product/obtener-productos?page=1&limit=10&field=id&order=asc&id_marca=1",
 											"host": [
 												"localhost"
 											],
@@ -1647,9 +1420,8 @@
 													"value": "asc"
 												},
 												{
-													"key": "id_category",
-													"value": "1",
-													"disabled": true
+													"key": "id_marca",
+													"value": "1"
 												}
 											]
 										}
@@ -1672,7 +1444,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/product/obtener-producto?_id=1&lang=es",
+											"raw": "localhost:3000/api/product/obtener-producto?_id=172&lang=es",
 											"host": [
 												"localhost"
 											],
@@ -1685,7 +1457,7 @@
 											"query": [
 												{
 													"key": "_id",
-													"value": "1"
+													"value": "172"
 												},
 												{
 													"key": "lang",
@@ -1713,7 +1485,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"codigo_barra\": \"2020202012\",\r\n    \"nombre\": \"Platanos Fritas Naturales\",\r\n    \"marca\": \"Anonimo\",\r\n    \"stock_minimo\": 10,\r\n    \"unidad_medida\": \"kg\",\r\n    \"id_categoria\": 1\r\n}",
+											"raw": "{\r\n    \"nombre\": \"Memoria de mis putas\",\r\n    \"unidad_medida\": \"kg\",\r\n    \"stock_minimo\": 10,\r\n    \"es_perecedero\": true,\r\n    \"alerta_amarilla\": 10,\r\n    \"alerta_naranja\": 25,\r\n    \"estado\": 0,\r\n    \"codigo_barra\": \"6932587458963\",\r\n    \"id_marca\": 1\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1758,7 +1530,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"nombre\": \"Limpieza e Higiene\",\r\n    \"descripcion\": \"Limpieza e Higiene2\"\r\n}",
+											"raw": "{\r\n    \"nombre\": \"Memoria de mis putas\",\r\n    \"unidad_medida\": \"kg\",\r\n    \"stock_minimo\": 10,\r\n    \"es_perecedero\": true,\r\n    \"alerta_amarilla\": 10,\r\n    \"alerta_naranja\": 25,\r\n    \"estado\": 0,\r\n    \"codigo_barra\": \"6932587458963\",\r\n    \"id_marca\": 1\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1766,20 +1538,20 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/category/editar-categoria?_id=4&lang=es",
+											"raw": "localhost:3000/api/product/editar-producto?_id=25&lang=es",
 											"host": [
 												"localhost"
 											],
 											"port": "3000",
 											"path": [
 												"api",
-												"category",
-												"editar-categoria"
+												"product",
+												"editar-producto"
 											],
 											"query": [
 												{
 													"key": "_id",
-													"value": "4"
+													"value": "25"
 												},
 												{
 													"key": "lang",
@@ -1806,7 +1578,8 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/product/eliminar-producto?_id=13,14,15&lang=es",
+											"raw": "http://localhost:3000/api/product/eliminar-producto?_id=24&lang=es",
+											"protocol": "http",
 											"host": [
 												"localhost"
 											],
@@ -1819,7 +1592,7 @@
 											"query": [
 												{
 													"key": "_id",
-													"value": "13,14,15"
+													"value": "24"
 												},
 												{
 													"key": "lang",
@@ -2124,7 +1897,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/brand/obtener-marcas?page=1&limit=10&field=id&order=asc",
+											"raw": "localhost:3000/api/brand/obtener-marcas?page=1&limit=2&field=id&order=asc",
 											"host": [
 												"localhost"
 											],
@@ -2141,7 +1914,7 @@
 												},
 												{
 													"key": "limit",
-													"value": "10"
+													"value": "2"
 												},
 												{
 													"key": "field",
@@ -2150,11 +1923,6 @@
 												{
 													"key": "order",
 													"value": "asc"
-												},
-												{
-													"key": "id_category",
-													"value": "1",
-													"disabled": true
 												}
 											]
 										}
@@ -2177,7 +1945,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/brand/obtener-marca?_id=5&lang=es",
+											"raw": "localhost:3000/api/brand/obtener-marca?_id=9&lang=es",
 											"host": [
 												"localhost"
 											],
@@ -2190,7 +1958,7 @@
 											"query": [
 												{
 													"key": "_id",
-													"value": "5"
+													"value": "9"
 												},
 												{
 													"key": "lang",
@@ -2311,7 +2079,7 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/brand/eliminar-marca?_id=13,14,15&lang=es",
+											"raw": "localhost:3000/api/brand/eliminar-marca?_id=4&lang=es",
 											"host": [
 												"localhost"
 											],
@@ -2324,7 +2092,260 @@
 											"query": [
 												{
 													"key": "_id",
-													"value": "13,14,15"
+													"value": "4"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "lista-select-marcas",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/brand/marcas-disponibles?search",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"brand",
+												"marcas-disponibles"
+											],
+											"query": [
+												{
+													"key": "search",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "extent",
+							"item": [
+								{
+									"name": "obtener-unidad-medida",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/extent/obtener-unidades-de-medida?page=1&limit=10&field=id&order=asc",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"extent",
+												"obtener-unidades-de-medida"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "10"
+												},
+												{
+													"key": "field",
+													"value": "id"
+												},
+												{
+													"key": "order",
+													"value": "asc"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-unidades-medida",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/extent/obtener-unidad-de-medida?_id=1&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"extent",
+												"obtener-unidad-de-medida"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "crear-unidad-medida",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Pesa\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/extent/crear-unidad-de-medida?lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"extent",
+												"crear-unidad-de-medida"
+											],
+											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "actualizar-unidad-medida",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"xxx\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/extent/editar-unidad-de-medida?_id=6&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"extent",
+												"editar-unidad-de-medida"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "6"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "eliminar-unidad-medida",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/extent/eliminar-unidad-de-medida?_id=6&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"extent",
+												"eliminar-unidad-de-medida"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "6"
 												},
 												{
 													"key": "lang",

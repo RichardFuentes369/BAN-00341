@@ -4,6 +4,7 @@
   "PAGE_SUPPLIER_TITLE": "Lieferanten",
   "PAGE_PRODUCT_TITLE": "Produkte",
   "PAGE_BRAND_TITLE": "Marken",
+  "PAGE_EXTENT_TITLE": "Maßeinheit",
 
   "MODULE_TITLE": "Katalog",
   "TABLE_TITLE": "Datensätze",
@@ -148,6 +149,7 @@
 
   "BUTTON_PRODUCT": "Produkte",
   "BUTTON_BRAND": "Marken",
+  "BUTTON_EXTENT": "Maßeinheit",
   "BUTTON_SUPPLIER": "Lieferanten",
   "BUTTON_LOTE": "Batch"
 }

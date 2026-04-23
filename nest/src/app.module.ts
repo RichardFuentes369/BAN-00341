@@ -23,7 +23,8 @@ import {
   TiposModule,
   MermasModule,
   BatchModule,
-  BrandModule
+  BrandModule,
+  ExtentModule
 } from './mod/index'
 
 @Module({
@@ -56,6 +57,7 @@ import {
     TiposModule,
     MermasModule,
     BrandModule,
+    ExtentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
