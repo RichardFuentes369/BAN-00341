@@ -20,7 +20,7 @@
   "SEE_PERMISSIONS_TITLE": "Permissions assignées",
 
   "ASSIGMENT_ADMIN_TITLE_BREADCRUMB": "Attribuer des autorisations",
-  "ASSIGMENT_ADMIN_TITLE": "Attribuer des autorisations à {{user_name}}",
+  "ASSIGMENT_ADMIN_TITLE": "Attribuer des autorisations à <br> {{user_name}}",
 
   "SWAL_ARE_YOU_SURE_UPDATE_USER": "Êtes-vous sûr de vouloir mettre à jour l'utilisateur {{user_name}}?",
   "SWAL_ARE_YOU_SURE_DELETE_USER": "Êtes-vous sûr de vouloir supprimer l'utilisateur {{plural}} {{user_name}}?",
@@ -39,6 +39,8 @@
   "SWAL_ACTIVED_RECORD": "Activé avec succès.",
   "SWAL_INACTIVED_RECORD": "Désactivé avec succès.",
   "SWAL_INACTIVED_ALL_USER": "Désactive les {{count_users}} utilisateurs sélectionnés.",
+
+  "LEGEND_TITLE_USER": "Données de l'utilisateur",
 
   "LABEL_USER_FIRSTNAME": "Prénom.",
   "LABEL_USER_LASTNAME": "Nom de famille.",

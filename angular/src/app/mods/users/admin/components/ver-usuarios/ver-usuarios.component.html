@@ -2,60 +2,62 @@
   
   @for (item of user; track item; let  i = $index) {
     <div class="col-xl-12 col-sm-12 row">
-      <div class="col-xl-3 col-sm-12 text-center my-auto">
-        <app-globales-avatar></app-globales-avatar>
-      </div>
-      <div class="col-xl col-sm-12">
-        <div class="col-sm-12 row p-0">
-          <div class="col-sm-6 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-users.LABEL_USER_FIRSTNAME' | translate}}
-            </label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.firstName}}" readonly>
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+      <fieldset class="border p-3 rounded">
+        <legend class="float-none w-auto p-1">
+          {{ 'mod-users.LEGEND_TITLE_USER' | translate }}
+        </legend>
+        <div class="col-xl col-sm-12">
+          <div class="col-sm-12 row p-0">
+            <div class="col-sm-6 form-group">
+              <label for="exampleInputEmail1">
+                {{ 'mod-users.LABEL_USER_FIRSTNAME' | translate}}
+              </label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.firstName}}" readonly>
+              <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+            <div class="col-sm-6 form-group">
+              <label for="exampleInputEmail1">
+                {{ 'mod-users.LABEL_USER_LASTNAME' | translate}}
+              </label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.lastName}}" readonly>
+              <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
           </div>
-          <div class="col-sm-6 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-users.LABEL_USER_LASTNAME' | translate}}
-            </label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.lastName}}" readonly>
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          <div class="col-sm-12 row p-0">
+            <div class="col-sm-6 form-group">
+              <label for="exampleInputEmail1">
+                {{ 'mod-users.LABEL_USER_EMAIL' | translate}}
+              </label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.email}}" readonly>
+              <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+            <div class="col-sm-6 form-group">
+              <label for="exampleInputEmail1">
+                {{ 'mod-users.LABEL_USER_PASSWORD' | translate}}
+              </label>
+              <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.password}}" readonly>
+              <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+          </div>
+          <div class="col-sm-12 row p-0">
+            <div class="col-sm-6 form-group">
+              <label for="exampleInputEmail1">
+                {{ 'mod-users.LABEL_USER_STATUS' | translate}}
+              </label>
+              <select [disabled]="true" class="form-control">
+                <option [selected]="item.isActive == true" [value]="1">
+                  {{ 'mod-users.WORD_ACTIVED' | translate }}
+                </option>
+                
+                <option [selected]="item.isActive == false" [value]="0">
+                  {{ 'mod-users.WORD_INACTIVED' | translate }}
+                </option>
+              </select>
+              <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
           </div>
         </div>
-        <div class="col-sm-12 row p-0">
-          <div class="col-sm-6 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-users.LABEL_USER_EMAIL' | translate}}
-            </label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.email}}" readonly>
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-          </div>
-          <div class="col-sm-6 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-users.LABEL_USER_PASSWORD' | translate}}
-            </label>
-            <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.password}}" readonly>
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-          </div>
-        </div>
-        <div class="col-sm-12 row p-0">
-          <div class="col-sm-6 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-users.LABEL_USER_STATUS' | translate}}
-            </label>
-            <select [disabled]="true" class="form-control">
-              <option [selected]="item.isActive == true" [value]="1">
-                {{ 'mod-users.WORD_ACTIVED' | translate }}
-              </option>
-              
-              <option [selected]="item.isActive == false" [value]="0">
-                {{ 'mod-users.WORD_INACTIVED' | translate }}
-              </option>
-            </select>
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-          </div>
-        </div>
-      </div>
+      </fieldset>
     </div>
   }
 

@@ -20,7 +20,7 @@
   "SEE_PERMISSIONS_TITLE": "Zugewiesene Berechtigungen",
 
   "ASSIGMENT_ADMIN_TITLE_BREADCRUMB": "Zuweisen Berechtigungen",
-  "ASSIGMENT_ADMIN_TITLE": "Zuweisen Berechtigungen für {{user_name}}",
+  "ASSIGMENT_ADMIN_TITLE": "Zuweisen Berechtigungen für <br> {{user_name}}",
 
   "SWAL_ARE_YOU_SURE_UPDATE_USER": "Möchten Sie den Benutzer {{user_name}} wirklich aktualisieren?",
   "SWAL_ARE_YOU_SURE_DELETE_USER": "Möchten Sie den Benutzer {{user_name}} wirklich löschen?",
@@ -39,6 +39,8 @@
   "SWAL_ACTIVED_RECORD": "Erfolgreich aktiviert.",
   "SWAL_INACTIVED_RECORD": "Erfolgreich deaktiviert.",
   "SWAL_INACTIVED_ALL_USER": "Deaktiviert die ausgewählten {{count_users}} Benutzer.",
+
+  "LEGEND_TITLE_USER": "Benutzerdaten",
 
   "LABEL_USER_FIRSTNAME": "Vorname.",
   "LABEL_USER_LASTNAME": "Nachname.",
