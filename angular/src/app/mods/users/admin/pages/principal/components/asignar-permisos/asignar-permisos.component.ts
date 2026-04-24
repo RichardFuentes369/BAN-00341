@@ -83,6 +83,10 @@ export class AsignarPermisosComponent implements OnInit{
     })
   }
 
+  formatTooltip(text: string): string {
+    return text ? text.trim().replace(/\s+/g, '\n') : '';
+  }
+
   toggleCollapse(nombrePermiso: string, isToggle: boolean) {
 
     const response  = this.permisos.find((e: any) => e.mpm_permiso == nombrePermiso)
