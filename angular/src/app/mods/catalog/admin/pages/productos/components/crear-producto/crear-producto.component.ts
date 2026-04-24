@@ -11,6 +11,7 @@ import { ocultarModalOscura } from '@function/System'
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ProductosService } from '../../service/productos.service';
 import { CommonModule } from '@angular/common';
+import { MedidaService } from '../../../medida/service/medida.service';
 
 @Component({
   selector: 'app-crear-producto',
@@ -23,6 +24,7 @@ export class CrearProductoComponent implements OnInit {
   private validationSubject = new Subject<void>();
   isFormValid = false;
   marcas: any[] = [];
+  medidas: any[] = [];
   isLoading: boolean = false
   filtro: string = ''
   isReadonly:boolean = false
@@ -46,12 +48,16 @@ export class CrearProductoComponent implements OnInit {
     marca: false,
     stock_minimo: false,
     unidad_medida: false,
+    es_perecedero: false,
+    error_dias: false,
+    error_dias_nulos: false,
   };
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private productosService: ProductosService,
+    private medidaService: MedidaService,
     private translate: TranslateService
   ) {
     this.validationSubject.pipe(
@@ -66,9 +72,11 @@ export class CrearProductoComponent implements OnInit {
     if(!this.route.snapshot.queryParams?.['id_brand']){
       this.isReadonly = false
       this.getMarcas();
+      this.getMedida()
     }else{
       this.isReadonly = true
       this.getMarca()
+      this.getMedida()
     }
   }
 
@@ -84,6 +92,11 @@ export class CrearProductoComponent implements OnInit {
     this.validators.stock_minimo = (this.model.stock_minimo <= 0);
     this.validators.unidad_medida = (this.model.unidad_medida === '');
     this.validators.estado = (this.model.estado === null);
+
+    if(this.model.es_perecedero){
+      this.validators.error_dias = (this.model.alerta_naranja < this.model.alerta_amarilla);
+      this.validators.error_dias_nulos = (this.model.alerta_naranja === 0 || this.model.alerta_amarilla === 0);
+    }
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
     (!this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.unidad_medida && !this.validators.estado) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
@@ -135,6 +148,16 @@ export class CrearProductoComponent implements OnInit {
     try {
       const marcasList = await this.productosService.getDataBrandSearch(this.filtro)
       this.marcas = [...marcasList.data];
+    } finally {
+      this.isLoading = false;
+    }
+  }  
+  
+  async getMedida() {
+    this.isLoading = true;
+    try {
+      const medidaList = await this.medidaService.getDataList()
+      this.medidas = medidaList.data[0].result;
     } finally {
       this.isLoading = false;
     }

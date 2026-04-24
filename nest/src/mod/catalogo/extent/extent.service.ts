@@ -19,6 +19,13 @@ export class ExtentService {
     return metadata.columns.map((column) => column.propertyName);
   }
 
+  async findAllList(lang: string){
+    const registro = await this.extentRepository.find();
+    return [{
+      'result': registro,
+    }];
+  }
+
   async findAll(filterDto: FilterExtentDto, lang: string) {
     const { limit, page, field = 'id', order = 'ASC' } = filterDto;
 

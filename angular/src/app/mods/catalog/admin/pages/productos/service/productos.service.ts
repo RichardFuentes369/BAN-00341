@@ -90,6 +90,11 @@ export class ProductosService {
     let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
+    const payload = { 
+      ...data, 
+      estado: (data.estado == true) ? 1 : 0 
+    };
+
     return await axios.request({
       headers: {
         [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
@@ -97,7 +102,7 @@ export class ProductosService {
       },
       method: 'patch',
       url: urlCopleta,
-      data: data,
+      data: payload,
       params: {
         _id: id,
         lang: lang,

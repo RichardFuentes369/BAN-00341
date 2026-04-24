@@ -87,6 +87,11 @@ export class ProductService {
     if (!prodcut) throw new NotFoundException(
       this.i18n.t('categoria.MSJ_ERROR_PRODUCT_NOT_EXISTS', { lang })
     );
+    if (prodcut.estado) {
+      prodcut.estado = true;
+    }else{
+      prodcut.estado = false;
+    }
     return prodcut;
   }
 

@@ -55,6 +55,7 @@
   },
 
   "PRODUCT": {
+    "LEGEND_TITLE_PRODUCT": "Product data",
     "ASSIGMENT_PRODUCT_TITLE_BREADCRUMB": "Products",
     "UPLOAD_TITLE": "Upload products",
     "UPLOAD_SUBTITLE": "Batch products",
@@ -79,7 +80,8 @@
     "LABEL_BRAND_ORANGE_ALERT": "Orange alert (days)",
     "LABEL_BRAND_STATUS": "Status",
     "LABEL_COD_BAR_PRODUCT": "Barcode",
-    "LABEL_STOCK_PRODUCT": "Stock",
+    "LEGEND_TITLE_STOCK": "Stock",
+    "LABEL_MINIMUM_QUANTITY": "Minimum quantity",
     "LABEL_UNIT_OF_MEASUREMENT_PRODUCT": "Unit of measurement",
 
     "PLACEHOLDER_NAME_PRODUCT": "Enter a name",
@@ -88,6 +90,8 @@
     "PLACEHOLDER_COD_BAR_PRODUCT": "Enter a valid EAN-13 barcode (13 digits)",
     "PLACEHOLDER_STOCK_PRODUCT": "Enter the minimum quantity of products",
     "PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT": "Select a unit of measurement",
+    "PLACEHOLDER_ERROR_DIAS_PRODUCT": "Yellow alert cannot be less than orange alert",
+    "PLACEHOLDER_ERROR_DIAS_NULOS": "Yellow and red alerts must be greater than 0",
     "PLACEHOLDER_STATUS_PRODUCT": "Select a status",
 
     "SELECT_PRODUCT_STATUS": "Select", 

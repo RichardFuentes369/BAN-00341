@@ -1,7 +1,6 @@
 // import { PermisosModulos } from 'src/mod/permisos/modulos/entities/modulo.entity';
 import { Lote } from '@module/lote/batch/entities/batch.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn, OneToOne, Batch } from 'typeorm';
-import { UnidadMedida } from '../enums/UnidadMedida';
 import { Marca } from '@module/catalogo/brand/entities/brand.entity';
 import { forwardRef } from '@nestjs/common';
 
@@ -20,8 +19,8 @@ export class Producto {
   @Column()
   id_marca: number;
 
-  @Column({ type: 'enum', enum: UnidadMedida, default: UnidadMedida.KG })
-  unidad_medida: UnidadMedida;
+  @Column({ type: 'varchar', length: 150 })
+  unidad_medida: string;
 
   @Column()
   stock_minimo: number;
@@ -38,12 +37,6 @@ export class Producto {
   @Column({ type: 'tinyint', width: 1, default: 1 })
   estado: boolean;
 
-  // @ManyToOne(() => Marca, (marca) => marca.id, {
-  //   onDelete: 'RESTRICT', 
-  //   nullable: false
-  // })
-  // @JoinColumn({ name: 'id_marca' })
-  // marca: Marca;
   @ManyToOne(() => Marca, (marca) => marca.productos)
   @JoinColumn({ name: 'id_marca' })
   marca: Marca;

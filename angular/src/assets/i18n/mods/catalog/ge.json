@@ -56,6 +56,7 @@
   },
 
   "PRODUCT": {
+    "LEGEND_TITLE_PRODUCT": "Produktdaten",
     "ASSIGMENT_PRODUCT_TITLE_BREADCRUMB": "Produkte",
     "UPLOAD_TITLE": "Produkte hochladen",
     "UPLOAD_SUBTITLE": "Produkte im Batch",
@@ -80,7 +81,8 @@
     "LABEL_BRAND_ORANGE_ALERT": "Oranger Alarm (Tage)",
     "LABEL_BRAND_STATUS": "Status",
     "LABEL_COD_BAR_PRODUCT": "Barcode",
-    "LABEL_STOCK_PRODUCT": "Lagerbestand",
+    "LEGEND_TITLE_STOCK": "Lagerbestand",
+    "LABEL_MINIMUM_QUANTITY": "Mindestmenge",
     "LABEL_UNIT_OF_MEASUREMENT_PRODUCT": "Maßeinheit",
 
     "PLACEHOLDER_NAME_PRODUCT": "Namen eingeben",
@@ -89,6 +91,8 @@
     "PLACEHOLDER_COD_BAR_PRODUCT": "Geben Sie einen gültigen EAN-13-Barcode ein (13 Stellen)",
     "PLACEHOLDER_STOCK_PRODUCT": "Geben Sie die Mindestproduktmenge ein",
     "PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT": "Wählen Sie eine Maßeinheit aus",
+    "PLACEHOLDER_ERROR_DIAS_PRODUCT": "Die gelbe Warnmeldung darf nicht kleiner als die orangefarbene sein",
+    "PLACEHOLDER_ERROR_DIAS_NULOS": "Gelbe und rote Warnmeldungen müssen größer als 0 sein",
     "PLACEHOLDER_STATUS_PRODUCT": "Status auswählen",
 
     "SELECT_PRODUCT_STATUS": "Auswählen", 

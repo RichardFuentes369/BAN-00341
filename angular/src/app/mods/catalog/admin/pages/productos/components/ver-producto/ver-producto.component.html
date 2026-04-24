@@ -1,48 +1,65 @@
 <div class="container-fluid p-0">
   @for (item of producto; track item.id; let i = $index) {
   <div class="row">
+    <div class="col-sm-12 form-group mb-3">
+      <fieldset class="border p-3 rounded">
+        <legend class="float-none w-auto p-1">
+          {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_PRODUCT' | translate }}
+        </legend>
+        <div class="row">
+          <div class="col-sm-6 form-group mb-3">
+            <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
+            <input type="text" class="form-control bg-light" [(ngModel)]="item.nombre" disabled>
+          </div>
     
-    <div class="col-sm-12 form-group mb-3">
-      <label class="form-label font-weight-bold text-gray-600">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
-      <input type="text" class="form-control bg-light" 
-             [value]="item.nombre" 
-             readonly>
-    </div>
-
-    <div class="col-sm-12 form-group mb-3">
-      <label class="form-label font-weight-bold text-gray-600">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
-      <input type="text" class="form-control bg-light" 
-             [value]="item.marca?.nombre || ''" 
-             readonly>
-    </div>
-
-    <div class="col-sm-12 form-group mb-3">
-      <label class="font-weight-bold text-gray-600">{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</label>
-      <select class="form-control bg-light" [ngModel]="item.unidad_medida" disabled>
-        <option value="">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION' | translate }}</option>
-        <option value="unidad">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_UNIT_OPTION' | translate }}</option>
-        <option value="kg">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_KG_OPTION' | translate }}</option>
-        <option value="litro">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_LITER_OPTION' | translate }}</option>
-        <option value="paquete">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_PACKAGE_OPTION' | translate }}</option>
-      </select>
-    </div>
-
-    <div class="col-sm-12 form-group mb-3">
-      <label class="font-weight-bold text-gray-600">{{ 'mod-catalog.PRODUCT.LABEL_STOCK_PRODUCT' | translate }}</label>
-      <input type="number" class="form-control bg-light" 
-             [value]="item.stock_minimo" 
-             readonly>
-    </div>
-
-    <div class="col-sm-12 form-group mb-3">
-      <div class="card border-light shadow-sm">
-        <div class="card-body text-center">
-          <label class="d-block mb-2 font-weight-bold text-gray-600">{{ 'mod-catalog.PRODUCT.LABEL_CHECK_PERISHABLE' | translate }}</label>
-          <div class="form-check form-switch d-flex justify-content-center">
-            <input class="form-check-input" type="checkbox" role="switch" 
-                   [checked]="item.es_perecedero" disabled>
+          <div class="col-sm-6 form-group mb-3">
+            <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
+            <input type="text" class="form-control bg-light" [(ngModel)]="item.marca.nombre" disabled>
           </div>
 
+          <div class="col-sm-6 form-group mb-3">
+            <label>{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
+            <input type="text" class="form-control bg-light" [(ngModel)]="item.codigo_barra" disabled>
+          </div>
+
+          <div class="col-sm-6 form-group mb-3">
+            <label>{{ 'mod-catalog.PRODUCT.LABEL_BRAND_STATUS' | translate }}</label>
+            <select class="form-control bg-light" [(ngModel)]="item.estado" disabled>
+              <option [ngValue]="true">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_ACTIVED' | translate }}</option>
+              <option [ngValue]="false">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_INACTIVED' | translate }}</option>
+            </select>
+          </div> 
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="col-sm-12 form-group mb-3">
+      <fieldset class="border p-3 rounded">
+        <legend class="float-none w-auto p-1">
+          {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_STOCK' | translate }}
+        </legend>
+        <div class="row">
+          <div class="col-sm-6 form-group mb-3">
+            <label>{{ 'mod-catalog.PRODUCT.LABEL_MINIMUM_QUANTITY' | translate }}</label>
+            <input type="number" min="1" class="form-control bg-light" [(ngModel)]="item.stock_minimo" disabled>
+          </div>
+          <div class="col-sm-6 form-group mb-3">
+            <label>{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</label>
+            <input type="text" min="1" class="form-control bg-light" [(ngModel)]="item.unidad_medida" disabled>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="col-sm-12 form-group mb-3">
+      <fieldset class="border p-3 rounded">
+        <legend class="float-none w-auto p-1">
+          {{ 'mod-catalog.PRODUCT.LABEL_CHECK_PERISHABLE' | translate }}
+        </legend>
+        <div class="row">
+          <div class="form-check form-switch d-flex mb-2 justify-content-center">
+            <input class="form-check-input" type="checkbox" role="switch" [checked]="item.es_perecedero" disabled>
+          </div>
           @if(item.es_perecedero) {
             <div class="row mt-3 animate__animated animate__fadeIn">
               <div class="col-sm-6 text-left">
@@ -58,28 +75,7 @@
             </div>
           }
         </div>
-      </div>
-    </div>
-
-    <div class="col-sm-12 form-group mb-3">
-      <label class="font-weight-bold text-gray-600">{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }}</label>
-      <input type="text" class="form-control bg-light" 
-             [value]="item.codigo_barra" 
-             readonly>
-      
-      <div class="d-flex justify-content-end mt-1">
-        <small [ngClass]="((item?.codigo_barra || '').toString().length === 13) ? 'text-success font-weight-bold' : 'text-danger'">
-          {{ item?.codigo_barra?.length || 0 }} / 13
-        </small>
-      </div>
-    </div>
-
-    <div class="col-sm-12 form-group mb-3">
-      <label class="font-weight-bold text-gray-600">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_STATUS' | translate }}</label>
-      <select class="form-control bg-light" [ngModel]="item.estado" disabled>
-        <option [ngValue]="1">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_ACTIVED' | translate }}</option>
-        <option [ngValue]="0">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_INACTIVED' | translate }}</option>
-      </select>
+      </fieldset>
     </div>
 
   </div>

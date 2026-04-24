@@ -1,14 +1,9 @@
 import { PartialType } from '@nestjs/swagger';
 import { CreateProductDto } from './create-product.dto';
 import { IsEnum, IsNumber, IsString, IsOptional, IsBoolean } from "class-validator";
-import { UnidadMedida } from '../enums/UnidadMedida'; 
 import { Exclude, Transform } from 'class-transformer';
 
 export class  UpdateProductDto extends PartialType(CreateProductDto) {
-  @IsNumber()
-  // @Transform(({value}) => value.trim())
-  readonly id;
-
   @IsOptional()
   @Exclude() 
   marca?: any;
@@ -49,6 +44,6 @@ export class  UpdateProductDto extends PartialType(CreateProductDto) {
   readonly stock_minimo;  
 
   @IsOptional()
-  @IsEnum(UnidadMedida)
-  readonly unidad_medida: UnidadMedida;
+  @IsString()
+  readonly unidad_medida;
 }

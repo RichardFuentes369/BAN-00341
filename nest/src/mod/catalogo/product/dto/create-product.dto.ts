@@ -1,5 +1,4 @@
 import { IsBoolean, IsEnum, IsNumber, IsOptional, IsString } from "class-validator";
-import { UnidadMedida } from "../enums/UnidadMedida";
 
 export class CreateProductDto {
 
@@ -37,6 +36,6 @@ export class CreateProductDto {
   // @Transform(({value}) => value.trim())
   readonly stock_minimo;  
 
-  @IsEnum(UnidadMedida)
-  readonly unidad_medida: UnidadMedida;
+  @IsString()
+  readonly unidad_medida;
 }

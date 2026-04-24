@@ -55,6 +55,7 @@
   },
 
   "PRODUCT": {
+    "LEGEND_TITLE_PRODUCT": "Datos del producto",
     "ASSIGMENT_PRODUCT_TITLE_BREADCRUMB": "Productos",
     "UPLOAD_TITLE": "Cargar", 
     "UPLOAD_SUBTITLE": "Productos por lote",
@@ -79,7 +80,8 @@
     "LABEL_BRAND_ORANGE_ALERT": "Alerta naranja (días)",
     "LABEL_BRAND_STATUS": "Estado",
     "LABEL_COD_BAR_PRODUCT": "Código de barras",
-    "LABEL_STOCK_PRODUCT": "Stock",
+    "LEGEND_TITLE_STOCK": "Stock",
+    "LABEL_MINIMUM_QUANTITY": "Cantidad mínima",
     "LABEL_UNIT_OF_MEASUREMENT_PRODUCT": "Unidad de medida",
 
     "PLACEHOLDER_NAME_PRODUCT": "Ingresa un nombre",
@@ -88,6 +90,8 @@
     "PLACEHOLDER_COD_BAR_PRODUCT": "Ingresa un código de barras EAN-13 válido (13 dígitos)",
     "PLACEHOLDER_STOCK_PRODUCT": "Ingresa la cantidad mínima de productos",
     "PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT": "Seleccione una unidad de medida",
+    "PLACEHOLDER_ERROR_DIAS_PRODUCT": "La alerta amarilla no puede ser menor a la alerta naranja",
+    "PLACEHOLDER_ERROR_DIAS_NULOS": "La alerta amarilla y la alerta roja deben ser mayor a 0",
     "PLACEHOLDER_STATUS_PRODUCT": "Seleccione un estado",
 
     "SELECT_PRODUCT_STATUS": "Seleccionar", 

@@ -12,6 +12,23 @@ import { AuthService } from '@guard/service/auth.service';
 import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 import { ProductosService } from '@mod/catalog/admin/pages/productos/service/productos.service';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { MedidaService } from '../../../medida/service/medida.service';
+
+interface ProctoInteface {
+  es_perecedero: boolean,
+  estado: boolean,
+  codigo_barra: string,
+  nombre: string,
+  marca: {
+    id: number,
+    nombre: string
+  },
+  id_marca: number, 
+  stock_minimo: number,
+  unidad_medida: string,
+  alerta_amarilla: number, 
+  alerta_naranja: number
+}
 
 @Component({
   selector: 'app-editar-producto',
@@ -25,13 +42,38 @@ export class EditarProductoComponent implements OnInit {
   private validationSubject = new Subject<void>();
   isFormValid = false;
   marcas: any[] = [];
+  medidas: any[] = [];
   isLoading: boolean = false
   filtro: string = ''
   isReadonly:boolean = false
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private productosService: ProductosService,
+    private medidaService: MedidaService,
+    private userService: AuthService,
+    private translate: TranslateService
+  ) {
+    this.validationSubject.pipe(
+      debounceTime(300),
+      map(() => this.checkValidation())
+    ).subscribe(isValid => {
+      this.isFormValid = isValid;
+    });
+  }
   
-  // Arreglo para el loop y objeto para validación/envío
-  producto: any[] = [];
-  model: any = {};
+  model = {
+    es_perecedero: false,
+    estado: false,
+    codigo_barra: '',
+    nombre: '',
+    id_marca: 1, 
+    stock_minimo: 1,
+    unidad_medida: '',
+    alerta_amarilla: 1, 
+    alerta_naranja: 1
+  };
 
   validators = {
     estado: false,
@@ -40,32 +82,24 @@ export class EditarProductoComponent implements OnInit {
     marca: false,
     stock_minimo: false,
     unidad_medida: false,
+    es_perecedero: false,
+    error_dias: false,
+    error_dias_nulos: false,
   };
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private productosService: ProductosService,
-    private userService: AuthService,
-    private translate: TranslateService
-  ) {
-    // Escucha cambios y valida con un pequeño delay para mejorar rendimiento
-    this.validationSubject.pipe(
-      debounceTime(300),
-      map(() => this.checkValidation())
-    ).subscribe(isValid => {
-      this.isFormValid = isValid;
-    });
-  }
+  producto: ProctoInteface[] = [];
+  productoReal: any
 
   async ngOnInit() {
 
     if(!this.route.snapshot.queryParams?.['id_brand']){
       this.isReadonly = false
       this.getMarcas();
+      this.getMedida()
     }else{
       this.isReadonly = true
       this.getMarca()
+      this.getMedida()
     }
     
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
@@ -81,7 +115,17 @@ export class EditarProductoComponent implements OnInit {
         }
 
         this.producto = [prodData];
-        this.model = { ...prodData };
+
+        this.model.id_marca = this.producto[0].marca.id
+        this.model.es_perecedero = this.producto[0].es_perecedero,
+        this.model.estado = this.producto[0].estado,
+        this.model.codigo_barra = this.producto[0].codigo_barra,
+        this.model.nombre = this.producto[0].nombre,
+        this.model.stock_minimo = this.producto[0].stock_minimo,
+        this.model.unidad_medida = this.producto[0].unidad_medida,
+        this.model.alerta_amarilla = this.producto[0].alerta_amarilla, 
+        this.model.alerta_naranja = this.producto[0].alerta_naranja
+
         this.checkValidation();
     }
   }
@@ -116,6 +160,25 @@ export class EditarProductoComponent implements OnInit {
     }
   }
 
+  get esCodigoValido(): boolean {
+    const codigo = (this.model?.codigo_barra || '').toString();
+    return codigo.length === 13;
+  }
+
+  get longitudCodigo(): number {
+    return (this.model?.codigo_barra || '').toString().length;
+  }
+
+  async getMedida() {
+    this.isLoading = true;
+    try {
+      const medidaList = await this.medidaService.getDataList()
+      this.medidas = medidaList.data[0].result;
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
   async getMarca() {
     if (!this.route.snapshot.queryParams?.['id_brand']) return;
 
@@ -135,7 +198,6 @@ export class EditarProductoComponent implements OnInit {
   }
 
   onInputChange(item: any) {
-    this.model = { ...item };
     this.validationSubject.next();
   }
 
@@ -148,11 +210,12 @@ export class EditarProductoComponent implements OnInit {
     this.validators.unidad_medida = (this.model.unidad_medida === '');
     this.validators.estado = (this.model.estado === null);
 
-    // this.validators.es_perecedero = (this.model.estado === 0);
-    // this.validators.alerta_amarilla = (this.model.estado === 0);
-    // this.validators.alerta_naranja = (this.model.estado === 0);
+    if(this.model.es_perecedero){
+      this.validators.error_dias = (this.model.alerta_naranja < this.model.alerta_amarilla);
+      this.validators.error_dias_nulos = (this.model.alerta_naranja === 0 || this.model.alerta_amarilla === 0);
+    }
 
-    const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
+     const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
     (!this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.unidad_medida && !this.validators.estado) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
 
     return !this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.unidad_medida && !this.validators.estado
@@ -161,7 +224,7 @@ export class EditarProductoComponent implements OnInit {
   async actualizarData() {
     if (this.isFormValid) {
       try {
-        await this.productosService.updateProduct(this.model, this.model.id);
+        await this.productosService.updateProduct(this.model, this.route.snapshot.queryParams?.['id_product']);
         ocultarModalOscura();
         
         Swal.fire({

@@ -22,6 +22,17 @@ export class ExtentController {
     );
   }
 
+  @Get('lista-unidad-de-medida')
+  findList(
+    @Query('lang') lang: string,
+    @GetUser('id') userId: number
+  ) {
+    return this.extentService.findAllList(
+      lang
+    );
+  }
+
+
   @UseGuards(AdminGuard)
   @Get('obtener-unidad-de-medida')
   findOne(
