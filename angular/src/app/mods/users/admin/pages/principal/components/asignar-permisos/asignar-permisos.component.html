@@ -14,7 +14,7 @@
             <a class="btn btn-link p-0 ml-4 nav-link fw-bold" (click)="toggleCollapse(modulos.mpm_permiso, modulos.mpm_toogle)">
               {{ modulos.mpm_nombre }}
             </a>
-            <span class="custom-tooltipA tooltip-bottom my-auto flex-grow-1 cursor-pointer text-center"
+            <span class="custom-tooltipA tooltip-bottom my-auto cursor-pointer"
               [attr.data-title]="formatTooltip(modulos.mpm_descripcion)">
               <i class="fas fa-info-circle text-body-emphasis ml-1"></i>
             </span>
@@ -28,7 +28,7 @@
                 <input class="form-check-input static-check my-auto ml-0" type="checkbox"
                   [checked]="subModulos.asignado === 1" (change)="asignarPermiso(subModulos)">
                 <span class="ml-4">{{ subModulos.mpm_nombre }}</span>
-                <span class="custom-tooltipA tooltip-bottom my-auto flex-grow-1 cursor-pointer text-center"
+                <span class="custom-tooltipA tooltip-bottom my-auto cursor-pointer"
                   [attr.data-title]="formatTooltip(subModulos.mpm_descripcion)">
                   <i class="fas fa-info-circle text-body-emphasis ml-1"></i>
                 </span>
@@ -39,7 +39,7 @@
                 <div class="form-check form-check-inline d-flex align-items-center">
                   <input class="form-check-input my-auto" type="checkbox" [checked]="permiso.asignado === 1"
                     (change)="asignarPermiso(permiso)">
-                  <span class="custom-tooltipA tooltip-bottom my-auto flex-grow-1 cursor-pointer text-center"
+                  <span class="custom-tooltipA tooltip-bottom my-auto flex-grow-1 cursor-pointer"
                     [attr.data-title]="formatTooltip(permiso.mpm_descripcion)">
                     <i class="fas fa-info-circle text-body-emphasis ml-1"></i>
                   </span>
