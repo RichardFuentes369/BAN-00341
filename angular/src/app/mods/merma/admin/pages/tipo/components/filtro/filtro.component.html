@@ -5,7 +5,7 @@
             <label for="exampleInputEmail1">
                 {{ 'mod-merma.TYPE.LABEL_NAME_TYPE' | translate}}
             </label>
-            <input type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.nombre" aria-describedby="emailHelp" placeholder="{{ 'mod-merma.TYPE.PLACEHOLDER_NAME_TYPE' | translate}}">
+            <input type="text" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.nombre" aria-describedby="emailHelp" placeholder="{{ 'mod-merma.TYPE.PLACEHOLDER_NAME_TYPE' | translate}}">
         </div>
         <button class="d-none limpiarS" (click)="limpiar()"></button>
         <button class="d-none filtrar" (click)="filtrar()"></button>

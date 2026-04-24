@@ -12,14 +12,14 @@
               <label for="exampleInputEmail1">
                 {{ 'mod-users.LABEL_USER_FIRSTNAME' | translate}}
               </label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.firstName}}" readonly>
+              <input type="text" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.firstName}}" readonly>
               <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
             </div>
             <div class="col-sm-6 form-group">
               <label for="exampleInputEmail1">
                 {{ 'mod-users.LABEL_USER_LASTNAME' | translate}}
               </label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.lastName}}" readonly>
+              <input type="text" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.lastName}}" readonly>
               <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
             </div>
           </div>
@@ -28,14 +28,14 @@
               <label for="exampleInputEmail1">
                 {{ 'mod-users.LABEL_USER_EMAIL' | translate}}
               </label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.email}}" readonly>
+              <input type="text" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.email}}" readonly>
               <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
             </div>
             <div class="col-sm-6 form-group">
               <label for="exampleInputEmail1">
                 {{ 'mod-users.LABEL_USER_PASSWORD' | translate}}
               </label>
-              <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.password}}" readonly>
+              <input type="password" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.password}}" readonly>
               <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
             </div>
           </div>
@@ -44,7 +44,7 @@
               <label for="exampleInputEmail1">
                 {{ 'mod-users.LABEL_USER_STATUS' | translate}}
               </label>
-              <select [disabled]="true" class="form-control">
+              <select [disabled]="true" class="form-control form-select-sm">
                 <option [selected]="item.isActive == true" [value]="1">
                   {{ 'mod-users.WORD_ACTIVED' | translate }}
                 </option>

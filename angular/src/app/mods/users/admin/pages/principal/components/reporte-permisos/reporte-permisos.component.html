@@ -8,7 +8,7 @@
   
     <div class="col-sm-12 row mt-2 ml-0 p-0">
       <div class="col-sm-4" [class]="(model.modulo != ModuloModulos && model.modulo != ModuloLote) ? 'col-sm-4' : 'col-sm-6'">
-        <select [(ngModel)]="model.modulo" (ngModelChange)="cambioModulo($event)" class="form-control my-2" [disabled]="loading1">
+        <select [(ngModel)]="model.modulo" (ngModelChange)="cambioModulo($event)" class="form-control form-select-sm my-2 custom-select" [disabled]="loading1">
           @if (loading1) {
             <option value="0">Cargando módulos...</option>
           } @else {
@@ -26,7 +26,7 @@
       <div class="col-sm-4" [class]="(model.modulo != ModuloModulos && model.modulo != ModuloLote) ? 'col-sm-4' : 'col-sm-6'">
         <select [(ngModel)]="model.submodulo" 
                 (ngModelChange)="cambioSubmodulo($event)" 
-                class="form-control my-2" 
+                class="form-control form-select-sm my-2 custom-select" 
                 [disabled]="loading2 || selectSubModulos.length === 0">
           @if (loading2) {
             <option value="0">Cargando submodulos...</option>
@@ -41,7 +41,7 @@
       @if (model.modulo != ModuloModulos && model.modulo != ModuloLote) {
         <div class="col-sm-4">
           <select [(ngModel)]="model.permiso" 
-                  class="form-control my-2" 
+                  class="form-control form-select-sm my-2 custom-select" 
                   [disabled]="loading3 || selectPermisos.length === 0">
             @if (loading3) {
               <option value="0">Cargando permisos...</option>

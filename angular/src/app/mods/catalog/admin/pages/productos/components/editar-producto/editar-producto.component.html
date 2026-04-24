@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col-sm-6 form-group mb-3">
             <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.nombre" (ngModelChange)="onInputChange(item)" [class.is-invalid]="validators.nombre" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_NAME_PRODUCT' | translate }}">
+            <input type="text" class="form-control form-select-sm" [(ngModel)]="model.nombre" (ngModelChange)="onInputChange(item)" [class.is-invalid]="validators.nombre" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_NAME_PRODUCT' | translate }}">
             @if(validators.nombre) {
               <span class="text-danger small">{{ 'mod-catalog.PRODUCT.PLACEHOLDER_NAME_PRODUCT' | translate }}</span>
             }
@@ -42,7 +42,7 @@
 
           <div class="col-sm-6 form-group mb-3">
             <label>{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
-            <input type="text" class="form-control" [(ngModel)]="model.codigo_barra" (ngModelChange)="onInputChange(item)" [class.is-invalid]="validators.codigo_barra" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}">
+            <input type="text" class="form-control form-select-sm" [(ngModel)]="model.codigo_barra" (ngModelChange)="onInputChange(item)" [class.is-invalid]="validators.codigo_barra" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}">
             @if(validators.codigo_barra) {
             <div class="d-flex justify-content-between">
               <small [ngClass]="esCodigoValido ? 'text-success font-weight-bold' : 'text-danger'">
@@ -54,7 +54,7 @@
 
           <div class="col-sm-6 form-group mb-3">
             <label>{{ 'mod-catalog.PRODUCT.LABEL_BRAND_STATUS' | translate }}</label>
-              <select class="form-control" [(ngModel)]="model.estado" (ngModelChange)="onInputChange(item)" [class.is-invalid]="validators.estado">
+              <select class="form-control form-select-sm" [(ngModel)]="model.estado" (ngModelChange)="onInputChange(item)" [class.is-invalid]="validators.estado">
                 <option [ngValue]="null">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_STATUS' | translate }}</option>
                 <option [ngValue]="true">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_ACTIVED' | translate }}</option>
                 <option [ngValue]="false">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_INACTIVED' | translate }}</option>
@@ -72,14 +72,14 @@
         <div class="row">
           <div class="col-sm-6 form-group mb-3">
             <label>{{ 'mod-catalog.PRODUCT.LABEL_MINIMUM_QUANTITY' | translate }}</label>
-            <input type="number" min="1" class="form-control" [(ngModel)]="model.stock_minimo" (ngModelChange)="onInputChange(item)" [class.is-invalid]="validators.stock_minimo" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate }}">
+            <input type="number" min="1" class="form-control form-select-sm" [(ngModel)]="model.stock_minimo" (ngModelChange)="onInputChange(item)" [class.is-invalid]="validators.stock_minimo" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate }}">
             @if(validators.stock_minimo) {
               <span class="text-danger small">{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate }}</span>
             }
           </div>
           <div class="col-sm-6 form-group mb-3">
             <label>{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</label>
-            <select class="form-control" [(ngModel)]="model.unidad_medida" (ngModelChange)="onInputChange(item)" [class.is-invalid]="validators.unidad_medida">
+            <select class="form-control form-select-sm" [(ngModel)]="model.unidad_medida" (ngModelChange)="onInputChange(item)" [class.is-invalid]="validators.unidad_medida">
               <option value="">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION' | translate }}</option>
               <option *ngFor="let medida of medidas" [value]="medida.nombre">
                 {{ medida.nombre }}
@@ -106,11 +106,11 @@
             <div class="row mt-3">
               <div class="col-sm-6">
                 <label class="small text-muted">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_YELLOW_ALERT' | translate }}</label>
-                <input type="number" min="1" class="form-control form-control-sm" [(ngModel)]="model.alerta_amarilla" (ngModelChange)="onInputChange(item)">
+                <input type="number" min="1" class="form-control form-select-sm" [(ngModel)]="model.alerta_amarilla" (ngModelChange)="onInputChange(item)">
               </div>
               <div class="col-sm-6">
                 <label class="small text-muted">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_ORANGE_ALERT' | translate }}</label>
-                <input type="number" min="1" class="form-control form-control-sm" [(ngModel)]="model.alerta_naranja" (ngModelChange)="onInputChange(item)">
+                <input type="number" min="1" class="form-control form-select-sm" [(ngModel)]="model.alerta_naranja" (ngModelChange)="onInputChange(item)">
               </div>
             </div>
             @if(validators.error_dias) {

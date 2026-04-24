@@ -9,22 +9,22 @@
         <div class="row">
           <div class="col-sm-6 form-group mb-3">
             <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
-            <input type="text" class="form-control bg-light" [(ngModel)]="item.nombre" disabled>
+            <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="item.nombre" disabled>
           </div>
     
           <div class="col-sm-6 form-group mb-3">
             <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
-            <input type="text" class="form-control bg-light" [(ngModel)]="item.marca.nombre" disabled>
+            <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="item.marca.nombre" disabled>
           </div>
 
           <div class="col-sm-6 form-group mb-3">
             <label>{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
-            <input type="text" class="form-control bg-light" [(ngModel)]="item.codigo_barra" disabled>
+            <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="item.codigo_barra" disabled>
           </div>
 
           <div class="col-sm-6 form-group mb-3">
             <label>{{ 'mod-catalog.PRODUCT.LABEL_BRAND_STATUS' | translate }}</label>
-            <select class="form-control bg-light" [(ngModel)]="item.estado" disabled>
+            <select class="form-control form-select-sm bg-light" [(ngModel)]="item.estado" disabled>
               <option [ngValue]="true">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_ACTIVED' | translate }}</option>
               <option [ngValue]="false">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_INACTIVED' | translate }}</option>
             </select>
@@ -41,11 +41,11 @@
         <div class="row">
           <div class="col-sm-6 form-group mb-3">
             <label>{{ 'mod-catalog.PRODUCT.LABEL_MINIMUM_QUANTITY' | translate }}</label>
-            <input type="number" min="1" class="form-control bg-light" [(ngModel)]="item.stock_minimo" disabled>
+            <input type="number" min="1" class="form-control form-select-sm bg-light" [(ngModel)]="item.stock_minimo" disabled>
           </div>
           <div class="col-sm-6 form-group mb-3">
             <label>{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</label>
-            <input type="text" min="1" class="form-control bg-light" [(ngModel)]="item.unidad_medida" disabled>
+            <input type="text" min="1" class="form-control form-select-sm bg-light" [(ngModel)]="item.unidad_medida" disabled>
           </div>
         </div>
       </fieldset>
@@ -64,12 +64,12 @@
             <div class="row mt-3 animate__animated animate__fadeIn">
               <div class="col-sm-6 text-left">
                 <label class="small text-muted">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_YELLOW_ALERT' | translate }}</label>
-                <input type="number" class="form-control form-control-sm text-center bg-light" 
+                <input type="number" class="form-control form-select-sm form-control form-select-sm-sm text-center bg-light" 
                        [value]="item.alerta_amarilla" readonly>
               </div>
               <div class="col-sm-6 text-left">
                 <label class="small text-muted">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_ORANGE_ALERT' | translate }}</label>
-                <input type="number" class="form-control form-control-sm text-center bg-light" 
+                <input type="number" class="form-control form-select-sm form-control form-select-sm-sm text-center bg-light" 
                        [value]="item.alerta_naranja" readonly>
               </div>
             </div>

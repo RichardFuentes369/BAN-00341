@@ -9,7 +9,7 @@
           <label for="exampleInputEmail1">
             {{ 'mod-merma.TYPE.LABEL_NAME_TYPE' | translate}}
           </label>
-          <input type="text" class="form-control" [(ngModel)]="model.nombre" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nombre" placeholder="{{ 'mod-merma.TYPE.PLACEHOLDER_NAME_TYPE' | translate}}">
+          <input type="text" class="form-control form-select-sm" [(ngModel)]="model.nombre" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nombre" placeholder="{{ 'mod-merma.TYPE.PLACEHOLDER_NAME_TYPE' | translate}}">
           @if(validators.nombre) {
             <span class="text-danger small">{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}</span>
           }
