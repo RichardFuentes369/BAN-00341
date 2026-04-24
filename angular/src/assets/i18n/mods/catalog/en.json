@@ -16,6 +16,7 @@
   "BUTTON_SEARCH": "Search",
 
   "SUPPLIER": {
+    "LEGEND_TITLE": "Supplier data",
     "CREATE_TITLE": "Create",
     "CREATE_SUBTITLE": "New supplier",
     "SEE_TITLE": "View",
@@ -115,6 +116,7 @@
   },
 
   "BRAND": {
+    "LEGEND_TITLE": "Brand data",
     "CREATE_TITLE": "Create",
     "CREATE_SUBTITLE": "New brand",
     "SEE_TITLE": "View",
@@ -141,6 +143,7 @@
   },
 
   "EXTENT": {
+    "LEGEND_TITLE": "Measurement data",
     "CREATE_TITLE": "Create",
     "CREATE_SUBTITLE": "New extent",
     "SEE_TITLE": "View",

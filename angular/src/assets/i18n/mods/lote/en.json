@@ -33,6 +33,8 @@
   "COLUMN_QUANTITY_SOLD": "Quantity sold",
   "COLUMN_STOCK": "Stock",
 
+
+  "LEGEND_TITLE": "Batch data",
   "LABEL_LOTE": "Batch",
   "LABEL_FECHA_ENTRADA": "Entry date",
   "LABEL_FECHA_VENCIMIENTO": "Expiry date",

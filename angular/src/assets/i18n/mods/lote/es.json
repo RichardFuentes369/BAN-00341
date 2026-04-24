@@ -33,6 +33,7 @@
   "COLUMN_QUANTITY_SOLD": "Cantidad vendida",
   "COLUMN_STOCK": "Existencia",
 
+  "LEGEND_TITLE": "Datos de lote",
   "LABEL_LOTE": "Lote",
   "LABEL_FECHA_ENTRADA": "Fecha de entrada",
   "LABEL_FECHA_VENCIMIENTO": "Fecha de vencimiento",

@@ -16,6 +16,7 @@
   "BUTTON_SEARCH": "Buscar",
 
   "SUPPLIER": {
+    "LEGEND_TITLE": "Datos del proveedor",
     "CREATE_TITLE": "Crear",
     "CREATE_SUBTITLE": "Nuevo proveedor",
     "SEE_TITLE": "Ver",
@@ -115,6 +116,7 @@
   },
 
   "BRAND": {
+    "LEGEND_TITLE": "Datos de marca",
     "CREATE_TITLE": "Crear",
     "CREATE_SUBTITLE": "Nueva marca",
     "SEE_TITLE": "Ver",
@@ -141,6 +143,7 @@
   },
   
   "EXTENT": {
+    "LEGEND_TITLE": "Datos de medida",
     "CREATE_TITLE": "Crear",
     "CREATE_SUBTITLE": "Nueva medida",
     "SEE_TITLE": "Ver",

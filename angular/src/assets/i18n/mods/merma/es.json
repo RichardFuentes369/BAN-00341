@@ -27,6 +27,7 @@
   },
   
   "TYPE": {
+    "LEGEND_TITLE": "Datos de tipo de pérdida",
     "CREATE_TITLE": "Crear", 
     "CREATE_SUBTITLE": "Nuevo tipo merma", 
     "EDIT_TITLE": "Editar", 

@@ -33,6 +33,7 @@
   "COLUMN_QUANTITY_SOLD": "Verkaufte Menge",
   "COLUMN_STOCK": "Lagerbestand",
 
+  "LEGEND_TITLE": "Chargendaten",
   "LABEL_LOTE": "Charge",
   "LABEL_FECHA_ENTRADA": "Eingangsdatum",
   "LABEL_FECHA_VENCIMIENTO": "Ablaufdatum",

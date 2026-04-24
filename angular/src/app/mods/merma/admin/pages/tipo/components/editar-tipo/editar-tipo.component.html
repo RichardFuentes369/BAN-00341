@@ -1,29 +1,28 @@
 <div class="">
-  @for (item of tipo; track item; let  i = $index) {
-    <div class="col-xl-12 col-sm-12 row">
-      <div class="col-xl col-sm-12">
-        <div class="col-sm-12 row p-0">
-          <div class="col-sm-12 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-merma.TYPE.LABEL_NAME_TYPE' | translate}}
-            </label>
-            <input type="text" class="form-control" [(ngModel)]="model.nombre" (ngModelChange)="onInputChange()" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.nombre}}">
-            @if(validators.nombre) {
-              <span class="text-danger small">{{ 'mod-merma.TYPE.PLACEHOLDER_NAME_TYPE' | translate }}</span>
-            }
-            </div>
-            <div class="col-sm-12 row p-0">
-              <div class="col-sm-12">
-                <button class="btn btn-sm btn-primary btnAction d-none" (click)="actualizarData()">
-                  {{ 'mod-merma.BUTTON_EDIT' | translate}}
-                </button>
-              </div>
-            </div>
+  @for (item of tipo; track item; let i = $index) {
+  <div class="col-xl col-sm-12">
+    <fieldset class="border p-3 rounded">
+      <legend class="float-none w-auto p-1">
+        {{ 'mod-merma.TYPE.LEGEND_TITLE' | translate }}
+      </legend>
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-merma.TYPE.LABEL_NAME_TYPE' | translate}}
+        </label>
+        <input type="text" class="form-control" [(ngModel)]="model.nombre" (ngModelChange)="onInputChange()"
+          id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.nombre}}">
+        @if(validators.nombre) {
+        <span class="text-danger small">{{ 'mod-merma.TYPE.PLACEHOLDER_NAME_TYPE' | translate }}</span>
+        }
+      </div>
+      <div class="col-sm-12 row p-0">
+        <div class="col-sm-12">
+          <button class="btn btn-sm btn-primary btnAction d-none" (click)="actualizarData()">
+            {{ 'mod-merma.BUTTON_EDIT' | translate}}
+          </button>
         </div>
       </div>
-    </div>
+    </fieldset>
+  </div>
   }
 </div>
-
-
-

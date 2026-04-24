@@ -1,94 +1,95 @@
 <div class="">
-  <div class="col-xl-12 col-sm-12 row">
-    <div class="col-xl col-sm-12">
-      <div class="col-sm-12 row p-0">
-        <div class="col-sm-12 form-group">
-          <label for="exampleInputEmail1">
-            {{ 'mod-lote.LABEL_LOTE' | translate}}
-          </label>
-          <input type="text" class="form-control" [(ngModel)]="model.lote" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.lote" placeholder="{{ 'mod-lote.PLACEHOLDER_LOTE' | translate}}">
-          @if(validators.lote) {
-            <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_LOTE' | translate }}</span>
-          }
-        </div>        
-        <div class="col-sm-12 form-group">
-          <label for="exampleInputEmail1">
-            {{ 'mod-lote.LABEL_FECHA_ENTRADA' | translate}}
-          </label>
-          <input type="date" class="form-control" [(ngModel)]="model.fecha_entrada" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.fecha_entrada" placeholder="{{ 'mod-lote.PLACEHOLDER_FECHA_ENTRADA' | translate}}">
-          @if(validators.fecha_entrada) {
-            <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_FECHA_ENTRADA' | translate }}</span>
-          }
-        </div>        
-        <div class="col-sm-12 form-group">
-          <label for="exampleInputEmail1">
-            {{ 'mod-lote.LABEL_FECHA_VENCIMIENTO' | translate}}
-          </label>
-          <input type="date" class="form-control" [(ngModel)]="model.fecha_vencimiento" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.fecha_vencimiento" placeholder="{{ 'mod-lote.PLACEHOLDER_FECHA_VENCIMIENTO' | translate}}">
-          @if(validators.fecha_vencimiento) {
-            <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_FECHA_VENCIMIENTO' | translate }}</span>
-          }
-        </div>        
-        <div class="col-sm-12 form-group">
-          <label for="exampleInputEmail1">
-            {{ 'mod-lote.LABEL_CANTIDAD_COMPRADA' | translate}}
-          </label>
-          <input type="number" class="form-control" [(ngModel)]="model.cantidad_comprada" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.cantidad_comprada" min="1" placeholder="{{ 'mod-lote.PLACEHOLDER_CANTIDAD_COMPRADA' | translate}}">
-          @if(validators.cantidad_comprada) {
-            <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_CANTIDAD_COMPRADA' | translate }}</span>
-          }
-        </div>       
-        <div class="col-sm-12 form-group">
-          <label for="exampleInputEmail1">
-            {{ 'mod-lote.LABEL_CANTIDAD_VENDIDA' | translate}}
-          </label>
-          <input type="number" class="form-control" [(ngModel)]="model.cantidad_vendida" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.cantidad_vendida" min="1" placeholder="{{ 'mod-lote.PLACEHOLDER_CANTIDAD_VENDIDA' | translate}}">
-          @if(validators.cantidad_vendida) {
-            <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_CANTIDAD_VENDIDA' | translate }}</span>
-          }
-        </div>        
-        <div class="col-sm-12 form-group">
-          <label for="exampleInputEmail1">
-            {{ 'mod-lote.LABEL_STOCK' | translate}}
-          </label>
-          <input type="number" class="form-control" [(ngModel)]="model.stock" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.stock" min="1" placeholder="{{ 'mod-lote.PLACEHOLDER_STOCK' | translate}}">
-          @if(validators.stock) {
-            <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_STOCK' | translate }}</span>
-          }
-        </div>        
-        <div class="col-sm-12 form-group">
-          <label for="exampleInputEmail1">
-            {{ 'mod-lote.LABEL_COSTO_UNITARIO' | translate}}
-          </label>
-          <input type="number" class="form-control" [(ngModel)]="model.costo_unitario" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.costo_unitario" min="1" placeholder="{{ 'mod-lote.PLACEHOLDER_COSTO_UNITARIO' | translate}}">
-          @if(validators.costo_unitario) {
-            <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_COSTO_UNITARIO' | translate }}</span>
-          }
-        </div>        
-        <div class="col-sm-12 form-group">
-          <label for="exampleInputEmail1">
-            {{ 'mod-lote.LABEL_PRECIO_VENTA_SUGERIDO' | translate}}
-          </label>
-          <input type="number" class="form-control" [(ngModel)]="model.precio_venta_sugerido" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.precio_venta_sugerido" min="1" placeholder="{{ 'mod-lote.PLACEHOLDER_PRECIO_VENTA_SUGERIDO' | translate}}">
-          @if(validators.precio_venta_sugerido) {
-            <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_PRECIO_VENTA_SUGERIDO' | translate }}</span>
-          }
-        </div>        
-        <div class="col-sm-12 form-group">
-          <label for="exampleInputEmail1">
-            {{ 'mod-lote.LABEL_ESTADO' | translate}}
-          </label>
-          <select name="" id="" class="form-control">
-            <option value="">{{ 'mod-lote.SELECT_SELECT_OPTION' | translate}}</option>
-            <option value="disponible">{{ 'mod-lote.SELECT_AVAILABLE_OPTION' | translate}}</option>
-            <option value="vencido">{{ 'mod-lote.SELECT_UNAVAILABLE_OPTION' | translate}}</option>
-            <option value="agotado">{{ 'mod-lote.SELECT_EXPIRED_OPTION' | translate}}</option>
-          </select>
-          @if(validators.estado) {
-            <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_ESTADO' | translate }}</span>
-          }
-        </div>
+  <div class="col-xl col-sm-12">
+    <fieldset class="border p-3 rounded">
+      <legend class="float-none w-auto p-1">
+        {{ 'mod-lote.LEGEND_TITLE' | translate }}
+      </legend>
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-lote.LABEL_LOTE' | translate}}
+        </label>
+        <input type="text" class="form-control" [(ngModel)]="model.lote" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.lote" placeholder="{{ 'mod-lote.PLACEHOLDER_LOTE' | translate}}">
+        @if(validators.lote) {
+          <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_LOTE' | translate }}</span>
+        }
+      </div>        
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-lote.LABEL_FECHA_ENTRADA' | translate}}
+        </label>
+        <input type="date" class="form-control" [(ngModel)]="model.fecha_entrada" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.fecha_entrada" placeholder="{{ 'mod-lote.PLACEHOLDER_FECHA_ENTRADA' | translate}}">
+        @if(validators.fecha_entrada) {
+          <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_FECHA_ENTRADA' | translate }}</span>
+        }
+      </div>        
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-lote.LABEL_FECHA_VENCIMIENTO' | translate}}
+        </label>
+        <input type="date" class="form-control" [(ngModel)]="model.fecha_vencimiento" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.fecha_vencimiento" placeholder="{{ 'mod-lote.PLACEHOLDER_FECHA_VENCIMIENTO' | translate}}">
+        @if(validators.fecha_vencimiento) {
+          <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_FECHA_VENCIMIENTO' | translate }}</span>
+        }
+      </div>        
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-lote.LABEL_CANTIDAD_COMPRADA' | translate}}
+        </label>
+        <input type="number" class="form-control" [(ngModel)]="model.cantidad_comprada" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.cantidad_comprada" min="1" placeholder="{{ 'mod-lote.PLACEHOLDER_CANTIDAD_COMPRADA' | translate}}">
+        @if(validators.cantidad_comprada) {
+          <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_CANTIDAD_COMPRADA' | translate }}</span>
+        }
+      </div>       
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-lote.LABEL_CANTIDAD_VENDIDA' | translate}}
+        </label>
+        <input type="number" class="form-control" [(ngModel)]="model.cantidad_vendida" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.cantidad_vendida" min="1" placeholder="{{ 'mod-lote.PLACEHOLDER_CANTIDAD_VENDIDA' | translate}}">
+        @if(validators.cantidad_vendida) {
+          <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_CANTIDAD_VENDIDA' | translate }}</span>
+        }
+      </div>        
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-lote.LABEL_STOCK' | translate}}
+        </label>
+        <input type="number" class="form-control" [(ngModel)]="model.stock" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.stock" min="1" placeholder="{{ 'mod-lote.PLACEHOLDER_STOCK' | translate}}">
+        @if(validators.stock) {
+          <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_STOCK' | translate }}</span>
+        }
+      </div>        
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-lote.LABEL_COSTO_UNITARIO' | translate}}
+        </label>
+        <input type="number" class="form-control" [(ngModel)]="model.costo_unitario" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.costo_unitario" min="1" placeholder="{{ 'mod-lote.PLACEHOLDER_COSTO_UNITARIO' | translate}}">
+        @if(validators.costo_unitario) {
+          <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_COSTO_UNITARIO' | translate }}</span>
+        }
+      </div>        
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-lote.LABEL_PRECIO_VENTA_SUGERIDO' | translate}}
+        </label>
+        <input type="number" class="form-control" [(ngModel)]="model.precio_venta_sugerido" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.precio_venta_sugerido" min="1" placeholder="{{ 'mod-lote.PLACEHOLDER_PRECIO_VENTA_SUGERIDO' | translate}}">
+        @if(validators.precio_venta_sugerido) {
+          <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_PRECIO_VENTA_SUGERIDO' | translate }}</span>
+        }
+      </div>        
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-lote.LABEL_ESTADO' | translate}}
+        </label>
+        <select name="" id="" class="form-control">
+          <option value="">{{ 'mod-lote.SELECT_SELECT_OPTION' | translate}}</option>
+          <option value="disponible">{{ 'mod-lote.SELECT_AVAILABLE_OPTION' | translate}}</option>
+          <option value="vencido">{{ 'mod-lote.SELECT_UNAVAILABLE_OPTION' | translate}}</option>
+          <option value="agotado">{{ 'mod-lote.SELECT_EXPIRED_OPTION' | translate}}</option>
+        </select>
+        @if(validators.estado) {
+          <span class="text-danger small">{{ 'mod-lote.PLACEHOLDER_ESTADO' | translate }}</span>
+        }
       </div>
-    </div>
+    </fieldset>
   </div>
 </div>

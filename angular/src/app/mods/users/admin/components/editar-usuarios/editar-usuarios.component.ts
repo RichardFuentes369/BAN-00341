@@ -10,7 +10,6 @@ import { debounceTime, map } from 'rxjs/operators';
 
 import Swal from 'sweetalert2'
 import { ocultarModalOscura } from '@function/System';
-import { AvatarComponent } from '@component/globales/avatar/avatar.component';
 import { STORAGE_KEY_PROFILE } from '@const/app.const';
 
 interface AdministradorInterface {
@@ -25,7 +24,7 @@ interface AdministradorInterface {
 @Component({
   selector: 'app-editar-usuarios',
   standalone: true,
-  imports: [TranslateModule, FormsModule, AvatarComponent],
+  imports: [TranslateModule, FormsModule],
   templateUrl: './editar-usuarios.component.html',
   styleUrl: './editar-usuarios.component.scss'
 })

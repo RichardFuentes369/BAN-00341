@@ -27,6 +27,7 @@
   },
 
   "TYPE": {
+    "LEGEND_TITLE": "Verlusttypdaten",
     "CREATE_TITLE": "Erstellen",
     "CREATE_SUBTITLE": "Nueva Schwundart",
     "EDIT_TITLE": "Bearbeiten",

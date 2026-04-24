@@ -27,6 +27,7 @@
   },
 
   "TYPE": {
+    "LEGEND_TITLE": "Données de type de perte",
     "CREATE_TITLE": "Créer",
     "CREATE_SUBTITLE": "Nouveau type de démarque",
     "EDIT_TITLE": "Modifier",

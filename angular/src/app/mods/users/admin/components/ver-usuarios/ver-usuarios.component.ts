@@ -8,7 +8,6 @@ import { AuthService } from '@guard/service/auth.service';
 
 import { Permisos } from '@function/System'
 import { FinalService } from '@mod/users/admin/pages/finales/service/final.service';
-import { AvatarComponent } from '@component/globales/avatar/avatar.component';
 import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 
 interface AdministradorInterface {
@@ -23,7 +22,7 @@ interface AdministradorInterface {
 @Component({
   selector: 'app-ver-usuarios',
   standalone: true,
-  imports: [TranslateModule, AvatarComponent],
+  imports: [TranslateModule],
   templateUrl: './ver-usuarios.component.html',
   styleUrl: './ver-usuarios.component.scss'
 })

@@ -16,6 +16,7 @@
   "BUTTON_SEARCH": "Suchen",
 
   "SUPPLIER": {
+    "LEGEND_TITLE": "Lieferantendaten",
     "CREATE_TITLE": "Erstellen",
     "CREATE_SUBTITLE": "Neuer Lieferant",
     "SEE_TITLE": "Anzeigen",
@@ -142,6 +143,7 @@
   },
 
   "EXTENT": {
+    "LEGEND_TITLE": "Markendaten",
     "CREATE_TITLE": "Erstellen",
     "CREATE_SUBTITLE": "Neue Maßeinheit",
     "SEE_TITLE": "Anzeigen",

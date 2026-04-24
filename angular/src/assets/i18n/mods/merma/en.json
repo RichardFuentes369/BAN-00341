@@ -27,6 +27,7 @@
   },
 
   "TYPE": {
+    "LEGEND_TITLE": "Loss type data",
     "CREATE_TITLE": "Create",
     "CREATE_SUBTITLE": "New shrinkage type",
     "EDIT_TITLE": "Edit",

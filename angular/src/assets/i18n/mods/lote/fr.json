@@ -33,6 +33,7 @@
 	"COLUMN_QUANTITY_SOLD": "Quantité vendue",
 	"COLUMN_STOCK": "Stock",
 
+	"LEGEND_TITLE": "Données de lot",
 	"LABEL_LOTE": "Lot",
 	"LABEL_FECHA_ENTRADA": "Date d'entrée",
 	"LABEL_FECHA_VENCIMIENTO": "Date de péremption",

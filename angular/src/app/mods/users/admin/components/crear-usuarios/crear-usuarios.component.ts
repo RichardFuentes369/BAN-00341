@@ -11,13 +11,12 @@ import { PrincipalService } from '@mod/users/admin/pages/principal/service/princ
 import { Router } from '@angular/router';
 import { ocultarModalOscura } from '@function/System'
 import { FinalService } from '@mod/users/admin/pages/finales/service/final.service';
-import { AvatarComponent } from '@component/globales/avatar/avatar.component';
 import { STORAGE_KEY_PROFILE } from '@const/app.const';
 
 @Component({
   selector: 'app-crear-usuarios',
   standalone: true,
-  imports: [TranslateModule, FormsModule, AvatarComponent],
+  imports: [TranslateModule, FormsModule],
   templateUrl: './crear-usuarios.component.html',
   styleUrl: './crear-usuarios.component.scss'
 })
