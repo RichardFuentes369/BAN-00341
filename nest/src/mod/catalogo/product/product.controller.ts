@@ -34,6 +34,16 @@ export class ProductController {
   }
 
   @UseGuards(AdminGuard)
+  @Get('obtener-producto-por-barcode')
+  findOneBarCode(
+    @Query('_barcode') _barcode: string,
+    @Query('lang') lang: string,
+    @GetUser('id') userId: number
+  ) {
+    return this.productService.findOneBarcode(lang, _barcode);
+  }
+
+  @UseGuards(AdminGuard)
   @Post('crear-producto')
   create(
     @Query('lang') lang: string,

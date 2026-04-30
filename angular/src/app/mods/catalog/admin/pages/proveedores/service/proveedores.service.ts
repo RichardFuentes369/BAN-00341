@@ -31,6 +31,26 @@ export class ProveedoresService {
     })
   }
 
+  async getDataProviderNit(nit: string){
+    let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = 'supplier/obtener-proveedor-por-nit/'
+    let urlCopleta = environment.apiUrl+complemento
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
+    return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
+      method: 'get',
+      url: urlCopleta,
+      params: {
+        _nit: nit,
+        lang: lang,
+      }
+    })
+  }
+
   async createProvider(data: any){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'supplier/crear-proveedor/'

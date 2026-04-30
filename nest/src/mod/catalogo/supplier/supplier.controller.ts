@@ -29,6 +29,16 @@ export class SupplierController {
     @GetUser('id') userId: number
   ) {
     return this.supplierService.findOne(lang, +_id);
+  }  
+  
+  @UseGuards(AdminGuard)
+  @Get('obtener-proveedor-por-nit')
+  finOneForNit(
+    @Query('_nit') _nit: string,
+    @Query('lang') lang: string,
+    @GetUser('id') userId: number
+  ) {
+    return this.supplierService.findOneForNit(lang, _nit);
   }
 
   @UseGuards(AdminGuard)

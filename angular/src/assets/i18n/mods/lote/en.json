@@ -4,6 +4,8 @@
   "MODULE_TITLE": "Batch",
   "TABLE_TITLE": "Records",
 
+  "MSJ_ERROR_CREATE_PRODUCTS_PERMISSION": "Please contact the administrator to create new products; your user account does not have the necessary permissions to perform this action.",
+
   "REPORT_PERMISSION_TITLE": "Report",
   "REPORT_PERMISSION_SUBTITLE": "traceability",
 

@@ -78,6 +78,14 @@ export class SupplierService {
       this.i18n.t('proveedor.MSJ_PROVEEDOR_NO_ENCONTRADO', { lang })
     );
     return supplier;
+  }  
+  
+  async findOneForNit(lang: string, _nit: string) {
+    const supplier = await this.supplierRepository.findOne({ where: { nit: _nit } });
+    if (!supplier) throw new NotFoundException(
+      this.i18n.t('proveedor.MSJ_PROVEEDOR_NO_ENCONTRADO', { lang })
+    );
+    return supplier;
   }
 
   async create(

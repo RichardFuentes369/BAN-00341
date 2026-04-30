@@ -4,6 +4,8 @@
 	"MODULE_TITLE": "Lot",
 	"TABLE_TITLE": "Registres",
 
+  	"MSJ_ERROR_CREATE_PRODUCTS_PERMISSION": "Veuillez contacter l'administrateur pour créer de nouveaux produits ; votre compte utilisateur ne dispose pas des autorisations nécessaires pour effectuer cette action.",
+
  	"REPORT_PERMISSION_TITLE": "Rapport",
   	"REPORT_PERMISSION_SUBTITLE": "de traçabilité",
 
