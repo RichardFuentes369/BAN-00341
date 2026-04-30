@@ -1469,6 +1469,46 @@
 									"response": []
 								},
 								{
+									"name": "obtener-producto-por-barcode",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/product/obtener-producto-por-barcode?_barcode=8959663311640&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"product",
+												"obtener-producto-por-barcode"
+											],
+											"query": [
+												{
+													"key": "_barcode",
+													"value": "8959663311640"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
 									"name": "crear-producto",
 									"request": {
 										"auth": {
