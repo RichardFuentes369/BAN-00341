@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { MedidaService } from '../../../medida/service/medida.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-producto-filtro',
   standalone: true,
-  imports: [TranslateModule, FormsModule],
+  imports: [TranslateModule, FormsModule, CommonModule],
   templateUrl: './filtro.component.html',
   styleUrl: './filtro.component.scss',
 })
 export class FiltroProductComponent {
 
   complementoFiltro = ''
+  medidas: any[] = [];
+  isLoading: boolean = false
 
   model = {
     nombre: '',
@@ -21,7 +25,15 @@ export class FiltroProductComponent {
     unidad_medida: '',
   }
 
+  constructor(
+    private medidaService: MedidaService,
+  ){
+
+  }
+
   async ngOnInit() {
+    this.getMedida()
+
     this.model = {
       nombre: sessionStorage.getItem('nombre') || '',
       marca: sessionStorage.getItem('marca') || '',
@@ -95,6 +107,16 @@ export class FiltroProductComponent {
       sessionStorage.setItem('unidad_medida', this.model.unidad_medida)
     }
     $(".complementoRuta").val(this.complementoFiltro)
+  }
+
+  async getMedida() {
+    this.isLoading = true;
+    try {
+      const medidaList = await this.medidaService.getDataList()
+      this.medidas = medidaList.data[0].result;
+    } finally {
+      this.isLoading = false;
+    }
   }
 
 }

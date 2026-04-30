@@ -29,12 +29,11 @@
             <label for="exampleInputEmail1">
                 {{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate}}
             </label>
-            <select name="" id="" class="form-control form-select-sm" [(ngModel)]="model.unidad_medida">
-              <option value="">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION' | translate}}</option>
-              <option value="unidad">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_UNIT_OPTION' | translate}}</option>
-              <option value="kg">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_KG_OPTION' | translate}}</option>
-              <option value="litro">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_LITER_OPTION' | translate}}</option>
-              <option value="paquete">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_PACKAGE_OPTION' | translate}}</option>
+            <select class="form-control form-select-sm" [(ngModel)]="model.unidad_medida">
+              <option value="">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION' | translate }}</option>
+              <option *ngFor="let medida of medidas" [value]="medida.nombre">
+                {{ medida.nombre }}
+              </option>
             </select>
         </div>
         <button class="d-none limpiarS" (click)="limpiar()"></button>
