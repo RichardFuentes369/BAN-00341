@@ -37,14 +37,6 @@ export class FilterBatchDto {
 
     @IsOptional()
     @IsString()
-    costo_unitario?: string;   
-
-    @IsOptional()
-    @IsString()
-    precio_venta_sugerido?: string;   
-
-    @IsOptional()
-    @IsString()
     estado?: string;     
     
     @IsOptional()
@@ -54,10 +46,10 @@ export class FilterBatchDto {
     @IsOptional()
     @IsString()
     cantidad_vendida?: string;     
-    
+
     @IsOptional()
     @IsString()
-    stock?: string; 
+    cantidad_en_bodega ?: string;   
 
     @IsOptional()
     @IsString()

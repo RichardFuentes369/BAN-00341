@@ -11,14 +11,6 @@ export class CreateBatchDto {
   // @Transform(({value}) => value.trim())
   readonly fecha_vencimiento;  
   
-  @IsNumber()
-  // @Transform(({value}) => value.trim())
-  readonly costo_unitario;  
-  
-  @IsNumber()
-  // @Transform(({value}) => value.trim())
-  readonly precio_venta_sugerido;
-  
   @IsString()
   // @Transform(({value}) => value.trim())
   readonly estado;  
@@ -37,13 +29,14 @@ export class CreateBatchDto {
   
   @IsNumber()
   // @Transform(({value}) => value.trim())
-  readonly cantidad_comprada;  
+  readonly cantidad_comprada;    
   
   @IsNumber()
   // @Transform(({value}) => value.trim())
-  readonly cantidad_vendida;
-
+  readonly cantidad_en_bodega;  
+  
   @IsNumber()
+  @IsOptional()
   // @Transform(({value}) => value.trim())
-  readonly stock;
+  readonly cantidad_vendida;
 }

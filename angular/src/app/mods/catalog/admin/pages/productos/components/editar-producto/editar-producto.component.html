@@ -18,15 +18,15 @@
           <div class="col-sm-6 form-group mb-3">
             <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
             <ng-select 
-              [items]="marcas"  
-              bindLabel="nombre" 
-              bindValue="id" 
+              class="form-control custom-select form-select-sm"
               [(ngModel)]="model.id_marca"
-              appendTo="body" 
-              class="custom-select-filter"
+              [items]="marcas"  
               [loading]="isLoading"
               (search)="onSearch($event)"
               (change)="onSelectChange($event, item)"
+              bindLabel="nombre" 
+              bindValue="id" 
+              appendTo="body" 
               [readonly]="isReadonly">
               
               <ng-template ng-notfound-tmp let-searchTerm="searchTerm">

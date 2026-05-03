@@ -43,11 +43,9 @@ export class BatchService {
     // precisos y entre
     if (filterDto.fecha_entrada) where.fecha_entrada = Like(`%${filterDto.fecha_entrada}%`);
     if (filterDto.fecha_vencimiento) where.fecha_vencimiento = Like(`%${filterDto.fecha_vencimiento}%`);
-    if (filterDto.costo_unitario) where.costo_unitario = filterDto.costo_unitario;
-    if (filterDto.precio_venta_sugerido) where.precio_venta_sugerido = filterDto.precio_venta_sugerido;
+    if (filterDto.cantidad_en_bodega) where.cantidad_en_bodega = filterDto.cantidad_en_bodega;
     if (filterDto.cantidad_comprada) where.cantidad_comprada = filterDto.cantidad_comprada;
     if (filterDto.cantidad_vendida) where.cantidad_vendida = filterDto.cantidad_vendida;
-    if (filterDto.stock) where.stock = filterDto.stock;
     
     // precisos
     if (filterDto.estado) where.estado = Like(`%${filterDto.estado}%`);
@@ -112,6 +110,15 @@ export class BatchService {
     userId: number
   ) {
     try {
+
+      // X = Y = Z (CREO) (ACTUALIZO)
+      // X != Y = Z (CREO)
+      // X = Y != Z (CREO)
+      // X != Y != Z (CREO)
+      
+
+      // necesitamos un identificador unico asignado por el comercio
+      
       await this.batchRepository.save(batchData);
       return {
         'title': this.i18n.t('supplier.MSJ_TITTLE', { lang }),

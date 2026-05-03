@@ -62,22 +62,38 @@ export class CrearLoteComponent implements OnInit {
 
   producto = {
     nombre: '',
-    marca: ''
+    marca: '',
+    unidad_medida: '',
+    es_perecedero: ''
   }
   
   proveedor = {
+    nit: '',
     razon_social: '',
     correo: ''
   }
 
   model = {
+    id_producto: '',
+    id_proveedor: '',
     codigo_barra: '',
-    nit: '',
+    lote: '',
+    fecha_entrada: '',
+    fecha_vencimiento: '',
+    cantidad_comprada: '',
+    estado: ''
   }
 
   validators = {
-    codigo_barra: false,
+    id_producto: false,
+    id_proveedor: false,
     nit: false,
+    codigo_barra: false,
+    lote: false,
+    fecha_entrada: false,
+    fecha_vencimiento: false,
+    cantidad_comprada: false,
+    estado: false
   }
 
   async ngOnInit(){
@@ -95,8 +111,6 @@ export class CrearLoteComponent implements OnInit {
 
     const permisos_productos = await this.permisosService.permisos(userData.data.id,'productos')
     this.permisos_catalogo_productos = permisos_productos.data
-
-    
 
     if (permiso_modulo_catalogo.data === "" || permiso_submodulo_proveedores.data === "") {
       return
@@ -124,7 +138,7 @@ export class CrearLoteComponent implements OnInit {
     const regexBarCode = /^[0-9]{13}$/;
     const regexNIT = /^[0-9]{8,15}$/;
     this.validators.codigo_barra = (this.model.codigo_barra === null || !regexBarCode.test((this.model.codigo_barra as any).toString()))
-    this.validators.nit = (this.model.nit === null || !regexNIT.test((this.model.nit as any).toString()));
+    this.validators.nit = (this.proveedor.nit === null || !regexNIT.test((this.proveedor.nit as any).toString()));
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
     (!this.validators.codigo_barra && !this.validators.nit) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
@@ -155,8 +169,11 @@ export class CrearLoteComponent implements OnInit {
     try {
       const response = await this.productoService.getDataProductForBarcode(this.model.codigo_barra);
       if (response.status === 200) {
+        this.model.id_producto = response.data.id
         this.producto.nombre = response.data.nombre
         this.producto.marca = response.data.marca.nombre
+        this.producto.unidad_medida = response.data.unidad_medida
+        this.producto.es_perecedero = response.data.es_perecedero
         $('.btnSave').removeClass('d-none')
         this.show_detail_product = true
         this.btn_new_product = false
@@ -184,8 +201,9 @@ export class CrearLoteComponent implements OnInit {
 
   async buscarProveedor() {
     try {
-      const response = await this.proveedoresService.getDataProviderNit(this.model.nit);
+      const response = await this.proveedoresService.getDataProviderNit(this.proveedor.nit);
       if (response.status === 200) {
+        this.model.id_proveedor = response.data.id
         this.proveedor.razon_social = response.data.razon_social
         this.proveedor.correo = response.data.correo
         $('.btnSave').removeClass('d-none')

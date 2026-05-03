@@ -91,36 +91,28 @@ export class LoteComponent implements OnInit, OnDestroy{
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-lote.COLUMN_UNIT_COST'),
-      data: 'costo_unitario',
-      visible: false,
+      title: this.translate.instant('mod-lote.COLUMN_PURCHASED'),
+      data: 'cantidad_comprada',
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-lote.COLUMN_SUGGESTED_RETAIL_PRICE'),
-      data: 'precio_venta_sugerido',
-      visible: false,
+      title: this.translate.instant('mod-lote.COLUMN_IN_STOCK'),
+      data: 'cantidad_en_bodega',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-lote.COLUMN_SOLD'),
+      data: 'cantidad_vendida',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-lote.COLUMN_UNIT_OF_MEASUREMENT'),
+      data: 'id_producto.unidad_medida',
       className: 'text-center'
     },
     {
       title: this.translate.instant('mod-lote.COLUMN_STATUS'),
       data: 'estado',
-      className: 'text-center'
-    },
-    {
-      title: this.translate.instant('mod-lote.COLUMN_QUANTITY_SOLD'),
-      data: 'cantidad_vendida',
-      className: 'text-center'
-    },
-    {
-      title: this.translate.instant('mod-lote.COLUMN_SUGGESTED_RETAIL_PRICE'),
-      data: 'precio_venta_sugerido',
-      visible: false,
-      className: 'text-center'
-    },
-    {
-      title: this.translate.instant('mod-lote.COLUMN_STOCK'),
-      data: 'stock',
       className: 'text-center'
     },
   ];
@@ -234,36 +226,28 @@ export class LoteComponent implements OnInit, OnDestroy{
         className: 'text-center'
       },
       {
-        title: this.translate.instant('mod-lote.COLUMN_UNIT_COST'),
-        data: 'costo_unitario',
-        visible: false,
+        title: this.translate.instant('mod-lote.COLUMN_PURCHASED'),
+        data: 'cantidad_comprada',
         className: 'text-center'
       },
       {
-        title: this.translate.instant('mod-lote.COLUMN_SUGGESTED_RETAIL_PRICE'),
-        data: 'precio_venta_sugerido',
-        visible: false,
+        title: this.translate.instant('mod-lote.COLUMN_IN_STOCK'),
+        data: 'cantidad_en_bodega',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-lote.COLUMN_SOLD'),
+        data: 'cantidad_vendida',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-lote.COLUMN_UNIT_OF_MEASUREMENT'),
+        data: 'id_producto.unidad_medida',
         className: 'text-center'
       },
       {
         title: this.translate.instant('mod-lote.COLUMN_STATUS'),
         data: 'estado',
-        className: 'text-center'
-      },
-      {
-        title: this.translate.instant('mod-lote.COLUMN_QUANTITY_SOLD'),
-        data: 'cantidad_vendida',
-        className: 'text-center'
-      },
-      {
-        title: this.translate.instant('mod-lote.COLUMN_SUGGESTED_RETAIL_PRICE'),
-        data: 'precio_venta_sugerido',
-        visible: false,
-        className: 'text-center'
-      },
-      {
-        title: this.translate.instant('mod-lote.COLUMN_STOCK'),
-        data: 'stock',
         className: 'text-center'
       },
     ];  

@@ -10,7 +10,7 @@ export class Lote {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', length: 50, unique: true })
+  @Column({ type: 'varchar', length: 50, nullable: false })
   lote: string;
 
   @Column({ type: 'bigint', nullable: false })
@@ -23,16 +23,10 @@ export class Lote {
   cantidad_comprada;
 
   @Column({ type: 'int', nullable: false, default: 0 })
-  cantidad_vendida;
-
+  cantidad_vendida;  
+  
   @Column({ type: 'int', nullable: false, default: 0 })
-  stock;
-
-  @Column({ type: 'decimal', precision: 10, scale: 2, default: 0.00 })
-  costo_unitario;
-
-  @Column({ type: 'decimal', precision: 10, scale: 2, default: 0.00 })
-  precio_venta_sugerido;
+  cantidad_en_bodega;
 
   @Column({ type: 'enum', enum: EstadoLote, default: EstadoLote.DISPONIBLE })
   estado: EstadoLote;
