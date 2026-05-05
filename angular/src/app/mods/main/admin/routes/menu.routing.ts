@@ -53,7 +53,7 @@
       ]
     },
 
-    // Modulo Lote
+    // Modulo Bodega
     {
       path: PATH_WAREHOUSE,
       title: TITLE_PATH_WAREHOUSE,

@@ -171,7 +171,7 @@ export class ListaComponentes {
       name: 'CrearTipoMermaComponent',
       componente: CrearTipoMermaComponent
     },  
-    // modulo lote
+    // modulo bodega
     {
       name: 'CrearWarehouseComponent',
       componente: CrearWarehouseComponent

@@ -32,7 +32,7 @@ export class AsignarPermisosComponent implements OnInit{
   ) { }
 
   ModuloModulos = 17
-  ModuloLote = 64
+  ModuloBodega = 64
 
   title: any = {}
   permisos: any[] = []

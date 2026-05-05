@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ocultarModalOscura } from '@function/System'
 import { FinalService } from '@mod/users/admin/pages/finales/service/final.service';
 import { STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE } from '@const/app.const';
-import { LoteService } from '../../service/warehouse.service';
+import { BodegaService } from '../../service/warehouse.service';
 import { AuthService } from '@guard/service/auth.service';
 
 interface LoteInterface {
@@ -43,7 +43,7 @@ export class EditarWarehouseComponent implements OnInit{
   constructor(
     private router: Router,
     private route :ActivatedRoute,
-    private loteService: LoteService,
+    private bodegaService: BodegaService,
     private userService :AuthService,
     private translate: TranslateService
   ){
@@ -106,7 +106,7 @@ export class EditarWarehouseComponent implements OnInit{
   
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
-    this.loteReal = await this.loteService.getDataLote(this.route.snapshot.queryParams?.['id_lote'])
+    this.loteReal = await this.bodegaService.getDataLote(this.route.snapshot.queryParams?.['id_lote'])
 
     this.lote.push(this.loteReal.data)
     console.log(this.lote)

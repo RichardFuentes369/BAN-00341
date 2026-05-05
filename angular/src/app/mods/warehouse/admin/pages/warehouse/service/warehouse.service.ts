@@ -7,7 +7,7 @@ import axios from 'axios';
 @Injectable({
   providedIn: 'root',
 })
-export class LoteService {
+export class BodegaService {
   
   constructor(private translate: TranslateService) { }
 

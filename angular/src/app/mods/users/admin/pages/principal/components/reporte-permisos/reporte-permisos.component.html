@@ -7,7 +7,7 @@
     </div>
   
     <div class="col-sm-12 row mt-2 ml-0 p-0">
-      <div class="col-sm-4" [class]="(model.modulo != ModuloModulos && model.modulo != ModuloLote) ? 'col-sm-4' : 'col-sm-6'">
+      <div class="col-sm-4" [class]="(model.modulo != ModuloModulos && model.modulo != ModuloBodega) ? 'col-sm-4' : 'col-sm-6'">
         <select [(ngModel)]="model.modulo" (ngModelChange)="cambioModulo($event)" class="form-control form-select-sm my-2 custom-select" [disabled]="loading1">
           @if (loading1) {
             <option value="0">Cargando módulos...</option>
@@ -23,7 +23,7 @@
           }
         </select>
       </div>
-      <div class="col-sm-4" [class]="(model.modulo != ModuloModulos && model.modulo != ModuloLote) ? 'col-sm-4' : 'col-sm-6'">
+      <div class="col-sm-4" [class]="(model.modulo != ModuloModulos && model.modulo != ModuloBodega) ? 'col-sm-4' : 'col-sm-6'">
         <select [(ngModel)]="model.submodulo" 
                 (ngModelChange)="cambioSubmodulo($event)" 
                 class="form-control form-select-sm my-2 custom-select" 
@@ -38,7 +38,7 @@
           }
         </select>
       </div>
-      @if (model.modulo != ModuloModulos && model.modulo != ModuloLote) {
+      @if (model.modulo != ModuloModulos && model.modulo != ModuloBodega) {
         <div class="col-sm-4">
           <select [(ngModel)]="model.permiso" 
                   class="form-control form-select-sm my-2 custom-select" 

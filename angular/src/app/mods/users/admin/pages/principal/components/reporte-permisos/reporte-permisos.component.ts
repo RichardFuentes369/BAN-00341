@@ -47,7 +47,7 @@ export class ReportePermisosComponent implements OnInit{
   loading3 = false;
   
   ModuloModulos = 17
-  ModuloLote = 64
+  ModuloBodega = 64
 
   selectModulos: any[] = [];
   selectSubModulos: any[] = [];

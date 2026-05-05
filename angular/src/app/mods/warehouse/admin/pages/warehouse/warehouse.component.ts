@@ -8,7 +8,7 @@ import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.comp
 import { AuthService } from '@guard/service/auth.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
-import { LoteService } from './service/warehouse.service';
+import { BodegaService } from './service/warehouse.service';
 import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import { CREAR_WAREHOUSE_COMPONENT, EDITAR_WAREHOUSE_COMPONENT, FILTRO_WAREHOUSE_COMPONENT, VER_WAREHOUSE_COMPONENT } from '@mod/warehouse/const/warehouse.const';
@@ -38,7 +38,7 @@ export class WarehoseComponent implements OnInit, OnDestroy{
     private route: ActivatedRoute,
     private userService :AuthService,
     private permisosService :PermisosService,
-    private loteService :LoteService,
+    private bodegaService :BodegaService,
     private translate: TranslateService
   ) { }
     
@@ -287,7 +287,7 @@ export class WarehoseComponent implements OnInit, OnDestroy{
 
   async verData (_id: string){
     this.title = this.translate.instant('mod-warehouse.SEE_TITLE')
-    const response = await this.loteService.getDataLote(_id)
+    const response = await this.bodegaService.getDataLote(_id)
     const { lote } = response.data || { nombre: 'xxxxxxx' }
     this.translate.get('mod-warehouse.SEE_SUBTITLE', { "batch_code": lote }).subscribe((res: string) => {this.subtitle = res});
     this.tamano = "xl"
@@ -313,7 +313,7 @@ export class WarehoseComponent implements OnInit, OnDestroy{
 
   async editarData (_id: string){
     this.title = this.translate.instant('mod-warehouse.EDIT_TITLE')
-    const response = await this.loteService.getDataLote(_id)
+    const response = await this.bodegaService.getDataLote(_id)
     const { lote } = response.data || { nombre: 'xxxxxxx' }
     this.translate.get('mod-warehouse.EDIT_SUBTITLE', { "batch_code": lote }).subscribe((res: string) => {this.subtitle = res});
     this.tamano = "xl"

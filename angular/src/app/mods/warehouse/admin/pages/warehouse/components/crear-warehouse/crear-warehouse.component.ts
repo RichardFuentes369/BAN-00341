@@ -8,7 +8,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { ocultarModalOscura } from '@function/System'
-import { LoteService } from '../../service/warehouse.service';
+import { BodegaService } from '../../service/warehouse.service';
 import { CommonModule } from '@angular/common';
 import { ProductosService } from '@mod/catalog/admin/pages/productos/service/productos.service';
 import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
@@ -41,7 +41,7 @@ export class CrearWarehouseComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private loteService: LoteService,
+    private bodegaService: BodegaService,
     private userService :AuthService,
     private permisosService :PermisosService,
     private productoService: ProductosService,
@@ -233,7 +233,7 @@ export class CrearWarehouseComponent implements OnInit {
 
   async crearLote(){
     if(this.isFormValid){
-      let endPoint = this.loteService
+      let endPoint = this.bodegaService
 
       const response = await endPoint.createBatch(this.model)
       if(response.data.status == 404){
