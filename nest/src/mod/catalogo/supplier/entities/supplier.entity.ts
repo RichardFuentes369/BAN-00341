@@ -1,4 +1,4 @@
-import { Lote } from '@module/lote/batch/entities/batch.entity';
+import { Bodega } from '@module/bodega/warehouse/entities/warehouse.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne } from 'typeorm';
 
 @Entity('mod_catalogo_proveedores')
@@ -25,8 +25,8 @@ export class Proveedor {
   telefono: string;
   
   // Relation
-  @OneToMany(() => Lote, (lote) => lote.id_proveedor)
-  lote: Lote[];
+  @OneToMany(() => Bodega, (lote) => lote.id_proveedor)
+  lote: Bodega[];
 
   get fullNit(): string {
     return `${this.nit}-${this.dv}`;

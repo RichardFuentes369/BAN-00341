@@ -8,8 +8,9 @@ import { MeAdminPageSettingsComponent } from '@mod/me/admin/pages/settings/setti
 
 import { MenuAdminComponent } from '@mod/main/admin/pages/menu/menu.component'
 import { AdminPermissionComponent } from '@component/globales/permission/admin/admin.component';
-import { BREADCRUMB_PATH_PROFILE, BREADCRUMB_PATH_SETTINGS } from '@mod/main/const/main.const';
+import { BREADCRUMB_PATH_DASHBOARD, BREADCRUMB_PATH_PROFILE, BREADCRUMB_PATH_SETTINGS } from '@mod/main/const/main.const';
 import { BREADCRUMB_PATH_MENU } from '@const/app.const';
+import { AdminDashboardComponent } from '@mod/dashboard/admin/admin.component';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -47,7 +48,19 @@ export const AdminLayoutRoutes: Routes = [
     canActivate: [
       adminGuard
     ]
-  },
+  }, 
+
+  // Dashboard
+  
+  {
+    path: 'dashboard',
+    title: 'Dashboard',
+    data: { breadcrumb: BREADCRUMB_PATH_DASHBOARD },
+    component: AdminDashboardComponent,
+    canActivate: [
+      adminGuard
+    ]
+  }, 
 
   // Modulos
 

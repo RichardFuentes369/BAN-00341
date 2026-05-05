@@ -1,17 +1,17 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { CreateBatchDto } from './dto/create-batch.dto';
-import { UpdateBatchDto } from './dto/update-batch.dto';
-import { Lote } from './entities/batch.entity';
+import { CreateWarehouseDto } from './dto/create-warehouse.dto';
+import { UpdateWarehouseDto } from './dto/update-warehouse.dto';
+import { Bodega } from './entities/warehouse.entity';
 import { I18nService } from 'nestjs-i18n';
 import { Like, Repository } from 'typeorm';
-import { FilterBatchDto } from './dto/filter-batch.dto';
+import { FilterWarehouseDto } from './dto/filter-warehouse.dto';
 
 @Injectable()
-export class BatchService {
+export class WarehouseService {
 
   constructor(
-    @Inject('BATCH_REPOSITORY')
-    private batchRepository: Repository<Lote>,
+    @Inject('WAREHOUSE_REPOSITORY')
+    private batchRepository: Repository<Bodega>,
     private i18n: I18nService
   ) {}
 
@@ -20,7 +20,7 @@ export class BatchService {
     return metadata.columns.map((column) => column.propertyName);
   }
 
-  async findAll(filterDto: FilterBatchDto, lang: string) {
+  async findAll(filterDto: FilterWarehouseDto, lang: string) {
     const { limit, page, field = 'id', order = 'ASC' } = filterDto;
 
     if (!page || !limit) {
@@ -106,7 +106,7 @@ export class BatchService {
 
   async create(
     lang: string, 
-    batchData: CreateBatchDto, 
+    warehouseData: CreateWarehouseDto, 
     userId: number
   ) {
     try {
@@ -119,7 +119,7 @@ export class BatchService {
 
       // necesitamos un identificador unico asignado por el comercio
       
-      await this.batchRepository.save(batchData);
+      await this.batchRepository.save(warehouseData);
       return {
         'title': this.i18n.t('supplier.MSJ_TITTLE', { lang }),
         'message': this.i18n.t('supplier.MSJ_CREADO_EXITOSAMENTE', { lang }),

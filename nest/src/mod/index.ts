@@ -13,6 +13,6 @@ export { SupplierModule } from './catalogo/supplier/supplier.module';
 export { BrandModule } from './catalogo/brand/brand.module';
 
 
-export { BatchModule } from './lote/batch//batch.module';
+export { WarehouseModule } from './bodega/warehouse/warehouse.module';
 export { TiposModule } from './merma/tipos/tipos.module';
 export { MermasModule } from './merma/mermas/mermas.module';

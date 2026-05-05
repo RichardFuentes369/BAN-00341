@@ -5,7 +5,7 @@ enum Order {
     desc = 'desc'
   }
 
-export class FilterBatchDto {
+export class FilterWarehouseDto {
 
     @IsOptional()
     @IsPositive()

@@ -1,5 +1,5 @@
 // import { PermisosModulos } from 'src/mod/permisos/modulos/entities/modulo.entity';
-import { Lote } from '@module/lote/batch/entities/batch.entity';
+import { Bodega } from '@module/bodega/warehouse/entities/warehouse.entity';
 import { Tipo } from '@module/merma/tipos/entities/tipo.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 
@@ -28,10 +28,10 @@ export class Merma {
   @JoinColumn({ name: 'id_tipo_merma' })
   id_tipo_merma: Tipo;
 
-  @ManyToOne(() => Lote, (lote) => lote.id, {
+  @ManyToOne(() => Bodega, (lote) => lote.id, {
     onDelete: 'RESTRICT', 
     nullable: false
   })
   @JoinColumn({ name: 'id_lote' })
-  id_lote: Lote;
+  id_lote: Bodega;
 }

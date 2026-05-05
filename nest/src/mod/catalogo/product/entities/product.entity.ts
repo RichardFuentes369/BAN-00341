@@ -1,5 +1,5 @@
 // import { PermisosModulos } from 'src/mod/permisos/modulos/entities/modulo.entity';
-import { Lote } from '@module/lote/batch/entities/batch.entity';
+import { Bodega } from '@module/bodega/warehouse/entities/warehouse.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn, OneToOne, Batch } from 'typeorm';
 import { Marca } from '@module/catalogo/brand/entities/brand.entity';
 import { forwardRef } from '@nestjs/common';
@@ -41,6 +41,6 @@ export class Producto {
   @JoinColumn({ name: 'id_marca' })
   marca: Marca;
 
-  @OneToMany(() => Lote, (lote) => lote.id_producto)
-  lote: Lote[];
+  @OneToMany(() => Bodega, (lote) => lote.id_producto)
+  lote: Bodega[];
 }

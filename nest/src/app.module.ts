@@ -22,7 +22,7 @@ import {
   SupplierModule,
   TiposModule,
   MermasModule,
-  BatchModule,
+  WarehouseModule,
   BrandModule,
   ExtentModule
 } from './mod/index'
@@ -53,7 +53,7 @@ import {
     AsignacionModule,
     ProductModule,
     SupplierModule,
-    BatchModule,
+    WarehouseModule,
     TiposModule,
     MermasModule,
     BrandModule,

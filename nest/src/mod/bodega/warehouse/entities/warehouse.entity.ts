@@ -5,8 +5,8 @@ import { Merma } from '@module/merma/mermas/entities/merma.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn, OneToOne } from 'typeorm';
 import { EstadoLote } from '../enums/EstadoLote';
 
-@Entity('mod_lote')
-export class Lote {
+@Entity('mod_bodega')
+export class Bodega {
   @PrimaryGeneratedColumn()
   id: number;
 

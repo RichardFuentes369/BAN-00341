@@ -1,7 +1,7 @@
 // import { Transform } from "class-transformer";
 import { IsString, IsBoolean, IsNumber, IsEmail, IsOptional } from "class-validator";
 
-export class CreateBatchDto {
+export class CreateWarehouseDto {
   @IsNumber()
   // @Transform(({value}) => value.trim())
   readonly fecha_entrada;

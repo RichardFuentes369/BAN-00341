@@ -1,23 +1,23 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } from '@nestjs/common';
-import { BatchService } from './batch.service';
-import { CreateBatchDto } from './dto/create-batch.dto';
-import { UpdateBatchDto } from './dto/update-batch.dto';
+import { WarehouseService } from './warehouse.service';
+import { CreateWarehouseDto } from './dto/create-warehouse.dto';
+import { UpdateWarehouseDto } from './dto/update-warehouse.dto';
 import { GetUser } from 'src/decorator/getIdUser.decorator';
-import { FilterBatchDto } from './dto/filter-batch.dto';
+import { FilterWarehouseDto } from './dto/filter-warehouse.dto';
 import { AdminGuard } from '@guard/admin/admin.guard';
 
 @Controller('batch')
-export class BatchController {
-  constructor(private readonly batchService: BatchService) {}
+export class WarehouseController {
+  constructor(private readonly warehouseService: WarehouseService) {}
 
   @Get('obtener-registro-lotes')
   findAll(
     @Query('lang') lang: string,
-    @Query() FilterBatchDto: FilterBatchDto,
+    @Query() FilterWarehouseDto: FilterWarehouseDto,
     @GetUser('id') userId: number
   ) {
-    return this.batchService.findAll(
-      FilterBatchDto, 
+    return this.warehouseService.findAll(
+      FilterWarehouseDto, 
       lang
     );
   }
@@ -29,7 +29,7 @@ export class BatchController {
     @Query('lang') lang: string,
     @GetUser('id') userId: number
   ) {
-    return this.batchService.findOne(
+    return this.warehouseService.findOne(
       lang, 
       +_id
     );
@@ -39,10 +39,10 @@ export class BatchController {
   @Post('crear-lote')
   create(
     @Query('lang') lang: string,
-    @Body() batchData: CreateBatchDto,
+    @Body() batchData: CreateWarehouseDto,
     @GetUser('id') userId: number
   ) {
-    return this.batchService.create(lang, batchData, userId);
+    return this.warehouseService.create(lang, batchData, userId);
   }
 
 }

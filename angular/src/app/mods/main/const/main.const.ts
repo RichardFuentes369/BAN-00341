@@ -12,6 +12,7 @@ export const LAYOUT_ADMIN_PAGE_WAREHOUSE = '/admin/mod/warehouse';
 
 // Routes
 export const BREADCRUMB_PATH_PROFILE = 'mod-main.PAGES_PROFILE';
+export const BREADCRUMB_PATH_DASHBOARD = 'mod-main.PAGES_DASHBOARD';
 export const BREADCRUMB_PATH_SETTINGS = 'mod-main.PAGES_SETTINGS';
 
 export const PATH_USERS = 'users';  
