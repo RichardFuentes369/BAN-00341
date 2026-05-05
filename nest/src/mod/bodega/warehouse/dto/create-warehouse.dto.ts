@@ -2,6 +2,10 @@
 import { IsString, IsBoolean, IsNumber, IsEmail, IsOptional } from "class-validator";
 
 export class CreateWarehouseDto {
+  @IsString()
+  // @Transform(({value}) => value.trim())
+  readonly lote;  
+
   @IsNumber()
   // @Transform(({value}) => value.trim())
   readonly fecha_entrada;
@@ -11,6 +15,19 @@ export class CreateWarehouseDto {
   // @Transform(({value}) => value.trim())
   readonly fecha_vencimiento;  
   
+  @IsNumber()
+  // @Transform(({value}) => value.trim())
+  readonly cantidad_comprada;   
+    
+  @IsNumber()
+  @IsOptional()
+  // @Transform(({value}) => value.trim())
+  readonly cantidad_vendida;   
+  
+  @IsNumber()
+  // @Transform(({value}) => value.trim())
+  readonly cantidad_en_bodega;  
+
   @IsString()
   // @Transform(({value}) => value.trim())
   readonly estado;  
@@ -21,22 +38,5 @@ export class CreateWarehouseDto {
   
   @IsNumber()
   // @Transform(({value}) => value.trim())
-  readonly id_proveedor;  
-  
-  @IsString()
-  // @Transform(({value}) => value.trim())
-  readonly lote;  
-  
-  @IsNumber()
-  // @Transform(({value}) => value.trim())
-  readonly cantidad_comprada;    
-  
-  @IsNumber()
-  // @Transform(({value}) => value.trim())
-  readonly cantidad_en_bodega;  
-  
-  @IsNumber()
-  @IsOptional()
-  // @Transform(({value}) => value.trim())
-  readonly cantidad_vendida;
+  readonly id_proveedor;   
 }

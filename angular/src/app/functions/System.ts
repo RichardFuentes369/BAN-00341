@@ -79,5 +79,10 @@ export function LocalHelper(key: string, value: string, action: string){
   }
 }
 
+export function toTimestampp(fecha: string) {
+  const [year, month, day] = fecha.split("-").map(Number)
+  const fechaLocal = new Date(year, month - 1, day, 0, 0, 0)
+  return Math.floor(fechaLocal.getTime() / 1000)
+}
 
 
