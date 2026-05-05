@@ -16,10 +16,6 @@ export const PATH_ADMIN_BRAND = 'marcas';
 export const TITLE_PATH_ADMIN_BRAND = 'Marcas';
 export const BREADCRUMB_PATH_ADMIN_BRAND = 'mod-catalog.PAGE_BRAND_TITLE';
 
-export const PATH_ADMIN_LOTE = 'lote';
-export const TITLE_PATH_ADMIN_LOTE = 'Lote';
-export const BREADCRUMB_PATH_ADMIN_LOTE = 'Lote';
-
 export const PATH_ADMIN_EXTENT = 'unidad_de_medida';
 export const TITLE_PATH_ADMIN_EXTENT = 'Unidad de medida';
 export const BREADCRUMB_PATH_ADMIN_EXTENT = 'mod-catalog.PAGE_EXTENT_TITLE';

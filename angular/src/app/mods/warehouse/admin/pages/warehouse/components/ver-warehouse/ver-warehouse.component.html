@@ -1,0 +1,47 @@
+<div class="">
+  @for (item of lote; track item; let  i = $index) {
+  <div class="col-xl col-sm-12">
+    <fieldset class="border p-3 rounded">
+      <legend class="float-none w-auto p-1">
+        {{ 'mod-warehouse.LEGEND_TITLE' | translate }}
+      </legend>
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-warehouse.LABEL_LOTE' | translate}}
+        </label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.lote}}" readonly>
+      </div>        
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-warehouse.LABEL_FECHA_ENTRADA' | translate}}
+        </label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.fecha_entrada}}" readonly>
+      </div>        
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}
+        </label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.fecha_vencimiento}}" readonly>
+      </div>        
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}
+        </label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.cantidad_comprada}}" readonly>
+      </div>       
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-warehouse.LABEL_CANTIDAD_VENDIDA' | translate}}
+        </label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.cantidad_vendida}}" readonly>
+      </div>               
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-warehouse.LABEL_ESTADO' | translate}}
+        </label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.estado}}" readonly>
+      </div>
+    </fieldset>
+  </div>
+  }
+</div>

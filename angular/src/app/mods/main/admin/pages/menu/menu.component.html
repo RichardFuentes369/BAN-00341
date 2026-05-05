@@ -33,14 +33,14 @@
     </a>
     }
 
-    @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_LOTE)){
-    <a [routerLink]="LAYOUT_ADMIN_PAGE_LOTE" class="item" style="text-decoration: none; color: inherit; display: block;">
+    @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_WAREHOUSE)){
+    <a [routerLink]="LAYOUT_ADMIN_PAGE_WAREHOUSE" class="item" style="text-decoration: none; color: inherit; display: block;">
       <div class="card card-option">
         <div class="card-body text-center p-0 pb-3 pt-3">
-          <img src="assets/images/img_batch.png" width="80px">
+          <img src="assets/images/img_warehouse.png" width="80px">
         </div>
         <div class="card-footer text-center">
-          <span>{{ 'mod-main.PAGE_LOTE' | translate }}</span>
+          <span>{{ 'mod-main.PAGE_WAREHOUSE' | translate }}</span>
         </div>
       </div>
     </a>

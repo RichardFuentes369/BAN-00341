@@ -182,7 +182,6 @@
   "BUTTON_PRODUCT": "Products",
   "BUTTON_BRAND": "Brands",
   "BUTTON_EXTENT": "Unit of measurement",
-  "BUTTON_SUPPLIER": "Suppliers",
-  "BUTTON_LOTE": "Batch"
+  "BUTTON_SUPPLIER": "Suppliers"
 
 }

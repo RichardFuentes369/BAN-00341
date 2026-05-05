@@ -2,20 +2,20 @@
   import { adminGuard } from '@guard/roles/admin/admin.guard';
   import { 
     BREADCRUMB_PATH_CATALOG, 
-    BREADCRUMB_PATH_LOTE, 
+    BREADCRUMB_PATH_WAREHOUSE, 
     BREADCRUMB_PATH_MERMA, 
     BREADCRUMB_PATH_MODULES, 
     BREADCRUMB_PATH_USERS, 
     PATH_CATALOG, 
-    PATH_LOTE, 
     PATH_MERMA, 
     PATH_MODULES, 
     PATH_USERS, 
+    PATH_WAREHOUSE, 
     TITLE_PATH_CATALOG, 
-    TITLE_PATH_LOTE, 
     TITLE_PATH_MERMA, 
     TITLE_PATH_MODULES, 
-    TITLE_PATH_USERS 
+    TITLE_PATH_USERS, 
+    TITLE_PATH_WAREHOUSE
   } from '@mod/main/const/main.const';
 
   export const MenuRoutes: Routes = [
@@ -55,10 +55,10 @@
 
     // Modulo Lote
     {
-      path: PATH_LOTE,
-      title: TITLE_PATH_LOTE,
-      data: { breadcrumb: BREADCRUMB_PATH_LOTE },
-      loadChildren: () => import('@mod/lote/admin/routes/lote.routing').then(x=>x.LoteRoutes),
+      path: PATH_WAREHOUSE,
+      title: TITLE_PATH_WAREHOUSE,
+      data: { breadcrumb: BREADCRUMB_PATH_WAREHOUSE },
+      loadChildren: () => import('@mod/warehouse/admin/routes/bodega.routing').then(x=>x.BodegaRoutes),
       canActivate: [
         adminGuard
       ]

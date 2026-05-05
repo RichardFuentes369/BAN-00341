@@ -1,0 +1,63 @@
+{
+  "UNKNOW_MODULE_TITLE": "Unknown Module",
+
+  "MODULE_TITLE": "Warehouse",
+  "TABLE_TITLE": "Records",
+
+  "MSJ_ERROR_CREATE_PRODUCTS_PERMISSION": "Please contact the administrator to create new products; your user account does not have the necessary permissions to perform this action.",
+
+  "REPORT_PERMISSION_TITLE": "Report",
+  "REPORT_PERMISSION_SUBTITLE": "traceability",
+
+  "BUTTON_SAVE_": "Save",
+  "BUTTON_UPDATE_": "Update",
+  "BUTTON_CANCEL": "Cancel",
+  "BUTTON_BACK": "Back",
+  "BUTTON_SEARCH": "Search",
+
+  "CREATE_TITLE": "Create",
+  "CREATE_SUBTITLE": "New batch",
+  "SEE_TITLE": "View",
+  "SEE_SUBTITLE": "Batch: {{batch_code}}",
+  "EDIT_TITLE": "Edit",
+  "EDIT_SUBTITLE": "Batch: {{batch_code}}",
+
+  "COLUMN_ID": "ID",
+  "COLUMN_REPORT_DATE": "Entry date",
+  "COLUMN_EXPIRATION_DATE": "Expiration date",
+  "COLUMN_IN_STOCK": "In stock",
+  "COLUMN_PURCHASED": "Purchased",
+  "COLUMN_SOLD": "Sold",
+  "COLUMN_BATCH": "Batch",
+  "COLUMN_PRODUCT": "Product",
+  "COLUMN_SUPPLIER": "Supplier",
+  "COLUMN_UNIT_OF_MEASUREMENT": "Unit of measurement",
+  "COLUMN_STATUS": "Status",
+
+  "LEGEND_TITLE": "Batch data",
+  "LABEL_LOTE": "Batch",
+  "LABEL_FECHA_ENTRADA": "Entry date",
+  "LABEL_FECHA_VENCIMIENTO": "Expiry date",
+  "LABEL_CANTIDAD_COMPRADA": "Quantity purchased",
+  "LABEL_CANTIDAD_VENDIDA": "Quantity sold",
+  "LABEL_COSTO_UNITARIO": "Unit cost",
+  "LABEL_PRECIO_VENTA_SUGERIDO": "Suggested retail price",
+  "LABEL_ESTADO": "Status",
+
+  "SELECT_SELECT_OPTION": "Select", 
+  "SELECT_AVAILABLE_OPTION": "Available", 
+  "SELECT_UNAVAILABLE_OPTION": "Expired", 
+  "SELECT_EXPIRED_OPTION": "Sold out", 
+
+  "PLACEHOLDER_LOTE": "Enter batch number",
+  "PLACEHOLDER_FECHA_ENTRADA": "Select entry date",
+  "PLACEHOLDER_FECHA_VENCIMIENTO": "Select expiry date",
+  "PLACEHOLDER_CANTIDAD_COMPRADA": "Enter purchase quantity",
+  "PLACEHOLDER_CANTIDAD_VENDIDA": "Enter quantity sold",
+  "PLACEHOLDER_STOCK": "Enter stock quantity",
+  "PLACEHOLDER_COSTO_UNITARIO": "Enter unit cost",
+  "PLACEHOLDER_PRECIO_VENTA_SUGERIDO": "Enter suggested retail price",
+  "PLACEHOLDER_ESTADO": "Select status",
+
+  "CARD_TOTAL_LOT_TITLE": "Total records"
+}

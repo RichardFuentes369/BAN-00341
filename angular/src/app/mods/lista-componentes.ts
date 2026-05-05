@@ -20,11 +20,11 @@ import { CrearTipoMermaComponent } from './merma/admin/pages/tipo/components/cre
 import { ReporteUsuarioComponent } from './users/admin/components/reporte/reporte.component';
 import { CargarProductoComponent } from './catalog/admin/pages/productos/components/cargar-producto/cargar-producto.component';
 import { VerPermisosComponent } from './users/admin/pages/principal/components/ver-permisos/ver-permisos.component';
-import { CrearLoteComponent } from './lote/admin/pages/lote/components/crear-lote/crear-lote.component';
-import { EditarLoteComponent } from './lote/admin/pages/lote/components/editar-lote/editar-lote.component';
-import { FiltroLoteComponent } from './lote/admin/pages/lote/components/filtro/filtro.component';
-import { ReporteLoteComponent } from './lote/admin/pages/lote/components/reporte/reporte.component';
-import { VerLoteComponent } from './lote/admin/pages/lote/components/ver-lote/ver-lote.component';
+import { CrearWarehouseComponent } from './warehouse/admin/pages/warehouse/components/crear-warehouse/crear-warehouse.component';
+import { EditarWarehouseComponent } from './warehouse/admin/pages/warehouse/components/editar-warehouse/editar-warehouse.component';
+import { FiltroWarehouseComponent } from './warehouse/admin/pages/warehouse/components/filtro/filtro.component';
+import { ReporteWarehouseComponent } from './warehouse/admin/pages/warehouse/components/reporte/reporte.component';
+import { VerWarehouseComponent } from './warehouse/admin/pages/warehouse/components/ver-warehouse/ver-warehouse.component';
 import { FiltroMarcaComponent } from './catalog/admin/pages/marcas/components/filtro/filtro.component';
 import { CrearMarcaComponent } from './catalog/admin/pages/marcas/components/crear-marca/crear-marca.component';
 import { VerMarcaComponent } from './catalog/admin/pages/marcas/components/ver-marca/ver-marca.component';
@@ -173,24 +173,24 @@ export class ListaComponentes {
     },  
     // modulo lote
     {
-      name: 'CrearLoteComponent',
-      componente: CrearLoteComponent
+      name: 'CrearWarehouseComponent',
+      componente: CrearWarehouseComponent
     },  
     {
-      name: 'EditarLoteComponent',
-      componente: EditarLoteComponent
+      name: 'EditarWarehouseComponent',
+      componente: EditarWarehouseComponent
     },  
     {
-      name: 'FiltroLoteComponent',
-      componente: FiltroLoteComponent
+      name: 'FiltroWarehouseComponent',
+      componente: FiltroWarehouseComponent
     },  
     {
-      name: 'ReporteLoteComponent',
-      componente: ReporteLoteComponent
+      name: 'ReporteWarehouseComponent',
+      componente: ReporteWarehouseComponent
     },  
     {
-      name: 'VerLoteComponent',
-      componente: VerLoteComponent
+      name: 'VerWarehouseComponent',
+      componente: VerWarehouseComponent
     },  
   ];
 
