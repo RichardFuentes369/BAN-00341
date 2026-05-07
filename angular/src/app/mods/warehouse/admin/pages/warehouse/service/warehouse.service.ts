@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { STORAGE_KEY_TOKEN_ADMIN, WORD_KEY_AUTHORIZATION_APPLICATION_TYPE, WORD_KEY_AUTHORIZATION_CONTENT_TYPE, WORD_KEY_AUTHORIZATION_GLOBAL, WORD_KEY_BEARER_GLOBAL } from '@const/app.const';
 import { environment } from '@environment/environment';
 import { TranslateService } from '@ngx-translate/core';
+import { toTimestampp } from '@function/System'
 import axios from 'axios';
 
 @Injectable({
@@ -36,6 +37,14 @@ export class BodegaService {
     let complemento = 'batch/crear-lote/'
     let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
+    data.fecha_entrada = toTimestampp(data.fecha_entrada)
+    if(data.fecha_vencimiento != ''){
+      data.fecha_vencimiento = toTimestampp(data.fecha_vencimiento) + 86399
+    }
+    if(data.cantidad_comprada != ''){
+      data.cantidad_en_bodega = data.cantidad_comprada 
+    }
 
     return await axios.request({
       headers: {

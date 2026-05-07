@@ -116,13 +116,7 @@ export class WarehouseService {
     warehouseData: CreateWarehouseDto, 
     userId: number
   ) {
-    try {
-
-      // X = Y = Z (CREO) (ACTUALIZO)
-      // X != Y = Z (CREO)
-      // X = Y != Z (CREO)
-      // X != Y != Z (CREO)
-      
+    try {     
 
       // necesitamos un identificador unico asignado por el comercio
       

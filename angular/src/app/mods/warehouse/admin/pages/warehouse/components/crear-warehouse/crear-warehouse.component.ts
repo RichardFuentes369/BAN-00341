@@ -61,6 +61,7 @@ export class CrearWarehouseComponent implements OnInit {
   }
 
   producto = {
+    codigo_barra: '',
     nombre: '',
     marca: '',
     unidad_medida: '',
@@ -76,7 +77,6 @@ export class CrearWarehouseComponent implements OnInit {
   model = {
     id_producto: '',
     id_proveedor: '',
-    codigo_barra: '',
     lote: '',
     fecha_entrada: '',
     fecha_vencimiento: '',
@@ -137,7 +137,7 @@ export class CrearWarehouseComponent implements OnInit {
   checkValidation(): boolean {
     const regexBarCode = /^[0-9]{13}$/;
     const regexNIT = /^[0-9]{8,15}$/;
-    this.validators.codigo_barra = (this.model.codigo_barra === null || !regexBarCode.test((this.model.codigo_barra as any).toString()))
+    this.validators.codigo_barra = (this.producto.codigo_barra === null || !regexBarCode.test((this.producto.codigo_barra as any).toString()))
     this.validators.nit = (this.proveedor.nit === null || !regexNIT.test((this.proveedor.nit as any).toString()));
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
@@ -156,18 +156,18 @@ export class CrearWarehouseComponent implements OnInit {
   }
 
   get esCodigoValido(): boolean {
-    const codigo = (this.model?.codigo_barra || '').toString();
+    const codigo = (this.producto?.codigo_barra || '').toString();
     const regex = /^\d{13}$/;
     return regex.test(codigo);
   }
 
   get longitudCodigo(): number {
-    return (this.model?.codigo_barra || '').toString().length;
+    return (this.producto?.codigo_barra || '').toString().length;
   }
 
   async buscarProducto() {
     try {
-      const response = await this.productoService.getDataProductForBarcode(this.model.codigo_barra);
+      const response = await this.productoService.getDataProductForBarcode(this.producto.codigo_barra);
       if (response.status === 200) {
         this.model.id_producto = response.data.id
         this.producto.nombre = response.data.nombre
@@ -234,25 +234,24 @@ export class CrearWarehouseComponent implements OnInit {
   async crearLote(){
     if(this.isFormValid){
       let endPoint = this.bodegaService
-
       const response = await endPoint.createBatch(this.model)
-      if(response.data.status == 404){
-        ocultarModalOscura()
-        Swal.fire({
-          title: response.data.message,
-          text: response.data.error,
-          icon: 'error',
-          confirmButtonText: 'Cool'
-        })
-      }
-      if(response.data.status == 200){
-        ocultarModalOscura()
-        Swal.fire({
-          title: this.translate.instant('mod-lote.CATEGORY.SWAL_CREATED'),
-          text: this.translate.instant('mod-lote.SWAL_CREATED_RECORD'),
-          icon: "success"
-        });
-      }
+      // if(response.data.status == 404){
+      //   ocultarModalOscura()
+      //   Swal.fire({
+      //     title: response.data.message,
+      //     text: response.data.error,
+      //     icon: 'error',
+      //     confirmButtonText: 'Cool'
+      //   })
+      // }
+      // if(response.data.status == 200){
+      //   ocultarModalOscura()
+      //   Swal.fire({
+      //     title: this.translate.instant('mod-lote.CATEGORY.SWAL_CREATED'),
+      //     text: this.translate.instant('mod-lote.SWAL_CREATED_RECORD'),
+      //     icon: "success"
+      //   });
+      // }
     }
   }
 }

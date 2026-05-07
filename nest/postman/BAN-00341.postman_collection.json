@@ -1783,6 +1783,46 @@
 									"response": []
 								},
 								{
+									"name": "obtener-proveedor-por-nit",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/supplier/obtener-proveedor-por-nit?_nit=1000241001&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"supplier",
+												"obtener-proveedor-por-nit"
+											],
+											"query": [
+												{
+													"key": "_nit",
+													"value": "1000241001"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
 									"name": "crear-proveedor",
 									"request": {
 										"auth": {
@@ -2733,7 +2773,7 @@
 			]
 		},
 		{
-			"name": "lote",
+			"name": "bodega",
 			"item": [
 				{
 					"name": "admin",
@@ -2805,7 +2845,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/batch/obtener-registro-lote?_id=16&lang=es",
+											"raw": "localhost:3000/api/batch/obtener-registro-lote?_id=7&lang=es",
 											"host": [
 												"localhost"
 											],
@@ -2818,7 +2858,7 @@
 											"query": [
 												{
 													"key": "_id",
-													"value": "16"
+													"value": "7"
 												},
 												{
 													"key": "lang",
@@ -2846,7 +2886,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"fecha_entrada\": 1775192154,\n    \"fecha_vencimiento\": 1776315600,\n    \"costo_unitario\": 3000,\n    \"precio_venta_sugerido\": 6850,\n    \"estado\": \"disponible\",\n    \"id_producto\": 4049,\n    \"id_proveedor\": 1,\n    \"lote\": \"20000000005\",\n    \"cantidad_comprada\": 250,\n    \"cantidad_vendida\": 0,\n    \"stock\": 250\n}",
+											"raw": "{\n    \"lote\": \"ASDR14963\",\n    \"fecha_entrada\": 1778007892, \n    \"fecha_vencimiento\": 1778889892, \n    \"cantidad_comprada\": 6250,\n    \"cantidad_vendida\": 0,\n    \"cantidad_en_bodega\": 6250,\n    \"estado\": \"disponible\",\n    \"id_producto\": 8,\n    \"id_proveedor\": 5\n}",
 											"options": {
 												"raw": {
 													"language": "json"
