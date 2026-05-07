@@ -28,6 +28,9 @@ export class Bodega {
   @Column({ type: 'int', nullable: false, default: 0 })
   cantidad_en_bodega;
 
+  @Column({ type: 'int', nullable: false, default: 0 })
+  cantidad_afectada_por_merma;
+
   @Column({ type: 'enum', enum: EstadoLote, default: EstadoLote.DISPONIBLE })
   estado: EstadoLote;
 

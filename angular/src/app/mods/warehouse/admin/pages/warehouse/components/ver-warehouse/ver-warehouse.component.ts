@@ -21,6 +21,7 @@ interface LoteInterface {
   'fecha_vencimiento': number | string,
   'cantidad_comprada': number,
   'cantidad_vendida': number,
+  'cantidad_afectada_por_merma': number,
   'stock': number,
   'costo_unitario': number,
   'precio_venta_sugerido': number,
@@ -70,6 +71,7 @@ export class VerWarehouseComponent {
     fecha_vencimiento: '',
     cantidad_comprada: '',
     cantidad_vendida: '',
+    cantidad_afectada_por_merma: '',
     estado: ''
   }
 
@@ -115,6 +117,7 @@ export class VerWarehouseComponent {
     this.model.fecha_vencimiento = this.formatoFecha(this.loteReal.data.fecha_vencimiento)  
     this.model.cantidad_comprada = this.loteReal.data.cantidad_comprada
     this.model.cantidad_vendida = this.loteReal.data.cantidad_vendida
+    this.model.cantidad_afectada_por_merma = this.loteReal.data.cantidad_afectada_por_merma
     this.model.estado = this.loteReal.data.estado
   }
 
