@@ -17,6 +17,8 @@
   "BUTTON_RECORD": "Registres de perte",
   
   "REGISTER": {
+    "LEGEND_TITLE": "Registre des démarques pour ce lot",
+    
     "COLUMN_ID": "Id",
     "COLUMN_REPORT_DATE": "Date du rapport",
     "COLUMN_AMOUNT": "Quantité",

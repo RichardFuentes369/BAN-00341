@@ -48,23 +48,77 @@ export class VerWarehouseComponent {
   permisos: any[] = []
   loteReal: any
 
+  producto = {
+    nombre: '',
+    marca: '',
+    unidad_medida: '',
+    es_perecedero: ''
+  }
+  
+  proveedor = {
+    nit: '',
+    razon_social: '',
+    correo: ''
+  }
+
+  model = {
+    id_producto: '',
+    id_proveedor: '',
+    codigo_barra: '',
+    lote: '',
+    fecha_entrada: '',
+    fecha_vencimiento: '',
+    cantidad_comprada: '',
+    cantidad_vendida: '',
+    estado: ''
+  }
+
   validators = {
+    id_producto: false,
+    id_proveedor: false,
+    nit: false,
+    codigo_barra: false,
     lote: false,
     fecha_entrada: false,
     fecha_vencimiento: false,
     cantidad_comprada: false,
-    cantidad_vendida: false,
-    stock: false,
-    costo_unitario: false,
-    precio_venta_sugerido: false,
     estado: false
+  }
+
+  formatoFecha(fecha: number){
+    const date = new Date(Number(fecha) * 1000);
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+
+    return `${mm}/${dd}/${yyyy}`
   }
 
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     this.loteReal = await this.bodegaService.getDataLote(this.route.snapshot.queryParams?.['id_lote'])
 
-    this.lote.push(this.loteReal.data)
+    this.producto.nombre = this.loteReal.data.id_producto.nombre
+    this.producto.marca = this.loteReal.data.id_producto.marca.nombre
+    this.producto.unidad_medida = this.loteReal.data.id_producto.unidad_medida
+    this.producto.es_perecedero = this.loteReal.data.id_producto.es_perecedero
+
+    this.proveedor.nit = this.loteReal.data.id_proveedor.nit
+    this.proveedor.razon_social = this.loteReal.data.id_proveedor.razon_social
+    this.proveedor.correo = this.loteReal.data.id_proveedor.correo
+
+    this.model.id_producto = ''
+    this.model.id_proveedor = ''
+    this.model.codigo_barra = this.loteReal.data.id_producto.codigo_barra
+    this.model.lote = this.loteReal.data.lote
+    this.model.fecha_entrada = this.formatoFecha(this.loteReal.data.fecha_entrada) 
+    this.model.fecha_vencimiento = this.formatoFecha(this.loteReal.data.fecha_vencimiento)  
+    this.model.cantidad_comprada = this.loteReal.data.cantidad_comprada
+    this.model.cantidad_vendida = this.loteReal.data.cantidad_vendida
+    this.model.estado = this.loteReal.data.estado
   }
 
+
+//   fecha_entrada
+// fecha_vencimiento
 }

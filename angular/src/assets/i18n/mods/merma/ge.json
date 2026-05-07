@@ -17,6 +17,8 @@
   "BUTTON_RECORD": "Verlustaufzeichnungen",
   
   "REGISTER": {
+    "LEGEND_TITLE": "Schwunderfassung für esta Charge", 
+    
     "COLUMN_ID": "ID",
     "COLUMN_REPORT_DATE": "Berichtsdatum",
     "COLUMN_AMOUNT": "Menge",

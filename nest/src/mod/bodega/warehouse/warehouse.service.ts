@@ -96,7 +96,14 @@ export class WarehouseService {
     id: number
   ) {
     const category = await this.batchRepository.findOne({ 
-      where: { id } 
+      where: { id },
+      relations: {
+        id_producto: {
+          marca: true,
+        },
+        id_proveedor: true,
+        mermas: true,
+      }
     });
     if (!category) throw new NotFoundException(
       this.i18n.t('batch.MSJ_BATCH_NO_ENCONTRADA', { lang })

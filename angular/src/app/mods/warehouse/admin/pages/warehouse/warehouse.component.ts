@@ -83,12 +83,36 @@ export class WarehoseComponent implements OnInit, OnDestroy{
     {
       title: this.translate.instant('mod-warehouse.COLUMN_REPORT_DATE'),
       data: 'fecha_entrada',
-      className: 'text-center'
+      className: 'text-center',
+      render: (data: any) => {
+        if (!data) return '';
+        const date = new Date(Number(data) * 1000); 
+        if (isNaN(date.getTime())) {
+          return 'Fecha inválida';
+        }
+        return date.toLocaleDateString('es-CO', { 
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        });
+      }
     },
     {
       title: this.translate.instant('mod-warehouse.COLUMN_EXPIRATION_DATE'),
       data: 'fecha_vencimiento',
-      className: 'text-center'
+      className: 'text-center',
+      render: (data: any) => {
+        if (!data) return '';
+        const date = new Date(Number(data) * 1000); 
+        if (isNaN(date.getTime())) {
+          return 'Fecha inválida';
+        }
+        return date.toLocaleDateString('es-CO', { 
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        });
+      }
     },
     {
       title: this.translate.instant('mod-warehouse.COLUMN_PURCHASED'),
@@ -218,12 +242,36 @@ export class WarehoseComponent implements OnInit, OnDestroy{
       {
         title: this.translate.instant('mod-warehouse.COLUMN_REPORT_DATE'),
         data: 'fecha_entrada',
-        className: 'text-center'
+        className: 'text-center',
+        render: (data: any) => {
+          if (!data) return '';
+          const date = new Date(Number(data) * 1000); 
+          if (isNaN(date.getTime())) {
+            return 'Fecha inválida';
+          }
+          return date.toLocaleDateString('es-CO', { 
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+          });
+        }
       },
       {
         title: this.translate.instant('mod-warehouse.COLUMN_EXPIRATION_DATE'),
         data: 'fecha_vencimiento',
-        className: 'text-center'
+        className: 'text-center',
+        render: (data: any) => {
+          if (!data) return '';
+          const date = new Date(Number(data) * 1000); 
+          if (isNaN(date.getTime())) {
+            return 'Fecha inválida';
+          }
+          return date.toLocaleDateString('es-CO', { 
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+          });
+        }
       },
       {
         title: this.translate.instant('mod-warehouse.COLUMN_PURCHASED'),
@@ -262,7 +310,6 @@ export class WarehoseComponent implements OnInit, OnDestroy{
   tienePermiso(nombre: string): boolean {
     return this.permisosAcciones?.some((permiso) => permiso.permiso_permiso === nombre);
   }
-
 
   crearData (_id: string){
     this.tamano = "xl"

@@ -17,6 +17,8 @@
   "BUTTON_RECORD": "Loss Records",
 
   "REGISTER": {
+    "LEGEND_TITLE": "Wastage record for this batch",
+
     "COLUMN_ID": "Id",
     "COLUMN_REPORT_DATE": "Name",
     "COLUMN_AMOUNT": "Amount",
