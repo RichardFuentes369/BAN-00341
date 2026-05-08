@@ -20,6 +20,8 @@
     "LEGEND_TITLE": "Schwunderfassung für esta Charge", 
     
     "COLUMN_ID": "ID",
+    "COLUMN_TYPE": "Schwundart",
+    "COLUMN_BATCH": "Charge",
     "COLUMN_REPORT_DATE": "Berichtsdatum",
     "COLUMN_AMOUNT": "Menge",
     "COLUMN_LOST_VALUE": "Verlustwert",

@@ -19,7 +19,9 @@
   "REGISTER": {
     "LEGEND_TITLE": "Registro de mermas para este lote",
 
-    "COLUMN_ID": "Id",
+    "COLUMN_ID": "ID",
+    "COLUMN_TYPE": "Tipo merma",
+    "COLUMN_BATCH": "Lote",
     "COLUMN_REPORT_DATE": "Fecha reporte",
     "COLUMN_AMOUNT": "Cantidad",
     "COLUMN_LOST_VALUE": "Valor perdido",

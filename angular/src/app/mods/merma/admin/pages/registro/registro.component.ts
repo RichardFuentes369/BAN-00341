@@ -52,6 +52,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
   endPoint = 'registro-mermas/obtener-registro-mermas'
   habilitarSeleccion = true
   filters = ''
+
   columnas: any[] = [
     {
       title: this.translate.instant('mod-merma.REGISTER.COLUMN_ID'),
@@ -59,17 +60,17 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_ID'),
+      title: this.translate.instant('mod-merma.REGISTER.COLUMN_TYPE'),
       data: 'id_tipo_merma.nombre',
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE'),
+      title: this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH'),
       data: 'fecha_reporte',
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_AMOUNT'),
+      title: this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE'),
       data: 'cantidad',
       className: 'text-center'
     },
@@ -168,17 +169,17 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
         className: 'text-center'
       },
       {
-        title: this.translate.instant('mod-merma.REGISTER.COLUMN_ID'),
+        title: this.translate.instant('mod-merma.REGISTER.COLUMN_TYPE'),
         data: 'id_tipo_merma.nombre',
         className: 'text-center'
       },
       {
-        title: this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE'),
+        title: this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH'),
         data: 'fecha_reporte',
         className: 'text-center'
       },
       {
-        title: this.translate.instant('mod-merma.REGISTER.COLUMN_AMOUNT'),
+        title: this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE'),
         data: 'cantidad',
         className: 'text-center'
       },

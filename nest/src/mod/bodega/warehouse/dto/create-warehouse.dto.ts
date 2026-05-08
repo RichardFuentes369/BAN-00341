@@ -28,11 +28,6 @@ export class CreateWarehouseDto {
   // @Transform(({value}) => value.trim())
   readonly cantidad_en_bodega;  
 
-  @IsNumber()
-  @IsOptional()
-  // @Transform(({value}) => value.trim())
-  readonly cantidad_afectada_por_merma;   
-
   @IsString()
   // @Transform(({value}) => value.trim())
   readonly estado;  

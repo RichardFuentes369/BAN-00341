@@ -19,9 +19,11 @@
   "REGISTER": {
     "LEGEND_TITLE": "Wastage record for this batch",
 
-    "COLUMN_ID": "Id",
-    "COLUMN_REPORT_DATE": "Name",
-    "COLUMN_AMOUNT": "Amount",
+    "COLUMN_ID": "ID",
+    "COLUMN_TYPE": "Shrinkage type",
+    "COLUMN_BATCH": "Batch",
+    "COLUMN_REPORT_DATE": "Report date",
+    "COLUMN_AMOUNT": "Quantity",
     "COLUMN_LOST_VALUE": "Lost value",
     "COLUMN_OBSERVATION": "Observation",
     

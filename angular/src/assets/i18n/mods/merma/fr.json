@@ -19,7 +19,9 @@
   "REGISTER": {
     "LEGEND_TITLE": "Registre des démarques pour ce lot",
     
-    "COLUMN_ID": "Id",
+    "COLUMN_ID": "ID",
+    "COLUMN_TYPE": "Type de démarque",
+    "COLUMN_BATCH": "Lot",
     "COLUMN_REPORT_DATE": "Date du rapport",
     "COLUMN_AMOUNT": "Quantité",
     "COLUMN_LOST_VALUE": "Valeur perdue",
