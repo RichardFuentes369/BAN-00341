@@ -52,7 +52,6 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit() {
     this.listar();
     (ultimaUrlConsultada != this.endPoint) ? this.idsSeleccionados = [] : this.idsSeleccionados = [...haySeleccionados]
-
     this.langSub = this.translate.onLangChange.subscribe(() => {
       haySeleccionados = [...this.idsSeleccionados];
       this.recargarIdioma();

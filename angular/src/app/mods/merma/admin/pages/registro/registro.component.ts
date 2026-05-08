@@ -55,7 +55,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
 
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_ID'),
+      title: this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH'),
       data: 'id_lote.lote',
       className: 'text-center'
     },
@@ -65,12 +65,24 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH'),
+      title: this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE'),
       data: 'fecha_reporte',
-      className: 'text-center'
+      className: 'text-center',
+      render: (data: any) => {
+        if (!data) return '';
+        const date = new Date(Number(data) * 1000); 
+        if (isNaN(date.getTime())) {
+          return 'Fecha inválida';
+        }
+        return date.toLocaleDateString('es-CO', { 
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        });
+      }
     },
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE'),
+      title: this.translate.instant('mod-merma.REGISTER.COLUMN_AMOUNT'),
       data: 'cantidad',
       className: 'text-center'
     },

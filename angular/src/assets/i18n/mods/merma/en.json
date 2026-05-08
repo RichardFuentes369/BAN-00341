@@ -17,7 +17,7 @@
   "BUTTON_RECORD": "Loss Records",
 
   "REGISTER": {
-    "LEGEND_TITLE": "Wastage record for this batch",
+    "LEGEND_TITLE": "Applied shrinkage",
 
     "COLUMN_ID": "ID",
     "COLUMN_TYPE": "Shrinkage type",

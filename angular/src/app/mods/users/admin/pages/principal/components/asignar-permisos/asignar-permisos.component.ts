@@ -87,11 +87,22 @@ export class AsignarPermisosComponent implements OnInit{
     return text ? text.trim().replace(/\s+/g, '\n') : '';
   }
 
-  toggleCollapse(nombrePermiso: string, isToggle: boolean) {
 
+  mostrarCards = true;
+  isAnimationDone = false;
+
+  toggleCards() {
+    this.mostrarCards = !this.mostrarCards;
+    if (!this.mostrarCards) {
+      this.isAnimationDone = true;
+    } else {
+      this.isAnimationDone = false;
+    }
+  }
+
+  toggleCollapse(nombrePermiso: string, isToggle: boolean) {
     const response  = this.permisos.find((e: any) => e.mpm_permiso == nombrePermiso)
     response.mpm_toogle = !isToggle
-
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
@@ -13,8 +13,8 @@ import { FinalService } from '@mod/users/admin/pages/finales/service/final.servi
 import { STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE } from '@const/app.const';
 import { BodegaService } from '../../service/warehouse.service';
 import { AuthService } from '@guard/service/auth.service';
-import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
+import { CommonModule } from '@angular/common';
 
 interface LoteInterface {
   'id': number,
@@ -34,9 +34,9 @@ interface LoteInterface {
   selector: 'app-ver-warehouse',
   standalone: true,
   imports: [
+    CommonModule,
     TranslateModule, 
     FormsModule,
-    LoadingComponent,
     TablecrudComponent
   ],
   templateUrl: './ver-warehouse.component.html',
@@ -95,17 +95,8 @@ export class VerWarehouseComponent {
     estado: false
   }
 
-  formatoFecha(fecha: number){
-    const date = new Date(Number(fecha) * 1000);
-    const yyyy = date.getFullYear();
-    const mm = String(date.getMonth() + 1).padStart(2, '0');
-    const dd = String(date.getDate()).padStart(2, '0');
-
-    return `${mm}/${dd}/${yyyy}`
-  }
-
   cargarIdioma = true
-  endPoint = `registro-mermas/obtener-registro-mermas?id_lote=${this.id_lote}`
+  endPoint = ``
   columnas: any[] = [
     {
       title: this.translate.instant('mod-merma.REGISTER.COLUMN_ID'),
@@ -147,16 +138,20 @@ export class VerWarehouseComponent {
     },
     {
       title: this.translate.instant('mod-merma.REGISTER.COLUMN_TYPE'),
-      data: 'id_tipo_merma',
+      data: 'id_tipo_merma.nombre',
       className: 'text-center'
     },
   ];
-  titlePage = ''
+  titlePage = this.translate.instant('mod-warehouse.TABLE_TITLE')
 
   async ngOnInit() {
+    let idLote = this.route.snapshot.queryParams?.['id_lote']
+    if(idLote){
+      this.endPoint = `registro-mermas/obtener-registro-mermas?id_lote=${idLote}`
+    }
+
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
-    this.id_lote = this.route.snapshot.queryParams?.['id_lote']
-    this.loteReal = await this.bodegaService.getDataLote(this.route.snapshot.queryParams?.['id_lote'])
+    this.loteReal = await this.bodegaService.getDataLote(idLote)
 
     this.producto.nombre = this.loteReal.data.id_producto.nombre
     this.producto.marca = this.loteReal.data.id_producto.marca.nombre
@@ -179,4 +174,12 @@ export class VerWarehouseComponent {
     this.model.estado = this.loteReal.data.estado
   }
 
+  formatoFecha(fecha: number){
+    const date = new Date(Number(fecha) * 1000);
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+
+    return `${mm}/${dd}/${yyyy}`
+  }
 }

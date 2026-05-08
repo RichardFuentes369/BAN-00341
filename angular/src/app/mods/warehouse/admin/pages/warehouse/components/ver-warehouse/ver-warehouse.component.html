@@ -101,7 +101,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-sm-12 form-group">
         <label for="exampleInputEmail1">
           {{ 'mod-warehouse.LABEL_ESTADO' | translate}}
@@ -113,29 +112,23 @@
           <option value="agotado">{{ 'mod-warehouse.SELECT_EXPIRED_OPTION' | translate}}</option>
         </select>
       </div>
-
     </fieldset>
 
     <fieldset class="border p-3 rounded">
       <legend class="float-none w-auto p-1">
         {{ 'mod-merma.REGISTER.LEGEND_TITLE' | translate }}
       </legend>
-
       @if (cargarIdioma) {
       <div class="table-container">
         <app-globales-tablecrud 
+          *ngIf="endPoint"
           [endPoint]="endPoint" 
           [columnas]="columnas" 
           [title]="titlePage" 
         >
         </app-globales-tablecrud>
       </div>
-      } @else {
-      <div class="d-flex justify-content-center py-5">
-        <app-globales-loading></app-globales-loading>
-      </div>
-      }
-
+      } 
     </fieldset>  
   </div>
 </div>
