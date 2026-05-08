@@ -20,6 +20,28 @@ DROP DATABASE IF EXISTS `BAN_00341`;
 CREATE DATABASE IF NOT EXISTS `BAN_00341` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `BAN_00341`;
 
+-- Dumping structure for table BAN_00341.mod_bodega
+DROP TABLE IF EXISTS `mod_bodega`;
+CREATE TABLE IF NOT EXISTS `mod_bodega` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lote` varchar(50) NOT NULL,
+  `fecha_entrada` bigint(20) NOT NULL,
+  `fecha_vencimiento` bigint(20) DEFAULT NULL,
+  `cantidad_comprada` int(11) NOT NULL DEFAULT 0,
+  `cantidad_vendida` int(11) NOT NULL DEFAULT 0,
+  `cantidad_en_bodega` int(11) NOT NULL DEFAULT 0,
+  `estado` enum('disponible','vencido','agotado') NOT NULL DEFAULT 'disponible',
+  `id_producto` int(11) NOT NULL,
+  `id_proveedor` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_6138e455f12a930432c960966c3` (`id_producto`),
+  KEY `FK_a707728565e09c6c5106a8335d1` (`id_proveedor`),
+  CONSTRAINT `FK_6138e455f12a930432c960966c3` FOREIGN KEY (`id_producto`) REFERENCES `mod_catalogo_productos` (`id`) ON UPDATE NO ACTION,
+  CONSTRAINT `FK_a707728565e09c6c5106a8335d1` FOREIGN KEY (`id_proveedor`) REFERENCES `mod_catalogo_proveedores` (`id`) ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Data exporting was unselected.
+
 -- Dumping structure for table BAN_00341.mod_catalogo_marcas
 DROP TABLE IF EXISTS `mod_catalogo_marcas`;
 CREATE TABLE IF NOT EXISTS `mod_catalogo_marcas` (
@@ -27,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `mod_catalogo_marcas` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_09768fd7375b60a05e91503d04` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -47,7 +69,6 @@ DROP TABLE IF EXISTS `mod_catalogo_productos`;
 CREATE TABLE IF NOT EXISTS `mod_catalogo_productos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(150) NOT NULL,
-  `unidad_medida` enum('unidad','kg','litro','paquete') NOT NULL DEFAULT 'kg',
   `stock_minimo` int(11) NOT NULL,
   `es_perecedero` tinyint(1) NOT NULL DEFAULT 1,
   `alerta_amarilla` int(11) DEFAULT NULL,
@@ -55,11 +76,12 @@ CREATE TABLE IF NOT EXISTS `mod_catalogo_productos` (
   `estado` tinyint(1) NOT NULL DEFAULT 1,
   `codigo_barra` varchar(13) NOT NULL,
   `id_marca` int(11) NOT NULL,
+  `unidad_medida` varchar(150) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_58c1252afc49ad323e7c5a3c0a` (`codigo_barra`),
   KEY `FK_f3087ae9693d048e2a9aba091a5` (`id_marca`),
   CONSTRAINT `FK_f3087ae9693d048e2a9aba091a5` FOREIGN KEY (`id_marca`) REFERENCES `mod_catalogo_marcas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -79,31 +101,6 @@ CREATE TABLE IF NOT EXISTS `mod_catalogo_proveedores` (
 
 -- Data exporting was unselected.
 
--- Dumping structure for table BAN_00341.mod_lote
-DROP TABLE IF EXISTS `mod_lote`;
-CREATE TABLE IF NOT EXISTS `mod_lote` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lote` varchar(50) NOT NULL,
-  `fecha_entrada` bigint(20) NOT NULL,
-  `fecha_vencimiento` bigint(20) DEFAULT NULL,
-  `cantidad_comprada` int(11) NOT NULL DEFAULT 0,
-  `cantidad_vendida` int(11) NOT NULL DEFAULT 0,
-  `stock` int(11) NOT NULL DEFAULT 0,
-  `costo_unitario` decimal(10,2) NOT NULL DEFAULT 0.00,
-  `precio_venta_sugerido` decimal(10,2) NOT NULL DEFAULT 0.00,
-  `estado` enum('disponible','vencido','agotado') NOT NULL DEFAULT 'disponible',
-  `id_producto` int(11) NOT NULL,
-  `id_proveedor` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `IDX_0fa3203835ac3fa160d1931dbb` (`lote`),
-  KEY `FK_c092e4d64074c5be85e9116dd94` (`id_producto`),
-  KEY `FK_2a6dab7c1ebe24649a8d88a5e51` (`id_proveedor`),
-  CONSTRAINT `FK_2a6dab7c1ebe24649a8d88a5e51` FOREIGN KEY (`id_proveedor`) REFERENCES `mod_catalogo_proveedores` (`id`) ON UPDATE NO ACTION,
-  CONSTRAINT `FK_c092e4d64074c5be85e9116dd94` FOREIGN KEY (`id_producto`) REFERENCES `mod_catalogo_productos` (`id`) ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Data exporting was unselected.
-
 -- Dumping structure for table BAN_00341.mod_merma_mermas
 DROP TABLE IF EXISTS `mod_merma_mermas`;
 CREATE TABLE IF NOT EXISTS `mod_merma_mermas` (
@@ -117,9 +114,9 @@ CREATE TABLE IF NOT EXISTS `mod_merma_mermas` (
   PRIMARY KEY (`id`),
   KEY `FK_f936b059227146a8e5f1ffaec0a` (`id_tipo_merma`),
   KEY `FK_c43c67defe5b3af684b4065015b` (`id_lote`),
-  CONSTRAINT `FK_c43c67defe5b3af684b4065015b` FOREIGN KEY (`id_lote`) REFERENCES `mod_lote` (`id`) ON UPDATE NO ACTION,
+  CONSTRAINT `FK_c43c67defe5b3af684b4065015b` FOREIGN KEY (`id_lote`) REFERENCES `mod_bodega` (`id`) ON UPDATE NO ACTION,
   CONSTRAINT `FK_f936b059227146a8e5f1ffaec0a` FOREIGN KEY (`id_tipo_merma`) REFERENCES `mod_merma_tipos` (`id`) ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -164,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `mod_permisos_modulo_asignacion` (
   PRIMARY KEY (`id`),
   KEY `FK_6eb0af2f8e13274ad1819f4cfca` (`user_id`),
   CONSTRAINT `FK_6eb0af2f8e13274ad1819f4cfca` FOREIGN KEY (`user_id`) REFERENCES `mod_usuarios_admin` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=478 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=485 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
