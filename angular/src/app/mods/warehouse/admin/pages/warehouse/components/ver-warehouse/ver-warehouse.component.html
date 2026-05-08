@@ -121,7 +121,20 @@
         {{ 'mod-merma.REGISTER.LEGEND_TITLE' | translate }}
       </legend>
 
-      // aqui iria una tabla
+      @if (cargarIdioma) {
+      <div class="table-container">
+        <app-globales-tablecrud 
+          [endPoint]="endPoint" 
+          [columnas]="columnas" 
+          [title]="titlePage" 
+        >
+        </app-globales-tablecrud>
+      </div>
+      } @else {
+      <div class="d-flex justify-content-center py-5">
+        <app-globales-loading></app-globales-loading>
+      </div>
+      }
 
     </fieldset>  
   </div>

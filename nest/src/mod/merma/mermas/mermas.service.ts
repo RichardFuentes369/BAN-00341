@@ -40,13 +40,13 @@ export class MermasService {
 
     const where: any = {};
 
-    // precisos y entre
-    if (filterDto.cantidad) where.cantidad = filterDto.cantidad;
-    if (filterDto.fecha_reporte) where.fecha_reporte = filterDto.fecha_reporte;
-    if (filterDto.valor_perdido) where.valor_perdido = filterDto.valor_perdido;
-    if (filterDto.observaciones) where.observaciones = filterDto.observaciones;
-    if (filterDto.id_tipo_merma) where.id_tipo_merma = filterDto.id_tipo_merma;
-    if (filterDto.id_lote) where.id_lote = filterDto.id_lote;
+    // precisos y entre ... validar
+    if (filterDto.cantidad) where.cantidad =  Like(`%${filterDto.cantidad}`);
+    if (filterDto.fecha_reporte) where.fecha_reporte = Like(`%${filterDto.fecha_reporte}`);
+    if (filterDto.valor_perdido) where.valor_perdido = Like(`%${filterDto.valor_perdido}`);
+    if (filterDto.observaciones) where.observaciones = Like(`%${filterDto.observaciones}`);
+    if (filterDto.id_tipo_merma) where.id_tipo_merma = Like(`%${filterDto.id_tipo_merma}`);
+    if (filterDto.id_lote) where.id_lote = Like(`%${filterDto.id_lote}`);
 
     const peticion = async (page) => {
       return await this.mermaRepository.find({

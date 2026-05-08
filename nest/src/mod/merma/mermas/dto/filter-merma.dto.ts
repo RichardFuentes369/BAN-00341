@@ -44,12 +44,12 @@ export class FilterRegistroMermaDto {
     observaciones?: string;   
 
     @IsOptional()
-    @IsString()
-    id_tipo_merma?: string;     
+    @IsNumber()
+    id_tipo_merma?: number;     
     
     @IsOptional()
-    @IsString()
-    id_lote?: string;     
+    @IsNumber()
+    id_lote?: number;     
 
     @IsOptional()
     @IsString()

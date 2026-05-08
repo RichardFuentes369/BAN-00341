@@ -48,4 +48,6 @@ export class Bodega {
 
   @OneToMany(() => Merma, (merma) => merma.id_lote)
   mermas: Merma[];
+
+  total_mermas?: number;
 }

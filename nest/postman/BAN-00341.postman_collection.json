@@ -2679,7 +2679,7 @@
 							"name": "registro-mermas",
 							"item": [
 								{
-									"name": "obtener-registro-mermas",
+									"name": "obtener-registro-mermas-por-lote",
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -2845,7 +2845,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/batch/obtener-registro-lote?_id=7&lang=es",
+											"raw": "localhost:3000/api/batch/obtener-registro-lote?_id=1&lang=es",
 											"host": [
 												"localhost"
 											],
@@ -2858,7 +2858,7 @@
 											"query": [
 												{
 													"key": "_id",
-													"value": "7"
+													"value": "1"
 												},
 												{
 													"key": "lang",
@@ -2886,7 +2886,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"lote\": \"ASDR14963\",\n    \"fecha_entrada\": 1778007892, \n    \"fecha_vencimiento\": 1778889892, \n    \"cantidad_comprada\": 6250,\n    \"cantidad_vendida\": 0,\n    \"cantidad_en_bodega\": 6250,\n    \"estado\": \"disponible\",\n    \"id_producto\": 8,\n    \"id_proveedor\": 5\n}",
+											"raw": "{\n    \"lote\": \"MC-res-2586\",\n    \"fecha_entrada\": 1775192154,\n    \"fecha_vencimiento\": 1776315600,\n    \"cantidad_comprada\": 3600,\n    \"cantidad_vendida\": 0,\n    \"cantidad_afectada_por_merma\": 0,\n    \"cantidad_en_bodega\": 3600,\n    \"estado\": \"disponible\",\n    \"id_producto\": 11,\n    \"id_proveedor\": 3\n}",
 											"options": {
 												"raw": {
 													"language": "json"

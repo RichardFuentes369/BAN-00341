@@ -120,6 +120,16 @@ export class WarehoseComponent implements OnInit, OnDestroy{
       className: 'text-center'
     },
     {
+      title: this.translate.instant('mod-warehouse.COLUMN_SOLD'),
+      data: 'cantidad_vendida',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-warehouse.COLUMN_SHRINKAGE'),
+      data: 'mermas',
+      className: 'text-center'
+    },
+    {
       title: this.translate.instant('mod-warehouse.COLUMN_IN_STOCK'),
       data: 'cantidad_en_bodega',
       className: 'text-center'
@@ -271,6 +281,16 @@ export class WarehoseComponent implements OnInit, OnDestroy{
       {
         title: this.translate.instant('mod-warehouse.COLUMN_PURCHASED'),
         data: 'cantidad_comprada',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-warehouse.COLUMN_SOLD'),
+        data: 'cantidad_vendida',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-warehouse.COLUMN_SHRINKAGE'),
+        data: 'mermas',
         className: 'text-center'
       },
       {

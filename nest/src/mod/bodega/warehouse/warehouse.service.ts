@@ -54,7 +54,7 @@ export class WarehouseService {
     if (filterDto.lote) where.lote = filterDto.lote;
 
     const peticion = async (page) => {
-      return await this.batchRepository.find({
+      const lotes = await this.batchRepository.find({
         skip: page,
         take: limit,
         where: where,
@@ -67,6 +67,11 @@ export class WarehouseService {
           mermas: true,
         }
       })
+
+      return lotes.map(lote => ({
+        ...lote,
+        mermas: lote.mermas ? lote.mermas.length : 0
+      }));
     }
 
     const totalRecords = async () => {
@@ -95,7 +100,7 @@ export class WarehouseService {
     lang: string, 
     id: number
   ) {
-    const category = await this.batchRepository.findOne({ 
+    const lote = await this.batchRepository.findOne({ 
       where: { id },
       relations: {
         id_producto: {
@@ -105,10 +110,17 @@ export class WarehouseService {
         mermas: true,
       }
     });
-    if (!category) throw new NotFoundException(
-      this.i18n.t('batch.MSJ_BATCH_NO_ENCONTRADA', { lang })
-    );
-    return category;
+
+    if (!lote) {
+      throw new NotFoundException(
+        this.i18n.t('batch.MSJ_BATCH_NO_ENCONTRADA', { lang })
+      );
+    }
+
+    return {
+      ...lote,
+      mermas: lote.mermas ? lote.mermas.length : 0
+    };
   }
 
   async create(
