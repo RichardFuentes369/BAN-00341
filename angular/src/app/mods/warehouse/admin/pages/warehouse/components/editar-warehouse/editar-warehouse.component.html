@@ -1,6 +1,57 @@
-<div class="">
+<!-- <div class="">
   @for (item of lote; track item; let  i = $index) {
+  }
+</div> -->
+<div class="">
   <div class="col-xl col-sm-12">
+    <fieldset class="border p-3 rounded">
+      <legend class="float-none w-auto p-1">
+        {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_PRODUCT' | translate }}
+      </legend>
+      <div class="row">
+        <div class="col-sm-12 form-group mb-3">
+          <label>{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
+          <input type="text" class="form-control form-select-sm" [(ngModel)]="model.codigo_barra">
+          <div class="row mt-3">
+            <div class="col-sm-6 form-group">
+              <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
+              <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.nombre" disabled>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
+              <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.marca" disabled>
+            </div>
+            <div class="col-sm form-group">
+              <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</label>
+              <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.unidad_medida" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="border p-3 rounded">
+      <legend class="float-none w-auto p-1">
+        {{ 'mod-catalog.SUPPLIER.LEGEND_TITLE' | translate }}
+      </legend>
+      <div class="row">
+        <div class="col-sm-12 form-group mb-3">
+          <label>{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}</label>
+          <input type="text" class="form-control form-select-sm" [(ngModel)]="proveedor.nit">
+          <div class="row mt-3">
+            <div class="col-sm-6 form-group">
+              <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
+              <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="proveedor.razon_social" disabled>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
+              <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="proveedor.correo" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
     <fieldset class="border p-3 rounded">
       <legend class="float-none w-auto p-1">
         {{ 'mod-warehouse.LEGEND_TITLE' | translate }}
@@ -9,62 +60,75 @@
         <label for="exampleInputEmail1">
           {{ 'mod-warehouse.LABEL_LOTE' | translate}}
         </label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.lote}}">
-        <!-- @if(validators.nombre) {
-          <span class="text-danger small">{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}</span>
-        } -->
-      </div>        
+        <input type="text" class="form-control form-select-sm" [(ngModel)]="model.lote">
+      </div>
       <div class="col-sm-12 form-group">
         <label for="exampleInputEmail1">
           {{ 'mod-warehouse.LABEL_FECHA_ENTRADA' | translate}}
         </label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.fecha_entrada}}">
-        <!-- @if(validators.nombre) {
-          <span class="text-danger small">{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}</span>
-        } -->
-      </div>        
+        <input type="text" class="form-control form-select-sm" [(ngModel)]="model.fecha_entrada">
+      </div>
+      @if(producto.es_perecedero){
       <div class="col-sm-12 form-group">
         <label for="exampleInputEmail1">
           {{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}
         </label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.fecha_vencimiento}}">
-        <!-- @if(validators.nombre) {
-          <span class="text-danger small">{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}</span>
-        } -->
-      </div>        
+        <input type="text" class="form-control form-select-sm" [(ngModel)]="model.fecha_vencimiento">
+      </div>
+      }
       <div class="col-sm-12 form-group">
-        <label for="exampleInputEmail1">
-          {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}
-        </label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.cantidad_comprada}}">
-        <!-- @if(validators.nombre) {
-          <span class="text-danger small">{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}</span>
-        } -->
-      </div>       
-      <div class="col-sm-12 form-group">
-        <label for="exampleInputEmail1">
-          {{ 'mod-warehouse.LABEL_CANTIDAD_VENDIDA' | translate}}
-        </label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.cantidad_vendida}}">
-        <!-- @if(validators.nombre) {
-          <span class="text-danger small">{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}</span>
-        } -->
-      </div>            
+        <div class="row">
+          <div class="col-sm-4 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}
+            </label>
+            <input type="number" min="0" class="form-control form-select-sm" [(ngModel)]="model.cantidad_comprada">
+            <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
+          </div>
+          <div class="col-sm-4 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-warehouse.LABEL_CANTIDAD_VENDIDA' | translate}}
+            </label>
+            <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="model.cantidad_vendida" disabled>
+            <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
+          </div>
+          <div class="col-sm-4 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-warehouse.LABEL_CANTIDAD_AFECTADA' | translate}}
+            </label>
+            <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="model.cantidad_afectada_por_merma" disabled>
+            <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
+          </div>
+        </div>
+      </div>
       <div class="col-sm-12 form-group">
         <label for="exampleInputEmail1">
           {{ 'mod-warehouse.LABEL_ESTADO' | translate}}
         </label>
-        <select name="" id="" class="form-control" [(ngModel)]="model.estado" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.estado" >
+        <select class="form-control custom-select form-select-sm" [(ngModel)]="model.estado">
           <option value="">{{ 'mod-warehouse.SELECT_SELECT_OPTION' | translate}}</option>
           <option value="disponible">{{ 'mod-warehouse.SELECT_AVAILABLE_OPTION' | translate}}</option>
           <option value="vencido">{{ 'mod-warehouse.SELECT_UNAVAILABLE_OPTION' | translate}}</option>
           <option value="agotado">{{ 'mod-warehouse.SELECT_EXPIRED_OPTION' | translate}}</option>
         </select>
-        <!-- @if(validators.nombre) {
-          <span class="text-danger small">{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}</span>
-        } -->
       </div>
     </fieldset>
+
+    <fieldset class="border p-3 rounded">
+      <legend class="float-none w-auto p-1">
+        {{ 'mod-merma.REGISTER.LEGEND_TITLE' | translate }}
+      </legend>
+      @if (cargarIdioma) {
+      <div class="table-container">
+        <app-globales-tablecrud 
+          *ngIf="endPoint"
+          [endPoint]="endPoint" 
+          [columnas]="columnas" 
+          [title]="titlePage" 
+        >
+        </app-globales-tablecrud>
+      </div>
+      } 
+    </fieldset>  
   </div>
-  }
 </div>

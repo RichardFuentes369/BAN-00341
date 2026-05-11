@@ -441,5 +441,7 @@ export class WarehoseComponent implements OnInit, OnDestroy{
   }
 
   async actualizarContadores (){
+    const data = await this.bodegaService.obtenerTotale()
+    this.count_total_products = data.data.count_total_products
   }
 }

@@ -70,7 +70,7 @@ export class WarehouseService {
 
       return lotes.map(lote => ({
         ...lote,
-        mermas: lote.mermas ? lote.mermas.length : 0
+        mermas: lote.mermas ? lote.mermas.reduce((total, m) => total + m.cantidad, 0) : 0
       }));
     }
 
@@ -119,7 +119,7 @@ export class WarehouseService {
 
     return {
       ...lote,
-      mermas: lote.mermas ? lote.mermas.length : 0
+        mermas: lote.mermas ? lote.mermas.reduce((total, m) => total + m.cantidad, 0) : 0
     };
   }
 
@@ -145,5 +145,17 @@ export class WarehouseService {
         'status': 404,
       };
     }
+  }
+
+  async contadoresLote(
+    lang: string
+  ){
+    const cont1 =  await this.batchRepository.count()
+    
+    const data = {
+      "count_total_products": cont1,
+    }
+
+    return data
   }
 }

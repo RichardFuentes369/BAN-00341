@@ -45,4 +45,11 @@ export class WarehouseController {
     return this.warehouseService.create(lang, batchData, userId);
   }
 
+  // contadores
+  @Get('obtener-contadores-lote')
+  async contadores(
+    @Query('lang') lang:string,
+  ) {
+    return this.warehouseService.contadoresLote(lang);
+  }
 }
