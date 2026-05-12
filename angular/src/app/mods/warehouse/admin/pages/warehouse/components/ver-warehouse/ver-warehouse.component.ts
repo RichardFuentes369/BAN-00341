@@ -70,6 +70,8 @@ export class VerWarehouseComponent {
     correo: ''
   }
 
+  cantidad_afectada_por_merma = ''
+
   model = {
     id_producto: '',
     id_proveedor: '',
@@ -79,7 +81,6 @@ export class VerWarehouseComponent {
     fecha_vencimiento: '',
     cantidad_comprada: '',
     cantidad_vendida: '',
-    cantidad_afectada_por_merma: '',
     estado: ''
   }
 
@@ -170,7 +171,7 @@ export class VerWarehouseComponent {
     this.model.fecha_vencimiento = this.formatoFecha(this.loteReal.data.fecha_vencimiento)  
     this.model.cantidad_comprada = this.loteReal.data.cantidad_comprada
     this.model.cantidad_vendida = this.loteReal.data.cantidad_vendida
-    this.model.cantidad_afectada_por_merma = this.loteReal.data.mermas
+    this.cantidad_afectada_por_merma = this.loteReal.data.mermas
     this.model.estado = this.loteReal.data.estado
   }
 
@@ -180,6 +181,6 @@ export class VerWarehouseComponent {
     const mm = String(date.getMonth() + 1).padStart(2, '0');
     const dd = String(date.getDate()).padStart(2, '0');
 
-    return `${mm}/${dd}/${yyyy}`
+    return `${yyyy}-${mm}-${dd}`
   }
 }

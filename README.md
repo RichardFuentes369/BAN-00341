@@ -4,11 +4,11 @@
 
 	Bodega
 		Cuando yo consulte las mermas toca buscar (lote + producto)
-		Editar 
-		Eliminar
+		Editar [ya tengo el modal, falta la accion]
+		Eliminar 
 		
 	Merma
-		Toca asociar la merma al (lote y al producto)
+		Cuando yo consulte las mermas toca buscar (lote + producto)
 		Registro de perdida (crud + contadores)
 		
 

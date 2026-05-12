@@ -147,6 +147,26 @@ export class WarehouseService {
     }
   }
 
+  async update(
+    lang: string, 
+    id: number, 
+    warehouseData: UpdateWarehouseDto, 
+    userId: number
+  ) {
+    const exists = await this.batchRepository.findOne({ where: { id: id } });
+    
+    if (exists && exists.id != id) throw new NotFoundException(
+      this.i18n.t('categoria.MSJ_ERROR_BRAND_EXISTE', { lang })
+    );
+    
+    const batch = await this.findOne(lang, id);
+    
+    // return this.batchRepository.save({
+    //   ...batch,
+    //   ...warehouseData
+    // });
+  }
+
   async contadoresLote(
     lang: string
   ){

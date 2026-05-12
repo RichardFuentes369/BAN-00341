@@ -36,6 +36,22 @@ export class WarehouseController {
   }
 
   @UseGuards(AdminGuard)
+  @Patch('editar-registro-lote')
+  update(
+    @Query('lang') lang: string,
+    @Query('_id') _id: string,
+    @Body() warehouseData: UpdateWarehouseDto,
+    @GetUser('id') userId: number
+  ) {
+    return this.warehouseService.update(
+      lang, 
+      +_id, 
+      warehouseData, 
+      userId
+    );
+  }
+
+  @UseGuards(AdminGuard)
   @Post('crear-lote')
   create(
     @Query('lang') lang: string,

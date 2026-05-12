@@ -16,8 +16,8 @@
 
 -- Dumping data for table BAN_00341.mod_bodega: ~6 rows (approximately)
 INSERT INTO `mod_bodega` (`id`, `lote`, `fecha_entrada`, `fecha_vencimiento`, `cantidad_comprada`, `cantidad_vendida`, `cantidad_en_bodega`, `estado`, `id_producto`, `id_proveedor`) VALUES
-	(1, 'Al-mg-1100', 1769922838, 1777698838, 25, 0, 0, 'disponible', 1, 1),
-	(2, 'Elt-du-366', 1769922838, NULL, 25, 0, 25, 'disponible', 2, 2),
+	(1, 'Al-mg-1100', 1769922838, 1777698838, 25, 0, 16, 'disponible', 1, 1),
+	(2, 'Elt-du-366', 1769922838, NULL, 25, 0, 23, 'disponible', 2, 2),
 	(3, 'Al-yogfre-180', 1769922838, 1779254038, 25, 0, 22, 'disponible', 3, 1),
 	(4, 'Al-cremle-180', 1769922838, 1778649238, 25, 0, 32, 'disponible', 4, 1),
 	(5, 'MC-res-2586', 1769922838, 1777958038, 5800, 0, 5800, 'disponible', 10, 3),
@@ -64,7 +64,8 @@ INSERT INTO `mod_catalogo_proveedores` (`id`, `razon_social`, `direccion`, `corr
 INSERT INTO `mod_merma_mermas` (`id`, `cantidad`, `fecha_reporte`, `valor_perdido`, `observaciones`, `id_tipo_merma`, `id_lote`) VALUES
 	(1, 5, 1778199473, 32000.00, 'se perdio', 1, 1),
 	(2, 2, 1778199478, 32000.00, 'ninguna', 2, 1),
-	(3, 2, 1778199520, 32000.00, 'ninguna', 3, 1);
+	(3, 2, 1778199520, 32000.00, 'ninguna', 3, 1),
+	(4, 2, 1778199520, 32000.00, 'ninguna', 1, 2);
 
 -- Dumping data for table BAN_00341.mod_merma_tipos: ~10 rows (approximately)
 INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES

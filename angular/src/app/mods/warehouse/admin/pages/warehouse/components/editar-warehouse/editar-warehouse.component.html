@@ -1,7 +1,3 @@
-<!-- <div class="">
-  @for (item of lote; track item; let  i = $index) {
-  }
-</div> -->
 <div class="">
   <div class="col-xl col-sm-12">
     <fieldset class="border p-3 rounded">
@@ -11,7 +7,15 @@
       <div class="row">
         <div class="col-sm-12 form-group mb-3">
           <label>{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
-          <input type="text" class="form-control form-select-sm" [(ngModel)]="model.codigo_barra">
+          <input type="text" class="form-control form-select-sm" [(ngModel)]="producto.codigo_barra" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.codigo_barra" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}">
+          @if(validators.codigo_barra) {
+          <div class="d-flex justify-content-between">
+            <small [ngClass]="esCodigoValido ? 'text-success font-weight-bold' : 'text-danger'">
+              {{ longitudCodigo }} / 13
+            </small>
+          </div>
+          }
+          @if(show_detail_product){
           <div class="row mt-3">
             <div class="col-sm-6 form-group">
               <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
@@ -26,7 +30,24 @@
               <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.unidad_medida" disabled>
             </div>
           </div>
+          }
         </div>
+        @if (btn_new_product && puedoCrearProductos) {
+          <div class="d-flex flex-row-reverse">
+            <div class="p-2">
+              <button class="btn btn-sm btn-primary" (click)="goTo('admin/mod/catalog/productos', 0)">
+                {{ 'mod-catalog.PRODUCT.CREATE_TITLE' | translate }} {{ 'mod-catalog.PRODUCT.CREATE_SUBTITLE' | translate }}
+              </button>
+            </div>
+          </div>
+        }
+        @if (btn_new_product && !puedoCrearProductos) {
+          <div class="d-flex justify-content-between">
+            <small class="text-danger">
+              {{ 'mod-warehouse.MSJ_ERROR_CREATE_PRODUCTS_PERMISSION' | translate }}
+            </small>
+          </div>
+        }
       </div>
     </fieldset>
 
@@ -37,7 +58,8 @@
       <div class="row">
         <div class="col-sm-12 form-group mb-3">
           <label>{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}</label>
-          <input type="text" class="form-control form-select-sm" [(ngModel)]="proveedor.nit">
+          <input type="text" class="form-control form-select-sm" [(ngModel)]="proveedor.nit" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nit" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate }}">
+          @if(show_detail_provider){
           <div class="row mt-3">
             <div class="col-sm-6 form-group">
               <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
@@ -48,7 +70,24 @@
               <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="proveedor.correo" disabled>
             </div>
           </div>
+          }
         </div>
+        @if (btn_new_provider && puedoCrearProveedores) {
+          <div class="d-flex flex-row-reverse">
+            <div class="p-2">
+              <button class="btn btn-sm btn-primary" (click)="goTo('admin/mod/catalog/proveedores', 0)">
+                {{ 'mod-catalog.SUPPLIER.CREATE_TITLE' | translate }} {{ 'mod-catalog.SUPPLIER.CREATE_SUBTITLE' | translate }}
+              </button>
+            </div>
+          </div>
+        }
+        @if (btn_new_product && !puedoCrearProductos) {
+          <div class="d-flex justify-content-between">
+            <small class="text-danger">
+              {{ 'mod-warehouse.MSJ_ERROR_CREATE_PRODUCTS_PERMISSION' | translate }}
+            </small>
+          </div>
+        }
       </div>
     </fieldset>
 
@@ -66,14 +105,14 @@
         <label for="exampleInputEmail1">
           {{ 'mod-warehouse.LABEL_FECHA_ENTRADA' | translate}}
         </label>
-        <input type="text" class="form-control form-select-sm" [(ngModel)]="model.fecha_entrada">
+        <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_entrada">
       </div>
       @if(producto.es_perecedero){
       <div class="col-sm-12 form-group">
         <label for="exampleInputEmail1">
           {{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}
         </label>
-        <input type="text" class="form-control form-select-sm" [(ngModel)]="model.fecha_vencimiento">
+        <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_vencimiento">
       </div>
       }
       <div class="col-sm-12 form-group">
@@ -96,7 +135,7 @@
             <label for="exampleInputEmail1">
               {{ 'mod-warehouse.LABEL_CANTIDAD_AFECTADA' | translate}}
             </label>
-            <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="model.cantidad_afectada_por_merma" disabled>
+            <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="cantidad_afectada_por_merma" disabled>
             <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
           </div>
         </div>
