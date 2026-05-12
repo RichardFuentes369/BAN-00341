@@ -40,23 +40,21 @@ export class TiposService {
     const where: any = {};
     if (filterDto.nombre) where.nombre = Like(`%${filterDto.nombre}%`);
 
-    const [tipo_merma, totalRecords] = await this.tipoMermaRepository.findAndCount({
-      where,
-      order: {
-        [field]: order.toUpperCase() as 'ASC' | 'DESC',
-      },
+    const totalRecords = await this.tipoMermaRepository.count({ where });
+
+    const [registros, total] = await this.tipoMermaRepository.findAndCount({
       skip: skipReal,
       take: limit,
+      where: where,
+      order: { [field]: order },
+      relations: { mermas: true } 
     });
 
-    const result = tipo_merma.map(tipo_merma => {
-      const totalReportados = tipo_merma.mermas ? tipo_merma.mermas.length : 0;
-      
-      const { mermas, ...resto } = tipo_merma; 
-      
+    const result = registros.map(tipo => {
       return {
-        ...resto,
-        totalReportados
+        ...tipo,
+        totalMermas: tipo.mermas ? tipo.mermas.length : 0,
+        merma: undefined 
       };
     });
 
@@ -155,5 +153,17 @@ export class TiposService {
         'message': this.i18n.t('categoria.MSN_PERMISO_REMOVIDO_OK', { lang }),
         'status': 200,
     };
+  }
+
+  async contadoresTipo(
+    lang: string
+  ){
+    const cont1 =  await this.tipoMermaRepository.count()
+    
+    const data = {
+      "count_total_type_merma": cont1,
+    }
+
+    return data
   }
 }

@@ -79,4 +79,12 @@ export class TiposController {
       userId
     );
   }
+
+  // contadores
+  @Get('obtener-contadores-tipo-merma')
+  async contadores(
+    @Query('lang') lang:string,
+  ) {
+    return this.tiposService.contadoresTipo(lang);
+  }
 }

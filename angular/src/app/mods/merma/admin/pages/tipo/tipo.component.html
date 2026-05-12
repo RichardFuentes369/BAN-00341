@@ -18,7 +18,7 @@
       [class.animate__fadeOut]="!mostrarCards || !cargarIdioma">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-2 mb-3 align-items-stretch">
       @for (card of [
-        { img: img, title: titleTotalSuppliers, count: contentInformation }
+        { img: img, title: titleTotalSuppliers, count: count_total_type_merma }
       ]; track $index) {
       <div class="col d-flex">
         <app-information-card 

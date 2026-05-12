@@ -118,7 +118,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
   img_user_actived = "assets/images/img_admin.png"
   titlePage = this.translate.instant('mod-merma.TABLE_TITLE')
   titleTotalRegister = this.translate.instant('mod-merma.REGISTER.CARD_TOTAL_REGISTER_TITLE')
-  count_total_products = '0'
+  count_total_register_merma = '0'
   // fin datos envio card information
 
   cargarIdioma = true;
@@ -231,5 +231,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
   }
 
   async actualizarContadores (){
+    const data = await this.registroService.obtenerTotale()
+    this.count_total_register_merma = data.data.count_total_register_merma
   }
 }

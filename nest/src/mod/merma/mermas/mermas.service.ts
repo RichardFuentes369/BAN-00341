@@ -97,4 +97,16 @@ export class MermasService {
     );
     return category;
   }
+
+  async contadoresRegistro(
+    lang: string
+  ){
+    const cont1 =  await this.mermaRepository.count()
+    
+    const data = {
+      "count_total_register_merma": cont1,
+    }
+
+    return data
+  }
 }

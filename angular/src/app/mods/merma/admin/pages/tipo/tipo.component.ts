@@ -68,7 +68,7 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
     },
     {
       title: this.translate.instant('mod-merma.TYPE.COLUMN_TOTAL'),
-      data: 'totalReportados',
+      data: 'totalMermas',
       className: 'text-center'
     }
   ];
@@ -94,7 +94,7 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
   img = "assets/images/img_admin.png"
   titlePage = this.translate.instant('mod-merma.TABLE_TITLE')
   titleTotalSuppliers = this.translate.instant('mod-merma.TYPE.CARD_TOTAL_TYPE_TITLE')
-  contentInformation = "250"
+  count_total_type_merma = '0'
   // fin datos envio card information
 
   cargarIdioma = true;
@@ -160,11 +160,11 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
         data: 'nombre',
         className: 'text-center'
       },
-    {
-      title: this.translate.instant('mod-merma.TYPE.COLUMN_TOTAL'),
-      data: 'totalReportados',
-      className: 'text-center'
-    }
+      {
+        title: this.translate.instant('mod-merma.TYPE.COLUMN_TOTAL'),
+        data: 'totalMermas',
+        className: 'text-center'
+      }
     ];  
   }
 
@@ -293,5 +293,7 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
   }
 
   async actualizarContadores (){
+    const data = await this.tipoService.obtenerTotale()
+    this.count_total_type_merma = data.data.count_total_type_merma
   }
 }

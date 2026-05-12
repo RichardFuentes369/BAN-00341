@@ -34,4 +34,12 @@ export class MermasController {
       +_id
     );
   }
+
+  // contadores
+  @Get('obtener-contadores-registro-merma')
+  async contadores(
+    @Query('lang') lang:string,
+  ) {
+    return this.mermasService.contadoresRegistro(lang);
+  }
 }
