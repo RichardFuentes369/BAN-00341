@@ -2886,7 +2886,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"lote\": \"MC-res-2586\",\n    \"fecha_entrada\": 1775192154,\n    \"fecha_vencimiento\": 1776315600,\n    \"cantidad_comprada\": 3600,\n    \"cantidad_vendida\": 0,\n    \"cantidad_afectada_por_merma\": 0,\n    \"cantidad_en_bodega\": 3600,\n    \"estado\": \"disponible\",\n    \"id_producto\": 11,\n    \"id_proveedor\": 3\n}",
+											"raw": "{\n    \"lote\": \"MC-res-2586\",\n    \"fecha_entrada\": 1775192154,\n    \"fecha_vencimiento\": 1776315600,\n    \"cantidad_comprada\": 3600,\n    \"cantidad_vendida\": 0,\n    \"cantidad_en_bodega\": 0,\n    \"estado\": \"disponible\",\n    \"id_producto\": 11,\n    \"id_proveedor\": 3\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2911,27 +2911,6 @@
 												}
 											]
 										}
-									},
-									"response": []
-								}
-							]
-						},
-						{
-							"name": "alertas",
-							"item": [
-								{
-									"name": "obtener-registro-alertas",
-									"request": {
-										"method": "GET",
-										"header": []
-									},
-									"response": []
-								},
-								{
-									"name": "obtener-registro-alerta",
-									"request": {
-										"method": "GET",
-										"header": []
 									},
 									"response": []
 								}
