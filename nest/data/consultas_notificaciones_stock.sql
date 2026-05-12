@@ -18,10 +18,10 @@ FROM (
         mcp.nombre,
         mcp.stock_minimo,
         COALESCE((
-            SELECT SUM(ml.cantidad_en_bodega)
-            FROM mod_lote ml
-            WHERE ml.id_producto = mcp.id
-            AND ml.estado = 'disponible'
+            SELECT SUM(mb.cantidad_en_bodega)
+            FROM mod_bodega mb
+            WHERE mb.id_producto = mcp.id
+            AND mb.estado = 'disponible'
         ), 0) AS total_productos_disponibles
     FROM mod_catalogo_productos mcp
     WHERE mcp.estado = true
