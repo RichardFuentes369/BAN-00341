@@ -18,7 +18,7 @@ export class Merma {
   valor_perdido: number;
 
   @Column({ type: 'text', nullable: false })
-  observaciones: string;
+  observacion: string;
 
   // Relation
   @ManyToOne(() => Tipo, (tipo_merma) => tipo_merma.id, {

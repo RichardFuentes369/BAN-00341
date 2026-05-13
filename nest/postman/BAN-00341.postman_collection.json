@@ -2765,6 +2765,143 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "crear-registro-merma",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"cantidad\": 2,\n  \"fecha_reporte\": 1778199520,\n  \"valor_perdido\": 32000,\n  \"observacion\": \"desde la api\",\n  \"id_tipo_merma\": 1,\n  \"id_lote\": 2\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/registro-mermas/crear-registro-merma",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"registro-mermas",
+												"crear-registro-merma"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "eliminar-registro-merma",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/registro-mermas/eliminar-registro-merma?_id=8&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"registro-mermas",
+												"eliminar-registro-merma"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "8"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "actualizar-registro-merma",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"cantidad\": 4,\n  \"fecha_reporte\": 1778120520,\n  \"valor_perdido\": 32000,\n  \"observacion\": \"Actualizando desde la api bla bal bla\",\n  \"id_tipo_merma\": 1,\n  \"id_lote\": 2\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/registro-mermas/actualizar-registro-merma?_id=9&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"registro-mermas",
+												"actualizar-registro-merma"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "9"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						}
@@ -2905,6 +3042,55 @@
 												"crear-lote"
 											],
 											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "editar-lote",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"lote\": \"Al-mg-1100\",\n    \"fecha_entrada\": 1769922838,\n    \"fecha_vencimiento\": 1777698838, // podria ir null dependiendo del producto\n    \"cantidad_comprada\": 25, // podria cambiar pero toca calcular el cantidad en bodega (disparar algo)\n    \"cantidad_vendida\": 0, // no puedo tocar\n    \"cantidad_en_bodega\": 16, // no puedo tocar\n    \"estado\": \"disponible\",\n    \"id_producto\": 1,\n    \"id_proveedor\": 1\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/batch/editar-registro-lote?_id=1&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"batch",
+												"editar-registro-lote"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												},
 												{
 													"key": "lang",
 													"value": "es"

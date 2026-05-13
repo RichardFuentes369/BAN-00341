@@ -93,7 +93,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
     },
     {
       title: this.translate.instant('mod-merma.REGISTER.COLUMN_OBSERVATION'),
-      data: 'observaciones',
+      data: 'observacion',
       className: 'text-center'
     },
   ];
@@ -202,7 +202,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
       },
       {
         title: this.translate.instant('mod-merma.REGISTER.COLUMN_OBSERVATION'),
-        data: 'observaciones',
+        data: 'observacion',
         className: 'text-center'
       },
     ];  

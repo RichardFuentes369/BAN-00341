@@ -1,7 +1,7 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateMermaDto } from './dto/create-merma.dto';
 import { UpdateMermaDto } from './dto/update-merma.dto';
-import { Like, Repository } from 'typeorm';
+import { In, Like, Repository } from 'typeorm';
 import { Merma } from './entities/merma.entity';
 import { I18nService } from 'nestjs-i18n';
 import { FilterRegistroMermaDto } from './dto/filter-merma.dto';
@@ -89,13 +89,72 @@ export class MermasService {
     lang: string,
     id: number
   ) {
-    const category = await this.mermaRepository.findOne({
+    const merma = await this.mermaRepository.findOne({
       where: { id }
     });
-    if (!category) throw new NotFoundException(
+    if (!merma) throw new NotFoundException(
       this.i18n.t('batch.MSJ_BATCH_NO_ENCONTRADA', { lang })
     );
-    return category;
+    return merma;
+  }
+
+  async create(
+    lang: string, 
+    mermaData: CreateMermaDto, 
+    userId: number
+  ) {
+    try {
+      await this.mermaRepository.save(mermaData);
+      return {
+        'title': this.i18n.t('category.MSJ_TITTLE', { lang }),
+        'message': this.i18n.t('category.MSJ_CREADO_EXITOSAMENTE', { lang }),
+        'status': 200,
+      };
+    } catch (error) {
+      return {
+        'title': error.response?.error || 'Error',
+        'message': error.response?.message || error.message,
+        'status': 404,
+      };
+    }
+  }
+
+  async update(
+    lang: string, 
+    id: number, 
+    mermaData: UpdateMermaDto, 
+    userId: number
+  ) {
+    try {
+      const merma = await this.mermaRepository.findOne({
+        where: { id }
+      });
+      return this.mermaRepository.save({
+        ...merma,
+        ...mermaData
+      });
+    } catch (error) {
+      return {
+        'title': error.response?.error || 'Error',
+        'message': error.response?.message || error.message,
+        'status': 404,
+      };
+    }
+  }
+
+  async remove(lang: string, ids: number[], userId: number) {
+
+    const merma = await this.mermaRepository.find({
+      where: { id: In(ids) },
+    });
+    
+    this.mermaRepository.delete({ id: In(ids) })
+
+    return {
+        'title': this.i18n.t('categoria.MSJ_CATEGORY_TITTLE', { lang }),
+        'message': this.i18n.t('categoria.MSN_PERMISO_REMOVIDO_OK', { lang }),
+        'status': 200,
+    };
   }
 
   async contadoresRegistro(

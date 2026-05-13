@@ -35,6 +35,51 @@ export class MermasController {
     );
   }
 
+  @UseGuards(AdminGuard)
+  @Post('crear-registro-merma')
+  create(
+    @Query('lang') lang: string,
+    @Body() mermaData: CreateMermaDto,
+    @GetUser('id') userId: number
+  ) {
+    return this.mermasService.create(
+      lang, 
+      mermaData, 
+      userId
+    );
+  }
+  
+  @UseGuards(AdminGuard)
+  @Patch('actualizar-registro-merma')
+  update(
+    @Query('lang') lang: string,
+    @Query('_id') _id: string,
+    @Body() mermaData: UpdateMermaDto,
+    @GetUser('id') userId: number
+  ) {
+    return this.mermasService.update(
+      lang, 
+      +_id, 
+      mermaData, 
+      userId
+    );
+  }
+
+  @UseGuards(AdminGuard)
+  @Delete('eliminar-registro-merma')
+  remove(
+    @Query('lang') lang: string,
+    @Query('_id') _id: string,
+    @GetUser('id') userId: number
+  ) {
+    const idsNumeros: number[] = _id.split(',').map(str => parseInt(str.trim(), 10));
+    return this.mermasService.remove(
+      lang, 
+      idsNumeros, 
+      userId
+    );
+  }
+
   // contadores
   @Get('obtener-contadores-registro-merma')
   async contadores(
