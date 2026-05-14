@@ -36,6 +36,6 @@ export class CreateProductDto {
   // @Transform(({value}) => value.trim())
   readonly stock_minimo;  
 
-  @IsString()
-  readonly unidad_medida;
+  @IsNumber()
+  readonly id_medida;
 }

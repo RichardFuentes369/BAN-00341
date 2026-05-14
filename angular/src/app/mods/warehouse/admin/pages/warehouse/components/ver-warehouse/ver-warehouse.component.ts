@@ -134,7 +134,7 @@ export class VerWarehouseComponent {
     },
     {
       title: this.translate.instant('mod-merma.REGISTER.COLUMN_OBSERVATION'),
-      data: 'observaciones',
+      data: 'observacion',
       className: 'text-center'
     },
     {
@@ -156,7 +156,7 @@ export class VerWarehouseComponent {
 
     this.producto.nombre = this.loteReal.data.id_producto.nombre
     this.producto.marca = this.loteReal.data.id_producto.marca.nombre
-    this.producto.unidad_medida = this.loteReal.data.id_producto.unidad_medida
+    this.producto.unidad_medida = this.loteReal.data.id_producto.medida.nombre
     this.producto.es_perecedero = this.loteReal.data.id_producto.es_perecedero
 
     this.proveedor.nit = this.loteReal.data.id_proveedor.nit

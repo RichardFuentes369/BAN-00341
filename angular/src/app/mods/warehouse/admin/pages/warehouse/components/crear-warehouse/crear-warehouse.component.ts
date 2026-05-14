@@ -172,7 +172,7 @@ export class CrearWarehouseComponent implements OnInit {
         this.model.id_producto = response.data.id
         this.producto.nombre = response.data.nombre
         this.producto.marca = response.data.marca.nombre
-        this.producto.unidad_medida = response.data.unidad_medida
+        this.producto.unidad_medida = response.data.medida.nombre
         this.producto.es_perecedero = response.data.es_perecedero
         $('.btnSave').removeClass('d-none')
         this.show_detail_product = true

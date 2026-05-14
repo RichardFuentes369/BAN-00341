@@ -1,15 +1,19 @@
 # (Validar que no se pueda eliminar no por permiso si no por delete cascade)
 
 ## PENDIENTE (I PARTE) [11-May-2026  23-May-2026]
-
 	Bodega
+		Si yo inactivo el producto no puedo usar la bodega con ese producto para crear, actualizar
 		Cuando yo consulte las mermas toca buscar (lote + producto)
 		Editar [ya tengo el modal, falta la accion]
-		Eliminar 
+		Eliminar [Falta todo]
 		
 	Merma
 		Cuando yo consulte las mermas toca buscar (lote + producto)
-		Registro de perdida (crud + contadores)
+		Registro de perdida [
+			CRUD - FALTA EN FRONTEND Y EN BACKNED (
+				SI ELIMINO, CREO O EDITO ACTUALIZAR AUTOMATICAMENTE LO QUE QUEDA O HALLA 
+			)
+		]
 		
 
 	CRONJOBS (II PARTE)

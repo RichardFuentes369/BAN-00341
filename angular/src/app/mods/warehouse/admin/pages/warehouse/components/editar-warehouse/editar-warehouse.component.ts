@@ -166,7 +166,7 @@ export class EditarWarehouseComponent {
     },
     {
       title: this.translate.instant('mod-merma.REGISTER.COLUMN_OBSERVATION'),
-      data: 'observaciones',
+      data: 'observacion',
       className: 'text-center'
     },
     {
@@ -211,7 +211,7 @@ export class EditarWarehouseComponent {
     this.producto.codigo_barra = this.loteReal.data.id_producto.codigo_barra
     this.producto.nombre = this.loteReal.data.id_producto.nombre
     this.producto.marca = this.loteReal.data.id_producto.marca.nombre
-    this.producto.unidad_medida = this.loteReal.data.id_producto.unidad_medida
+    this.producto.unidad_medida = this.loteReal.data.id_producto.medida.nombre
     this.producto.es_perecedero = this.loteReal.data.id_producto.es_perecedero
 
     this.proveedor.nit = this.loteReal.data.id_proveedor.nit
@@ -294,7 +294,7 @@ export class EditarWarehouseComponent {
         this.model.id_producto = response.data.id
         this.producto.nombre = response.data.nombre
         this.producto.marca = response.data.marca.nombre
-        this.producto.unidad_medida = response.data.unidad_medida
+        this.producto.unidad_medida = response.data.medida.nombre
         this.producto.es_perecedero = response.data.es_perecedero
         $('.btnUpdate').removeClass('d-none')
         this.show_detail_product = true

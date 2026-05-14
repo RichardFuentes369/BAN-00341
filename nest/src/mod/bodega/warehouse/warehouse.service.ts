@@ -62,7 +62,10 @@ export class WarehouseService {
           [field]: order
         },
         relations: {
-          id_producto: true,
+          id_producto: {
+            medida: true,
+            marca: true
+          },
           id_proveedor: true,
           mermas: true,
         }
@@ -105,6 +108,7 @@ export class WarehouseService {
       relations: {
         id_producto: {
           marca: true,
+          medida: true,
         },
         id_proveedor: true,
         mermas: true,

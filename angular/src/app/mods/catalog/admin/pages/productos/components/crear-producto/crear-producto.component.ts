@@ -36,7 +36,7 @@ export class CrearProductoComponent implements OnInit {
     nombre: '',
     id_marca: null, 
     stock_minimo: 1,
-    unidad_medida: '',
+    id_medida: 0,
     alerta_amarilla: 1, 
     alerta_naranja: 1
   };
@@ -47,7 +47,7 @@ export class CrearProductoComponent implements OnInit {
     nombre: false,
     marca: false,
     stock_minimo: false,
-    unidad_medida: false,
+    id_medida: false,
     es_perecedero: false,
     error_dias: false,
     error_dias_nulos: false,
@@ -81,6 +81,7 @@ export class CrearProductoComponent implements OnInit {
   }
 
   onInputChange() {
+    this.model.id_medida = +this.model.id_medida;
     this.validationSubject.next();
   }
 
@@ -90,7 +91,7 @@ export class CrearProductoComponent implements OnInit {
     this.validators.marca = (this.model.id_marca == null)
     this.validators.codigo_barra = (this.model.codigo_barra === null || !regexBarCode.test((this.model.codigo_barra as any).toString()))
     this.validators.stock_minimo = (this.model.stock_minimo <= 0);
-    this.validators.unidad_medida = (this.model.unidad_medida === '');
+    this.validators.id_medida = (this.model.id_medida === 0);
     this.validators.estado = (this.model.estado === null);
 
     if(this.model.es_perecedero){
@@ -99,9 +100,9 @@ export class CrearProductoComponent implements OnInit {
     }
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
-    (!this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.unidad_medida && !this.validators.estado) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+    (!this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.id_medida && !this.validators.estado) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
 
-    return !this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.unidad_medida && !this.validators.estado
+    return !this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.id_medida && !this.validators.estado
   }
 
   async crearProducto() {

@@ -66,6 +66,11 @@ export class WarehoseComponent implements OnInit, OnDestroy{
       className: 'text-center'
     },
     {
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
+      data: 'id_producto.marca.nombre',
+      className: 'text-center'
+    },
+    {
       title: this.translate.instant('mod-warehouse.COLUMN_BATCH'),
       data: 'lote',
       className: 'text-center'
@@ -136,7 +141,7 @@ export class WarehoseComponent implements OnInit, OnDestroy{
     },
     {
       title: this.translate.instant('mod-warehouse.COLUMN_UNIT_OF_MEASUREMENT'),
-      data: 'id_producto.unidad_medida',
+      data: 'id_producto.medida.nombre',
       className: 'text-center'
     },
     {
@@ -230,6 +235,11 @@ export class WarehoseComponent implements OnInit, OnDestroy{
         className: 'text-center'
       },
       {
+        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
+        data: 'id_producto.marca.nombre',
+        className: 'text-center'
+      },
+      {
         title: this.translate.instant('mod-warehouse.COLUMN_BATCH'),
         data: 'lote',
         className: 'text-center'
@@ -300,7 +310,7 @@ export class WarehoseComponent implements OnInit, OnDestroy{
       },
       {
         title: this.translate.instant('mod-warehouse.COLUMN_UNIT_OF_MEASUREMENT'),
-        data: 'id_producto.unidad_medida',
+        data: 'id_producto.medida.nombre',
         className: 'text-center'
       },
       {

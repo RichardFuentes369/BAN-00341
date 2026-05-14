@@ -88,7 +88,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
     },
     {
       title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_UNIT_OF_MEASUREMENT'),
-      data: 'unidad_medida',
+      data: 'medida.nombre',
       className: 'text-center'
     },
   ];
@@ -208,7 +208,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
       },
       {
         title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_UNIT_OF_MEASUREMENT'),
-        data: 'unidad_medida',
+        data: 'medida.nombre',
         className: 'text-center'
       },
     ]

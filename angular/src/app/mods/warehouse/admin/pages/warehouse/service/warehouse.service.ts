@@ -41,6 +41,8 @@ export class BodegaService {
     data.fecha_entrada = toTimestampp(data.fecha_entrada)
     if(data.fecha_vencimiento != ''){
       data.fecha_vencimiento = toTimestampp(data.fecha_vencimiento) + 86399
+    }else{
+      data.fecha_vencimiento = null
     }
     if(data.cantidad_comprada != ''){
       data.cantidad_en_bodega = data.cantidad_comprada 

@@ -21,6 +21,9 @@ export class Producto {
   id_marca: number;
 
   @Column()
+  id_medida: number;
+
+  @Column()
   stock_minimo: number;
 
   @Column({ type: 'tinyint', width: 1, default: 1 })

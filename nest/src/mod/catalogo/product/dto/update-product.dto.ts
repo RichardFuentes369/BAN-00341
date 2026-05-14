@@ -44,6 +44,6 @@ export class  UpdateProductDto extends PartialType(CreateProductDto) {
   readonly stock_minimo;  
 
   @IsOptional()
-  @IsString()
-  readonly unidad_medida;
+  @IsNumber()
+  readonly id_medida;
 }

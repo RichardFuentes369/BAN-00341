@@ -23,6 +23,10 @@ interface ProctoInteface {
     id: number,
     nombre: string
   },
+  medida: {
+    id: number,
+    nombre: string
+  },
   id_marca: number, 
   stock_minimo: number,
   unidad_medida: string,
@@ -68,7 +72,8 @@ export class EditarProductoComponent implements OnInit {
     estado: false,
     codigo_barra: '',
     nombre: '',
-    id_marca: 1, 
+    id_marca: 0, 
+    id_medida: 0, 
     stock_minimo: 1,
     unidad_medida: '',
     alerta_amarilla: 1, 
@@ -117,6 +122,7 @@ export class EditarProductoComponent implements OnInit {
         this.producto = [prodData];
 
         this.model.id_marca = this.producto[0].marca.id
+        this.model.id_medida = this.producto[0].medida.id
         this.model.es_perecedero = this.producto[0].es_perecedero,
         this.model.estado = this.producto[0].estado,
         this.model.codigo_barra = this.producto[0].codigo_barra,
