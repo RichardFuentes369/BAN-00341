@@ -34,6 +34,11 @@ CTRL + SHIFT + V
 		
 		* funcion para indicar si se vendio o fue afectada por merma, necesitaria "codigo de barra" y lote - falta
 	```
+
+	NOTIFICACIÓNES
+	```
+		* crear un notificador (tabla) para ver notificaciónes de los cronjobs
+	```
 		
 ## PENDIENTE (II PARTE)  [25-May-2026  29-May-2026]
 ### Filtros
