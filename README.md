@@ -24,6 +24,7 @@ CTRL + SHIFT + V
 			CRUD - FALTA EN FRONTEND Y EN BACKNED (
 				SI ELIMINO, CREO O EDITO ACTUALIZAR AUTOMATICAMENTE LO QUE QUEDA O HALLA 
 			)
+			Agregar id de usuario que hizo el registro
 		]
 	```
 		
