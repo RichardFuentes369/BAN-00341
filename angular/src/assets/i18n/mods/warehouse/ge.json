@@ -5,6 +5,7 @@
   "TABLE_TITLE": "Datensätze",
 
   "MSJ_ERROR_CREATE_PRODUCTS_PERMISSION": "Bitte wenden Sie sich an den Administrator, um neue Produkte zu erstellen. Ihr Benutzerkonto verfügt nicht über die erforderlichen Berechtigungen, um diese Aktion auszuführen.",
+  "MSJ_ERROR_PRODUCT_INACTIVE": "Dieses Produkt ist derzeit inaktiv",
 
   "REPORT_PERMISSION_TITLE": "Bericht",
   "REPORT_PERMISSION_SUBTITLE": "rückverfolgbarkeits",

@@ -85,6 +85,7 @@ export class CrearWarehouseComponent implements OnInit {
   }
 
   validators = {
+    producto_inactivo: false,
     id_producto: false,
     id_proveedor: false,
     nit: false,
@@ -169,12 +170,24 @@ export class CrearWarehouseComponent implements OnInit {
     try {
       const response = await this.productoService.getDataProductForBarcode(this.producto.codigo_barra);
       if (response.status === 200) {
+
+        if(response.data.estado === false){
+          this.validators.producto_inactivo = true
+          this.btn_new_product = false
+          this.form_new_provider = false
+          this.form_new_batch = false
+          this.show_detail_product = false
+          this.show_detail_provider = false
+          return
+        }
+
         this.model.id_producto = response.data.id
         this.producto.nombre = response.data.nombre
         this.producto.marca = response.data.marca.nombre
         this.producto.unidad_medida = response.data.medida.nombre
         this.producto.es_perecedero = response.data.es_perecedero
         $('.btnSave').removeClass('d-none')
+        this.validators.producto_inactivo = false
         this.show_detail_product = true
         this.btn_new_product = false
         this.form_new_provider = true

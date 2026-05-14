@@ -72,6 +72,7 @@
     "COLUMN_NAME": "Nom",
     "COLUMN_BAR_CODE": "Code-barres",
     "COLUMN_STOCK": "Stock",
+    "COLUMN_STATUS": "État",
     "COLUMN_UNIT_OF_MEASUREMENT": "Unité de mesure",
 
     "LABEL_CHECK_PERISHABLE": "Est périssable",

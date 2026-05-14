@@ -72,6 +72,7 @@
     "COLUMN_NAME": "Nombre",
     "COLUMN_BAR_CODE": "Código de barras",
     "COLUMN_STOCK": "Stock",
+    "COLUMN_STATUS": "Estado",
     "COLUMN_UNIT_OF_MEASUREMENT": "Unidad de medida",
 
     "LABEL_CHECK_PERISHABLE": "Es perecedero",

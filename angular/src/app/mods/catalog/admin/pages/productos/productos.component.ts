@@ -87,6 +87,28 @@ export class ProductosComponent implements OnInit, OnDestroy{
       className: 'text-center'
     },
     {
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_STATUS'),
+      data: 'estado',
+      className: 'text-center',
+      width: '50px',
+      render: (data: any, type: any) => {
+        if (type === 'display') {
+          const statusText = data 
+            ? this.translate.instant('mod-users.WORD_ACTIVED') 
+            : this.translate.instant('mod-users.WORD_INACTIVED');
+          
+          const dotClass = data ? 'dot-green' : 'dot-gray';
+
+          return `
+            <span class="custom-tooltip tooltip-bottom" data-title="${statusText}">
+              <span class="status-dot ${dotClass}"></span>
+            </span>
+          `;
+        }
+        return data;
+      }
+    },
+    {
       title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_UNIT_OF_MEASUREMENT'),
       data: 'medida.nombre',
       className: 'text-center'
@@ -206,6 +228,28 @@ export class ProductosComponent implements OnInit, OnDestroy{
         data: 'stock_minimo',
         className: 'text-center'
       },
+      {
+        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_STATUS'),
+        data: 'estado',
+        className: 'text-center',
+        width: '50px',
+        render: (data: any, type: any) => {
+            if (type === 'display') {
+              const statusText = data 
+                ? this.translate.instant('mod-users.WORD_ACTIVED') 
+                : this.translate.instant('mod-users.WORD_INACTIVED');
+              
+              const dotClass = data ? 'dot-green' : 'dot-gray';
+
+              return `
+                <span class="custom-tooltip tooltip-bottom" data-title="${statusText}">
+                  <span class="status-dot ${dotClass}"></span>
+                </span>
+              `;
+            }
+            return data;
+          }
+        },
       {
         title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_UNIT_OF_MEASUREMENT'),
         data: 'medida.nombre',

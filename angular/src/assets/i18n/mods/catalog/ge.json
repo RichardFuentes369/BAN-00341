@@ -73,6 +73,7 @@
     "COLUMN_NAME": "Name",
     "COLUMN_BAR_CODE": "Barcode",
     "COLUMN_STOCK": "Lagerbestand",
+    "COLUMN_STATUS": "Status",
     "COLUMN_UNIT_OF_MEASUREMENT": "Maßeinheit",
 
     "LABEL_CHECK_PERISHABLE": "Ist verderblich",

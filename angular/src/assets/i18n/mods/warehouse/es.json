@@ -5,6 +5,7 @@
   "TABLE_TITLE": "Registros",
 
   "MSJ_ERROR_CREATE_PRODUCTS_PERMISSION": "Contacte con el administrador para poder crear nuevos productos; su usuario no tiene permisos para realizar dicha acción.",
+  "MSJ_ERROR_PRODUCT_INACTIVE": "Este producto se encuentra inactivo",
 
   "REPORT_PERMISSION_TITLE": "Reporte",
   "REPORT_PERMISSION_SUBTITLE": "de trazabilidad",

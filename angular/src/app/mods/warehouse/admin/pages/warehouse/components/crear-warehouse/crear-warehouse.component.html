@@ -8,6 +8,13 @@
         <div class="col-sm-12 form-group mb-3">
           <label>{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
           <input type="text" class="form-control form-select-sm" [(ngModel)]="producto.codigo_barra" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.codigo_barra" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}">
+          @if(validators.producto_inactivo) {
+          <div class="d-flex justify-content-between">
+            <small class="text-danger">
+              {{ 'mod-warehouse.MSJ_ERROR_PRODUCT_INACTIVE' | translate }} 
+            </small>
+          </div>
+          }
           @if(validators.codigo_barra) {
           <div class="d-flex justify-content-between">
             <small [ngClass]="esCodigoValido ? 'text-success font-weight-bold' : 'text-danger'">
