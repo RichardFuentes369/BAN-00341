@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               10.11.14-MariaDB-0ubuntu0.24.04.1 - Ubuntu 24.04
--- Server OS:                    debian-linux-gnu
--- HeidiSQL Version:             12.8.0.6908
+-- Versión del servidor:         10.11.14-MariaDB-0ubuntu0.24.04.1 - Ubuntu 24.04
+-- SO del servidor:              debian-linux-gnu
+-- HeidiSQL Versión:             12.8.0.6908
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -14,7 +14,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping data for table BAN_00341.mod_bodega: ~6 rows (approximately)
+-- Volcando datos para la tabla BAN_00341.mod_bodega: ~6 rows (aproximadamente)
 INSERT INTO `mod_bodega` (`id`, `lote`, `fecha_entrada`, `fecha_vencimiento`, `cantidad_comprada`, `cantidad_vendida`, `cantidad_en_bodega`, `estado`, `id_producto`, `id_proveedor`) VALUES
 	(1, 'Al-mg-1100', 1769922838, 1777698838, 25, 0, 16, 'disponible', 1, 1),
 	(2, 'Elt-du-366', 1769922838, NULL, 25, 0, 23, 'disponible', 2, 2),
@@ -23,7 +23,7 @@ INSERT INTO `mod_bodega` (`id`, `lote`, `fecha_entrada`, `fecha_vencimiento`, `c
 	(5, 'MC-res-2586', 1769922838, 1777958038, 5800, 0, 5800, 'disponible', 10, 3),
 	(6, 'MC-res-2526', 1777853638, 1780118038, 3600, 0, 3600, 'disponible', 11, 3);
 
--- Dumping data for table BAN_00341.mod_catalogo_marcas: ~5 rows (approximately)
+-- Volcando datos para la tabla BAN_00341.mod_catalogo_marcas: ~5 rows (aproximadamente)
 INSERT INTO `mod_catalogo_marcas` (`id`, `nombre`) VALUES
 	(1, 'Alqueria'),
 	(2, 'Elite'),
@@ -31,7 +31,7 @@ INSERT INTO `mod_catalogo_marcas` (`id`, `nombre`) VALUES
 	(4, 'Nescafe'),
 	(3, 'Purina');
 
--- Dumping data for table BAN_00341.mod_catalogo_medida: ~5 rows (approximately)
+-- Volcando datos para la tabla BAN_00341.mod_catalogo_medida: ~5 rows (aproximadamente)
 INSERT INTO `mod_catalogo_medida` (`id`, `nombre`) VALUES
 	(4, 'Gramos'),
 	(3, 'Kilogramos'),
@@ -39,35 +39,35 @@ INSERT INTO `mod_catalogo_medida` (`id`, `nombre`) VALUES
 	(5, 'Mililitros'),
 	(1, 'Unidades');
 
--- Dumping data for table BAN_00341.mod_catalogo_productos: ~11 rows (approximately)
-INSERT INTO `mod_catalogo_productos` (`id`, `nombre`, `stock_minimo`, `es_perecedero`, `alerta_amarilla`, `alerta_naranja`, `estado`, `codigo_barra`, `id_marca`, `unidad_medida`) VALUES
-	(1, 'Leche megalitro x 1100 ml', 10, 1, 19, 15, 1, '1000000000001', 1, 'Unidades'),
-	(2, 'Papel higienico DUO', 25, 0, NULL, NULL, 1, '1000000000002', 2, 'Unidades'),
-	(3, 'Yogurt - Fresa * 150 grs', 25, 1, 19, 15, 1, '1000000000003', 1, 'Unidades'),
-	(4, 'Crema de leche * 180 grs', 25, 1, 19, 15, 1, '1000000000004', 1, 'Unidades'),
-	(5, 'Servilletas * 150 und', 25, 0, NULL, NULL, 1, '1000000000005', 2, 'Unidades'),
-	(6, 'DogChow * 250 grs', 25, 1, 19, 15, 1, '1000000000006', 3, 'Unidades'),
-	(7, 'CatChow * 250 grs', 25, 1, 19, 15, 1, '1000000000007', 3, 'Unidades'),
-	(8, 'Nescafe * 250 grs', 25, 1, 19, 15, 1, '1000000000008', 4, 'Unidades'),
-	(9, 'Nescafe * 15 grs', 25, 1, 19, 15, 1, '1000000000009', 4, 'Unidades'),
-	(10, 'Carne de res (pierna)', 2000, 1, 19, 15, 1, '1000000000010', 4, 'Gramos'),
-	(11, 'Carne de cerdo (pierna)', 1000, 1, 19, 15, 1, '1000000000011', 4, 'Gramos');
+-- Volcando datos para la tabla BAN_00341.mod_catalogo_productos: ~11 rows (aproximadamente)
+INSERT INTO `mod_catalogo_productos` (`id`, `nombre`, `stock_minimo`, `es_perecedero`, `alerta_amarilla`, `alerta_naranja`, `estado`, `codigo_barra`, `id_marca`, `id_medida`) VALUES
+	(1, 'Leche megalitro x 1100 ml', 10, 1, 19, 15, 1, '1000000000001', 1, 1),
+	(2, 'Papel higienico DUO', 25, 0, NULL, NULL, 1, '1000000000002', 2, 1),
+	(3, 'Yogurt - Fresa * 150 grs', 25, 1, 19, 15, 1, '1000000000003', 1, 1),
+	(4, 'Crema de leche * 180 grs', 25, 1, 19, 15, 1, '1000000000004', 1, 1),
+	(5, 'Servilletas * 150 und', 25, 0, NULL, NULL, 1, '1000000000005', 2, 1),
+	(6, 'DogChow * 250 grs', 25, 1, 19, 15, 1, '1000000000006', 3, 1),
+	(7, 'CatChow * 250 grs', 25, 1, 19, 15, 1, '1000000000007', 3, 1),
+	(8, 'Nescafe * 250 grs', 25, 1, 19, 15, 1, '1000000000008', 4, 1),
+	(9, 'Nescafe * 15 grs', 25, 1, 19, 15, 1, '1000000000009', 4, 1),
+	(10, 'Carne de res (pierna)', 2000, 1, 19, 15, 1, '1000000000010', 4, 4),
+	(11, 'Carne de cerdo (pierna)', 1000, 1, 19, 15, 1, '1000000000011', 4, 4);
 
--- Dumping data for table BAN_00341.mod_catalogo_proveedores: ~4 rows (approximately)
+-- Volcando datos para la tabla BAN_00341.mod_catalogo_proveedores: ~4 rows (aproximadamente)
 INSERT INTO `mod_catalogo_proveedores` (`id`, `razon_social`, `direccion`, `correo`, `telefono`, `dv`, `nit`) VALUES
 	(1, 'Proveedor 1', 'calle 32 a # 52 - 35', 'proveedor1@gmail.com', '3504284145', '1', '1000241005'),
 	(2, 'Proveedor 2', 'calle 3 # 23 - 75', 'proveedor2@gmail.com', '3168955632', '1', '1000241001'),
 	(3, 'Proveedor 3', 'calle 125 # 32 - 15', 'proveedor3@gmail.com', '3162547852', '1', '1000241002'),
 	(4, 'Proveedor 4', 'calle 206 # 55 - 95', 'proveedor4@gmail.com', '3504289963', '1', '1000241004');
 
--- Dumping data for table BAN_00341.mod_merma_mermas: ~3 rows (approximately)
-INSERT INTO `mod_merma_mermas` (`id`, `cantidad`, `fecha_reporte`, `valor_perdido`, `observaciones`, `id_tipo_merma`, `id_lote`) VALUES
+-- Volcando datos para la tabla BAN_00341.mod_merma_mermas: ~4 rows (aproximadamente)
+INSERT INTO `mod_merma_mermas` (`id`, `cantidad`, `fecha_reporte`, `valor_perdido`, `observacion`, `id_tipo_merma`, `id_lote`) VALUES
 	(1, 5, 1778199473, 32000.00, 'se perdio', 1, 1),
 	(2, 2, 1778199478, 32000.00, 'ninguna', 2, 1),
 	(3, 2, 1778199520, 32000.00, 'ninguna', 3, 1),
 	(4, 2, 1778199520, 32000.00, 'ninguna', 1, 2);
 
--- Dumping data for table BAN_00341.mod_merma_tipos: ~10 rows (approximately)
+-- Volcando datos para la tabla BAN_00341.mod_merma_tipos: ~10 rows (aproximadamente)
 INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
 	(1, 'Consumo Interno'),
 	(2, 'Daño Físico / Rotura'),
@@ -80,7 +80,7 @@ INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
 	(9, 'Robo o Extravío'),
 	(10, 'Vencimiento');
 
--- Dumping data for table BAN_00341.mod_permisos_modulo: ~68 rows (approximately)
+-- Volcando datos para la tabla BAN_00341.mod_permisos_modulo: ~68 rows (aproximadamente)
 INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`, `tiene_permisos`, `descripcion`, `modulo_padre_id`) VALUES
 	(1, 'Usuarios', 'usuarios', 1, 0, 'Modulo usuarios', NULL),
 	(2, 'Administradores', 'administradores', 0, 1, 'Permiso administradores, modulo usuarios', 1),
@@ -151,7 +151,7 @@ INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`
 	(89, 'Editar', 'editar', 0, 1, 'Permiso editar, submodulo unidad_de_medida, modulo catalogo', 86),
 	(90, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo unidad_de_medida, modulo catalogo', 86);
 
--- Dumping data for table BAN_00341.mod_permisos_modulo_asignacion: ~59 rows (approximately)
+-- Volcando datos para la tabla BAN_00341.mod_permisos_modulo_asignacion: ~59 rows (aproximadamente)
 INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descripcion`, `id_modulo`, `modulo_padre_id`, `user_id`) VALUES
 	(3, 'Usuarios', 'usuarios', 'Modulo usuarios', 1, NULL, 1),
 	(241, 'Estado (usuario)', 'estado_usuario', 'Permiso estado usuario, submodulo administradores, modulo usuarios', 8, 2, 1),
@@ -213,12 +213,12 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(482, 'Ver', 'ver', 'Permiso ver, submodulo tipo_merma, modulo merma', 47, 45, 1),
 	(484, 'Permisos (asignar)\r\n', 'asignar_permisos', 'Permiso asignar_permisos usuario, submodulo administradores, modulo usuarios', 9, 2, 1);
 
--- Dumping data for table BAN_00341.mod_usuarios_admin: ~3 rows (approximately)
+-- Volcando datos para la tabla BAN_00341.mod_usuarios_admin: ~2 rows (aproximadamente)
 INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'Admin1', 'Principal', 'admin1@correo.com', 'Qwerty9601', 1),
 	(9, 'admin2', 'admin2', 'admin2@correo.com', 'Qwerty9601', 0);
 
--- Dumping data for table BAN_00341.mod_usuarios_user: ~3 rows (approximately)
+-- Volcando datos para la tabla BAN_00341.mod_usuarios_user: ~3 rows (aproximadamente)
 INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'final1', 'final1', 'final1@gmail.com', 'Qwerty9601', 1),
 	(2, 'final2', 'final2', 'final2@gmail.com', 'Qwerty9601', 1),

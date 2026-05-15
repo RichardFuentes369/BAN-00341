@@ -54,10 +54,19 @@ export class ExtentService {
       take: limit,
       where: where,
       order: { [field]: order },
+      relations: { productos: true } 
+    });
+
+    const result = registros.map(marcas => {
+      return {
+        ...marcas,
+        totalProductos: marcas.productos ? marcas.productos.length : 0,
+        productos: undefined 
+      };
     });
 
     return [{
-      'result': registros,
+      'result': result,
       'pagination': {
         'page': page,
         'perPage': limit,

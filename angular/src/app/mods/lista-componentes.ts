@@ -33,6 +33,10 @@ import { FiltroMedidaComponent } from './catalog/admin/pages/medida/component/fi
 import { CrearMedidaComponent } from './catalog/admin/pages/medida/component/crear-medida/crear-medida.component';
 import { VerMedidaComponent } from './catalog/admin/pages/medida/component/ver-medida/ver-medida.component';
 import { EditarMedidaComponent } from './catalog/admin/pages/medida/component/editar-medida/editar-medida.component';
+import { FiltroRegistroComponent } from './merma/admin/pages/registro/components/filtro/filtro.component';
+import { VerRegistroComponent } from './merma/admin/pages/registro/components/ver-registro/ver-registro.component';
+import { EditarRegistroComponent } from './merma/admin/pages/registro/components/editar-registro/editar-registro.component';
+import { CrearRegistroComponent } from './merma/admin/pages/registro/components/crear-registro/crear-registro.component';
 
 export class ListaComponentes {
 
@@ -171,6 +175,25 @@ export class ListaComponentes {
       name: 'CrearTipoMermaComponent',
       componente: CrearTipoMermaComponent
     },  
+
+    //perdidas
+    {
+      name: 'FiltroRegistroComponent',
+      componente: FiltroRegistroComponent
+    },  
+    {
+      name: 'VerRegistroComponent',
+      componente: VerRegistroComponent
+    },  
+    {
+      name: 'EditarRegistroComponent',
+      componente: EditarRegistroComponent
+    },  
+    {
+      name: 'CrearRegistroComponent',
+      componente: CrearRegistroComponent
+    },  
+
     // modulo bodega
     {
       name: 'CrearWarehouseComponent',

@@ -66,6 +66,11 @@ export class MedidaComponent implements OnInit, OnDestroy{
       data: 'nombre',
       className: 'text-center'
     },
+    {
+      title: this.translate.instant('mod-catalog.BRAND.COLUMN_TOTAL_PRODUCTS'),
+      data: 'totalProductos',
+      className: 'text-center'
+    },
   ];
   permisosAcciones = this.permisos
   // fin datos que envio al componente tabla
@@ -155,6 +160,11 @@ export class MedidaComponent implements OnInit, OnDestroy{
       {
         title: this.translate.instant('mod-catalog.EXTENT.COLUMN_EXTENT_NAME'),
         data: 'nombre',
+        className: 'text-center'
+      },
+      {
+        title: this.translate.instant('mod-catalog.BRAND.COLUMN_TOTAL_PRODUCTS'),
+        data: 'totalProductos',
         className: 'text-center'
       },
     ];  

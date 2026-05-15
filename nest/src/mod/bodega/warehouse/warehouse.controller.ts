@@ -5,6 +5,7 @@ import { UpdateWarehouseDto } from './dto/update-warehouse.dto';
 import { GetUser } from 'src/decorator/getIdUser.decorator';
 import { FilterWarehouseDto } from './dto/filter-warehouse.dto';
 import { AdminGuard } from '@guard/admin/admin.guard';
+import { FilterWarehouseProductDTO } from './dto/filter-lote-producto.dto';
 
 @Controller('batch')
 export class WarehouseController {
@@ -32,6 +33,19 @@ export class WarehouseController {
     return this.warehouseService.findOne(
       lang, 
       +_id
+    );
+  }
+
+  @UseGuards(AdminGuard)
+  @Get('obtener-registro-lote-producto')
+  findOneLoteProduct(
+    @Query() filterWarehouseProductDTO: FilterWarehouseProductDTO,
+    @Query('lang') lang: string,
+    @GetUser('id') userId: number
+  ) {
+    return this.warehouseService.findOneLoteProduct(
+      lang,
+      filterWarehouseProductDTO
     );
   }
 

@@ -5,6 +5,7 @@ import { Bodega } from './entities/warehouse.entity';
 import { I18nService } from 'nestjs-i18n';
 import { Like, Repository } from 'typeorm';
 import { FilterWarehouseDto } from './dto/filter-warehouse.dto';
+import { FilterWarehouseProductDTO } from './dto/filter-lote-producto.dto';
 
 @Injectable()
 export class WarehouseService {
@@ -125,7 +126,7 @@ export class WarehouseService {
       ...lote,
         mermas: lote.mermas ? lote.mermas.reduce((total, m) => total + m.cantidad, 0) : 0
     };
-  }
+  }  
 
   async create(
     lang: string, 
@@ -181,5 +182,40 @@ export class WarehouseService {
     }
 
     return data
+  }
+
+
+  
+  async findOneLoteProduct(
+    lang: string,
+    filterWarehouseProductDTO: FilterWarehouseProductDTO
+  ) {
+
+    const bodega = await this.batchRepository.findOne({
+      where: {
+        lote: filterWarehouseProductDTO.lote,             
+        id_producto: { id: filterWarehouseProductDTO.id_producto }
+      },
+      relations: {
+        id_producto: {
+          medida: true,
+          marca: true
+        },
+        id_proveedor: true,
+        mermas: true,
+      }
+    })
+
+    if (!bodega) {
+      throw new NotFoundException(
+        this.i18n.t('batch.MSJ_BATCH_NO_ENCONTRADA', { lang })
+      );
+    }
+
+    return {
+      ...bodega,
+        mermas: bodega.mermas ? bodega.mermas.reduce((total, m) => total + m.cantidad, 0) : 0
+    };
+
   }
 }
