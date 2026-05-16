@@ -30,15 +30,6 @@ export class CrearWarehouseComponent implements OnInit {
   permisos_catalogo_productos: any[] = []
   permisos_catalogo_proveedores: any[] = []
 
-  btn_new_product = false
-  show_detail_product = false
-  btn_new_provider = false
-  form_new_provider = false
-  show_detail_provider = false
-  form_new_batch = false
-  puedoCrearProductos = false
-  puedoCrearProveedores = false
-
   constructor(
     private router: Router,
     private bodegaService: BodegaService,
@@ -55,7 +46,9 @@ export class CrearWarehouseComponent implements OnInit {
       this.isFormValid = isValid;
       if (isValid) {
         this.buscarProducto();
-        this.buscarProveedor();
+        if(this.exist_product){
+          this.buscarProveedor();
+        }
       }
     });
   }
@@ -166,6 +159,21 @@ export class CrearWarehouseComponent implements OnInit {
     return (this.producto?.codigo_barra || '').toString().length;
   }
 
+  exist_product = false
+  form_new_product = true
+  btn_new_product = false
+  show_detail_product = false
+
+  btn_new_provider = false
+  form_new_provider = false
+  show_detail_provider = false
+
+  form_new_batch = false
+
+  puedoCrearProductos = false
+  puedoCrearProveedores = false
+
+
   async buscarProducto() {
     try {
       const response = await this.productoService.getDataProductForBarcode(this.producto.codigo_barra);
@@ -173,11 +181,20 @@ export class CrearWarehouseComponent implements OnInit {
 
         if(response.data.estado === false){
           this.validators.producto_inactivo = true
+          this.form_new_product = true
           this.btn_new_product = false
-          this.form_new_provider = false
-          this.form_new_batch = false
           this.show_detail_product = false
+          
+          this.exist_product = false
+          this.btn_new_provider = false
+          this.form_new_provider = false
           this.show_detail_provider = false
+
+          this.form_new_batch = false
+
+          this.puedoCrearProductos = false
+          this.puedoCrearProveedores = false
+          $('.btnSave').addClass('d-none')
           return
         }
 
@@ -186,20 +203,43 @@ export class CrearWarehouseComponent implements OnInit {
         this.producto.marca = response.data.marca.nombre
         this.producto.unidad_medida = response.data.medida.nombre
         this.producto.es_perecedero = response.data.es_perecedero
+
         $('.btnSave').removeClass('d-none')
+        
         this.validators.producto_inactivo = false
-        this.show_detail_product = true
+        this.exist_product = true
+        this.form_new_product = true
         this.btn_new_product = false
+        this.show_detail_product = true
+
+
+        this.btn_new_provider = false
         this.form_new_provider = true
+        this.show_detail_provider = false
+
+        this.form_new_batch = false
+
+        this.puedoCrearProductos = false
+        this.puedoCrearProveedores = false
       }
     } catch (error: any) {
       if (error.response) {
         const statusCode = error.response.status;
         if (statusCode === 404) {
           $('.btnSave').addClass('d-none')
-          this.show_detail_product = false
-          this.show_detail_provider = false
+
+          this.validators.producto_inactivo = false
+          this.exist_product = false
+          this.form_new_product = true
           this.btn_new_product = true
+          this.show_detail_product = false
+
+          this.btn_new_provider = false
+          this.form_new_provider = false
+          this.show_detail_provider = false
+
+          this.form_new_batch = false
+
           if(this.permisos_catalogo_productos.find(obj => obj.permiso_permiso === 'crear') == undefined) {
             this.puedoCrearProductos = false
           }else{
@@ -219,25 +259,43 @@ export class CrearWarehouseComponent implements OnInit {
         this.model.id_proveedor = response.data.id
         this.proveedor.razon_social = response.data.razon_social
         this.proveedor.correo = response.data.correo
+
         $('.btnSave').removeClass('d-none')
-        this.show_detail_provider = true
+
         this.btn_new_provider = false
+        this.form_new_provider = true
+        this.show_detail_provider = true
+
         this.form_new_batch = true
+
+        this.puedoCrearProductos = false
+        this.puedoCrearProveedores = false
       }
     } catch (error: any) {
       if (error.response) {
          const statusCode = error.response.status;
          if (statusCode === 404) {
-           $('.btnSave').addClass('d-none')
-           this.show_detail_provider = false
-           this.btn_new_provider = true
-           this.form_new_batch = false
-           if(this.permisos_catalogo_proveedores.find(obj => obj.permiso_permiso === 'crear') == undefined) {
-             this.puedoCrearProveedores = false
-           }else{
-             this.puedoCrearProveedores = true
-           }
-         }
+          $('.btnSave').addClass('d-none')
+
+          this.form_new_product = true
+          this.btn_new_product = false
+          this.show_detail_product = true
+
+          this.btn_new_provider = true
+          this.form_new_provider = true
+          this.show_detail_provider = false
+
+          this.form_new_batch = false
+
+          this.puedoCrearProductos = false
+          this.puedoCrearProveedores = false
+
+          if(this.permisos_catalogo_proveedores.find(obj => obj.permiso_permiso === 'crear') == undefined) {
+            this.puedoCrearProveedores = false
+          }else{
+            this.puedoCrearProveedores = true
+          }
+        }
       } else {
         console.error('Error de red o servidor no disponible');
       }
