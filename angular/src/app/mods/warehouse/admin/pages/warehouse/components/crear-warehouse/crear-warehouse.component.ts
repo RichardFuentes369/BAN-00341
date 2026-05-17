@@ -46,9 +46,6 @@ export class CrearWarehouseComponent implements OnInit {
       this.isFormValid = isValid;
       if (isValid) {
         this.buscarProducto();
-        if(this.exist_product){
-          this.buscarProveedor();
-        }
       }
     });
   }
@@ -159,7 +156,6 @@ export class CrearWarehouseComponent implements OnInit {
     return (this.producto?.codigo_barra || '').toString().length;
   }
 
-  exist_product = false
   form_new_product = true
   btn_new_product = false
   show_detail_product = false
@@ -173,131 +169,148 @@ export class CrearWarehouseComponent implements OnInit {
   puedoCrearProductos = false
   puedoCrearProveedores = false
 
-
   async buscarProducto() {
     try {
-      const response = await this.productoService.getDataProductForBarcode(this.producto.codigo_barra);
-      if (response.status === 200) {
-
-        if(response.data.estado === false){
-          this.validators.producto_inactivo = true
-          this.form_new_product = true
-          this.btn_new_product = false
-          this.show_detail_product = false
-          
-          this.exist_product = false
-          this.btn_new_provider = false
-          this.form_new_provider = false
-          this.show_detail_provider = false
-
-          this.form_new_batch = false
-
-          this.puedoCrearProductos = false
-          this.puedoCrearProveedores = false
-          $('.btnSave').addClass('d-none')
-          return
-        }
-
-        this.model.id_producto = response.data.id
-        this.producto.nombre = response.data.nombre
-        this.producto.marca = response.data.marca.nombre
-        this.producto.unidad_medida = response.data.medida.nombre
-        this.producto.es_perecedero = response.data.es_perecedero
-
-        $('.btnSave').removeClass('d-none')
-        
+      const consultaProducto = await this.productoService.getDataProductForBarcode(this.producto.codigo_barra)
+      if(consultaProducto.status == 200 && consultaProducto.data.estado === true){
+        console.log('producto existe')
+        console.log('esta activo')
         this.validators.producto_inactivo = false
-        this.exist_product = true
+
+        this.model.id_producto = consultaProducto.data.id
+        this.producto.nombre = consultaProducto.data.nombre
+        this.producto.marca = consultaProducto.data.marca.nombre
+        this.producto.unidad_medida = consultaProducto.data.medida.nombre
+        this.producto.es_perecedero = consultaProducto.data.es_perecedero
+        
         this.form_new_product = true
         this.btn_new_product = false
         this.show_detail_product = true
 
-
-        this.btn_new_provider = false
         this.form_new_provider = true
-        this.show_detail_provider = false
+        this.form_new_batch = true
+        $('.btnSave').prop('disabled', true);
 
+        this.buscarProveedor()
+      }
+      if(consultaProducto.status == 200 && consultaProducto.data.estado === false){
+        console.log('producto existe')
+        console.log('esta inactivo')
+        this.validators.producto_inactivo = true
+
+        this.producto.nombre = ''
+        this.producto.marca = ''
+        this.producto.unidad_medida = ''
+        this.producto.es_perecedero = ''
+        
+        this.form_new_product = true
+        this.btn_new_product = false
+        this.show_detail_product = false
+        
+        this.form_new_provider = false
         this.form_new_batch = false
+        this.proveedor.nit = ''
 
-        this.puedoCrearProductos = false
-        this.puedoCrearProveedores = false
+        this.model.id_producto = ''
+        this.model.lote = ''
+        this.model.fecha_entrada = ''
+        this.model.fecha_vencimiento = ''
+        this.model.cantidad_comprada = ''
+        this.model.estado = ''
+        $('.btnSave').prop('disabled', true);
       }
     } catch (error: any) {
-      if (error.response) {
-        const statusCode = error.response.status;
-        if (statusCode === 404) {
-          $('.btnSave').addClass('d-none')
+      if(error.status == 404){
+        console.log('producto no existe')
+        this.validators.producto_inactivo = false
 
-          this.validators.producto_inactivo = false
-          this.exist_product = false
-          this.form_new_product = true
-          this.btn_new_product = true
-          this.show_detail_product = false
+        this.producto.nombre = ''
+        this.producto.marca = ''
+        this.producto.unidad_medida = ''
+        this.producto.es_perecedero = ''
 
-          this.btn_new_provider = false
-          this.form_new_provider = false
-          this.show_detail_provider = false
+        this.model.id_producto = ''
+        this.model.lote = ''
+        this.model.fecha_entrada = ''
+        this.model.fecha_vencimiento = ''
+        this.model.cantidad_comprada = ''
+        this.model.estado = ''
 
-          this.form_new_batch = false
-
-          if(this.permisos_catalogo_productos.find(obj => obj.permiso_permiso === 'crear') == undefined) {
-            this.puedoCrearProductos = false
-          }else{
-            this.puedoCrearProductos = true
-          }
+        this.form_new_product = true
+        this.btn_new_product = true
+        this.show_detail_product = false
+        if(this.permisos_catalogo_productos.find(obj => obj.permiso_permiso === 'crear') == undefined) {
+          this.puedoCrearProductos = false
+        }else{
+          this.puedoCrearProductos = true
         }
-      } else {
-        console.error('Error de red o servidor no disponible');
+
+        this.form_new_provider = false
+        this.form_new_batch = false
+        this.proveedor.nit = ''
+
+        this.model.id_producto = ''
+        this.model.lote = ''
+        this.model.fecha_entrada = ''
+        this.model.fecha_vencimiento = ''
+        this.model.cantidad_comprada = ''
+        this.model.estado = ''
+        $('.btnSave').prop('disabled', true);
       }
     }
   }
 
   async buscarProveedor() {
     try {
-      const response = await this.proveedoresService.getDataProviderNit(this.proveedor.nit);
-      if (response.status === 200) {
-        this.model.id_proveedor = response.data.id
-        this.proveedor.razon_social = response.data.razon_social
-        this.proveedor.correo = response.data.correo
+      const consultaProveedor = await this.proveedoresService.getDataProviderNit(this.proveedor.nit)
+      if(consultaProveedor.status == 200){
+        console.log('proveedor existe')
 
-        $('.btnSave').removeClass('d-none')
-
-        this.btn_new_provider = false
+        this.model.id_proveedor = consultaProveedor.data.id
+        this.proveedor.nit = consultaProveedor.data.nit
+        this.proveedor.razon_social = consultaProveedor.data.razon_social
+        this.proveedor.correo = consultaProveedor.data.correo
+        
         this.form_new_provider = true
+        if(this.model.id_proveedor != ''){
+          this.btn_new_provider = false
+        }
         this.show_detail_provider = true
-
+        
         this.form_new_batch = true
-
-        this.puedoCrearProductos = false
-        this.puedoCrearProveedores = false
+        $('.btnSave').prop('disabled', true);
       }
     } catch (error: any) {
-      if (error.response) {
-         const statusCode = error.response.status;
-         if (statusCode === 404) {
-          $('.btnSave').addClass('d-none')
+      if(error.status == 404){
+        console.log('proveedor no existe')
 
-          this.form_new_product = true
-          this.btn_new_product = false
-          this.show_detail_product = true
+        this.model.id_proveedor = ''
+        this.model.lote = ''
+        this.model.fecha_entrada = ''
+        this.model.fecha_vencimiento = ''
+        this.model.cantidad_comprada = ''
+        this.model.estado = ''
+        this.proveedor.razon_social = ''
+        this.proveedor.correo = ''
 
-          this.btn_new_provider = true
-          this.form_new_provider = true
-          this.show_detail_provider = false
-
-          this.form_new_batch = false
-
-          this.puedoCrearProductos = false
+        this.form_new_provider = true
+        this.btn_new_provider = true
+        this.show_detail_provider = false
+        if(this.permisos_catalogo_proveedores.find(obj => obj.permiso_permiso === 'crear') == undefined) {
           this.puedoCrearProveedores = false
-
-          if(this.permisos_catalogo_proveedores.find(obj => obj.permiso_permiso === 'crear') == undefined) {
-            this.puedoCrearProveedores = false
-          }else{
-            this.puedoCrearProveedores = true
-          }
+        }else{
+          this.puedoCrearProveedores = true
         }
-      } else {
-        console.error('Error de red o servidor no disponible');
+
+        this.form_new_batch = false
+
+        this.model.id_producto = ''
+        this.model.lote = ''
+        this.model.fecha_entrada = ''
+        this.model.fecha_vencimiento = ''
+        this.model.cantidad_comprada = ''
+        this.model.estado = ''
+        $('.btnSave').prop('disabled', true);
       }
     }
   }

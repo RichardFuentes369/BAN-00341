@@ -42,11 +42,9 @@
           </div>
           @if (btn_new_product && puedoCrearProductos) {
             <div class="d-flex flex-row-reverse">
-              <div class="p-2">
-                <button class="btn btn-sm btn-primary" (click)="goTo('admin/mod/catalog/productos', 0)">
-                  {{ 'mod-catalog.PRODUCT.CREATE_TITLE' | translate }} {{ 'mod-catalog.PRODUCT.CREATE_SUBTITLE' | translate }}
-                </button>
-              </div>
+              <button class="btn btn-sm btn-primary" (click)="goTo('admin/mod/catalog/productos', 0)">
+                {{ 'mod-catalog.PRODUCT.CREATE_TITLE' | translate }} {{ 'mod-catalog.PRODUCT.CREATE_SUBTITLE' | translate }}
+              </button>
             </div>
           }
           @if (btn_new_product && !puedoCrearProductos) {
