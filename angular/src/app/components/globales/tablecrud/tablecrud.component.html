@@ -23,7 +23,7 @@
                 [attr.data-title]="'global-tablecrud.BUTTON_OPTION_UPLOAD' | translate"
                 [class.is-disabled]="idsSeleccionados.length >= 1"
                 [style.cursor]="idsSeleccionados.length >= 1 ? 'not-allowed' : 'pointer'">
-            <button class="btn btn-link btn-sm mx-1 p-0 text-primary border-0" 
+            <button class="btn btn-sm mx-1 p-0 text-primary border-0" 
                     (click)="uploadItem()"
                     [disabled]="idsSeleccionados.length >= 1">
               <i class="fa fa-upload"
@@ -33,138 +33,147 @@
           </span>
         }
         @if(tienePermiso('crear')){
-          <span class="custom-tooltip tooltip-bottom my-auto"
+          <!-- <span class="custom-tooltip tooltip-bottom my-auto"
                 [attr.data-title]="'global-tablecrud.BUTTON_OPTION_CREATE' | translate"
                 [class.is-disabled]="idsSeleccionados.length >= 1"
-                [style.cursor]="idsSeleccionados.length >= 1 ? 'not-allowed' : 'pointer'">
-            <button class="btn btn-link p-0 border-0 action-icon-btn" 
+                [style.cursor]="idsSeleccionados.length >= 1 ? 'not-allowed' : 'pointer'"> -->
+            <button class="btn p-0 border-0 action-icon-btn mr-1" 
                     (click)="newItem()" 
                     [disabled]="idsSeleccionados.length >= 1">
               <i class="fa-solid fa-circle-plus text-primary"
                 [class.text-prmary]="idsSeleccionados.length === 0"
                 [class.text-muted]="idsSeleccionados.length >= 1"></i>
+              <div class="nameButton h-auto w-auto text-lowercase">{{ 'global-tablecrud.BUTTON_OPTION_CREATE' | translate }}</div>
             </button>
-          </span>
+          <!-- </span> -->
         }
   
         @if(tienePermiso('asignar_permisos')){
-          <span class="custom-tooltip tooltip-bottom my-auto"
+          <!-- <span class="custom-tooltip tooltip-bottom my-auto"
                 [attr.data-title]="'global-tablecrud.BUTTON_OPTION_ASSIGN_PERMISSION' | translate"
                 [class.is-disabled]="idsSeleccionados.length !== 1"
-                [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'">
-            <button class="btn btn-link p-0 border-0 action-icon-btn" 
+                [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'"> -->
+            <button class="btn p-0 border-0 action-icon-btn mr-1" 
                     (click)="assign($event)"
                     [disabled]="idsSeleccionados.length !== 1">
               <i class="fa-solid fa-key" 
                 [class.text-warning]="idsSeleccionados.length === 1"
                 [class.text-muted]="idsSeleccionados.length !== 1"></i>
+              <div class="nameButton h-auto w-auto text-lowercase">{{ 'global-tablecrud.BUTTON_OPTION_ASSIGN_PERMISSION' | translate }}</div>
             </button>
-          </span>
+          <!-- </span> -->
         }
 
         @if(tienePermiso('asignar_productos')){
-          <span class="custom-tooltip tooltip-bottom my-auto"
+          <!-- <span class="custom-tooltip tooltip-bottom my-auto"
                 [attr.data-title]="'global-tablecrud.BUTTON_OPTION_ASSIGN_PRODUCTS' | translate"
                 [class.is-disabled]="idsSeleccionados.length !== 1"
-                [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'">
-            <button class="btn btn-link p-0 border-0 action-icon-btn" 
+                [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'"> -->
+            <button class="btn p-0 border-0 action-icon-btn mr-1" 
                     (click)="assign($event)"
                     [disabled]="idsSeleccionados.length !== 1">
               <i class="fa-solid fa-list" 
                 [class.text-success]="idsSeleccionados.length === 1"
                 [class.text-muted]="idsSeleccionados.length !== 1"></i>
+              <div class="nameButton h-auto w-auto text-lowercase">{{ 'global-tablecrud.BUTTON_OPTION_ASSIGN_PRODUCTS' | translate }}</div>
             </button>
-          </span>
+          <!-- </span> -->
         }
   
         @if(tienePermiso('ver')){
-          <span class="custom-tooltip tooltip-bottom my-auto"
+          <!-- <span class="custom-tooltip tooltip-bottom my-auto"
                 [attr.data-title]="'global-tablecrud.BUTTON_OPTION_SEE' | translate"
                 [class.is-disabled]="idsSeleccionados.length !== 1"
-                [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'">
-            <button class="btn btn-link p-0 border-0 action-icon-btn" 
+                [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'"> -->
+            <button class="btn p-0 border-0 action-icon-btn mr-1" 
                     (click)="seeItem()"
                     [disabled]="idsSeleccionados.length !== 1">
               <i class="fa-solid fa-eye" 
                 [class.text-primary]="idsSeleccionados.length === 1"
                 [class.text-muted]="idsSeleccionados.length !== 1"></i>
+              <div class="nameButton h-auto w-auto text-lowercase">{{ 'global-tablecrud.BUTTON_OPTION_SEE' | translate }}</div>
             </button>
-          </span>
+          <!-- </span> -->
         }
   
         @if(tienePermiso('editar')){
-          <span class="custom-tooltip tooltip-bottom my-auto"
+          <!-- <span class="custom-tooltip tooltip-bottom my-auto"
                 [attr.data-title]="'global-tablecrud.BUTTON_OPTION_EDIT' | translate"
                 [class.is-disabled]="idsSeleccionados.length !== 1"
-                [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'">
-            <button class="btn btn-link p-0 border-0 action-icon-btn" 
+                [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'"> -->
+            <button class="btn p-0 border-0 action-icon-btn mr-1" 
                     (click)="editItem()"
                     [disabled]="idsSeleccionados.length !== 1">
               <i class="fa-solid fa-pen-to-square" 
                 [class.text-warning]="idsSeleccionados.length === 1"
                 [class.text-muted]="idsSeleccionados.length !== 1"></i>
+              <div class="nameButton h-auto w-auto text-lowercase">{{ 'global-tablecrud.BUTTON_OPTION_EDIT' | translate }}</div>
             </button>
-          </span>
+          <!-- </span> -->
         }
   
         @if(tienePermiso('estado_usuario')){
-          <span class="custom-tooltip tooltip-bottom my-auto"
+          <!-- <span class="custom-tooltip tooltip-bottom my-auto"
                 [attr.data-title]="'global-tablecrud.BUTTON_OPTION_STATUS' | translate"
                 [class.is-disabled]="idsSeleccionados.length !== 1"
-                [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'">
-            <button class="btn btn-link p-0 border-0 action-icon-btn" 
+                [style.cursor]="idsSeleccionados.length !== 1 ? 'not-allowed' : 'pointer'"> -->
+            <button class="btn p-0 border-0 action-icon-btn mr-1" 
                     (click)="activedItem()"
                     [disabled]="idsSeleccionados.length == 0">
               <i class="fas fa-user-slash" 
                 [class.text-warning]="idsSeleccionados.length >= 1"
                 [class.text-muted]="idsSeleccionados.length == 0"></i>
+              <div class="nameButton h-auto w-auto text-lowercase">{{ 'global-tablecrud.BUTTON_OPTION_STATUS' | translate }}</div>
             </button>
-          </span>
+          <!-- </span> -->
         }
   
         @if(tienePermiso('eliminar_individual')){
-          <span class="custom-tooltip tooltip-bottom my-auto"
+          <!-- <span class="custom-tooltip tooltip-bottom my-auto"
                 [attr.data-title]="'global-tablecrud.BUTTON_OPTION_DELETE' | translate"
                 [class.is-disabled]="idsSeleccionados.length === 0"
-                [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'">
-            <button class="btn btn-link p-0 border-0 action-icon-btn" 
+                [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'"> -->
+            <button class="btn p-0 border-0 action-icon-btn mr-1" 
                     (click)="deleteItem()"
                     [disabled]="idsSeleccionados.length === 0 || idsSeleccionados.length > 1">
               <i class="fa-solid fa-trash-can" 
                 [class.text-danger]="idsSeleccionados.length > 0"
                 [class.text-muted]="idsSeleccionados.length === 0 || idsSeleccionados.length > 1"></i>
+              <div class="nameButton h-auto w-auto text-lowercase">{{ 'global-tablecrud.BUTTON_OPTION_DELETE' | translate }}</div>
             </button>
-          </span>
+          <!-- </span> -->
         }          
         
         @if(tienePermiso('eliminar_multiple')){
-          <span class="custom-tooltip tooltip-bottom my-auto"
+          <!-- <span class="custom-tooltip tooltip-bottom my-auto"
                 [attr.data-title]="'global-tablecrud.BUTTON_OPTION_DELETE' | translate"
                 [class.is-disabled]="idsSeleccionados.length === 0"
-                [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'">
-            <button class="btn btn-link p-0 border-0 action-icon-btn" 
+                [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'"> -->
+            <button class="btn p-0 border-0 action-icon-btn mr-1" 
                     (click)="deleteItem()"
                     [disabled]="idsSeleccionados.length === 0">
               <i class="fa-solid fa-trash-can" 
                 [class.text-danger]="idsSeleccionados.length > 0"
                 [class.text-muted]="idsSeleccionados.length === 0"></i>
+              <div class="nameButton h-auto w-auto text-lowercase">{{ 'global-tablecrud.BUTTON_OPTION_DELETE' | translate }}</div>
             </button>
-          </span>
+          <!-- </span> -->
         }
   
         @if(habilitarSeleccion){
-          <span class="custom-tooltip tooltip-bottom my-auto"
+          <!-- <span class="custom-tooltip tooltip-bottom my-auto"
                 [attr.data-title]="'global-tablecrud.BUTTON_OPTION_CLEAR' | translate"
                 [class.is-disabled]="idsSeleccionados.length === 0"
-                [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'">
-            <button class="btn btn-link p-0 border-0 action-icon-btn" 
+                [style.cursor]="idsSeleccionados.length === 0 ? 'not-allowed' : 'pointer'"> -->
+            <button class="btn p-0 border-0 action-icon-btn mr-1" 
                     (click)="selectionClear()"
                     [disabled]="idsSeleccionados.length === 0">
               <i class="fa-solid fa-broom" 
                 [class.text-secondary]="idsSeleccionados.length > 0"
                 [class.text-muted]="idsSeleccionados.length === 0"></i>
+              <div class="nameButton h-auto w-auto text-lowercase">{{ 'global-tablecrud.BUTTON_OPTION_CLEAR' | translate }}</div>
             </button>
-          </span>
+          <!-- </span> -->
         }
       </div>
     </div>
