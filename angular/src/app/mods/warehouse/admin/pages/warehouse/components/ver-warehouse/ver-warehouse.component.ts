@@ -58,6 +58,20 @@ export class VerWarehouseComponent {
   permisos: any[] = []
   loteReal: any
 
+  mostrarSeccion = {
+    productSeccion: true,
+    providerSeccion: true,
+    batchSeccion: true,
+    mermaSeccion: true,
+  }
+
+  toogleSection(sectionActive: string){
+    if (sectionActive in this.mostrarSeccion) {
+      const key = sectionActive as keyof typeof this.mostrarSeccion;
+      this.mostrarSeccion[key] = !this.mostrarSeccion[key];
+    }
+  }
+
   producto = {
     nombre: '',
     marca: '',

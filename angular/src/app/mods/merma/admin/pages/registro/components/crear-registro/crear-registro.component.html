@@ -109,16 +109,36 @@
       </div>
       }
       <div class="col-sm-12 form-group">
-        <label for="exampleInputEmail1">
-          {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}
-        </label>
-        <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.cantidad_comprada"
-          (ngModelChange)="onInputChange()" [class.is-invalid]="validators.cantidad"
-          placeholder="{{ 'mod-warehouse.PLACEHOLDER_CANTIDAD_COMPRADA' | translate}}" disabled>
-        <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
-        @if(validators.cantidad) {
-        <span class="text-danger small">{{ 'mod-warehouse.PLACEHOLDER_CANTIDAD_COMPRADA' | translate }}</span>
-        }
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}
+            </label>
+            <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.cantidad_comprada" disabled>
+            <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-warehouse.LABEL_CANTIDAD_VENDIDA' | translate}}
+            </label>
+            <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.cantidad_vendida" disabled>
+            <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-warehouse.LABEL_CANTIDAD_AFECTADA' | translate}}
+            </label>
+            <input type="number" min="0" class="form-control form-select-sm bg-light" disabled>
+            <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-warehouse.LABEL_CANTIDAD_BODEGA' | translate}}
+            </label>
+            <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.cantidad_en_bodega" disabled>
+            <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
+          </div>
+        </div>
       </div>
       <div class="col-sm-12 form-group">
         <label for="exampleInputEmail1">

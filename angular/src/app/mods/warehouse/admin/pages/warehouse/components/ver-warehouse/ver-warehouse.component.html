@@ -7,8 +7,11 @@
     <fieldset class="border p-3 rounded">
       <legend class="float-none w-auto p-1">
         {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_PRODUCT' | translate }}
+        <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('productSeccion')">
+          <i [class]="mostrarSeccion.productSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+        </button>
       </legend>
-      <div class="row">
+      <div class="row" *ngIf="mostrarSeccion.productSeccion" [class.animate__fadeIn]="mostrarSeccion.productSeccion" [class.animate__fadeOut]="!mostrarSeccion.productSeccion">
         <div class="col-sm-12 form-group mb-3">
           <label>{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
           <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="model.codigo_barra" disabled>
@@ -33,8 +36,11 @@
     <fieldset class="border p-3 rounded">
       <legend class="float-none w-auto p-1">
         {{ 'mod-catalog.SUPPLIER.LEGEND_TITLE' | translate }}
+        <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('providerSeccion')">
+          <i [class]="mostrarSeccion.providerSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+        </button>
       </legend>
-      <div class="row">
+      <div class="row" *ngIf ="mostrarSeccion.providerSeccion" [class.animate__fadeIn]="mostrarSeccion.providerSeccion" [class.animate__fadeOut]="!mostrarSeccion.providerSeccion">
         <div class="col-sm-12 form-group mb-3">
           <label>{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}</label>
           <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="proveedor.nit">
@@ -55,87 +61,97 @@
     <fieldset class="border p-3 rounded">
       <legend class="float-none w-auto p-1">
         {{ 'mod-warehouse.LEGEND_TITLE' | translate }}
+        <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('batchSeccion')">
+          <i [class]="mostrarSeccion.batchSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+        </button>
       </legend>
-      <div class="col-sm-12 form-group">
-        <label for="exampleInputEmail1">
-          {{ 'mod-warehouse.LABEL_LOTE' | translate}}
-        </label>
-        <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="model.lote" disabled>
-      </div>
-      <div class="col-sm-12 form-group">
-        <label for="exampleInputEmail1">
-          {{ 'mod-warehouse.LABEL_FECHA_ENTRADA' | translate}}
-        </label>
-        <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="model.fecha_entrada" disabled>
-      </div>
-      @if(producto.es_perecedero){
-      <div class="col-sm-12 form-group">
-        <label for="exampleInputEmail1">
-          {{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}
-        </label>
-        <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="model.fecha_vencimiento" disabled>
-      </div>
-      }
-      <div class="col-sm-12 form-group">
-        <div class="row">
-          <div class="col-sm-6 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}
-            </label>
-            <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="model.cantidad_comprada" disabled>
-            <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
-          </div>
-          <div class="col-sm-6 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-warehouse.LABEL_CANTIDAD_VENDIDA' | translate}}
-            </label>
-            <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="model.cantidad_vendida" disabled>
-            <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
-          </div>
-          <div class="col-sm-6 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-warehouse.LABEL_CANTIDAD_AFECTADA' | translate}}
-            </label>
-            <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="cantidad_afectada_por_merma" disabled>
-            <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
-          </div>
-          <div class="col-sm-6 form-group">
-            <label for="exampleInputEmail1">
-              {{ 'mod-warehouse.LABEL_CANTIDAD_BODEGA' | translate}}
-            </label>
-            <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="model.cantidad_en_bodega" disabled>
-            <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
+      <div class="row" *ngIf="mostrarSeccion.batchSeccion" [class.animate__fadeIn]="mostrarSeccion.batchSeccion" [class.animate__fadeOut]="!mostrarSeccion.batchSeccion">
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-warehouse.LABEL_LOTE' | translate}}
+          </label>
+          <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="model.lote" disabled>
+        </div>
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-warehouse.LABEL_FECHA_ENTRADA' | translate}}
+          </label>
+          <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="model.fecha_entrada" disabled>
+        </div>
+        @if(producto.es_perecedero){
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}
+          </label>
+          <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="model.fecha_vencimiento" disabled>
+        </div>
+        }
+        <div class="col-sm-12 form-group">
+          <div class="row">
+            <div class="col-sm-6 form-group">
+              <label for="exampleInputEmail1">
+                {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}
+              </label>
+              <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="model.cantidad_comprada" disabled>
+              <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label for="exampleInputEmail1">
+                {{ 'mod-warehouse.LABEL_CANTIDAD_VENDIDA' | translate}}
+              </label>
+              <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="model.cantidad_vendida" disabled>
+              <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label for="exampleInputEmail1">
+                {{ 'mod-warehouse.LABEL_CANTIDAD_AFECTADA' | translate}}
+              </label>
+              <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="cantidad_afectada_por_merma" disabled>
+              <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label for="exampleInputEmail1">
+                {{ 'mod-warehouse.LABEL_CANTIDAD_BODEGA' | translate}}
+              </label>
+              <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="model.cantidad_en_bodega" disabled>
+              <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-sm-12 form-group">
-        <label for="exampleInputEmail1">
-          {{ 'mod-warehouse.LABEL_ESTADO' | translate}}
-        </label>
-        <select class="form-control custom-select form-select-sm bg-light" [(ngModel)]="model.estado" disabled>
-          <option value="">{{ 'mod-warehouse.SELECT_SELECT_OPTION' | translate}}</option>
-          <option value="disponible">{{ 'mod-warehouse.SELECT_AVAILABLE_OPTION' | translate}}</option>
-          <option value="vencido">{{ 'mod-warehouse.SELECT_UNAVAILABLE_OPTION' | translate}}</option>
-          <option value="agotado">{{ 'mod-warehouse.SELECT_EXPIRED_OPTION' | translate}}</option>
-        </select>
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-warehouse.LABEL_ESTADO' | translate}}
+          </label>
+          <select class="form-control custom-select form-select-sm bg-light" [(ngModel)]="model.estado" disabled>
+            <option value="">{{ 'mod-warehouse.SELECT_SELECT_OPTION' | translate}}</option>
+            <option value="disponible">{{ 'mod-warehouse.SELECT_AVAILABLE_OPTION' | translate}}</option>
+            <option value="vencido">{{ 'mod-warehouse.SELECT_UNAVAILABLE_OPTION' | translate}}</option>
+            <option value="agotado">{{ 'mod-warehouse.SELECT_EXPIRED_OPTION' | translate}}</option>
+          </select>
+        </div>
       </div>
     </fieldset>
 
     <fieldset class="border p-3 rounded">
       <legend class="float-none w-auto p-1">
         {{ 'mod-merma.REGISTER.LEGEND_TITLE' | translate }}
+        <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('mermaSeccion')">
+          <i [class]="mostrarSeccion.mermaSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+        </button>
       </legend>
-      @if (cargarIdioma) {
-      <div class="table-container">
-        <app-globales-tablecrud 
-          *ngIf="endPoint"
-          [endPoint]="endPoint" 
-          [columnas]="columnas" 
-          [title]="titlePage" 
-        >
-        </app-globales-tablecrud>
+      <div class="row" *ngIf="mostrarSeccion.mermaSeccion" [class.animate__fadeIn]="mostrarSeccion.mermaSeccion" [class.animate__fadeOut]="!mostrarSeccion.mermaSeccion">
+        @if (cargarIdioma) {
+        <div class="table-container">
+          <app-globales-tablecrud 
+            *ngIf="endPoint"
+            [endPoint]="endPoint" 
+            [columnas]="columnas" 
+            [title]="titlePage" 
+          >
+          </app-globales-tablecrud>
+        </div>
+        } 
       </div>
-      } 
     </fieldset>  
   </div>
 </div>
