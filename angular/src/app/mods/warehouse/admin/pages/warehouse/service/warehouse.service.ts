@@ -62,6 +62,32 @@ export class BodegaService {
     })
   }
 
+  async updateBatch(data: any, id: string){
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = `batch/editar-registro-lote`
+    let urlCopleta = environment.apiUrl+complemento
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
+    const payload = { 
+      ...data, 
+      estado: (data.estado == true) ? 1 : 0 
+    };
+
+    return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
+      method: 'patch',
+      url: urlCopleta,
+      data: payload,
+      params: {
+        _id: id,
+        lang: lang,
+      }
+    })
+  }
+
   async obtenerTotale(){
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'batch/obtener-contadores-lote/'

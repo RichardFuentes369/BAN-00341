@@ -26,6 +26,7 @@ interface LoteInterface {
   'fecha_vencimiento': number | string,
   'cantidad_comprada': number,
   'cantidad_vendida': number,
+  'cantidad_en_bodega': number,
   'cantidad_afectada_por_merma': number,
   'stock': number,
   'costo_unitario': number,
@@ -229,6 +230,7 @@ export class EditarWarehouseComponent {
     this.model.fecha_vencimiento = this.formatoFecha(this.loteReal.data.fecha_vencimiento)  
     this.model.cantidad_comprada = this.loteReal.data.cantidad_comprada
     this.model.cantidad_vendida = this.loteReal.data.cantidad_vendida
+    this.model.cantidad_en_bodega = this.loteReal.data.cantidad_en_bodega
     this.cantidad_afectada_por_merma = this.loteReal.data.mermas
     this.model.estado = this.loteReal.data.estado
   }
@@ -348,6 +350,28 @@ export class EditarWarehouseComponent {
          }
       } else {
         console.error('Error de red o servidor no disponible');
+      }
+    }
+  }
+
+  async actualizarData() {
+    if (this.isFormValid) {
+      try {
+        console.log(this.model)
+        console.log(this.route.snapshot.queryParams?.['id_lote'])
+        return
+
+        await this.bodegaService.updateBatch(this.model, this.route.snapshot.queryParams?.['id_lote']);
+        ocultarModalOscura();
+        
+        Swal.fire({
+          title: this.translate.instant('mod-catalog.PRODUCT.SWAL_UPDATED'),
+          text: this.translate.instant('mod-catalog.SWAL_UPDATED_RECORD'),
+          icon: "success"
+        });
+      } catch (error: any) {
+        const msg = error.response?.data?.message;
+        Swal.fire('Error', Array.isArray(msg) ? msg[0] : msg, 'error');
       }
     }
   }

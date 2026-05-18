@@ -43,6 +43,7 @@
   "LABEL_CANTIDAD_COMPRADA": "Cantidad comprada",
   "LABEL_CANTIDAD_VENDIDA": "Cantidad vendida",
   "LABEL_CANTIDAD_AFECTADA": "Cantidad afectada por merma",
+  "LABEL_CANTIDAD_BODEGA": "Cantidad en bodega",
   "LABEL_COSTO_UNITARIO": "Costo unitario",
   "LABEL_PRECIO_VENTA_SUGERIDO": "Precio de venta sugerido",
   "LABEL_ESTADO": "Estado",

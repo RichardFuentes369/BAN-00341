@@ -43,6 +43,7 @@
 	"LABEL_CANTIDAD_COMPRADA": "Quantité achetée",
 	"LABEL_CANTIDAD_VENDIDA": "Quantité vendue",
 	"LABEL_CANTIDAD_AFECTADA": "Quantité affectée par la démarque",
+	"LABEL_CANTIDAD_BODEGA": "Quantité en entrepôt",
 	"LABEL_COSTO_UNITARIO": "Coût unitaire",
 	"LABEL_PRECIO_VENTA_SUGERIDO": "Prix de vente suggéré",
 	"LABEL_ESTADO": "État",

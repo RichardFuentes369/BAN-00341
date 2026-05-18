@@ -43,6 +43,7 @@
   "LABEL_CANTIDAD_COMPRADA": "Quantity purchased",
   "LABEL_CANTIDAD_VENDIDA": "Quantity sold",
   "LABEL_CANTIDAD_AFECTADA": "Quantity affected by wastage",
+  "LABEL_CANTIDAD_BODEGA": "Stock quantity",
   "LABEL_COSTO_UNITARIO": "Unit cost",
   "LABEL_PRECIO_VENTA_SUGERIDO": "Suggested retail price",
   "LABEL_ESTADO": "Status",

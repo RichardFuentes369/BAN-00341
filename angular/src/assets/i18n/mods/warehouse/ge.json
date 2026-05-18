@@ -43,6 +43,7 @@
   "LABEL_CANTIDAD_COMPRADA": "Einkaufsmenge",
   "LABEL_CANTIDAD_VENDIDA": "Verkaufsmenge",
   "LABEL_CANTIDAD_AFECTADA": "Vom Schwund betroffene Menge",
+  "LABEL_CANTIDAD_BODEGA": "Lagerbestand",
   "LABEL_COSTO_UNITARIO": "Stückkosten",
   "LABEL_PRECIO_VENTA_SUGERIDO": "Unverbindliche Preisempfehlung",
   "LABEL_ESTADO": "Status",

@@ -36,18 +36,18 @@ export class CrearWarehouseComponent implements OnInit {
   constructor(
     private router: Router,
     private bodegaService: BodegaService,
-    private userService :AuthService,
-    private permisosService :PermisosService,
+    private userService: AuthService,
+    private permisosService: PermisosService,
     private productoService: ProductosService,
     private proveedoresService: ProveedoresService,
     private translate: TranslateService
-  ){
+  ) {
     this.validationSubject.pipe(
-      debounceTime(300), 
+      debounceTime(300),
       map(() => this.checkValidation())
     ).subscribe(isValid => {
       this.isFormValid = isValid;
-      
+
       this.checkValidation();
 
       if (this.esCodigoValido && this.producto.codigo_barra !== this.ultimoCodigoBarra) {
@@ -70,7 +70,7 @@ export class CrearWarehouseComponent implements OnInit {
     unidad_medida: '',
     es_perecedero: ''
   }
-  
+
   proveedor = {
     nit: '',
     razon_social: '',
@@ -100,35 +100,35 @@ export class CrearWarehouseComponent implements OnInit {
     estado: false
   }
 
-  async ngOnInit(){
+  async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
-    const permiso_modulo_catalogo = await this.permisosService.permisoPage(0,'catalogo',userData.data.id)
-    const permiso_submodulo_productos = await this.permisosService.permisoPage(22,'productos',userData.data.id)
-    const permiso_submodulo_proveedores = await this.permisosService.permisoPage(22,'proveedores',userData.data.id)
+    const permiso_modulo_catalogo = await this.permisosService.permisoPage(0, 'catalogo', userData.data.id)
+    const permiso_submodulo_productos = await this.permisosService.permisoPage(22, 'productos', userData.data.id)
+    const permiso_submodulo_proveedores = await this.permisosService.permisoPage(22, 'proveedores', userData.data.id)
 
 
     if (permiso_modulo_catalogo.data === "" || permiso_submodulo_productos.data === "") {
       return
     }
 
-    const permisos_productos = await this.permisosService.permisos(userData.data.id,'productos')
+    const permisos_productos = await this.permisosService.permisos(userData.data.id, 'productos')
     this.permisos_catalogo_productos = permisos_productos.data
 
     if (permiso_modulo_catalogo.data === "" || permiso_submodulo_proveedores.data === "") {
       return
     }
 
-    const permisos_proveedores = await this.permisosService.permisos(userData.data.id,'proveedores')
+    const permisos_proveedores = await this.permisosService.permisos(userData.data.id, 'proveedores')
     this.permisos_catalogo_proveedores = permisos_proveedores.data
-  }  
+  }
 
-  goTo (url: string, _id: number){
+  goTo(url: string, _id: number) {
 
-    if(_id != 0){
+    if (_id != 0) {
       this.router.navigate([url], { queryParams: { id: _id } });
-    }else{
+    } else {
       this.router.navigate([url]);
     }
 
@@ -139,6 +139,7 @@ export class CrearWarehouseComponent implements OnInit {
   }
 
   checkValidation(): boolean {
+    let respuesta = false
     const regexBarCode = /^[0-9]{13}$/;
     const regexNIT = /^[0-9]{8,15}$/;
     this.validators.codigo_barra = (this.producto.codigo_barra === null || !regexBarCode.test((this.producto.codigo_barra as any).toString()))
@@ -154,10 +155,7 @@ export class CrearWarehouseComponent implements OnInit {
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
 
-    // && !this.validators.fecha_vencimiento
-    (!this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
-
-    if(this.validators.codigo_barra){
+    if (this.validators.codigo_barra) {
       this.btn_new_product = false
       this.form_new_provider = false
       this.form_new_batch = false
@@ -165,8 +163,17 @@ export class CrearWarehouseComponent implements OnInit {
       this.show_detail_provider = false
     }
 
-    // && !this.validators.fecha_vencimiento
-    return !this.validators.codigo_barra && !this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado
+    if (this.producto.es_perecedero == '0') {
+      (!this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+      respuesta = !this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado
+    }
+
+    if (this.producto.es_perecedero == '1') {
+      (!this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado && !this.validators.fecha_vencimiento) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+      respuesta = !this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado && !this.validators.fecha_vencimiento
+    }
+
+    return respuesta
   }
 
   get esCodigoValido(): boolean {
@@ -193,9 +200,9 @@ export class CrearWarehouseComponent implements OnInit {
   puedoCrearProveedores = false
 
   async buscarProducto() {
-    try {    
+    try {
       const consultaProducto = await this.productoService.getDataProductForBarcode(this.producto.codigo_barra)
-      if(consultaProducto.status == 200 && consultaProducto.data.estado === true){
+      if (consultaProducto.status == 200 && consultaProducto.data.estado === true) {
         console.log('producto existe')
         console.log('esta activo')
         this.validators.producto_inactivo = false
@@ -205,7 +212,7 @@ export class CrearWarehouseComponent implements OnInit {
         this.producto.marca = consultaProducto.data.marca.nombre
         this.producto.unidad_medida = consultaProducto.data.medida.nombre
         this.producto.es_perecedero = consultaProducto.data.es_perecedero
-        
+
         this.form_new_product = true
         this.btn_new_product = false
         this.show_detail_product = true
@@ -215,10 +222,8 @@ export class CrearWarehouseComponent implements OnInit {
 
         const boton = document.querySelector('.btnSave') as HTMLButtonElement
         boton.classList.add('disabled')
-
-        // this.buscarProveedor()
       }
-      if(consultaProducto.status == 200 && consultaProducto.data.estado === false){
+      if (consultaProducto.status == 200 && consultaProducto.data.estado === false) {
         console.log('producto existe')
         console.log('esta inactivo')
         this.validators.producto_inactivo = true
@@ -227,11 +232,11 @@ export class CrearWarehouseComponent implements OnInit {
         this.producto.marca = ''
         this.producto.unidad_medida = ''
         this.producto.es_perecedero = ''
-        
+
         this.form_new_product = true
         this.btn_new_product = false
         this.show_detail_product = false
-        
+
         this.form_new_provider = false
         this.form_new_batch = false
         this.proveedor.nit = ''
@@ -246,7 +251,7 @@ export class CrearWarehouseComponent implements OnInit {
         boton.classList.add('disabled')
       }
     } catch (error: any) {
-      if(error.status == 404){
+      if (error.status == 404) {
         console.log('producto no existe')
         this.validators.producto_inactivo = false
 
@@ -265,9 +270,9 @@ export class CrearWarehouseComponent implements OnInit {
         this.form_new_product = true
         this.btn_new_product = true
         this.show_detail_product = false
-        if(this.permisos_catalogo_productos.find(obj => obj.permiso_permiso === 'crear') == undefined) {
+        if (this.permisos_catalogo_productos.find(obj => obj.permiso_permiso === 'crear') == undefined) {
           this.puedoCrearProductos = false
-        }else{
+        } else {
           this.puedoCrearProductos = true
         }
 
@@ -290,26 +295,26 @@ export class CrearWarehouseComponent implements OnInit {
   async buscarProveedor() {
     try {
       const consultaProveedor = await this.proveedoresService.getDataProviderNit(this.proveedor.nit)
-      if(consultaProveedor.status == 200){
+      if (consultaProveedor.status == 200) {
         console.log('proveedor existe')
 
         this.model.id_proveedor = consultaProveedor.data.id
         this.proveedor.nit = consultaProveedor.data.nit
         this.proveedor.razon_social = consultaProveedor.data.razon_social
         this.proveedor.correo = consultaProveedor.data.correo
-        
+
         this.form_new_provider = true
-        if(this.model.id_proveedor != ''){
+        if (this.model.id_proveedor != '') {
           this.btn_new_provider = false
         }
         this.show_detail_provider = true
-        
+
         this.form_new_batch = true
         const boton = document.querySelector('.btnSave') as HTMLButtonElement
         boton.classList.add('disabled')
       }
     } catch (error: any) {
-      if(error.status == 404){
+      if (error.status == 404) {
         console.log('proveedor no existe')
 
         this.model.id_proveedor = ''
@@ -324,9 +329,9 @@ export class CrearWarehouseComponent implements OnInit {
         this.form_new_provider = true
         this.btn_new_provider = true
         this.show_detail_provider = false
-        if(this.permisos_catalogo_proveedores.find(obj => obj.permiso_permiso === 'crear') == undefined) {
+        if (this.permisos_catalogo_proveedores.find(obj => obj.permiso_permiso === 'crear') == undefined) {
           this.puedoCrearProveedores = false
-        }else{
+        } else {
           this.puedoCrearProveedores = true
         }
 
@@ -344,27 +349,23 @@ export class CrearWarehouseComponent implements OnInit {
     }
   }
 
-  async crearLote(){
-    if(this.isFormValid){
-      let endPoint = this.bodegaService
-      const response = await endPoint.createBatch(this.model)
-      // if(response.data.status == 404){
-      //   ocultarModalOscura()
-      //   Swal.fire({
-      //     title: response.data.message,
-      //     text: response.data.error,
-      //     icon: 'error',
-      //     confirmButtonText: 'Cool'
-      //   })
-      // }
-      // if(response.data.status == 200){
-      //   ocultarModalOscura()
-      //   Swal.fire({
-      //     title: this.translate.instant('mod-lote.CATEGORY.SWAL_CREATED'),
-      //     text: this.translate.instant('mod-lote.SWAL_CREATED_RECORD'),
-      //     icon: "success"
-      //   });
-      // }
+  async crearLote() {
+    if (this.isFormValid) {
+      const response = await this.bodegaService.createBatch(this.model)
+      if (response.data.status == 200) {
+        ocultarModalOscura();
+        Swal.fire({
+          title: this.translate.instant('mod-catalog.PRODUCT.SWAL_CREATED'),
+          text: this.translate.instant('mod-catalog.SWAL_CREATED_RECORD'),
+          icon: "success"
+        });
+      } else {
+        Swal.fire({
+          title: 'Error',
+          text: response.data.message || 'Error desconocido',
+          icon: 'error'
+        });
+      }
     }
   }
 }
