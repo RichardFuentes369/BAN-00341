@@ -186,4 +186,17 @@ export class CrearProductoComponent implements OnInit {
     this.model.id_marca = (item != undefined) ? item.id : null
     this.checkValidation()
   }
+
+  mostrarSeccion = {
+    productSeccion: true,
+    stockSeccion: true,
+    esPerecedero: true,
+  }
+
+  toogleSection(sectionActive: string){
+    if (sectionActive in this.mostrarSeccion) {
+      const key = sectionActive as keyof typeof this.mostrarSeccion;
+      this.mostrarSeccion[key] = !this.mostrarSeccion[key];
+    }
+  }
 }
