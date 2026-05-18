@@ -31,13 +31,10 @@ export class CrearRegistroComponent {
   isFormValid = false;
   permisos_catalogo_productos: any[] = []
   permisos_catalogo_proveedores: any[] = []
+  permisos_bodega: any[] = []
 
-  btn_new_product = false
-  show_detail_product = false
-  puedoCrearProductos = false
-  form_batch = false
-  show_detail_batch = false
-  form_merma = false
+  ultimoCodigoBarra = ''
+  ultimoBatch = ''
 
   constructor(
     private router: Router,
@@ -54,14 +51,24 @@ export class CrearRegistroComponent {
       map(() => this.checkValidation())
     ).subscribe(isValid => {
       this.isFormValid = isValid;
-      if (isValid) {
+
+      this.checkValidation();
+
+      if (this.esCodigoValido && this.producto.codigo_barra !== this.ultimoCodigoBarra) {
+        this.ultimoCodigoBarra = this.producto.codigo_barra
         this.buscarProducto();
+      }
+
+      if (this.bodega.lote !== this.ultimoBatch) {
+        this.ultimoBatch = this.bodega.lote
         this.buscarLote();
       }
+
     });
   }
 
   producto = {
+    id: '',
     codigo_barra: '',
     nombre: '',
     marca: '',
@@ -70,6 +77,7 @@ export class CrearRegistroComponent {
   }
 
   bodega = {
+    id: '',
     lote: '',
     fecha_entrada: '',
     es_perecedero: '',
@@ -79,43 +87,26 @@ export class CrearRegistroComponent {
     cantidad_en_bodega: '',
     estado: ''
   }
-  
-  proveedor = {
-    nit: '',
-    razon_social: '',
-    correo: ''
-  }
 
   model = {
-    id_producto: '',
-    id_proveedor: '',
-    lote: '',
-    fecha_entrada: '',
-    fecha_vencimiento: '',
-    cantidad_comprada: '',
-    estado: ''
+    id_lote: '',
+    id_tipo_merma: '',
+    cantidad: '',
+    fecha_reporte: '',
+    valor_perdido: '',
+    observacion: ''
   }
 
   validators = {
     id_producto: false,
-    id_proveedor: false,
-    nit: false,
-    codigo_barra: false,
+    id_tipo_merma: false,
+    id_lote: false,
     lote: false,
-    fecha_entrada: false,
-    fecha_vencimiento: false,
-    cantidad_comprada: false,
-    estado: false
-  }
-
-  goTo (url: string, _id: number){
-
-    if(_id != 0){
-      this.router.navigate([url], { queryParams: { id: _id } });
-    }else{
-      this.router.navigate([url]);
-    }
-
+    codigo_barra: false,
+    cantidad: false,
+    fecha_reporte: false,
+    valor_perdido: false,
+    observacion: false
   }
 
   async ngOnInit(){
@@ -125,7 +116,7 @@ export class CrearRegistroComponent {
     const permiso_modulo_catalogo = await this.permisosService.permisoPage(0,'catalogo',userData.data.id)
     const permiso_submodulo_productos = await this.permisosService.permisoPage(22,'productos',userData.data.id)
     const permiso_submodulo_proveedores = await this.permisosService.permisoPage(22,'proveedores',userData.data.id)
-
+    const permiso_modulo_warehouse = await this.permisosService.permisoPage(22,'proveedores',userData.data.id)
 
     if (permiso_modulo_catalogo.data === "" || permiso_submodulo_productos.data === "") {
       return
@@ -140,7 +131,24 @@ export class CrearRegistroComponent {
 
     const permisos_proveedores = await this.permisosService.permisos(userData.data.id,'proveedores')
     this.permisos_catalogo_proveedores = permisos_proveedores.data
+
+    if (permiso_modulo_warehouse.data === "" || permiso_modulo_warehouse.data === "") {
+      return
+    }
+
+    const permisos_de_bodega = await this.permisosService.permisos(userData.data.id,'bodega')
+    this.permisos_bodega = permisos_de_bodega.data
   }  
+
+  goTo (url: string, _id: number){
+
+    if(_id != 0){
+      this.router.navigate([url], { queryParams: { id: _id } });
+    }else{
+      this.router.navigate([url]);
+    }
+
+  }
 
   onInputChange() {
     this.validationSubject.next();
@@ -150,18 +158,9 @@ export class CrearRegistroComponent {
     const regexBarCode = /^[0-9]{13}$/;
     const regexNIT = /^[0-9]{8,15}$/;
     this.validators.codigo_barra = (this.producto.codigo_barra === null || !regexBarCode.test((this.producto.codigo_barra as any).toString()))
-    this.validators.nit = (this.proveedor.nit === null || !regexNIT.test((this.proveedor.nit as any).toString()));
+    this.validators.lote = (this.bodega.lote === null)
 
-    const boton = document.querySelector('.btnSave') as HTMLButtonElement
-    (!this.validators.codigo_barra && !this.validators.nit) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
-    $('.btnSave').removeClass('d-none')
-
-    if(this.validators.codigo_barra){
-      this.btn_new_product = false
-      this.show_detail_product = false
-    }
-    
-    return !this.validators.codigo_barra
+    return false
   }
 
   get esCodigoValido(): boolean {
@@ -183,46 +182,119 @@ export class CrearRegistroComponent {
     return `${yyyy}-${mm}-${dd}`
   }
 
+  form_new_product = true
+  btn_new_product = false
+  show_detail_product = false
+
+  btn_new_batch = false
+  form_batch = false
+  show_detail_batch = false
+
+  form_merma = false
+  puedoCrearProductos = false
+  puedoCrearBatch = false
+
   async buscarProducto() {
     try {
-      const response = await this.productoService.getDataProductForBarcode(this.producto.codigo_barra);
-      if (response.status === 200) {
-        this.model.id_producto = response.data.id
-        this.producto.nombre = response.data.nombre
-        this.producto.marca = response.data.marca.nombre
-        this.producto.unidad_medida = response.data.medida.nombre
-        this.producto.es_perecedero = response.data.es_perecedero
-        $('.btnSave').removeClass('d-none')
-        this.show_detail_product = true
+      const consultaProducto = await this.productoService.getDataProductForBarcode(this.producto.codigo_barra)
+      if (consultaProducto.status == 200 && consultaProducto.data.estado === true) {
+        console.log('producto existe')
+        console.log('esta activo')
+        // this.validators.producto_inactivo = false
+
+        // this.model.id_producto = consultaProducto.data.id
+        this.producto.id = consultaProducto.data.id
+        this.producto.nombre = consultaProducto.data.nombre
+        this.producto.marca = consultaProducto.data.marca.nombre
+        this.producto.unidad_medida = consultaProducto.data.medida.nombre
+        this.producto.es_perecedero = consultaProducto.data.es_perecedero
+
+        this.form_new_product = true
         this.btn_new_product = false
+        this.show_detail_product = true
+
         this.form_batch = true
+
+        const boton = document.querySelector('.btnSave') as HTMLButtonElement
+        boton.classList.add('disabled')
+      }
+      if (consultaProducto.status == 200 && consultaProducto.data.estado === false) {
+        console.log('producto existe')
+        console.log('esta inactivo')
+        // this.validators.producto_inactivo = true
+
+        this.producto.nombre = ''
+        this.producto.marca = ''
+        this.producto.unidad_medida = ''
+        this.producto.es_perecedero = ''
+
+        this.form_new_product = true
+        this.btn_new_product = false
+        this.show_detail_product = false
+
+        // this.form_new_provider = false
+        // this.form_new_batch = false
+        // this.proveedor.nit = ''
+
+        this.model.id_lote = ''
+        this.model.id_tipo_merma = ''
+        this.model.cantidad = ''
+        this.model.fecha_reporte = ''
+        this.model.valor_perdido = ''
+        this.model.observacion = ''
+        const boton = document.querySelector('.btnSave') as HTMLButtonElement
+        boton.classList.add('disabled')
       }
     } catch (error: any) {
-      if (error.response) {
-        const statusCode = error.response.status;
-        if (statusCode === 404) {
-          $('.btnSave').addClass('d-none')
-          this.show_detail_product = false
-          this.btn_new_product = true
-          this.form_batch = false
-          if(this.permisos_catalogo_productos.find(obj => obj.permiso_permiso === 'crear') == undefined) {
-            this.puedoCrearProductos = false
-          }else{
-            this.puedoCrearProductos = true
-          }
+      if (error.status == 404) {
+        console.log('producto no existe')
+        // this.validators.producto_inactivo = false
+
+        this.producto.nombre = ''
+        this.producto.marca = ''
+        this.producto.unidad_medida = ''
+        this.producto.es_perecedero = ''
+
+        this.model.id_lote = ''
+        this.model.id_tipo_merma = ''
+        this.model.cantidad = ''
+        this.model.fecha_reporte = ''
+        this.model.valor_perdido = ''
+        this.model.observacion = ''
+
+        this.form_new_product = true
+        this.btn_new_product = true
+        this.show_detail_product = false
+        if (this.permisos_catalogo_productos.find(obj => obj.permiso_permiso === 'crear') == undefined) {
+          this.puedoCrearProductos = false
+        } else {
+          this.puedoCrearProductos = true
         }
-      } else {
-        console.error('Error de red o servidor no disponible');
+
+        // this.form_new_provider = false
+        // this.form_new_batch = false
+        // this.proveedor.nit = ''
+
+        this.model.id_lote = ''
+        this.model.id_tipo_merma = ''
+        this.model.cantidad = ''
+        this.model.fecha_reporte = ''
+        this.model.valor_perdido = ''
+        this.model.observacion = ''
+        const boton = document.querySelector('.btnSave') as HTMLButtonElement
+        boton.classList.add('disabled')
       }
     }
   }
 
   async buscarLote() {
     try {
-      const response = await this.bodegaService.getDataLoteAndProduct(this.bodega.lote, this.model.id_producto);
+      const response = await this.bodegaService.getDataLoteAndProduct(this.bodega.lote, this.producto.id);
       if (response.status === 200) {
-        // $('.btnSave').removeClass('d-none')
-        this.model.lote = this.bodega.lote
+        const boton = document.querySelector('.btnSave') as HTMLButtonElement
+        boton.classList.add('disabled')
+
+        this.bodega.id = response.data.id
         this.bodega.fecha_entrada = this.formatoFecha(response.data.fecha_entrada)
         this.bodega.es_perecedero = response.data.id_producto.es_perecedero
         this.bodega.fecha_vencimiento = this.formatoFecha(response.data.fecha_vencimiento)
@@ -232,26 +304,49 @@ export class CrearRegistroComponent {
         this.bodega.estado = response.data.estado
         this.show_detail_batch = true
 
+        this.btn_new_batch = false
+        this.puedoCrearBatch = false
+
+        this.model.id_lote = response.data.id
+        this.model.id_tipo_merma = ''
+        this.model.cantidad = ''
+        this.model.fecha_reporte = ''
+        this.model.valor_perdido = ''
+        this.model.observacion = ''
+        
         this.form_merma = true
       }
     } catch (error: any) {
-      // if (error.response) {
-      //   const statusCode = error.response.status;
-      //   if (statusCode === 404) {
-      //     $('.btnSave').addClass('d-none')
-      //     this.show_detail_product = false
-      //     this.btn_new_product = true
-      //     this.form_batch = false
-      //     if(this.permisos_catalogo_productos.find(obj => obj.permiso_permiso === 'crear') == undefined) {
-      //       this.puedoCrearProductos = false
-      //     }else{
-      //       this.puedoCrearProductos = true
-      //     }
-      //   }
-      // } else {
-      //   console.error('Error de red o servidor no disponible');
-      // }
+      if (error.response) {
+        const statusCode = error.response.status;
+        if (statusCode === 404) {
+          this.show_detail_batch = false
+          this.btn_new_batch = true
+          this.form_batch = true
+          if(this.permisos_bodega.find(obj => obj.permiso_permiso === 'crear') == undefined) {
+            this.puedoCrearBatch = false
+          }else{
+            this.puedoCrearBatch = true
+          }
+          this.form_merma = false
+          const boton = document.querySelector('.btnSave') as HTMLButtonElement
+          boton.classList.add('disabled')
+        }
+
+        this.model.id_lote = ''
+        this.model.id_tipo_merma = ''
+        this.model.cantidad = ''
+        this.model.fecha_reporte = ''
+        this.model.valor_perdido = ''
+        this.model.observacion = ''
+      } else {
+        console.error('Error de red o servidor no disponible');
+      }
     }
+  }
+
+  crearMerma(){
+    console.log('creando merma...')
   }
 
 }
