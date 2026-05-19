@@ -193,7 +193,7 @@
 /* --- ENTRADA: Aparece bajando --- */
 .animate__fadeIn {
   opacity: 1;
-  max-height: 500px; 
+  max-height: auto; 
   margin-top: 1rem;
   overflow: hidden; /* Evita saltos de contenido */
   animation: fastIn 0.25s ease-out forwards;
