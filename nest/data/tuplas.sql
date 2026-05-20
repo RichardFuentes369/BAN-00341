@@ -16,12 +16,11 @@
 
 -- Dumping data for table BAN_00341.mod_bodega: ~6 rows (approximately)
 INSERT INTO `mod_bodega` (`id`, `lote`, `fecha_entrada`, `fecha_vencimiento`, `cantidad_comprada`, `cantidad_vendida`, `cantidad_en_bodega`, `estado`, `id_producto`, `id_proveedor`) VALUES
-	(10, 'LMA-170526', 1778994000, 1787029199, 15, 0, 15, 'disponible', 1, 1),
-	(11, 'DPR-170526', 1778994000, NULL, 20, 0, 20, 'disponible', 2, 1),
-	(12, 'CLA-170515', 1778994000, 1786597199, 12, 0, 12, 'disponible', 4, 3),
-	(13, 'CRM-150526', 1778994000, 1780289999, 15000, 0, 15000, 'disponible', 10, 4),
-	(14, 'DCP-150526', 1778994000, 1790225999, 18, 0, 18, 'disponible', 6, 3),
-	(15, 'asda28', 1777870800, 1780030799, 25, 0, 25, 'disponible', 9, 3);
+	(1, 'LMA-170526', 1778994000, 1787029199, 15, 0, 10, 'disponible', 1, 1),
+	(2, 'DPR-170526', 1778994000, NULL, 20, 0, 20, 'disponible', 2, 1),
+	(3, 'CLA-170515', 1778994000, 1786597199, 12, 0, 6, 'disponible', 4, 3),
+	(4, 'DCP-150526', 1778994000, 1790225999, 18, 0, 18, 'disponible', 6, 3),
+	(5, 'CRM-150526', 1778994000, 1780289999, 15000, 0, 14000, 'disponible', 10, 4);
 
 -- Dumping data for table BAN_00341.mod_catalogo_marcas: ~5 rows (approximately)
 INSERT INTO `mod_catalogo_marcas` (`id`, `nombre`) VALUES
@@ -61,6 +60,11 @@ INSERT INTO `mod_catalogo_proveedores` (`id`, `razon_social`, `direccion`, `corr
 	(4, 'Proveedor 4', 'calle 206 # 55 - 95', 'proveedor4@gmail.com', '3504289963', '1', '1000241004');
 
 -- Dumping data for table BAN_00341.mod_merma_mermas: ~0 rows (approximately)
+INSERT INTO `mod_merma_mermas` (`id`, `cantidad`, `fecha_reporte`, `valor_perdido`, `observacion`, `id_tipo_merma`, `id_lote`) VALUES
+	(45, 1000, 1778120520, 32000.00, 'Actualizando desde la api bla bal bla', 1, 5),
+	(46, 3, 1778199520, 32000.00, 'desde la api', 1, 1),
+	(47, 2, 1778199520, 32000.00, 'desde la api', 1, 1),
+	(48, 6, 1778199520, 32000.00, 'desde la api', 1, 3);
 
 -- Dumping data for table BAN_00341.mod_merma_tipos: ~10 rows (approximately)
 INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
