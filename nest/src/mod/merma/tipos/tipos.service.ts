@@ -155,6 +155,13 @@ export class TiposService {
     };
   }
 
+  async listaTipos(search: string){
+    return await this.tipoMermaRepository.find({
+      where: { nombre: Like(`%${search}%`) },
+      take: 20 
+    });
+  }
+
   async contadoresTipo(
     lang: string
   ){

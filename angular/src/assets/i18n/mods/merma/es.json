@@ -33,6 +33,25 @@
     "COLUMN_AMOUNT": "Cantidad",
     "COLUMN_LOST_VALUE": "Valor perdido",
     "COLUMN_OBSERVATION": "Observación",
+
+    "LABEL_TYPE": "Tipo merma",
+    "LABEL_AMOUT": "Cantidad ",
+    "LABEL_REPORT_DATE": "Fecha de reporte",
+    "LABEL_LOST_VALUE": "Valor perdido",
+    "LABEL_OBSERVATION": "Observación",
+    
+    "PLACEHOLDER_TYPE": "Tipo de merma",
+    "PLACEHOLDER_AMOUT": "Cantidad perdida",
+    "PLACEHOLDER_REPORT_DATE": "Ingrese una fecha",
+    "PLACEHOLDER_LOST_VALUE": "Ingrese el valor estimado",
+    "PLACEHOLDER_OBSERVACION": "Ingrese una observación",
+
+    "SWAL_CREATED": "Registro!",
+    "SWAL_UPDATED": "Registro!",
+    "SWAL_DELETED": "Registro!",
+
+    "SWAL_ARE_YOU_SURE_UPDATE": "¿Está seguro de que desea actualizar el registro {{user_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "¿Está seguro de que desea eliminar {{art_the}} registro{{plural}} {{user_name}}?",
     
     "CARD_TOTAL_REGISTER_TITLE": "Total registros"
   },

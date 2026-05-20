@@ -27,6 +27,25 @@
     "COLUMN_LOST_VALUE": "Verlustwert",
     "COLUMN_OBSERVATION": "Bemerkung",
 
+    "LABEL_TYPE": "Schwundart",
+    "LABEL_AMOUT": "Menge",
+    "LABEL_REPORT_DATE": "Berichtsdatum",
+    "LABEL_LOST_VALUE": "Verlustwert",
+    "LABEL_OBSERVATION": "Anmerkung",
+    
+    "PLACEHOLDER_TYPE": "Schwundart auswählen",
+    "PLACEHOLDER_AMOUT": "Verlustmenge",
+    "PLACEHOLDER_REPORT_DATE": "Datum eingeben",
+    "PLACEHOLDER_LOST_VALUE": "Schätzwert eingeben",
+    "PLACEHOLDER_OBSERVACION": "Anmerkung eingeben",
+
+    "SWAL_CREATED": "Registriert!",
+    "SWAL_UPDATED": "Aktualisiert!",
+    "SWAL_DELETED": "Gelöscht!",
+
+    "SWAL_ARE_YOU_SURE_UPDATE": "Sind Sie sicher, dass Sie den Datensatz {{user_name}} aktualisieren möchten?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Sind Sie sicher, dass Sie {{art_the}} Datensatz{{plural}} {{user_name}} löschen möchten?",
+
     "CARD_TOTAL_REGISTER_TITLE": "Gesamtregister"
   },
 

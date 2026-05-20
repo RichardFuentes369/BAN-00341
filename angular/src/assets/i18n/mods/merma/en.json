@@ -26,6 +26,25 @@
     "COLUMN_AMOUNT": "Quantity",
     "COLUMN_LOST_VALUE": "Lost value",
     "COLUMN_OBSERVATION": "Observation",
+
+    "LABEL_TYPE": "Shrinkage type",
+    "LABEL_AMOUT": "Quantity",
+    "LABEL_REPORT_DATE": "Report date",
+    "LABEL_LOST_VALUE": "Lost value",
+    "LABEL_OBSERVATION": "Observation",
+    
+    "PLACEHOLDER_TYPE": "Select shrinkage type",
+    "PLACEHOLDER_AMOUT": "Lost quantity",
+    "PLACEHOLDER_REPORT_DATE": "Enter a date",
+    "PLACEHOLDER_LOST_VALUE": "Enter estimated value",
+    "PLACEHOLDER_OBSERVACION": "Enter an observation",
+
+    "SWAL_CREATED": "Registered!",
+    "SWAL_UPDATED": "Updated!",
+    "SWAL_DELETED": "Deleted!",
+
+    "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the record {{user_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete {{art_the}} record{{plural}} {{user_name}}?",
     
     "CARD_TOTAL_REGISTER_TITLE": "Total records"
   },

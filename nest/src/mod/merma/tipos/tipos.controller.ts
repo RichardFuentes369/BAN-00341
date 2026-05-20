@@ -79,6 +79,11 @@ export class TiposController {
       userId
     );
   }
+  
+  @Get('tipos-disponibles')
+  async getTypeList(@Query('search') search: string) {
+    return await this.tiposService.listaTipos(search);
+  }
 
   // contadores
   @Get('obtener-contadores-tipo-merma')

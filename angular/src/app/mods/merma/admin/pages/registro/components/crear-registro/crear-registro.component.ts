@@ -8,6 +8,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { ocultarModalOscura } from '@function/System'
+import { NgSelectModule } from '@ng-select/ng-select';
 import { RegistroService } from '../../service/registro.service';
 import { CommonModule } from '@angular/common';
 import { ProductosService } from '@mod/catalog/admin/pages/productos/service/productos.service';
@@ -16,12 +17,13 @@ import { AuthService } from '@guard/service/auth.service';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { ProveedoresService } from '@mod/catalog/admin/pages/proveedores/service/proveedores.service';
 import { BodegaService } from '@mod/warehouse/admin/pages/warehouse/service/warehouse.service';
+import { TipoService } from '../../../tipo/service/tipo.service';
 
 
 @Component({
   selector: 'app-crear-registro',
   standalone: true,
-  imports: [TranslateModule, FormsModule, CommonModule],
+  imports: [TranslateModule, FormsModule, CommonModule, NgSelectModule],
   templateUrl: './crear-registro.component.html',
   styleUrl: './crear-registro.component.scss',
 })
@@ -29,6 +31,10 @@ export class CrearRegistroComponent {
   
   private validationSubject = new Subject<void>();
   isFormValid = false;
+  tipos_merma: any[] = [];
+  isLoading: boolean = false
+  filtro: string = ''
+  isReadonly:boolean = false
   permisos_catalogo_productos: any[] = []
   permisos_catalogo_proveedores: any[] = []
   permisos_bodega: any[] = []
@@ -44,6 +50,7 @@ export class CrearRegistroComponent {
     private productoService: ProductosService,
     private bodegaService: BodegaService,
     private proveedoresService: ProveedoresService,
+    private tipoService: TipoService,
     private translate: TranslateService
   ){
     this.validationSubject.pipe(
@@ -138,6 +145,8 @@ export class CrearRegistroComponent {
 
     const permisos_de_bodega = await this.permisosService.permisos(userData.data.id,'bodega')
     this.permisos_bodega = permisos_de_bodega.data
+
+    this.isReadonly = false
   }  
 
   goTo (url: string, _id: number){
@@ -193,6 +202,30 @@ export class CrearRegistroComponent {
   form_merma = false
   puedoCrearProductos = false
   puedoCrearBatch = false
+
+  async getTiposMerma() {
+    this.isLoading = true;
+    try {
+      const mermaList = await this.tipoService.getDataTypeSearch(this.filtro)
+      this.tipos_merma = [...mermaList.data];
+    } finally {
+      this.isLoading = false;
+    }
+  }  
+
+  onSelectChange(item: any) {
+    this.model.id_tipo_merma = (item != undefined) ? item.id : null
+    this.checkValidation()
+  }
+
+  onSearch(event: any) {
+    const term = event.term;
+    if (term && term.length >= 3) {
+      this.filtro = term
+      this.isLoading = true;
+      this.getTiposMerma();
+    }
+  }
 
   async buscarProducto() {
     try {
@@ -314,6 +347,7 @@ export class CrearRegistroComponent {
         this.model.valor_perdido = ''
         this.model.observacion = ''
         
+        await this.getTiposMerma();
         this.form_merma = true
       }
     } catch (error: any) {
@@ -347,6 +381,19 @@ export class CrearRegistroComponent {
 
   crearMerma(){
     console.log('creando merma...')
+  }
+
+  mostrarSeccion = {
+    productSeccion: true,
+    batchSeccion: true,
+    registerSeccion: true,
+  }
+
+  toogleSection(sectionActive: string){
+    if (sectionActive in this.mostrarSeccion) {
+      const key = sectionActive as keyof typeof this.mostrarSeccion;
+      this.mostrarSeccion[key] = !this.mostrarSeccion[key];
+    }
   }
 
 }
