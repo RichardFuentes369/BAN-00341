@@ -3,9 +3,11 @@ import { CreateWarehouseDto } from './dto/create-warehouse.dto';
 import { UpdateWarehouseDto } from './dto/update-warehouse.dto';
 import { Bodega } from './entities/warehouse.entity';
 import { I18nService } from 'nestjs-i18n';
-import { Like, Repository } from 'typeorm';
+import { In, Like, Repository } from 'typeorm';
 import { FilterWarehouseDto } from './dto/filter-warehouse.dto';
 import { FilterWarehouseProductDTO } from './dto/filter-lote-producto.dto';
+import { CreateMermaDto } from '@module/merma/mermas/dto/create-merma.dto';
+import { Merma } from '@module/merma/mermas/entities/merma.entity';
 
 @Injectable()
 export class WarehouseService {
@@ -13,6 +15,10 @@ export class WarehouseService {
   constructor(
     @Inject('WAREHOUSE_REPOSITORY')
     private batchRepository: Repository<Bodega>,
+  
+    @Inject('MERMA_REPOSITORY')
+    private readonly mermaRepository: Repository<Merma>,
+
     private i18n: I18nService
   ) {}
 
@@ -183,8 +189,6 @@ export class WarehouseService {
 
     return data
   }
-
-
   
   async findOneLoteProduct(
     lang: string,
@@ -217,5 +221,65 @@ export class WarehouseService {
         mermas: bodega.mermas ? bodega.mermas.reduce((total, m) => total + m.cantidad, 0) : 0
     };
 
+  }
+
+
+  async updateQuantities(
+    createMermaDto: CreateMermaDto,
+    option: number,
+    id_merma?: number|null
+  ){
+
+    if(option == 1){
+      const exists = await this.batchRepository.findOne({ where: { id: createMermaDto.id_lote } });
+      
+      if (exists){
+        exists.cantidad_en_bodega = exists.cantidad_en_bodega - createMermaDto.cantidad
+      }
+  
+      return await this.batchRepository.save(exists);
+    }
+
+    if(option == 2){
+      const exists = await this.batchRepository.findOne({ where: { id: createMermaDto.id_lote } });
+      const merma = await this.mermaRepository.findOne({ where: { id: id_merma } });
+      
+      if (exists && createMermaDto.cantidad<merma.cantidad){
+        exists.cantidad_en_bodega = exists.cantidad_en_bodega + (merma.cantidad - createMermaDto.cantidad)
+      }
+
+      if (exists && createMermaDto.cantidad>merma.cantidad){
+        exists.cantidad_en_bodega = exists.cantidad_en_bodega - (createMermaDto.cantidad - merma.cantidad)
+      }
+  
+      return await this.batchRepository.save(exists);
+    }
+
+  }
+
+  async deleteQuantities(ids){
+
+    if (!ids || ids.length === 0) {
+      return [];
+    }
+
+    const mermas = await this.mermaRepository.createQueryBuilder('merma')
+    .select('merma.id_lote', 'id_lote')
+    .addSelect('SUM(merma.cantidad)', 'cantidad') 
+    .where('merma.id IN (:...ids)', { ids }) 
+    .groupBy('merma.id_lote')
+    .getRawMany();
+
+    for (const merma of mermas) {
+      const idLoteAffected = merma.id_lote
+      const cantidadTotalRestar = Number(merma.cantidad)
+
+      const exists = await this.batchRepository.findOne({ where: { id: idLoteAffected } });
+      
+      if (exists){
+        exists.cantidad_en_bodega = exists.cantidad_en_bodega + cantidadTotalRestar
+      }
+      await this.batchRepository.save(exists);
+    }
   }
 }

@@ -1,10 +1,11 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException, forwardRef } from '@nestjs/common';
 import { CreateMermaDto } from './dto/create-merma.dto';
 import { UpdateMermaDto } from './dto/update-merma.dto';
 import { In, Like, Repository } from 'typeorm';
 import { Merma } from './entities/merma.entity';
 import { I18nService } from 'nestjs-i18n';
 import { FilterRegistroMermaDto } from './dto/filter-merma.dto';
+import { WarehouseService } from '@module/bodega/warehouse/warehouse.service';
 
 @Injectable()
 export class MermasService {
@@ -12,6 +13,9 @@ export class MermasService {
   constructor(
     @Inject('MERMA_REPOSITORY')
     private mermaRepository: Repository<Merma>,
+
+    @Inject(forwardRef(() => WarehouseService))
+    private readonly warehouseService: WarehouseService,
     private i18n: I18nService
   ) { }
 
@@ -104,6 +108,8 @@ export class MermasService {
     userId: number
   ) {
     try {
+      const productoValido = await this.warehouseService.updateQuantities(mermaData, 1)
+
       await this.mermaRepository.save(mermaData);
       return {
         'title': this.i18n.t('category.MSJ_TITTLE', { lang }),
@@ -126,6 +132,8 @@ export class MermasService {
     userId: number
   ) {
     try {
+      const productoValido = await this.warehouseService.updateQuantities(mermaData, 2, id)
+
       const merma = await this.mermaRepository.findOne({
         where: { id }
       });
@@ -143,10 +151,7 @@ export class MermasService {
   }
 
   async remove(lang: string, ids: number[], userId: number) {
-
-    const merma = await this.mermaRepository.find({
-      where: { id: In(ids) },
-    });
+    const productoValido = await this.warehouseService.deleteQuantities(ids)
     
     this.mermaRepository.delete({ id: In(ids) })
 

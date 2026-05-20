@@ -331,6 +331,16 @@
 								{
 									"name": "singinAdmin",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "POST",
 										"header": [],
 										"body": {
@@ -2783,7 +2793,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"cantidad\": 2,\n  \"fecha_reporte\": 1778199520,\n  \"valor_perdido\": 32000,\n  \"observacion\": \"desde la api\",\n  \"id_tipo_merma\": 1,\n  \"id_lote\": 2\n}",
+											"raw": "{\n  \"id_tipo_merma\": 1,\n  \"cantidad\": 6,\n  \"fecha_reporte\": 1778199520,\n  \"valor_perdido\": 32000,\n  \"observacion\": \"desde la api\",\n  \"id_lote\": 3\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2830,7 +2840,7 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/registro-mermas/eliminar-registro-merma?_id=8&lang=es",
+											"raw": "localhost:3000/api/registro-mermas/eliminar-registro-merma?_id=42,43,44&lang=es",
 											"host": [
 												"localhost"
 											],
@@ -2843,7 +2853,7 @@
 											"query": [
 												{
 													"key": "_id",
-													"value": "8"
+													"value": "42,43,44"
 												},
 												{
 													"key": "lang",
@@ -2871,7 +2881,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"cantidad\": 4,\n  \"fecha_reporte\": 1778120520,\n  \"valor_perdido\": 32000,\n  \"observacion\": \"Actualizando desde la api bla bal bla\",\n  \"id_tipo_merma\": 1,\n  \"id_lote\": 2\n}",
+											"raw": "{\n  \"cantidad\": 1000,\n  \"fecha_reporte\": 1778120520,\n  \"valor_perdido\": 32000,\n  \"observacion\": \"Actualizando desde la api bla bal bla\",\n  \"id_tipo_merma\": 1,\n  \"id_lote\": 5\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2879,7 +2889,7 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/registro-mermas/actualizar-registro-merma?_id=9&lang=es",
+											"raw": "localhost:3000/api/registro-mermas/actualizar-registro-merma?_id=45&lang=es",
 											"host": [
 												"localhost"
 											],
@@ -2892,7 +2902,7 @@
 											"query": [
 												{
 													"key": "_id",
-													"value": "9"
+													"value": "45"
 												},
 												{
 													"key": "lang",
@@ -2995,6 +3005,50 @@
 											"query": [
 												{
 													"key": "_id",
+													"value": "1"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-registro-lote-producto",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/batch/obtener-registro-lote-producto?lote=Al-mg-1100&id_producto=1&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"batch",
+												"obtener-registro-lote-producto"
+											],
+											"query": [
+												{
+													"key": "lote",
+													"value": "Al-mg-1100"
+												},
+												{
+													"key": "id_producto",
 													"value": "1"
 												},
 												{
