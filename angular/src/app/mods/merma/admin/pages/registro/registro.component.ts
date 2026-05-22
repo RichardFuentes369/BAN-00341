@@ -291,34 +291,34 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
   async eliminarData (_id: string[]){
-  //   const response = await this.tipoService.getDataTipo(_id[0])
-  //   const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
-  //   const name_user = (_id.length === 1) ? firstName+" "+lastName : "("+_id.length+")"
-  //   const count_users = (_id.length === 1) ? 'el' : 'los'
-  //   const plural = (_id.length === 1) ? '' : 's'
+    const response = await this.registroService.getDataRegister(_id[0])
+    const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
+    const name_user = (_id.length === 1) ? firstName+" "+lastName : "("+_id.length+")"
+    const count_users = (_id.length === 1) ? 'el' : 'los'
+    const plural = (_id.length === 1) ? '' : 's'
     
-  //   this.translate.get('mod-merma.TYPE.SWAL_ARE_YOU_SURE_DELETE',{ "art_the": count_users, "plural": plural, "user_name": name_user}).subscribe((translatedTitle: string) => {
-  //     Swal.fire({
-  //       title: translatedTitle,
-  //       text: this.translate.instant('mod-merma.SWAL_WARNING_REVERSE_CHANGE'),
-  //       icon: 'warning',
-  //       showCancelButton: true,
-  //       confirmButtonText: this.translate.instant('mod-merma.SWAL_BUTTON_DELETE'),
-  //       cancelButtonText: this.translate.instant('mod-merma.SWAL_BUTTON_CANCEL')
-  //     }).then(async (result) => {
-  //       if (result.isConfirmed) {
-  //         if (result.isConfirmed) {
-  //           await this.tipoService.deleteTipo(_id)
-  //           await this.someInput.reload()
-  //           Swal.fire({
-  //             title: this.translate.instant('mod-merma.TYPE.SWAL_DELETED'),
-  //             text: this.translate.instant('mod-merma.SWAL_DELETED_RECORD'),
-  //             icon: "success"
-  //           });
-  //         }
-  //       }
-  //     });
-  //   });
+    this.translate.get('mod-merma.TYPE.SWAL_ARE_YOU_SURE_DELETE',{ "art_the": count_users, "plural": plural, "user_name": name_user}).subscribe((translatedTitle: string) => {
+      Swal.fire({
+        title: translatedTitle,
+        text: this.translate.instant('mod-merma.SWAL_WARNING_REVERSE_CHANGE'),
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: this.translate.instant('mod-merma.SWAL_BUTTON_DELETE'),
+        cancelButtonText: this.translate.instant('mod-merma.SWAL_BUTTON_CANCEL')
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          if (result.isConfirmed) {
+            await this.registroService.deleteRegister(_id)
+            await this.someInput.reload()
+            Swal.fire({
+              title: this.translate.instant('mod-merma.TYPE.SWAL_DELETED'),
+              text: this.translate.instant('mod-merma.SWAL_DELETED_RECORD'),
+              icon: "success"
+            });
+          }
+        }
+      });
+    });
   }
 
   async filtroData(){

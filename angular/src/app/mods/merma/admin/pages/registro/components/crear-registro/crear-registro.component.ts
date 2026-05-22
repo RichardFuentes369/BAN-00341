@@ -168,9 +168,17 @@ export class CrearRegistroComponent {
     const regexNIT = /^[0-9]{8,15}$/;
     this.validators.codigo_barra = (this.producto.codigo_barra === null || !regexBarCode.test((this.producto.codigo_barra as any).toString()))
     this.validators.lote = (this.bodega.lote === null)
+    this.validators.id_tipo_merma = (this.model.id_tipo_merma == '')
+    this.validators.cantidad = (this.model.cantidad == '' || this.model.cantidad != '' && this.model.cantidad > this.bodega.cantidad_en_bodega)
+    this.validators.fecha_reporte = (this.model.fecha_reporte == '')
+    this.validators.valor_perdido = (this.model.valor_perdido == '')
+    this.validators.observacion = (this.model.observacion == '')
 
-    return false
-  }
+    const boton = document.querySelector('.btnSave') as HTMLButtonElement
+    (!this.validators.codigo_barra && !this.validators.lote && !this.validators.cantidad && !this.validators.fecha_reporte && !this.validators.valor_perdido && !this.validators.observacion) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+    
+    return !this.validators.codigo_barra && !this.validators.lote && !this.validators.cantidad && !this.validators.fecha_reporte && !this.validators.valor_perdido && !this.validators.observacion
+  } 
 
   get esCodigoValido(): boolean {
     const codigo = (this.producto?.codigo_barra || '').toString();
@@ -379,8 +387,29 @@ export class CrearRegistroComponent {
     }
   }
 
-  crearMerma(){
-    console.log('creando merma...')
+  async crearRegistro(){
+    if(this.isFormValid){
+      let endPoint = this.registroService
+
+      const response = await endPoint.createRegister(this.model)
+      if(response.data.status == 404){
+        ocultarModalOscura()
+        Swal.fire({
+          title: response.data.message,
+          text: response.data.error,
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        })
+      }
+      if(response.data.status == 200){
+        ocultarModalOscura()
+        Swal.fire({
+          title: this.translate.instant('mod-merma.TYPE.SWAL_CREATED'),
+          text: this.translate.instant('mod-merma.SWAL_CREATED_RECORD'),
+          icon: "success"
+        });
+      }
+    }
   }
 
   mostrarSeccion = {

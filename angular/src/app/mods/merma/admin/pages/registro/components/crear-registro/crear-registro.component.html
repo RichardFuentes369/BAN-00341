@@ -95,24 +95,14 @@
           <label for="exampleInputEmail1">
             {{ 'mod-warehouse.LABEL_FECHA_ENTRADA' | translate}}
           </label>
-          <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.fecha_entrada"
-            (ngModelChange)="onInputChange()" [class.is-invalid]="validators.fecha_reporte"
-            placeholder="{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate}}" disabled>
-          @if(validators.fecha_reporte) {
-          <span class="text-danger small">{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate }}</span>
-          }
+          <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.fecha_entrada" disabled>
         </div>
         @if(producto.es_perecedero){
         <div class="col-sm-12 form-group">
           <label for="exampleInputEmail1">
             {{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}
           </label>
-          <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.fecha_vencimiento"
-            (ngModelChange)="onInputChange()" [class.is-invalid]="validators.fecha_reporte"
-            placeholder="{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate}}" disabled>
-          @if(validators.fecha_reporte) {
-          <span class="text-danger small">{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate }}</span>
-          }
+          <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.fecha_vencimiento" disabled>
         </div>
         }
         <div class="col-sm-12 form-group">
@@ -157,9 +147,6 @@
             <option value="vencido">{{ 'mod-warehouse.SELECT_UNAVAILABLE_OPTION' | translate}}</option>
             <option value="agotado">{{ 'mod-warehouse.SELECT_EXPIRED_OPTION' | translate}}</option>
           </select>
-          @if(validators.id_tipo_merma) {
-          <span class="text-danger small">{{ 'mod-warehouse.PLACEHOLDER_ESTADO' | translate }}</span>
-          }
         </div>
         }
       </div>          
@@ -190,40 +177,63 @@
             bindValue="id" 
             appendTo="body" 
             [readonly]="isReadonly">
-            
             <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
               <div class="ng-option disabled">
                 No se encontró "{{searchTerm}}"
               </div>
             </ng-template>
           </ng-select>
+          @if(validators.id_tipo_merma) {
+          <span class="text-danger small">{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate }}</span>
+          }
         </div>
         <div class="col-sm-12 form-group">
           <label for="exampleInputEmail1">
             {{ 'mod-merma.REGISTER.LABEL_AMOUT' | translate}}
           </label>
-          <input type="number" min="0" class="form-control form-select-sm">
+          <input type="number" min="0" class="form-control form-select-sm" [(ngModel)]="model.cantidad" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.cantidad">
+          @if(validators.cantidad) {
+          <span class="text-danger small">{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate }}</span>
+          }
         </div>
         <div class="col-sm-12 form-group">
           <label for="exampleInputEmail1">
             {{ 'mod-merma.REGISTER.LABEL_REPORT_DATE' | translate}}
           </label>
-          <input type="date" class="form-control form-select-sm">
+          <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_reporte" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.fecha_reporte"> 
+          @if(validators.fecha_reporte) {
+          <span class="text-danger small">{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate }}</span>
+          }
         </div>
         <div class="col-sm-12 form-group">
           <label for="exampleInputEmail1">
             {{ 'mod-merma.REGISTER.LABEL_LOST_VALUE' | translate}}
           </label>
-          <input type="number" min="0" class="form-control form-select-sm">
+          <input type="number" min="0" class="form-control form-select-sm" [(ngModel)]="model.valor_perdido" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.valor_perdido">
+          @if(validators.valor_perdido) {
+          <span class="text-danger small">{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate }}</span>
+          }
         </div>
         <div class="col-sm-12 form-group">
           <label for="exampleInputEmail1">
             {{ 'mod-merma.REGISTER.LABEL_OBSERVATION' | translate}}
           </label>
-          <input type="text" class="form-control form-select-sm">
+          <textarea style="resize: none;" type="text" class="form-control form-select-sm" [(ngModel)]="model.observacion" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.observacion">
+          </textarea>
+          @if(validators.observacion) {
+          <span class="text-danger small">{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate }}</span>
+          }
         </div>
       </div>          
     </fieldset>
     }
+
+    <div class="col-sm-12 row p-0">
+      <div class="col-sm-12">
+        <button class="btn btn-sm btn-primary btnAction d-none" (click)="crearRegistro()">
+          {{ 'mod-catalog.BUTTON_USER_CREATE' | translate}}
+        </button>
+      </div>
+    </div>
   </div>
 </div>
