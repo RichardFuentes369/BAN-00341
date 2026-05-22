@@ -94,7 +94,11 @@ export class MermasService {
     id: number
   ) {
     const merma = await this.mermaRepository.findOne({
-      where: { id }
+      where: { id },
+      relations: {
+        id_tipo_merma: true, 
+        id_lote: true
+      },
     });
     if (!merma) throw new NotFoundException(
       this.i18n.t('batch.MSJ_BATCH_NO_ENCONTRADA', { lang })

@@ -22,9 +22,9 @@
     "CREATE_SUBTITLE": "Nuevo registro merma", 
     "CREATE_TITLE": "Crear", 
     "EDIT_TITLE": "Editar", 
-    "EDIT_SUBTITLE": "Registro merma: {{type_name}}", 
+    "EDIT_SUBTITLE": "Registro merma: {{register_name}}", 
     "SEE_TITLE": "Ver", 
-    "SEE_SUBTITLE": "Registro merma: {{type_name}}", 
+    "SEE_SUBTITLE": "Registro merma: {{register_name}}", 
 
     "COLUMN_ID": "ID",
     "COLUMN_TYPE": "Tipo merma",

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "bf70d1e9-d972-44ba-a2d7-f0640367a36e",
+		"_postman_id": "70485dc7-71ea-47d5-a871-e520344404da",
 		"name": "BAN-00341",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "7819792"
@@ -2793,7 +2793,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"id_tipo_merma\": 1,\n  \"cantidad\": 6,\n  \"fecha_reporte\": 1778199520,\n  \"valor_perdido\": 32000,\n  \"observacion\": \"desde la api\",\n  \"id_lote\": 3\n}",
+											"raw": "{\n  \"id_tipo_merma\": 2,\n  \"cantidad\": 6,\n  \"fecha_reporte\": 1778199520,\n  \"valor_perdido\": 32000,\n  \"observacion\": \"desde la api\",\n  \"id_lote\": 3\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2840,7 +2840,7 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/registro-mermas/eliminar-registro-merma?_id=42,43,44&lang=es",
+											"raw": "localhost:3000/api/registro-mermas/eliminar-registro-merma?_id=45,46,48&lang=es",
 											"host": [
 												"localhost"
 											],
@@ -2853,7 +2853,7 @@
 											"query": [
 												{
 													"key": "_id",
-													"value": "42,43,44"
+													"value": "45,46,48"
 												},
 												{
 													"key": "lang",

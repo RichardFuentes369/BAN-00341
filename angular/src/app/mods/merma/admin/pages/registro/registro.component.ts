@@ -238,29 +238,32 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
   }
 
   async verData (_id: string){
-    // this.title = this.translate.instant('mod-merma.TYPE.SEE_TITLE')
-    // const response = await this.tipoService.getDataTipo(_id)
-    // const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    // this.translate.get('mod-merma.TYPE.SEE_SUBTITLE', { "type_name": nombre }).subscribe((res: string) => {this.subtitle = res});
-    // this.tamano = "xl"
-    // this.scrollable = false
-    // this.save = false
-    // this.buttonSave = this.translate.instant('mod-merma.BUTTON_SAVE_')
-    // this.edit = false
-    // this.buttonEdit = this.translate.instant('mod-merma.BUTTON_UPDATE_')
-    // this.cancel = true
-    // this.buttonCancel = this.translate.instant('mod-merma.BUTTON_CANCEL')
-    // this.cierreModal = "true"
-    // this.componentePrecargado = VER_REGISTRO_COMPONENT
+    this.title = this.translate.instant('mod-merma.REGISTER.SEE_TITLE')
+    const response = await this.registroService.getDataRegister(_id)
+    const { lote } = response.data?.id_lote?.lote 
+    const { merma } = response.data?.id_tipo_merma?.nombre 
+    console.log(lote)
+    console.log(merma)
+    this.translate.get('mod-merma.REGISTER.SEE_SUBTITLE', { "register_name":  lote + ' ' + merma  }).subscribe((res: string) => {this.subtitle = res});
+    this.tamano = "xl"
+    this.scrollable = false
+    this.save = false
+    this.buttonSave = this.translate.instant('mod-merma.BUTTON_SAVE_')
+    this.edit = false
+    this.buttonEdit = this.translate.instant('mod-merma.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-merma.BUTTON_CANCEL')
+    this.cierreModal = "true"
+    this.componentePrecargado = VER_REGISTRO_COMPONENT
 
-    // const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    // if(idButton){
-    //   this.router.navigate([], {
-    //     queryParams: { id_tipo_merma: _id },
-    //   });
-    //   idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
-    //   idButton.click()
-    // }
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if(idButton){
+      this.router.navigate([], {
+        queryParams: { id_tipo_merma: _id },
+      });
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
   }
 
   async editarData (_id: string){
