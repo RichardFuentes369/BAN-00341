@@ -97,7 +97,11 @@ export class MermasService {
       where: { id },
       relations: {
         id_tipo_merma: true, 
-        id_lote: true
+        id_lote: {
+          id_producto: {
+            medida: true
+          }
+        },
       },
     });
     if (!merma) throw new NotFoundException(

@@ -240,13 +240,9 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
   async verData (_id: string){
     this.title = this.translate.instant('mod-merma.REGISTER.SEE_TITLE')
     const response = await this.registroService.getDataRegister(_id)
-    const { lote } = response.data?.id_lote?.lote 
-    const { merma } = response.data?.id_tipo_merma?.nombre 
-    console.log(lote)
-    console.log(merma)
-    this.translate.get('mod-merma.REGISTER.SEE_SUBTITLE', { "register_name":  lote + ' ' + merma  }).subscribe((res: string) => {this.subtitle = res});
+    this.translate.get('mod-merma.REGISTER.SEE_SUBTITLE', { "register_name": response.data?.id_lote?.lote }).subscribe((res: string) => {this.subtitle = res});
     this.tamano = "xl"
-    this.scrollable = false
+    this.scrollable = true
     this.save = false
     this.buttonSave = this.translate.instant('mod-merma.BUTTON_SAVE_')
     this.edit = false
