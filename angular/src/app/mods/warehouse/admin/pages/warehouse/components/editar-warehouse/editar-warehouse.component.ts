@@ -266,7 +266,6 @@ export class EditarWarehouseComponent {
 
     const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
     (!this.validators.codigo_barra && !this.validators.nit) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
-    $('.btnUpdate').removeClass('d-none')
 
     if(this.validators.codigo_barra){
       this.btn_new_product = false
@@ -298,7 +297,8 @@ export class EditarWarehouseComponent {
         this.producto.marca = response.data.marca.nombre
         this.producto.unidad_medida = response.data.medida.nombre
         this.producto.es_perecedero = response.data.es_perecedero
-        $('.btnUpdate').removeClass('d-none')
+        const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
+        boton.classList.remove('disabled')
         this.show_detail_product = true
         this.btn_new_product = false
         this.form_new_provider = true
@@ -307,7 +307,8 @@ export class EditarWarehouseComponent {
       if (error.response) {
         const statusCode = error.response.status;
         if (statusCode === 404) {
-          $('.btnUpdate').addClass('d-none')
+          const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
+          boton.classList.add('disabled')
           this.show_detail_product = false
           this.btn_new_product = true
           if(this.permisos_catalogo_productos.find(obj => obj.permiso_permiso === 'crear') == undefined) {
@@ -329,7 +330,8 @@ export class EditarWarehouseComponent {
         this.model.id_proveedor = response.data.id
         this.proveedor.razon_social = response.data.razon_social
         this.proveedor.correo = response.data.correo
-        $('.btnUpdate').removeClass('d-none')
+        const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
+        boton.classList.add('disabled')
         this.show_detail_provider = true
         this.btn_new_provider = false
         this.form_new_batch = true
@@ -338,7 +340,6 @@ export class EditarWarehouseComponent {
       if (error.response) {
          const statusCode = error.response.status;
          if (statusCode === 404) {
-           $('.btnUpdate').addClass('d-none')
            this.show_detail_provider = false
            this.btn_new_provider = true
            this.form_new_batch = false
@@ -347,6 +348,8 @@ export class EditarWarehouseComponent {
            }else{
              this.puedoCrearProveedores = true
            }
+            const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
+            boton.classList.add('disabled')
          }
       } else {
         console.error('Error de red o servidor no disponible');

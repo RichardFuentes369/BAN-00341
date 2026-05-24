@@ -62,7 +62,12 @@ export class MermasService {
         },
         relations: {
           id_tipo_merma: true,
-          id_lote: true
+          id_lote: {
+            id_producto: {
+              marca: true,
+              medida: true
+            }
+          }
         }
       })
     }
@@ -99,7 +104,8 @@ export class MermasService {
         id_tipo_merma: true, 
         id_lote: {
           id_producto: {
-            medida: true
+            medida: true,
+            marca: true
           }
         },
       },

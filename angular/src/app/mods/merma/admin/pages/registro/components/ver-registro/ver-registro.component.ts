@@ -36,6 +36,10 @@ interface RegistroInterface {
         'id': number,
         'nombre': string,
       },
+      'marca': {
+        'id': number,
+        'nombre': string,
+      },
       'nombre': string,
       'stock_minimo': number,
     },
