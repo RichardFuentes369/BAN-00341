@@ -75,6 +75,21 @@ export class WarehouseController {
     return this.warehouseService.create(lang, batchData, userId);
   }
 
+  @UseGuards(AdminGuard)
+  @Delete('eliminar-registro-lote')
+  remove(
+    @Query('lang') lang: string,
+    @Query('_id') _id: string,
+    @GetUser('id') userId: number
+  ) {
+    const idsNumeros: number[] = _id.split(',').map(str => parseInt(str.trim(), 10));
+    return this.warehouseService.remove(
+      lang, 
+      idsNumeros, 
+      userId
+    );
+  }
+
   // contadores
   @Get('obtener-contadores-lote')
   async contadores(

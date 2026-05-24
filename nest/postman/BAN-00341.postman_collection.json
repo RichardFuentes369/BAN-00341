@@ -2840,7 +2840,7 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/registro-mermas/eliminar-registro-merma?_id=45,46,48&lang=es",
+											"raw": "localhost:3000/api/registro-mermas/eliminar-registro-merma?_id=51&lang=es",
 											"host": [
 												"localhost"
 											],
@@ -2853,7 +2853,7 @@
 											"query": [
 												{
 													"key": "_id",
-													"value": "45,46,48"
+													"value": "51"
 												},
 												{
 													"key": "lang",
@@ -3139,6 +3139,36 @@
 												"api",
 												"batch",
 												"editar-registro-lote"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "eliminar-lote",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/batch/eliminar-registro-lote?_id=1&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"batch",
+												"eliminar-registro-lote"
 											],
 											"query": [
 												{
