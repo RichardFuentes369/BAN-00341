@@ -63,7 +63,6 @@
   padding: 18px 25px;
   border-bottom: 1px solid var(--border-color);
 
-
   .title-container {
     margin-right: auto;
 
@@ -75,21 +74,65 @@
     }
   }
 
-  button {
-    display: inline-flex; /* Asegura que el icono y el texto se alineen correctamente */
-    align-items: center;
-    gap: 4px; /* Espacio opcional entre el icono y el texto */
-    transition: transform 0.2s ease, filter 0.2s ease;
 
-    &:hover:not(:disabled) {
-      transform: scale(1.1);
-      filter: brightness(1.1);
 
-      // Cuando el botón tenga hover, expandimos el span de texto
+  .actions-container {
+
+    // Estilos para los botones que tienen este efecto expansivo
+    .action-icon-btn {
+      background: transparent;
+      overflow: hidden;
+      /* Evita que el texto se desborde mientras crece */
+      white-space: nowrap;
+      /* Fuerza a que el texto se quede en una sola línea */
+      cursor: pointer;
+      padding: 6px 10px !important;
+      /* Un pequeño acolchado para el botón */
+      border-radius: 30px;
+      /* Lo hace ver tipo píldora moderna al expandirse */
+      transition: background-color 0.3s ease;
+
+      &:hover:not([disabled]) {
+        background-color: var(--surface-hover, #f1f3f4);
+        /* Un fondo sutil gris al pasar el mouse */
+
+        .nameButton {
+          max-width: 150px;
+          /* Valor seguro para que quepa la palabra completa */
+          opacity: 1;
+          margin-left: 8px;
+          /* Separación entre el ícono y el texto */
+        }
+      }
+
+      /* El tamaño del ícono grande */
+      .icon-main {
+        font-size: 1.3rem;
+        display: inline-block;
+      }
+
+      /* Estado inicial oculto del texto */
       .nameButton {
-        max-width: 120px; /* Un ancho estimado lo suficientemente grande para "mi texto" */
-        opacity: 1;
-        margin-left: 0px; /* Separación sutil cuando aparece */
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        font-weight: 600;
+        color: var(--text-main);
+        /* Esta transición genera el efecto suave de cortina/despliegue */
+        transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 0.2s ease,
+          margin 0.3s ease;
+      }
+
+      /* Si el botón está deshabilitado no debe expandirse ni cambiar cursor */
+      &:disabled {
+        cursor: not-allowed;
+        background: transparent !important;
+
+        .nameButton {
+          max-width: 0 !important;
+          opacity: 0 !important;
+        }
       }
     }
   }
@@ -97,13 +140,19 @@
   // Estilos iniciales para el texto (oculto)
   .nameButton {
     display: inline-block;
-    max-width: 0;        /* Empieza con ancho cero */
-    opacity: 0;          /* Empieza invisible para un fade suave */
-    overflow: hidden;    /* Esconde el texto mientras el ancho sea cero */
-    white-space: nowrap; /* Evita que el texto se rompa en varias líneas al contraerse */
+    max-width: 0;
+    /* Empieza con ancho cero */
+    opacity: 0;
+    /* Empieza invisible para un fade suave */
+    overflow: hidden;
+    /* Esconde el texto mientras el ancho sea cero */
+    white-space: nowrap;
+    /* Evita que el texto se rompa en varias líneas al contraerse */
     transition: max-width 0.3s ease-in-out, opacity 0.2s ease, margin 0.3s ease;
-    font-size: 14px;          /* Ajusta este valor a tu gusto (ej. 12px, 16px, 0.9rem) */
-    font-weight: 500; /* Opcional: para darle un grosor intermedio */
+    font-size: 14px;
+    /* Ajusta este valor a tu gusto (ej. 12px, 16px, 0.9rem) */
+    font-weight: 500;
+    /* Opcional: para darle un grosor intermedio */
   }
 }
 
@@ -130,17 +179,18 @@
     }
 
     thead th {
-      background: transparent !important; 
-      
+      background: transparent !important;
+
       color: #ffffff !important;
       font-weight: 600;
       text-align: center;
       white-space: nowrap;
-      padding: 12px 12px !important; /* Un poco más delgado como pediste antes */
+      padding: 12px 12px !important;
+      /* Un poco más delgado como pediste antes */
       border: none !important;
-      
+
       /* Quitamos la sombra individual y la dejamos solo si es necesaria */
-      box-shadow: none !important; 
+      box-shadow: none !important;
     }
 
     tbody tr {
@@ -197,7 +247,7 @@
     }
   }
 
-    /* --- 5. PUNTOS DE ESTADO --- */
+  /* --- 5. PUNTOS DE ESTADO --- */
   .status-dot {
     display: inline-block;
     width: 10px;
@@ -207,41 +257,74 @@
     margin-right: 8px;
   }
 
-  .dot-green { 
-    background-color: #28a745; 
+  .dot-green {
+    background-color: #28a745;
     box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
-    animation: pulse-green 2s infinite; 
+    animation: pulse-green 2s infinite;
   }
 
-  .dot-red { 
-    background-color: #dc3545; 
+  .dot-red {
+    background-color: #dc3545;
     box-shadow: 0 0 8px rgba(220, 53, 69, 0.5);
-    animation: pulse-red 2s infinite; 
+    animation: pulse-red 2s infinite;
   }
 
   /* AHORA EL GRIS TIENE EL MISMO EFECTO */
-  .dot-gray { 
-    background-color: #6c757d; 
+  .dot-gray {
+    background-color: #6c757d;
     box-shadow: 0 0 8px rgba(108, 117, 125, 0.5);
-    animation: pulse-gray 2s infinite; 
+    animation: pulse-gray 2s infinite;
   }
 
   /* --- ANIMACIONES DE PULSO --- */
   @keyframes pulse-green {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(40, 167, 69, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+    }
+
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 6px rgba(40, 167, 69, 0);
+    }
+
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+    }
   }
 
   @keyframes pulse-red {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(220, 53, 69, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+    }
+
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 6px rgba(220, 53, 69, 0);
+    }
+
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+    }
   }
 
   @keyframes pulse-gray {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(108, 117, 125, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(108, 117, 125, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(108, 117, 125, 0); }
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(108, 117, 125, 0.7);
+    }
+
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 6px rgba(108, 117, 125, 0);
+    }
+
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(108, 117, 125, 0);
+    }
   }
 }
