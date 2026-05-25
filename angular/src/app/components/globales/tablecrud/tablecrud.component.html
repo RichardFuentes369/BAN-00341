@@ -17,6 +17,21 @@
           </span>
         }
       </div>
+
+      <div class="entries-container mb-2 mb-md-0 me-auto ms-md-4 d-flex align-items-center gap-2">
+        <span class="text-muted small text-nowrap">{{ 'global-tablecrud.TABLE_INFO_SHOW' | translate }}</span>
+        <select class="form-select form-select-sm rounded-2 bg-white border shadow-sm px-2 py-1" 
+                style="width: 75px; height: 32px; cursor: pointer;"
+                [(ngModel)]="dtOptions.pageLength" 
+                (change)="cambiarLimiteRegistros($event)">
+          <option [value]="5">5</option>
+          <option [value]="10">10</option>
+          <option [value]="25">25</option>
+          <option [value]="50">50</option>
+        </select>
+        <span class="text-muted small text-nowrap">{{ 'global-tablecrud.TABLE_INFO_RECORDS' | translate }}</span>
+      </div>
+
       <div class="actions-container d-flex flex-wrap align-items-center">
         @if(tienePermiso('cargar_excel')){
           <span>
@@ -172,7 +187,7 @@
   }
   <div class="mb-3">
     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
-      class="row-border hover tableDatatable table w-100">
+      class="table table-striped table-hover align-middle mb-0 w-100 row-border hover tableDatatable table w-100">
     </table>
   </div>
 </div>

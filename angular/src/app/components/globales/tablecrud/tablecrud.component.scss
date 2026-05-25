@@ -158,91 +158,121 @@
 
 /* --- 4. DISEÑO DE LA TABLA + CLASE DE SELECCIÓN --- */
 ::ng-deep {
-  .table-responsive {
-    overflow-y: visible !important;
-    padding: 0 15px 15px 15px;
 
-    @media (max-width: 992px) {
-      overflow-x: auto !important;
-    }
+  .custom-length-wrapper {
+    display: none !important;
   }
 
-  .tableDatatable {
+  table {
     border-collapse: separate !important;
     border-spacing: 0 4px !important;
     width: 100% !important;
     background-color: transparent !important;
+  }
 
-    thead {
-      background: var(--primary-gradient) !important;
-      z-index: 1060;
+  thead {
+    background: var(--primary-gradient) !important;
+    color: var(--bg-text-selected);
+    border-radius: 8px !important; 
+  }
+
+  th {
+    background: transparent !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    padding: 12px 12px !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-size: 0.85rem;
+    text-transform: uppercase; 
+    letter-spacing: 0.5px;
+
+    &::before, &::after {
+      display: none !important; 
     }
+  }
 
-    thead th {
-      background: transparent !important;
+  tbody {
+    // Convierte el espaciado de la tabla para que permita separar las filas
+    border-collapse: separate;
+    border-spacing: 0 12px; // 💥 El truco mágico: 0 horizontal, 12px de separación vertical entre "tarjetas"
+    background-color: transparent !important; // Evita que el fondo del tbody tape el espacio
 
-      color: #ffffff !important;
-      font-weight: 600;
-      text-align: center;
-      white-space: nowrap;
-      padding: 12px 12px !important;
-      /* Un poco más delgado como pediste antes */
-      border: none !important;
+      tr {
+    background-color: transparent !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-      /* Quitamos la sombra individual y la dejamos solo si es necesaria */
-      box-shadow: none !important;
-    }
-
-    tbody tr {
-      transition: all 0.2s ease;
+    // Efecto hover sutil para que toda la "tarjeta" reaccione al pasar el mouse
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-2px); 
 
       td {
-        background-color: var(--bg-row) !important;
-        color: var(--text-main);
-        font-size: 0.9rem;
-        padding: 4px 12px !important;
-        border-top: 1px solid var(--border-color) !important;
-        border-bottom: 1px solid var(--border-color) !important;
-        vertical-align: middle;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); // Sombra más pronunciada en hover
+        border-color: var(--primary-color, #0d6efd) !important; // Opcional: cambia el borde al color principal
+      }
+    }
+  }
+  }
 
-        &:first-child {
-          border-radius: 10px 0 0 10px;
-          border-left: 1px solid var(--border-color) !important;
-        }
+  td {
+    /* 💥 EL TRUCO: Volvemos el fondo transparente para que se vea el fondo del TR padre */
+    background-color: transparent !important; 
+    color: var(--text-main);
+    font-size: 0.9rem;
+    padding: 12px 16px !important;
+    vertical-align: middle;
+    
+    // Bordes superior e inferior de la tarjeta
+    border-top: 1px solid var(--border-color) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    
+    // 💥 QUITAMOS cualquier borde lateral intermedio que esté cortando el color
+    border-left: none !important;
+    border-right: none !important;
 
-        &:last-child {
-          border-radius: 0 10px 10px 0;
-          border-right: 1px solid var(--border-color) !important;
-        }
+    &:first-child {
+      border-left: 1px solid var(--border-color) !important;
+      border-radius: 8px 0 0 8px !important;
+    }
+
+    &:last-child {
+      border-right: 1px solid var(--border-color) !important;
+      border-radius: 0 8px 8px 0 !important;
+    }
+  }
+
+  tr.selected-row {
+    // Cambiamos el fondo de toda la estructura del TR de un solo golpe
+    background-color: var(--bg-selected) !important; 
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2) !important;
+
+    td {
+      color: var(--bg-text-selected) !important;
+      font-weight: 500;
+      
+      // Sincronizamos los bordes perimetrales con el color de selección
+      border-top-color: var(--bg-selected) !important;
+      border-bottom-color: var(--bg-selected) !important;
+
+      &:first-child {
+        border-left-color: var(--bg-selected) !important;
+      }
+      &:last-child {
+        border-right-color: var(--bg-selected) !important;
       }
 
-      /* EFECTO HOVER */
-      &:hover td {
-        background-color: rgba(89, 139, 204, 0.05) !important;
-        cursor: pointer;
+      /* Ajuste de elementos hijos dentro de la tarjeta roja */
+      .text-muted, i, small, span, .fa, .pi {
+        color: rgba(255, 255, 255, 0.9) !important;
       }
 
-      /* --- FILA SELECCIONADA (EL CAMBIO QUE PEDISTE) --- */
-      &.selected-row td {
-        background-color: var(--bg-selected) !important;
-        color: var(--bg-text-selected);
-        border-color: var(--bg-selected) !important;
-        font-weight: 500;
-
-        /* Aseguramos que elementos internos (iconos, texto pequeño) también cambien a blanco */
-        .text-muted,
-        i,
-        small,
-        span,
-        .fa {
-          color: rgba(255, 255, 255, 0.9) !important;
-        }
-
-        /* Si tienes badges, podemos invertir su color para que resalten */
-        .badge {
-          background-color: #ffffff !important;
-          color: var(--bg-selected) !important;
-        }
+      /* Inversión de botones redondos o badges blancos que tienes a la derecha */
+      .badge, .btn-actions {
+        background-color: #ffffff !important;
+        color: var(--bg-selected) !important;
       }
     }
   }

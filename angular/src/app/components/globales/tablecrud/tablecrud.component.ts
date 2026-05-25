@@ -5,6 +5,7 @@ import { DataTableDirective, DataTablesModule } from 'angular-datatables';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subject, Subscription } from 'rxjs';
 import { Config } from 'datatables.net';
+import { FormsModule } from '@angular/forms';
 
 declare var $: any;
 
@@ -16,7 +17,8 @@ let haySeleccionados: any[] = [];
   standalone: true,
   imports: [
     DataTablesModule,
-    TranslateModule
+    TranslateModule,
+    FormsModule
   ],
   templateUrl: './tablecrud.component.html',
   styleUrl: './tablecrud.component.scss',
@@ -83,6 +85,18 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
+  cambiarLimiteRegistros(event: any) {
+    const nuevoLimite = parseInt(event.target.value, 10);
+    
+    this.dtOptions.pageLength = nuevoLimite;
+
+    if (this.datatableElement && this.datatableElement.dtInstance) {
+      this.datatableElement.dtInstance.then((dtInstance: any) => {
+        dtInstance.page.len(nuevoLimite).draw();
+      });
+    }
+  }
+
   listar() {
     const columnaSeleccion = {
       title: `
@@ -114,7 +128,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
       scrollY: '',
       scrollCollapse: false,
       lengthMenu: [5, 10, 20, 30, 40, 50, 100],
-      pageLength: 5,
+      pageLength: this.dtOptions.pageLength || 5,
       dom: "<'row mt-3 mb-1'<'col-12 d-flex justify-content-center align-items-center custom-length-wrapper'l>>" +
         "<'row'<'col-12'rt>>" +
         "<'row mt-4'<'col-md-5'i><'col-md-7 d-flex justify-content-end'p>>",
@@ -349,4 +363,6 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   selectionClear() { this.limpiarSeleccion(); }
+
+
 }
