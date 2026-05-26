@@ -60,7 +60,7 @@ export class ExtentService {
     const result = registros.map(marcas => {
       return {
         ...marcas,
-        totalProductos: marcas.productos ? marcas.productos.length : 0,
+        total1: marcas.productos ? marcas.productos.length : 0,
         productos: undefined 
       };
     });

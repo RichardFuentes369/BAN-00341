@@ -20,10 +20,12 @@ let haySeleccionados: any[] = [];
 })
 export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() title: string = '';
-  @Input() perPage: number = 4;
+  @Input() accioneson: boolean = true;
+  @Input() perPage: number = 6;
   @Input() campoFiltro: boolean = false;
   @Input() endPoint: string = '';
   @Input() filters: string = '';
+  @Input() habilitarSeleccion: boolean = false;
   @Input() permisosAcciones: any[] = [];
 
   data: any[] = [];
@@ -136,6 +138,7 @@ export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   // Outputs
+  @Output() cargarItem = new EventEmitter<string>();
   @Output() verItem = new EventEmitter<string>();
   @Output() crearNuevoItem = new EventEmitter<string>();
   @Output() editarItem = new EventEmitter<string>();
@@ -143,6 +146,7 @@ export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output() activarItem = new EventEmitter<string[]>();
   @Output() asignar = new EventEmitter<{ id: string, ctrlKey: boolean }>();
 
+  uploadItem() { if (this.idsSeleccionados.length === 0) this.cargarItem.emit(); }
   newItem() { if (this.idsSeleccionados.length === 0) this.crearNuevoItem.emit(); }
   seeItem() { if (this.idsSeleccionados.length === 1) this.verItem.emit(this.idsSeleccionados[0]); }
   editItem() { if (this.idsSeleccionados.length === 1) this.editarItem.emit(this.idsSeleccionados[0]); }

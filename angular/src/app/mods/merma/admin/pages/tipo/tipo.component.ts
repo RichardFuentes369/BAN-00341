@@ -4,7 +4,6 @@ import { CardComponent } from '@component/globales/card/card.component';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { SearchComponent } from '@component/globales/search/search.component';
-import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
 import { AuthService } from '@guard/service/auth.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
@@ -13,15 +12,16 @@ import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import { CREAR_TIPO_COMPONENT, EDITAR_TIPO_COMPONENT, FILTRO_TIPO_COMPONENT, VER_TIPO_COMPONENT } from '@mod/merma/const/loss.conts';
 import Swal from 'sweetalert2';
+import { GridcrudComponent } from '@component/globales/gridcrud/gridcrud.component';
 
 @Component({
   selector: 'app-merma-tipo',
   standalone: true,
   imports: [
     TranslateModule,
+    GridcrudComponent,
     SearchComponent,
     LoadingComponent,
-    TablecrudComponent,
     ModalBoostrapComponent,
     CardComponent
   ],
@@ -245,8 +245,8 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
     }
   }
 
-  @ViewChild(TablecrudComponent)
-  someInput!: TablecrudComponent
+  @ViewChild(GridcrudComponent)
+  someInput!: GridcrudComponent
   async eliminarData (_id: string[]){
     const response = await this.tipoService.getDataTipo(_id[0])
     const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }

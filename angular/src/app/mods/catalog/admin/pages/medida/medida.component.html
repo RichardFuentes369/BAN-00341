@@ -43,7 +43,7 @@
 
     @if (cargarIdioma) {
     <div class="table-container">
-      <app-globales-tablecrud 
+      <!-- <app-globales-tablecrud 
         [campoFiltro]="showcampoFiltro" 
         [endPoint]="endPoint" 
         [columnas]="columnas"
@@ -55,7 +55,19 @@
         (crearNuevoItem)="crearData($event)" 
         (editarItem)="editarData($event)" 
         (eliminarItem)="eliminarData($event)">
-      </app-globales-tablecrud>
+      </app-globales-tablecrud> -->
+
+      <app-globales-gridcrud
+        [campoFiltro]="showcampoFiltro" 
+        [endPoint]="endPoint" 
+        [permisosAcciones]="permisos" 
+        [filters]="filters" 
+        [title]="titlePage" 
+        (verItem)="verData($event)"
+        (crearNuevoItem)="crearData($event)" 
+        (editarItem)="editarData($event)" 
+        (eliminarItem)="eliminarData($event)">
+      </app-globales-gridcrud>
     </div>
     } @else {
     <div class="d-flex justify-content-center py-5">

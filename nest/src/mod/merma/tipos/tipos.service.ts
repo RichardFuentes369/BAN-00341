@@ -36,8 +36,8 @@ export class TiposService {
     }
 
     const skipReal = (page == 1) ? 0 : (page - 1) * limit;
-
     const where: any = {};
+    
     if (filterDto.nombre) where.nombre = Like(`%${filterDto.nombre}%`);
 
     const totalRecords = await this.tipoMermaRepository.count({ where });
@@ -53,8 +53,8 @@ export class TiposService {
     const result = registros.map(tipo => {
       return {
         ...tipo,
-        totalMermas: tipo.mermas ? tipo.mermas.length : 0,
-        merma: undefined 
+        total1: tipo.mermas ? tipo.mermas.length : 0,
+        mermas: undefined 
       };
     });
 
