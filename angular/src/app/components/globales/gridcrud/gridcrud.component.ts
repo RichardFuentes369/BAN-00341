@@ -4,6 +4,7 @@ import { environment } from '@environment/environment';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { LowerCasePipe } from '@angular/common';
 
 let ultimaUrlConsultada: string = '';
 let haySeleccionados: any[] = [];
@@ -13,7 +14,8 @@ let haySeleccionados: any[] = [];
   standalone: true,
   imports: [
     TranslateModule,
-    FormsModule
+    FormsModule,
+    LowerCasePipe
   ],
   templateUrl: './gridcrud.component.html',
   styleUrl: './gridcrud.component.scss',
@@ -21,6 +23,8 @@ let haySeleccionados: any[] = [];
 export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() title: string = '';
   @Input() accioneson: boolean = true;
+  @Input() wordItem: string = '';
+  @Input() mostrarTotal: boolean = true;
   @Input() perPage: number = 6;
   @Input() campoFiltro: boolean = false;
   @Input() endPoint: string = '';

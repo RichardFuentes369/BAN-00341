@@ -91,6 +91,7 @@ export class MarcasComponent implements OnInit, OnDestroy{
   // fin datos envio al modal
 
   // inicio datos envio card information
+  wordItem = this.translate.instant('mod-catalog.PRODUCT.ASSIGMENT_PRODUCT_TITLE_BREADCRUMB')
   img_user_actived = "assets/images/img_admin.png"
   titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
   titleTotalSuppliers = this.translate.instant('mod-catalog.BRAND.CARD_TOTAL_BRANDS_TITLE')
@@ -171,6 +172,7 @@ export class MarcasComponent implements OnInit, OnDestroy{
   }
 
   cambiarTextos(){
+    this.wordItem = this.translate.instant('mod-catalog.PRODUCT.ASSIGMENT_PRODUCT_TITLE_BREADCRUMB')
     this.titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
     this.titleTotalSuppliers = this.translate.instant('mod-catalog.BRAND.CARD_TOTAL_BRANDS_TITLE')
   }

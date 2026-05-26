@@ -4,11 +4,12 @@
     {{ 'mod-modules.MODULE_TITLE' | translate}}
     </h4>
   </div>
+  <hr class="mt-0 ml-3 mr-3">
 
   <div class="mt-2 p-3 pt-0" style="position: relative;">
+    @if (cargarTabla) {
     <div class="table-container">
-      @if (cargarTabla) {
-      <app-globales-tablecrud
+      <!-- <app-globales-tablecrud
         [title]="titlePage"
         [campoFiltro] = showcampoFiltro
         [endPoint] = endPoint
@@ -21,12 +22,24 @@
         (editarItem) = "editarData($event)"
         (eliminarItem) = "eliminarData($event)"
         >
-      </app-globales-tablecrud>
-      }
-      @else {
-        <app-globales-loading></app-globales-loading>
-      }
+      </app-globales-tablecrud> -->
+      <app-globales-gridcrud
+        [campoFiltro]="showcampoFiltro" 
+        [endPoint]="endPoint" 
+        [permisosAcciones]="permisos" 
+        [title]="titlePage" 
+        [mostrarTotal]="mostrarTotal"
+        
+        (verItem)="verData($event)"
+        (crearNuevoItem)="crearData($event)" 
+        (editarItem)="editarData($event)" 
+        (eliminarItem)="eliminarData($event)">
+      </app-globales-gridcrud>
     </div>
+    }
+    @else {
+      <app-globales-loading></app-globales-loading>
+    }
   </div>
 
   <app-globales-modal-boostrap

@@ -173,11 +173,13 @@
             <p class="small text-muted mb-0 text-truncate-2">{{item.descripcion}}</p>
           </div>
 
-          <div class="card-footer bg-transparent border-0 text-center pb-3">
-            <span class="badge rounded-pill border border-primary-subtle fw-medium text-primary bg-light px-3">
-              {{ 'global-gridcrud.WORD_TOTAL' | translate }}: {{item.total1}}
-            </span>
-          </div>
+          @if(mostrarTotal){
+            <div class="card-footer bg-transparent border-0 text-center pt-3 pb-3">
+              <span class="badge rounded-pill border border-primary-subtle fw-medium text-primary bg-light px-3 ">
+                {{ 'global-gridcrud.WORD_TOTAL' | translate }} {{wordItem | lowercase}}: {{item.total1}}
+              </span>
+            </div>
+          }
         </div>
       </div>
       } @empty {

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
+// import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@guard/service/auth.service';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
@@ -12,13 +12,15 @@ import { CREAR_MODULO_PERMISO_COMPONENT, EDITAR_MODULO_PERMISO_COMPONENT, MOD_MO
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { Subscription, timer } from 'rxjs';
 import { STORAGE_KEY_PROFILE_ADMIN } from '@mod/users/const/users.const';
+import { GridcrudComponent } from '@component/globales/gridcrud/gridcrud.component';
 
 @Component({
   selector: 'app-modulos',
   standalone: true,
   imports: [
     TranslateModule,
-    TablecrudComponent,
+    // TablecrudComponent,
+    GridcrudComponent,
     LoadingComponent,
     ModalBoostrapComponent
   ],
@@ -62,6 +64,7 @@ export class ModulosComponent implements OnInit {
   }
 
   // inicio datos que envio al componente
+  mostrarTotal = false
   titlePage = this.translate.instant('mod-users.TABLE_TITLE')
   showcampoFiltro = true
   endPoint = 'modulos/obtener-permisos-por-modulo/0'
@@ -226,8 +229,8 @@ export class ModulosComponent implements OnInit {
     }
   }
 
-  @ViewChild(TablecrudComponent)
-  someInput!: TablecrudComponent
+  @ViewChild(GridcrudComponent)
+  someInput!: GridcrudComponent
   async eliminarData(_id: string[]) {
     const response = await this.modulosService.getHasSubmodule(+_id)
     const { nombre } = response.data?.[0] || { nombre: 'xxxxxxx' }

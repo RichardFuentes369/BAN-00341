@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
+// import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@guard/service/auth.service';
@@ -12,6 +12,8 @@ import { CREAR_MODULO_PERMISO_COMPONENT, EDITAR_MODULO_PERMISO_COMPONENT, MOD_MO
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { Subscription, timer } from 'rxjs';
 import { STORAGE_KEY_PROFILE_ADMIN } from '@mod/users/const/users.const';
+import { GridcrudComponent } from '@component/globales/gridcrud/gridcrud.component';
+import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
 
 @Component({
   selector: 'app-permisos',
@@ -19,6 +21,7 @@ import { STORAGE_KEY_PROFILE_ADMIN } from '@mod/users/const/users.const';
   imports: [
     TranslateModule,
     TablecrudComponent,
+    // GridcrudComponent,
     LoadingComponent,
     ModalBoostrapComponent,
   ],
@@ -84,6 +87,7 @@ export class PermisosComponent implements OnInit {
   }
 
   // inicio datos que envio al componente
+  mostrarTotal = false
   titlePage = this.translate.instant('mod-users.TABLE_TITLE')
   showcampoFiltro = true
   endPoint = ``
