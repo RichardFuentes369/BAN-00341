@@ -12,10 +12,6 @@
 
       <hr class="sidebar-divider my-0">
 
-      <div class="sidebar-heading">
-        {{ 'layout-admin.WORD_MODULES' | translate}}
-      </div>
-
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="LAYOUT_ADMIN_PAGE_MOD" routerLinkActive="active">
           <i class="fa fa-bars"></i>
@@ -25,12 +21,85 @@
         </a>
       </li>
 
+      <hr class="sidebar-divider my-0">
+      
+      <div class="sidebar-heading">
+        {{ 'layout-admin.WORD_MODULES' | translate}}
+      </div>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiesUsers"
+          aria-expanded="true" aria-controls="collapseUtilitiesUsers">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Utilities</span>
+        </a>
+        <div id="collapseUtilitiesUsers" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Custom Utilities:</h6>
+            <a class="collapse-item" href="utilities-color.html">Colors</a>
+            <a class="collapse-item" href="utilities-border.html">Borders</a>
+            <a class="collapse-item" href="utilities-animation.html">Animations</a>
+            <a class="collapse-item" href="utilities-other.html">Other</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiesCatalog"
+          aria-expanded="true" aria-controls="collapseUtilitiesCatalog">
+          <i class="fas fa-fw fa-book"></i>
+          <span>Utilities</span>
+        </a>
+        <div id="collapseUtilitiesCatalog" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Custom Utilities:</h6>
+            <a class="collapse-item" href="utilities-color.html">Colors</a>
+            <a class="collapse-item" href="utilities-border.html">Borders</a>
+            <a class="collapse-item" href="utilities-animation.html">Animations</a>
+            <a class="collapse-item" href="utilities-other.html">Other</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiesWarehouse"
+          aria-expanded="true" aria-controls="collapseUtilitiesWarehouse">
+          <i class="fa fa-cubes" aria-hidden="true"></i>
+          <span>Utilities</span>
+        </a>
+        <div id="collapseUtilitiesWarehouse" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Custom Utilities:</h6>
+            <a class="collapse-item" href="utilities-color.html">Colors</a>
+            <a class="collapse-item" href="utilities-border.html">Borders</a>
+            <a class="collapse-item" href="utilities-animation.html">Animations</a>
+            <a class="collapse-item" href="utilities-other.html">Other</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiesShinkage"
+          aria-expanded="true" aria-controls="collapseUtilitiesShinkage">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Utilities</span>
+        </a>
+        <div id="collapseUtilitiesShinkage" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Custom Utilities:</h6>
+            <a class="collapse-item" href="utilities-color.html">Colors</a>
+            <a class="collapse-item" href="utilities-border.html">Borders</a>
+            <a class="collapse-item" href="utilities-animation.html">Animations</a>
+            <a class="collapse-item" href="utilities-other.html">Other</a>
+          </div>
+        </div>
+      </li>
+
       <hr class="sidebar-divider d-none d-md-block">
 
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle" (click)="mostrarMenuLateral()"></button>
       </div>
-
     </ul>
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content-scroll-area">
