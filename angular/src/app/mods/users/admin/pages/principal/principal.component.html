@@ -3,7 +3,6 @@
     <h4 class="m-0 fw-bold text-bold">
       {{ 'mod-users.PAGE_ADMIN_TITLE' | translate }}
     </h4>
-
     <span class="custom-tooltip tooltip-left"
       [attr.data-title]="mostrarCards ? ('global-card.WORD_HIDE' | translate) : ('global-card.WORD_SHOW' | translate)">
       <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toggleCards()">
@@ -14,9 +13,8 @@
   <hr class="mt-0 ml-3 mr-3">
 
   <!-- Inició contadores -->
-  <div class="card-body p-3 pb-0 pt-0" 
-      [class.animate__fadeIn]="mostrarCards"
-      [class.animate__fadeOut]="!mostrarCards || !cargarIdioma">
+  <div class="card-body p-3 pb-0 pt-0" [class.animate__fadeIn]="mostrarCards"
+    [class.animate__fadeOut]="!mostrarCards || !cargarIdioma">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-2 mb-3 align-items-stretch">
       @for (card of [
       {img: img_user_actived, title: titleTotalUsers, count: count_total_users},
@@ -25,8 +23,7 @@
       {img: img_user_with_permission, title: titleTotalPermission, count: count_permissions_assigment}
       ]; track $index) {
       <div class="col d-flex">
-        <app-information-card class="w-100 h-100" [img]="card.img" [title]="card.title"
-          [content]="card.count">
+        <app-information-card class="w-100 h-100" [img]="card.img" [title]="card.title" [content]="card.count">
         </app-information-card>
       </div>
       }
@@ -46,14 +43,10 @@
 
     @if (cargarIdioma) {
     <div class="table-container">
-      <app-globales-tablecrud 
-        [campoFiltro]="showcampoFiltro" [endPoint]="endPoint" [columnas]="columnas"
-        [habilitarSeleccion]="habilitarSeleccion"
-        [permisosAcciones]="permisos" [filters]="filters" [title]="titlePage" 
-        (verItem)="verData($event)"
-        (crearNuevoItem)="crearData($event)" (editarItem)="editarData($event)" 
-        (activarItem)="activarData($event)" (asignar)="asignarData($event)"
-        (eliminarItem)="eliminarData($event)">
+      <app-globales-tablecrud [campoFiltro]="showcampoFiltro" [endPoint]="endPoint" [columnas]="columnas"
+        [habilitarSeleccion]="habilitarSeleccion" [permisosAcciones]="permisos" [filters]="filters" [title]="titlePage"
+        (verItem)="verData($event)" (crearNuevoItem)="crearData($event)" (editarItem)="editarData($event)"
+        (activarItem)="activarData($event)" (asignar)="asignarData($event)" (eliminarItem)="eliminarData($event)">
       </app-globales-tablecrud>
     </div>
     } @else {
@@ -66,16 +59,17 @@
 
   <!-- Inició reporte permisos -->
   @if(tienePermiso('descarga_reporte_permisos')){
-  <div class="p-3 pt-0" style="position: relative;" >
+  <div class="p-3 pt-0" style="position: relative;">
     @if (cargarIdioma) {
-      <app-reporte-permisos (verItem)="verPermisos($event)"></app-reporte-permisos>
+    <app-reporte-permisos (verItem)="verPermisos($event)"></app-reporte-permisos>
     }
   </div>
   }
   <!-- Fin reporte permisos -->
-   
-  <app-globales-modal-boostrap [tamano]="tamano" [scrollable]="scrollable" [title]="title" [subtitle]="subtitle" [save]="save"
-    [buttonSave]="buttonSave" [edit]="edit" [buttonEdit]="buttonEdit" [cancel]="cancel" [buttonCancel]="buttonCancel"
-    [componentePrecargado]="componentePrecargado" [cierreModal]="cierreModal" (actualizarTabla)="refrescarTabla()">
+
+  <app-globales-modal-boostrap [tamano]="tamano" [scrollable]="scrollable" [title]="title" [subtitle]="subtitle"
+    [save]="save" [buttonSave]="buttonSave" [edit]="edit" [buttonEdit]="buttonEdit" [cancel]="cancel"
+    [buttonCancel]="buttonCancel" [componentePrecargado]="componentePrecargado" [cierreModal]="cierreModal"
+    (actualizarTabla)="refrescarTabla()">
   </app-globales-modal-boostrap>
 </div>

@@ -173,7 +173,7 @@
   thead {
     background: var(--primary-gradient) !important;
     color: var(--bg-text-selected);
-    border-radius: 8px !important; 
+    border-radius: 8px !important;
   }
 
   th {
@@ -186,11 +186,12 @@
     border: none !important;
     box-shadow: none !important;
     font-size: 0.85rem;
-    text-transform: uppercase; 
+    text-transform: uppercase;
     letter-spacing: 0.5px;
 
-    &::before, &::after {
-      display: none !important; 
+    &::before,
+    &::after {
+      display: none !important;
     }
   }
 
@@ -200,36 +201,41 @@
     border-spacing: 0 12px; // 💥 El truco mágico: 0 horizontal, 12px de separación vertical entre "tarjetas"
     background-color: transparent !important; // Evita que el fondo del tbody tape el espacio
 
-      tr {
-    background-color: transparent !important;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-    // Efecto hover sutil para que toda la "tarjeta" reaccione al pasar el mouse
-    &:hover {
-      cursor: pointer;
-      transform: translateY(-2px); 
+    tr {
+      background-color: transparent !important;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
 
       td {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); // Sombra más pronunciada en hover
-        border-color: var(--primary-color, #0d6efd) !important; // Opcional: cambia el borde al color principal
+        padding-top: 4px !important;    /* Ajusta este valor a tu gusto (más bajo = más delgado) */
+        padding-bottom: 4px !important; /* Ajusta este valor a tu gusto (más bajo = más delgado) */
+        vertical-align: middle;        /* Mantiene el texto perfectamente centrado verticalmente */
+      }
+
+      // Efecto hover sutil para que toda la "tarjeta" reaccione al pasar el mouse
+      &:hover {
+        cursor: pointer;
+        transform: translateY(-2px);
+
+        td {
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); // Sombra más pronunciada en hover
+          border-color: var(--primary-color, #0d6efd) !important; // Opcional: cambia el borde al color principal
+        }
       }
     }
-  }
   }
 
   td {
     /* 💥 EL TRUCO: Volvemos el fondo transparente para que se vea el fondo del TR padre */
-    background-color: transparent !important; 
+    background-color: transparent !important;
     color: var(--text-main);
     font-size: 0.9rem;
     padding: 12px 16px !important;
     vertical-align: middle;
-    
+
     // Bordes superior e inferior de la tarjeta
     border-top: 1px solid var(--border-color) !important;
     border-bottom: 1px solid var(--border-color) !important;
-    
-    // 💥 QUITAMOS cualquier borde lateral intermedio que esté cortando el color
+
     border-left: none !important;
     border-right: none !important;
 
@@ -246,13 +252,13 @@
 
   tr.selected-row {
     // Cambiamos el fondo de toda la estructura del TR de un solo golpe
-    background-color: var(--bg-selected) !important; 
+    background-color: var(--bg-selected) !important;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2) !important;
 
     td {
       color: var(--bg-text-selected) !important;
       font-weight: 500;
-      
+
       // Sincronizamos los bordes perimetrales con el color de selección
       border-top-color: var(--bg-selected) !important;
       border-bottom-color: var(--bg-selected) !important;
@@ -260,17 +266,24 @@
       &:first-child {
         border-left-color: var(--bg-selected) !important;
       }
+
       &:last-child {
         border-right-color: var(--bg-selected) !important;
       }
 
       /* Ajuste de elementos hijos dentro de la tarjeta roja */
-      .text-muted, i, small, span, .fa, .pi {
+      .text-muted,
+      i,
+      small,
+      span,
+      .fa,
+      .pi {
         color: rgba(255, 255, 255, 0.9) !important;
       }
 
       /* Inversión de botones redondos o badges blancos que tienes a la derecha */
-      .badge, .btn-actions {
+      .badge,
+      .btn-actions {
         background-color: #ffffff !important;
         color: var(--bg-selected) !important;
       }

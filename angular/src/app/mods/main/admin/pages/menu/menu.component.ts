@@ -20,6 +20,7 @@ import {
   LAYOUT_ADMIN_PAGE_LOSS, 
   LAYOUT_ADMIN_PAGE_WAREHOUSE,
 } from '@mod/main/const/main.const';
+import { CartComponent } from '@component/animation/cart/cart.component';
 
 @Component({
   selector: 'app-mod-menu-admin',

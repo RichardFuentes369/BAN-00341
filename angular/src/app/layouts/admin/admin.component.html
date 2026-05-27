@@ -43,17 +43,7 @@
           </button>
 
           <ul class="navbar-nav mr-auto">
-            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-              <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                  aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
+            <app-globales-date></app-globales-date>
           </ul>
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown no-arrow my-auto text-center pl-2 pr-2">
@@ -89,8 +79,23 @@
         <app-globales-breadcrumbs></app-globales-breadcrumbs>
 
         <div id="content">
-          <div class="container-fluid  p-1 mt-1">
+          <div class="container-fluid p-1 mt-1">
             <router-outlet></router-outlet>
+          </div>
+
+          <div class="watermark-cart">
+            <div class="cart-handle"></div>
+            <div class="cart-basket">
+              <div class="item appliance"></div>
+              <div class="item circle"></div>
+              <div class="item banana"></div>
+              <div class="item tomato"></div>
+            </div>
+            <div class="cart-wheel-frame"></div>
+            <div class="cart-wheels">
+              <div class="wheel"></div>
+              <div class="wheel"></div>
+            </div>
           </div>
         </div>
 

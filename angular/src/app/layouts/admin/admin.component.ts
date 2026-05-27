@@ -10,11 +10,13 @@ import { STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINAL } from '@const/app.con
 import { NAME_PAGE, LAYOUT_ADMIN_PAGE_LOGOUT, LAYOUT_PAGE_PROFILE, LAYOUT_PAGE_SETTINGS, LAYOUT_PAGE_DASHBOARD } from '@layout/const/layouts.const'
 import { LAYOUT_ADMIN_PAGE_MOD } from '@layout/const/layouts.const'
 import { ColormodeComponent } from '@component/globales/colormode/colormode.component';
+import { DateComponent } from '@component/globales/date/date.component';
 
 @Component({
   selector: 'app-layout-admin',
   standalone: true,
   imports: [
+    DateComponent,
     BreadcrumbsComponent,
     ColormodeComponent,
     IdiomaComponent,
