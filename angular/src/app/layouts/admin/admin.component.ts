@@ -6,11 +6,13 @@ import { BreadcrumbsComponent } from '@component/globales/breadcrumb/breadcrumb.
 import { IdiomaComponent } from '@component/globales/idioma/idioma.component';
 import { CommonModule } from '@angular/common';
 
-import { STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINAL } from '@const/app.const'
+import { STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINAL } from '@const/app.const'
 import { NAME_PAGE, LAYOUT_ADMIN_PAGE_LOGOUT, LAYOUT_PAGE_PROFILE, LAYOUT_PAGE_SETTINGS, LAYOUT_PAGE_DASHBOARD } from '@layout/const/layouts.const'
 import { LAYOUT_ADMIN_PAGE_MOD } from '@layout/const/layouts.const'
 import { ColormodeComponent } from '@component/globales/colormode/colormode.component';
 import { DateComponent } from '@component/globales/date/date.component';
+import { AuthService } from '@guard/service/auth.service';
+import { PrincipalService } from '@mod/users/admin/pages/principal/service/principal.service';
 
 @Component({
   selector: 'app-layout-admin',
@@ -38,13 +40,23 @@ export class AdminComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private userService :AuthService,
+    private principalService :PrincipalService,
     private translate: TranslateService
   ) {}
 
   minimizarSliderbar: boolean = false;
   nombreModulo: string = '';
 
-  ngOnInit(): void {
+  firstName: string = ''
+  lastName: string = ''
+
+  async ngOnInit() {
+    const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH)
+    const response = await this.principalService.getDataUser(userData.data.id)
+    const { firstName, lastName } = response.data
+    this.firstName = firstName
+    this.lastName = lastName
   }
 
   upperFirst(texto: string) {
