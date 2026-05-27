@@ -59,32 +59,32 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
       title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_ID'),
       data: 'id',
       visible: false,
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NIT'),
       data: 'nitCompleto',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NAME'),
       data: 'razon_social',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_ADDRESS'),
       data: 'direccion',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_PHONE'),
       data: 'telefono',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_EMAIL'),
       data: 'correo',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
   ];
   permisosAcciones = this.permisos
@@ -170,32 +170,32 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
         title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_ID'),
         data: 'id',
         visible: false,
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NIT'),
         data: 'nitCompleto',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NAME'),
         data: 'razon_social',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_PHONE'),
         data: 'direccion',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_EMAIL'),
         data: 'telefono',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_ADDRESS'),
         data: 'correo',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
     ];  
   }

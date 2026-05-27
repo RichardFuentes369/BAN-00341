@@ -63,32 +63,32 @@ export class WarehoseComponent implements OnInit, OnDestroy{
       title: this.translate.instant('mod-warehouse.COLUMN_ID'),
       data: 'id',
       visible: false,
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
       data: 'id_producto.marca.nombre',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-warehouse.COLUMN_BATCH'),
       data: 'lote',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-warehouse.COLUMN_PRODUCT'),
       data: 'id_producto.nombre',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-warehouse.COLUMN_SUPPLIER'),
       data: 'id_proveedor.razon_social',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-warehouse.COLUMN_REPORT_DATE'),
       data: 'fecha_entrada',
-      className: 'text-center',
+      className: 'text-center align-middle',
       render: (data: any) => {
         if (!data) return '';
         const date = new Date(Number(data) * 1000); 
@@ -105,7 +105,7 @@ export class WarehoseComponent implements OnInit, OnDestroy{
     {
       title: this.translate.instant('mod-warehouse.COLUMN_EXPIRATION_DATE'),
       data: 'fecha_vencimiento',
-      className: 'text-center',
+      className: 'text-center align-middle',
       render: (data: any) => {
         if (!data) return '';
         const date = new Date(Number(data) * 1000); 
@@ -122,32 +122,32 @@ export class WarehoseComponent implements OnInit, OnDestroy{
     {
       title: this.translate.instant('mod-warehouse.COLUMN_PURCHASED'),
       data: 'cantidad_comprada',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-warehouse.COLUMN_SOLD'),
       data: 'cantidad_vendida',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-warehouse.COLUMN_SHRINKAGE'),
       data: 'mermas',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-warehouse.COLUMN_IN_STOCK'),
       data: 'cantidad_en_bodega',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-warehouse.COLUMN_UNIT_OF_MEASUREMENT'),
       data: 'id_producto.medida.nombre',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-warehouse.COLUMN_STATUS'),
       data: 'estado',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
   ];
   permisosAcciones = this.permisos
@@ -232,32 +232,32 @@ export class WarehoseComponent implements OnInit, OnDestroy{
         title: this.translate.instant('mod-warehouse.COLUMN_ID'),
         data: 'id',
         visible: false,
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
         data: 'id_producto.marca.nombre',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-warehouse.COLUMN_BATCH'),
         data: 'lote',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-warehouse.COLUMN_PRODUCT'),
         data: 'id_producto.nombre',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-warehouse.COLUMN_SUPPLIER'),
         data: 'id_proveedor.razon_social',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-warehouse.COLUMN_REPORT_DATE'),
         data: 'fecha_entrada',
-        className: 'text-center',
+        className: 'text-center align-middle',
         render: (data: any) => {
           if (!data) return '';
           const date = new Date(Number(data) * 1000); 
@@ -274,7 +274,7 @@ export class WarehoseComponent implements OnInit, OnDestroy{
       {
         title: this.translate.instant('mod-warehouse.COLUMN_EXPIRATION_DATE'),
         data: 'fecha_vencimiento',
-        className: 'text-center',
+        className: 'text-center align-middle',
         render: (data: any) => {
           if (!data) return '';
           const date = new Date(Number(data) * 1000); 
@@ -291,32 +291,32 @@ export class WarehoseComponent implements OnInit, OnDestroy{
       {
         title: this.translate.instant('mod-warehouse.COLUMN_PURCHASED'),
         data: 'cantidad_comprada',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-warehouse.COLUMN_SOLD'),
         data: 'cantidad_vendida',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-warehouse.COLUMN_SHRINKAGE'),
         data: 'mermas',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-warehouse.COLUMN_IN_STOCK'),
         data: 'cantidad_en_bodega',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-warehouse.COLUMN_UNIT_OF_MEASUREMENT'),
         data: 'id_producto.medida.nombre',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-warehouse.COLUMN_STATUS'),
         data: 'estado',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
     ];  
   }

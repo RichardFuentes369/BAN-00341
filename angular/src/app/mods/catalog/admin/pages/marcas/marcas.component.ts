@@ -59,17 +59,17 @@ export class MarcasComponent implements OnInit, OnDestroy{
       title: this.translate.instant('mod-catalog.BRAND.COLUMN_ID'),
       data: 'id',
       visible: false,
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-catalog.BRAND.COLUMN_BRAND_NAME'),
       data: 'nombre',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-catalog.BRAND.COLUMN_TOTAL_PRODUCTS'),
       data: 'totalProductos',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
   ];
   permisosAcciones = this.permisos
@@ -156,17 +156,17 @@ export class MarcasComponent implements OnInit, OnDestroy{
         title: this.translate.instant('mod-catalog.BRAND.COLUMN_ID'),
         data: 'id',
         visible: false,
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-catalog.BRAND.COLUMN_BRAND_NAME'),
         data: 'nombre',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-catalog.BRAND.COLUMN_TOTAL_PRODUCTS'),
         data: 'totalProductos',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
     ];  
   }

@@ -59,17 +59,17 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
     {
       title: this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH'),
       data: 'id_lote.lote',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-merma.REGISTER.COLUMN_TYPE'),
       data: 'id_tipo_merma.nombre',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE'),
       data: 'fecha_reporte',
-      className: 'text-center',
+      className: 'text-center align-middle',
       render: (data: any) => {
         if (!data) return '';
         const date = new Date(Number(data) * 1000); 
@@ -86,17 +86,17 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
     {
       title: this.translate.instant('mod-merma.REGISTER.COLUMN_AMOUNT'),
       data: 'cantidad',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-merma.REGISTER.COLUMN_LOST_VALUE'),
       data: 'valor_perdido',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-merma.REGISTER.COLUMN_OBSERVATION'),
       data: 'observacion',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
   ];
   permisosAcciones = this.permisos
@@ -181,32 +181,32 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
       {
         title: this.translate.instant('mod-merma.REGISTER.COLUMN_ID'),
         data: 'id_lote.lote',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-merma.REGISTER.COLUMN_TYPE'),
         data: 'id_tipo_merma.nombre',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH'),
         data: 'fecha_reporte',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE'),
         data: 'cantidad',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-merma.REGISTER.COLUMN_LOST_VALUE'),
         data: 'valor_perdido',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-merma.REGISTER.COLUMN_OBSERVATION'),
         data: 'observacion',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
     ];  
   }

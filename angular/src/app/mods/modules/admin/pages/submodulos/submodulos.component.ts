@@ -79,22 +79,22 @@ export class SubmodulosComponent implements OnInit {
     {
       title: this.translate.instant('mod-modules.COLUMN_SUBMODULE_NAME'),
       data: 'nombre',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-modules.COLUMN_PERMISSION_NICKNAME'),
       data: 'permiso',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-modules.COLUMN_DESCRIPTION'),
       data: 'descripcion',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-modules.COLUMN_HAS_PERMISSION'),
       data: 'tiene_permisos',
-      className: 'text-center',
+      className: 'text-center align-middle',
       render: (data: any, type: any, row: any) => {
         if (type === 'display') {
           return data ? this.translate.instant('mod-modules.WORD_YES') : this.translate.instant('mod-modules.WORD_NO');
@@ -130,22 +130,22 @@ export class SubmodulosComponent implements OnInit {
       {
         title: this.translate.instant('mod-modules.COLUMN_SUBMODULE_NAME'),
         data: 'nombre',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-modules.COLUMN_PERMISSION_NICKNAME'),
         data: 'permiso',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-modules.COLUMN_DESCRIPTION'),
         data: 'descripcion',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-modules.COLUMN_HAS_PERMISSION'),
         data: 'tiene_permisos',
-        className: 'text-center',
+        className: 'text-center align-middle',
         render: (data: any, type: any, row: any) => {
           if (type === 'display') {
             return data ? this.translate.instant('mod-modules.WORD_YES') : this.translate.instant('mod-modules.WORD_NO');

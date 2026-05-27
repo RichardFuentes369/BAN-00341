@@ -79,32 +79,32 @@ export class PrincipalComponent implements OnInit, OnDestroy{
       title: this.translate.instant('mod-users.COLUMN_ID'),
       data: 'id',
       visible: false,
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-users.COLUMN_EMAIL'),
       data: 'email',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-users.COLUMN_NAMES'),
       data: 'firstName',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
       data: 'lastName',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },    
     {
       title: this.translate.instant('mod-users.COLUMN_PERMISSION_COUNT'),
       data: 'totalPermisos',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-users.COLUMN_STATUS'),
       data: 'isActive',
-      className: 'text-center',
+      className: 'text-center align-middle',
       width: '50px',
       render: (data: any, type: any) => {
         if (type === 'display') {
@@ -228,32 +228,32 @@ export class PrincipalComponent implements OnInit, OnDestroy{
         title: this.translate.instant('mod-users.COLUMN_ID'),
         data: 'id',
         visible: false,
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-users.COLUMN_EMAIL'),
         data: 'email',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-users.COLUMN_NAMES'),
         data: 'firstName',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
         data: 'lastName',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-users.COLUMN_PERMISSION_COUNT'),
         data: 'totalPermisos',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-users.COLUMN_STATUS'),
         data: 'isActive',
-        className: 'text-center',
+        className: 'text-center align-middle',
         width: '50px',
         render: (data: any, type: any) => {
           if (type === 'display') {

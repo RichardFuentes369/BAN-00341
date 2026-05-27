@@ -59,17 +59,17 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
       title: this.translate.instant('mod-merma.TYPE.COLUMN_ID'),
       data: 'id',
       visible: false,
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-merma.TYPE.COLUMN_NAME'),
       data: 'nombre',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-merma.TYPE.COLUMN_TOTAL'),
       data: 'totalMermas',
-      className: 'text-center'
+      className: 'text-center align-middle'
     }
   ];
   permisosAcciones = this.permisos
@@ -153,17 +153,17 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
         title: this.translate.instant('mod-merma.TYPE.COLUMN_ID'),
         data: 'id',
         visible: false,
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-merma.TYPE.COLUMN_NAME'),
         data: 'nombre',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-merma.TYPE.COLUMN_TOTAL'),
         data: 'totalMermas',
-        className: 'text-center'
+        className: 'text-center align-middle'
       }
     ];  
   }

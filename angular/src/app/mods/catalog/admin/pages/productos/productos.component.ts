@@ -63,33 +63,33 @@ export class ProductosComponent implements OnInit, OnDestroy{
     {
       title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_ID'),
       data: 'id',
-      className: 'text-center',
+      className: 'text-center align-middle',
       visible: false,
     },
     {
       title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
       data: 'marca.nombre',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME'),
       data: 'nombre',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
       data: 'codigo_barra',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_STOCK'),
       data: 'stock_minimo',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_STATUS'),
       data: 'estado',
-      className: 'text-center',
+      className: 'text-center align-middle',
       width: '50px',
       render: (data: any, type: any) => {
         if (type === 'display') {
@@ -111,7 +111,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
     {
       title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_UNIT_OF_MEASUREMENT'),
       data: 'medida.nombre',
-      className: 'text-center'
+      className: 'text-center align-middle'
     },
   ];
   permisosAcciones = this.permisos
@@ -205,33 +205,33 @@ export class ProductosComponent implements OnInit, OnDestroy{
       {
         title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_ID'),
         data: 'id',
-        className: 'text-center',
+        className: 'text-center align-middle',
         visible: false,
       },
       {
         title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
         data: 'marca.nombre',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME'),
         data: 'nombre',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
         data: 'codigo_barra',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_STOCK'),
         data: 'stock_minimo',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_STATUS'),
         data: 'estado',
-        className: 'text-center',
+        className: 'text-center align-middle',
         width: '50px',
         render: (data: any, type: any) => {
             if (type === 'display') {
@@ -253,7 +253,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
       {
         title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_UNIT_OF_MEASUREMENT'),
         data: 'medida.nombre',
-        className: 'text-center'
+        className: 'text-center align-middle'
       },
     ]
   }
