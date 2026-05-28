@@ -3,7 +3,6 @@
     <ol class="breadcrumb-nav">
       @for (breadcrumb of breadcrumbs; track breadcrumb; let last = $last; let first = $first) {
         <li class="breadcrumb-item">
-          
           @if (!last) {
             <a [routerLink]="[breadcrumb.url]" 
                [queryParams]="breadcrumb.queryParams" 

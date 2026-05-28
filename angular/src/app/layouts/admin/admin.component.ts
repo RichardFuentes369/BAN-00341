@@ -13,6 +13,7 @@ import { ColormodeComponent } from '@component/globales/colormode/colormode.comp
 import { DateComponent } from '@component/globales/date/date.component';
 import { AuthService } from '@guard/service/auth.service';
 import { PrincipalService } from '@mod/users/admin/pages/principal/service/principal.service';
+import { SettingsService } from '@mod/me/admin/pages/settings/service/settings.service';
 
 @Component({
   selector: 'app-layout-admin',
@@ -42,7 +43,8 @@ export class AdminComponent implements OnInit {
     private router: Router,
     private userService :AuthService,
     private principalService :PrincipalService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private settingsService: SettingsService
   ) {}
 
   minimizarSliderbar: boolean = false;
@@ -52,12 +54,21 @@ export class AdminComponent implements OnInit {
   lastName: string = ''
 
   async ngOnInit() {
+    this.ejecutarInitReal()
+    
+    this.settingsService.refreshAction$.subscribe(() => {
+      this.ejecutarInitReal()
+    });
+  }
+
+  async ejecutarInitReal() {
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH)
     const response = await this.principalService.getDataUser(userData.data.id)
     const { firstName, lastName } = response.data
     this.firstName = firstName
     this.lastName = lastName
   }
+
 
   upperFirst(texto: string) {
     if (!texto) return texto; 

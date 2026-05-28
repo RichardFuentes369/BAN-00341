@@ -7,25 +7,14 @@ import { MeFinalPageProfileComponent } from '@mod/me/final/pages/profile/profile
 import { MeFinalPageSettingsComponent } from '@mod/me/final/pages/settings/settings.component'
 
 export const FinalLayoutRoutes: Routes = [
-  {
-    path: '',
-    redirectTo: 'me/perfil',
-    pathMatch: 'full',
-  },
-  {
-    path: 'me/perfil',
-    title: 'Perfil',
-    component: MeFinalPageProfileComponent,
-    canActivate: [
-      finalGuard
-    ]
-  },
-  {
-    path: 'me/configuracion',
-    title: 'Configuracion',
-    component: MeFinalPageSettingsComponent,
-    canActivate: [
-      finalGuard
-    ]
-  },
+  // >> Me
+  // {
+  //   path: 'me',
+  //   title: 'Menu',
+  //   data: { breadcrumb: BREADCRUMB_PATH_MENU }, 
+  //   component: MenuAdminComponent,
+  //   canActivate: [
+  //     adminGuard
+  //   ],
+  // },
 ];

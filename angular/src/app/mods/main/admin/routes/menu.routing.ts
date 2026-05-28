@@ -15,7 +15,7 @@
     TITLE_PATH_MERMA, 
     TITLE_PATH_MODULES, 
     TITLE_PATH_USERS, 
-    TITLE_PATH_WAREHOUSE
+    TITLE_PATH_WAREHOUSE,
   } from '@mod/main/const/main.const';
 
   export const MenuRoutes: Routes = [

@@ -18,6 +18,7 @@ export const BREADCRUMB_PATH_MENU = 'mod-main.TITTLE_MENU';
 
 export const MAIN_MENU =  '/admin/mod';
 export const _PAGE_WITHOUT_PERMISSION_ADMIN =  '/admin/permiso';
+export const _PAGE_BACK_PERMISSION_LIST_USERS =  '/admin/mod/users/administradores';
 export const _PAGE_WITHOUT_PERMISSION_FINAL =  '/final/permiso';
 export const _PAGE_ADMIN_MOD =  '/admin/mod';
 

@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 
 @Component({
-  selector: 'app-mod-admin-final-pages-profile',
+  selector: 'app-pages-profile',
   standalone: true,
   imports: [TranslateModule],
   templateUrl: './profile.component.html',

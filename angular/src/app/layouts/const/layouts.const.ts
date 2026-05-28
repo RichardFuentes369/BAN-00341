@@ -6,8 +6,8 @@ export const LAYOUT_HOME_PAGE_LOGIN_FINAL = 'ingreso/final';
 
 export const LAYOUT_ADMIN_PAGE_MOD = 'mod';
 export const LAYOUT_PAGE_DASHBOARD = 'dashboard';
-export const LAYOUT_PAGE_PROFILE = 'me/perfil';
-export const LAYOUT_PAGE_SETTINGS =  'me/configuracion';
+export const LAYOUT_PAGE_PROFILE = 'me/profile';
+export const LAYOUT_PAGE_SETTINGS =  'me/settings';
 
 export const LAYOUT_ADMIN_PAGE_LOGOUT =  '/home/ingreso/admin';
 export const LAYOUT_FINAL_PAGE_LOGOUT =  '/home/ingreso/final';

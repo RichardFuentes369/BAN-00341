@@ -6,7 +6,7 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { swalert } from '@function/System'
-import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
+import { _PAGE_BACK_PERMISSION_LIST_USERS, _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 import { PrincipalService } from '../../service/principal.service';
 import { CommonModule } from '@angular/common';
 import { MOD_USER_PAGE_ADMIN } from '@mod/users/const/users.const';
@@ -56,6 +56,9 @@ export class AsignarPermisosComponent implements OnInit{
     let userId = this.route.snapshot.queryParams['id_user']
 
     const datUser = await this.principalService.getDataUser(userId)
+    if(datUser.data == ''){
+      this.router.navigate([_PAGE_BACK_PERMISSION_LIST_USERS]);
+    }
     const { firstName, lastName } = datUser.data || { firstName: 'xxxx', lastName: 'yyyy' }
     this.title = { user_name: `${firstName} ${lastName}` }
 

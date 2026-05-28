@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
-import { AvatarComponent } from '@component/globales/avatar/avatar.component';
-import { DropzoneComponent } from '@component/globales/dropzone/dropzone.component';
-import { TranslateModule } from '@ngx-translate/core';
-
+import { Component, OnInit } from '@angular/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { EditarUsuarioComponent } from '../../components/editar-usuario/editar-usuario.component';
 @Component({
   selector: 'app-mod-me-admin-pages-settings',
   standalone: true,
-  imports: [AvatarComponent, DropzoneComponent, TranslateModule],
+  imports: [TranslateModule, EditarUsuarioComponent],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
 })

@@ -47,6 +47,11 @@ const routes: Routes = [
         loadChildren: () => import('@mod/main/admin/routes/menu.routing').then(x=>x.MenuRoutes)
       },
       {
+        path: 'me',
+        data: { breadcrumb: BREADCRUMB_PATH_MENU },
+        loadChildren: () => import('@mod/me/routes/me-admin.routing').then(x=>x.MeRoutes)
+      },
+      {
         path: '**',
         component: AdminNotFoundComponent,
         canActivate: [
@@ -63,6 +68,11 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('@layout/routes/final.routing').then(x=>x.FinalLayoutRoutes)
+      },
+      {
+        path: 'me',
+        data: { breadcrumb: BREADCRUMB_PATH_MENU },
+        loadChildren: () => import('@mod/me/routes/me-final.routing').then(x=>x.MeRoutes)
       },
       {
         path: '**',

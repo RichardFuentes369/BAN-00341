@@ -17,30 +17,7 @@ export const AdminLayoutRoutes: Routes = [
 
   /*
   * Template
-  */
-  {
-    path: '',
-    redirectTo: 'me/perfil',
-    pathMatch: 'full',
-  },
-  {
-    path: 'me/perfil',
-    title: 'Perfil',
-    data: { breadcrumb: BREADCRUMB_PATH_PROFILE },
-    component: MeAdminPageProfileComponent,
-    canActivate: [
-      adminGuard
-    ]
-  },
-  {
-    path: 'me/configuracion',
-    title: 'Configuracion',
-    data: { breadcrumb: BREADCRUMB_PATH_SETTINGS },
-    component: MeAdminPageSettingsComponent,
-    canActivate: [
-      adminGuard
-    ]
-  },  
+  */ 
   {
     path: 'permiso',
     title: 'Sin permiso',
@@ -51,7 +28,6 @@ export const AdminLayoutRoutes: Routes = [
   }, 
 
   // Dashboard
-  
   {
     path: 'dashboard',
     title: 'Dashboard',
@@ -63,6 +39,16 @@ export const AdminLayoutRoutes: Routes = [
   }, 
 
   // Modulos
+  // >> Me
+  {
+    path: 'me',
+    title: 'Menu',
+    data: { breadcrumb: BREADCRUMB_PATH_MENU }, 
+    component: MenuAdminComponent,
+    canActivate: [
+      adminGuard
+    ],
+  },
 
   // >> Menu
   {

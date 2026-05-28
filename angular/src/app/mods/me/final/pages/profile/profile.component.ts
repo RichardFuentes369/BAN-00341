@@ -5,7 +5,7 @@ import { AuthService } from '@guard/service/auth.service';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 
 @Component({
-  selector: 'app-mod-me-final-pages-profile',
+  selector: 'app-pages-profile',
   standalone: true,
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
