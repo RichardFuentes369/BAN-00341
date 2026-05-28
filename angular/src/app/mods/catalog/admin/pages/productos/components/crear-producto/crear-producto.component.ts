@@ -12,6 +12,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ProductosService } from '../../service/productos.service';
 import { CommonModule } from '@angular/common';
 import { MedidaService } from '../../../medida/service/medida.service';
+import { ScanService } from '@service/scan/scan.service';
 
 @Component({
   selector: 'app-crear-producto',
@@ -21,6 +22,9 @@ import { MedidaService } from '../../../medida/service/medida.service';
   styleUrl: './crear-producto.component.scss',
 })
 export class CrearProductoComponent implements OnInit {
+
+  public lastCode: string = '';
+
   private validationSubject = new Subject<void>();
   isFormValid = false;
   marcas: any[] = [];
@@ -58,7 +62,8 @@ export class CrearProductoComponent implements OnInit {
     private route: ActivatedRoute,
     private productosService: ProductosService,
     private medidaService: MedidaService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private scanService: ScanService
   ) {
     this.validationSubject.pipe(
       debounceTime(300),
@@ -78,6 +83,11 @@ export class CrearProductoComponent implements OnInit {
       this.getMarca()
       this.getMedida()
     }
+
+    this.scanService.listenForScans().subscribe((code: string) => {
+      this.lastCode = code;
+      console.log('Código recibido en Angular:', code);
+    });
   }
 
   onInputChange() {

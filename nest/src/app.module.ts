@@ -26,7 +26,7 @@ import {
   BrandModule,
   ExtentModule
 } from './mod/index'
-import { AppGateway } from 'app.gateway';
+import { AppGateway } from './app.gateway';
 
 @Module({
   imports: [
