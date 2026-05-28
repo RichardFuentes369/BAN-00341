@@ -26,6 +26,7 @@ import {
   BrandModule,
   ExtentModule
 } from './mod/index'
+import { AppGateway } from 'app.gateway';
 
 @Module({
   imports: [
@@ -60,7 +61,10 @@ import {
     ExtentModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    AppGateway
+  ],
 })
 export class AppModule {
 
