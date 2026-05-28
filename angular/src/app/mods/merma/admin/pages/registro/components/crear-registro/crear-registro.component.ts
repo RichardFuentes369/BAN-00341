@@ -18,6 +18,7 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { ProveedoresService } from '@mod/catalog/admin/pages/proveedores/service/proveedores.service';
 import { BodegaService } from '@mod/warehouse/admin/pages/warehouse/service/warehouse.service';
 import { TipoService } from '../../../tipo/service/tipo.service';
+import { ScanService } from '@service/scan/scan.service';
 
 
 @Component({
@@ -35,6 +36,7 @@ export class CrearRegistroComponent {
   isLoading: boolean = false
   filtro: string = ''
   isReadonly:boolean = false
+  fielddBarCode: boolean = true
   permisos_catalogo_productos: any[] = []
   permisos_catalogo_proveedores: any[] = []
   permisos_bodega: any[] = []
@@ -51,7 +53,8 @@ export class CrearRegistroComponent {
     private bodegaService: BodegaService,
     private proveedoresService: ProveedoresService,
     private tipoService: TipoService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private scanService: ScanService
   ){
     this.validationSubject.pipe(
       debounceTime(300), 
@@ -61,7 +64,7 @@ export class CrearRegistroComponent {
 
       this.checkValidation();
 
-      if (this.esCodigoValido && this.producto.codigo_barra !== this.ultimoCodigoBarra) {
+      if (this.esCodigoValido) {
         this.ultimoCodigoBarra = this.producto.codigo_barra
         this.buscarProducto();
       }
@@ -147,6 +150,11 @@ export class CrearRegistroComponent {
     this.permisos_bodega = permisos_de_bodega.data
 
     this.isReadonly = false
+
+    this.scanService.listenForScans().subscribe(data => {
+      this.producto.codigo_barra = data;
+      this.onInputChange()
+    });
   }  
 
   goTo (url: string, _id: number){
@@ -224,6 +232,26 @@ export class CrearRegistroComponent {
   onSelectChange(item: any) {
     this.model.id_tipo_merma = (item != undefined) ? item.id : null
     this.checkValidation()
+  }
+
+  ean13(option: number){
+    switch (option) {
+      case 1:
+        this.fielddBarCode = true
+        this.onInputChange()
+        break;
+      case 2:
+        this.fielddBarCode = false
+        this.onInputChange()
+        break;
+      case 3:
+        this.producto.codigo_barra = ''
+        this.fielddBarCode = true
+        this.show_detail_product = false
+        this.form_batch = false
+        this.onInputChange()
+        break;
+    }
   }
 
   onSearch(event: any) {

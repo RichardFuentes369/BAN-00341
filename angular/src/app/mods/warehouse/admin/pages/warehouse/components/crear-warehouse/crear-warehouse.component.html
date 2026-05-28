@@ -11,7 +11,7 @@
         <div class="row" *ngIf="mostrarSeccion.productSeccion" [class.animate__fadeIn]="mostrarSeccion.productSeccion" [class.animate__fadeOut]="!mostrarSeccion.productSeccion">
           <div class="col-sm-12 form-group mb-3">
             <label>{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
-            <input type="text" class="form-control form-select-sm" [(ngModel)]="producto.codigo_barra" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.codigo_barra" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}">
+            <input type="text" class="form-control form-select-sm" [class]="(fielddBarCode) ? 'bg-light' :''" [(ngModel)]="producto.codigo_barra" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.codigo_barra" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}" [disabled]="fielddBarCode">
             @if(validators.producto_inactivo) {
             <div class="d-flex justify-content-between">
               <small class="text-danger">
@@ -26,6 +26,25 @@
               </small>
             </div>
             }
+            <div class="row mt-2 g-2"> 
+              <div class="col-4">
+                <button type="button" class="btn btn-sm btn-outline-primary w-100" (click)="ean13(1)">
+                  <i class="fa fa-barcode"></i> Escanear
+                </button>
+              </div>
+              <div class="col-4">
+                <button type="button" class="btn btn-sm btn-outline-primary w-100" (click)="ean13(2)">
+                  <i class="fa fa-pencil"></i> Manual
+                </button>
+              </div>  
+              <div class="col-4">
+                <button type="button" class="btn btn-sm btn-danger w-100" (click)="ean13(3)">
+                  <i class="fa fa-trash"></i> Limpiar
+                </button>
+              </div>
+            </div>
+
+
             @if(show_detail_product){
             <div class="row mt-3">
               <div class="col-sm-6 form-group">

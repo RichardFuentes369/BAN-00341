@@ -15,6 +15,7 @@ import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 import { AuthService } from '@guard/service/auth.service';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { ProveedoresService } from '@mod/catalog/admin/pages/proveedores/service/proveedores.service';
+import { ScanService } from '@service/scan/scan.service';
 
 @Component({
   selector: 'app-crear-warehouse',
@@ -33,6 +34,8 @@ export class CrearWarehouseComponent implements OnInit {
   ultimoCodigoBarra = ''
   ultimoNit = ''
 
+  fielddBarCode: boolean = true
+
   constructor(
     private router: Router,
     private bodegaService: BodegaService,
@@ -40,7 +43,8 @@ export class CrearWarehouseComponent implements OnInit {
     private permisosService: PermisosService,
     private productoService: ProductosService,
     private proveedoresService: ProveedoresService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private scanService: ScanService
   ) {
     this.validationSubject.pipe(
       debounceTime(300),
@@ -50,7 +54,8 @@ export class CrearWarehouseComponent implements OnInit {
 
       this.checkValidation();
 
-      if (this.esCodigoValido && this.producto.codigo_barra !== this.ultimoCodigoBarra) {
+      // if (this.esCodigoValido && this.producto.codigo_barra !== this.ultimoCodigoBarra) {
+      if (this.esCodigoValido) {
         this.ultimoCodigoBarra = this.producto.codigo_barra
         this.buscarProducto();
       }
@@ -122,6 +127,11 @@ export class CrearWarehouseComponent implements OnInit {
 
     const permisos_proveedores = await this.permisosService.permisos(userData.data.id, 'proveedores')
     this.permisos_catalogo_proveedores = permisos_proveedores.data
+
+    this.scanService.listenForScans().subscribe(data => {
+      this.producto.codigo_barra = data;
+      this.onInputChange()
+    });
   }
 
   goTo(url: string, _id: number) {
@@ -366,6 +376,24 @@ export class CrearWarehouseComponent implements OnInit {
           icon: 'error'
         });
       }
+    }
+  }
+
+  async ean13(option: number){
+    switch (option) {
+      case 1:
+        this.fielddBarCode = true
+        this.onInputChange()
+        break;
+      case 2:
+        this.fielddBarCode = false
+        this.onInputChange()
+        break;
+      case 3:
+        this.fielddBarCode = true
+        this.onInputChange()
+        this.producto.codigo_barra = ''
+        break;
     }
   }
 

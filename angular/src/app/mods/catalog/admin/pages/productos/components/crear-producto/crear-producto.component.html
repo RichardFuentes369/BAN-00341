@@ -1,10 +1,5 @@
 <div class="container-fluid p-0">
   <div class="col-xl col-sm-12">
-    <div style="text-align: center; margin-top: 50px;">
-      <h1>Escáner EAN-13 en Vivo</h1>
-      <h2 style="color: green;">Último código escaneado: {{ lastCode }}</h2>
-    </div>
-
     <fieldset class="border p-3 rounded">
       <legend class="float-none w-auto p-1">
         {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_PRODUCT' | translate }}
@@ -48,7 +43,7 @@
 
         <div class="col-sm-6 form-group mb-3">
           <label>{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
-          <input type="text" class="form-control form-select-sm" [(ngModel)]="model.codigo_barra" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.codigo_barra" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}">
+          <input type="text" class="form-control form-select-sm" [class]="(fielddBarCode) ? 'bg-light' :''" [(ngModel)]="model.codigo_barra" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.codigo_barra" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}" [disabled]="fielddBarCode">
           @if(validators.codigo_barra) {
           <div class="d-flex justify-content-between">
             <small [ngClass]="esCodigoValido ? 'text-success font-weight-bold' : 'text-danger'">
@@ -56,6 +51,23 @@
             </small>
           </div>
           }
+          <div class="row mt-2 g-2"> 
+            <div class="col-4">
+              <button type="button" class="btn btn-sm btn-outline-primary w-100" (click)="ean13(1)">
+                <i class="fa fa-barcode"></i> Escanear
+              </button>
+            </div>
+            <div class="col-4">
+              <button type="button" class="btn btn-sm btn-outline-primary w-100" (click)="ean13(2)">
+                <i class="fa fa-pencil"></i> Manual
+              </button>
+            </div>  
+            <div class="col-4">
+              <button type="button" class="btn btn-sm btn-danger w-100" (click)="ean13(3)">
+                <i class="fa fa-trash"></i> Limpiar
+              </button>
+            </div>
+          </div>
         </div>
 
         <div class="col-sm-6 form-group mb-3">

@@ -9,15 +9,14 @@ export class ScanService {
   private socket: Socket;
 
   constructor() {
-    // IMPORTANTE: Asegúrate de usar la IP de tu PC aquí también
     this.socket = io('http://192.168.1.6:3000');
   }
 
   // Escucha los eventos que emite NestJS
   listenForScans(): Observable<string> {
     return new Observable(observer => {
-      this.socket.on('new-scan', (data: string) => {
-        observer.next(data);
+      this.socket.on('new-scan', (data: { code: string }) => {
+        observer.next(data.code);
       });
     });
   }

@@ -23,8 +23,6 @@ import { ScanService } from '@service/scan/scan.service';
 })
 export class CrearProductoComponent implements OnInit {
 
-  public lastCode: string = '';
-
   private validationSubject = new Subject<void>();
   isFormValid = false;
   marcas: any[] = [];
@@ -32,6 +30,7 @@ export class CrearProductoComponent implements OnInit {
   isLoading: boolean = false
   filtro: string = ''
   isReadonly:boolean = false
+  fielddBarCode: boolean = true
 
   model = {
     es_perecedero: false,
@@ -84,9 +83,9 @@ export class CrearProductoComponent implements OnInit {
       this.getMedida()
     }
 
-    this.scanService.listenForScans().subscribe((code: string) => {
-      this.lastCode = code;
-      console.log('Código recibido en Angular:', code);
+    this.scanService.listenForScans().subscribe(data => {
+      this.model.codigo_barra = data;
+      this.onInputChange()
     });
   }
 
@@ -195,6 +194,24 @@ export class CrearProductoComponent implements OnInit {
   onSelectChange(item: any) {
     this.model.id_marca = (item != undefined) ? item.id : null
     this.checkValidation()
+  }
+
+  ean13(option: number){
+    switch (option) {
+      case 1:
+        this.fielddBarCode = true
+        this.onInputChange()
+        break;
+      case 2:
+        this.fielddBarCode = false
+        this.onInputChange()
+        break;
+      case 3:
+        this.model.codigo_barra = ''
+        this.fielddBarCode = true
+        this.onInputChange()
+        break;
+    }
   }
 
   mostrarSeccion = {
