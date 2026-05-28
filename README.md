@@ -75,3 +75,19 @@ CTRL + SHIFT + V
 	MERMAS/REGISTRO DE PERDIDA
 		Reporte de perdidas por producto
 		Reporte de perdidas por fecha
+
+
+
+
+
+
+
+
+
+
+
+pnpm run dev
+	ng serve
+	nest start --watch
+
+	npx expo start -c    
