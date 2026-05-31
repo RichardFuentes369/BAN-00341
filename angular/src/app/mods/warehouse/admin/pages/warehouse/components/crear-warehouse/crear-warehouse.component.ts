@@ -58,7 +58,7 @@ export class CrearWarehouseComponent implements OnInit {
       }
 
       const regexNIT = /^[0-9]{8,15}$/;
-      if (regexNIT.test(this.proveedor.nit) && this.proveedor.nit !== this.ultimoNit) {
+      if (regexNIT.test(this.proveedor.nit)) {
         this.ultimoNit = this.proveedor.nit
         this.buscarProveedor();
       }
@@ -167,7 +167,19 @@ export class CrearWarehouseComponent implements OnInit {
       this.form_new_provider = false
       this.form_new_batch = false
       this.show_detail_product = false
-      this.show_detail_provider = false
+      if(this.proveedor.nit != ''){
+        this.show_detail_provider = true
+      }else{
+        this.show_detail_provider = false
+      }
+    }
+
+    if(this.validators.nit) {
+      if(this.proveedor.nit != ''){
+        this.show_detail_provider = true
+      }else{
+        this.show_detail_provider = false
+      }
     }
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
@@ -266,13 +278,6 @@ export class CrearWarehouseComponent implements OnInit {
         this.producto.unidad_medida = ''
         this.producto.es_perecedero = ''
 
-        this.model.id_producto = ''
-        this.model.lote = ''
-        this.model.fecha_entrada = ''
-        this.model.fecha_vencimiento = ''
-        this.model.cantidad_comprada = ''
-        this.model.estado = ''
-
         this.form_new_product = true
         this.btn_new_product = true
         this.show_detail_product = false
@@ -284,7 +289,6 @@ export class CrearWarehouseComponent implements OnInit {
 
         this.form_new_provider = false
         this.form_new_batch = false
-        this.proveedor.nit = ''
 
         this.model.id_producto = ''
         this.model.lote = ''
@@ -309,12 +313,12 @@ export class CrearWarehouseComponent implements OnInit {
         this.proveedor.razon_social = consultaProveedor.data.razon_social
         this.proveedor.correo = consultaProveedor.data.correo
 
-        this.form_new_provider = true
         if (this.model.id_proveedor != '') {
           this.btn_new_provider = false
         }
+        
+        this.form_new_provider = true
         this.show_detail_provider = true
-
         this.form_new_batch = true
       }
     } catch (error: any) {
