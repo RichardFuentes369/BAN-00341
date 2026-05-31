@@ -113,6 +113,7 @@ export class VerWarehouseComponent {
   }
 
   cargarIdioma = true
+  accioneson = false
   endPoint = ``
   columnas: any[] = [
     {
