@@ -52,9 +52,6 @@ export class CrearWarehouseComponent implements OnInit {
     ).subscribe(isValid => {
       this.isFormValid = isValid;
 
-      this.checkValidation();
-
-      // if (this.esCodigoValido && this.producto.codigo_barra !== this.ultimoCodigoBarra) {
       if (this.esCodigoValido) {
         this.ultimoCodigoBarra = this.producto.codigo_barra
         this.buscarProducto();
@@ -65,6 +62,8 @@ export class CrearWarehouseComponent implements OnInit {
         this.ultimoNit = this.proveedor.nit
         this.buscarProveedor();
       }
+
+      this.checkValidation();
     });
   }
 
@@ -163,8 +162,6 @@ export class CrearWarehouseComponent implements OnInit {
     this.validators.cantidad_comprada = (this.model.cantidad_comprada === '');
     this.validators.estado = (this.model.estado === '');
 
-    const boton = document.querySelector('.btnSave') as HTMLButtonElement
-
     if (this.validators.codigo_barra) {
       this.btn_new_product = false
       this.form_new_provider = false
@@ -173,11 +170,13 @@ export class CrearWarehouseComponent implements OnInit {
       this.show_detail_provider = false
     }
 
+    const boton = document.querySelector('.btnSave') as HTMLButtonElement
+
     if (this.producto.es_perecedero == '0') {
       (!this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
       respuesta = !this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado
     }
-
+    
     if (this.producto.es_perecedero == '1') {
       (!this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado && !this.validators.fecha_vencimiento) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
       respuesta = !this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado && !this.validators.fecha_vencimiento
@@ -229,9 +228,6 @@ export class CrearWarehouseComponent implements OnInit {
 
         this.form_new_provider = true
         this.form_new_batch = true
-
-        const boton = document.querySelector('.btnSave') as HTMLButtonElement
-        boton.classList.add('disabled')
       }
       if (consultaProducto.status == 200 && consultaProducto.data.estado === false) {
         console.log('producto existe')
@@ -320,8 +316,6 @@ export class CrearWarehouseComponent implements OnInit {
         this.show_detail_provider = true
 
         this.form_new_batch = true
-        const boton = document.querySelector('.btnSave') as HTMLButtonElement
-        boton.classList.add('disabled')
       }
     } catch (error: any) {
       if (error.status == 404) {
