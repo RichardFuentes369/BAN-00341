@@ -67,6 +67,8 @@ export class CrearRegistroComponent {
       if (this.esCodigoValido) {
         this.ultimoCodigoBarra = this.producto.codigo_barra
         this.buscarProducto();
+      }else{
+        this.show_detail_product = false
       }
 
       if (this.bodega.lote !== this.ultimoBatch) {
@@ -284,8 +286,6 @@ export class CrearRegistroComponent {
 
         this.form_batch = true
 
-        const boton = document.querySelector('.btnSave') as HTMLButtonElement
-        boton.classList.add('disabled')
       }
       if (consultaProducto.status == 200 && consultaProducto.data.estado === false) {
         console.log('producto existe')
@@ -360,9 +360,6 @@ export class CrearRegistroComponent {
     try {
       const response = await this.bodegaService.getDataLoteAndProduct(this.bodega.lote, this.producto.id);
       if (response.status === 200) {
-        const boton = document.querySelector('.btnSave') as HTMLButtonElement
-        boton.classList.add('disabled')
-
         this.bodega.id = response.data.id
         this.bodega.fecha_entrada = this.formatoFecha(response.data.fecha_entrada)
         this.bodega.es_perecedero = response.data.id_producto.es_perecedero
