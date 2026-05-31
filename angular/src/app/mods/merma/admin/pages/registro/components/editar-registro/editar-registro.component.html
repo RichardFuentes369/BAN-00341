@@ -203,6 +203,7 @@
             {{ 'mod-merma.REGISTER.LABEL_AMOUT' | translate}}
           </label>
           <input type="number" min="0" class="form-control form-select-sm" [(ngModel)]="model.cantidad">
+          <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
         </div>
         <div class="col-sm-12 form-group">
           <label for="exampleInputEmail1">
