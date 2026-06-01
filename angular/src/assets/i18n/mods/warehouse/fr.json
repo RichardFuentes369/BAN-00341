@@ -63,5 +63,16 @@
 	"PLACEHOLDER_PRECIO_VENTA_SUGERIDO": "Entrer le prix de vente suggéré",
 	"PLACEHOLDER_ESTADO": "Choisir l'état",
 
-	"CARD_TOTAL_REGISTER_TITLE": "Total des enregistrements"
+	"CARD_TOTAL_REGISTER_TITLE": "Total des enregistrements",
+
+	"SWAL_ARE_YOU_SURE_DELETE_WAREHOUSE": "¿Êtes-vous sûr de vouloir supprimer ces enregistrements de l'entrepôt ?",
+	"SWAL_WARNING_REVERSE_CHANGE": "Cette action est irréversible!",
+	"SWAL_CREATED": "Entrepôt!",
+	"SWAL_CREATED_RECORD": "Créé avec succès.",
+	"SWAL_UPDATED": "Entrepôt!",
+	"SWAL_UPDATED_RECORD": "Mise à jour réussie.",
+	"SWAL_BUTTON_DELETE": "Supprimer",
+	"SWAL_BUTTON_CANCEL": "Annuler",
+	"SWAL_DELETED": "Entrepôt !",
+	"SWAL_DELETED_RECORD": "Suppression réussie."
 }

@@ -126,4 +126,23 @@ export class BodegaService {
     })
   }
 
+  async deleteBodega(id: string[]){
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = 'batch/eliminar-registro-lote/'
+    let urlCopleta = environment.apiUrl+complemento
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
+    return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
+      method: 'delete',
+      url: urlCopleta,
+      params: {
+        _id: id.join(','),
+        lang: lang,
+      }
+    })
+  }
 }

@@ -63,5 +63,16 @@
   "PLACEHOLDER_PRECIO_VENTA_SUGERIDO": "Enter suggested retail price",
   "PLACEHOLDER_ESTADO": "Select status",
 
-  "CARD_TOTAL_LOT_TITLE": "Total records"
+  "CARD_TOTAL_LOT_TITLE": "Total records",
+
+  "SWAL_ARE_YOU_SURE_DELETE_WAREHOUSE": "¿Are you sure you want to delete these warehouse records?",
+  "SWAL_WARNING_REVERSE_CHANGE": "You cannot reverse this!",
+  "SWAL_CREATED": "WAREHOUSE!",
+  "SWAL_CREATED_RECORD": "Created successfully.",
+  "SWAL_UPDATED": "WAREHOUSE!",
+  "SWAL_UPDATED_RECORD": "Updated successfully.",
+  "SWAL_BUTTON_DELETE": "Delete",
+  "SWAL_BUTTON_CANCEL": "Cancel",
+  "SWAL_DELETED": "WAREHOUSE!",
+  "SWAL_DELETED_RECORD": "Successfully deleted."
 }

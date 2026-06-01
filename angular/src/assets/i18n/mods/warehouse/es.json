@@ -63,5 +63,16 @@
   "PLACEHOLDER_PRECIO_VENTA_SUGERIDO": "Ingrese el precio de venta sugerido",
   "PLACEHOLDER_ESTADO": "Seleccione el estado",
 
-  "CARD_TOTAL_LOT_TITLE": "Total registros"
+  "CARD_TOTAL_LOT_TITLE": "Total registros",
+
+  "SWAL_ARE_YOU_SURE_DELETE_WAREHOUSE": "¿Está seguro de eliminar estos registros de la bodega?",
+  "SWAL_WARNING_REVERSE_CHANGE": "¡No podrás revertir esto!",
+  "SWAL_CREATED": "BODEGA!",
+  "SWAL_CREATED_RECORD": "Creado exitosamente.",
+  "SWAL_UPDATED": "BODEGA!",
+  "SWAL_UPDATED_RECORD": "Actualizado exitosamente.",
+  "SWAL_BUTTON_DELETE": "Eliminar",
+  "SWAL_BUTTON_CANCEL": "Cancelar",
+  "SWAL_DELETED": "BODEGA!",
+  "SWAL_DELETED_RECORD": "Eliminado exitosamente."
 }

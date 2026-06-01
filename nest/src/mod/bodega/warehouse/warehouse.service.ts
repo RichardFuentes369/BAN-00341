@@ -180,29 +180,18 @@ export class WarehouseService {
 
   async remove(lang: string, ids: number[], userId: number) {
 
-    // como lo creare 
-    // const exists = await this.batchRepository.findOne({ where: { id: createMermaDto.id_lote } });
-    // const merma = await this.mermaRepository.findOne({ where: { id: id_merma } });
+    try {
+      await this.mermaRepository.delete({ id_lote: In(ids) });
+      await this.batchRepository.delete({ id: In(ids) });
+      return {
+          'title': this.i18n.t('categoria.MSJ_CATEGORY_TITTLE', { lang }),
+          'message': this.i18n.t('categoria.MSN_PERMISO_REMOVIDO_OK', { lang }),
+          'status': 200,
+      };
+    } catch (error) {
+      console.log(error)
+    }
     
-    // if (exists && createMermaDto.cantidad<merma.cantidad){
-    //   exists.cantidad_en_bodega = exists.cantidad_en_bodega + (merma.cantidad - createMermaDto.cantidad)
-    // }
-
-    // if (exists && createMermaDto.cantidad>merma.cantidad){
-    //   exists.cantidad_en_bodega = exists.cantidad_en_bodega - (createMermaDto.cantidad - merma.cantidad)
-    // }
-
-    // return await this.batchRepository.save(exists);
-
-
-    // lo que habia
-    // this.mermaRepository.delete({ id: In(ids) })
-
-    // return {
-    //     'title': this.i18n.t('categoria.MSJ_CATEGORY_TITTLE', { lang }),
-    //     'message': this.i18n.t('categoria.MSN_PERMISO_REMOVIDO_OK', { lang }),
-    //     'status': 200,
-    // };
   }
 
 

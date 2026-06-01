@@ -405,16 +405,12 @@ export class WarehoseComponent implements OnInit, OnDestroy{
 
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
-  async eliminarData (_id: string[]){
-    // const response = await this.productosService.getDataProduct(_id[0])
-    // const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    // const name_user = (_id.length === 1) ? nombre: "("+_id.length+")"
-    const count_users = (_id.length === 1) ? 'el' : 'los'
-    const plural = (_id.length === 1) ? '' : 's'
-    
-    this.translate.get('mod-warehouse.PRODUCT.SWAL_ARE_YOU_SURE_DELETE',{ "art_the": count_users, "plural": plural, "product_name": ""}).subscribe((translatedTitle: string) => {
+  async eliminarData(_id: string[]) {
+    const response = await this.bodegaService.getDataLote(_id[0])
+
+    this.translate.get('mod-warehouse.SWAL_ARE_YOU_SURE_DELETE_WAREHOUSE').subscribe((translatedTitle: string) => {
       Swal.fire({
-        // title: translatedTitle,
+        title: translatedTitle,
         text: this.translate.instant('mod-warehouse.SWAL_WARNING_REVERSE_CHANGE'),
         icon: 'warning',
         showCancelButton: true,
@@ -422,15 +418,13 @@ export class WarehoseComponent implements OnInit, OnDestroy{
         cancelButtonText: this.translate.instant('mod-warehouse.SWAL_BUTTON_CANCEL')
       }).then(async (result) => {
         if (result.isConfirmed) {
-          if (result.isConfirmed) {
-            // await this.productosService.deleteProduct(_id)
-            await this.someInput.reload()
-            Swal.fire({
-              title: this.translate.instant('mod-warehouse.PRODUCT.SWAL_DELETED'),
-              text: this.translate.instant('mod-warehouse.SWAL_DELETED_RECORD'),
-              icon: "success"
-            });
-          }
+          await this.bodegaService.deleteBodega(_id)
+          await this.someInput.reload()
+          Swal.fire({
+            title: this.translate.instant('mod-warehouse.SWAL_DELETED'),
+            text: this.translate.instant('mod-warehouse.SWAL_DELETED_RECORD'),
+            icon: "success"
+          });
         }
       });
     });
