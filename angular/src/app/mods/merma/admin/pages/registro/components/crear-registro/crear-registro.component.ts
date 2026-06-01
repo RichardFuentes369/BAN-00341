@@ -79,6 +79,8 @@ export class CrearRegistroComponent {
     });
   }
 
+  cantidad_afectada_por_merma = ''
+
   producto = {
     id: '',
     codigo_barra: '',
@@ -360,10 +362,13 @@ export class CrearRegistroComponent {
     try {
       const response = await this.bodegaService.getDataLoteAndProduct(this.bodega.lote, this.producto.id);
       if (response.status === 200) {
+        
+        this.cantidad_afectada_por_merma = response.data.mermas
+
         this.bodega.id = response.data.id
         this.bodega.fecha_entrada = this.formatoFecha(response.data.fecha_entrada)
         this.bodega.es_perecedero = response.data.id_producto.es_perecedero
-        this.bodega.fecha_vencimiento = this.formatoFecha(response.data.fecha_vencimiento)
+        this.bodega.fecha_vencimiento = (response.data.fecha_vencimiento != '') ? this.formatoFecha(response.data.fecha_vencimiento) : ''
         this.bodega.cantidad_comprada = response.data.cantidad_comprada
         this.bodega.cantidad_vendida = response.data.cantidad_vendida
         this.bodega.cantidad_en_bodega = response.data.cantidad_en_bodega

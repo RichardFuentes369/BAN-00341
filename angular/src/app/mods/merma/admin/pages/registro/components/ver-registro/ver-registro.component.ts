@@ -11,47 +11,6 @@ import { RegistroService } from '../../service/registro.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
-interface RegistroInterface {
-  'cantidad': number,
-  'fecha_reporte': string,
-  'id': number,
-  'id_lote': {
-    'cantidad_comprada': number,
-    'cantidad_en_bodega': number,
-    'cantidad_vendida': number,
-    'estado': string,
-    'fecha_entrada': string,
-    'fecha_vencimiento': string,
-    'id': number,
-    'id_producto': {
-      'alerta_amarilla': number,
-      'alerta_naranja': number,
-      'codigo_barra': string,
-      'es_perecedero': number,
-      'estado': number,
-      'id': number,
-      'id_marca': number,
-      'id_medida': number,
-      'medida': {
-        'id': number,
-        'nombre': string,
-      },
-      'marca': {
-        'id': number,
-        'nombre': string,
-      },
-      'nombre': string,
-      'stock_minimo': number,
-    },
-    'lote': string,
-  },
-  'id_tipo_merma': {
-    'id': number,
-    'nombre': string,
-  },
-  'observacion': string,
-  'valor_perdido': string
-}
 
 @Component({
   selector: 'app-ver-registro',
@@ -73,17 +32,64 @@ export class VerRegistroComponent {
     private registroService :RegistroService,
   ) { }
 
-  registro: RegistroInterface[] = []
   permisos: any[] = []
   registroReal: any
 
   show_detail_batch = false
 
+  producto = {
+    codigo_barra: '',
+    nombre: '',
+    marca: '',
+    es_perecedero: '',
+    unidad_medida: ''
+  }
+
+  lote = {
+    lote: '',
+    fecha_entrada: '',
+    fecha_vencimiento: '',
+    estado: ''
+  }
+
+  registro = {
+    id_tipo_merma: '',
+    cantidad: '',
+    fecha_reporte: '',
+    valor_perdido: '',
+    observacion: '',
+  }
+
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     this.registroReal = await this.registroService.getDataRegister(this.route.snapshot.queryParams?.['id_tipo_merma'])
 
-    this.registro.push(this.registroReal.data)
+    this.producto.codigo_barra = this.registroReal.data.id_lote.id_producto.codigo_barra
+    this.producto.nombre = this.registroReal.data.id_lote.id_producto.nombre
+    this.producto.marca  = this.registroReal.data.id_lote.id_producto.marca.nombre
+    this.producto.marca  = this.registroReal.data.id_lote.id_producto.es_perecedero
+    this.producto.unidad_medida  = this.registroReal.data.id_lote.id_producto.medida.nombre
+
+    this.lote.lote  = this.registroReal.data.id_lote.lote
+    this.lote.fecha_entrada  = this.formatoFecha(this.registroReal.data.id_lote.fecha_entrada)
+    this.lote.fecha_vencimiento  = this.formatoFecha(this.registroReal.data.id_lote.fecha_vencimiento)
+    this.lote.estado  = this.registroReal.data.id_lote.estado
+
+    this.registro.id_tipo_merma  = this.registroReal.data.id_tipo_merma.nombre
+    this.registro.cantidad  = this.registroReal.data.cantidad
+    this.registro.fecha_reporte  = this.formatoFecha(this.registroReal.data.fecha_reporte)
+    this.registro.valor_perdido  = this.registroReal.data.valor_perdido
+    this.registro.observacion  = this.registroReal.data.observacion
+
+  }
+
+  formatoFecha(fecha: number){
+    const date = new Date(Number(fecha) * 1000);
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+
+    return `${yyyy}-${mm}-${dd}`
   }
 
   mostrarSeccion = {

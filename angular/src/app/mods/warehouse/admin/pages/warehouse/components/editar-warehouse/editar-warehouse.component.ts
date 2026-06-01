@@ -130,6 +130,7 @@ export class EditarWarehouseComponent {
   }
 
   cargarIdioma = true
+  accioneson = false
   endPoint = ``
   columnas: any[] = [
     {
