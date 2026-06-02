@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
       if(rol == 0){
         this.isPending = false;
         localStorage.setItem(STORAGE_KEY_TOKEN_ADMIN,response.data.access_token)
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/admin/dashboard']);
       }else{
         this.isPending = false;
         localStorage.setItem(STORAGE_KEY_TOKEN_FINAL,response.data.access_token)
