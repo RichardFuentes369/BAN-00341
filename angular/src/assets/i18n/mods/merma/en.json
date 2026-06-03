@@ -34,10 +34,12 @@
     "LABEL_OBSERVATION": "Observation",
     
     "PLACEHOLDER_TYPE": "Select shrinkage type",
-    "PLACEHOLDER_AMOUT": "Lost quantity",
+    "PLACEHOLDER_AMOUT": "Enter the lost quantity",
     "PLACEHOLDER_REPORT_DATE": "Enter a date",
     "PLACEHOLDER_LOST_VALUE": "Enter estimated value",
     "PLACEHOLDER_OBSERVACION": "Enter an observation",
+
+    "ERROR_QUANTITY_THAT_ALLOWED": "Error: quantity exceeds the amount registered in the warehouse",
 
     "SWAL_CREATED": "Registered!",
     "SWAL_UPDATED": "Updated!",

@@ -104,6 +104,9 @@ export class EditarRegistroComponent {
     estado: ''
   }
 
+  cantidad_old = ''
+  cantidad_afectada_por_merma = ''
+
   model = {
     id_lote: '',
     id_tipo_merma: '',
@@ -120,6 +123,7 @@ export class EditarRegistroComponent {
     lote: false,
     codigo_barra: false,
     cantidad: false,
+    cantidad_mayor: false,
     fecha_reporte: false,
     valor_perdido: false,
     observacion: false
@@ -157,10 +161,12 @@ export class EditarRegistroComponent {
     await this.buscarProducto()
     await this.buscarLote()
 
+    this.cantidad_old = this.registroReal.data.cantidad
+    this.cantidad_afectada_por_merma = this.registroReal.data.id_lote.total_mermas
     this.model.id_lote = this.registroReal.data.id_lote.id
     this.model.id_tipo_merma = this.registroReal.data.id_tipo_merma.id
     this.model.cantidad = this.registroReal.data.cantidad
-    this.model.fecha_reporte = this.registroReal.data.fecha_reporte
+    this.model.fecha_reporte = (this.registroReal.data.fecha_reporte != '') ? this.formatoFecha(this.registroReal.data.fecha_reporte) : ''
     this.model.valor_perdido = this.registroReal.data.valor_perdido
     this.model.observacion = this.registroReal.data.observacion
   }
@@ -183,9 +189,11 @@ export class EditarRegistroComponent {
     const regexBarCode = /^[0-9]{13}$/;
     const regexNIT = /^[0-9]{8,15}$/;
     this.validators.codigo_barra = (this.producto.codigo_barra === null || !regexBarCode.test((this.producto.codigo_barra as any).toString()))
-    this.validators.lote = (this.bodega.lote === null)
+    this.validators.lote = (this.bodega.lote === null || this.bodega.lote  == '')
+    this.validators.cantidad = (this.model.cantidad === null || this.model.cantidad  == '' || this.model.cantidad != '')
 
     const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
+    
     (!this.validators.codigo_barra && !this.validators.lote) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
     
     if(this.validators.codigo_barra){
@@ -196,6 +204,50 @@ export class EditarRegistroComponent {
       this.show_detail_lote = false
       this.form_new_merma  = false
       this.show_detail_merma = false
+    }
+
+    if(this.validators.lote){
+      this.show_detail_merma = false
+    }
+    
+    if(this.validators.cantidad){
+      console.log('***********************')
+      console.log('new: '+this.model.cantidad)
+      console.log('old: '+this.cantidad_old)
+
+      if(parseInt(this.model.cantidad) != parseInt(this.cantidad_old)){
+        const totalBodega = parseInt(this.bodega.cantidad_comprada); //A
+        const inventarioActual = parseInt(this.bodega.cantidad_en_bodega); //A
+        const cantidadAnteriorM = parseInt(this.cantidad_old); // B
+        const nuevaCantidadM = parseInt(this.model.cantidad); // D
+        const totalMermas = parseInt(this.cantidad_afectada_por_merma); // R
+        const totalVentas = parseInt(this.bodega.cantidad_vendida); // T
+        const stockTotal = totalMermas + inventarioActual + totalVentas; // P
+        console.log('cantidad comprada:' + stockTotal)
+  
+        if(nuevaCantidadM>cantidadAnteriorM){
+          if(inventarioActual>nuevaCantidadM){
+            const nuevaCantidadBodega = (inventarioActual + cantidadAnteriorM) - nuevaCantidadM
+            console.log('actualizo la merma con la cantidad: '+ nuevaCantidadM)
+            console.log('actualizo la nueva cantidad_bodega '+nuevaCantidadBodega)
+          }
+          if(inventarioActual == nuevaCantidadM){
+            console.log('no hago nada')
+          }
+          if(inventarioActual<nuevaCantidadM){
+            console.log('error: no cuenta con inventario suficiente para actualizar')
+          }
+        }
+        if(nuevaCantidadM<cantidadAnteriorM){
+          if(nuevaCantidadM<totalBodega){
+            const nuevaCantidadBodega = (inventarioActual + cantidadAnteriorM) - nuevaCantidadM
+            console.log('actualizo la merma con la cantidad: '+ nuevaCantidadM)
+            console.log('actualizo la nueva cantidad_bodega'+ nuevaCantidadBodega)
+          }else{
+            console.log('error: la cantidad a actualizar supera la cantidad comprada')
+          }
+        }
+      }
     }
 
     return !this.validators.codigo_barra
@@ -286,12 +338,6 @@ export class EditarRegistroComponent {
         
         this.show_detail_lote = true
         this.btn_new_lote = false
-
-        this.model.id_tipo_merma = ''
-        this.model.cantidad = ''
-        this.model.fecha_reporte = ''
-        this.model.valor_perdido = ''
-        this.model.observacion = ''
         
         await this.getTiposMerma();
         this.show_detail_merma = true
@@ -312,13 +358,6 @@ export class EditarRegistroComponent {
           const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
           boton.classList.add('disabled')
         }
-
-        this.model.id_lote = ''
-        this.model.id_tipo_merma = ''
-        this.model.cantidad = ''
-        this.model.fecha_reporte = ''
-        this.model.valor_perdido = ''
-        this.model.observacion = ''
       } else {
         console.error('Error de red o servidor no disponible');
       }

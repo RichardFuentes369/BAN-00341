@@ -41,10 +41,12 @@
     "LABEL_OBSERVATION": "Observación",
     
     "PLACEHOLDER_TYPE": "Tipo de merma",
-    "PLACEHOLDER_AMOUT": "Cantidad perdida",
+    "PLACEHOLDER_AMOUT": "Ingrese la cantidad perdida",
     "PLACEHOLDER_REPORT_DATE": "Ingrese una fecha",
     "PLACEHOLDER_LOST_VALUE": "Ingrese el valor estimado",
     "PLACEHOLDER_OBSERVACION": "Ingrese una observación",
+
+    "ERROR_QUANTITY_THAT_ALLOWED": "Error: cantidad superior a la cantidad registrada en bodega",
 
     "SWAL_CREATED": "Registro!",
     "SWAL_UPDATED": "Registro!",

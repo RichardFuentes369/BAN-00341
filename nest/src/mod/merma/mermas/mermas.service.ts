@@ -110,6 +110,16 @@ export class MermasService {
         },
       },
     });
+
+    if (merma && merma.id_lote) {
+      const result = await this.mermaRepository.createQueryBuilder('merma')
+        .select('SUM(merma.cantidad)', 'total') 
+        .where('merma.id_lote = :loteId', { loteId: merma.id_lote.id })
+        .getRawOne();
+      
+      merma.id_lote.total_mermas = parseInt(result.total) || 0;
+    }
+
     if (!merma) throw new NotFoundException(
       this.i18n.t('batch.MSJ_BATCH_NO_ENCONTRADA', { lang })
     );
