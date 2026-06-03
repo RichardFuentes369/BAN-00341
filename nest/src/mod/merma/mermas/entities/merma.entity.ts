@@ -14,7 +14,7 @@ export class Merma {
   @Column({ type: 'bigint', nullable: false })
   fecha_reporte: number;
 
-  @Column({ type: 'decimal', precision: 10, scale: 2, default: 0.00 })
+  @Column({ type: 'int', default: 0 })
   valor_perdido: number;
 
   @Column({ type: 'text', nullable: false })

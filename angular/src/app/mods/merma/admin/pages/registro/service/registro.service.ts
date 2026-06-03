@@ -75,9 +75,11 @@ export class RegistroService {
 
   async updateRegister(data: any, id: string){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = `registro-mermas/editar-registro-merma`
+    let complemento = `registro-mermas/actualizar-registro-merma`
     let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
+    data.fecha_reporte = toTimestampp(data.fecha_reporte)
 
     return await axios.request({
       headers: {

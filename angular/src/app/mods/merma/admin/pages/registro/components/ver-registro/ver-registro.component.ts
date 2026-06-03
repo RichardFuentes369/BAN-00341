@@ -62,7 +62,7 @@ export class VerRegistroComponent {
 
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
-    this.registroReal = await this.registroService.getDataRegister(this.route.snapshot.queryParams?.['id_tipo_merma'])
+    this.registroReal = await this.registroService.getDataRegister(this.route.snapshot.queryParams?.['id_merma'])
 
     this.producto.codigo_barra = this.registroReal.data.id_lote.id_producto.codigo_barra
     this.producto.nombre = this.registroReal.data.id_lote.id_producto.nombre

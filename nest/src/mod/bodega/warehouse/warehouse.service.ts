@@ -260,18 +260,32 @@ export class WarehouseService {
     
     // actualizar regitro
     if(option == 2){
-      const exists = await this.batchRepository.findOne({ where: { id: createMermaDto.id_lote } });
-      const merma = await this.mermaRepository.findOne({ where: { id: id_merma } });
-      
-      if (exists && createMermaDto.cantidad<merma.cantidad){
-        exists.cantidad_en_bodega = exists.cantidad_en_bodega + (merma.cantidad - createMermaDto.cantidad)
-      }
-
-      if (exists && createMermaDto.cantidad>merma.cantidad){
-        exists.cantidad_en_bodega = exists.cantidad_en_bodega - (createMermaDto.cantidad - merma.cantidad)
-      }
+      try {
+        const exists = await this.batchRepository.findOne({ where: { id: createMermaDto.id_lote } });
+        const merma = await this.mermaRepository.findOne({ where: { id: id_merma } });
+        
+        if (exists && createMermaDto.cantidad<merma.cantidad){
+          exists.cantidad_en_bodega = exists.cantidad_en_bodega + (merma.cantidad - createMermaDto.cantidad)
+        }
   
-      return await this.batchRepository.save(exists);
+        if (exists && createMermaDto.cantidad>merma.cantidad){
+          exists.cantidad_en_bodega = exists.cantidad_en_bodega - (createMermaDto.cantidad - merma.cantidad)
+        }
+
+        if(merma){
+          merma.cantidad = createMermaDto.cantidad
+        }
+
+        await this.mermaRepository.save(merma);
+    
+        return await this.batchRepository.save(exists);
+      } catch (error) {
+        return {
+          'title': 'Error',
+          'message': error.response?.message || error.message,
+          'status': 404,
+        };
+      }
     }
 
   }

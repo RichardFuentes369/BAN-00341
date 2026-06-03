@@ -149,31 +149,6 @@ export class MermasService {
     }
   }
 
-  async update(
-    lang: string, 
-    id: number, 
-    mermaData: UpdateMermaDto, 
-    userId: number
-  ) {
-    try {
-      const productoValido = await this.warehouseService.updateQuantities(mermaData, 2, id)
-
-      const merma = await this.mermaRepository.findOne({
-        where: { id }
-      });
-      return this.mermaRepository.save({
-        ...merma,
-        ...mermaData
-      });
-    } catch (error) {
-      return {
-        'title': error.response?.error || 'Error',
-        'message': error.response?.message || error.message,
-        'status': 404,
-      };
-    }
-  }
-
   async remove(lang: string, ids: number[], userId: number) {
     const productoValido = await this.warehouseService.deleteQuantities(ids)
     
