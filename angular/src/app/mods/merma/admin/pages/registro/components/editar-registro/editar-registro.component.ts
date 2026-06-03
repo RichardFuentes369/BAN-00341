@@ -190,11 +190,12 @@ export class EditarRegistroComponent {
     const regexNIT = /^[0-9]{8,15}$/;
     this.validators.codigo_barra = (this.producto.codigo_barra === null || !regexBarCode.test((this.producto.codigo_barra as any).toString()))
     this.validators.lote = (this.bodega.lote === null || this.bodega.lote  == '')
-    this.validators.cantidad = (this.model.cantidad === null || this.model.cantidad  == '' || this.model.cantidad != '')
+    this.validators.cantidad = true
+    this.validators.fecha_reporte = (this.model.fecha_reporte === null || this.model.fecha_reporte  == '')
+    this.validators.valor_perdido = (this.model.valor_perdido === null || this.model.valor_perdido  == '')
+    this.validators.observacion = (this.model.observacion === null || this.model.observacion  == '')
 
     const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
-    
-    (!this.validators.codigo_barra && !this.validators.lote) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
     
     if(this.validators.codigo_barra){
       this.btn_new_product = false
@@ -209,48 +210,72 @@ export class EditarRegistroComponent {
     if(this.validators.lote){
       this.show_detail_merma = false
     }
-    
+
     if(this.validators.cantidad){
-      console.log('***********************')
-      console.log('new: '+this.model.cantidad)
-      console.log('old: '+this.cantidad_old)
+      // console.log('aqui estoy')
+      // console.log('***********************')
+      // console.log('new: '+this.model.cantidad)
+      // console.log('old: '+this.cantidad_old)
 
       if(parseInt(this.model.cantidad) != parseInt(this.cantidad_old)){
         const totalBodega = parseInt(this.bodega.cantidad_comprada); //A
         const inventarioActual = parseInt(this.bodega.cantidad_en_bodega); //A
         const cantidadAnteriorM = parseInt(this.cantidad_old); // B
+        const viejaCantidadM = parseInt(this.cantidad_old); // D
         const nuevaCantidadM = parseInt(this.model.cantidad); // D
         const totalMermas = parseInt(this.cantidad_afectada_por_merma); // R
         const totalVentas = parseInt(this.bodega.cantidad_vendida); // T
         const stockTotal = totalMermas + inventarioActual + totalVentas; // P
-        console.log('cantidad comprada:' + stockTotal)
+        // console.log('cantidad comprada:' + stockTotal)
   
         if(nuevaCantidadM>cantidadAnteriorM){
           if(inventarioActual>nuevaCantidadM){
+            this.validators.cantidad = false
+            this.validators.cantidad_mayor = false
             const nuevaCantidadBodega = (inventarioActual + cantidadAnteriorM) - nuevaCantidadM
             console.log('actualizo la merma con la cantidad: '+ nuevaCantidadM)
-            console.log('actualizo la nueva cantidad_bodega '+nuevaCantidadBodega)
+            console.log('actualizo la nueva cantidad_bodega: '+nuevaCantidadBodega)
+          }
+          if(nuevaCantidadM>inventarioActual){
+            if((nuevaCantidadM-viejaCantidadM) === inventarioActual){
+              this.validators.cantidad = false
+              this.validators.cantidad_mayor = false
+              console.log('actualizo la merma con la cantidad: '+ (inventarioActual+viejaCantidadM))
+              console.log('actualizo la nueva cantidad_bodega: '+ 0)
+            }
           }
           if(inventarioActual == nuevaCantidadM){
-            console.log('no hago nada')
+            this.validators.cantidad = false
+            this.validators.cantidad_mayor = false
+            console.log('actualizo la merma con la cantidad: '+ nuevaCantidadM)
+            console.log('actualizo la nueva cantidad_bodega: '+ viejaCantidadM)
           }
-          if(inventarioActual<nuevaCantidadM){
-            console.log('error: no cuenta con inventario suficiente para actualizar')
+          if(inventarioActual < nuevaCantidadM){
+            this.validators.cantidad_mayor = true
+            console.log('error: cantidad superior a la cantidad registrada en bodega')
           }
         }
         if(nuevaCantidadM<cantidadAnteriorM){
           if(nuevaCantidadM<totalBodega){
+            this.validators.cantidad = false
+            this.validators.cantidad_mayor = false
             const nuevaCantidadBodega = (inventarioActual + cantidadAnteriorM) - nuevaCantidadM
             console.log('actualizo la merma con la cantidad: '+ nuevaCantidadM)
-            console.log('actualizo la nueva cantidad_bodega'+ nuevaCantidadBodega)
+            console.log('actualizo la nueva cantidad_bodega: '+ nuevaCantidadBodega)
           }else{
-            console.log('error: la cantidad a actualizar supera la cantidad comprada')
+            this.validators.cantidad = true
+            console.log('error: no cuenta con inventario suficiente para actualizar')
           }
         }
+      }else{
+        this.validators.cantidad = false
+        this.validators.cantidad_mayor = false
       }
     }
 
-    return !this.validators.codigo_barra
+    (!this.validators.codigo_barra && !this.validators.lote && !this.validators.cantidad && !this.validators.fecha_reporte && !this.validators.valor_perdido && !this.validators.observacion && !this.validators.cantidad_mayor) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+
+    return !this.validators.codigo_barra && !this.validators.lote && !this.validators.cantidad && !this.validators.fecha_reporte && !this.validators.valor_perdido && !this.validators.observacion && !this.validators.cantidad_mayor
   } 
 
   get esCodigoValido(): boolean {

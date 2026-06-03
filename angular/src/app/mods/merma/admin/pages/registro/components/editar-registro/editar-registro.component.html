@@ -179,20 +179,20 @@
           <label for="exampleInputEmail1">
             {{ 'mod-merma.REGISTER.LABEL_REPORT_DATE' | translate}}
           </label>
-          <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_reporte">
+          <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_reporte" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.fecha_reporte">
         </div>
         <div class="col-sm-12 form-group">
           <label for="exampleInputEmail1">
             {{ 'mod-merma.REGISTER.LABEL_LOST_VALUE' | translate}}
           </label>
-          <input type="number" min="0" class="form-control form-select-sm" [(ngModel)]="model.valor_perdido">
+          <input type="number" min="0" class="form-control form-select-sm" [(ngModel)]="model.valor_perdido" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.valor_perdido">
         </div>
         <div class="col-sm-12 form-group">
           <label for="exampleInputEmail1">
             {{ 'mod-merma.REGISTER.LABEL_OBSERVATION' | translate}}
           </label>
           <textarea style="resize: none;" type="text" class="form-control form-select-sm"
-            [(ngModel)]="model.observacion">
+            [(ngModel)]="model.observacion" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.observacion">
           </textarea>
         </div>
         }
