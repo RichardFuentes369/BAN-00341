@@ -185,13 +185,13 @@ export class CrearRegistroComponent {
     this.validators.cantidad = (this.model.cantidad == '' || this.model.cantidad == null)
     this.validators.cantidad_mayor = (this.model.cantidad > this.bodega.cantidad_en_bodega)
     this.validators.fecha_reporte = (this.model.fecha_reporte == '')
-    this.validators.valor_perdido = (this.model.valor_perdido == '')
+    this.validators.valor_perdido = (this.model.valor_perdido == '' || this.model.valor_perdido == null)
     this.validators.observacion = (this.model.observacion == '')
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
-    (!this.validators.codigo_barra && !this.validators.lote && !this.validators.cantidad && !this.validators.fecha_reporte && !this.validators.valor_perdido && !this.validators.observacion) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+    (!this.validators.codigo_barra && !this.validators.lote && !this.validators.cantidad && !this.validators.cantidad_mayor && !this.validators.fecha_reporte && !this.validators.valor_perdido && !this.validators.observacion) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
     
-    return !this.validators.codigo_barra && !this.validators.lote && !this.validators.cantidad && !this.validators.fecha_reporte && !this.validators.valor_perdido && !this.validators.observacion
+    return !this.validators.codigo_barra && !this.validators.lote && !this.validators.cantidad && !this.validators.cantidad_mayor && !this.validators.fecha_reporte && !this.validators.valor_perdido && !this.validators.observacion
   } 
 
   get esCodigoValido(): boolean {
