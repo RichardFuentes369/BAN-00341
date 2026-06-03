@@ -118,6 +118,7 @@ export class CrearRegistroComponent {
     lote: false,
     codigo_barra: false,
     cantidad: false,
+    cantidad_mayor: false,
     fecha_reporte: false,
     valor_perdido: false,
     observacion: false
@@ -181,7 +182,8 @@ export class CrearRegistroComponent {
     this.validators.codigo_barra = (this.producto.codigo_barra === null || !regexBarCode.test((this.producto.codigo_barra as any).toString()))
     this.validators.lote = (this.bodega.lote === null)
     this.validators.id_tipo_merma = (this.model.id_tipo_merma == '')
-    this.validators.cantidad = (this.model.cantidad == '' || this.model.cantidad != '' && this.model.cantidad > this.bodega.cantidad_en_bodega)
+    this.validators.cantidad = (this.model.cantidad == '' || this.model.cantidad == null)
+    this.validators.cantidad_mayor = (this.model.cantidad > this.bodega.cantidad_en_bodega)
     this.validators.fecha_reporte = (this.model.fecha_reporte == '')
     this.validators.valor_perdido = (this.model.valor_perdido == '')
     this.validators.observacion = (this.model.observacion == '')
