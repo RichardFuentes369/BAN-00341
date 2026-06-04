@@ -277,6 +277,7 @@ export class WarehouseService {
         }
 
 
+        
         await this.mermaRepository.save(merma);
 
         return await this.batchRepository.save(exists);
