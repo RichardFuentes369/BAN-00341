@@ -1,5 +1,11 @@
 {
   "UNKNOW_MODULE_TITLE": "Unknown",
-  "MODULE_TITLE": "Alerts"
 
+  "PAGE_EXPIRATION_TITLE": "Expiration",
+  "PAGE_STOCK_TITLE": "Stock",
+
+  "MODULE_TITLE": "Alerts",
+
+  "BUTTON_EXPIRATION": "Expiration",
+  "BUTTON_STOCK": "Stock"
 }
