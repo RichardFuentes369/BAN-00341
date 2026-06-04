@@ -16,6 +16,9 @@
     TITLE_PATH_MODULES, 
     TITLE_PATH_USERS, 
     TITLE_PATH_WAREHOUSE,
+    PATH_ALERT,
+    TITLE_PATH_ALERT,
+    BREADCRUMB_PATH_ALERT,
   } from '@mod/main/const/main.const';
 
   export const MenuRoutes: Routes = [
@@ -70,6 +73,17 @@
       title: TITLE_PATH_MODULES,
       data: { breadcrumb: BREADCRUMB_PATH_MODULES },
       loadChildren: () => import('@mod/modules/admin/routes/modulos.routing').then(x=>x.ModulosRoutes),
+      canActivate: [
+        adminGuard
+      ]
+    },
+
+    // Modulo Alertas
+    {
+      path: PATH_ALERT,
+      title: TITLE_PATH_ALERT,
+      data: { breadcrumb: BREADCRUMB_PATH_ALERT },
+      loadChildren: () => import('@mod/alerts/admin/routes/index.routing').then(x=>x.AlertasRoutes),
       canActivate: [
         adminGuard
       ]

@@ -59,6 +59,7 @@ export function createTranslateLoader(http: HttpClient) {
       { baseTranslateUrl, moduleName: 'mods/merma', namespace: 'mod-merma'},
       { baseTranslateUrl, moduleName: 'mods/stock', namespace: 'mod-stock'},
       { baseTranslateUrl, moduleName: 'mods/warehouse', namespace: 'mod-warehouse'},
+      { baseTranslateUrl, moduleName: 'mods/alerts', namespace: 'mod-alerts'},
       // fin modulos
     ]
   };
