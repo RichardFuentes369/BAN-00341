@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { StyleSheet, View, Text, Button, TextInput, Alert, ActivityIndicator } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { io, Socket } from 'socket.io-client';
+import { Audio } from 'expo-av';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function TabIndexScreen() {
@@ -90,6 +91,23 @@ export default function TabIndexScreen() {
     setView('camera');
   };
 
+  const playSuccessSound = async () => {
+    try {
+      const { sound } = await Audio.Sound.createAsync(
+        require('./assets/scanner.mp3') // Debes tener un archivo .mp3 en tu carpeta assets
+      );
+      await sound.playAsync();
+      // Opcional: descargar el sonido de la memoria después de reproducirlo
+      sound.setOnPlaybackStatusUpdate((status) => {
+        if (status.isLoaded && status.didJustFinish) {
+          sound.unloadAsync();
+        }
+      });
+    } catch (error) {
+      console.error("Error al reproducir sonido", error);
+    }
+  };
+
   if (loading) return <View style={styles.container}><ActivityIndicator size="large" /></View>;
 
   if (!permission?.granted) {
@@ -137,12 +155,16 @@ export default function TabIndexScreen() {
             socketRef.current.emit('scan', data);
             console.log('Código enviado a NestJS:', data);
             addLog(`✅ ${data}`)
-            Alert.alert(
-              "Enviado con Éxito",
-              `Código: ${data}`,
-              [{ text: "OK", onPress: () => setScanned(false) }],
-              { cancelable: false }
-            );
+            // playSuccessSound();
+            // Alert.alert(
+            //   "Enviado con Éxito",
+            //   `Código: ${data}`,
+            //   [{ text: "OK", onPress: () => setScanned(false) }],
+            //   { cancelable: false }
+            // );
+            setTimeout(() => {
+              setScanned(false);
+            }, 1500);
           } else {
             Alert.alert(
               "Error de Red", 
