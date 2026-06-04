@@ -1,4 +1,11 @@
 {
   "UNKNOW_MODULE_TITLE": "Unbekannt",
-  "MODULE_TITLE": "Warnmeldungen"
+
+  "PAGE_EXPIRATION_TITLE": "Ablauf",
+  "PAGE_STOCK_TITLE": "Lager",
+  
+  "MODULE_TITLE": "Warnmeldungen",
+
+  "BUTTON_EXPIRATION": "Ablauf",
+  "BUTTON_STOCK": "Lager"
 }
