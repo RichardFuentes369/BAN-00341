@@ -408,7 +408,7 @@ export class EditarRegistroComponent {
     if(this.isFormValid){
       let endPoint = this.registroService
       const response = await endPoint.updateRegister(this.model, this.route.snapshot.queryParams?.['id_merma'])
-      if(response.data.status == 404){
+      if(response.status == 404){
         ocultarModalOscura()
         Swal.fire({
           title: response.data.message,
@@ -417,11 +417,11 @@ export class EditarRegistroComponent {
           confirmButtonText: 'Cool'
         })
       }
-      if(response.data.status == 200){
+      if(response.status == 200){
         ocultarModalOscura()
         Swal.fire({
-          title: this.translate.instant('mod-merma.TYPE.SWAL_CREATED'),
-          text: this.translate.instant('mod-merma.SWAL_CREATED_RECORD'),
+          title: this.translate.instant('mod-merma.TYPE.SWAL_UPDATED'),
+          text: this.translate.instant('mod-merma.SWAL_UPDATED_RECORD'),
           icon: "success"
         });
       }
