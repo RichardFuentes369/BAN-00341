@@ -9,5 +9,5 @@ export const PATH_ADMIN_STOCK = 'stock';
 export const TITLE_PATH_ADMIN_STOCK = 'Stock';
 export const BREADCRUMB_PATH_ADMIN_STOCK = 'mod-users.PAGE_ADMIN_TITLE';
 
-export const MOD_ALERT_PAGE_EXPIRATION =  '/admin/mod/alert/expiration/';
-export const MOD_ALERT_PAGE_STOCK =  '/admin/mod/alert/stock/';
+export const MOD_ALERT_PAGE_EXPIRATION =  '/admin/mod/alerts/expiration/';
+export const MOD_ALERT_PAGE_STOCK =  '/admin/mod/alerts/stock/';
