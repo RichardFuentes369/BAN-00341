@@ -73,26 +73,30 @@ export class RegistroService {
     })
   }
 
-  // async updateTipo(data: any, id: string){
-  //   const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-  //   let complemento = `tipos_merma/editar-tipo-merma`
-  //   let urlCopleta = environment.apiUrl+complemento
-  //   let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+  async updateRegister(data: any, id: string){
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = `registro-mermas/actualizar-registro-merma`
+    let urlCopleta = environment.apiUrl+complemento
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
-  //   return await axios.request({
-  //     headers: {
-  //       [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
-  //       [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
-  //     },
-  //     method: 'patch',
-  //     url: urlCopleta,
-  //     data: data,
-  //     params: {
-  //       _id: id,
-  //       lang: lang,
-  //     }
-  //   })
-  // }
+
+    data.fecha_reporte = toTimestampp(data.fecha_reporte)
+
+
+    return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
+      method: 'patch',
+      url: urlCopleta,
+      data: data,
+      params: {
+        _id: id,
+        lang: lang,
+      }
+    })
+  }
 
   async deleteRegister(id: string[]){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';

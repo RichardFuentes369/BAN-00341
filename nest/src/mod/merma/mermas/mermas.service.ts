@@ -110,6 +110,16 @@ export class MermasService {
         },
       },
     });
+
+    if (merma && merma.id_lote) {
+      const result = await this.mermaRepository.createQueryBuilder('merma')
+        .select('SUM(merma.cantidad)', 'total') 
+        .where('merma.id_lote = :loteId', { loteId: merma.id_lote.id })
+        .getRawOne();
+      
+      merma.id_lote.total_mermas = parseInt(result.total) || 0;
+    }
+
     if (!merma) throw new NotFoundException(
       this.i18n.t('batch.MSJ_BATCH_NO_ENCONTRADA', { lang })
     );
@@ -130,31 +140,6 @@ export class MermasService {
         'message': this.i18n.t('category.MSJ_CREADO_EXITOSAMENTE', { lang }),
         'status': 200,
       };
-    } catch (error) {
-      return {
-        'title': error.response?.error || 'Error',
-        'message': error.response?.message || error.message,
-        'status': 404,
-      };
-    }
-  }
-
-  async update(
-    lang: string, 
-    id: number, 
-    mermaData: UpdateMermaDto, 
-    userId: number
-  ) {
-    try {
-      const productoValido = await this.warehouseService.updateQuantities(mermaData, 2, id)
-
-      const merma = await this.mermaRepository.findOne({
-        where: { id }
-      });
-      return this.mermaRepository.save({
-        ...merma,
-        ...mermaData
-      });
     } catch (error) {
       return {
         'title': error.response?.error || 'Error',

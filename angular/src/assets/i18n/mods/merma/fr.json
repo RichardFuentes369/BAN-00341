@@ -34,10 +34,12 @@
     "LABEL_OBSERVATION": "Observation",
     
     "PLACEHOLDER_TYPE": "Type de démarque",
-    "PLACEHOLDER_AMOUT": "Quantité perdue",
+    "PLACEHOLDER_AMOUT": "Saisissez la quantité perdue",
     "PLACEHOLDER_REPORT_DATE": "Saisir une date",
     "PLACEHOLDER_LOST_VALUE": "Saisir la valeur estimée",
     "PLACEHOLDER_OBSERVACION": "Saisir une observation",
+
+    "ERROR_QUANTITY_THAT_ALLOWED": "Erreur : quantité supérieure à la quantité enregistrée en entrepôt",
 
     "SWAL_CREATED": "Enregistré !",
     "SWAL_UPDATED": "Mis à jour !",

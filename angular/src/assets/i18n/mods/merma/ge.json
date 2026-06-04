@@ -34,10 +34,12 @@
     "LABEL_OBSERVATION": "Anmerkung",
     
     "PLACEHOLDER_TYPE": "Schwundart auswählen",
-    "PLACEHOLDER_AMOUT": "Verlustmenge",
+    "PLACEHOLDER_AMOUT": "Geben Sie die verlorene Menge ein",
     "PLACEHOLDER_REPORT_DATE": "Datum eingeben",
     "PLACEHOLDER_LOST_VALUE": "Schätzwert eingeben",
     "PLACEHOLDER_OBSERVACION": "Anmerkung eingeben",
+
+    "ERROR_QUANTITY_THAT_ALLOWED": "Fehler: Menge übersteigt den im Lager registrierten Bestand",
 
     "SWAL_CREATED": "Registriert!",
     "SWAL_UPDATED": "Aktualisiert!",

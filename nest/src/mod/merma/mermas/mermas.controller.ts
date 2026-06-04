@@ -5,10 +5,14 @@ import { UpdateMermaDto } from './dto/update-merma.dto';
 import { GetUser } from 'src/decorator/getIdUser.decorator';
 import { FilterRegistroMermaDto } from './dto/filter-merma.dto';
 import { AdminGuard } from '@guard/admin/admin.guard';
+import { WarehouseService } from '@module/bodega/warehouse/warehouse.service';
 
 @Controller('registro-mermas')
 export class MermasController {
-  constructor(private readonly mermasService: MermasService) {}
+  constructor(
+    private readonly mermasService: MermasService,
+    private readonly warehouseService: WarehouseService,
+  ) {}
 
   @Get('obtener-registro-mermas')
   findAll(
@@ -57,11 +61,10 @@ export class MermasController {
     @Body() mermaData: UpdateMermaDto,
     @GetUser('id') userId: number
   ) {
-    return this.mermasService.update(
-      lang, 
+    return this.warehouseService.updateQuantities(
+      mermaData,
+      2,
       +_id, 
-      mermaData, 
-      userId
     );
   }
 

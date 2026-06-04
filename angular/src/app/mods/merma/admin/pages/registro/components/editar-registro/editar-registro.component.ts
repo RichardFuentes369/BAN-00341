@@ -16,6 +16,7 @@ import { ProductosService } from '@mod/catalog/admin/pages/productos/service/pro
 import { BodegaService } from '@mod/warehouse/admin/pages/warehouse/service/warehouse.service';
 import { ProveedoresService } from '@mod/catalog/admin/pages/proveedores/service/proveedores.service';
 import { TipoService } from '../../../tipo/service/tipo.service';
+import Swal from 'sweetalert2';
 
 interface RegistroInterface {
   'id': number,
@@ -80,7 +81,6 @@ export class EditarRegistroComponent {
     });
   }
 
-  id_merma = ''
   registro: RegistroInterface[] = []
   permisos: any[] = []
   registroReal: any
@@ -104,6 +104,9 @@ export class EditarRegistroComponent {
     estado: ''
   }
 
+  cantidad_old = ''
+  cantidad_afectada_por_merma = ''
+
   model = {
     id_lote: '',
     id_tipo_merma: '',
@@ -120,6 +123,7 @@ export class EditarRegistroComponent {
     lote: false,
     codigo_barra: false,
     cantidad: false,
+    cantidad_mayor: false,
     fecha_reporte: false,
     valor_perdido: false,
     observacion: false
@@ -137,7 +141,7 @@ export class EditarRegistroComponent {
     // validaciones de permisos
 
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
-    this.registroReal = await this.registroService.getDataRegister(this.route.snapshot.queryParams?.['id_tipo_merma'])
+    this.registroReal = await this.registroService.getDataRegister(this.route.snapshot.queryParams?.['id_merma'])
 
     this.producto.id = this.registroReal.data.id_lote.id_producto.id
     this.producto.codigo_barra = this.registroReal.data.id_lote.id_producto.codigo_barra
@@ -157,10 +161,12 @@ export class EditarRegistroComponent {
     await this.buscarProducto()
     await this.buscarLote()
 
+    this.cantidad_old = this.registroReal.data.cantidad
+    this.cantidad_afectada_por_merma = this.registroReal.data.id_lote.total_mermas
     this.model.id_lote = this.registroReal.data.id_lote.id
     this.model.id_tipo_merma = this.registroReal.data.id_tipo_merma.id
     this.model.cantidad = this.registroReal.data.cantidad
-    this.model.fecha_reporte = this.registroReal.data.fecha_reporte
+    this.model.fecha_reporte = (this.registroReal.data.fecha_reporte != '') ? this.formatoFecha(this.registroReal.data.fecha_reporte) : ''
     this.model.valor_perdido = this.registroReal.data.valor_perdido
     this.model.observacion = this.registroReal.data.observacion
   }
@@ -183,11 +189,12 @@ export class EditarRegistroComponent {
     const regexBarCode = /^[0-9]{13}$/;
     const regexNIT = /^[0-9]{8,15}$/;
     this.validators.codigo_barra = (this.producto.codigo_barra === null || !regexBarCode.test((this.producto.codigo_barra as any).toString()))
-    this.validators.lote = (this.bodega.lote === null)
-
-    const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
-    (!this.validators.codigo_barra && !this.validators.lote) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
-    
+    this.validators.lote = (this.bodega.lote === null || this.bodega.lote  == '')
+    this.validators.cantidad = true
+    this.validators.fecha_reporte = (this.model.fecha_reporte === null || this.model.fecha_reporte  == '')
+    this.validators.valor_perdido = (this.model.valor_perdido === null || this.model.valor_perdido  == '')
+    this.validators.observacion = (this.model.observacion === null || this.model.observacion  == '')
+   
     if(this.validators.codigo_barra){
       this.btn_new_product = false
       this.show_detail_product = false
@@ -198,8 +205,88 @@ export class EditarRegistroComponent {
       this.show_detail_merma = false
     }
 
-    return !this.validators.codigo_barra
-  } 
+    if(this.validators.lote){
+      this.show_detail_merma = false
+    }
+
+    if(this.validators.cantidad){
+      // console.log('aqui estoy')
+      // console.log('***********************')
+      // console.log('new: '+this.model.cantidad)
+      // console.log('old: '+this.cantidad_old)
+
+      if(parseInt(this.model.cantidad) != parseInt(this.cantidad_old)){
+        const totalBodega = parseInt(this.bodega.cantidad_comprada); //A
+        const inventarioActual = parseInt(this.bodega.cantidad_en_bodega); //A
+        const cantidadAnteriorM = parseInt(this.cantidad_old); // B
+        const viejaCantidadM = parseInt(this.cantidad_old); // D
+        const nuevaCantidadM = parseInt(this.model.cantidad); // D
+        const totalMermas = parseInt(this.cantidad_afectada_por_merma); // R
+        const totalVentas = parseInt(this.bodega.cantidad_vendida); // T
+        const stockTotal = totalMermas + inventarioActual + totalVentas; // P
+        // console.log('cantidad comprada:' + stockTotal)
+  
+        if(nuevaCantidadM>cantidadAnteriorM){
+          if(inventarioActual>nuevaCantidadM){
+            this.validators.cantidad = false
+            this.validators.cantidad_mayor = false
+            const nuevaCantidadBodega = (inventarioActual + cantidadAnteriorM) - nuevaCantidadM
+            // console.log('actualizo la merma con la cantidad: '+ nuevaCantidadM)
+            // console.log('actualizo la nueva cantidad_bodega: '+nuevaCantidadBodega)
+          }
+          if(nuevaCantidadM>inventarioActual){
+            if((nuevaCantidadM-viejaCantidadM) === inventarioActual){
+              this.validators.cantidad = false
+              this.validators.cantidad_mayor = false
+              // console.log('actualizo la merma con la cantidad: '+ (inventarioActual+viejaCantidadM))
+              // console.log('actualizo la nueva cantidad_bodega: '+ 0)
+            }
+          }
+          if(inventarioActual == nuevaCantidadM){
+            this.validators.cantidad = false
+            this.validators.cantidad_mayor = false
+            // console.log('actualizo la merma con la cantidad: '+ nuevaCantidadM)
+            // console.log('actualizo la nueva cantidad_bodega: '+ viejaCantidadM)
+          }
+          if(inventarioActual < nuevaCantidadM){
+            this.validators.cantidad_mayor = true
+            // console.log('error: cantidad superior a la cantidad registrada en bodega')
+          }
+        }
+        if(nuevaCantidadM<cantidadAnteriorM){
+          if(nuevaCantidadM<totalBodega){
+            this.validators.cantidad = false
+            this.validators.cantidad_mayor = false
+            const nuevaCantidadBodega = (inventarioActual + cantidadAnteriorM) - nuevaCantidadM
+            // console.log('actualizo la merma con la cantidad: '+ nuevaCantidadM)
+            // console.log('actualizo la nueva cantidad_bodega: '+ nuevaCantidadBodega)
+          }else{
+            this.validators.cantidad = true
+            // console.log('error: no cuenta con inventario suficiente para actualizar')
+          }
+        }
+      }else{
+        this.validators.cantidad = false
+        this.validators.cantidad_mayor = false
+      }
+    }
+
+    const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
+    (
+      !this.validators.cantidad && 
+      !this.validators.cantidad_mayor &&
+      !this.validators.codigo_barra && 
+      !this.validators.fecha_reporte && 
+      !this.validators.id_lote && 
+      !this.validators.id_producto && 
+      !this.validators.id_tipo_merma && 
+      !this.validators.lote && 
+      !this.validators.observacion && 
+      !this.validators.valor_perdido  
+    ) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+
+    return !this.validators.cantidad && !this.validators.cantidad_mayor && !this.validators.codigo_barra && !this.validators.fecha_reporte && !this.validators.id_lote && !this.validators.id_producto && !this.validators.id_tipo_merma && !this.validators.lote && !this.validators.observacion && !this.validators.valor_perdido 
+  }
 
   get esCodigoValido(): boolean {
     const codigo = (this.producto?.codigo_barra || '').toString();
@@ -243,8 +330,6 @@ export class EditarRegistroComponent {
         this.producto.marca = response.data.marca.nombre
         this.producto.unidad_medida = response.data.medida.nombre
         this.producto.es_perecedero = response.data.es_perecedero
-        const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
-        boton.classList.remove('disabled')
         this.show_detail_product = true
         this.btn_new_product = false
         this.form_new_lote = true
@@ -273,9 +358,6 @@ export class EditarRegistroComponent {
     try {
       const response = await this.bodegaService.getDataLoteAndProduct(this.bodega.lote, this.producto.id);
       if (response.status === 200) {
-        const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
-        boton.classList.add('disabled')
-
         this.model.id_lote = response.data.id
         this.bodega.fecha_entrada = this.formatoFecha(response.data.fecha_entrada)
         this.bodega.fecha_vencimiento = (response.data.fecha_vencimiento != '') ? this.formatoFecha(response.data.fecha_vencimiento) : ''
@@ -286,12 +368,6 @@ export class EditarRegistroComponent {
         
         this.show_detail_lote = true
         this.btn_new_lote = false
-
-        this.model.id_tipo_merma = ''
-        this.model.cantidad = ''
-        this.model.fecha_reporte = ''
-        this.model.valor_perdido = ''
-        this.model.observacion = ''
         
         await this.getTiposMerma();
         this.show_detail_merma = true
@@ -312,13 +388,6 @@ export class EditarRegistroComponent {
           const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
           boton.classList.add('disabled')
         }
-
-        this.model.id_lote = ''
-        this.model.id_tipo_merma = ''
-        this.model.cantidad = ''
-        this.model.fecha_reporte = ''
-        this.model.valor_perdido = ''
-        this.model.observacion = ''
       } else {
         console.error('Error de red o servidor no disponible');
       }
@@ -336,28 +405,27 @@ export class EditarRegistroComponent {
   }  
 
   async actualizarData(){
-    // if(this.isFormValid){
-    //   let endPoint = this.registroService
-
-    //   const response = await endPoint.createRegister(this.model)
-    //   if(response.data.status == 404){
-    //     ocultarModalOscura()
-    //     Swal.fire({
-    //       title: response.data.message,
-    //       text: response.data.error,
-    //       icon: 'error',
-    //       confirmButtonText: 'Cool'
-    //     })
-    //   }
-    //   if(response.data.status == 200){
-    //     ocultarModalOscura()
-    //     Swal.fire({
-    //       title: this.translate.instant('mod-merma.TYPE.SWAL_CREATED'),
-    //       text: this.translate.instant('mod-merma.SWAL_CREATED_RECORD'),
-    //       icon: "success"
-    //     });
-    //   }
-    // }
+    if(this.isFormValid){
+      let endPoint = this.registroService
+      const response = await endPoint.updateRegister(this.model, this.route.snapshot.queryParams?.['id_merma'])
+      if(response.data.status == 404){
+        ocultarModalOscura()
+        Swal.fire({
+          title: response.data.message,
+          text: response.data.error,
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        })
+      }
+      if(response.data.status == 200){
+        ocultarModalOscura()
+        Swal.fire({
+          title: this.translate.instant('mod-merma.TYPE.SWAL_CREATED'),
+          text: this.translate.instant('mod-merma.SWAL_CREATED_RECORD'),
+          icon: "success"
+        });
+      }
+    }
   }
 
   mostrarSeccion = {

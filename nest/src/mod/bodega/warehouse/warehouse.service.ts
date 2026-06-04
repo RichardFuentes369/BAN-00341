@@ -240,39 +240,55 @@ export class WarehouseService {
 
   }
 
-
   async updateQuantities(
     createMermaDto: CreateMermaDto,
     option: number,
-    id_merma?: number|null
-  ){
+    id_merma?: number | null
+  ) {
+
 
     // crear regitro
-    if(option == 1){
+    if (option == 1) {
       const exists = await this.batchRepository.findOne({ where: { id: createMermaDto.id_lote } });
-      
-      if (exists){
+
+      if (exists) {
         exists.cantidad_en_bodega = exists.cantidad_en_bodega - createMermaDto.cantidad
       }
-      
-      return await this.batchRepository.save(exists);
-    }
-    
-    // actualizar regitro
-    if(option == 2){
-      const exists = await this.batchRepository.findOne({ where: { id: createMermaDto.id_lote } });
-      const merma = await this.mermaRepository.findOne({ where: { id: id_merma } });
-      
-      if (exists && createMermaDto.cantidad<merma.cantidad){
-        exists.cantidad_en_bodega = exists.cantidad_en_bodega + (merma.cantidad - createMermaDto.cantidad)
-      }
 
-      if (exists && createMermaDto.cantidad>merma.cantidad){
-        exists.cantidad_en_bodega = exists.cantidad_en_bodega - (createMermaDto.cantidad - merma.cantidad)
-      }
-  
       return await this.batchRepository.save(exists);
     }
+
+    // actualizar regitro
+    if (option == 2) {
+      try {
+        const exists = await this.batchRepository.findOne({ where: { id: createMermaDto.id_lote } });
+        const merma = await this.mermaRepository.findOne({ where: { id: id_merma } });
+
+        if (exists && createMermaDto.cantidad < merma.cantidad) {
+          exists.cantidad_en_bodega = exists.cantidad_en_bodega + (merma.cantidad - createMermaDto.cantidad)
+        }
+        if (exists && createMermaDto.cantidad > merma.cantidad) {
+          exists.cantidad_en_bodega = exists.cantidad_en_bodega - (createMermaDto.cantidad - merma.cantidad)
+        }
+
+
+        if (merma) {
+          merma.cantidad = createMermaDto.cantidad
+        }
+
+
+        await this.mermaRepository.save(merma);
+
+        return await this.batchRepository.save(exists);
+      } catch (error) {
+        return {
+          'title': 'Error',
+          'message': error.response?.message || error.message,
+          'status': 404,
+        };
+      }
+    }
+
 
   }
 
