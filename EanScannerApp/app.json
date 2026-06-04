@@ -24,7 +24,10 @@
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"
       ],
-      "package": "com.richardfuentes369.EanScannerApp"
+      "package": "com.richardfuentes369.EanScannerApp",
+      "config": {
+        "usesCleartextTraffic": true
+      }
     },
     "web": {
       "output": "static",
