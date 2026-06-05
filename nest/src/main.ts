@@ -29,7 +29,11 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
   // fin documentación //
 
-  app.enableCors();
+  app.enableCors({
+    origin: '*',
+    methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
+    credentials: true,
+  });
   await app.listen(process.env.PORT);
 }
 bootstrap();

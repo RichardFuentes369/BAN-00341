@@ -22,12 +22,11 @@
       "predictiveBackGestureEnabled": false,
       "permissions": [
         "android.permission.CAMERA",
-        "android.permission.RECORD_AUDIO"
+        "android.permission.RECORD_AUDIO",
+        "INTERNET"
       ],
       "package": "com.richardfuentes369.EanScannerApp",
-      "config": {
-        "usesCleartextTraffic": true
-      }
+      "usesCleartextTraffic": true
     },
     "web": {
       "output": "static",
