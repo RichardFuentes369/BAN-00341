@@ -34,6 +34,7 @@ export default function TabIndexScreen() {
     // Configuración robusta para APK nativa
     const newSocket = io(serverUrl, {
       transports: ['websocket'],
+      upgrade: false,
       reconnection: true,
       reconnectionAttempts: 5,
       reconnectionDelay: 2000,
