@@ -1,44 +1,57 @@
-import { Tabs } from 'expo-router';
+import { Stack } from 'expo-router';
 import React from 'react';
+import { TouchableOpacity, Text, View } from 'react-native';
+import { ThemeProvider, useTheme } from '../../context/ThemeContext'; // Asegúrate de que esta ruta sea correcta
+import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-import { useNavigation } from 'expo-router';
-import { useEffect } from 'react';
+// Botón para alternar el tema en el Header
+function ThemeToggleBtn() {
+  const { isDarkMode, toggleTheme } = useTheme();
+  return (
+    <TouchableOpacity onPress={toggleTheme} style={{ marginRight: 15 }}>
+      <Text style={{ fontSize: 22 }}>{isDarkMode ? '☀️' : '🌙'}</Text>
+    </TouchableOpacity>
+  );
+}
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-  const navigation = useNavigation();
-
-  useEffect(() => {
-    navigation.setOptions({
-      tabBarStyle: { display: 'none' }, // Esto oculta el footer/tabs
-    });
-  }, [navigation]);
+function StackLayoutContent() {
+  const { isDarkMode } = useTheme();
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: true ,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Mermas scanner',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+    <View style={{ flex: 1, backgroundColor: isDarkMode ? '#121212' : '#ffffff' }}>
+      <StatusBar style={isDarkMode ? 'light' : 'dark'} />
+      <Stack
+        screenOptions={{
+          headerShown: true,
+          headerRight: () => <ThemeToggleBtn />,
+          headerStyle: {
+            backgroundColor: isDarkMode ? '#121212' : '#ffffff',
+          },
+          headerTitle: () => (
+            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+              <Text style={{ 
+                color: isDarkMode ? '#e0e0e0' : '#000000', 
+                fontSize: 18, 
+                fontWeight: 'bold' 
+              }}>
+                Mermas scanner
+              </Text>
+            </View>
+          ),
+          headerTitleAlign: 'center',
         }}
-      />
-      <Tabs.Screen
-        name="  "
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+      >
+        <Stack.Screen name="index" />
+      </Stack>
+    </View>
+  );
+}
+
+export default function RootLayout() {
+  return (
+    <ThemeProvider>
+      <StackLayoutContent />
+    </ThemeProvider>
   );
 }

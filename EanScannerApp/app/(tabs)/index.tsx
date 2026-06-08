@@ -1,16 +1,27 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { StyleSheet, View, Text, Button, TextInput, Alert, ActivityIndicator, SafeAreaView, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Button, TextInput, ActivityIndicator, SafeAreaView, TouchableOpacity, ScrollView, Dimensions, StatusBar } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { io, Socket } from 'socket.io-client';
 import { Audio } from 'expo-av';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as KeepAwake from 'expo-keep-awake';
+import { useTheme } from '../../context/ThemeContext';
+import Feather from '@expo/vector-icons/Feather';
 
-const { width } = Dimensions.get('window');
+const colors = {
+  light: { background: '#ffffff', text: '#333333', card: '#ffffff', inputBg: '#f9f9f9', logBg: '#f0f0f0', border: '#ddd' },
+  dark: { background: '#121212', text: '#e0e0e0', card: '#1e1e1e', inputBg: '#2c2c2c', logBg: '#1e1e1e', border: '#444' }
+};
 
 export default function TabIndexScreen() {
+  const { isDarkMode } = useTheme();
+  const theme = isDarkMode ? colors.dark : colors.light;
+
   const [permission, requestPermission] = useCameraPermissions();
   const [view, setView] = useState<'config' | 'camera'>('config');
+  const [flash, setFlash] = useState<boolean>(false);
+  const [cameraActive, setCameraActive] = useState<boolean>(true);
+  const [isCameraLoading, setIsCameraLoading] = useState(false);
   const [url, setUrl] = useState('');
   const [scanned, setScanned] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -18,34 +29,24 @@ export default function TabIndexScreen() {
   const [socketConnected, setSocketConnected] = useState(false);
   const socketRef = useRef<Socket | null>(null);
 
-  const connectToSocket = useCallback((serverUrl: string) => {
-    if (socketRef.current) {
-      socketRef.current.disconnect();
-      socketRef.current.removeAllListeners();
-    }
-    const newSocket = io(serverUrl, { transports: ['websocket'], reconnectionAttempts: 5, timeout: 15000 });
-    newSocket.on('connect', () => setSocketConnected(true));
-    newSocket.on('disconnect', () => setSocketConnected(false));
-    newSocket.on('connect_error', () => setSocketConnected(false));
-    socketRef.current = newSocket;
-  }, []);
-
   useEffect(() => {
     const init = async () => {
-      try {
-        await KeepAwake.activateKeepAwakeAsync();
-        const savedUrl = await AsyncStorage.getItem('SERVER_URL');
-        if (savedUrl) {
-          setUrl(savedUrl);
-          connectToSocket(savedUrl);
-          setView('camera');
-        }
-      } catch (e) { console.error(e); }
+      const savedUrl = await AsyncStorage.getItem('SERVER_URL');
+      if (savedUrl) { setUrl(savedUrl); connectToSocket(savedUrl); setView('camera'); }
+      await KeepAwake.activateKeepAwakeAsync();
       setLoading(false);
     };
     init();
     return () => { KeepAwake.deactivateKeepAwake(); socketRef.current?.disconnect(); };
-  }, [connectToSocket]);
+  }, []);
+
+  const connectToSocket = useCallback((serverUrl: string) => {
+    if (socketRef.current) { socketRef.current.disconnect(); }
+    const newSocket = io(serverUrl, { transports: ['websocket'], reconnectionAttempts: 5, timeout: 15000 });
+    newSocket.on('connect', () => setSocketConnected(true));
+    newSocket.on('disconnect', () => setSocketConnected(false));
+    socketRef.current = newSocket;
+  }, []);
 
   const playSuccessSound = async () => {
     try {
@@ -55,35 +56,16 @@ export default function TabIndexScreen() {
     } catch (e) { console.error(e); }
   };
 
-  if (loading) return <View style={styles.center}><ActivityIndicator size="large" /></View>;
-  if (!permission?.granted) return <View style={styles.center}><Text>Permiso necesario</Text><Button onPress={requestPermission} title="Conceder" /></View>;
+  if (loading) return <View style={[styles.center, { backgroundColor: theme.background }]}><ActivityIndicator size="large" /></View>;
+  if (!permission?.granted) return <View style={[styles.center, { backgroundColor: theme.background }]}><Text style={{ color: theme.text }}>Permiso necesario</Text><Button onPress={requestPermission} title="Conceder" /></View>;
 
   if (view === 'config') return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
       <SafeAreaView style={styles.configSafeArea}>
-        <View style={styles.configContent}>
-          <Text style={styles.configTitle}>Configurar Servidor</Text>
-          <Text style={styles.configSubtitle}>Ingresa la dirección IP del servidor para conectar el escáner.</Text>
-
-          <TextInput
-            style={styles.input}
-            placeholder="Ej: http://192.168.1.50:3000"
-            value={url}
-            onChangeText={setUrl}
-            autoCapitalize="none"
-            keyboardType="url"
-            autoCorrect={false}
-          />
-
-          <TouchableOpacity
-            style={[styles.customButton, { width: '100%' }]}
-            onPress={async () => {
-              if (!url.trim()) return Alert.alert("Error", "La URL no puede estar vacía");
-              await AsyncStorage.setItem('SERVER_URL', url.trim());
-              connectToSocket(url.trim());
-              setView('camera');
-            }}
-          >
+        <View style={[styles.configContent, { backgroundColor: theme.card }]}>
+          <Text style={[styles.configTitle, { color: theme.text }]}>Configurar Servidor</Text>
+          <TextInput style={[styles.input, { backgroundColor: theme.inputBg, color: theme.text, borderColor: theme.border }]} placeholder="Ej: http://192.168.1.50:3000" value={url} onChangeText={setUrl} autoCapitalize="none" />
+          <TouchableOpacity style={styles.customButton} onPress={async () => { await AsyncStorage.setItem('SERVER_URL', url); connectToSocket(url); setView('camera'); }}>
             <Text style={styles.buttonText}>Guardar y Conectar</Text>
           </TouchableOpacity>
         </View>
@@ -92,51 +74,53 @@ export default function TabIndexScreen() {
   );
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
+      <StatusBar style={isDarkMode ? 'light' : 'dark'} />
       <SafeAreaView style={{ flex: 1 }}>
-        <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
-
-          <View style={[styles.serverStatus, { backgroundColor: socketConnected ? '#2ecc71' : '#e74c3c' }]}>
-            <Text style={styles.statusText}>{socketConnected ? '● Servidor Conectado' : '○ Desconectado'}</Text>
-          </View>
-
-          <View style={styles.screenScanner}>
-            {socketConnected ? (
-              <View style={styles.fullWidth}>
-                <View style={styles.scannerFrame}>
-                  <CameraView key="cam" style={StyleSheet.absoluteFillObject} facing="back" barcodeScannerSettings={{ barcodeTypes: ["ean13"] }} onBarcodeScanned={scanned ? undefined : ({ data }) => {
-                    setScanned(true);
-                    socketRef.current?.emit('scan', data);
-                    setLogs(prev => [`✅ ${data}`, ...prev].slice(0, 10));
-                    playSuccessSound();
-                    setTimeout(() => setScanned(false), 1500);
-                  }} />
-                </View>
-                <TouchableOpacity style={styles.customButton} onPress={() => setView('config')}><Text style={styles.buttonText}>Cambiar Servidor</Text></TouchableOpacity>
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+          <View style={styles.scannerFrame}>
+            {isCameraLoading && <View style={styles.loadingOverlay}><ActivityIndicator color="#fff" /></View>}
+            {cameraActive ? (
+              <CameraView style={StyleSheet.absoluteFillObject} facing="back" enableTorch={flash} onCameraReady={() => setIsCameraLoading(false)} onBarcodeScanned={scanned ? undefined : ({ data }) => { setScanned(true); socketRef.current?.emit('scan', data); setLogs(prev => [`✅ ${data}`, ...prev].slice(0, 10)); playSuccessSound(); setTimeout(() => setScanned(false), 1500); }} />
+            ) : (<View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#000', justifyContent: 'center', alignItems: 'center' }]}><Text style={{ color: '#fff' }}>Cámara Apagada</Text></View>)}
+            
+            <View style={[styles.statusOverlay, { backgroundColor: socketConnected ? '#2ecc71' : '#e74c3c' }]}>
+                <Text style={styles.statusText}>
+                  {socketConnected ? '● ONLINE' : '● OFFLINE'}
+                </Text>
               </View>
-            ) : (
-              <View>
-                <ActivityIndicator size="large" />
-                <TouchableOpacity style={styles.customButton} onPress={() => setView('config')}><Text style={styles.buttonText}>Cambiar Servidor</Text></TouchableOpacity>
-              </View>
+            {cameraActive && <TouchableOpacity style={styles.flashButton} onPress={() => setFlash(!flash)}><Text style={styles.flashButtonText}>{flash ? '⚡ On' : '⚡ Off'}</Text></TouchableOpacity>}
+            {socketConnected && (
+              <TouchableOpacity 
+                style={styles.cameraControlBtn} 
+                onPress={() => setCameraActive(!cameraActive)}
+              >
+                <Feather 
+                  name={cameraActive ? "camera-off" : "camera"} 
+                  size={24} 
+                  color="white" 
+                />
+              </TouchableOpacity>
             )}
           </View>
 
-          {socketConnected && logs.length > 0 && (
+          <TouchableOpacity style={[styles.customButton, { marginTop: 20 }]} onPress={() => setView('config')}><Text style={styles.buttonText}>Cambiar Servidor</Text></TouchableOpacity>
+
+          {socketConnected && (
             <View style={styles.screenLog}>
-              <Text style={styles.logsTitle}>Historial:</Text>
-              <ScrollView style={styles.logsContainer} nestedScrollEnabled={true}>
-                {logs.map((log, i) => <View key={i} style={styles.logItem}><Text style={styles.logText}>{log}</Text></View>)}
+              <Text style={{ color: theme.text, fontWeight: 'bold', marginBottom: 10 }}>Historial:</Text>
+              <ScrollView style={[styles.logsContainer, { backgroundColor: theme.logBg }]} nestedScrollEnabled={true}>
+                {logs.map((log, i) => <Text key={i} style={{ color: theme.text, paddingVertical: 2 }}>{log}</Text>)}
               </ScrollView>
-              <TouchableOpacity style={styles.customButton} onPress={() => setLogs([])}><Text style={styles.buttonText}>Limpiar</Text></TouchableOpacity>
+              <TouchableOpacity style={[styles.customButton, { marginTop: 4, backgroundColor: '#e74c3c' }]} onPress={() => setLogs([])}><Text style={styles.buttonText}>Limpiar Historial</Text></TouchableOpacity>
             </View>
           )}
 
           {socketConnected && (
             <View style={styles.screenResultScanner}>
-              <View style={styles.productCard}>
-                <Text style={styles.productTitle}>Producto detectado</Text>
-                <Text style={styles.productPrice}>$2850</Text>
+              <View style={[styles.productCard, { backgroundColor: theme.card }]}>
+                <Text style={{ color: theme.text, fontSize: 18, fontWeight: 'bold' }}>Producto detectado</Text>
+                <Text style={{ color: '#2ecc71', fontSize: 24, marginTop: 10 }}>$2850</Text>
               </View>
             </View>
           )}
@@ -147,64 +131,30 @@ export default function TabIndexScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
+  container: { flex: 1 },
   center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  interfaceContainer: { flex: 1, padding: 20 },
-  scrollContent: { flexGrow: 1 },
-  fullWidth: { width: '100%', alignItems: 'center' },
-  serverStatus: { padding: 15, alignItems: 'center', width: '100%' },
-  statusText: { color: '#fff', fontWeight: 'bold' },
-  screenScanner: { width: '100%', alignItems: 'center', marginVertical: 10, padding: 10 },
-  scannerFrame: { width: width, height: 250, backgroundColor: '#000' },
-  customButton: { backgroundColor: '#3498db', padding: 15, borderRadius: 10, marginTop: 10, width: '100%', alignItems: 'center' },
+  scrollContent: { padding: 10 },
+  scannerFrame: { width: '100%', height: 300, backgroundColor: '#000', borderRadius: 10, overflow: 'hidden', position: 'relative' },
+  statusOverlay: { position: 'absolute', top: 10, left: 10, padding: 5, borderRadius: 10, backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 1 },
+  statusText: { color: '#fff', fontSize: 10 },
+  flashButton: { position: 'absolute', top: 10, right: 10, padding: 8, backgroundColor: 'rgba(0,0,0,0.5)', borderRadius: 10, zIndex: 1 },
+  flashButtonText: { color: '#fff', fontSize: 10 },
+  cameraControlBtn: { position: 'absolute', bottom: 15, alignSelf: 'center', padding: 15, backgroundColor: 'rgba(0,0,0,0.6)', borderRadius: 30, zIndex: 2 },
+  loadingOverlay: { ...StyleSheet.absoluteFillObject, justifyContent: 'center', alignItems: 'center', zIndex: 2 },
+  customButton: { backgroundColor: '#3498db', padding: 15, borderRadius: 10, alignItems: 'center' },
   buttonText: { color: '#fff', fontWeight: 'bold' },
-  screenLog: { width: '100%', padding: 20 },
-  logsTitle: { fontSize: 16, fontWeight: 'bold', marginBottom: 10 },
-  logsContainer: { backgroundColor: '#f0f0f0', maxHeight: 100, padding: 10, borderRadius: 8 },
-  logItem: { paddingVertical: 5 },
-  logText: { fontSize: 14 },
-  screenResultScanner: { width: '100%', padding: 20 },
-  productCard: { padding: 20, backgroundColor: '#fff', borderRadius: 10, elevation: 5, shadowColor: '#000', shadowOpacity: 0.1, shadowRadius: 10 },
-  productTitle: { fontSize: 18, fontWeight: 'bold' },
-  productPrice: { fontSize: 24, color: '#2ecc71', marginTop: 10 },
-
-  configSafeArea: {
-    flex: 1,
-    justifyContent: 'center', // Centra verticalmente
-    padding: 20,
-  },
-  configContent: {
-    width: '100%',
-    backgroundColor: '#fff',
-    padding: 20,
-    borderRadius: 15,
-    elevation: 4, // Sombra para dar profundidad
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-  },
-  configTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 10,
-    textAlign: 'center',
-  },
-  configSubtitle: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 25,
-    textAlign: 'center',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    padding: 15,
-    borderRadius: 10,
-    marginBottom: 20,
-    fontSize: 16,
-    backgroundColor: '#f9f9f9',
-    width: '100%',
-  },
+  screenLog: { marginTop: 20 },
+  logsContainer: { 
+    height: 150, 
+    padding: 10, 
+    borderRadius: 8,
+    borderWidth: 1, 
+    borderColor: '#444' 
+   },
+  screenResultScanner: { marginTop: 20, paddingBottom: 20 },
+  productCard: { padding: 20, borderRadius: 10, alignItems: 'center' },
+  configSafeArea: { flex: 1, justifyContent: 'center', padding: 20 },
+  configContent: { padding: 20, borderRadius: 15 },
+  configTitle: { fontSize: 20, fontWeight: 'bold', marginBottom: 15, textAlign: 'center' },
+  input: { borderWidth: 1, padding: 15, borderRadius: 10, marginBottom: 15 }
 });
