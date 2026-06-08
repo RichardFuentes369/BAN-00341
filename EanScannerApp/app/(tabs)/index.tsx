@@ -109,10 +109,26 @@ export default function TabIndexScreen() {
           {socketConnected && (
             <View style={styles.screenLog}>
               <Text style={{ color: theme.text, fontWeight: 'bold', marginBottom: 10 }}>Historial:</Text>
-              <ScrollView style={[styles.logsContainer, { backgroundColor: theme.logBg }]} nestedScrollEnabled={true}>
-                {logs.map((log, i) => <Text key={i} style={{ color: theme.text, paddingVertical: 2 }}>{log}</Text>)}
+              
+              <ScrollView 
+                style={[styles.logsContainer, { backgroundColor: theme.logBg }]} 
+                nestedScrollEnabled={true}
+                contentContainerStyle={{ flexGrow: 1 }}
+              >
+                {logs.map((log, i) => (
+                  <Text key={i} style={{ color: theme.text, paddingVertical: 2 }}>{log}</Text>
+                ))}
               </ScrollView>
-              <TouchableOpacity style={[styles.customButton, { marginTop: 4, backgroundColor: '#e74c3c' }]} onPress={() => setLogs([])}><Text style={styles.buttonText}>Limpiar Historial</Text></TouchableOpacity>
+
+              {/* AQUÍ ESTÁ EL CAMBIO: Evaluamos si la longitud del array es mayor a 0 */}
+              {logs.length > 0 && (
+                <TouchableOpacity 
+                  style={[styles.customButton, { marginTop: 10, backgroundColor: '#e74c3c' }]} 
+                  onPress={() => setLogs([])}
+                >
+                  <Text style={styles.buttonText}>Limpiar Historial</Text>
+                </TouchableOpacity>
+              )}
             </View>
           )}
 

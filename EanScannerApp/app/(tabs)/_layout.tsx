@@ -17,9 +17,10 @@ function ThemeToggleBtn() {
 
 function StackLayoutContent() {
   const { isDarkMode } = useTheme();
+  const insets = useSafeAreaInsets();
 
   return (
-    <View style={{ flex: 1, backgroundColor: isDarkMode ? '#121212' : '#ffffff' }}>
+    <View style={{ flex: 1, paddingTop: insets.top, backgroundColor: isDarkMode ? '#121212' : '#ffffff' }}>
       <StatusBar style={isDarkMode ? 'light' : 'dark'} />
       <Stack
         screenOptions={{
