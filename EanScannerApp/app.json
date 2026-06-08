@@ -8,6 +8,11 @@
     "scheme": "eanscannerapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-transparent.png", 
+      "resizeMode": "contain",
+      "backgroundColor": "#0b1626"
+    },
     "ios": {
       "supportsTablet": true
     },

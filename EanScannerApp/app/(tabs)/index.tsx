@@ -57,7 +57,24 @@ export default function TabIndexScreen() {
   };
 
   if (loading) return <View style={[styles.center, { backgroundColor: theme.background }]}><ActivityIndicator size="large" /></View>;
-  if (!permission?.granted) return <View style={[styles.center, { backgroundColor: theme.background }]}><Text style={{ color: theme.text }}>Permiso necesario</Text><Button onPress={requestPermission} title="Conceder" /></View>;
+
+  if (!permission?.granted) return (
+    <View style={[styles.center, { backgroundColor: '#0b1626' }]}>
+      <View style={styles.permissionCard}>
+        <Feather name="camera" size={24} color="white" />
+          <Text style={styles.permissionTitle}>Acceso a Cámara</Text>
+        <Text style={styles.permissionText}>
+          Para poder escanear tus productos, necesitamos acceder a tu cámara.
+        </Text>
+        <TouchableOpacity 
+          style={styles.permissionButton} 
+          onPress={requestPermission}
+        >
+          <Text style={styles.buttonText}>Conceder Permiso</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
 
   if (view === 'config') return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
@@ -145,5 +162,36 @@ const styles = StyleSheet.create({
   configSafeArea: { flex: 1, justifyContent: 'center', padding: 20 },
   configContent: { padding: 20, borderRadius: 15 },
   configTitle: { fontSize: 20, fontWeight: 'bold', marginBottom: 15, textAlign: 'center' },
-  input: { borderWidth: 1, padding: 15, borderRadius: 10, marginBottom: 15 }
+  input: { borderWidth: 1, padding: 15, borderRadius: 10, marginBottom: 15 },
+
+  permissionCard: {
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    padding: 30,
+    borderRadius: 25,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(238, 207, 161, 0.2)',
+    width: '85%',
+  },
+  permissionTitle: {
+    color: '#eecfa1',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    fontFamily: 'DancingScript_700Bold', // Usamos la misma fuente elegante
+  },
+  permissionText: {
+    color: '#bdc3c7',
+    textAlign: 'center',
+    marginBottom: 30,
+    lineHeight: 22,
+  },
+  permissionButton: {
+    backgroundColor: '#eecfa1',
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 50,
+    width: '100%',
+    alignItems: 'center',
+  },
 });
