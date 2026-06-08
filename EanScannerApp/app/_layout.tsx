@@ -1,26 +1,26 @@
-import { Tabs } from 'expo-router';
-import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
+import React, { useEffect, useState } from 'react';
+import { ThemeProvider } from '../context/ThemeContext';
+import { Slot } from 'expo-router'; // Slot renderiza la ruta actual (TabLayout)
+import LoadingScreen from '../components/LoadingScreen';
+import * as SplashScreen from 'expo-splash-screen';
 
-export default function TabLayout() {
-  // Definimos las opciones con el tipo correcto para evitar el error
-  const screenOptions: BottomTabNavigationOptions = {
-    headerShown: false,
-    tabBarActiveTintColor: '#000', // Ejemplo de configuración válida
-  };
+SplashScreen.preventAutoHideAsync();
+
+export default function RootLayout() {
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    SplashScreen.hideAsync();
+  }, []);
+
+  if (!isReady) {
+    return <LoadingScreen onFinish={() => setIsReady(true)} />;
+  }
 
   return (
-    <Tabs 
-      screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: '#2f95dc',
-      }}
-    >
-      <Tabs.Screen 
-        name="index" 
-        options={{ 
-          title: 'Escanear',
-        }} 
-      />
-    </Tabs>
+    <ThemeProvider>
+      {/* Slot renderiza automáticamente lo que esté en tu app/TabLayout.tsx */}
+      <Slot />
+    </ThemeProvider>
   );
 }

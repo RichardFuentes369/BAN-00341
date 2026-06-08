@@ -82,12 +82,11 @@ CTRL + SHIFT + V
 
 
 
-
-
-
-
 pnpm run dev
-	ng serve
-	nest start --watch
+ng serve
+nest start --watch
+npx expo start -c    
 
-	npx expo start -c    
+eas build -p android --profile preview
+
+ssh -p 443 -R0:localhost:3000 a.pinggy.io

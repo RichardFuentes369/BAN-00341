@@ -1,241 +1,197 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { StyleSheet, View, Text, Button, TextInput, Alert, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, Button, TextInput, ActivityIndicator, SafeAreaView, TouchableOpacity, ScrollView, StatusBar } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { io, Socket } from 'socket.io-client';
 import { Audio } from 'expo-av';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as KeepAwake from 'expo-keep-awake';
+import { useTheme } from '../../context/ThemeContext';
+import Feather from '@expo/vector-icons/Feather';
+
+const colors = {
+  light: { background: '#ffffff', text: '#333333', card: '#ffffff', inputBg: '#f9f9f9', logBg: '#f0f0f0', border: '#ddd' },
+  dark: { background: '#121212', text: '#e0e0e0', card: '#1e1e1e', inputBg: '#2c2c2c', logBg: '#1e1e1e', border: '#444' }
+};
 
 export default function TabIndexScreen() {
+  const { isDarkMode } = useTheme();
+  const theme = isDarkMode ? colors.dark : colors.light;
+
   const [permission, requestPermission] = useCameraPermissions();
   const [view, setView] = useState<'config' | 'camera'>('config');
+  const [flash, setFlash] = useState<boolean>(false);
+  const [cameraActive, setCameraActive] = useState<boolean>(true);
+  const [isCameraLoading, setIsCameraLoading] = useState(false);
   const [url, setUrl] = useState('');
   const [scanned, setScanned] = useState(false);
   const [loading, setLoading] = useState(true);
   const [logs, setLogs] = useState<string[]>([]);
-  
-  // NUEVO: Estado para saber en tiempo real si el socket está conectado
   const [socketConnected, setSocketConnected] = useState(false);
-  
   const socketRef = useRef<Socket | null>(null);
 
-
-  const addLog = (message: string) => {
-    setLogs(prev => [message, ...prev].slice(0, 5));
-  };
+  useEffect(() => {
+    const init = async () => {
+      const savedUrl = await AsyncStorage.getItem('SERVER_URL');
+      if (savedUrl) { setUrl(savedUrl); connectToSocket(savedUrl); setView('camera'); }
+      await KeepAwake.activateKeepAwakeAsync();
+      setLoading(false);
+    };
+    init();
+    return () => { KeepAwake.deactivateKeepAwake(); socketRef.current?.disconnect(); };
+  }, []);
 
   const connectToSocket = useCallback((serverUrl: string) => {
-    if (socketRef.current) {
-      socketRef.current.disconnect();
-      socketRef.current.removeAllListeners();
-    }
-
-    console.log('Intentando conectar a:', serverUrl);
-
-    // Configuración robusta para APK nativa
-    const newSocket = io(serverUrl, {
-      transports: ['websocket'],
-      reconnection: true,
-      reconnectionAttempts: 5,
-      reconnectionDelay: 2000,
-      timeout: 15000,
-      forceNew: true, // Fuerza una nueva instancia limpia
-    });
-
-    newSocket.on('connect', () => {
-      // addLog('✅ Conectado'); // <--- AHORA SÍ APARECERÁ EN PANTALLA
-      setSocketConnected(true);
-    });
-
-    newSocket.on('disconnect', (reason) => {
-      // addLog('⚠️ Desconectado: ' + reason); // <--- AHORA SÍ APARECERÁ
-      setSocketConnected(false);
-    });
-
-    newSocket.on('connect_error', (err) => {
-      // addLog('❌ Error: ' + err.message); 
-      setSocketConnected(false);
-    });
-    
+    if (socketRef.current) { socketRef.current.disconnect(); }
+    const newSocket = io(serverUrl, { transports: ['websocket'], reconnectionAttempts: 5, timeout: 15000 });
+    newSocket.on('connect', () => setSocketConnected(true));
+    newSocket.on('disconnect', () => setSocketConnected(false));
     socketRef.current = newSocket;
   }, []);
 
-  useEffect(() => {
-    const checkConfig = async () => {
-      const savedUrl = await AsyncStorage.getItem('SERVER_URL');
-      if (savedUrl) {
-        setUrl(savedUrl);
-        connectToSocket(savedUrl);
-        setView('camera');
-      }
-      setLoading(false);
-    };
-    checkConfig();
-
-    return () => {
-      if (socketRef.current) {
-        socketRef.current.disconnect();
-        socketRef.current.removeAllListeners();
-      }
-    };
-  }, [connectToSocket]);
-
-  const saveConfig = async () => {
-    if (!url.startsWith('http')) {
-      Alert.alert("Error", "La URL debe comenzar con http://");
-      return;
-    }
-    // Limpiamos espacios que a veces se van en el teclado del celular
-    const cleanUrl = url.trim(); 
-    await AsyncStorage.setItem('SERVER_URL', cleanUrl);
-    connectToSocket(cleanUrl);
-    setView('camera');
-  };
-
   const playSuccessSound = async () => {
     try {
-      const { sound } = await Audio.Sound.createAsync(
-        require('./assets/scanner.mp3') // Debes tener un archivo .mp3 en tu carpeta assets
-      );
+      const { sound } = await Audio.Sound.createAsync(require('../../assets/sounds/scanner.mp3'));
       await sound.playAsync();
-      // Opcional: descargar el sonido de la memoria después de reproducirlo
-      sound.setOnPlaybackStatusUpdate((status) => {
-        if (status.isLoaded && status.didJustFinish) {
-          sound.unloadAsync();
-        }
-      });
-    } catch (error) {
-      console.error("Error al reproducir sonido", error);
-    }
+      sound.setOnPlaybackStatusUpdate((status) => { if (status.isLoaded && status.didJustFinish) sound.unloadAsync(); });
+    } catch (e) { console.error(e); }
   };
 
-  if (loading) return <View style={styles.container}><ActivityIndicator size="large" /></View>;
+  if (loading) return <View style={[styles.center, { backgroundColor: theme.background }]}><ActivityIndicator size="large" /></View>;
 
-  if (!permission?.granted) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.text}>Se requiere permiso de cámara</Text>
-        <Button onPress={requestPermission} title="Conceder permiso" />
+  if (!permission?.granted) return (
+    <View style={[styles.center, { backgroundColor: '#0b1626' }]}>
+      <View style={styles.permissionCard}>
+        <Feather name="camera" size={24} color="white" />
+          <Text style={styles.permissionTitle}>Acceso a Cámara</Text>
+        <Text style={styles.permissionText}>
+          Para poder escanear tus productos, necesitamos acceder a tu cámara.
+        </Text>
+        <TouchableOpacity 
+          style={styles.permissionButton} 
+          onPress={requestPermission}
+        >
+          <Text style={styles.buttonText}>Conceder Permiso</Text>
+        </TouchableOpacity>
       </View>
-    );
-  }
+    </View>
+  );
 
-  if (view === 'config') {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Configurar Servidor</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Ej: http://192.168.1.6:3000"
-          value={url}
-          onChangeText={setUrl}
-          autoCapitalize="none"
-          keyboardType="url"
-        />
-        <Button title="Guardar y Conectar" onPress={saveConfig} />
-      </View>
-    );
-  }
+  if (view === 'config') return (
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
+      <SafeAreaView style={styles.configSafeArea}>
+        <View style={[styles.configContent, { backgroundColor: theme.card }]}>
+          <Text style={[styles.configTitle, { color: theme.text }]}>Configurar Servidor</Text>
+          <TextInput style={[styles.input, { backgroundColor: theme.inputBg, color: theme.text, borderColor: theme.border }]} placeholder="Ej: http://192.168.1.50:3000" placeholderTextColor="#888" value={url} onChangeText={setUrl} autoCapitalize="none" />
+          <TouchableOpacity style={styles.customButton} onPress={async () => { await AsyncStorage.setItem('SERVER_URL', url); connectToSocket(url); setView('camera'); }}>
+            <Text style={styles.buttonText}>Guardar y Conectar</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    </View>
+  );
 
   return (
-    <View style={styles.container}>
-      {/* Indicador visual de estado del servidor en la cámara */}
-      <View style={[styles.statusBadge, { backgroundColor: socketConnected ? '#4CAF50' : '#F44336' }]}>
-        <Text style={styles.statusText}>
-          {socketConnected ? `● Servidor Conectado: \n ${url}` : '○ Servidor Desconectado'}
-        </Text>
-      </View>
-
-      <CameraView 
-        style={StyleSheet.absoluteFillObject}
-        onBarcodeScanned={scanned ? undefined : ({ data }) => {
-          setScanned(true);
-          
-          // Usamos el estado sincronizado en lugar de la propiedad directa del ref
-          if (socketConnected && socketRef.current) {
-            socketRef.current.emit('scan', data);
-            console.log('Código enviado a NestJS:', data);
-            addLog(`✅ ${data}`)
-            // playSuccessSound();
-            // Alert.alert(
-            //   "Enviado con Éxito",
-            //   `Código: ${data}`,
-            //   [{ text: "OK", onPress: () => setScanned(false) }],
-            //   { cancelable: false }
-            // );
-            setTimeout(() => {
-              setScanned(false);
-            }, 1500);
-          } else {
-            Alert.alert(
-              "Error de Red", 
-              "No estás conectado al servidor NestJS. Verifica que el servidor esté corriendo en " + url,
-              [{ text: "Reintentar", onPress: () => setScanned(false) }]
-            );
-          }
-        }}
-        barcodeScannerSettings={{ barcodeTypes: ["ean13"] }}
-      />
-
-      { logs.length > 0 && (
-        <>
-          <View style={styles.clearlog}>
-            <Button title="Limpiar log" onPress={() => setLogs([])} color="#76797c" />
-          </View>
-
-          <View style={styles.logsOverlay}>
-            <View style={styles.logsContainer}>
-              {logs.map((log, i) => (
-                <Text key={i} style={styles.logText}>{log}</Text>
-              ))}
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+          <View style={styles.scannerFrame}>
+            {isCameraLoading && <View style={styles.loadingOverlay}><ActivityIndicator color="#fff" /></View>}
+            {cameraActive ? (
+              <CameraView style={StyleSheet.absoluteFillObject} facing="back" enableTorch={flash} onCameraReady={() => setIsCameraLoading(false)} onBarcodeScanned={scanned ? undefined : ({ data }) => { setScanned(true); socketRef.current?.emit('scan', data); setLogs(prev => [`✅ ${data}`, ...prev].slice(0, 10)); playSuccessSound(); setTimeout(() => setScanned(false), 1500); }} />
+            ) : (<View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#000', justifyContent: 'center', alignItems: 'center' }]}><Text style={{ color: '#fff' }}>Cámara Apagada</Text></View>)}
+            
+            <View style={[styles.statusOverlay, { backgroundColor: socketConnected ? '#2ecc71' : '#e74c3c' }]}>
+              <Text style={styles.statusText}>{socketConnected ? '● ONLINE' : '● OFFLINE'}</Text>
             </View>
+            
+            {cameraActive && <TouchableOpacity style={styles.flashButton} onPress={() => setFlash(!flash)}><Text style={styles.flashButtonText}>{flash ? '⚡ On' : '⚡ Off'}</Text></TouchableOpacity>}
+            
+            {socketConnected && (
+              <TouchableOpacity style={styles.cameraControlBtn} onPress={() => setCameraActive(!cameraActive)}>
+                <Feather name={cameraActive ? "camera-off" : "camera"} size={24} color="white" />
+              </TouchableOpacity>
+            )}
           </View>
-        </>
-      )}
 
-      <View style={styles.overlay}>
-        <Button title="Cambiar Servidor" onPress={() => setView('config')} color="#2196F3" />
-      </View>
+          <TouchableOpacity style={[styles.customButton, { marginTop: 20 }]} onPress={() => setView('config')}><Text style={styles.buttonText}>Cambiar Servidor</Text></TouchableOpacity>
+
+          {socketConnected && (
+            <View style={styles.screenLog}>
+              <Text style={{ color: theme.text, fontWeight: 'bold', marginBottom: 10 }}>Historial:</Text>
+              <ScrollView style={[styles.logsContainer, { backgroundColor: theme.logBg }]} nestedScrollEnabled={true} contentContainerStyle={{ flexGrow: 1 }}>
+                {logs.map((log, i) => <Text key={i} style={{ color: theme.text, paddingVertical: 2 }}>{log}</Text>)}
+              </ScrollView>
+              {logs.length > 0 && (
+                <TouchableOpacity style={[styles.customButton, { marginTop: 10, backgroundColor: '#e74c3c' }]} onPress={() => setLogs([])}><Text style={styles.buttonText}>Limpiar Historial</Text></TouchableOpacity>
+              )}
+            </View>
+          )}
+
+          {socketConnected && (
+            <View style={styles.screenResultScanner}>
+              <View style={[styles.productCard, { backgroundColor: theme.card }]}>
+                <Text style={{ color: theme.text, fontSize: 18, fontWeight: 'bold' }}>Producto detectado</Text>
+                <Text style={{ color: '#2ecc71', fontSize: 24, marginTop: 10 }}>$2850</Text>
+              </View>
+            </View>
+          )}
+        </ScrollView>
+      </SafeAreaView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', padding: 20 },
-  title: { fontSize: 20, marginBottom: 20, textAlign: 'center' },
-  input: { borderWidth: 1, borderColor: '#ccc', padding: 10, marginBottom: 20, borderRadius: 5 },
-  text: { textAlign: 'center', marginBottom: 10 },
-  overlay: { position: 'absolute', bottom: 50, alignSelf: 'center', width: '80%' },
-  clearlog: { position: 'absolute', bottom: 10, alignSelf: 'center', width: '80%' },
-  statusBadge: {
-    position: 'absolute',
-    top: 20,
-    left: 20,
-    right: 20,
-    zIndex: 10,
-    padding: 10,
-    borderRadius: 8,
+  container: { flex: 1 },
+  center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  scrollContent: { padding: 10 },
+  scannerFrame: { width: '100%', height: 300, backgroundColor: '#000', borderRadius: 10, overflow: 'hidden', position: 'relative' },
+  statusOverlay: { position: 'absolute', top: 10, left: 10, padding: 5, borderRadius: 10, zIndex: 1 },
+  statusText: { color: '#fff', fontSize: 10, fontWeight: 'bold' },
+  flashButton: { position: 'absolute', top: 10, right: 10, padding: 8, backgroundColor: 'rgba(0,0,0,0.5)', borderRadius: 10, zIndex: 1 },
+  flashButtonText: { color: '#fff', fontSize: 10 },
+  cameraControlBtn: { position: 'absolute', bottom: 15, alignSelf: 'center', padding: 15, backgroundColor: 'rgba(0,0,0,0.6)', borderRadius: 30, zIndex: 2 },
+  loadingOverlay: { ...StyleSheet.absoluteFillObject, justifyContent: 'center', alignItems: 'center', zIndex: 2 },
+  customButton: { backgroundColor: '#3498db', padding: 15, borderRadius: 10, alignItems: 'center' },
+  buttonText: { color: '#fff', fontWeight: 'bold' },
+  screenLog: { marginTop: 20 },
+  logsContainer: { height: 150, padding: 10, borderRadius: 8, borderWidth: 1, borderColor: '#444' },
+  screenResultScanner: { marginTop: 20, paddingBottom: 20 },
+  productCard: { padding: 20, borderRadius: 10, alignItems: 'center' },
+  configSafeArea: { flex: 1, justifyContent: 'center', padding: 20 },
+  configContent: { padding: 20, borderRadius: 15 },
+  configTitle: { fontSize: 20, fontWeight: 'bold', marginBottom: 15, textAlign: 'center' },
+  input: { borderWidth: 1, padding: 15, borderRadius: 10, marginBottom: 15 },
+
+  permissionCard: {
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    padding: 30,
+    borderRadius: 25,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(238, 207, 161, 0.2)',
+    width: '85%',
+  },
+  permissionTitle: {
+    color: '#eecfa1',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    fontFamily: 'DancingScript_700Bold', // Usamos la misma fuente elegante
+  },
+  permissionText: {
+    color: '#bdc3c7',
+    textAlign: 'center',
+    marginBottom: 30,
+    lineHeight: 22,
+  },
+  permissionButton: {
+    backgroundColor: '#eecfa1',
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 50,
+    width: '100%',
     alignItems: 'center',
   },
-  statusText: { color: '#fff', fontWeight: 'bold' },
-  logsOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 20, // Asegura que esté por encima de la cámara
-    pointerEvents: 'none', // Permite que los toques pasen a través hacia la cámara
-  },
-  // La cajita negra donde van los textos
-  logsContainer: {
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    top: 180,
-    padding: 15,
-    borderRadius: 10,
-    width: '80%',
-  },
-  logText: {
-    color: 'white',
-    fontSize: 14,
-    marginVertical: 2,
-    textAlign: 'center'
-  }
 });
