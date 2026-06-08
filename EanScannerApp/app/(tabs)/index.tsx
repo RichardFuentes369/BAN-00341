@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { StyleSheet, View, Text, Button, TextInput, ActivityIndicator, SafeAreaView, TouchableOpacity, ScrollView, Dimensions, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, Button, TextInput, ActivityIndicator, SafeAreaView, TouchableOpacity, ScrollView, StatusBar } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { io, Socket } from 'socket.io-client';
 import { Audio } from 'expo-av';
@@ -64,7 +64,7 @@ export default function TabIndexScreen() {
       <SafeAreaView style={styles.configSafeArea}>
         <View style={[styles.configContent, { backgroundColor: theme.card }]}>
           <Text style={[styles.configTitle, { color: theme.text }]}>Configurar Servidor</Text>
-          <TextInput style={[styles.input, { backgroundColor: theme.inputBg, color: theme.text, borderColor: theme.border }]} placeholder="Ej: http://192.168.1.50:3000" value={url} onChangeText={setUrl} autoCapitalize="none" />
+          <TextInput style={[styles.input, { backgroundColor: theme.inputBg, color: theme.text, borderColor: theme.border }]} placeholder="Ej: http://192.168.1.50:3000" placeholderTextColor="#888" value={url} onChangeText={setUrl} autoCapitalize="none" />
           <TouchableOpacity style={styles.customButton} onPress={async () => { await AsyncStorage.setItem('SERVER_URL', url); connectToSocket(url); setView('camera'); }}>
             <Text style={styles.buttonText}>Guardar y Conectar</Text>
           </TouchableOpacity>
@@ -75,7 +75,7 @@ export default function TabIndexScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
-      <StatusBar style={isDarkMode ? 'light' : 'dark'} />
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={styles.scrollContent}>
           <View style={styles.scannerFrame}>
@@ -85,21 +85,14 @@ export default function TabIndexScreen() {
             ) : (<View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#000', justifyContent: 'center', alignItems: 'center' }]}><Text style={{ color: '#fff' }}>Cámara Apagada</Text></View>)}
             
             <View style={[styles.statusOverlay, { backgroundColor: socketConnected ? '#2ecc71' : '#e74c3c' }]}>
-                <Text style={styles.statusText}>
-                  {socketConnected ? '● ONLINE' : '● OFFLINE'}
-                </Text>
-              </View>
+              <Text style={styles.statusText}>{socketConnected ? '● ONLINE' : '● OFFLINE'}</Text>
+            </View>
+            
             {cameraActive && <TouchableOpacity style={styles.flashButton} onPress={() => setFlash(!flash)}><Text style={styles.flashButtonText}>{flash ? '⚡ On' : '⚡ Off'}</Text></TouchableOpacity>}
+            
             {socketConnected && (
-              <TouchableOpacity 
-                style={styles.cameraControlBtn} 
-                onPress={() => setCameraActive(!cameraActive)}
-              >
-                <Feather 
-                  name={cameraActive ? "camera-off" : "camera"} 
-                  size={24} 
-                  color="white" 
-                />
+              <TouchableOpacity style={styles.cameraControlBtn} onPress={() => setCameraActive(!cameraActive)}>
+                <Feather name={cameraActive ? "camera-off" : "camera"} size={24} color="white" />
               </TouchableOpacity>
             )}
           </View>
@@ -109,25 +102,11 @@ export default function TabIndexScreen() {
           {socketConnected && (
             <View style={styles.screenLog}>
               <Text style={{ color: theme.text, fontWeight: 'bold', marginBottom: 10 }}>Historial:</Text>
-              
-              <ScrollView 
-                style={[styles.logsContainer, { backgroundColor: theme.logBg }]} 
-                nestedScrollEnabled={true}
-                contentContainerStyle={{ flexGrow: 1 }}
-              >
-                {logs.map((log, i) => (
-                  <Text key={i} style={{ color: theme.text, paddingVertical: 2 }}>{log}</Text>
-                ))}
+              <ScrollView style={[styles.logsContainer, { backgroundColor: theme.logBg }]} nestedScrollEnabled={true} contentContainerStyle={{ flexGrow: 1 }}>
+                {logs.map((log, i) => <Text key={i} style={{ color: theme.text, paddingVertical: 2 }}>{log}</Text>)}
               </ScrollView>
-
-              {/* AQUÍ ESTÁ EL CAMBIO: Evaluamos si la longitud del array es mayor a 0 */}
               {logs.length > 0 && (
-                <TouchableOpacity 
-                  style={[styles.customButton, { marginTop: 10, backgroundColor: '#e74c3c' }]} 
-                  onPress={() => setLogs([])}
-                >
-                  <Text style={styles.buttonText}>Limpiar Historial</Text>
-                </TouchableOpacity>
+                <TouchableOpacity style={[styles.customButton, { marginTop: 10, backgroundColor: '#e74c3c' }]} onPress={() => setLogs([])}><Text style={styles.buttonText}>Limpiar Historial</Text></TouchableOpacity>
               )}
             </View>
           )}
@@ -151,8 +130,8 @@ const styles = StyleSheet.create({
   center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   scrollContent: { padding: 10 },
   scannerFrame: { width: '100%', height: 300, backgroundColor: '#000', borderRadius: 10, overflow: 'hidden', position: 'relative' },
-  statusOverlay: { position: 'absolute', top: 10, left: 10, padding: 5, borderRadius: 10, backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 1 },
-  statusText: { color: '#fff', fontSize: 10 },
+  statusOverlay: { position: 'absolute', top: 10, left: 10, padding: 5, borderRadius: 10, zIndex: 1 },
+  statusText: { color: '#fff', fontSize: 10, fontWeight: 'bold' },
   flashButton: { position: 'absolute', top: 10, right: 10, padding: 8, backgroundColor: 'rgba(0,0,0,0.5)', borderRadius: 10, zIndex: 1 },
   flashButtonText: { color: '#fff', fontSize: 10 },
   cameraControlBtn: { position: 'absolute', bottom: 15, alignSelf: 'center', padding: 15, backgroundColor: 'rgba(0,0,0,0.6)', borderRadius: 30, zIndex: 2 },
@@ -160,13 +139,7 @@ const styles = StyleSheet.create({
   customButton: { backgroundColor: '#3498db', padding: 15, borderRadius: 10, alignItems: 'center' },
   buttonText: { color: '#fff', fontWeight: 'bold' },
   screenLog: { marginTop: 20 },
-  logsContainer: { 
-    height: 150, 
-    padding: 10, 
-    borderRadius: 8,
-    borderWidth: 1, 
-    borderColor: '#444' 
-   },
+  logsContainer: { height: 150, padding: 10, borderRadius: 8, borderWidth: 1, borderColor: '#444' },
   screenResultScanner: { marginTop: 20, paddingBottom: 20 },
   productCard: { padding: 20, borderRadius: 10, alignItems: 'center' },
   configSafeArea: { flex: 1, justifyContent: 'center', padding: 20 },
