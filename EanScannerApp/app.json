@@ -9,7 +9,7 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-transparent.png", 
+      "image": "./assets/images/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#0b1626"
     },
@@ -30,8 +30,7 @@
         "android.permission.RECORD_AUDIO",
         "INTERNET"
       ],
-      "package": "com.richardfuentes369.EanScannerApp",
-      "usesCleartextTraffic": true
+      "package": "com.richardfuentes369.EanScannerApp"
     },
     "web": {
       "output": "static",
@@ -58,7 +57,8 @@
         }
       ],
       "expo-font",
-      "expo-audio"
+      "expo-audio",
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true,
