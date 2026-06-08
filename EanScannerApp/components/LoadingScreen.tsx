@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Animated } from 'react-native';
+import { View, Text, StyleSheet, Animated, Platform } from 'react-native';
 import { useFonts, DancingScript_700Bold } from '@expo-google-fonts/dancing-script';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -8,13 +8,18 @@ export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
   const fullText = "Mermas scanner";
   const fadeAnim = useState(new Animated.Value(0))[0];
 
-  let [fontsLoaded] = useFonts({ DancingScript_700Bold });
+  // Intentamos cargar la fuente
+  const [fontsLoaded] = useFonts({ 
+    'DancingScript_700Bold': DancingScript_700Bold 
+  });
 
   useEffect(() => {
-    if (!fontsLoaded) return;
-
     // Animación de aparición
-    Animated.timing(fadeAnim, { toValue: 1, duration: 1000, useNativeDriver: true }).start();
+    Animated.timing(fadeAnim, { 
+      toValue: 1, 
+      duration: 1000, 
+      useNativeDriver: true 
+    }).start();
 
     // Efecto de escritura
     let i = 0;
@@ -28,25 +33,27 @@ export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
     }, 150);
 
     return () => clearInterval(interval);
-  }, [fontsLoaded]);
+  }, []);
 
-  if (!fontsLoaded) return <View style={styles.container} />;
+  // Fuente dinámica con fallback seguro para evitar cierres
+  const fontFamily = fontsLoaded ? 'DancingScript_700Bold' : (Platform.OS === 'ios' ? 'Helvetica' : 'sans-serif');
 
   return (
     <View style={styles.container}>
       <Animated.View style={{ opacity: fadeAnim, alignItems: 'center' }}>
-        {/* Título */}
-        <Text style={styles.title}>{text}</Text>
         
-        {/* Icono de scanner */}
+        <Text style={[styles.title, { fontFamily }]}>
+          {text}
+        </Text>
+        
         <View style={styles.iconContainer}>
           <Ionicons name="barcode-outline" size={50} color="#eecfa1" />
         </View>
 
-        {/* Indicador de carga */}
         <View style={styles.loadingDots}>
           <Text style={styles.dots}>. . .</Text>
         </View>
+
       </Animated.View>
     </View>
   );
@@ -57,12 +64,11 @@ const styles = StyleSheet.create({
     flex: 1, 
     justifyContent: 'center', 
     alignItems: 'center', 
-    backgroundColor: '#0b1626' // Azul marino profundo de la imagen
+    backgroundColor: '#0b1626' 
   },
   title: { 
-    color: '#eecfa1', // Color crema elegante de la imagen
+    color: '#eecfa1', 
     fontSize: 48,
-    fontFamily: 'DancingScript_700Bold',
     textAlign: 'center',
     textShadowColor: 'rgba(238, 207, 161, 0.3)',
     textShadowOffset: { width: 0, height: 0 },
