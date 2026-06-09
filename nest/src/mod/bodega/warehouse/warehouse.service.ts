@@ -263,16 +263,16 @@ export class WarehouseService {
       try {
         const exists = await this.batchRepository.findOne({ where: { id: createMermaDto.id_lote } });
         const merma = await this.mermaRepository.findOne({ where: { id: id_merma } });
-        
-        if (exists && createMermaDto.cantidad<merma.cantidad){
+
+        if (exists && createMermaDto.cantidad < merma.cantidad) {
           exists.cantidad_en_bodega = exists.cantidad_en_bodega + (merma.cantidad - createMermaDto.cantidad)
         }
-  
-        if (exists && createMermaDto.cantidad>merma.cantidad){
+        if (exists && createMermaDto.cantidad > merma.cantidad) {
           exists.cantidad_en_bodega = exists.cantidad_en_bodega - (createMermaDto.cantidad - merma.cantidad)
         }
 
-        if(merma){
+
+        if (merma) {
           merma.cantidad = createMermaDto.cantidad
         }
 
