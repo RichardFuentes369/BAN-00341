@@ -77,11 +77,6 @@ CTRL + SHIFT + V
 		Reporte de perdidas por fecha
 
 
-
-
-
-
-
 pnpm run dev
 ng serve
 nest start --watch
