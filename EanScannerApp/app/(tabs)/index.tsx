@@ -20,12 +20,14 @@ export default function TabIndexScreen() {
   const [permission, requestPermission] = useCameraPermissions();
   const [view, setView] = useState<'config' | 'camera'>('config');
   const [flash, setFlash] = useState<boolean>(false);
+  const [sound, setSound] = useState<boolean>(true);
   const [cameraActive, setCameraActive] = useState<boolean>(true);
   const [isCameraLoading, setIsCameraLoading] = useState(false);
   const [url, setUrl] = useState('');
   const [scanned, setScanned] = useState(false);
   const [loading, setLoading] = useState(true);
   const [logs, setLogs] = useState<string[]>([]);
+  const [productoRecibido, setProductoRecibido] = useState<any>(null);
   const [socketConnected, setSocketConnected] = useState(false);
   const socketRef = useRef<Socket | null>(null);
 
@@ -45,6 +47,9 @@ export default function TabIndexScreen() {
     const newSocket = io(serverUrl, { transports: ['websocket'], reconnectionAttempts: 5, timeout: 15000 });
     newSocket.on('connect', () => setSocketConnected(true));
     newSocket.on('disconnect', () => setSocketConnected(false));
+    newSocket.on('socket_result_product_react', (data) => {
+      setProductoRecibido(data.data);
+    });
     socketRef.current = newSocket;
   }, []);
 
@@ -59,15 +64,15 @@ export default function TabIndexScreen() {
   if (loading) return <View style={[styles.center, { backgroundColor: theme.background }]}><ActivityIndicator size="large" /></View>;
 
   if (!permission?.granted) return (
-    <View style={[styles.center, { backgroundColor: '#0b1626' }]}>
+    <View style={[styles.center, { backgroundColor: theme.background }]}>
       <View style={styles.permissionCard}>
         <Feather name="camera" size={24} color="white" />
-          <Text style={styles.permissionTitle}>Acceso a Cámara</Text>
+        <Text style={styles.permissionTitle}>Acceso a Cámara</Text>
         <Text style={styles.permissionText}>
           Para poder escanear tus productos, necesitamos acceder a tu cámara.
         </Text>
-        <TouchableOpacity 
-          style={styles.permissionButton} 
+        <TouchableOpacity
+          style={styles.permissionButton}
           onPress={requestPermission}
         >
           <Text style={styles.buttonText}>Conceder Permiso</Text>
@@ -98,23 +103,111 @@ export default function TabIndexScreen() {
           <View style={styles.scannerFrame}>
             {isCameraLoading && <View style={styles.loadingOverlay}><ActivityIndicator color="#fff" /></View>}
             {cameraActive ? (
-              <CameraView style={StyleSheet.absoluteFillObject} facing="back" enableTorch={flash} onCameraReady={() => setIsCameraLoading(false)} onBarcodeScanned={scanned ? undefined : ({ data }) => { setScanned(true); socketRef.current?.emit('scan', data); setLogs(prev => [`✅ ${data}`, ...prev].slice(0, 10)); playSuccessSound(); setTimeout(() => setScanned(false), 1500); }} />
-            ) : (<View style={[StyleSheet.absoluteFillObject, { backgroundColor: '#000', justifyContent: 'center', alignItems: 'center' }]}><Text style={{ color: '#fff' }}>Cámara Apagada</Text></View>)}
-            
+              <CameraView
+                style={StyleSheet.absoluteFillObject}
+                facing="back"
+                enableTorch={flash}
+                onCameraReady={() => setIsCameraLoading(false)}
+                onBarcodeScanned={scanned ? undefined : ({ data }) => {
+                  setScanned(true);
+                  socketRef.current?.emit('scan', data);
+                  setLogs(prev => [`✅ ${data}`, ...prev].slice(0, 10));
+                  (sound) ? playSuccessSound() : '';
+                  setTimeout(() => setScanned(false), 1500);
+                }}
+              />
+            ) : (
+              <View style={[
+                StyleSheet.absoluteFillObject,
+                { backgroundColor: '#000', justifyContent: 'center', alignItems: 'center' }
+              ]}>
+                <Text style={{ color: '#fff' }}>Cámara Apagada</Text>
+              </View>
+            )}
             <View style={[styles.statusOverlay, { backgroundColor: socketConnected ? '#2ecc71' : '#e74c3c' }]}>
               <Text style={styles.statusText}>{socketConnected ? '● ONLINE' : '● OFFLINE'}</Text>
             </View>
-            
-            {cameraActive && <TouchableOpacity style={styles.flashButton} onPress={() => setFlash(!flash)}><Text style={styles.flashButtonText}>{flash ? '⚡ On' : '⚡ Off'}</Text></TouchableOpacity>}
-            
+
+            {cameraActive && (
+              <TouchableOpacity style={styles.flashButton} onPress={() => setFlash(!flash)}>
+                <Feather
+                  name={flash ? "zap" : "zap-off"}
+                  size={24}
+                  color={flash ? "white" : "white"}
+                />
+              </TouchableOpacity>
+            )}
+
+            {cameraActive && (
+              <TouchableOpacity style={styles.soundButton} onPress={() => setSound(!sound)}>
+                <Feather
+                  name={sound ? "volume-2" : "volume-x"}
+                  size={24}
+                  color={sound ? "white" : "white"}
+                />
+              </TouchableOpacity>
+            )}
+
             {socketConnected && (
               <TouchableOpacity style={styles.cameraControlBtn} onPress={() => setCameraActive(!cameraActive)}>
-                <Feather name={cameraActive ? "camera-off" : "camera"} size={24} color="white" />
+                <Feather name={cameraActive ? "camera-off" : "camera"} size={24} color={cameraActive ? "white" : "gray"} />
               </TouchableOpacity>
             )}
           </View>
 
           <TouchableOpacity style={[styles.customButton, { marginTop: 20 }]} onPress={() => setView('config')}><Text style={styles.buttonText}>Cambiar Servidor</Text></TouchableOpacity>
+
+          {socketConnected && productoRecibido && (
+            <View style={styles.screenResultScanner}>
+              <Text style={{ color: theme.text, fontWeight: 'bold', marginBottom: 10 }}>
+                {productoRecibido ? "Resultado del escaneo:" : "Esperando producto..."}
+              </Text>
+
+              {productoRecibido.encontrado === false ? (
+                // Estado: Producto NO encontrado o no escaneado
+                <View style={[styles.productCard, { backgroundColor: theme.card, borderColor: '#e74c3c', borderWidth: 1 }]}>
+                  <Feather name="alert-circle" size={40} color="#e74c3c" />
+                  <Text style={{ 
+                    color: '#e74c3c', 
+                    fontSize: 18, 
+                    fontWeight: 'bold', 
+                    marginTop: 10, 
+                    textAlign: 'center' 
+                  }}>
+                    Producto{'\n'}
+                    ({productoRecibido.codigo_barras}){'\n'}
+                    no registrado
+                  </Text>
+                  <Text style={{ color: theme.text, fontSize: 14, textAlign: 'center', marginTop: 5 }}>
+                    El código escaneado no existe en la base de datos.
+                  </Text>
+                </View>
+              ) : (
+                // Estado: Producto encontrado
+                <View style={[styles.productCard, { backgroundColor: theme.card, borderColor: '#3ce78c', borderWidth: 1 }]}>
+                  <Feather name="check" size={40} color="#3ce78c" />
+                  <Text style={{ color: '#2ecc71', fontSize: 22, fontWeight: 'bold', textAlign: 'center' }}>
+                    {productoRecibido.nombre || "Producto sin nombre"}
+                  </Text>
+                  
+                  <View style={{ width: '100%', marginTop: 15 }}>
+                    {[
+                      { label: 'Codigo de barras', value: productoRecibido.codigo_barras },
+                      { label: 'Marca', value: productoRecibido.marca },
+                      { label: 'Medida', value: productoRecibido.medida },
+                      { label: 'Es Perecedero', value: productoRecibido.es_perecedero ? 'Sí' : 'No' },
+                      { label: 'Estado', value: productoRecibido.estado }
+                    ].map((item, index) => (
+                      <View key={index} style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 4 }}>
+                        <Text style={{ color: theme.text, opacity: 0.7 }}>{item.label}:</Text>
+                        <Text style={{ color: theme.text, fontWeight: '600' }}>{item.value || "N/A"}</Text>
+                      </View>
+                    ))}
+                  </View>
+                </View>
+              )}
+            </View>
+          )}
 
           {socketConnected && (
             <View style={styles.screenLog}>
@@ -127,15 +220,6 @@ export default function TabIndexScreen() {
               )}
             </View>
           )}
-
-          {socketConnected && (
-            <View style={styles.screenResultScanner}>
-              <View style={[styles.productCard, { backgroundColor: theme.card }]}>
-                <Text style={{ color: theme.text, fontSize: 18, fontWeight: 'bold' }}>Producto detectado</Text>
-                <Text style={{ color: '#2ecc71', fontSize: 24, marginTop: 10 }}>$2850</Text>
-              </View>
-            </View>
-          )}
         </ScrollView>
       </SafeAreaView>
     </View>
@@ -146,12 +230,16 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   scrollContent: { padding: 10 },
-  scannerFrame: { width: '100%', height: 300, backgroundColor: '#000', borderRadius: 10, overflow: 'hidden', position: 'relative' },
+  scannerFrame: { width: '95%', height: 220, alignSelf: 'center', backgroundColor: '#000', borderRadius: 20, overflow: 'hidden', position: 'relative', marginTop: 20, marginBottom: 10 },
   statusOverlay: { position: 'absolute', top: 10, left: 10, padding: 5, borderRadius: 10, zIndex: 1 },
   statusText: { color: '#fff', fontSize: 10, fontWeight: 'bold' },
-  flashButton: { position: 'absolute', top: 10, right: 10, padding: 8, backgroundColor: 'rgba(0,0,0,0.5)', borderRadius: 10, zIndex: 1 },
+  flashButton: { position: 'absolute', top: 10, right: 10, padding: 4, backgroundColor: 'rgba(0,0,0,0.5)', borderRadius: 10, zIndex: 1 },
   flashButtonText: { color: '#fff', fontSize: 10 },
-  cameraControlBtn: { position: 'absolute', bottom: 15, alignSelf: 'center', padding: 15, backgroundColor: 'rgba(0,0,0,0.6)', borderRadius: 30, zIndex: 2 },
+
+  soundButton: { position: 'absolute', top: 50, right: 10, padding: 4, backgroundColor: 'rgba(0,0,0,0.5)', borderRadius: 10, zIndex: 1 },
+  soundButtonText: { color: '#fff', fontSize: 10 },
+
+  cameraControlBtn: { position: 'absolute', bottom: 8, alignSelf: 'center', padding: 10, backgroundColor: 'rgba(0,0,0,0.6)', borderRadius: 30, zIndex: 2 },
   loadingOverlay: { ...StyleSheet.absoluteFillObject, justifyContent: 'center', alignItems: 'center', zIndex: 2 },
   customButton: { backgroundColor: '#3498db', padding: 15, borderRadius: 10, alignItems: 'center' },
   buttonText: { color: '#fff', fontWeight: 'bold' },

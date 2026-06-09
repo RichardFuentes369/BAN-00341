@@ -97,10 +97,27 @@ export class ProductService {
   }
 
   async findOneBarcode(lang: string, barcode: string) {
-    const prodcut = await this.productRepository.findOne({ where: { codigo_barra: barcode }, relations: { marca: true, medida: true } });
+    const prodcut = await this.productRepository.findOne({ 
+      where: { codigo_barra: barcode }, 
+      relations: { marca: true, medida: true } 
+    });
     if (!prodcut) throw new NotFoundException(
       this.i18n.t('categoria.MSJ_ERROR_PRODUCT_NOT_EXISTS', { lang })
     );
+    if (prodcut.estado) {
+      prodcut.estado = true;
+    }else{
+      prodcut.estado = false;
+    }
+    return prodcut;
+  }
+
+  async findOneBarcodeApi(lang: string, barcode: string) {
+    const prodcut = await this.productRepository.findOne({ 
+      where: { codigo_barra: barcode }, 
+      relations: { marca: true, medida: true } 
+    });
+    if (prodcut == null) return null;
     if (prodcut.estado) {
       prodcut.estado = true;
     }else{

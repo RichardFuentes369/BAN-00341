@@ -15,8 +15,9 @@ export class ScanService {
   // Escucha los eventos que emite NestJS
   listenForScans(): Observable<string> {
     return new Observable(observer => {
-      this.socket.on('new-scan', (data: { code: string }) => {
-        observer.next(data.code);
+      this.socket.on('socket_result_barcode_angular', (payload: { data: any }) => {
+        const barcode = payload.data.codigo_barras;
+        observer.next(barcode);
       });
     });
   }
