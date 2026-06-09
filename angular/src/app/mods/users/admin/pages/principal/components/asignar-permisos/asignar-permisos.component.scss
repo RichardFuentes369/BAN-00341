@@ -1,0 +1,59 @@
+.custom-tooltipA {
+  position: relative;
+  display: inline-flex;
+  cursor: help;
+
+  // 1. La Flecha (Triángulo)
+  &::before {
+    content: "";
+    position: absolute;
+    top: 160%; // Mismo nivel vertical que el ::after
+    left: 50%;
+    transform: translateX(-50%);
+    
+    // Crear el triángulo con bordes
+    border-width: 0 6px 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent #333 transparent;
+    
+    // Visibilidad sincronizada con el tooltip
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s, visibility 0.2s;
+    z-index: 1051; // Un poco más arriba que el cuadro
+  }
+
+  // 2. El Cuadro de texto
+  &::after {
+    content: attr(data-title);
+    position: absolute;
+    top: calc(150% + 6px); // Se coloca justo debajo de la flecha (6px es el alto de la flecha)
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: max-content;    
+    max-width: 250px;      
+    padding: 10px;
+    line-height: 1.4;
+    
+    background: #333;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 13px;
+    
+    white-space: pre-line;
+    display: block; 
+
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s, visibility 0.2s;
+    z-index: 1050;
+  }
+
+  // 3. Activar ambos al mismo tiempo
+  &:hover::before,
+  &:hover::after {
+    visibility: visible;
+    opacity: 1;
+  }
+}

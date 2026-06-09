@@ -1,0 +1,99 @@
+{
+  "UNKNOW_MODULE_TITLE": "Inconnu",
+
+  "PAGE_ADMIN_TITLE": "Administrateurs",
+  "PAGE_FINAL_TITLE": "Finals",
+
+  "MODULE_TITLE": "Utilisateurs",
+
+  "CARD_TOTAL_ADMIN_TITLE": "Total utilisateurs",
+  "CARD_TOTAL_PERMISSIONS_TITLE": "Total des Permissions Assignées",
+  "CARD_TOTAL_SUSPENDED_USERS": "Total des Utilisateurs Suspendus",
+  "CARD_TOTAL_ACTIVED_USERS": "Total des Utilisateurs Actifs",
+
+  "CREATE_TITLE": "Créer",
+  "CREATE_SUBTITLE": "Nouvel enregistrement",
+  "SEE_TITLE": "Voir",
+  "SEE_SUBTITLE": "{{user_name}}",
+  "EDIT_TITLE": "Modifier",
+  "EDIT_SUBTITLE": "{{user_name}}",
+  "SEE_PERMISSIONS_TITLE": "Permissions assignées",
+
+  "ASSIGMENT_ADMIN_TITLE_BREADCRUMB": "Attribuer des autorisations",
+  "ASSIGMENT_ADMIN_TITLE": "Attribuer des autorisations à <br> {{user_name}}",
+
+  "SWAL_ARE_YOU_SURE_UPDATE_USER": "Êtes-vous sûr de vouloir mettre à jour l'utilisateur {{user_name}}?",
+  "SWAL_ARE_YOU_SURE_DELETE_USER": "Êtes-vous sûr de vouloir supprimer l'utilisateur {{plural}} {{user_name}}?",
+  "SWAL_WARNING_REVERSE_CHANGE": "Cette action est irréversible!",
+  "SWAL_CREATED": "Utilisateur!",
+  "SWAL_CREATED_RECORD": "Créé avec succès.",
+  "SWAL_UPDATED": "Utilisateur!",
+  "SWAL_UPDATED_RECORD": "Mise à jour réussie.",
+  "SWAL_BUTTON_DELETE": "Supprimer",
+  "SWAL_BUTTON_CANCEL": "Annuler",
+  "SWAL_DELETED": "Utilisateur !",
+  "SWAL_DELETED_RECORD": "Suppression réussie.",
+  "SWAL_WORD_ONE_OPTION_SELECTION": "Vous devez sélectionner une option.",
+  "SWAL_WORD_OPTION_ACTIVATE": "Activer.",
+  "SWAL_WORD_OPTION_INACTIVATE": "Désactiver.",
+  "SWAL_ACTIVED_RECORD": "Activé avec succès.",
+  "SWAL_INACTIVED_RECORD": "Désactivé avec succès.",
+  "SWAL_INACTIVED_ALL_USER": "Désactive les {{count_users}} utilisateurs sélectionnés.",
+
+  "LEGEND_TITLE_USER": "Données de l'utilisateur",
+
+  "LABEL_USER_FIRSTNAME": "Prénom.",
+  "LABEL_USER_LASTNAME": "Nom de famille.",
+  "LABEL_USER_EMAIL": "Adresse e-mail.",
+  "LABEL_USER_PASSWORD": "Mot de passe.",
+  "LABEL_USER_STATUS": "État",
+
+  "PLACEHOLDER_USER_FIRSTNAME": "Juan Andres",
+  "PLACEHOLDER_USER_LASTNAME": "Lozano Fonseca",
+  "PLACEHOLDER_USER_EMAIL": "email@example.com",
+  "PLACEHOLDER_USER_PASSWORD": "**********",
+
+  "SELECT_STATUS_USER_SELECT_OPTION": "Sélectionner",
+  "SELECT_STATUS_USER_SELECT_NONE": "N/O", 
+  "SELECT_STATUS_USER_ACTIVE_OPTION": "Actif",
+  "SELECT_STATUS_USER_INACTIVE_OPTION": "Inactif",
+
+  "ERROR_USER_FIRSTNAME": "Veuillez saisir le(s) prénom(s)",
+  "ERROR_USER_LASTNAME": "Veuillez saisir le(s) nom(s)",
+  "ERROR_USER_EMAIL": "Veuillez saisir une adresse e-mail valide",
+  "ERROR_USER_PASSWORD": "Veuillez saisir un mot de passe",
+  "ERROR_USER_STATUS": "Vous devez sélectionner un élément",
+  "TABLE_TITLE": "Registres",
+
+  "REPORT_PERMISSION_TITLE": "Rapport",
+  "REPORT_PERMISSION_SUBTITLE": "d'autorisations",
+
+  "BUTTON_USER_CREATE": "Créer un utilisateur",
+  "BUTTON_USER_EDIT": "Modifier l'utilisateur",
+  "BUTTON_ADMIN": "Administrateurs",
+  "BUTTON_FINAL": "Finales",
+  "BUTTON_SAVE_": "Enregistrer",
+  "BUTTON_UPDATE_": "Mettre à jour",
+  "BUTTON_CANCEL": "Annuler",
+  "BUTTON_BACK": "Retour",
+  "BUTTON_SEARCH": "Rechercher",
+
+  "COLUMN_MODULE": "Module",
+  "COLUMN_SUBMODULE": "Sous-module",
+  "COLUMN_PERMISSION": "Permission",
+  "COLUMN_IDENTIFIER": "Identifiant",
+
+  "COLUMN_ID": "ID",
+  "COLUMN_EMAIL": "Adresse e-mail",
+  "COLUMN_NAMES": "Prénoms",
+  "COLUMN_LASTNAME": "Noms",
+  "COLUMN_PERMISSION_COUNT": "# Autorisations",
+  "COLUMN_STATUS": "Statut",
+
+  "WORD_ACTIVED": "Actif",
+  "WORD_INACTIVED": "Inactif",
+
+  "CONSOLE_ERROR_INVALID_TOKEN": "Jeton vide ou nul détecté, effacement en cours...",
+  "CONSOLE_MSJ_REDIRECTING_TO": "",
+  "CONSOLE_MSJ_FORBIDDEN_TO": ""
+}

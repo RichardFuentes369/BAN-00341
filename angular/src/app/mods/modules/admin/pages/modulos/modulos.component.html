@@ -1,0 +1,62 @@
+<div class="mb-4 border-0 rounded-0">
+  <div class="d-flex justify-content-between align-items-center px-3 pb-2">
+    <h4 class="m-0 fw-bold text-bold">
+    {{ 'mod-modules.MODULE_TITLE' | translate}}
+    </h4>
+  </div>
+  <hr class="mt-0 ml-3 mr-3">
+
+  <div class="mt-2 p-3 pt-0" style="position: relative;">
+    @if (cargarTabla) {
+    <div class="table-container">
+      <!-- <app-globales-tablecrud
+        [title]="titlePage"
+        [campoFiltro] = showcampoFiltro
+        [endPoint] = endPoint
+        [columnas] = columnas
+        [habilitarSeleccion]="habilitarSeleccion"
+        [permisosAcciones] = permisos
+    
+        (verItem) = "verData($event)"
+        (crearNuevoItem) = "crearData($event)"
+        (editarItem) = "editarData($event)"
+        (eliminarItem) = "eliminarData($event)"
+        >
+      </app-globales-tablecrud> -->
+      <app-globales-gridcrud
+        [campoFiltro]="showcampoFiltro" 
+        [endPoint]="endPoint" 
+        [permisosAcciones]="permisos" 
+        [title]="titlePage" 
+        [mostrarTotal]="mostrarTotal"
+        
+        (verItem)="verData($event)"
+        (crearNuevoItem)="crearData($event)" 
+        (editarItem)="editarData($event)" 
+        (eliminarItem)="eliminarData($event)">
+      </app-globales-gridcrud>
+    </div>
+    }
+    @else {
+      <app-globales-loading></app-globales-loading>
+    }
+  </div>
+
+  <app-globales-modal-boostrap
+    [tamano]="tamano"
+    [scrollable]="scrollable"
+    [title]="title"
+    [subtitle]="subtitle"
+    [save]="save"
+    [buttonSave]="buttonSave"
+    [edit]="edit"
+    [buttonEdit]="buttonEdit"
+    [cancel]="cancel"
+    [buttonCancel]="buttonCancel"
+    [componentePrecargado]="componentePrecargado"
+    [cierreModal]="cierreModal"
+    (actualizarTabla)="refrescarTabla()"
+  >
+  </app-globales-modal-boostrap>
+
+</div>

@@ -1,0 +1,35 @@
+export const ADMIN_PAGE_MENU_PERSMISSION_USERS = 'usuarios';
+export const ADMIN_PAGE_MENU_PERSMISSION_MODULES = 'modulos';
+
+export const LAYOUT_ADMIN_PAGE_USERS = '/users';
+export const LAYOUT_ADMIN_PAGE_MODULES = '/modules';
+
+export const STORAGE_KEY_PROFILE_ADMIN = 'admin';
+export const STORAGE_KEY_PROFILE_FINAL = 'user';
+
+export const TITLE_PATH_USERS_INDEX = 'Usuarios';
+export const BREADCRUMB_PATH_USERS_INDEX = 'Index';
+
+export const PATH_ADMIN_USERS = 'administradores';
+export const TITLE_PATH_ADMIN_USERS = 'Administradores';
+export const BREADCRUMB_PATH_ADMIN_USERS = 'mod-users.PAGE_ADMIN_TITLE';
+
+export const PATH_FINAL_USERS = 'finales';
+export const TITLE_PATH_FINAL_USERS = 'Finales';
+export const BREADCRUMB_PATH_FINAL_USERS = 'mod-users.PAGE_FINAL_TITLE';
+
+export const PATH_ASSIGN_ADMIN_USERS = 'asignar-administrador';
+export const TITLE_PATH_ASSIGN_ADMIN_USERS = 'Asignar usuario administrador';
+export const BREADCRUMB_PATH_ASSIGN_ADMIN_USERS = 'mod-users.ASSIGMENT_ADMIN_TITLE_BREADCRUMB';
+
+export const MOD_USER_PAGE_ADMIN_ASSIGMENT =  '/admin/mod/users/administradores/asignar-administrador/';
+export const MOD_USER_PAGE_ADMIN =  '/admin/mod/users/administradores/';
+export const MOD_USER_PAGE_FINAL =  '/admin/mod/users/finales/';
+
+export const CREAR_USUARIO_COMPONENT = 'CrearUsuariosComponent';
+export const VER_PERMISOS_COMPONENT = 'VerPermisosComponent';
+export const VER_USUARIO_COMPONENT = 'VerUsuariosComponent';
+export const EDITAR_USUARIO_COMPONENT = 'EditarUsuariosComponent';
+export const FILTRO_USUARIO_COMPONENT = 'FiltroUsuariosComponent';
+export const REPORT_USUARIO_COMPONENT = 'ReporteUsuarioComponent';
+export const EDITAR_MODULO_PERMISO_COMPONENT = 'EditarModuloPermisoComponent';

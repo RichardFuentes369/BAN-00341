@@ -1,0 +1,78 @@
+{
+	"UNKNOW_MODULE_TITLE": "Module inconnu",
+
+	"MODULE_TITLE": "Entrepôt",
+	"TABLE_TITLE": "Registres",
+
+  	"MSJ_ERROR_CREATE_PRODUCTS_PERMISSION": "Veuillez contacter l'administrateur pour créer de nouveaux produits ; votre compte utilisateur ne dispose pas des autorisations nécessaires pour effectuer cette action.",
+	"MSJ_ERROR_PRODUCT_INACTIVE": "Ce produit est actuellement inactif",
+
+ 	"REPORT_PERMISSION_TITLE": "Rapport",
+  	"REPORT_PERMISSION_SUBTITLE": "de traçabilité",
+
+	"BUTTON_SAVE_": "Enregistrer",
+	"BUTTON_UPDATE_": "Mettre à jour",
+	"BUTTON_CANCEL": "Annuler",
+	"BUTTON_BACK": "Retour",
+	"BUTTON_SEARCH": "Rechercher",
+
+	"CREATE_TITLE": "Créer",
+	"CREATE_SUBTITLE": "Nouveau lot",
+	"SEE_TITLE": "Voir",
+	"SEE_SUBTITLE": "Lot: {{batch_code}}",
+	"EDIT_TITLE": "Modifier",
+	"EDIT_SUBTITLE": "Lot: {{batch_code}}",
+
+	"COLUMN_ID": "ID",
+	"COLUMN_REPORT_DATE": "Date d'entrée",
+	"COLUMN_EXPIRATION_DATE": "Date d'expiration",
+  	"COLUMN_IN_STOCK": "En stock",
+  	"COLUMN_PURCHASED": "Achetée",
+  	"COLUMN_SOLD": "Vendue",
+  	"COLUMN_SHRINKAGE": "Démarque inconnue",
+	"COLUMN_BATCH": "Lot",
+	"COLUMN_PRODUCT": "Produit",
+	"COLUMN_SUPPLIER": "Fournisseur",
+  	"COLUMN_UNIT_OF_MEASUREMENT": "Unité de mesure",
+	"COLUMN_STATUS": "État",
+
+	"LEGEND_TITLE": "Données de lot",
+	"LABEL_LOTE": "Lot",
+	"LABEL_FECHA_ENTRADA": "Date d'entrée",
+	"LABEL_FECHA_VENCIMIENTO": "Date de péremption",
+	"LABEL_CANTIDAD_COMPRADA": "Quantité achetée",
+	"LABEL_CANTIDAD_VENDIDA": "Quantité vendue",
+	"LABEL_CANTIDAD_AFECTADA": "Quantité affectée par la démarque",
+	"LABEL_CANTIDAD_BODEGA": "Quantité en entrepôt",
+	"LABEL_COSTO_UNITARIO": "Coût unitaire",
+	"LABEL_PRECIO_VENTA_SUGERIDO": "Prix de vente suggéré",
+	"LABEL_ESTADO": "État",
+
+	"SELECT_SELECT_OPTION": "Sélectionner", 
+	"SELECT_AVAILABLE_OPTION": "Disponible", 
+	"SELECT_UNAVAILABLE_OPTION": "Expiré", 
+	"SELECT_EXPIRED_OPTION": "Épuisé",
+
+	"PLACEHOLDER_LOTE": "Entrer le numéro de lot",
+	"PLACEHOLDER_FECHA_ENTRADA": "Choisir la date d'entrée",
+	"PLACEHOLDER_FECHA_VENCIMIENTO": "Choisir la date d'expiration",
+	"PLACEHOLDER_CANTIDAD_COMPRADA": "Entrer la quantité achetée",
+	"PLACEHOLDER_CANTIDAD_VENDIDA": "Entrer la quantité vendue",
+	"PLACEHOLDER_STOCK": "Entrer la quantité en stock",
+	"PLACEHOLDER_COSTO_UNITARIO": "Entrer le coût unitaire",
+	"PLACEHOLDER_PRECIO_VENTA_SUGERIDO": "Entrer le prix de vente suggéré",
+	"PLACEHOLDER_ESTADO": "Choisir l'état",
+
+	"CARD_TOTAL_REGISTER_TITLE": "Total des enregistrements",
+
+	"SWAL_ARE_YOU_SURE_DELETE_WAREHOUSE": "¿Êtes-vous sûr de vouloir supprimer ces enregistrements de l'entrepôt ?",
+	"SWAL_WARNING_REVERSE_CHANGE": "Cette action est irréversible!",
+	"SWAL_CREATED": "Entrepôt!",
+	"SWAL_CREATED_RECORD": "Créé avec succès.",
+	"SWAL_UPDATED": "Entrepôt!",
+	"SWAL_UPDATED_RECORD": "Mise à jour réussie.",
+	"SWAL_BUTTON_DELETE": "Supprimer",
+	"SWAL_BUTTON_CANCEL": "Annuler",
+	"SWAL_DELETED": "Entrepôt !",
+	"SWAL_DELETED_RECORD": "Suppression réussie."
+}

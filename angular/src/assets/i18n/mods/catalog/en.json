@@ -1,0 +1,188 @@
+{
+  "UNKNOW_MODULE_TITLE": "Unknown",
+
+  "PAGE_SUPPLIER_TITLE": "Suppliers",
+  "PAGE_PRODUCT_TITLE": "Products",
+  "PAGE_BRAND_TITLE": "Brands",
+  "PAGE_EXTENT_TITLE": "Unit of measurement",
+
+  "MODULE_TITLE": "Catalog",
+  "TABLE_TITLE": "Records",
+
+  "BUTTON_SAVE_": "Save",
+  "BUTTON_UPDATE_": "Update",
+  "BUTTON_CANCEL": "Cancel",
+  "BUTTON_BACK": "Back",
+  "BUTTON_SEARCH": "Search",
+
+  "SUPPLIER": {
+    "LEGEND_TITLE": "Supplier data",
+    "CREATE_TITLE": "Create",
+    "CREATE_SUBTITLE": "New supplier",
+    "SEE_TITLE": "View",
+    "SEE_SUBTITLE": "Supplier: {{supplier_name}}",
+    "EDIT_TITLE": "Edit",
+    "EDIT_SUBTITLE": "Supplier: {{supplier_name}}",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_BUSINESS_NIT": "TIN",
+    "COLUMN_BUSINESS_NAME": "Bussines Name",
+    "COLUMN_BUSINESS_ADDRESS": "Bussiness Address",
+    "COLUMN_BUSINESS_PHONE": "Bussines Phone",
+    "COLUMN_BUSINESS_EMAIL": "Bussiness Email",
+
+    "LABEL_BUSINESS_NIT": "Tax Identification Number (TIN)",
+    "LABEL_BUSINESS_DV": "Verification Digit (DV)",
+    "LABEL_BUSINESS_NAME": "Bussines Name",
+    "LABEL_BUSINESS_EMAIL": "Bussiness Email",
+    "LABEL_BUSINESS_PHONE": "Bussiness Phone",
+    "LABEL_BUSINESS_ADDRESS": "Bussiness Address",
+
+    "PLACEHOLDER_BUSINESS_NIT": "Enter Tax ID number",
+    "PLACEHOLDER_BUSINESS_DV": "Enter the verification digit",
+    "PLACEHOLDER_BUSINESS_NAME": "Enter business or legal name",
+    "PLACEHOLDER_BUSINESS_EMAIL": "example@company.com",
+    "PLACEHOLDER_BUSINESS_PHONE": "e.g., +1 555 123 4567",
+    "PLACEHOLDER_BUSINESS_ADDRESS": "Enter the primary business address",
+
+    "SWAL_CREATED": "SUPPLIER!",
+    "SWAL_UPDATED": "SUPPLIER!",
+    "SWAL_DELETED": "SUPPLIER!",
+    
+    "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the supplier{{plural}} {{user_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete the supplier{{plural}} {{user_name}}?",
+
+    "CARD_TOTAL_SUPPLIERS_TITLE": "Total suppliers"
+  },
+
+  "PRODUCT": {
+    "LEGEND_TITLE_PRODUCT": "Product data",
+    "ASSIGMENT_PRODUCT_TITLE_BREADCRUMB": "Products",
+    "UPLOAD_TITLE": "Upload products",
+    "UPLOAD_SUBTITLE": "Batch products",
+    "CREATE_TITLE": "Create",
+    "CREATE_SUBTITLE": "New product",
+    "SEE_TITLE": "View",
+    "SEE_SUBTITLE": "Product: {{product_name}}",
+    "EDIT_TITLE": "Edit",
+    "EDIT_SUBTITLE": "Product: {{product_name}}",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_BRAND": "Brand",
+    "COLUMN_NAME": "Name",
+    "COLUMN_BAR_CODE": "Barcode",
+    "COLUMN_STOCK": "Stock",
+    "COLUMN_STATUS": "Status",
+    "COLUMN_UNIT_OF_MEASUREMENT": "Unit of measurement",
+
+    "LABEL_CHECK_PERISHABLE": "Is perishable",
+    "LABEL_NAME_PRODUCT": "Name",
+    "LABEL_BRAND_PRODUCT": "Brand",
+    "LABEL_BRAND_YELLOW_ALERT": "Yellow alert (days)",
+    "LABEL_BRAND_ORANGE_ALERT": "Orange alert (days)",
+    "LABEL_BRAND_STATUS": "Status",
+    "LABEL_COD_BAR_PRODUCT": "Barcode",
+    "LEGEND_TITLE_STOCK": "Stock",
+    "LABEL_MINIMUM_QUANTITY": "Minimum quantity",
+    "LABEL_UNIT_OF_MEASUREMENT_PRODUCT": "Unit of measurement",
+
+    "PLACEHOLDER_NAME_PRODUCT": "Enter a name",
+    "PLACEHOLDER_BRAND_PRODUCT": "Enter a brand",
+    "PLACEHOLDER_COD_BAR_INPUT": "Barcode characters entered",
+    "PLACEHOLDER_COD_BAR_PRODUCT": "Enter a valid EAN-13 barcode (13 digits)",
+    "PLACEHOLDER_STOCK_PRODUCT": "Enter the minimum quantity of products",
+    "PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT": "Select a unit of measurement",
+    "PLACEHOLDER_ERROR_DIAS_PRODUCT": "Yellow alert cannot be less than orange alert",
+    "PLACEHOLDER_ERROR_DIAS_NULOS": "Yellow and red alerts must be greater than 0",
+    "PLACEHOLDER_STATUS_PRODUCT": "Select a status",
+
+    "SELECT_PRODUCT_STATUS": "Select", 
+    "SELECT_PRODUCT_OPTION_ACTIVED": "Active", 
+    "SELECT_PRODUCT_OPTION_INACTIVED": "Inactive",
+
+    "SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION": "Select", 
+    "SELECT_UNIT_OF_MEASUREMENT_UNIT_OPTION": "Unit", 
+    "SELECT_UNIT_OF_MEASUREMENT_KG_OPTION": "Kilogram", 
+    "SELECT_UNIT_OF_MEASUREMENT_LITER_OPTION": "Liter", 
+    "SELECT_UNIT_OF_MEASUREMENT_PACKAGE_OPTION": "Package", 
+
+    "SWAL_CREATED": "PRODUCT!",
+    "SWAL_UPDATED": "PRODUCT!",
+    "SWAL_DELETED": "PRODUCT!",
+    
+    "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the product{{plural}} {{product_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete the product{{plural}} {{product_name}}?",
+
+    "CARD_TOTAL_PRODUCTS_TITLE": "Total products"
+  },
+
+  "BRAND": {
+    "LEGEND_TITLE": "Brand data",
+    "CREATE_TITLE": "Create",
+    "CREATE_SUBTITLE": "New brand",
+    "SEE_TITLE": "View",
+    "SEE_SUBTITLE": "Brand: {{brand_name}}",
+    "EDIT_TITLE": "Edit",
+    "EDIT_SUBTITLE": "Brand: {{brand_name}}",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_BRAND_NAME": "Brand",
+    "COLUMN_TOTAL_PRODUCTS": "Total products",
+
+    "LABEL_BRAND_NAME": "Brand",
+
+    "PLACEHOLDER_BRAND_NAME": "Enter a brand",
+
+    "SWAL_CREATED": "BRAND!",
+    "SWAL_UPDATED": "BRAND!",
+    "SWAL_DELETED": "BRAND!",
+    
+    "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the brand {{brand_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete {{art_the}} brand{{plural}} {{brand_name}}?",
+
+    "CARD_TOTAL_BRANDS_TITLE": "Total brands"
+  },
+
+  "EXTENT": {
+    "LEGEND_TITLE": "Measurement data",
+    "CREATE_TITLE": "Create",
+    "CREATE_SUBTITLE": "New extent",
+    "SEE_TITLE": "View",
+    "SEE_SUBTITLE": "Extent: {{extent_name}}",
+    "EDIT_TITLE": "Edit",
+    "EDIT_SUBTITLE": "Extent: {{extent_name}}",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_EXTENT_NAME": "Extent",
+    "COLUMN_TOTAL_EXTENT": "Total Extent",
+
+    "LABEL_EXTENT_NAME": "Extent",
+
+    "PLACEHOLDER_EXTENT_NAME": "Enter a extent",
+
+    "SWAL_CREATED": "EXTENT!",
+    "SWAL_UPDATED": "EXTENT!",
+    "SWAL_DELETED": "EXTENT!",
+    
+    "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the extent {{extent_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete {{art_the}} extent{{plural}} {{extent_name}}?",
+
+    "CARD_TOTAL_BRANDS_TITLE": "Total extent"
+  },
+  
+  "SWAL_WARNING_REVERSE_CHANGE": "You cannot reverse this!",
+  "SWAL_CREATED_RECORD": "Record successfully created.",
+  "SWAL_DELETED_RECORD": "Successfully deleted.",
+  "SWAL_UPDATED_RECORD": "Record successfully updated.",
+
+  "SWAL_BUTTON_DELETE": "Delete",
+  "SWAL_BUTTON_CANCEL": "Cancel",
+
+  "BUTTON_EDIT": "Edit",
+  
+  "BUTTON_PRODUCT": "Products",
+  "BUTTON_BRAND": "Brands",
+  "BUTTON_EXTENT": "Unit of measurement",
+  "BUTTON_SUPPLIER": "Suppliers"
+
+}

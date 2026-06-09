@@ -1,0 +1,103 @@
+{
+  "UNKNOW_MODULE_TITLE": "Desconocido",
+
+  "PAGE_ADMIN_TITLE": "Administradores",
+  "PAGE_FINAL_TITLE": "Finales",
+
+  "MODULE_TITLE": "Usuarios",
+
+  "CARD_TOTAL_ADMIN_TITLE": "Total usuarios",
+  "CARD_TOTAL_PERMISSIONS_TITLE": "Total de permisos asignados",
+  "CARD_TOTAL_SUSPENDED_USERS": "Total de usuarios suspendidos",
+  "CARD_TOTAL_ACTIVED_USERS": "Total de usuarios activos",
+
+  "CREATE_TITLE": "Crear",
+  "CREATE_SUBTITLE": "Nuevo registro",
+  "SEE_TITLE": "Ver",
+  "SEE_SUBTITLE": "{{user_name}}",
+  "EDIT_TITLE": "Editar",
+  "EDIT_SUBTITLE": "{{user_name}}",
+  "SEE_PERMISSIONS_TITLE": "Permisos asignados",
+
+  "ASSIGMENT_ADMIN_TITLE_BREADCRUMB": "Asignar permisos",
+  "ASSIGMENT_ADMIN_TITLE": "Asignar permisos a <br> {{user_name}}",
+
+  "SWAL_ARE_YOU_SURE_UPDATE_USER": "¿Esta seguro de actualizar el usuario {{user_name}}?",
+  "SWAL_ARE_YOU_SURE_DELETE_USER": "¿Esta seguro de eliminar {{art_the}} usuario{{plural}} {{user_name}}?",
+  "SWAL_WARNING_REVERSE_CHANGE": "¡No podrás revertir esto!",
+  "SWAL_CREATED": "¡USUARIO!",
+  "SWAL_CREATED_RECORD": "Creado exitosamente.",
+  "SWAL_UPDATED": "¡USUARIO!",
+  "SWAL_UPDATED_RECORD": "Actualizado exitosamente.",
+  "SWAL_BUTTON_DELETE": "Eliminar",
+  "SWAL_BUTTON_CANCEL": "Cancelar",
+  "SWAL_DELETED": "¡USUARIO!",
+  "SWAL_DELETED_RECORD": "Eliminado exitosamente.",
+  "SWAL_WORD_ONE_OPTION_SELECTION": "Necesitas seleccionar una opción",
+  "SWAL_WORD_OPTION_ACTIVATE": "Activar",
+  "SWAL_WORD_OPTION_INACTIVATE": "Inactivar",
+  "SWAL_ACTIVED_RECORD": "Activado exitosamente",
+  "SWAL_INACTIVED_RECORD": "Inactivado exitosamente",
+  "SWAL_INACTIVED_ALL_USER": "Inactivara los {{count_users}} usuarios seleccionados",
+
+  "LEGEND_TITLE_USER": "Datos del usuario",
+
+  "LABEL_USER_FIRSTNAME": "Nombres",
+  "LABEL_USER_LASTNAME": "Apellidos",
+  "LABEL_USER_EMAIL": "Correo",
+  "LABEL_USER_PASSWORD": "Contraseña",
+  "LABEL_USER_STATUS": "Estado",
+
+  "PLACEHOLDER_USER_FIRSTNAME": "Juan Andres",
+  "PLACEHOLDER_USER_LASTNAME": "Lozano Fonseca",
+  "PLACEHOLDER_USER_EMAIL": "email@example.com",
+  "PLACEHOLDER_USER_PASSWORD": "**********",
+
+  "SELECT_STATUS_USER_SELECT_OPTION": "Seleccione",
+  "SELECT_STATUS_USER_SELECT_NONE": "N/A", 
+  "SELECT_STATUS_USER_ACTIVE_OPTION": "Activo",
+  "SELECT_STATUS_USER_INACTIVE_OPTION": "Inactivo",
+
+  "ERROR_USER_FIRSTNAME": "Ingrese el/los nombres",
+  "ERROR_USER_LASTNAME": "Ingrese los apellidos",
+  "ERROR_USER_EMAIL": "Ingrese un correo valido",
+  "ERROR_USER_PASSWORD": "Ingrese una contraseña",
+  "ERROR_USER_STATUS": "Debe seleccionar un elemento",
+  "TABLE_TITLE": "Registros",
+
+  "REPORT_PERMISSION_TITLE": "Reporte",
+  "REPORT_PERMISSION_SUBTITLE": "de permisos",
+
+  "BUTTON_USER_CREATE": "Crear usuario",
+  "BUTTON_USER_EDIT": "Editar usuario",
+
+  "BUTTON_ADMIN": "Administradores",
+  "BUTTON_FINAL": "Finales",
+
+  "BUTTON_SAVE_": "Guardar",
+  "BUTTON_UPDATE_": "Actualizar",
+  "BUTTON_CANCEL": "Cancelar",
+  "BUTTON_BACK": "Volver",
+  "BUTTON_SEARCH": "Buscar",
+
+  "COLUMN_MODULE": "Módulo",
+  "COLUMN_SUBMODULE": "Submódulo",
+  "COLUMN_PERMISSION": "Permiso",
+  "COLUMN_IDENTIFIER": "Identificador",
+
+  "COLUMN_ID": "Id",
+  "COLUMN_EMAIL": "Correo electrónico",
+  "COLUMN_NAMES": "Nombres",
+  "COLUMN_LASTNAME": "Apellidos",
+  "COLUMN_PERMISSION_COUNT": "# Permisos",
+  "COLUMN_STATUS": "Estado",
+
+  "WORD_ACTIVED": "Activo",
+  "WORD_INACTIVED": "Inactivo",
+
+  "CONSOLE_ERROR_INVALID_TOKEN": "Token vacío o nulo detectado, limpiando...",
+  "CONSOLE_MSJ_REDIRECTING_TO_ADMIN": "Redirigiendo a usuario administrador",
+  "CONSOLE_MSJ_REDIRECTING_TO_FINAL": "Redirigiendo a usuario final",
+  "CONSOLE_MSJ_FORBIDDEN_TO_ADMIN": "Acceso prohibido: Eres usuario final, no administrador",
+  "CONSOLE_MSJ_FORBIDDEN_TO_FINAL": "Acceso prohibido: Eres usuario administrador, no final"
+}

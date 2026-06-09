@@ -1,0 +1,87 @@
+{
+  "UNKNOW_MODULE_TITLE": "Unbekanntes",
+  
+  "PAGE_TYPE_TITLE": "Verlustart",
+  "PAGE_RECORD_TITLE": "Verlustaufzeichnungen",
+
+  "MODULE_TITLE": "Schwund",
+  "TABLE_TITLE": "Datensätze",
+
+  "BUTTON_SAVE_": "Speichern",
+  "BUTTON_UPDATE_": "Aktualisieren",
+  "BUTTON_CANCEL": "Abbrechen",
+  "BUTTON_BACK": "Zurück",
+  "BUTTON_SEARCH": "Suchen",
+
+  "BUTTON_TYPE": "Verlustart",
+  "BUTTON_RECORD": "Verlustaufzeichnungen",
+  
+  "REGISTER": {
+    "LEGEND_TITLE": "Angewandter Schwund",
+    
+    "COLUMN_ID": "ID",
+    "COLUMN_TYPE": "Schwundart",
+    "COLUMN_BATCH": "Charge",
+    "COLUMN_REPORT_DATE": "Berichtsdatum",
+    "COLUMN_AMOUNT": "Menge",
+    "COLUMN_LOST_VALUE": "Verlustwert",
+    "COLUMN_OBSERVATION": "Bemerkung",
+
+    "LABEL_TYPE": "Schwundart",
+    "LABEL_AMOUT": "Menge",
+    "LABEL_REPORT_DATE": "Berichtsdatum",
+    "LABEL_LOST_VALUE": "Verlustwert",
+    "LABEL_OBSERVATION": "Anmerkung",
+    
+    "PLACEHOLDER_TYPE": "Schwundart auswählen",
+    "PLACEHOLDER_AMOUT": "Geben Sie die verlorene Menge ein",
+    "PLACEHOLDER_REPORT_DATE": "Datum eingeben",
+    "PLACEHOLDER_LOST_VALUE": "Schätzwert eingeben",
+    "PLACEHOLDER_OBSERVACION": "Anmerkung eingeben",
+
+    "ERROR_QUANTITY_THAT_ALLOWED": "Fehler: Menge übersteigt den im Lager registrierten Bestand",
+
+    "SWAL_CREATED": "Registriert!",
+    "SWAL_UPDATED": "Aktualisiert!",
+    "SWAL_DELETED": "Gelöscht!",
+
+    "SWAL_ARE_YOU_SURE_UPDATE": "Sind Sie sicher, dass Sie den Datensatz {{user_name}} aktualisieren möchten?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Sind Sie sicher, dass Sie {{art_the}} Datensatz{{plural}} {{user_name}} löschen möchten?",
+
+    "CARD_TOTAL_REGISTER_TITLE": "Gesamtregister"
+  },
+
+  "TYPE": {
+    "LEGEND_TITLE": "Verlusttypdaten",
+    "CREATE_TITLE": "Erstellen",
+    "CREATE_SUBTITLE": "Nueva Schwundart",
+    "EDIT_TITLE": "Bearbeiten",
+    "EDIT_SUBTITLE": "Schwundart: {{type_name}}",
+    "SEE_TITLE": "Anzeigen",
+    "SEE_SUBTITLE": "Schwundart: {{type_name}}",
+
+    "LABEL_NAME_TYPE": "Name",
+    "PLACEHOLDER_NAME_TYPE": "Einen Namen eingeben",
+
+    "SWAL_CREATED": "¡TYP!",
+    "SWAL_UPDATED": "¡TYP!",
+    "SWAL_DELETED": "¡TYP!",
+
+    "SWAL_ARE_YOU_SURE_UPDATE": "Möchten Sie den Benutzernamen wirklich aktualisieren?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Möchten Sie den Benutzernamen wirklich löschen?",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_NAME": "Name",
+    "COLUMN_TOTAL": "Gesamt",
+
+    "CARD_TOTAL_TYPE_TITLE": "Types insgesamt"
+  },
+
+  "SWAL_WARNING_REVERSE_CHANGE": "Diese Änderung kann nicht rückgängig gemacht werden!",
+  "SWAL_CREATED_RECORD": "Datensatz erfolgreich erstellt.",
+  "SWAL_DELETED_RECORD": "Erfolgreich gelöscht.",
+  "SWAL_UPDATED_RECORD": "Erfolgreich aktualisiert.",
+
+  "SWAL_BUTTON_DELETE": "Löschen",
+  "SWAL_BUTTON_CANCEL": "Abbrechen"
+}

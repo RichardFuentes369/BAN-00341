@@ -1,0 +1,208 @@
+<div class="card shadow card-custom pt-0 px-4 rounded-0">
+  @if(!accioneson){
+    <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center px-0 mt-3 mb-2">
+      <div class="title-container mb-2 mb-md-0">
+        <h5 class="m-0 fw-bold text-secondary">{{ title }}</h5>
+      </div>
+    </div>
+    <div class="entries-container my-2 d-flex justify-content-center align-items-center gap-2 w-100">
+      <label class="small text-muted d-flex align-items-center gap-2 bg-light px-3 py-2 rounded-pill shadow-sm my-auto">
+        {{ 'global-gridcrud.PAGINATION_INFO_SHOW' | translate }}
+        <select class="form-select form-select-sm w-auto border-0 bg-transparent fw-bold text-primary"
+          style="width: 75px; height: 32px; cursor: pointer;" [(ngModel)]="dtOptions.pageLength"
+          (change)="cambiarLimiteRegistros($event)">
+          <option [value]="5">5</option>
+          <option [value]="10">10</option>
+          <option [value]="25">25</option>
+          <option [value]="50">50</option>
+        </select>
+        <span class="text-muted small text-nowrap">{{ 'global-tablecrud.TABLE_INFO_RECORDS' | translate }}</span>
+      </label>
+    </div>  
+  }
+  @if(accioneson){
+    <div class="botoneria d-flex flex-column flex-md-row align-items-start align-items-md-center px-0">
+      <div class="title-container mb-2 mb-md-0">
+        <h5 class="m-0 fw-bold text-secondary">{{ title }}</h5>
+        @if(habilitarSeleccion){
+          <span class="text-muted animated fadeIn" style="font-size: 0.85rem;">
+            {{ 'global-tablecrud.WORD_SELECTED' | translate }}:
+            <b class="text-dark">{{idsSeleccionados.length}}</b>
+          </span>
+        }
+      </div>
+
+      <div class="entries-container mb-2 mb-md-0 me-auto ms-md-4 d-flex align-items-center gap-2">
+        <label class="small text-muted d-flex align-items-center gap-2 bg-light px-3 py-2 rounded-pill shadow-sm my-auto">
+          {{ 'global-gridcrud.PAGINATION_INFO_SHOW' | translate }}
+          <select class="form-select form-select-sm w-auto border-0 bg-transparent fw-bold text-primary"
+            style="width: 75px; height: 32px; cursor: pointer;" [(ngModel)]="dtOptions.pageLength"
+            (change)="cambiarLimiteRegistros($event)">
+            <option [value]="5">5</option>
+            <option [value]="10">10</option>
+            <option [value]="25">25</option>
+            <option [value]="50">50</option>
+          </select>
+          <span class="text-muted small text-nowrap">{{ 'global-tablecrud.TABLE_INFO_RECORDS' | translate }}</span>
+        </label>
+      </div>     
+
+      <div class="actions-container d-flex flex-wrap align-items-center">
+        @if(tienePermiso('cargar_excel')){
+          <span>
+            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
+                    (click)="uploadItem()" 
+                    [disabled]="idsSeleccionados.length >= 1">
+              <i class="fa fa-upload"
+                [class.text-muted]="idsSeleccionados.length !== 0"
+                [class.text-primary]="idsSeleccionados.length === 0"></i>
+              <div class="nameButton text-lowercase">
+                {{ 'global-tablecrud.BUTTON_OPTION_UPLOAD' | translate }}
+              </div>
+            </button>
+          </span>
+        }
+
+        @if(tienePermiso('crear')){
+          <span>
+            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
+                    (click)="newItem()" 
+                    [disabled]="idsSeleccionados.length >= 1">
+              <i class="fa-solid fa-circle-plus text-primary icon-main"
+                [class.text-prmary]="idsSeleccionados.length === 0"
+                [class.text-muted]="idsSeleccionados.length >= 1"></i>
+              <div class="nameButton text-lowercase">
+                {{ 'global-tablecrud.BUTTON_OPTION_CREATE' | translate }}
+              </div>
+            </button>
+          </span>
+        }
+  
+        @if(tienePermiso('asignar_permisos')){
+          <span>
+            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
+                    (click)="assign($event)" 
+                    [disabled]="idsSeleccionados.length !== 1">
+              <i class="fa-solid fa-key" 
+                [class.text-warning]="idsSeleccionados.length === 1"
+                [class.text-muted]="idsSeleccionados.length !== 1"></i>
+              <div class="nameButton text-lowercase">
+                {{ 'global-tablecrud.BUTTON_OPTION_ASSIGN_PERMISSION' | translate }}
+              </div>
+            </button>
+          </span>
+        }
+
+        @if(tienePermiso('asignar_productos')){
+          <span>
+            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
+                    (click)="assign($event)" 
+                    [disabled]="idsSeleccionados.length !== 1">
+              <i class="fa-solid fa-list"
+                [class.text-success]="idsSeleccionados.length === 1"
+                [class.text-muted]="idsSeleccionados.length !== 1"></i>
+              <div class="nameButton text-lowercase">
+                {{ 'global-tablecrud.BUTTON_OPTION_ASSIGN_PRODUCTS' | translate }}
+              </div>
+            </button>
+          </span>
+        }
+  
+        @if(tienePermiso('ver')){
+          <span>
+            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
+                    (click)="seeItem()" 
+                    [disabled]="idsSeleccionados.length !== 1">
+              <i class="fa-solid fa-eye" 
+                [class.text-primary]="idsSeleccionados.length === 1"
+                [class.text-muted]="idsSeleccionados.length !== 1"></i>
+              <div class="nameButton text-lowercase">
+                {{ 'global-tablecrud.BUTTON_OPTION_SEE' | translate }}
+              </div>
+            </button>
+          </span>
+        }
+  
+        @if(tienePermiso('editar')){
+          <span>
+            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
+                    (click)="editItem()" 
+                    [disabled]="idsSeleccionados.length !== 1">
+              <i class="fa-solid fa-pen-to-square" 
+                [class.text-warning]="idsSeleccionados.length === 1"
+                [class.text-muted]="idsSeleccionados.length !== 1"></i>
+              <div class="nameButton text-lowercase">
+                {{ 'global-tablecrud.BUTTON_OPTION_EDIT' | translate }}
+              </div>
+            </button>
+          </span>
+        }
+  
+        @if(tienePermiso('estado_usuario')){
+          <span>
+            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
+                    (click)="activedItem()" 
+                    [disabled]="idsSeleccionados.length == 0">
+              <i class="fas fa-user-slash" 
+                [class.text-warning]="idsSeleccionados.length >= 1"
+                [class.text-muted]="idsSeleccionados.length == 0"></i>
+              <div class="nameButton text-lowercase">
+                {{ 'global-tablecrud.BUTTON_OPTION_STATUS' | translate }}
+              </div>
+            </button>
+          </span>
+        }
+  
+        @if(tienePermiso('eliminar_individual')){
+          <span>
+            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
+                    (click)="deleteItem()" 
+                    [disabled]="idsSeleccionados.length === 0 || idsSeleccionados.length > 1">
+              <i class="fa-solid fa-trash-can" 
+                [class.text-danger]="idsSeleccionados.length > 0"
+                [class.text-muted]="idsSeleccionados.length === 0 || idsSeleccionados.length > 1"></i>
+              <div class="nameButton text-lowercase">
+                {{ 'global-tablecrud.BUTTON_OPTION_DELETE' | translate }}
+              </div>
+            </button>
+          </span>
+        }          
+        
+        @if(tienePermiso('eliminar_multiple')){
+          <span>
+            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
+                    (click)="deleteItem()" 
+                    [disabled]="idsSeleccionados.length === 0">
+              <i class="fa-solid fa-trash-can" 
+                [class.text-danger]="idsSeleccionados.length > 0"
+                [class.text-muted]="idsSeleccionados.length === 0"></i>
+              <div class="nameButton text-lowercase">
+                {{ 'global-tablecrud.BUTTON_OPTION_DELETE' | translate }}
+              </div>
+            </button>
+          </span>
+        }
+  
+        @if(habilitarSeleccion){
+          <span>
+            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
+                    (click)="selectionClear()" 
+                    [disabled]="idsSeleccionados.length === 0">
+              <i class="fa-solid fa-broom" 
+                [class.text-secondary]="idsSeleccionados.length > 0"
+                [class.text-muted]="idsSeleccionados.length === 0"></i>
+              <div class="nameButton text-lowercase">
+                {{ 'global-tablecrud.BUTTON_OPTION_CLEAR' | translate }}
+              </div>
+            </button>
+          </span>
+        }
+      </div>
+    </div>
+  }
+  <div class="mb-3">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+      class="table table-striped table-hover align-middle mb-0 w-100 row-border hover tableDatatable table w-100">
+    </table>
+  </div>
+</div>

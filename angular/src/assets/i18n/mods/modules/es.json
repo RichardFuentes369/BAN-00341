@@ -1,0 +1,72 @@
+{
+  "UNKNOW_MODULE_TITLE": "Desconocido",
+
+  "MODULE_TITLE": "Modulos",
+
+  "CREATE_TITLE": "Crear",
+  "CREATE_SUBTITLE_MODULE": "Nuevo modulo",
+  "CREATE_SUBTITLE_SUBMODULE": "Nuevo submodulo",
+  "CREATE_SUBTITLE_PERMISSION": "Nuevo permiso",
+  "SEE_TITLE": "Ver",
+  "SEE_SUBTITLE_MODULE": "Modulo: {{module_name}}",
+  "SEE_SUBTITLE_SUBMODULE": "Submodulo: {{module_name}}",
+  "SEE_SUBTITLE_PERMISSON": "Permiso: {{module_name}}",
+  "EDIT_TITLE": "Editar",
+  "EDIT_SUBTITLE_MODULE": "Modulo: {{module_name}}",
+  "EDIT_SUBTITLE_SUBMODULE": "Submodulo: {{module_name}}",
+  "EDIT_SUBTITLE_PERMISSION": "Permiso: {{module_name}}",
+
+  "SUBMODULE_TITLE": "Submodulos",
+  "PERMISSION_TITLE": "Permiso",
+
+  "SWAL_ARE_YOU_SURE": "¿Esta seguro de eliminar el permiso {{permission_name}}?",
+  "SWAL_WARNING_REVERSE_CHANGE": "¡No podrás revertir esto!",
+  "SWAL_ERROR": "¡Permiso!",
+  "SWAL_ERROR_RECORD": "Error.",
+  "SWAL_CREATED": "¡Permiso!",
+  "SWAL_CREATED_RECORD": "Creado exitosamente.",
+  "SWAL_UPDATED": "¡Permiso!",
+  "SWAL_UPDATED_RECORD": "Actualizado exitosamente.",
+  "SWAL_BUTTON_DELETE": "Eliminar",
+  "SWAL_BUTTON_CANCEL": "Cancelar",
+  "SWAL_DELETED": "¡Permiso!",
+  "SWAL_DELETED_RECORD": "Eliminado exitosamente.",
+
+  "LABEL_PERMISSION_NAME": "Modulo/Permiso",
+  "LABEL_PERMISSION_NICKNAME": "Identificador",
+  "LABEL_PERMISSION_DESCRIPTION": "Descripción",
+  "LABEL_PERMISSION_HAS_": "Tiene",
+  "SELECT_STATUS_MODULE_OR_PERMISSION_SELECT_OPTION": "Seleccione",
+  "LABEL_HAS_SUBMODULE": "Submodulos",
+  "LABEL_HAS_PERMISSION": "Permisos",
+
+  "PLACEHOLDER_PERMISSION_NAME": "Nombre del modulo-permiso",
+  "PLACEHOLDER_PERMISSION_NICKNAME": "Identificador del modulo-permiso",
+  "PLACEHOLDER_PERMISSION_DESCRIPTION": "¿Para que usara este permiso?",
+
+  "ERROR_WORD": "Seleccione",
+  "ERROR_SELECT_ONE": "una opción",
+  "ERROR_PERMISSION_NAME": "El permiso debe tener un nombre",
+  "ERROR_PERMISSION_NICKNAME": "El permiso debe tener un identificador asignado. (sin espacios)",
+  "ERROR_PERMISSION_DESCRIPTION": "El permiso debe tener una descripción",
+  "ERROR_PERMISSION_HAS": "Debe seleccionar un elemento",
+
+  "BUTTON_CREATE_PERMISSION": "Create modulo/permiso",
+  "BUTTON_EDIT_PERMISSION": "Editar modulo/permiso",
+
+  "BUTTON_SAVE_": "Guardar",
+  "BUTTON_UPDATE_": "Actualizar",
+  "BUTTON_CANCEL": "Cancelar",
+  "BUTTON_SEARCH": "Buscar",
+
+  "COLUMN_MODULE_NAME": "Nombre del modulo",
+  "COLUMN_SUBMODULE_NAME": "Nombre del submodulo",
+  "COLUMN_PERMISSION_NAME": "Nombre del permiso",
+  "COLUMN_PERMISSION_NICKNAME": "Identificador",
+  "COLUMN_DESCRIPTION": "Descripción",
+  "COLUMN_HAS_SUBMODULE": "Tiene submodulos",
+  "COLUMN_HAS_PERMISSION": "Tiene permisos",
+
+  "WORD_YES": "Si",
+  "WORD_NO": "No"
+}

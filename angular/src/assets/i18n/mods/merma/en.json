@@ -1,0 +1,87 @@
+{
+  "UNKNOW_MODULE_TITLE": "Unknown Module",
+
+  "PAGE_TYPE_TITLE": "Loss Type",
+  "PAGE_RECORD_TITLE": "Loss Records",
+
+  "MODULE_TITLE": "Shrink",
+  "TABLE_TITLE": "Records",
+
+  "BUTTON_SAVE_": "Save",
+  "BUTTON_UPDATE_": "Update",
+  "BUTTON_CANCEL": "Cancel",
+  "BUTTON_BACK": "Back",
+  "BUTTON_SEARCH": "Search",
+
+  "BUTTON_TYPE": "Loss Type",
+  "BUTTON_RECORD": "Loss Records",
+
+  "REGISTER": {
+    "LEGEND_TITLE": "Applied shrinkage",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_TYPE": "Shrinkage type",
+    "COLUMN_BATCH": "Batch",
+    "COLUMN_REPORT_DATE": "Report date",
+    "COLUMN_AMOUNT": "Quantity",
+    "COLUMN_LOST_VALUE": "Lost value",
+    "COLUMN_OBSERVATION": "Observation",
+
+    "LABEL_TYPE": "Shrinkage type",
+    "LABEL_AMOUT": "Quantity",
+    "LABEL_REPORT_DATE": "Report date",
+    "LABEL_LOST_VALUE": "Lost value",
+    "LABEL_OBSERVATION": "Observation",
+    
+    "PLACEHOLDER_TYPE": "Select shrinkage type",
+    "PLACEHOLDER_AMOUT": "Enter the lost quantity",
+    "PLACEHOLDER_REPORT_DATE": "Enter a date",
+    "PLACEHOLDER_LOST_VALUE": "Enter estimated value",
+    "PLACEHOLDER_OBSERVACION": "Enter an observation",
+
+    "ERROR_QUANTITY_THAT_ALLOWED": "Error: quantity exceeds the amount registered in the warehouse",
+
+    "SWAL_CREATED": "Registered!",
+    "SWAL_UPDATED": "Updated!",
+    "SWAL_DELETED": "Deleted!",
+
+    "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the record {{user_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete {{art_the}} record{{plural}} {{user_name}}?",
+    
+    "CARD_TOTAL_REGISTER_TITLE": "Total records"
+  },
+
+  "TYPE": {
+    "LEGEND_TITLE": "Loss type data",
+    "CREATE_TITLE": "Create",
+    "CREATE_SUBTITLE": "New shrinkage type",
+    "EDIT_TITLE": "Edit",
+    "EDIT_SUBTITLE": "Shrinkage type: {{type_name}}",
+    "SEE_TITLE": "View",
+    "SEE_SUBTITLE": "Shrinkage type: {{type_name}}",
+
+    "LABEL_NAME_TYPE": "Name",
+    "PLACEHOLDER_NAME_TYPE": "Enter a name",
+
+    "SWAL_CREATED": "TYPE!",
+    "SWAL_UPDATED": "TYPE!",
+    "SWAL_DELETED": "TYPE!",
+    
+    "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the type{{plural}} {{user_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete the type{{plural}} {{user_name}}?",
+
+    "COLUMN_ID": "Id",
+    "COLUMN_NAME": "Name",
+    "COLUMN_TOTAL": "Total",
+
+    "CARD_TOTAL_TYPE_TITLE": "Total types"
+  },
+  
+  "SWAL_WARNING_REVERSE_CHANGE": "You cannot reverse this!",
+  "SWAL_CREATED_RECORD": "Record successfully created.",
+  "SWAL_DELETED_RECORD": "Successfully deleted.",
+  "SWAL_UPDATED_RECORD": "Record successfully updated.",
+
+  "SWAL_BUTTON_DELETE": "Delete",
+  "SWAL_BUTTON_CANCEL": "Cancel"
+}

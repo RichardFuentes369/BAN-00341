@@ -1,0 +1,78 @@
+{
+  "UNKNOW_MODULE_TITLE": "Módulo desconocido",
+
+  "MODULE_TITLE": "Bodega",
+  "TABLE_TITLE": "Registros",
+
+  "MSJ_ERROR_CREATE_PRODUCTS_PERMISSION": "Contacte con el administrador para poder crear nuevos productos; su usuario no tiene permisos para realizar dicha acción.",
+  "MSJ_ERROR_PRODUCT_INACTIVE": "Este producto se encuentra inactivo",
+
+  "REPORT_PERMISSION_TITLE": "Reporte",
+  "REPORT_PERMISSION_SUBTITLE": "de trazabilidad",
+
+  "BUTTON_SAVE_": "Guardar",
+  "BUTTON_UPDATE_": "Actualizar",
+  "BUTTON_CANCEL": "Cancelar",
+  "BUTTON_BACK": "Volver",
+  "BUTTON_SEARCH": "Buscar",
+
+  "CREATE_TITLE": "Crear",
+  "CREATE_SUBTITLE": "Nuevo lote",
+  "SEE_TITLE": "Ver",
+  "SEE_SUBTITLE": "Lote: {{batch_code}}",
+  "EDIT_TITLE": "Editar",
+  "EDIT_SUBTITLE": "Lote: {{batch_code}}",
+
+  "COLUMN_ID": "Id",
+  "COLUMN_REPORT_DATE": "Fecha entrada",
+  "COLUMN_EXPIRATION_DATE": "Fecha vencimiento",
+  "COLUMN_IN_STOCK": "En bodega",
+  "COLUMN_PURCHASED": "Comprada",
+  "COLUMN_SOLD": "Vendida",
+  "COLUMN_SHRINKAGE": "Merma",
+  "COLUMN_BATCH": "Lote",
+  "COLUMN_PRODUCT": "Producto",
+  "COLUMN_SUPPLIER": "Proveedor",
+  "COLUMN_UNIT_OF_MEASUREMENT": "Unidad de medida",
+  "COLUMN_STATUS": "Estado",
+
+  "LEGEND_TITLE": "Datos de lote",
+  "LABEL_LOTE": "Lote",
+  "LABEL_FECHA_ENTRADA": "Fecha de entrada",
+  "LABEL_FECHA_VENCIMIENTO": "Fecha de vencimiento",
+  "LABEL_CANTIDAD_COMPRADA": "Cantidad comprada",
+  "LABEL_CANTIDAD_VENDIDA": "Cantidad vendida",
+  "LABEL_CANTIDAD_AFECTADA": "Cantidad afectada por merma",
+  "LABEL_CANTIDAD_BODEGA": "Cantidad en bodega",
+  "LABEL_COSTO_UNITARIO": "Costo unitario",
+  "LABEL_PRECIO_VENTA_SUGERIDO": "Precio de venta sugerido",
+  "LABEL_ESTADO": "Estado",
+
+  "SELECT_SELECT_OPTION": "Seleccionar", 
+  "SELECT_AVAILABLE_OPTION": "Disponible", 
+  "SELECT_UNAVAILABLE_OPTION": "Vencido", 
+  "SELECT_EXPIRED_OPTION": "Agotado",
+
+  "PLACEHOLDER_LOTE": "Ingrese el número de lote",
+  "PLACEHOLDER_FECHA_ENTRADA": "Seleccione la fecha de entrada",
+  "PLACEHOLDER_FECHA_VENCIMIENTO": "Seleccione la fecha de vencimiento",
+  "PLACEHOLDER_CANTIDAD_COMPRADA": "Ingrese la cantidad comprada",
+  "PLACEHOLDER_CANTIDAD_VENDIDA": "Ingrese la cantidad vendida",
+  "PLACEHOLDER_STOCK": "Ingrese la cantidad en stock",
+  "PLACEHOLDER_COSTO_UNITARIO": "Ingrese el costo unitario",
+  "PLACEHOLDER_PRECIO_VENTA_SUGERIDO": "Ingrese el precio de venta sugerido",
+  "PLACEHOLDER_ESTADO": "Seleccione el estado",
+
+  "CARD_TOTAL_LOT_TITLE": "Total registros",
+
+  "SWAL_ARE_YOU_SURE_DELETE_WAREHOUSE": "¿Está seguro de eliminar estos registros de la bodega?",
+  "SWAL_WARNING_REVERSE_CHANGE": "¡No podrás revertir esto!",
+  "SWAL_CREATED": "BODEGA!",
+  "SWAL_CREATED_RECORD": "Creado exitosamente.",
+  "SWAL_UPDATED": "BODEGA!",
+  "SWAL_UPDATED_RECORD": "Actualizado exitosamente.",
+  "SWAL_BUTTON_DELETE": "Eliminar",
+  "SWAL_BUTTON_CANCEL": "Cancelar",
+  "SWAL_DELETED": "BODEGA!",
+  "SWAL_DELETED_RECORD": "Eliminado exitosamente."
+}

@@ -1,0 +1,16 @@
+<div class="card shadow-sm card-custom rounded-0">
+  <div class="card-body card-body-custom d-flex align-items-center border-left-primary">
+    <div class="logo-container">
+      <img [src]="img" class="img-logo" alt="logo">
+    </div>
+    <div class="divider"></div>
+    <div class="text-container">
+      <div class="title-text">
+        {{ title }}
+      </div>
+      <div class="content-text">
+        {{ displayValue | number:'1.0-0' }}
+      </div>
+    </div>
+  </div>
+</div>

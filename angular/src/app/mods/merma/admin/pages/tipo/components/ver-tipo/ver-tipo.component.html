@@ -1,0 +1,20 @@
+<div class="">
+  @for (item of tipo; track item; let  i = $index) {
+  <div class="col-xl col-sm-12">
+    <fieldset class="border p-3 rounded">
+      <legend class="float-none w-auto p-1">
+        {{ 'mod-merma.TYPE.LEGEND_TITLE' | translate }}
+      </legend>
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-merma.TYPE.LABEL_NAME_TYPE' | translate}}
+        </label>
+        <input type="text" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.nombre}}" readonly>
+      </div>
+    </fieldset>
+  </div>
+  }
+</div>
+
+
+

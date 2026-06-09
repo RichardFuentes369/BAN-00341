@@ -1,0 +1,90 @@
+<div class="container-fluid p-0">
+  @for (item of producto; track item.id; let i = $index) {
+  <div class="col-xl col-sm-12">
+    <fieldset class="border p-3 rounded">
+      <legend class="float-none w-auto p-1">
+        {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_PRODUCT' | translate }}
+        <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('productSeccion')">
+          <i [class]="mostrarSeccion.productSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+        </button>
+      </legend>
+      <div class="row" *ngIf="mostrarSeccion.productSeccion" [class.animate__fadeIn]="mostrarSeccion.productSeccion" [class.animate__fadeOut]="!mostrarSeccion.productSeccion">
+        <div class="col-sm-6 form-group mb-3">
+          <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
+          <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="item.nombre" disabled>
+        </div>
+  
+        <div class="col-sm-6 form-group mb-3">
+          <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
+          <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="item.marca.nombre" disabled>
+        </div>
+
+        <div class="col-sm-6 form-group mb-3">
+          <label>{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
+          <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="item.codigo_barra" disabled>
+        </div>
+
+        <div class="col-sm-6 form-group mb-3">
+          <label>{{ 'mod-catalog.PRODUCT.LABEL_BRAND_STATUS' | translate }}</label>
+          <select class="form-control form-select-sm bg-light" [(ngModel)]="item.estado" disabled>
+            <option [ngValue]="true">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_ACTIVED' | translate }}</option>
+            <option [ngValue]="false">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_INACTIVED' | translate }}</option>
+          </select>
+        </div> 
+      </div>
+    </fieldset>
+
+    <fieldset class="border p-3 rounded">
+      <legend class="float-none w-auto p-1">
+        {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_STOCK' | translate }}
+        <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('stockSeccion')">
+          <i [class]="mostrarSeccion.stockSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+        </button>
+      </legend>
+      <div class="row" *ngIf ="mostrarSeccion.stockSeccion" [class.animate__fadeIn]="mostrarSeccion.stockSeccion" [class.animate__fadeOut]="!mostrarSeccion.stockSeccion">
+        <div class="col-sm-6 form-group mb-3">
+          <label>{{ 'mod-catalog.PRODUCT.LABEL_MINIMUM_QUANTITY' | translate }}</label>
+          <input type="number" min="1" class="form-control form-select-sm bg-light" [(ngModel)]="item.stock_minimo" disabled>
+        </div>
+        <div class="col-sm-6 form-group mb-3">
+          <label>{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</label>
+          <input type="text" min="1" class="form-control form-select-sm bg-light" [(ngModel)]="item.medida.nombre" disabled>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="border p-3 rounded">
+      <legend class="float-none w-auto p-1">
+        {{ 'mod-catalog.PRODUCT.LABEL_CHECK_PERISHABLE' | translate }}
+        <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('esPerecedero')">
+          <i [class]="mostrarSeccion.esPerecedero ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+        </button>
+      </legend>
+      <div class="row" *ngIf="mostrarSeccion.esPerecedero" [class.animate__fadeIn]="mostrarSeccion.esPerecedero" [class.animate__fadeOut]="!mostrarSeccion.esPerecedero">
+        <div class="form-check form-switch d-flex mb-2 justify-content-center">
+          <input class="form-check-input" type="checkbox" role="switch" [checked]="item.es_perecedero" disabled>
+        </div>
+        @if(item.es_perecedero) {
+          <div class="row mt-3 animate__animated animate__fadeIn">
+            <div class="col-sm-6 text-left">
+              <label class="small text-muted">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_YELLOW_ALERT' | translate }}</label>
+              <input type="number" class="form-control form-select-sm form-control form-select-sm-sm text-center bg-light" 
+                      [value]="item.alerta_amarilla" readonly>
+            </div>
+            <div class="col-sm-6 text-left">
+              <label class="small text-muted">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_ORANGE_ALERT' | translate }}</label>
+              <input type="number" class="form-control form-select-sm form-control form-select-sm-sm text-center bg-light" 
+                      [value]="item.alerta_naranja" readonly>
+            </div>
+          </div>
+        }
+      </div>
+    </fieldset>
+  </div>
+  } @empty {
+    <div class="text-center p-5">
+      <div class="spinner-border text-primary" role="status"></div>
+      <p class="mt-2 text-muted">Cargando detalles del producto...</p>
+    </div>
+  }
+</div>

@@ -1,0 +1,87 @@
+{
+  "UNKNOW_MODULE_TITLE": "Inconnu",
+
+  "PAGE_TYPE_TITLE": "Type de perte",
+  "PAGE_RECORD_TITLE": "Registres de perte",
+
+  "MODULE_TITLE": "Démarque",
+  "TABLE_TITLE": "Registres",
+
+  "BUTTON_SAVE_": "Enregistrer",
+  "BUTTON_UPDATE_": "Mettre à jour",
+  "BUTTON_CANCEL": "Annuler",
+  "BUTTON_BACK": "Retour",
+  "BUTTON_SEARCH": "Rechercher",
+
+  "BUTTON_TYPE": "Type de perte",
+  "BUTTON_RECORD": "Registres de perte",
+  
+  "REGISTER": {
+    "LEGEND_TITLE": "Pertes appliquées",
+    
+    "COLUMN_ID": "ID",
+    "COLUMN_TYPE": "Type de démarque",
+    "COLUMN_BATCH": "Lot",
+    "COLUMN_REPORT_DATE": "Date du rapport",
+    "COLUMN_AMOUNT": "Quantité",
+    "COLUMN_LOST_VALUE": "Valeur perdue",
+    "COLUMN_OBSERVATION": "Observation",
+
+    "LABEL_TYPE": "Type de perte",
+    "LABEL_AMOUT": "Quantité",
+    "LABEL_REPORT_DATE": "Date de rapport",
+    "LABEL_LOST_VALUE": "Valeur perdue",
+    "LABEL_OBSERVATION": "Observation",
+    
+    "PLACEHOLDER_TYPE": "Type de démarque",
+    "PLACEHOLDER_AMOUT": "Saisissez la quantité perdue",
+    "PLACEHOLDER_REPORT_DATE": "Saisir une date",
+    "PLACEHOLDER_LOST_VALUE": "Saisir la valeur estimée",
+    "PLACEHOLDER_OBSERVACION": "Saisir une observation",
+
+    "ERROR_QUANTITY_THAT_ALLOWED": "Erreur : quantité supérieure à la quantité enregistrée en entrepôt",
+
+    "SWAL_CREATED": "Enregistré !",
+    "SWAL_UPDATED": "Mis à jour !",
+    "SWAL_DELETED": "Supprimé !",
+
+    "SWAL_ARE_YOU_SURE_UPDATE": "Êtes-vous sûr de vouloir mettre à jour l'enregistrement {{user_name}} ?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Êtes-vous sûr de vouloir supprimer {{art_the}} enregistrement{{plural}} {{user_name}} ?",
+
+    "CARD_TOTAL_REGISTER_TITLE": "Total des enregistrements"
+  },
+
+  "TYPE": {
+    "LEGEND_TITLE": "Données de type de perte",
+    "CREATE_TITLE": "Créer",
+    "CREATE_SUBTITLE": "Nouveau type de démarque",
+    "EDIT_TITLE": "Modifier",
+    "EDIT_SUBTITLE": "Type de démarque : {{type_name}}",
+    "SEE_TITLE": "Voir",
+    "SEE_SUBTITLE": "Type de démarque : {{type_name}}",
+
+    "LABEL_NAME_TYPE": "Nom",
+    "PLACEHOLDER_NAME_TYPE": "Saisir un nom",
+
+    "SWAL_CREATED": "¡TYPE!",
+    "SWAL_UPDATED": "¡TYPE!",
+    "SWAL_DELETED": "¡TYPE!",
+
+    "SWAL_ARE_YOU_SURE_UPDATE": "Êtes-vous sûr de vouloir mettre à jour le fournisseur {{user_name}} ?",
+    "SWAL_ARE_YOU_SURE_DELETE": "Êtes-vous sûr de vouloir supprimer le(s) fournisseur(s) {{user_name}} ?",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_NAME": "Nom",
+    "COLUMN_TOTAL": "Total",
+
+    "CARD_TOTAL_TYPE_TITLE": "Total types"
+  },
+
+  "SWAL_WARNING_REVERSE_CHANGE": "Cette action est irréversible!",
+  "SWAL_CREATED_RECORD": "Enregistrement créé avec succès.",
+  "SWAL_DELETED_RECORD": "Supprimé avec succès.",
+  "SWAL_UPDATED_RECORD": "Mis à jour avec succès.",
+
+  "SWAL_BUTTON_DELETE": "Supprimer",
+  "SWAL_BUTTON_CANCEL": "Annuler"
+}

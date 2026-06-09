@@ -1,0 +1,29 @@
+<nav aria-label="breadcrumb" class="breadcrumb breadcrumb-full-container my-lg-n1 pl-sm-4">
+  @if (breadcrumbs.length > 0) {
+    <ol class="breadcrumb-nav">
+      @for (breadcrumb of breadcrumbs; track breadcrumb; let last = $last; let first = $first) {
+        <li class="breadcrumb-item">
+          @if (!last) {
+            <a [routerLink]="[breadcrumb.url]" 
+               [queryParams]="breadcrumb.queryParams" 
+               class="breadcrumb-link">
+               @if (first) { <i class="fas fa-home me-1"></i> }
+               {{ breadcrumb.label | translate }}
+            </a>
+            
+            <span class="breadcrumb-separator">
+              <i class="fas fa-chevron-right"></i>
+            </span>
+          } 
+          
+          @else {
+            <span class="breadcrumb-current">
+              {{ breadcrumb.label | translate }}
+            </span>
+          }
+
+        </li>
+      }
+    </ol>
+  }
+</nav>

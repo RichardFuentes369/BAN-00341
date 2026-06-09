@@ -1,0 +1,186 @@
+{
+  "UNKNOW_MODULE_TITLE": "Desconocido",
+
+  "PAGE_SUPPLIER_TITLE": "Proveedores",
+  "PAGE_PRODUCT_TITLE": "Productos",
+  "PAGE_BRAND_TITLE": "Marcas",
+  "PAGE_EXTENT_TITLE": "Unidad de medida",
+
+  "MODULE_TITLE": "Catálogo",
+  "TABLE_TITLE": "Registros",
+
+  "BUTTON_SAVE_": "Guardar",
+  "BUTTON_UPDATE_": "Actualizar",
+  "BUTTON_CANCEL": "Cancelar",
+  "BUTTON_BACK": "Volver",
+  "BUTTON_SEARCH": "Buscar",
+
+  "SUPPLIER": {
+    "LEGEND_TITLE": "Datos del proveedor",
+    "CREATE_TITLE": "Crear",
+    "CREATE_SUBTITLE": "Nuevo proveedor",
+    "SEE_TITLE": "Ver",
+    "SEE_SUBTITLE": "Proveedor: {{supplier_name}}",
+    "EDIT_TITLE": "Editar",
+    "EDIT_SUBTITLE": "Proveedor: {{supplier_name}}",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_BUSINESS_NIT": "NIT",
+    "COLUMN_BUSINESS_NAME": "Razón Social",
+    "COLUMN_BUSINESS_ADDRESS": "Dirección de la Empresa",
+    "COLUMN_BUSINESS_PHONE": "Teléfono de la Empresa",
+    "COLUMN_BUSINESS_EMAIL": "Correo Electrónico de la Empresa",
+
+    "LABEL_BUSINESS_NIT": "Identificación tributaria (NIT)",
+    "LABEL_BUSINESS_DV": "Dígito de verificación (DV)",
+    "LABEL_BUSINESS_NAME": "Nombre de la empresa",
+    "LABEL_BUSINESS_EMAIL": "Correo electrónico de la empresa",
+    "LABEL_BUSINESS_PHONE": "Teléfono de la empresa",
+    "LABEL_BUSINESS_ADDRESS": "Dirección de la empresa",
+    
+    "PLACEHOLDER_BUSINESS_NIT": "Ingrese el número de identificación tributaria",
+    "PLACEHOLDER_BUSINESS_DV": "Ingrese el dígito de verificación",
+    "PLACEHOLDER_BUSINESS_NAME": "Ingrese la razón social o nombre comercial",
+    "PLACEHOLDER_BUSINESS_EMAIL": "ejemplo@empresa.com",
+    "PLACEHOLDER_BUSINESS_PHONE": "Ej: +57 300 123 4567",
+    "PLACEHOLDER_BUSINESS_ADDRESS": "Ingrese la dirección física de la sede principal",
+
+    "SWAL_CREATED": "¡PROVEEDOR!",
+    "SWAL_UPDATED": "¡PROVEEDOR!",
+    "SWAL_DELETED": "¡PROVEEDOR!",
+
+    "SWAL_ARE_YOU_SURE_UPDATE": "¿Está seguro de que desea actualizar el proveedor {{user_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "¿Está seguro de que desea eliminar {{art_the}} proveedor{{plural}} {{user_name}}?",
+
+    "CARD_TOTAL_SUPPLIERS_TITLE": "Total proveedores"
+  },
+
+  "PRODUCT": {
+    "LEGEND_TITLE_PRODUCT": "Datos del producto",
+    "ASSIGMENT_PRODUCT_TITLE_BREADCRUMB": "Productos",
+    "UPLOAD_TITLE": "Cargar", 
+    "UPLOAD_SUBTITLE": "Productos por lote",
+    "CREATE_TITLE": "Crear",
+    "CREATE_SUBTITLE": "Nuevo producto",
+    "SEE_TITLE": "Ver",
+    "SEE_SUBTITLE": "Producto: {{product_name}}",
+    "EDIT_TITLE": "Editar",
+    "EDIT_SUBTITLE": "Producto: {{product_name}}",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_BRAND": "Marca",
+    "COLUMN_NAME": "Nombre",
+    "COLUMN_BAR_CODE": "Código de barras",
+    "COLUMN_STOCK": "Stock",
+    "COLUMN_STATUS": "Estado",
+    "COLUMN_UNIT_OF_MEASUREMENT": "Unidad de medida",
+
+    "LABEL_CHECK_PERISHABLE": "Es perecedero",
+    "LABEL_NAME_PRODUCT": "Nombre",
+    "LABEL_BRAND_PRODUCT": "Marca",
+    "LABEL_BRAND_YELLOW_ALERT": "Alerta amarilla (días)",
+    "LABEL_BRAND_ORANGE_ALERT": "Alerta naranja (días)",
+    "LABEL_BRAND_STATUS": "Estado",
+    "LABEL_COD_BAR_PRODUCT": "Código de barras",
+    "LEGEND_TITLE_STOCK": "Stock",
+    "LABEL_MINIMUM_QUANTITY": "Cantidad mínima",
+    "LABEL_UNIT_OF_MEASUREMENT_PRODUCT": "Unidad de medida",
+
+    "PLACEHOLDER_NAME_PRODUCT": "Ingresa un nombre",
+    "PLACEHOLDER_BRAND_PRODUCT": "Ingresa una marca",
+    "PLACEHOLDER_COD_BAR_INPUT": "Caracteres del código ingresados",
+    "PLACEHOLDER_COD_BAR_PRODUCT": "Ingresa un código de barras EAN-13 válido (13 dígitos)",
+    "PLACEHOLDER_STOCK_PRODUCT": "Ingresa la cantidad mínima de productos",
+    "PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT": "Seleccione una unidad de medida",
+    "PLACEHOLDER_ERROR_DIAS_PRODUCT": "La alerta amarilla no puede ser menor a la alerta naranja",
+    "PLACEHOLDER_ERROR_DIAS_NULOS": "La alerta amarilla y la alerta roja deben ser mayor a 0",
+    "PLACEHOLDER_STATUS_PRODUCT": "Seleccione un estado",
+
+    "SELECT_PRODUCT_STATUS": "Seleccionar", 
+    "SELECT_PRODUCT_OPTION_ACTIVED": "Activo", 
+    "SELECT_PRODUCT_OPTION_INACTIVED": "Inactivo", 
+
+    "SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION": "Seleccionar", 
+    "SELECT_UNIT_OF_MEASUREMENT_UNIT_OPTION": "Unidad", 
+    "SELECT_UNIT_OF_MEASUREMENT_KG_OPTION": "Kilogramo", 
+    "SELECT_UNIT_OF_MEASUREMENT_LITER_OPTION": "Litro", 
+    "SELECT_UNIT_OF_MEASUREMENT_PACKAGE_OPTION": "Paquete",
+
+    "SWAL_CREATED": "¡PRODUCTO!",
+    "SWAL_UPDATED": "¡PRODUCTO!",
+    "SWAL_DELETED": "¡PRODUCTO!",
+    
+    "SWAL_ARE_YOU_SURE_UPDATE": "¿Estás seguro de que deseas actualizar el producto {{product_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "¿Estás seguro de que deseas eliminar {{art_the}} producto{{plural}} {{product_name}}?",
+
+    "CARD_TOTAL_PRODUCTS_TITLE": "Total productos"
+  },
+
+  "BRAND": {
+    "LEGEND_TITLE": "Datos de marca",
+    "CREATE_TITLE": "Crear",
+    "CREATE_SUBTITLE": "Nueva marca",
+    "SEE_TITLE": "Ver",
+    "SEE_SUBTITLE": "Marca: {{brand_name}}",
+    "EDIT_TITLE": "Editar",
+    "EDIT_SUBTITLE": "Marca: {{brand_name}}",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_BRAND_NAME": "Marca",
+    "COLUMN_TOTAL_PRODUCTS": "Total productos",
+
+    "LABEL_BRAND_NAME": "Marca",
+
+    "PLACEHOLDER_BRAND_NAME": "Ingresa una marca",
+
+    "SWAL_CREATED": "¡MARCA!",
+    "SWAL_UPDATED": "¡MARCA!",
+    "SWAL_DELETED": "¡MARCA!",
+    
+    "SWAL_ARE_YOU_SURE_UPDATE": "¿Estás seguro de que deseas actualizar la marca {{brand_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "¿Estás seguro de que deseas eliminar {{art_the}} marca{{plural}} {{brand_name}}?",
+
+    "CARD_TOTAL_BRANDS_TITLE": "Total marcas"
+  },
+  
+  "EXTENT": {
+    "LEGEND_TITLE": "Datos de medida",
+    "CREATE_TITLE": "Crear",
+    "CREATE_SUBTITLE": "Nueva medida",
+    "SEE_TITLE": "Ver",
+    "SEE_SUBTITLE": "Medida: {{extent_name}}",
+    "EDIT_TITLE": "Editar",
+    "EDIT_SUBTITLE": "Medida: {{extent_name}}",
+
+    "COLUMN_ID": "ID",
+    "COLUMN_EXTENT_NAME": "Medida",
+    "COLUMN_TOTAL_EXTENT": "Total medida",
+
+    "LABEL_EXTENT_NAME": "Medida",
+
+    "PLACEHOLDER_EXTENT_NAME": "Ingrese una medida",
+
+    "SWAL_CREATED": "¡MEDIDA CREADA!",
+    "SWAL_UPDATED": "¡MEDIDA ACTUALIZADA!",
+    "SWAL_DELETED": "¡MEDIDA ELIMINADA!",
+    "SWAL_ARE_YOU_SURE_UPDATE": "¿Está seguro de actualizar la medida {{extent_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "¿Está seguro de eliminar {{art_the}} medida{{plural}} {{extent_name}}?",
+    
+    "CARD_TOTAL_EXTENT_TITLE": "Total medida"
+  },
+
+  "SWAL_WARNING_REVERSE_CHANGE": "¡No podrás revertir esto!",
+  "SWAL_CREATED_RECORD": "Registro creado con éxito.",
+  "SWAL_DELETED_RECORD": "Eliminado con éxito.",
+  "SWAL_UPDATED_RECORD": "Actualizado con éxito.",
+
+  "SWAL_BUTTON_DELETE": "Eliminar",
+  "SWAL_BUTTON_CANCEL": "Cancelar",
+
+  "BUTTON_EDIT": "Editar",
+
+  "BUTTON_PRODUCT": "Productos",
+  "BUTTON_BRAND": "Marcas",
+  "BUTTON_EXTENT": "Unidad de medida",
+  "BUTTON_SUPPLIER": "Proveedores"
+}

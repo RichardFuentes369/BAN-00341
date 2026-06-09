@@ -1,0 +1,71 @@
+{
+  "UNKNOW_MODULE_TITLE": "Inconnu",
+
+  "MODULE_TITLE": "Modules",
+
+  "CREATE_TITLE": "Créer",
+  "CREATE_SUBTITLE_MODULE": "Nouveau module",
+  "CREATE_SUBTITLE_SUBMODULE": "Nouveau sous-module",
+  "CREATE_SUBTITLE_PERMISSION": "Nouvelle permission",
+  "SEE_TITLE": "Voir",
+  "SEE_SUBTITLE_MODULE": "Module : {{module_name}}",
+  "SEE_SUBTITLE_SUBMODULE": "Sous-module : {{module_name}}",
+  "SEE_SUBTITLE_PERMISSION": "Permission : {{module_name}}",
+  "EDIT_TITLE": "Modifier",
+  "EDIT_SUBTITLE_MODULE": "Module : {{module_name}}",
+  "EDIT_SUBTITLE_SUBMODULE": "Sous-module : {{module_name}}",
+  "EDIT_SUBTITLE_PERMISSION": "Permission : {{module_name}}",
+
+  "SUBMODULE_TITLE": "Sous-modules",
+  "PERMISSION_TITLE": "Permission",
+
+  "SWAL_ARE_YOU_SURE": "Êtes-vous sûr de vouloir supprimer la permission {{permission_name}}?",
+  "SWAL_WARNING_REVERSE_CHANGE": "Vous ne pourrez pas annuler cette action !",
+  "SWAL_ERROR": "Autorisation!",
+  "SWAL_ERROR_RECORD": "Erreur.",
+  "SWAL_CREATED": "Autorisation !",
+  "SWAL_CREATED_RECORD": "Créé avec succès.",
+  "SWAL_UPDATED": "Autorisation !",
+  "SWAL_UPDATED_RECORD": "Mis à jour avec succès.",
+  "SWAL_BUTTON_DELETE": "Supprimer",
+  "SWAL_BUTTON_CANCEL": "Annuler",
+  "SWAL_DELETED": "Autorisation !",
+  "SWAL_DELETED_RECORD": "Supprimé avec succès.",
+
+  "LABEL_PERMISSION_NAME": "Module/Autorisation",
+  "LABEL_PERMISSION_NICKNAME": "Identifiant",
+  "LABEL_PERMISSION_DESCRIPTION": "Description",
+  "LABEL_PERMISSION_HAS_": "A",
+  "SELECT_STATUS_MODULE_OR_PERMISSION_SELECT_OPTION": "Sélectionner",
+  "LABEL_HAS_SUBMODULE": "sous-modules",
+  "LABEL_HAS_PERMISSION": "permissions",
+
+  "PLACEHOLDER_PERMISSION_NAME": "Nom du module/de l'autorisation",
+  "PLACEHOLDER_PERMISSION_NICKNAME": "Identifiant du module/de l'autorisation",
+  "PLACEHOLDER_PERMISSION_DESCRIPTION": "À quoi servira cette autorisation ?",
+
+  "ERROR_WORD": "Sélectionnez",
+  "ERROR_SELECT_ONE": "Une seule option",
+  "ERROR_PERMISSION_NAME": "L'autorisation doit avoir un nom",
+  "ERROR_PERMISSION_NICKNAME": "L'autorisation doit avoir un identifiant (sans espaces)",
+  "ERROR_PERMISSION_DESCRIPTION": "L'autorisation doit avoir une description",
+  "ERROR_PERMISSION_HAS": "Vous devez sélectionner un élément",
+
+  "BUTTON_CREATE_PERMISSION_MODULE": "Créer un module/une autorisation",
+  "BUTTON_EDIT_PERMISSION_MODULE": "Modifier un module/une autorisation",
+  "BUTTON_SAVE_": "Enregistrer",
+  "BUTTON_UPDATE_": "Mettre à jour",
+  "BUTTON_CANCEL": "Annuler",
+  "BUTTON_SEARCH": "Rechercher",
+
+  "COLUMN_MODULE_NAME": "Nom du module",
+  "COLUMN_SUBMODULE_NAME": "Nom du sous-module",
+  "COLUMN_PERMISSION_NAME": "Nom de l'autorisation",
+  "COLUMN_PERMISSION_NICKNAME": "Autorisation",
+  "COLUMN_DESCRIPTION": "Description",
+  "COLUMN_HAS_SUBMODULE": "A des sous-modules",
+  "COLUMN_HAS_PERMISSION": "A des autorisations",
+
+  "WORD_YES": "Oui",
+  "WORD_NO": "Non"
+}

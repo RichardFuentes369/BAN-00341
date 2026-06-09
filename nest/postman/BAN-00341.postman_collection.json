@@ -1,0 +1,3194 @@
+{
+	"info": {
+		"_postman_id": "70485dc7-71ea-47d5-a871-e520344404da",
+		"name": "BAN-00341",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7819792"
+	},
+	"item": [
+		{
+			"name": "modules",
+			"item": [
+				{
+					"name": "permisos",
+					"item": [
+						{
+							"name": "crear-modulo-permiso",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"modulo_padre_id\": 0,\r\n    \"tiene_submodulos\": false,\r\n    \"tiene_permisos\": false,\r\n    \"nombre\": \"Nompre del permiso\",\r\n    \"permiso\": \"nombre_del_permiso\",\r\n    \"descripcion\": \"Aqui_la_descripcion_del_permiso\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/modulos/crear-modulo-permiso",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"crear-modulo-permiso"
+									]
+								},
+								"description": "Este enpoint servira para crear Modulos y permisos disponibles en la aplicacion.\n\nPara crear modulos el modulo_padre_id debe ser 0, si no lo tomara como un submodulo o permiso."
+							},
+							"response": []
+						},
+						{
+							"name": "eliminar-modulo-permiso",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/modulos/eliminar-modulo-permiso?idPermiso=71",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"eliminar-modulo-permiso"
+									],
+									"query": [
+										{
+											"key": "idPermiso",
+											"value": "71"
+										}
+									]
+								},
+								"description": "Este enpoint servira para eliminar Modulos y permisos disponibles en la aplicacion.\n\nPara eliminar modulos el modulo_padre_id debe ser 0, si no lo tomara como un submodulo o permiso."
+							},
+							"response": []
+						},
+						{
+							"name": "obtener-modulo-permiso",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/modulos/obtener-modulo-permiso",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"obtener-modulo-permiso"
+									],
+									"query": [
+										{
+											"key": "modulo_padre_id",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "permiso",
+											"value": "nombre_del_permiso",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Este enpoint servira para filtrar los modulos o permisos individualmente disponibles en la aplicacion"
+							},
+							"response": []
+						},
+						{
+							"name": "obtener-modulo-permiso-especifico",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/modulos/obtener-modulo-permiso?modulo_padre_id=0&permiso=nombre_del_permiso",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"obtener-modulo-permiso"
+									],
+									"query": [
+										{
+											"key": "modulo_padre_id",
+											"value": "0"
+										},
+										{
+											"key": "permiso",
+											"value": "nombre_del_permiso"
+										}
+									]
+								},
+								"description": "Este enpoint servira para filtrar los modulos o permisos individualmente disponibles en la aplicacion"
+							},
+							"response": []
+						},
+						{
+							"name": "obtener-permisos-por-modulo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/modulos/obtener-permisos-por-modulo/0?page=1&limit=10&field=id&order=asc&lang=es",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"obtener-permisos-por-modulo",
+										"0"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "field",
+											"value": "id"
+										},
+										{
+											"key": "order",
+											"value": "asc"
+										},
+										{
+											"key": "lang",
+											"value": "es"
+										}
+									]
+								},
+								"description": "Este enpoint servira para listar los hijos disponibles de la aplicacion, es importante el id luego de getPermisosSobrePadre"
+							},
+							"response": []
+						},
+						{
+							"name": "obtener-modulo-permiso",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/modulos/obtener-modulo-permiso?idModulo=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"obtener-modulo-permiso"
+									],
+									"query": [
+										{
+											"key": "idModulo",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Este enpoint servira para saber si tiene submodulos o no \"hijos\""
+							},
+							"response": []
+						},
+						{
+							"name": "editar-modulo-permiso",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\": \"Usuarios\",\n    \"permiso\": \"usuarios\",\n    \"descripcion\": \"Modulo usuarios\",\n    \"tiene_permisos\": false,\n    \"tiene_submodulos\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/modulos/editar-modulo-permiso?idPermiso=1&lang=es",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"editar-modulo-permiso"
+									],
+									"query": [
+										{
+											"key": "idPermiso",
+											"value": "1"
+										},
+										{
+											"key": "lang",
+											"value": "es"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "admin",
+					"item": [
+						{
+							"name": "auth",
+							"item": [
+								{
+									"name": "singinAdmin",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"admin1@correo.com\",\r\n    \"pass\": \"Qwerty9601\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/authadmin/login",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"authadmin",
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "refreshAdmin",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"token\": \"{{tokenAdmin}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/authadmin/refresh?lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"authadmin",
+												"refresh"
+											],
+											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "profileAdmin",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/authadmin/profile?lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"authadmin",
+												"profile"
+											],
+											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "permission",
+							"item": [
+								{
+									"name": "mis-permisos",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/asignacion/mis-permisos?idUser=1",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"asignacion",
+												"mis-permisos"
+											],
+											"query": [
+												{
+													"key": "idUser",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "validar-acceso-permiso-usuario",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/asignacion/validar-acceso-permiso-usuario?idModulo=1&nombre=administradores&idUser=1",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"asignacion",
+												"validar-acceso-permiso-usuario"
+											],
+											"query": [
+												{
+													"key": "idModulo",
+													"value": "1"
+												},
+												{
+													"key": "nombre",
+													"value": "administradores"
+												},
+												{
+													"key": "idUser",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "listar_mis_permisos_modulo",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/asignacion/mis-permisos?idUser=1&heredadosDe=usuarios",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"asignacion",
+												"mis-permisos"
+											],
+											"query": [
+												{
+													"key": "idUser",
+													"value": "1"
+												},
+												{
+													"key": "heredadosDe",
+													"value": "usuarios"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "actualizar-asignacion-permiso",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/asignacion/actualizar-asignacion-permiso?idUser=1&opcion=1&idPermiso=3&idPadre=1",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"asignacion",
+												"actualizar-asignacion-permiso"
+											],
+											"query": [
+												{
+													"key": "idUser",
+													"value": "1"
+												},
+												{
+													"key": "opcion",
+													"value": "1"
+												},
+												{
+													"key": "idPermiso",
+													"value": "3"
+												},
+												{
+													"key": "idPadre",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-permisos-por-usuario",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/asignacion/obtener-permisos-por-usuario?userId=1",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"asignacion",
+												"obtener-permisos-por-usuario"
+											],
+											"query": [
+												{
+													"key": "userId",
+													"value": "1"
+												}
+											]
+										},
+										"description": "Este enpoint servira para armar un merge entre los permisos disponibles y los que tiene el usuario habilitado para posteriormente asignar o no"
+									},
+									"response": []
+								},
+								{
+									"name": "reporte-permisos-asignados",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/asignacion/reporte-permisos-asignados?modulo=null&submodulo=null&permiso=null&page=null&limit=null&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"asignacion",
+												"reporte-permisos-asignados"
+											],
+											"query": [
+												{
+													"key": "modulo",
+													"value": "null"
+												},
+												{
+													"key": "submodulo",
+													"value": "null"
+												},
+												{
+													"key": "permiso",
+													"value": "null"
+												},
+												{
+													"key": "page",
+													"value": "null"
+												},
+												{
+													"key": "limit",
+													"value": "null"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "user",
+							"item": [
+								{
+									"name": "obtener-usuarios-administradores",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/admin/obtener-usuarios-administradores?page=1&limit=2&field=id&order=asc&lang=en",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"admin",
+												"obtener-usuarios-administradores"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "2"
+												},
+												{
+													"key": "field",
+													"value": "id"
+												},
+												{
+													"key": "order",
+													"value": "asc"
+												},
+												{
+													"key": "lang",
+													"value": "en"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-usuario-administrador",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "",
+												"value": "",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "localhost:3000/api/admin/obtener-usuario-administrador?_id=1",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"admin",
+												"obtener-usuario-administrador"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "crear-usuario-admininistrador",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"Admin{{incremental}}\",\r\n    \"lastName\": \"Admin{{incremental}}\",\r\n    \"password\": \"Qwerty9601\",\r\n    \"email\": \"admin{{incremental}}@gmail.com\",\r\n    \"isActive\": true\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/admin/crear-usuario-admininistrador?lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"admin",
+												"crear-usuario-admininistrador"
+											],
+											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "eliminar-usuario-admininistrador",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/admin/eliminar-usuario-admininistrador?_id=12,18,19",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"admin",
+												"eliminar-usuario-admininistrador"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "12,18,19"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "editar-usuario-administrador",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"Admin1\",\r\n    \"lastName\": \"Principal\",\r\n    \"isActive\": true\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/admin/editar-usuario-administrador?_id=1",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"admin",
+												"editar-usuario-administrador"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "actualizar-estado-admininistrador",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": [3,4],\r\n    \"option\": \"0\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/admin/actualizar-estado-admininistrador",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"admin",
+												"actualizar-estado-admininistrador"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "contadores",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/admin/obtener-contadores-usuarios-administradores/?lang=es",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"admin",
+												"obtener-contadores-usuarios-administradores",
+												""
+											],
+											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "reporte-usuarios-administradores",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/admin/csv?id=true&email=true&firstName=true",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"admin",
+												"csv"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "true"
+												},
+												{
+													"key": "email",
+													"value": "true"
+												},
+												{
+													"key": "firstName",
+													"value": "true"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "final",
+					"item": [
+						{
+							"name": "user",
+							"item": [
+								{
+									"name": "obtener-usuarios-finales",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/user/obtener-usuarios-finales?page=1&limit=10&field=id&order=asc",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"user",
+												"obtener-usuarios-finales"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "10"
+												},
+												{
+													"key": "field",
+													"value": "id"
+												},
+												{
+													"key": "order",
+													"value": "asc"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-usuario-final",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/user/obtener-usuario-final?_id=1",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"user",
+												"obtener-usuario-final"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "crear-usuario-final",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"final{{incremental}}\",\r\n    \"lastName\": \"final{{incremental}}\",\r\n    \"password\": \"Qwerty9601\",\r\n    \"email\": \"final{{incremental}}@gmail.com\",\r\n    \"isActive\": true\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/user/crear-usuario-final",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"user",
+												"crear-usuario-final"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "eliminar-usuario-final",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/user/eliminar-usuario-final?_id=43,44,45",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"user",
+												"eliminar-usuario-final"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "43,44,45"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "actualizar-usuario-final",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\": \"Javier\",\r\n    \"lastName\": \"Baron\",\r\n    \"isActive\": true\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/user/actualizar-usuario-final?_id=1",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"user",
+												"actualizar-usuario-final"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "actualizar-estado-usuario-final",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": [50],\r\n    \"option\": \"1\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/user/actualizar-estado-usuario-final",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"user",
+												"actualizar-estado-usuario-final"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "reporte-usuarios-finales",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/user/excel?email=true&firstName=true",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"user",
+												"excel"
+											],
+											"query": [
+												{
+													"key": "email",
+													"value": "true"
+												},
+												{
+													"key": "firstName",
+													"value": "true"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "auth",
+							"item": [
+								{
+									"name": "singinUser",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"final1@gmail.com\",\r\n    \"pass\": \"Qwerty9601\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/authuser/login",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"authuser",
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "profileUser",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenUser}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/authuser/profile",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"authuser",
+												"profile"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "refreshUser",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"token\": \"{{tokenUser}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/authuser/refresh",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"authuser",
+												"refresh"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "catalog",
+			"item": [
+				{
+					"name": "admin",
+					"item": [
+						{
+							"name": "product",
+							"item": [
+								{
+									"name": "obtener-productos",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/product/obtener-productos?page=1&limit=10&field=id&order=asc&id_marca=1",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"product",
+												"obtener-productos"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "10"
+												},
+												{
+													"key": "field",
+													"value": "id"
+												},
+												{
+													"key": "order",
+													"value": "asc"
+												},
+												{
+													"key": "id_marca",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-producto",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/product/obtener-producto?_id=172&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"product",
+												"obtener-producto"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "172"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-producto-por-barcode",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/product/obtener-producto-por-barcode?_barcode=8959663311640&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"product",
+												"obtener-producto-por-barcode"
+											],
+											"query": [
+												{
+													"key": "_barcode",
+													"value": "8959663311640"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "crear-producto",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Memoria de mis putas\",\r\n    \"unidad_medida\": \"kg\",\r\n    \"stock_minimo\": 10,\r\n    \"es_perecedero\": true,\r\n    \"alerta_amarilla\": 10,\r\n    \"alerta_naranja\": 25,\r\n    \"estado\": 0,\r\n    \"codigo_barra\": \"6932587458963\",\r\n    \"id_marca\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/product/crear-producto?lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"product",
+												"crear-producto"
+											],
+											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "actualizar-producto",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Memoria de mis putas\",\r\n    \"unidad_medida\": \"kg\",\r\n    \"stock_minimo\": 10,\r\n    \"es_perecedero\": true,\r\n    \"alerta_amarilla\": 10,\r\n    \"alerta_naranja\": 25,\r\n    \"estado\": 0,\r\n    \"codigo_barra\": \"6932587458963\",\r\n    \"id_marca\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/product/editar-producto?_id=25&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"product",
+												"editar-producto"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "25"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "eliminar-producto",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/product/eliminar-producto?_id=24&lang=es",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"product",
+												"eliminar-producto"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "24"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "upload-productos",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "file",
+													"type": "file",
+													"src": "/home/richard/Downloads/productos_nuevos.xlsx"
+												}
+											]
+										},
+										"url": {
+											"raw": "localhost:3000/api/product/cargar-productos?id_category=1",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"product",
+												"cargar-productos"
+											],
+											"query": [
+												{
+													"key": "id_category",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "supplier",
+							"item": [
+								{
+									"name": "obtener-proveedores",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/supplier/obtener-proveedores?page=1&limit=10&field=id&order=asc",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"supplier",
+												"obtener-proveedores"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "10"
+												},
+												{
+													"key": "field",
+													"value": "id"
+												},
+												{
+													"key": "order",
+													"value": "asc"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-proveedor",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/supplier/obtener-proveedor?_id=1&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"supplier",
+												"obtener-proveedor"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-proveedor-por-nit",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/supplier/obtener-proveedor-por-nit?_nit=1000241001&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"supplier",
+												"obtener-proveedor-por-nit"
+											],
+											"query": [
+												{
+													"key": "_nit",
+													"value": "1000241001"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "crear-proveedor",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"razon_social\": \"Proveedor {{provider_id}}\",\r\n    \"direccion\": \"calle 32 a # 52 - 105\",\r\n    \"correo\": \"proveedor{{provider_id}}@gmail.com\",\r\n    \"telefono\": \"607 358 9636\",\r\n    \"dv\":\"1\",\r\n    \"nit\": \"1000241004\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/supplier/crear-proveedor?lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"supplier",
+												"crear-proveedor"
+											],
+											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "actualizar-proveedor",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"razon_social\": \"Proveedor {{provider_id}}\",\r\n    \"direccion\": \"calle 3 # 23 - 75\",\r\n    \"correo\": \"proveedor{{provider_id}}@gmail.com\",\r\n    \"telefono\": \"3168955632\",\r\n    \"dv\":\"1\",\r\n    \"nit\": \"1000241001\"\r\n}\r\n\r\n// 1000241005 nit 1\r\n// 1000241001 nit 2",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/supplier/editar-proveedor?_id=2&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"supplier",
+												"editar-proveedor"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "2"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "eliminar-proveedor",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/supplier/eliminar-proveedor?_id=1,2,3&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"supplier",
+												"eliminar-proveedor"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1,2,3"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "brand",
+							"item": [
+								{
+									"name": "obtener-marcas",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/brand/obtener-marcas?page=1&limit=2&field=id&order=asc",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"brand",
+												"obtener-marcas"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "2"
+												},
+												{
+													"key": "field",
+													"value": "id"
+												},
+												{
+													"key": "order",
+													"value": "asc"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-marca",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/brand/obtener-marca?_id=9&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"brand",
+												"obtener-marca"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "9"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "crear-marca",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Desconocida\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/brand/crear-marca?lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"brand",
+												"crear-marca"
+											],
+											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "actualizar-marca",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Desconocida\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/brand/editar-marca?_id=5&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"brand",
+												"editar-marca"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "5"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "eliminar-marca",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/brand/eliminar-marca?_id=4&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"brand",
+												"eliminar-marca"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "4"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "lista-select-marcas",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/brand/marcas-disponibles?search",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"brand",
+												"marcas-disponibles"
+											],
+											"query": [
+												{
+													"key": "search",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "extent",
+							"item": [
+								{
+									"name": "obtener-unidad-medida",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/extent/obtener-unidad-de-medida?_id=1&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"extent",
+												"obtener-unidad-de-medida"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-unidades-medida",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/extent/obtener-unidades-de-medida?page=1&limit=10&field=id&order=asc",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"extent",
+												"obtener-unidades-de-medida"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "10"
+												},
+												{
+													"key": "field",
+													"value": "id"
+												},
+												{
+													"key": "order",
+													"value": "asc"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "crear-unidad-medida",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Pesa\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/extent/crear-unidad-de-medida?lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"extent",
+												"crear-unidad-de-medida"
+											],
+											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "actualizar-unidad-medida",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"xxx\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/extent/editar-unidad-de-medida?_id=6&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"extent",
+												"editar-unidad-de-medida"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "6"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "eliminar-unidad-medida",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/extent/eliminar-unidad-de-medida?_id=6&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"extent",
+												"eliminar-unidad-de-medida"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "6"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "mermas",
+			"item": [
+				{
+					"name": "admin",
+					"item": [
+						{
+							"name": "tipo",
+							"item": [
+								{
+									"name": "eliminar-merma",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/tipos_merma/eliminar-tipo-merma?_id=1&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"tipos_merma",
+												"eliminar-tipo-merma"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-mermas",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/tipos_merma/obtener-tipo-mermas?page=1&limit=10&field=id&order=asc",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"tipos_merma",
+												"obtener-tipo-mermas"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "10"
+												},
+												{
+													"key": "field",
+													"value": "id"
+												},
+												{
+													"key": "order",
+													"value": "asc"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-merma",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/tipos_merma/obtener-tipo-merma?_id=1&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"tipos_merma",
+												"obtener-tipo-merma"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "crear-merma",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Sin información\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/tipos_merma/crear-tipo-merma?lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"tipos_merma",
+												"crear-tipo-merma"
+											],
+											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "actualizar-merma",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nombre\": \"Limpieza e Higiene\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/tipos_merma/editar-tipo-merma?_id=12&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"tipos_merma",
+												"editar-tipo-merma"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "12"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "registro-mermas",
+							"item": [
+								{
+									"name": "obtener-registro-mermas-por-lote",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/registro-mermas/obtener-registro-mermas?page=1&limit=10&field=id&order=asc",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"registro-mermas",
+												"obtener-registro-mermas"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "10"
+												},
+												{
+													"key": "field",
+													"value": "id"
+												},
+												{
+													"key": "order",
+													"value": "asc"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-registro-merma",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/registro-mermas/obtener-registro-merma?_id=1&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"registro-mermas",
+												"obtener-registro-merma"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "crear-registro-merma",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id_tipo_merma\": 2,\n  \"cantidad\": 6,\n  \"fecha_reporte\": 1778199520,\n  \"valor_perdido\": 32000,\n  \"observacion\": \"desde la api\",\n  \"id_lote\": 3\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/registro-mermas/crear-registro-merma",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"registro-mermas",
+												"crear-registro-merma"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "eliminar-registro-merma",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/registro-mermas/eliminar-registro-merma?_id=51&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"registro-mermas",
+												"eliminar-registro-merma"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "51"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "actualizar-registro-merma",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"cantidad\": 1000,\n  \"fecha_reporte\": 1778120520,\n  \"valor_perdido\": 32000,\n  \"observacion\": \"Actualizando desde la api bla bal bla\",\n  \"id_tipo_merma\": 1,\n  \"id_lote\": 5\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/registro-mermas/actualizar-registro-merma?_id=45&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"registro-mermas",
+												"actualizar-registro-merma"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "45"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "bodega",
+			"item": [
+				{
+					"name": "admin",
+					"item": [
+						{
+							"name": "registro-lote",
+							"item": [
+								{
+									"name": "obtener-registro-lotes",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/batch/obtener-registro-lotes?page=1&limit=10&field=id&order=asc",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"batch",
+												"obtener-registro-lotes"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "10"
+												},
+												{
+													"key": "field",
+													"value": "id"
+												},
+												{
+													"key": "order",
+													"value": "asc"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-registro-lote",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/batch/obtener-registro-lote?_id=1&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"batch",
+												"obtener-registro-lote"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-registro-lote-producto",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/batch/obtener-registro-lote-producto?lote=Al-mg-1100&id_producto=1&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"batch",
+												"obtener-registro-lote-producto"
+											],
+											"query": [
+												{
+													"key": "lote",
+													"value": "Al-mg-1100"
+												},
+												{
+													"key": "id_producto",
+													"value": "1"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "crear-lote",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"lote\": \"MC-res-2586\",\n    \"fecha_entrada\": 1775192154,\n    \"fecha_vencimiento\": 1776315600,\n    \"cantidad_comprada\": 3600,\n    \"cantidad_vendida\": 0,\n    \"cantidad_en_bodega\": 0,\n    \"estado\": \"disponible\",\n    \"id_producto\": 11,\n    \"id_proveedor\": 3\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/batch/crear-lote?lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"batch",
+												"crear-lote"
+											],
+											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "editar-lote",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"lote\": \"Al-mg-1100\",\n    \"fecha_entrada\": 1769922838,\n    \"fecha_vencimiento\": 1777698838, // podria ir null dependiendo del producto\n    \"cantidad_comprada\": 25, // podria cambiar pero toca calcular el cantidad en bodega (disparar algo)\n    \"cantidad_vendida\": 0, // no puedo tocar\n    \"cantidad_en_bodega\": 16, // no puedo tocar\n    \"estado\": \"disponible\",\n    \"id_producto\": 1,\n    \"id_proveedor\": 1\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/batch/editar-registro-lote?_id=1&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"batch",
+												"editar-registro-lote"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "eliminar-lote",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/batch/eliminar-registro-lote?_id=1&lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"batch",
+												"eliminar-registro-lote"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												},
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

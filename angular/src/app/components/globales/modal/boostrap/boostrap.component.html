@@ -1,0 +1,38 @@
+<!-- Button trigger modal -->
+<button type="button" id="miBoton" class="btn btn-primary d-none" componente="" (click)="openModal()">
+  Modal
+</button>
+
+<div class="modal fade" id="staticBackdrop" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog modal-dialog-centered" 
+    [ngClass]="[tamano !== '' ? 'modal-' + tamano : 'modal-sm', scrollable ? 'modal-dialog-scrollable' : ''].join(' ')">
+    <div class="modal-content">
+      <div class="modal-header pt-1 pb-1">
+        <div class="col-sm-12 row text-center m-0">
+          <h5 class="modal-title" id="staticBackdropLabel" [innerHTML]="title"></h5>
+          <span class="modal-title" [innerHTML]="subtitle"></span>
+        </div>
+        @if(cancel){
+          <button type="button" class="close ml-md-n5" data-dismiss="modal" aria-label="Close" (click)="buttonCloseM()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        }
+      </div>
+      <div class="modal-body">
+        <div #contenedor></div>
+      </div>
+      <div class="modal-footer pt-1 pb-1">
+        @if(cancel){
+          <button type="button" class="btn btn-secondary btn-sm closeModalButton btnCancel" data-dismiss="modal" (click)="buttonCloseM()">{{buttonCancel}}</button>
+        }
+        @if(save){
+          <button type="button" class="btn btn-primary btn-sm btnSave disabled" (click)="buttonSaveM()">{{buttonSave}}</button>
+        }
+        @if(edit){
+          <button type="button" class="btn btn-primary btn-sm btnUpdate disabled" (click)="buttonUpdateM()">{{buttonEdit}}</button>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+

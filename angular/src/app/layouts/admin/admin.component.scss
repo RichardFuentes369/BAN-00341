@@ -1,0 +1,219 @@
+:host {
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+
+  .bg-gradient-primary {
+    background: linear-gradient(180deg, #007bff 20%, #007bff 100%) !important;
+  }
+
+  &[data-theme='dark'], 
+  &:host-context([data-theme='dark']) {
+    .bg-gradient-primary {
+      background: linear-gradient(180deg, #000 20%, #000 100%) !important;
+    }
+  }
+}
+
+#wrapper {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#accordionSidebar {
+  height: 100vh;
+  overflow-y: auto;
+  flex-shrink: 0;
+  z-index: 1040; // Sidebar por debajo del Topbar dropdown
+}
+
+#content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.topbar {
+  flex-shrink: 0;
+  z-index: 1030; // Nivel suficiente para estar sobre el contenido
+
+  .dropdown-menu {
+    z-index: 1060 !important; // Por encima de todo en el layout
+  }
+}
+
+#content-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fc;
+  z-index: 1; 
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
+
+#content {
+  flex: 1;
+}
+
+.sticky-footer {
+  flex-shrink: 0;
+  padding: 1rem 0;
+}
+
+// Forzamos que el modal esté por encima de nuestro layout fijo
+::ng-deep {
+  .modal {
+    z-index: 2000 !important;
+  }
+  // El fondo oscuro del modal (backdrop) debe subir también
+  .modal-backdrop {
+    z-index: 1900 !important;
+  }
+
+  // Evita que el cuerpo se mueva cuando el modal está abierto
+  .modal-open {
+    overflow: hidden !important;
+    padding-right: 0 !important;
+  }
+}
+
+
+
+
+
+.watermark-cart {
+  position: fixed;
+  bottom: 3rem;
+  right: 30px;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: -1;
+  transform: rotate(-3deg);
+
+  .cart-basket {
+    width: 118px;
+    height: 50px;
+    border: 4px solid #333;
+    border-radius: 5px 5px 20px 20px;
+    border-top: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 5px;
+    padding-bottom: 5px;
+    
+    /* EFECTO REJILLA: Líneas horizontales y verticales */
+    background-image: 
+      linear-gradient(#333 1px, transparent 1px), 
+      linear-gradient(90deg, #333 1px, transparent 1px);
+    background-size: 20px 20px; /* Tamaño de los cuadros de la rejilla */
+
+    .item {
+      border: 2px solid #333;
+      background: #eee;
+      z-index: 1; /* Para que se vean sobre la rejilla */
+    }
+    .box { width: 25px; height: 25px; }
+    .large { width: 35px; height: 40px; }
+    .circle { width: 25px; height: 25px; border-radius: 50%; }
+    .banana {
+        width: 25px;
+        height: 15px;
+        background: #f7dc6f; 
+        border-radius: 0 100% 0 100%;
+        transform: rotate(-20deg);
+      }
+    .tomato {
+      width: 25px;
+      height: 22px;
+      background: #e74c3c; // Rojo
+      border-radius: 50% 50% 45% 45%;
+      &::before {
+        content: '';
+        position: absolute;
+        top: -4px; left: 8px;
+        width: 8px; height: 4px;
+        background: #27ae60; 
+        border-radius: 50%;
+      }
+    }
+    .appliance {
+      width: 20px;
+      height: 30px;
+      background: #d5d8dc;
+      border-radius: 2px 2px 8px 8px;
+      border: 2px solid #333;
+      &::after {
+        content: '';
+        position: absolute;
+        top: 5px; left: 5px;
+        width: 10px; height: 8px;
+        background: #fff; // "Pantalla" o nivel de líquido
+      }
+    }
+  }
+
+  .cart-handle {
+    width: 30px;
+    height: 8px;
+    background: #333;
+    position: absolute;
+    top: -9px;
+    left: -25px;
+    border-radius: 4px;
+    transform: rotate(25deg);
+  }
+
+  .cart-wheel-frame {
+    width: 100px; height: 8px; background: #333;
+    margin: -5px auto 0; border-radius: 4px;
+  }
+
+  .cart-wheels {
+    display: flex; justify-content: space-between; padding: 0 15px; margin-top: 2px;
+    .wheel {
+      width: 22px; height: 22px; border: 4px solid #333;
+      border-radius: 50%; background: #fff;
+      animation: rotateWheel 1s linear infinite;
+    }
+  }
+
+  .road {
+    width: 150px; 
+    height: 6px;
+    background: #333;
+    margin-top: 10px;
+    margin-left: -15px;
+    position: relative;
+    
+    /* Esta línea es la clave para que la carretera se mueva visualmente */
+    background-image: repeating-linear-gradient(
+      50deg,
+      #333,
+      #333 10px,
+      #fff 10px,
+      #fff 20px
+    );
+    animation: moveRoad 1s linear infinite;
+  }
+}
+
+@keyframes moveRoad {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -20px 0; /* Desplaza el patrón hacia la izquierda */
+  }
+}
+
+@keyframes bounce {
+  from { transform: rotate(-3deg) translateY(0); }
+  to { transform: rotate(-3deg) translateY(-3px); }
+}

@@ -1,0 +1,51 @@
+<div class="floating-group">
+  <!-- <span class="floating-number-filter text-center" (click)="openReportMinimize()" [title]="contador">
+    {{ contador }}
+  </span> -->
+  <span class="custom-tooltip tooltip-left" [attr.data-title]="'global-report.TITTLE_COMPONENT' | translate">
+    <button class="floating-button btn btn-sm btn-primary" (click)="openReportMinimize()">
+      <i [ngClass]="icon"></i>
+    </button>
+  </span>
+</div>
+
+<div class="animated-card" [class.is-visible]="isReportVisible">
+  <button class="btn-close-card" (click)="$event.stopPropagation(); closeReport()">
+    <i class="fa fa-times"></i>
+  </button>
+  <h3 class="header">{{ 'global-report.TITTLE_COMPONENT' | translate}}</h3>
+  <div class="card-body">
+    <div class="container mt-2">
+      <div class="card shadow-sm mb-2 p-2">
+        <p class="font-weight-bold small text-muted mb-0 text-center" [innerHTML]="'global-report.TITLE_SELECT_OPTION' | translate">
+        </p>
+      </div>
+    </div>
+    <div class="container mt-2">
+      <div #contenedorReport></div>
+    </div>
+    <div class="container mt-2 mb-2">
+      <div class="card shadow-sm">
+        <div class="d-flex justify-content-center align-items-center py-2">
+          <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-report.BUTTON_CLEAN' | translate">
+            <button class="btn btn-sm btn-secondary rounded-circle mx-1" (click)="clearReport()">
+              <i class="fa fa-eraser" aria-hidden="true"></i>
+            </button>
+          </span>
+          
+          <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-report.BUTTON_EXCEL_EXPORT' | translate">
+            <button class="btn btn-sm btn-success rounded-circle mx-1" (click)="generar('excel')">
+              <i class="fas fa-file-excel"></i>
+            </button>
+          </span>
+          
+          <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-report.BUTTON_CSV_EXPORT' | translate">
+            <button class="btn btn-sm btn-success rounded-circle mx-1" (click)="generar('csv')">
+              <i class="fas fa-file-csv"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="container-fluid p-0">
+  <div class="row g-3">
+    <div class="col-12">
+      <div 
+        class="upload-area" 
+        [class.upload-area-active]="fileToUpload"
+        [class.upload-area-error]="!validators.archivo_valido && fileToUpload"
+        (click)="fileUpload.click()"
+      >
+        <div class="upload-icon-wrapper">
+          <i class="bi" [ngClass]="fileToUpload ? 'bi-file-earmark-check-fill text-success' : 'bi-cloud-arrow-up text-primary'"></i>
+        </div>
+        
+        <div class="upload-text">
+          <h6 class="mb-1 fw-bold">
+            {{ fileToUpload ? fileToUpload.name : ('Seleccionar o arrastrar archivo Excel') }}
+          </h6>
+          <p class="text-muted small mb-0">
+            {{ fileToUpload ? (fileToUpload.size / 1024 | number:'1.0-2') + ' KB' : 'Límite sugerido: 300,000 registros (.xlsx)' }}
+          </p>
+        </div>
+
+        <input 
+          #fileUpload
+          type="file" 
+          accept=".xlsx" 
+          (change)="onFileChange($event)"
+          style="display: none;"
+        >
+      </div>
+
+      <div class="mt-2 animated fadeIn" *ngIf="!validators.archivo_valido && fileToUpload">
+        <div class="alert alert-danger d-flex align-items-center p-2 mb-0" role="alert">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i>
+          <small>{{ validators.archivo_error_msj }}</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 d-flex justify-content-between align-items-center mt-3">
+      <button type="button" class="btn btn-link btn-sm text-decoration-none p-0" (click)="descargarPlantilla()">
+        <i class="bi bi-download me-1"></i> Descargar plantilla base
+      </button>
+      
+      <button class="btn btn-primary btnAction d-none" (click)="subirArchivo()">
+        Cargar registros
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+{
+  "TITTLE_COMPONENT": "Berichte",
+  "TITLE_SELECT_OPTION": "Wählen Sie die Spalten aus, <br> die im Bericht angezeigt werden sollen.",
+  
+  "BUTTON_OPTION_SEE": "Sehen",
+  "BUTTON_SEARCH": "Suchen",
+  "BUTTON_CLEAN": "Reinigen",
+  "BUTTON_EXCEL_EXPORT": "Excel",
+  "BUTTON_CSV_EXPORT": "Csv"
+}

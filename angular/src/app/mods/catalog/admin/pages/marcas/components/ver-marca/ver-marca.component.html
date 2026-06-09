@@ -1,0 +1,20 @@
+<div class="">
+  @for (item of marca; track item; let  i = $index) {
+    <div class="col-xl col-sm-12">
+      <fieldset class="border p-3 rounded">
+        <legend class="float-none w-auto p-1">
+          {{ 'mod-catalog.BRAND.LEGEND_TITLE' | translate }}
+        </legend>
+        <div class="col-sm-12 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'mod-catalog.BRAND.LABEL_BRAND_NAME' | translate}}
+          </label>
+          <input type="text" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.nombre}}" readonly>
+        </div>
+      </fieldset>
+    </div>
+  }
+</div>
+
+
+
