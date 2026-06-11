@@ -1,1 +1,37 @@
-<p>vencimiento works!</p>
+<div class="mb-4 border-0 rounded-0">
+  <div class="d-flex justify-content-between align-items-center px-3 pb-2">
+    <h4 class="m-0 fw-bold text-bold">
+      {{ 'mod-alerts.PAGE_EXPIRATION_TITLE' | translate }}
+    </h4>
+    <!-- <span class="custom-tooltip tooltip-left"
+      [attr.data-title]="mostrarCards ? ('global-card.WORD_HIDE' | translate) : ('global-card.WORD_SHOW' | translate)">
+      <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toggleCards()">
+        <i [class]="mostrarCards ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+      </button>
+    </span> -->
+  </div>
+  <hr class="mt-0 ml-3 mr-3">
+  <!-- Inició tabla registros -->
+  <div class="mt-2 p-3 pt-0" style="position: relative;">
+    <!-- <div class="filter-wrapper">
+      <app-globales-search [icon]="iconFilter" [componente]="componenteFilter" (filtroItem)="filtroData()">
+      </app-globales-search>
+
+      <app-globales-report [icon]="iconReport" [componente]="componenteReport" (reportItem)="reportData($event)">
+      </app-globales-report>
+    </div> -->
+
+    @if (cargarIdioma) {
+    <div class="table-container">
+      <app-globales-tablecrud [campoFiltro]="showcampoFiltro" [endPoint]="endPoint" [columnas]="columnas"
+        [habilitarSeleccion]="habilitarSeleccion" [permisosAcciones]="permisos" [filters]="filters" [title]="titlePage">
+      </app-globales-tablecrud>
+    </div>
+    } @else {
+    <div class="d-flex justify-content-center py-5">
+      <app-globales-loading></app-globales-loading>
+    </div>
+    }
+  </div>
+  <!-- Fin tabla registros -->
+</div>

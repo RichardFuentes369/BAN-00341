@@ -24,7 +24,9 @@ import {
   MermasModule,
   WarehouseModule,
   BrandModule,
-  ExtentModule
+  ExtentModule,
+  SotckModule,
+  ExpirationModule
 } from './mod/index'
 import { AppGateway } from './app.gateway';
 
@@ -59,6 +61,8 @@ import { AppGateway } from './app.gateway';
     MermasModule,
     BrandModule,
     ExtentModule,
+    SotckModule,
+    ExpirationModule,
   ],
   controllers: [AppController],
   providers: [

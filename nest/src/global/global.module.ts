@@ -11,7 +11,8 @@ import { mysqlProviders } from './providers/mysql.providers';
   ],
   exports: [
     AxiosAdapter,
-    ...mysqlProviders
+    ...mysqlProviders,
+    'DATA_SOURCE'
   ],
 })
 export class GlobalModule {}

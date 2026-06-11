@@ -12,7 +12,9 @@ export { ProductModule } from './catalogo/product/product.module';
 export { SupplierModule } from './catalogo/supplier/supplier.module';
 export { BrandModule } from './catalogo/brand/brand.module';
 
-
 export { WarehouseModule } from './bodega/warehouse/warehouse.module';
 export { TiposModule } from './merma/tipos/tipos.module';
 export { MermasModule } from './merma/mermas/mermas.module';
+
+export { SotckModule } from './alerta/admin/sotck/sotck.module';
+export { ExpirationModule } from './alerta/admin/expiration/expiration.module'
