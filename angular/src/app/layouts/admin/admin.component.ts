@@ -25,7 +25,7 @@ import { SettingsService } from '@mod/me/admin/pages/settings/service/settings.s
     IdiomaComponent,
     CommonModule,
     TranslateModule,
-    RouterModule
+    RouterModule,
   ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'

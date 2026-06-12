@@ -35,26 +35,30 @@
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content-scroll-area">
 
-        <nav class="navbar navbar-expand navbar-light bg-white topbar static-top mb-1 sticky-top">
-
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3"
-            (click)="mostrarMenuLateral()">
-            <i class="fa fa-bars"></i>
-          </button>
-
-          <ul class="navbar-nav mr-auto">
-            <app-globales-date></app-globales-date>
+        <nav class="navbar navbar-expand navbar-light bg-primary topbar static-top mb-1 sticky-top pl-2 pr-2">
+          <ul class="navbar-nav mr-auto nav-vertical-wrapper">
+            <!-- <a class="sidebar-brand d-flex align-items-center justify-content-center nav-link" [routerLink]="LAYOUT_PAGE_DASHBOARD"> -->
+            <!-- <a class="sidebar-brand d-flex align-items-center justify-content-center nav-link" [routerLink]="LAYOUT_ADMIN_PAGE_MOD">
+              <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+              </div>
+              <div class="sidebar-brand-text text-white">{{NAME_PAGE}}</div>
+            </a> -->
+            <!-- <app-globales-date></app-globales-date> -->
           </ul>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown no-arrow my-auto text-center pl-2 pr-2">
-              <app-globales-colormode></app-globales-colormode>
+            <li class="nav-item dropdown no-arrow my-auto text-center mr-1">
               <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
             </li>
             <div class="topbar-divider d-none d-sm-block"></div>
-            <li class="nav-item dropdown no-arrow my-auto text-center pl-2 pr-2">
+            <li class="nav-item dropdown no-arrow my-auto text-center">
+              <app-globales-colormode></app-globales-colormode>
+            </li> 
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item dropdown no-arrow my-auto text-center ">
               <a class="nav-link dropdown-toggle h-100" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                <span class="mr-2 d-none d-lg-inline text-white small">
                   {{firstName}} <br>
                   {{lastName}}
                 </span>
@@ -81,7 +85,7 @@
 
         <app-globales-breadcrumbs></app-globales-breadcrumbs>
 
-        <div id="content">
+        <div id="content" class="container-fluid">
           <div class="container-fluid p-1 mt-1">
             <router-outlet></router-outlet>
           </div>
