@@ -109,20 +109,29 @@
           <label for="exampleInputEmail1">
             {{ 'mod-warehouse.LABEL_LOTE' | translate}}
           </label>
-          <input type="text" class="form-control form-select-sm" [(ngModel)]="model.lote">
+          <input type="text" class="form-control form-select-sm" [(ngModel)]="model.lote" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.lote">
+          @if(validators.lote) {
+            <span class="text-danger small">{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate }}</span>
+          }
         </div>
         <div class="col-sm-12 form-group">
           <label for="exampleInputEmail1">
             {{ 'mod-warehouse.LABEL_FECHA_ENTRADA' | translate}}
           </label>
-          <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_entrada">
+          <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_entrada" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.fecha_entrada">
+          @if(validators.fecha_entrada) {
+            <span class="text-danger small">{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate }}</span>
+          }
         </div>
         @if(producto.es_perecedero){
         <div class="col-sm-12 form-group">
           <label for="exampleInputEmail1">
             {{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}
           </label>
-          <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_vencimiento">
+          <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_vencimiento" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.fecha_vencimiento">
+          @if(validators.fecha_vencimiento) {
+            <span class="text-danger small">{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate }}</span>
+          }
         </div>
         }
         <div class="col-sm-12 form-group">
@@ -131,8 +140,16 @@
               <label for="exampleInputEmail1">
                 {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}
               </label>
-              <input type="number" min="0" class="form-control form-select-sm" [(ngModel)]="model.cantidad_comprada">
+              <input type="number" min="0" class="form-control form-select-sm" [(ngModel)]="model.cantidad_comprada" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.cantidad_comprada">
               <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
+              @if(validators.cantidad_comprada) {
+                <br>
+                <span class="text-danger small">{{ 'mod-warehouse.PLACEHOLDER_CANTIDAD_COMPRADA' | translate }}</span>
+              }
+              @if(validators.menor_a_merma_mas_vendida) {
+                <br>
+                <span class="text-danger small">{{ 'mod-warehouse.ERROR_QUANTITY_THAT_ALLOWED' | translate }}</span>
+              }
             </div>
           </div>
         </div>
@@ -140,12 +157,15 @@
           <label for="exampleInputEmail1">
             {{ 'mod-warehouse.LABEL_ESTADO' | translate}}
           </label>
-          <select class="form-control custom-select form-select-sm" [(ngModel)]="model.estado">
+          <select class="form-control custom-select form-select-sm" [(ngModel)]="model.estado" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.estado">
             <option value="">{{ 'mod-warehouse.SELECT_SELECT_OPTION' | translate}}</option>
             <option value="disponible">{{ 'mod-warehouse.SELECT_AVAILABLE_OPTION' | translate}}</option>
             <option value="vencido">{{ 'mod-warehouse.SELECT_UNAVAILABLE_OPTION' | translate}}</option>
             <option value="agotado">{{ 'mod-warehouse.SELECT_EXPIRED_OPTION' | translate}}</option>
           </select>
+          @if(validators.estado) {
+            <span class="text-danger small">{{ 'mod-warehouse.PLACEHOLDER_ESTADO' | translate }}</span>
+          }
         </div>
       </div>         
     </fieldset>

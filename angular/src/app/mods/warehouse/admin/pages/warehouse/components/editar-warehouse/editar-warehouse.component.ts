@@ -39,7 +39,7 @@ interface LoteInterface {
   standalone: true,
   imports: [
     CommonModule,
-    TranslateModule, 
+    TranslateModule,
     FormsModule,
     TablecrudComponent
   ],
@@ -66,14 +66,14 @@ export class EditarWarehouseComponent {
     private router: Router,
     private route: ActivatedRoute,
     private bodegaService: BodegaService,
-    private userService :AuthService,
-    private permisosService :PermisosService,
+    private userService: AuthService,
+    private permisosService: PermisosService,
     private productoService: ProductosService,
     private proveedoresService: ProveedoresService,
     private translate: TranslateService
-  ){
+  ) {
     this.validationSubject.pipe(
-      debounceTime(300), 
+      debounceTime(300),
       map(() => this.checkValidation())
     ).subscribe(isValid => {
       this.isFormValid = isValid;
@@ -83,7 +83,7 @@ export class EditarWarehouseComponent {
       }
     });
   }
-  
+
   id_lote = ''
   lote: LoteInterface[] = []
   permisos: any[] = []
@@ -96,7 +96,7 @@ export class EditarWarehouseComponent {
     unidad_medida: '',
     es_perecedero: ''
   }
-  
+
   proveedor = {
     nit: '',
     razon_social: '',
@@ -126,7 +126,8 @@ export class EditarWarehouseComponent {
     fecha_entrada: false,
     fecha_vencimiento: false,
     cantidad_comprada: false,
-    estado: false
+    estado: false,
+    menor_a_merma_mas_vendida: false
   }
 
   cargarIdioma = true
@@ -150,11 +151,11 @@ export class EditarWarehouseComponent {
       className: 'text-center',
       render: (data: any) => {
         if (!data) return '';
-        const date = new Date(Number(data) * 1000); 
+        const date = new Date(Number(data) * 1000);
         if (isNaN(date.getTime())) {
           return 'Fecha inválida';
         }
-        return date.toLocaleDateString('es-CO', { 
+        return date.toLocaleDateString('es-CO', {
           day: '2-digit',
           month: '2-digit',
           year: 'numeric'
@@ -183,27 +184,27 @@ export class EditarWarehouseComponent {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
-    const permiso_modulo_catalogo = await this.permisosService.permisoPage(0,'catalogo',userData.data.id)
-    const permiso_submodulo_productos = await this.permisosService.permisoPage(22,'productos',userData.data.id)
-    const permiso_submodulo_proveedores = await this.permisosService.permisoPage(22,'proveedores',userData.data.id)
+    const permiso_modulo_catalogo = await this.permisosService.permisoPage(0, 'catalogo', userData.data.id)
+    const permiso_submodulo_productos = await this.permisosService.permisoPage(22, 'productos', userData.data.id)
+    const permiso_submodulo_proveedores = await this.permisosService.permisoPage(22, 'proveedores', userData.data.id)
 
 
     if (permiso_modulo_catalogo.data === "" || permiso_submodulo_productos.data === "") {
       return
     }
 
-    const permisos_productos = await this.permisosService.permisos(userData.data.id,'productos')
+    const permisos_productos = await this.permisosService.permisos(userData.data.id, 'productos')
     this.permisos_catalogo_productos = permisos_productos.data
 
     if (permiso_modulo_catalogo.data === "" || permiso_submodulo_proveedores.data === "") {
       return
     }
 
-    const permisos_proveedores = await this.permisosService.permisos(userData.data.id,'proveedores')
+    const permisos_proveedores = await this.permisosService.permisos(userData.data.id, 'proveedores')
     this.permisos_catalogo_proveedores = permisos_proveedores.data
 
     let idLote = this.route.snapshot.queryParams?.['id_lote']
-    if(idLote){
+    if (idLote) {
       this.endPoint = `registro-mermas/obtener-registro-mermas?id_lote=${idLote}`
     }
 
@@ -227,8 +228,8 @@ export class EditarWarehouseComponent {
     this.model.id_proveedor = ''
     this.producto.codigo_barra = this.loteReal.data.id_producto.codigo_barra
     this.model.lote = this.loteReal.data.lote
-    this.model.fecha_entrada = this.formatoFecha(this.loteReal.data.fecha_entrada) 
-    this.model.fecha_vencimiento = this.formatoFecha(this.loteReal.data.fecha_vencimiento)  
+    this.model.fecha_entrada = this.formatoFecha(this.loteReal.data.fecha_entrada)
+    this.model.fecha_vencimiento = this.formatoFecha(this.loteReal.data.fecha_vencimiento)
     this.model.cantidad_comprada = this.loteReal.data.cantidad_comprada
     this.model.cantidad_vendida = this.loteReal.data.cantidad_vendida
     this.model.cantidad_en_bodega = this.loteReal.data.cantidad_en_bodega
@@ -236,11 +237,11 @@ export class EditarWarehouseComponent {
     this.model.estado = this.loteReal.data.estado
   }
 
-  goTo (url: string, _id: number){
+  goTo(url: string, _id: number) {
 
-    if(_id != 0){
+    if (_id != 0) {
       this.router.navigate([url], { queryParams: { id: _id } });
-    }else{
+    } else {
       this.router.navigate([url]);
     }
 
@@ -250,7 +251,7 @@ export class EditarWarehouseComponent {
     this.validationSubject.next();
   }
 
-  formatoFecha(fecha: number){
+  formatoFecha(fecha: number) {
     const date = new Date(Number(fecha) * 1000);
     const yyyy = date.getFullYear();
     const mm = String(date.getMonth() + 1).padStart(2, '0');
@@ -260,25 +261,71 @@ export class EditarWarehouseComponent {
   }
 
   checkValidation(): boolean {
+    let respuesta = false
     const regexBarCode = /^[0-9]{13}$/;
     const regexNIT = /^[0-9]{8,15}$/;
     this.validators.codigo_barra = (this.producto.codigo_barra === null || !regexBarCode.test((this.producto.codigo_barra as any).toString()))
     this.validators.nit = (this.proveedor.nit === null || !regexNIT.test((this.proveedor.nit as any).toString()));
 
-    const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
-    (!this.validators.codigo_barra && !this.validators.nit) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+    this.validators.id_producto = (this.model.id_producto === null || !regexBarCode.test((this.producto.codigo_barra as any).toString()));
+    this.validators.id_proveedor = (this.model.id_proveedor === null || !regexNIT.test((this.proveedor.nit as any).toString()));
+    this.validators.lote = (this.model.lote === '');
+    this.validators.fecha_entrada = (this.model.fecha_entrada === '');
+    this.validators.fecha_vencimiento = (this.model.fecha_vencimiento === '');
+    this.validators.cantidad_comprada = true;
+    this.validators.estado = (this.model.estado === '');
 
-    if(this.validators.codigo_barra){
+    if (this.validators.codigo_barra) {
       this.btn_new_product = false
       this.form_new_provider = false
       this.form_new_batch = false
       this.show_detail_product = false
-      this.show_detail_provider = false
+      if (this.proveedor.nit != '') {
+        this.show_detail_provider = true
+      } else {
+        this.show_detail_provider = false
+      }
+    }
+
+    if (this.validators.nit) {
+      if (this.proveedor.nit != '') {
+        this.show_detail_provider = true
+      } else {
+        this.show_detail_provider = false
+      }
+    }
+
+    if (this.validators.cantidad_comprada) {
+      this.validators.cantidad_comprada = false
+      this.validators.menor_a_merma_mas_vendida = false
+      if(this.model.cantidad_comprada > this.loteReal.data.cantidad_comprada){
+        this.model.cantidad_en_bodega = (parseInt(this.model.cantidad_comprada) - (parseInt(this.loteReal.data.mermas) + parseInt(this.loteReal.data.cantidad_vendida))).toString()
+      }
+      if(this.model.cantidad_comprada < this.loteReal.data.cantidad_comprada){
+        let cantidad_mermas_vendida  = parseInt(this.loteReal.data.mermas) + parseInt(this.model.cantidad_vendida)
+        if(parseInt(this.model.cantidad_comprada) >= cantidad_mermas_vendida){
+          this.model.cantidad_en_bodega = (parseInt(this.model.cantidad_comprada) - cantidad_mermas_vendida).toString()
+        }else{
+          this.validators.menor_a_merma_mas_vendida = true
+        }
+      }
+    }
+
+    const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
+
+    if (this.producto.es_perecedero == '1') {
+      (!this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.fecha_vencimiento && !this.validators.cantidad_comprada && !this.validators.estado && !this.validators.fecha_vencimiento && !this.validators.menor_a_merma_mas_vendida) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+      respuesta = !this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.fecha_vencimiento && !this.validators.cantidad_comprada && !this.validators.estado && !this.validators.fecha_vencimiento && !this.validators.menor_a_merma_mas_vendida
     }
     
-    return !this.validators.codigo_barra
+    if (this.producto.es_perecedero == '0') {
+      (!this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado && !this.validators.menor_a_merma_mas_vendida) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+      respuesta = !this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado && !this.validators.menor_a_merma_mas_vendida
+    }
+
+    return respuesta
   }
-  
+
   get esCodigoValido(): boolean {
     const codigo = (this.producto?.codigo_barra || '').toString();
     const regex = /^\d{13}$/;
@@ -299,7 +346,7 @@ export class EditarWarehouseComponent {
         this.producto.unidad_medida = response.data.medida.nombre
         this.producto.es_perecedero = response.data.es_perecedero
         const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
-        boton.classList.remove('disabled')
+        // boton.classList.add('disabled')
         this.show_detail_product = true
         this.btn_new_product = false
         this.form_new_provider = true
@@ -309,12 +356,12 @@ export class EditarWarehouseComponent {
         const statusCode = error.response.status;
         if (statusCode === 404) {
           const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
-          boton.classList.add('disabled')
+          // boton.classList.add('disabled')
           this.show_detail_product = false
           this.btn_new_product = true
-          if(this.permisos_catalogo_productos.find(obj => obj.permiso_permiso === 'crear') == undefined) {
+          if (this.permisos_catalogo_productos.find(obj => obj.permiso_permiso === 'crear') == undefined) {
             this.puedoCrearProductos = false
-          }else{
+          } else {
             this.puedoCrearProductos = true
           }
         }
@@ -332,26 +379,26 @@ export class EditarWarehouseComponent {
         this.proveedor.razon_social = response.data.razon_social
         this.proveedor.correo = response.data.correo
         const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
-        boton.classList.add('disabled')
+        // boton.classList.add('disabled')
         this.show_detail_provider = true
         this.btn_new_provider = false
         this.form_new_batch = true
       }
     } catch (error: any) {
       if (error.response) {
-         const statusCode = error.response.status;
-         if (statusCode === 404) {
-           this.show_detail_provider = false
-           this.btn_new_provider = true
-           this.form_new_batch = false
-           if(this.permisos_catalogo_proveedores.find(obj => obj.permiso_permiso === 'crear') == undefined) {
-             this.puedoCrearProveedores = false
-           }else{
-             this.puedoCrearProveedores = true
-           }
-            const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
-            boton.classList.add('disabled')
-         }
+        const statusCode = error.response.status;
+        if (statusCode === 404) {
+          this.show_detail_provider = false
+          this.btn_new_provider = true
+          this.form_new_batch = false
+          if (this.permisos_catalogo_proveedores.find(obj => obj.permiso_permiso === 'crear') == undefined) {
+            this.puedoCrearProveedores = false
+          } else {
+            this.puedoCrearProveedores = true
+          }
+          const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
+          // boton.classList.add('disabled')
+        }
       } else {
         console.error('Error de red o servidor no disponible');
       }
@@ -367,7 +414,7 @@ export class EditarWarehouseComponent {
 
         await this.bodegaService.updateBatch(this.model, this.route.snapshot.queryParams?.['id_lote']);
         ocultarModalOscura();
-        
+
         Swal.fire({
           title: this.translate.instant('mod-catalog.PRODUCT.SWAL_UPDATED'),
           text: this.translate.instant('mod-catalog.SWAL_UPDATED_RECORD'),
@@ -387,7 +434,7 @@ export class EditarWarehouseComponent {
     mermaSeccion: true,
   }
 
-  toogleSection(sectionActive: string){
+  toogleSection(sectionActive: string) {
     if (sectionActive in this.mostrarSeccion) {
       const key = sectionActive as keyof typeof this.mostrarSeccion;
       this.mostrarSeccion[key] = !this.mostrarSeccion[key];

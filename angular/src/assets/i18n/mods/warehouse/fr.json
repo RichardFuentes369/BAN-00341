@@ -74,5 +74,7 @@
 	"SWAL_BUTTON_DELETE": "Supprimer",
 	"SWAL_BUTTON_CANCEL": "Annuler",
 	"SWAL_DELETED": "Entrepôt !",
-	"SWAL_DELETED_RECORD": "Suppression réussie."
+	"SWAL_DELETED_RECORD": "Suppression réussie.",
+
+	"ERROR_QUANTITY_THAT_ALLOWED": "La quantité achetée est inférieure à celle déjà enregistrée (pertes, vendues)"
 }

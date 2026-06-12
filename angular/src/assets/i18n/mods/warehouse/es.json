@@ -74,5 +74,7 @@
   "SWAL_BUTTON_DELETE": "Eliminar",
   "SWAL_BUTTON_CANCEL": "Cancelar",
   "SWAL_DELETED": "BODEGA!",
-  "SWAL_DELETED_RECORD": "Eliminado exitosamente."
+  "SWAL_DELETED_RECORD": "Eliminado exitosamente.",
+
+  "ERROR_QUANTITY_THAT_ALLOWED": "La cantidad comprada es inferior a la ya registrada (mermas, vendidas)"
 }

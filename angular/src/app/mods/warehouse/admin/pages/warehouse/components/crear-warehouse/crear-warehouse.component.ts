@@ -185,13 +185,13 @@ export class CrearWarehouseComponent implements OnInit {
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
 
     if (this.producto.es_perecedero == '0') {
+      (!this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.fecha_vencimiento && !this.validators.cantidad_comprada && !this.validators.estado && !this.validators.fecha_vencimiento) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+      respuesta = !this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.fecha_vencimiento && !this.validators.cantidad_comprada && !this.validators.estado && !this.validators.fecha_vencimiento
+    }
+
+    if (this.producto.es_perecedero == '1') {
       (!this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
       respuesta = !this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado
-    }
-    
-    if (this.producto.es_perecedero == '1') {
-      (!this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado && !this.validators.fecha_vencimiento) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
-      respuesta = !this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado && !this.validators.fecha_vencimiento
     }
 
     return respuesta

@@ -74,5 +74,7 @@
   "SWAL_BUTTON_DELETE": "Löschen",
   "SWAL_BUTTON_CANCEL": "Abbrechen",
   "SWAL_DELETED": "Lager!",
-  "SWAL_DELETED_RECORD": "Erfolgreich gelöscht."
+  "SWAL_DELETED_RECORD": "Erfolgreich gelöscht.",
+
+  "ERROR_QUANTITY_THAT_ALLOWED": "Die gekaufte Menge ist geringer als die bereits erfasste Menge (Schwund, verkauft)"
 }
