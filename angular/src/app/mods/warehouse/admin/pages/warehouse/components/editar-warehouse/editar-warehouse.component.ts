@@ -113,7 +113,7 @@ export class EditarWarehouseComponent {
     fecha_vencimiento: '',
     cantidad_comprada: '',
     cantidad_vendida: '',
-    cantidad_en_bodega: '',
+    cantidad_en_bodega: 0,
     estado: ''
   }
 
@@ -299,12 +299,12 @@ export class EditarWarehouseComponent {
       this.validators.cantidad_comprada = false
       this.validators.menor_a_merma_mas_vendida = false
       if(this.model.cantidad_comprada > this.loteReal.data.cantidad_comprada){
-        this.model.cantidad_en_bodega = (parseInt(this.model.cantidad_comprada) - (parseInt(this.loteReal.data.mermas) + parseInt(this.loteReal.data.cantidad_vendida))).toString()
+        this.model.cantidad_en_bodega = parseInt(this.model.cantidad_comprada) - (parseInt(this.loteReal.data.mermas) + parseInt(this.loteReal.data.cantidad_vendida))
       }
       if(this.model.cantidad_comprada < this.loteReal.data.cantidad_comprada){
         let cantidad_mermas_vendida  = parseInt(this.loteReal.data.mermas) + parseInt(this.model.cantidad_vendida)
         if(parseInt(this.model.cantidad_comprada) >= cantidad_mermas_vendida){
-          this.model.cantidad_en_bodega = (parseInt(this.model.cantidad_comprada) - cantidad_mermas_vendida).toString()
+          this.model.cantidad_en_bodega = parseInt(this.model.cantidad_comprada) - cantidad_mermas_vendida
         }else{
           this.validators.menor_a_merma_mas_vendida = true
         }
@@ -408,10 +408,6 @@ export class EditarWarehouseComponent {
   async actualizarData() {
     if (this.isFormValid) {
       try {
-        console.log(this.model)
-        console.log(this.route.snapshot.queryParams?.['id_lote'])
-        return
-
         await this.bodegaService.updateBatch(this.model, this.route.snapshot.queryParams?.['id_lote']);
         ocultarModalOscura();
 

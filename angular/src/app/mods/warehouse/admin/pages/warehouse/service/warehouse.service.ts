@@ -68,9 +68,15 @@ export class BodegaService {
     let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
+    data.fecha_entrada = toTimestampp(data.fecha_entrada)
+    if(data.fecha_vencimiento != ''){
+      data.fecha_vencimiento = toTimestampp(data.fecha_vencimiento) + 86399
+    }else{
+      data.fecha_vencimiento = null
+    }
+
     const payload = { 
-      ...data, 
-      estado: (data.estado == true) ? 1 : 0 
+      ...data 
     };
 
     return await axios.request({

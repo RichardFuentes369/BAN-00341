@@ -164,18 +164,21 @@ export class WarehouseService {
     warehouseData: UpdateWarehouseDto, 
     userId: number
   ) {
+
     const exists = await this.batchRepository.findOne({ where: { id: id } });
     
     if (exists && exists.id != id) throw new NotFoundException(
       this.i18n.t('categoria.MSJ_ERROR_BRAND_EXISTE', { lang })
     );
     
-    const batch = await this.findOne(lang, id);
+    const property = await this.batchRepository.findOne({
+      where: { id }
+    });
     
-    // return this.batchRepository.save({
-    //   ...batch,
-    //   ...warehouseData
-    // });
+    return this.batchRepository.save({
+      ...property,
+      ...warehouseData
+    });
   }
 
   async remove(lang: string, ids: number[], userId: number) {
