@@ -12,7 +12,7 @@ export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
     Animated.parallel([
       Animated.timing(fadeAnim, { 
         toValue: 1, 
-        duration: 1000, 
+        duration: 3000, 
         useNativeDriver: true 
       }),
       Animated.timing(scaleAnim, { 

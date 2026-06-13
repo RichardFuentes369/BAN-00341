@@ -4,25 +4,27 @@ import { Slot } from 'expo-router';
 import LoadingScreen from '../components/LoadingScreen';
 import * as SplashScreen from 'expo-splash-screen';
 
-// Mantenemos el splash nativo visible hasta que estemos listos
+// 1. Mantenemos esto para evitar destellos blancos antes del render
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [isReady, setIsReady] = useState(false);
 
-  // Cuando la app termina de cargar (isReady cambia a true), ocultamos el splash
   useEffect(() => {
-    if (isReady) {
-      SplashScreen.hideAsync();
+    // 2. Ocultamos el Splash nativo APENAS el layout se monta.
+    // Esto libera la pantalla para que tu LoadingScreen sea la protagonista.
+    async function hideNative() {
+      await SplashScreen.hideAsync();
     }
-  }, [isReady]);
+    hideNative();
+  }, []);
 
-  // Si no está listo, mostramos la pantalla de carga (LoadingScreen)
+  // 3. Tu pantalla de carga personalizada toma el control total
   if (!isReady) {
     return <LoadingScreen onFinish={() => setIsReady(true)} />;
   }
 
-  // Si está listo, renderizamos el contenido real
+  // 4. App lista
   return (
     <ThemeProvider>
       <Slot />
