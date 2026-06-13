@@ -1,61 +1,65 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Animated, Platform } from 'react-native';
-import { useFonts, DancingScript_700Bold } from '@expo-google-fonts/dancing-script';
-import { Ionicons } from '@expo/vector-icons';
+import React, { useEffect, useRef } from 'react';
+import { View, Text, StyleSheet, Animated, Easing, ActivityIndicator } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import Feather from '@expo/vector-icons/Feather';
 
 export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
-  const [text, setText] = useState('');
-  const fullText = "Mermas scanner";
-  const fadeAnim = useState(new Animated.Value(0))[0];
-
-  // Intentamos cargar la fuente
-  const [fontsLoaded] = useFonts({ 
-    'DancingScript_700Bold': DancingScript_700Bold 
-  });
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const scaleAnim = useRef(new Animated.Value(0.8)).current; // Empezamos un poco más pequeño
 
   useEffect(() => {
-    // Animación de aparición
-    Animated.timing(fadeAnim, { 
-      toValue: 1, 
-      duration: 1000, 
-      useNativeDriver: true 
-    }).start();
+    // Animación de entrada combinada (Aparición + Escala suave)
+    Animated.parallel([
+      Animated.timing(fadeAnim, { 
+        toValue: 1, 
+        duration: 1000, 
+        useNativeDriver: true 
+      }),
+      Animated.timing(scaleAnim, { 
+        toValue: 1, 
+        duration: 1000, 
+        easing: Easing.out(Easing.back(1.5)), // Efecto rebote suave al final
+        useNativeDriver: true 
+      }),
+    ]).start();
 
-    // Efecto de escritura
-    let i = 0;
-    const interval = setInterval(() => {
-      setText(fullText.slice(0, i + 1));
-      i++;
-      if (i >= fullText.length) {
-        clearInterval(interval);
-        setTimeout(onFinish, 2000);
-      }
-    }, 150);
-
-    return () => clearInterval(interval);
+    // Finalizar tras 3.5 segundos (tiempo UX recomendado)
+    const timer = setTimeout(onFinish, 3500);
+    return () => clearTimeout(timer);
   }, []);
 
-  // Fuente dinámica con fallback seguro para evitar cierres
-  const fontFamily = fontsLoaded ? 'DancingScript_700Bold' : (Platform.OS === 'ios' ? 'Helvetica' : 'sans-serif');
-
   return (
-    <View style={styles.container}>
-      <Animated.View style={{ opacity: fadeAnim, alignItems: 'center' }}>
+    <LinearGradient 
+      colors={['#e6fcf5', '#c3fae8', '#96f2d7']} // Degradado verde menta muy suave y limpio
+      style={styles.container}
+    >
+      <Animated.View style={[
+        styles.content, 
+        { opacity: fadeAnim, transform: [{ scale: scaleAnim }] }
+      ]}>
         
-        <Text style={[styles.title, { fontFamily }]}>
-          {text}
+        {/* Contenedor del Icono con Sombra */}
+        <View style={styles.iconBackground}>
+          <Feather name="box" size={50} color="#0ca678" /> 
+        </View>
+
+        {/* Título Moderno */}
+        <Text style={styles.title}>
+          <Text style={styles.brandTitle}>Mermas</Text> Scanner
         </Text>
         
-        <View style={styles.iconContainer}>
-          <Ionicons name="barcode-outline" size={50} color="#eecfa1" />
-        </View>
-
-        <View style={styles.loadingDots}>
-          <Text style={styles.dots}>. . .</Text>
-        </View>
+        {/* Subtítulo Descriptivo */}
+        <Text style={styles.subtitle}>Gestión eficiente de inventario</Text>
 
       </Animated.View>
-    </View>
+
+      {/* Indicador de Carga y Texto de Estado en la parte inferior */}
+      <View style={styles.footerContainer}>
+        <ActivityIndicator size="small" color="#0ca678" style={{ marginBottom: 10 }} />
+        <Text style={styles.loadingText}>Preparando tu escáner...</Text>
+      </View>
+
+    </LinearGradient>
   );
 }
 
@@ -63,30 +67,51 @@ const styles = StyleSheet.create({
   container: { 
     flex: 1, 
     justifyContent: 'center', 
-    alignItems: 'center', 
-    backgroundColor: '#0b1626' 
+    alignItems: 'center',
+    paddingHorizontal: 20
+  },
+  content: { 
+    alignItems: 'center',
+    marginBottom: 100 // Espacio para el footer
+  },
+  iconBackground: {
+    backgroundColor: '#fff',
+    padding: 25,
+    borderRadius: 35,
+    marginBottom: 25,
+    // Sombras profesionales (iOS & Android)
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 8, 
   },
   title: { 
-    color: '#eecfa1', 
-    fontSize: 48,
+    fontSize: 32, 
+    fontWeight: '300', // Más ligero
+    color: '#1c7c54',
     textAlign: 'center',
-    textShadowColor: 'rgba(238, 207, 161, 0.3)',
-    textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 15
+    letterSpacing: 0.5
   },
-  iconContainer: {
-    marginTop: 20,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#eecfa1',
-    borderRadius: 50
+  brandTitle: {
+    fontWeight: 'bold', // Resaltamos la marca
   },
-  loadingDots: {
-    marginTop: 30
+  subtitle: {
+    fontSize: 16,
+    color: '#666',
+    marginTop: 8,
+    fontWeight: '400',
+    textAlign: 'center'
   },
-  dots: {
-    color: '#eecfa1',
-    fontSize: 24,
-    letterSpacing: 5
+  footerContainer: {
+    position: 'absolute',
+    bottom: 50,
+    alignItems: 'center'
+  },
+  loadingText: {
+    color: '#1c7c54',
+    fontSize: 14,
+    fontWeight: '500',
+    opacity: 0.8
   }
 });

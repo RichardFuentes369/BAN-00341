@@ -64,15 +64,48 @@ export default function TabIndexScreen() {
 
   if (!permission?.granted) {
     return (
-      <View style={styles.center}><Text>Necesitamos permiso de cámara</Text><Button title="Conceder" onPress={requestPermission} /></View>
+      <View style={[styles.container, { padding: 25, justifyContent: 'center', backgroundColor: isDarkMode ? '#121212' : '#f5f5f5' }]}>
+        <Feather name="camera" size={64} color={isDarkMode ? '#3498db' : '#3498db'} style={{ alignSelf: 'center', marginBottom: 20 }} />
+        
+        <Text style={[styles.title, { color: isDarkMode ? '#fff' : '#000' }]}>Acceso a la Cámara</Text>
+        <Text style={[styles.subtitle, { color: isDarkMode ? '#aaa' : '#666', textAlign: 'center', marginBottom: 30 }]}>
+          Para poder escanear productos, necesitamos que nos permitas acceder a tu cámara.
+        </Text>
+        
+        <TouchableOpacity 
+          style={styles.saveButton} 
+          onPress={requestPermission}
+        >
+          <Text style={styles.saveButtonText}>Conceder Permisos</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 
   if (view === 'config') {
     return (
-      <View style={[styles.container, { padding: 20 }]}>
-        <TextInput value={url} onChangeText={setUrl} placeholder="URL del servidor" style={styles.input} />
-        <Button title="Guardar y Conectar" onPress={() => { AsyncStorage.setItem('SERVER_URL', url); connect(url); setView('camera'); }} />
+      <View style={[styles.container, { padding: 25, justifyContent: 'center', backgroundColor: isDarkMode ? '#121212' : '#f5f5f5' }]}>
+        <Feather name="server" size={64} color={isDarkMode ? '#3498db' : '#3498db'} style={{ alignSelf: 'center', marginBottom: 20 }} />
+
+        <Text style={[styles.title, { color: isDarkMode ? '#fff' : '#000' }]}>Configuración de Servidor</Text>
+        <Text style={[styles.subtitle, { color: isDarkMode ? '#aaa' : '#666' }]}>Ingresa la dirección IP para conectar tu escáner</Text>
+
+        <TextInput
+          value={url}
+          onChangeText={setUrl}
+          placeholder="ej: http://192.168.1.50:3000"
+          placeholderTextColor={isDarkMode ? '#555' : '#aaa'}
+          style={[styles.input, { backgroundColor: isDarkMode ? '#1e1e1e' : '#fff', color: isDarkMode ? '#fff' : '#000', borderColor: isDarkMode ? '#333' : '#ddd' }]}
+          autoCapitalize="none"
+          keyboardType="url"
+        />
+
+        <TouchableOpacity
+          style={styles.saveButton}
+          onPress={() => { AsyncStorage.setItem('SERVER_URL', url); connect(url); setView('camera'); }}
+        >
+          <Text style={styles.saveButtonText}>Guardar y Conectar</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -232,4 +265,19 @@ const styles = StyleSheet.create({
     height: 40, // Altura del efecto de desvanecimiento
     zIndex: 10,  // Asegura que esté por encima del contenido del scroll
   },
+
+
+  title: { fontSize: 22, fontWeight: 'bold', textAlign: 'center', marginBottom: 8 },
+  subtitle: { fontSize: 14, textAlign: 'center', marginBottom: 30 },
+  saveButton: {
+    backgroundColor: '#3498db',
+    padding: 18,
+    borderRadius: 14,
+    alignItems: 'center',
+    shadowColor: '#3498db',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    elevation: 5
+  },
+  saveButtonText: { color: '#fff', fontWeight: 'bold', fontSize: 16 }
 });
