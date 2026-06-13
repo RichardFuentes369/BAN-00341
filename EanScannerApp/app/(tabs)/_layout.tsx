@@ -14,7 +14,7 @@ function ThemeToggleBtn() {
       <Feather 
         name={isDarkMode ? "sun" : "moon"} 
         size={22} 
-        color={isDarkMode ? "#FFD700" : "#333333"} // Amarillo para sol, gris oscuro para luna
+        color={isDarkMode ? "#FFD700" : "#333333"}
       />
     </TouchableOpacity>
   );

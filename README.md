@@ -77,11 +77,12 @@ CTRL + SHIFT + V
 		Reporte de perdidas por fecha
 
 
-pnpm run dev
-ng serve
-nest start --watch
-npx expo start -c    
 
-eas build -p android --profile preview
+ng serve (inicio anular)
+nest start --watch  (inicio nest)
+pnpm run dev (inicio nest + angular)
+npx expo start -c   (inicio expo)
 
-ssh -p 443 -R0:localhost:3000 a.pinggy.io
+eas build -p android --profile preview  (en la nube de expo)
+eas build -p android --profile preview --local (en mi local)
+ssh -p 443 -R0:localhost:3000 a.pinggy.io (abro el tunnel)
