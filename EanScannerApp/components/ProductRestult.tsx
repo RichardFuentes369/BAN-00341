@@ -20,19 +20,31 @@ export default function ProductResult({ data }: ProductResultProps) {
 
   return (
     <>
-      <View style={[styles.card, { borderColor: data.encontrado ? '#3ce78c' : '#e74c3c',  backgroundColor: isDarkMode ? '#121212' : '#ffffff' }]}>
+      <View style={[styles.card, { borderColor: data.encontrado ? '#3ce78c' : '#e74c3c', backgroundColor: isDarkMode ? '#121212' : '#ffffff' }]}>
         {data.encontrado ? (
           <>
             <Feather name="check" size={40} color="#3ce78c" />
             <Text style={[styles.title, { color: '#3ce78c' }]}>{data.nombre}</Text>
-            <Text style={{color: isDarkMode ? '#ffffff': '#121212'}}>Marca: {data.marca || 'N/A'}</Text>
-            <Text style={{color: isDarkMode ? '#ffffff': '#121212'}}>Código: {data.codigo_barras}</Text>
+            <Text style={{ color: isDarkMode ? '#ffffff' : '#121212' }}>Marca: {data.marca || 'N/A'}</Text>
+            <Text style={{ color: isDarkMode ? '#ffffff' : '#121212' }}>Código de barra: {data.codigo_barras}</Text>
+            <Text style={{ color: isDarkMode ? '#ffffff' : '#121212' }}>Medida: {data.medida}</Text>
+            <Text>
+            <Text style={{ color: isDarkMode ? '#ffffff' : '#121212' }}>
+              Estado: 
+            </Text>
+            <Text style={{ 
+              color: data.estado == 'Activo' ? '#2ecc71' : '#e74c3c', 
+              fontWeight: 'bold' 
+            }}>
+              {data.estado == 'Activo' ? ' Activo' : ' Inactivo'}
+            </Text>
+          </Text>
           </>
         ) : (
           <>
             <Feather name="alert-circle" size={40} color="#e74c3c" />
             <Text style={[styles.title, { color: '#e74c3c' }]}>No registrado</Text>
-            <Text style={{color: isDarkMode ? '#ffffff': '#121212'}}>Código: {data.codigo_barras}</Text>
+            <Text style={{ color: isDarkMode ? '#ffffff' : '#121212' }}>Código de barra: {data.codigo_barras}</Text>
           </>
         )}
       </View>
@@ -50,5 +62,10 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
   },
-  title: { fontSize: 30, fontWeight: 'bold', color: '#fff', marginVertical: 10 },
+  title: { fontSize: 20, fontWeight: 'bold', color: '#fff', marginVertical: 10 },
+  statusText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    letterSpacing: 0.5,
+  },
 });

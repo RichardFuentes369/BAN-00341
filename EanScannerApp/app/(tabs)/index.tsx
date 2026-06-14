@@ -21,6 +21,7 @@ export default function TabIndexScreen() {
   const { socketConnected, producto, emitScan, connect, clearProducto } = useSocketScanner(url);
   const [flash, setFlash] = useState(false);
   const [sound, setSound] = useState(false);
+  const [auto, setAuto] = useState(false);
   const [scanned, setScanned] = useState(false);
   const [history, setHistory] = useState<any[]>([]);
 
@@ -64,49 +65,68 @@ export default function TabIndexScreen() {
 
   if (!permission?.granted) {
     return (
-      <View style={[styles.container, { padding: 25, justifyContent: 'center', backgroundColor: isDarkMode ? '#121212' : '#f5f5f5' }]}>
-        <Feather name="camera" size={64} color={isDarkMode ? '#3498db' : '#3498db'} style={{ alignSelf: 'center', marginBottom: 20 }} />
+      <View style={[styles.configContainer, { backgroundColor: isDarkMode ? '#121212' : '#f5f5f5' }]}>
         
-        <Text style={[styles.title, { color: isDarkMode ? '#fff' : '#000' }]}>Acceso a la Cámara</Text>
-        <Text style={[styles.subtitle, { color: isDarkMode ? '#aaa' : '#666', textAlign: 'center', marginBottom: 30 }]}>
-          Para poder escanear productos, necesitamos que nos permitas acceder a tu cámara.
-        </Text>
+        <View style={[styles.configCard, { backgroundColor: isDarkMode ? '#1e1e1e' : '#fff' }]}>
+          
+          <Feather name="camera" size={64} color="#3498db" style={{ marginBottom: 20 }} />
+
+          <Text style={[styles.title, { color: isDarkMode ? '#fff' : '#000', marginBottom: 8 }]}>
+            Acceso a la Cámara
+          </Text>
+          
+          <Text style={[styles.subtitle, { color: isDarkMode ? '#aaa' : '#666', textAlign: 'center', marginBottom: 30 }]}>
+            Para poder escanear tus productos, necesitamos que nos permitas acceder a tu cámara.
+          </Text>
+
+          <TouchableOpacity
+            style={styles.saveButton}
+            onPress={requestPermission}
+          >
+            <Text style={styles.saveButtonText}>Conceder Permisos</Text>
+          </TouchableOpacity>
+          
+        </View>
         
-        <TouchableOpacity 
-          style={styles.saveButton} 
-          onPress={requestPermission}
-        >
-          <Text style={styles.saveButtonText}>Conceder Permisos</Text>
-        </TouchableOpacity>
       </View>
     );
   }
 
   if (view === 'config') {
     return (
-      <View style={[styles.container, { padding: 25, justifyContent: 'center', backgroundColor: isDarkMode ? '#121212' : '#f5f5f5' }]}>
-        <Feather name="server" size={64} color={isDarkMode ? '#3498db' : '#3498db'} style={{ alignSelf: 'center', marginBottom: 20 }} />
+    <View style={[styles.configContainer, { backgroundColor: isDarkMode ? '#121212' : '#f5f5f5' }]}>
+      
+      <View style={[styles.configCard, { backgroundColor: isDarkMode ? '#1e1e1e' : '#fff' }]}>
+        
+        <Feather name="server" size={50} color="#3498db" style={{ marginBottom: 15 }} />
 
-        <Text style={[styles.title, { color: isDarkMode ? '#fff' : '#000' }]}>Configuración de Servidor</Text>
-        <Text style={[styles.subtitle, { color: isDarkMode ? '#aaa' : '#666' }]}>Ingresa la dirección IP para conectar tu escáner</Text>
+        <Text style={[styles.title, { color: isDarkMode ? '#fff' : '#000', marginBottom: 8 }]}>
+          Configuración
+        </Text>
+        <Text style={[styles.subtitle, { color: isDarkMode ? '#aaa' : '#666', textAlign: 'center', marginBottom: 10 }]}>
+          Ingresa la IP del servidor local para iniciar
+        </Text>
 
         <TextInput
           value={url}
           onChangeText={setUrl}
-          placeholder="ej: http://192.168.1.50:3000"
+          placeholder="http://192.168.1.50:3000"
           placeholderTextColor={isDarkMode ? '#555' : '#aaa'}
-          style={[styles.input, { backgroundColor: isDarkMode ? '#1e1e1e' : '#fff', color: isDarkMode ? '#fff' : '#000', borderColor: isDarkMode ? '#333' : '#ddd' }]}
+          style={[styles.input, { 
+            backgroundColor: isDarkMode ? '#2c2c2c' : '#f9f9f9', 
+            color: isDarkMode ? '#fff' : '#000', 
+            borderColor: isDarkMode ? '#333' : '#eee' 
+          }]}
           autoCapitalize="none"
           keyboardType="url"
         />
 
-        <TouchableOpacity
-          style={styles.saveButton}
-          onPress={() => { AsyncStorage.setItem('SERVER_URL', url); connect(url); setView('camera'); }}
-        >
+        <TouchableOpacity style={styles.saveButton} onPress={() => { AsyncStorage.setItem('SERVER_URL', url); connect(url); setView('camera'); }}>
           <Text style={styles.saveButtonText}>Guardar y Conectar</Text>
         </TouchableOpacity>
+        
       </View>
+    </View>
     );
   }
 
@@ -114,170 +134,144 @@ export default function TabIndexScreen() {
     <View style={[styles.container, { backgroundColor: isDarkMode ? '#121212' : '#f5f5f5' }]}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
 
+      {/* Marco de Cámara con botones internos */}
       <View style={styles.scannerFrame}>
         <CameraComponent
           isEnabled={cameraActive}
           flash={flash}
           isConnected={socketConnected}
+          urlConnected={url}
           onScanned={(data) => {
-            if (!scanned) {
-              setScanned(true);
-              emitScan(data);
-              if (sound) playSuccessSound();
-              setTimeout(() => setScanned(false), 2500);
+            if (auto) {
+              if (!scanned) {
+                setScanned(true); emitScan(data); if (sound) playSuccessSound();
+                setTimeout(() => setScanned(false), 2500);
+              }
+            } else if (scanned) {
+              emitScan(data); if (sound) playSuccessSound(); setScanned(false);
             }
           }}
         />
 
-        <TouchableOpacity style={styles.floatBtn} onPress={() => setFlash(!flash)}><Feather name={flash ? "zap" : "zap-off"} size={20} color="white" /></TouchableOpacity>
-        <TouchableOpacity style={[styles.floatBtn, { top: 60 }]} onPress={() => setSound(!sound)}><Feather name={sound ? "volume-2" : "volume-x"} size={20} color="white" /></TouchableOpacity>
+        {/* Botones de control DENTRO del frame, abajo */}
+        {cameraActive && socketConnected && (
+          <View style={[styles.controlsContainer, { justifyContent: 'center' }]}>
+            <TouchableOpacity style={styles.cameraCaptureBtn} onPress={() => setSound(!sound)}>
+              <Feather name={sound ? "volume-2" : "volume-x"} size={15} color="white" />
+            </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.cameraToggleBtn}
-          onPress={() => setCameraActive(!cameraActive)}
-        >
-          <Feather name={cameraActive ? "camera" : "camera-off"} size={24} color="white" />
+            {auto === false && (
+              <TouchableOpacity style={styles.cameraCaptureBtn} onPress={() => setScanned(!scanned)}>
+                <Feather name='aperture' size={25} color="white" />
+              </TouchableOpacity>
+            )}
+
+            <TouchableOpacity style={styles.cameraCaptureBtn} onPress={() => setFlash(!flash)}>
+              <Feather name={flash ? "zap" : "zap-off"} size={15} color="white" />
+            </TouchableOpacity>
+          </View>
+        )}
+
+        {/* Botones flotantes superiores */}
+        <TouchableOpacity style={[styles.floatBtn, { top: 10 }]} onPress={() => setCameraActive(!cameraActive)}>
+          <Feather name={cameraActive ? "camera" : "camera-off"} size={15} color="white" />
         </TouchableOpacity>
+
+        {cameraActive && socketConnected && (
+          <TouchableOpacity style={[styles.floatBtn, { top: 11, right: 50 }]} onPress={() => setAuto(!auto)}>
+            <Text style={{ color: auto ? '#2ecc71' : '#e74c3c', fontWeight: 'bold' }}>{auto ? 'AUTO' : 'AUTO'}</Text>
+          </TouchableOpacity>
+        )}
       </View>
 
-
-
-      {/* Fila de botones */}
+      {/* Resto de la UI */}
       <View style={styles.buttonRow}>
-        <TouchableOpacity style={[styles.customButton, { flex: 1, margin: 0, marginRight: 5 }]} onPress={() => setView('config')}>
-          <Feather name="settings" size={18} color="white" />
-          <Text style={styles.buttonText}> Servidor</Text>
-        </TouchableOpacity>
+        <TouchableOpacity style={styles.customButton} onPress={() => setView('config')}><Feather name="settings" size={18} color="white" /><Text style={styles.buttonText}> Servidor</Text></TouchableOpacity>
+        <View style={{ width: 20 }} />
+        <TouchableOpacity style={styles.customButtonI} onPress={limpiarInfo}><Feather name="trash-2" size={18} color="white" /><Text style={styles.buttonText}> Limpiar</Text></TouchableOpacity>
+      </View>
 
-        <TouchableOpacity style={[styles.customButtonI, { flex: 1, margin: 0, marginLeft: 5 }]} onPress={() => limpiarInfo()}>
-          <Feather name="trash-2" size={18} color="white" />
-          <Text style={styles.buttonText}> Limpiar</Text>
-        </TouchableOpacity>
-      </View>
       <ProductResult data={producto} />
-      <Text style={styles.historyTitle}>Últimos 10 escaneos</Text>
-      <View style={{ flex: 1, position: 'relative' }}>
-        <LinearGradient
-          colors={isDarkMode ? ['#121212', 'transparent'] : ['#f5f5f5', 'transparent']}
-          style={styles.fadeOverlayTop}
-          pointerEvents="none"
-        />
-        <ScrollView
-          style={styles.historyScrollView}
-          contentContainerStyle={styles.historyContent}
-          showsVerticalScrollIndicator={true}
-        >
-          <ScanHistory items={history} />
-        </ScrollView>
-        <LinearGradient
-          colors={isDarkMode ? ['transparent', '#121212'] : ['transparent', '#f5f5f5']}
-          style={styles.fadeOverlayBottom}
-          pointerEvents="none"
-        />
-      </View>
+      <ScrollView style={styles.historyScrollView}><ScanHistory items={history} /></ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  scannerFrame: { width: '89%', height: 200, alignSelf: 'center', backgroundColor: '#000', borderRadius: 24, overflow: 'hidden', marginTop: 20 },
-  floatBtn: { position: 'absolute', top: 15, right: 15, padding: 10, backgroundColor: 'rgba(255,255,255,0.2)', borderRadius: 20 },
-  input: { backgroundColor: '#fff', padding: 15, borderRadius: 10, marginBottom: 20, borderWidth: 1 },
-  historyTitle: { color: '#888', marginTop: 10, marginLeft: '5%', fontWeight: 'bold' },
-
-  historyScrollView: {
-    flex: 1,
-    marginTop: 5,
+  scannerFrame: {
+    width: '89%', height: 200, alignSelf: 'center', backgroundColor: '#000',
+    borderRadius: 24, overflow: 'hidden', marginTop: 20, position: 'relative'
   },
-
-  historyContent: {
-    paddingBottom: 40,
-    paddingHorizontal: 10,
-  },
-  buttonRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  customButton: {
-    backgroundColor: '#3498db',
-    padding: 15,
-    borderRadius: 12,
-    flexDirection: 'row', // Para alinear icono y texto
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  customButtonI: {
-    backgroundColor: '#db3434',
-    padding: 15,
-    borderRadius: 12,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    marginLeft: 8 // Espacio entre icono y texto
-  },
-
-  cameraToggleBtn: {
+  controlsContainer: {
     position: 'absolute',
-    bottom: 15,            // Distancia del borde inferior
-    alignSelf: 'center',   // Centrado horizontal
-    padding: 15,
-    backgroundColor: 'rgba(0, 0, 0, 0.6)', // Fondo oscuro semitransparente
-    borderRadius: 30,      // Botón circular
+    bottom: 10,
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
     zIndex: 10,
+  },
+  cameraCaptureBtn: {
+    padding: 15,
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    borderRadius: 30,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.2)'
+    borderColor: 'rgba(255, 255, 255, 0.2)',
+    marginHorizontal: 10,
   },
+  floatBtn: {
+    position: 'absolute', top: 15, right: 15, padding: 8,
+    backgroundColor: 'rgba(0, 0, 0, 0.6)', borderRadius: 20, zIndex: 10
+  },
+  buttonRow: { flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 30, marginTop: 20, marginBottom: 20 },
+  customButton: { backgroundColor: '#3498db', padding: 15, borderRadius: 12, flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' },
+  customButtonI: { backgroundColor: '#db3434', padding: 15, borderRadius: 12, flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' },
+  buttonText: { color: '#fff', fontWeight: 'bold', marginLeft: 8 },
+  historyScrollView: { flex: 1, marginTop: 10, paddingHorizontal: 10 },
+  input: { backgroundColor: '#fff', padding: 15, borderRadius: 10, marginBottom: 20, borderWidth: 1 },
+  
 
-  fadeOverlayBottom: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 60, // Ajusta esta altura para controlar qué tanto se desvanece
+  configContainer: { 
+    flex: 1, 
+    justifyContent: 'center', 
+    padding: 20 
   },
-  fadeOverlayTop: {
-    position: 'absolute',
-    top: 0,      // Lo anclamos al borde superior
-    left: 0,
-    right: 0,
-    height: 40,  // Define qué tanto "borroso" quieres que se vea
-    zIndex: 10,  // Asegura que esté por encima del contenido del ScrollView
+  
+  // La "Tarjeta" que contiene el formulario
+  configCard: {
+    padding: 32,
+    borderRadius: 32, // Bordes muy redondeados para un look moderno
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.08,
+    shadowRadius: 20,
+    elevation: 8, // Sombra para Android
   },
-
-  historyWrapper: {
-    flex: 1,
-    position: 'relative', // Necesario para que el gradiente se posicione dentro
+  
+  input: {
+    width: '100%',
+    padding: 18,
+    borderRadius: 16,
+    borderWidth: 1.5,
+    fontSize: 16,
+    marginTop: 25,
+    marginBottom: 20,
+    textAlign: 'center',
   },
-  topFade: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 40, // Altura del efecto de desvanecimiento
-    zIndex: 10,  // Asegura que esté por encima del contenido del scroll
-  },
-
-
-  title: { fontSize: 22, fontWeight: 'bold', textAlign: 'center', marginBottom: 8 },
-  subtitle: { fontSize: 14, textAlign: 'center', marginBottom: 30 },
+  
   saveButton: {
+    width: '100%',
     backgroundColor: '#3498db',
     padding: 18,
-    borderRadius: 14,
+    borderRadius: 16,
     alignItems: 'center',
-    shadowColor: '#3498db',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    elevation: 5
+    marginTop: 5,
   },
-  saveButtonText: { color: '#fff', fontWeight: 'bold', fontSize: 16 }
+  
+  saveButtonText: { 
+    color: '#fff', 
+    fontWeight: '700', 
+    fontSize: 16 
+  }
 });
