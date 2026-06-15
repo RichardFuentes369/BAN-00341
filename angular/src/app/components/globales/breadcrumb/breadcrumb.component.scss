@@ -1,3 +1,17 @@
+:host {
+  --color-link-disabled: rgba(255, 255, 255, 0.7);
+  --color-link-actived: #ffffff;
+  --color-link-hover: #ffffff;
+  --color-separator: rgba(255, 255, 255, 0.4);
+  
+  &:host-context([data-theme='dark']) {
+    --color-link-disabled: #94a3b8;
+    --color-link-actived: #38bdf8;
+    --color-link-hover: #ffffff;
+    --color-separator: #475569;
+  }
+}
+
 /* --- BREADCRUMB FULL WIDTH MODERNO --- */
 .breadcrumb-full-container {
   width: 100%;
@@ -30,7 +44,7 @@
 }
 
 .breadcrumb-link {
-  color: #858796 !important; // Gris suave para pasos anteriores
+  color: var(--color-link-disabled); // Gris suave para pasos anteriores
   text-decoration: none !important;
   font-weight: 500;
   transition: all 0.2s ease;
@@ -38,14 +52,14 @@
   align-items: center;
 
   &:hover {
-    color: #4e73df !important; // Azul UTS al pasar el mouse
+    color: var(--color-link-hover); // Azul UTS al pasar el mouse
     transform: translateY(-1px);
   }
 }
 
 .breadcrumb-separator {
   margin: 0 12px;
-  color: #d1d3e2;
+  color: var(--color-separator);
   font-size: 0.65rem; // El chevron más pequeño se ve más elegante
   display: flex;
   align-items: center;
@@ -53,7 +67,7 @@
 }
 
 .breadcrumb-current {
-  color: #4e73df; // Azul fuerte para la ubicación actual
+  color: var(--color-link-actived); // Azul fuerte para la ubicación actual
   font-weight: 700;
   letter-spacing: 0.01em;
 }

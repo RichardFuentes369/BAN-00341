@@ -15,7 +15,7 @@ export class AppGateway {
 
     let result: any = {}
     
-    console.log(producto)
+    // console.log(producto)
 
     if (producto == null) {
       result = {

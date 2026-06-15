@@ -25,7 +25,7 @@ export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() accioneson: boolean = true;
   @Input() wordItem: string = '';
   @Input() mostrarTotal: boolean = true;
-  @Input() perPage: number = 6;
+  @Input() perPage: number = 20;
   @Input() campoFiltro: boolean = false;
   @Input() endPoint: string = '';
   @Input() filters: string = '';

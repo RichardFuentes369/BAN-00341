@@ -16,9 +16,10 @@
             {{ 'global-gridcrud.PAGINATION_INFO_SHOW' | translate }}
             <select class="form-select form-select-sm w-auto border-0 bg-transparent fw-bold text-primary"
               [(ngModel)]="perPage" (change)="onPerPageChange()">
-              <option [value]="6">6</option>
-              <option [value]="12">12</option>
-              <option [value]="24">24</option>
+              <option [value]="10">10</option>
+              <option [value]="20">20</option>
+              <option [value]="30">30</option>
+              <option [value]="40">40</option>
               <option [value]="50">50</option>
             </select>
             <span class="text-muted small text-nowrap">{{ 'global-tablecrud.TABLE_INFO_RECORDS' | translate }}</span>
@@ -163,8 +164,9 @@
       </div>
     </div>
 
-    <div class="row"> @for (item of data; track item.id) {
-      <div class="col-12 col-md-6 col-lg-4 col-xl-2 mb-3 pt-1 pb-1 animate__fadeIn">
+    <div class="row"> 
+      @for (item of data; track item.id) {
+      <div class="col-12 col-xl-2 col-md-3 mb-3 pt-1 pb-1 animate__fadeIn">
         <div class="card card-modern h-100 shadow-sm pointer" [class.is-selected]="idsSeleccionados.includes(item.id)"
           (click)="toggleSelection(item.id)">
 

@@ -223,4 +223,15 @@
     font-weight: 500;
     /* Opcional: para darle un grosor intermedio */
   }
+
+  .grid-responsive {
+    display: grid;
+    /* minmax(180px, 1fr) permite que cada tarjeta mida al menos 180px.
+      Si caben 5, pone 5. Si la pantalla se reduce y no caben, 
+      el navegador las mueve a la fila de abajo automáticamente.
+    */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    width: 100%;
+  }
 }
