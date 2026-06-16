@@ -29,6 +29,7 @@ import {
   ExpirationModule
 } from './mod/index'
 import { AppGateway } from './app.gateway';
+import { VarsModule } from './mod/entorno/admin/vars/vars.module';
 
 @Module({
   imports: [
@@ -63,11 +64,12 @@ import { AppGateway } from './app.gateway';
     ExtentModule,
     SotckModule,
     ExpirationModule,
+    VarsModule,
   ],
   controllers: [AppController],
   providers: [
     AppService,
-    AppGateway
+    AppGateway,
   ],
 })
 export class AppModule {
