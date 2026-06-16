@@ -10,7 +10,7 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN } from '@const/app.const';
 import { MOD_USER_PAGE_ADMIN, MOD_USER_PAGE_FINAL } from '@mod/users/const/users.const';
-import { MOD_VAR_PAGE_JSON, MOD_VAR_PAGE_VARS } from '@mod/system/const/system.const';
+import { MOD_VAR_PAGE_JSON, MOD_VAR_PAGE_VARS } from '@mod/vars/const/vars.const';
 
 @Component({
   selector: 'app-index',

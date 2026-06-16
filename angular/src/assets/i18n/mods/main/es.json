@@ -1,5 +1,6 @@
 {
   "TITTLE_MENU": "Menú",
+  "PAGES_MENU": "Menú",
   "PAGES_DASHBOARD": "Panel",
   "PAGES_PROFILE": "Perfil",
   "PAGES_SETTINGS": "Ajustes",
@@ -10,5 +11,6 @@
   "PAGES_CATALOG": "Catalogo",
   "PAGE_STOCK": "Existencia",
   "PAGE_WAREHOUSE": "Bodega",
-  "PAGE_CUSTOMIZABLE": "Variables de entorno"
+  "PAGE_VAR_SYSTEM": "Variables del sistema",
+  "PAGE_CUSTOM": "Personalización"
 }

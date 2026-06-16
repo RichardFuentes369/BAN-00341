@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 // componentes
 import { JsonComponent } from '../pages/json/json.component';
-import { TITLE_PATH_SYSTEM_JSON } from '@mod/system/const/system.const';
+import { TITLE_PATH_SYSTEM_JSON } from '@mod/vars/const/vars.const';
 
 export const JSONRounting: Routes = [
   {

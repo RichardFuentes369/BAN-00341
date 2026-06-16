@@ -1,5 +1,6 @@
 {
   "TITTLE_MENU": "Menü",
+  "PAGE_MENU": "Menü",
   "PAGES_DASHBOARD": "Dashboard",
   "PAGES_PROFILE": "Profil",
   "PAGES_SETTINGS": "Einstellungen",
@@ -10,5 +11,6 @@
   "PAGES_CATALOG": "Katalog",
   "PAGE_STOCK": "Aktie",
   "PAGE_WAREHOUSE": "Lager",
-  "PAGE_CUSTOMIZABLE": "Umgebungsvariablen"
+  "PAGE_VAR_SYSTEM": "Systemvariablen",
+  "PAGE_CUSTOM": "Anpassung"
 }

@@ -10,6 +10,17 @@
         <div class="sidebar-brand-text mx-3">{{NAME_PAGE}}</div>
       </a>
 
+      <hr class="sidebar-divider bg-white mb-0">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" [routerLink]="LAYOUT_ADMIN_PAGE_MENU"  data-toggle="collapse" data-target="#collapseMenu" aria-expanded="true"
+          aria-controls="collapseMenu">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+          <span>{{ 'mod-main.PAGES_MENU' | translate }}</span>
+        </a>
+        <div id="collapseWarehouse" class="collapse" aria-labelledby="headingWarehouse" data-parent="#accordionSidebar"></div>
+      </li>
+
       <hr class="sidebar-divider bg-white">
 
       <div class="sidebar-heading">
@@ -61,10 +72,10 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLoss" aria-expanded="true"
           aria-controls="collapseLoss">
           <span class="fa-stack mx-auto"> 
-            <i class="fas fa-box fa-stack-2x"></i> 
-            <i class="fas fa-bolt fa-stack-2x" style="color: #000;"></i> 
+            <i class="fas fa-box fa-stack-2x my-2"></i> 
+            <i class="fas fa-bolt fa-stack-2x my-2" style="color: #000;"></i> 
           </span>
-          <span>{{ 'mod-main.PAGES_LOSS' | translate }}</span>
+          <span class="mx-3">{{ 'mod-main.PAGES_LOSS' | translate }}</span>
         </a>
         <div id="collapseLoss" class="collapse" aria-labelledby="headingLoss" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -88,15 +99,6 @@
             <a class="collapse-item" [routerLink]="MOD_ALERT_PAGE_STOCK">{{ 'mod-alerts.BUTTON_STOCK' | translate }}</a>
           </div>
         </div>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" [routerLink]="LAYOUT_ADMIN_PAGE_MODULES" data-toggle="collapse" data-target="#collapseModules" aria-expanded="true"
-          aria-controls="collapseModules">
-          <i class="fa fa-sitemap" aria-hidden="true"></i>
-          <span>{{ 'mod-main.PAGES_MODULES' | translate }}</span>
-        </a>
-        <div id="collapseModules" class="collapse" aria-labelledby="headingModules" data-parent="#accordionSidebar"></div>
       </li>
 
       <hr class="sidebar-divider d-none d-md-block">

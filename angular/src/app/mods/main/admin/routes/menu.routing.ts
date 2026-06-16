@@ -22,6 +22,9 @@
     PATH_VAR,
     TITLE_PATH_VAR,
     BREADCRUMB_PATH_VAR,
+    PATH_CUSTOM,
+    TITLE_PATH_CUSTOM,
+    BREADCRUMB_PATH_CUSTOM,
   } from '@mod/main/const/main.const';
 
   export const MenuRoutes: Routes = [
@@ -97,7 +100,18 @@
       path: PATH_VAR,
       title: TITLE_PATH_VAR,
       data: { breadcrumb: BREADCRUMB_PATH_VAR },
-      loadChildren: () => import('@mod/system/admin/routes/index.routing').then(x=>x.SystemRoutes),
+      loadChildren: () => import('@mod/vars/admin/routes/index.routing').then(x=>x.VarsRoutes),
+      canActivate: [
+        adminGuard
+      ]
+    },
+
+    // Modulo Custom
+    {
+      path: PATH_CUSTOM,
+      title: TITLE_PATH_CUSTOM,
+      data: { breadcrumb: BREADCRUMB_PATH_CUSTOM },
+      loadChildren: () => import('@mod/custom/admin/routes/index.routing').then(x=>x.CustomRoutes),
       canActivate: [
         adminGuard
       ]
