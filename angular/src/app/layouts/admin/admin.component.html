@@ -10,11 +10,7 @@
         <div class="sidebar-brand-text mx-3">{{NAME_PAGE}}</div>
       </a>
 
-      <hr class="sidebar-divider my-0">
-
-      <div class="sidebar-heading">
-        {{ 'layout-admin.WORD_MODULES' | translate}}
-      </div>
+      <hr class="sidebar-divider bg-white mb-0">
 
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="LAYOUT_ADMIN_PAGE_MOD" routerLinkActive="active">
@@ -23,6 +19,92 @@
             {{ 'layout-admin.OPTION_MODULES_MENU' | translate}}
           </span>
         </a>
+      </li>
+
+      <hr class="sidebar-divider bg-white">
+
+      <div class="sidebar-heading">
+        {{ 'layout-admin.WORD_MODULES' | translate}}
+      </div>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true"
+          aria-controls="collapseUsers">
+          <i class="fa fa-users" aria-hidden="true"></i>
+          <span>{{ 'mod-main.PAGES_USERS' | translate }}</span>
+        </a>
+        <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+            <a class="collapse-item" [routerLink]="MOD_USER_PAGE_ADMIN">{{ 'mod-users.BUTTON_ADMIN' | translate }}</a>
+            <a class="collapse-item" [routerLink]="MOD_USER_PAGE_FINAL">{{ 'mod-users.BUTTON_FINAL' | translate }}</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCatalog" aria-expanded="true"
+          aria-controls="collapseCatalog">
+          <i class="fa fa-book" aria-hidden="true"></i>
+          <span>{{ 'mod-main.PAGES_CATALOG' | translate }}</span>
+        </a>
+        <div id="collapseCatalog" class="collapse" aria-labelledby="headingCatalog" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+            <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_SUPPLIER">{{ 'mod-catalog.BUTTON_SUPPLIER' | translate}}</a>
+            <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_EXTENT">{{ 'mod-catalog.BUTTON_EXTENT' | translate}}</a>
+            <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_BRAND">{{ 'mod-catalog.BUTTON_BRAND' | translate}}</a>
+            <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_PRODUCT">{{ 'mod-catalog.BUTTON_PRODUCT' | translate}}</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" [routerLink]="LAYOUT_ADMIN_PAGE_WAREHOUSE"  data-toggle="collapse" data-target="#collapseWarehouse" aria-expanded="true"
+          aria-controls="collapseWarehouse">
+          <i class="fa fa-cubes" aria-hidden="true"></i>
+          <span>{{ 'mod-main.PAGE_WAREHOUSE' | translate }}</span>
+        </a>
+        <div id="collapseWarehouse" class="collapse" aria-labelledby="headingWarehouse" data-parent="#accordionSidebar"></div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLoss" aria-expanded="true"
+          aria-controls="collapseLoss">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>{{ 'mod-main.PAGES_LOSS' | translate }}</span>
+        </a>
+        <div id="collapseLoss" class="collapse" aria-labelledby="headingLoss" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+            <a class="collapse-item" [routerLink]="MOD_MERMA_PAGE_TIPOS">{{ 'mod-merma.BUTTON_TYPE' | translate}}</a>
+            <a class="collapse-item" [routerLink]="MOD_MERMA_PAGE_REGISTRO">{{ 'mod-merma.BUTTON_RECORD' | translate}}</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAlert" aria-expanded="true"
+          aria-controls="collapseAlert">
+          <i class="fa fa-bell" aria-hidden="true"></i>
+          <span>{{ 'mod-main.PAGES_ALERTS' | translate }}</span>
+        </a>
+        <div id="collapseAlert" class="collapse" aria-labelledby="headingAlert" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+            <a class="collapse-item" [routerLink]="MOD_ALERT_PAGE_EXPIRATION">{{ 'mod-alerts.BUTTON_EXPIRATION' | translate }}</a>
+            <a class="collapse-item" [routerLink]="MOD_ALERT_PAGE_STOCK">{{ 'mod-alerts.BUTTON_STOCK' | translate }}</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" [routerLink]="LAYOUT_ADMIN_PAGE_MODULES" data-toggle="collapse" data-target="#collapseModules" aria-expanded="true"
+          aria-controls="collapseModules">
+          <i class="fa fa-sitemap" aria-hidden="true"></i>
+          <span>{{ 'mod-main.PAGES_MODULES' | translate }}</span>
+        </a>
+        <div id="collapseModules" class="collapse" aria-labelledby="headingModules" data-parent="#accordionSidebar"></div>
       </li>
 
       <hr class="sidebar-divider d-none d-md-block">
@@ -35,18 +117,19 @@
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content-scroll-area">
 
-        <nav class="navbar navbar-expand navbar-light bg-primary topbar static-top mb-1 sticky-top pl-2 pr-2">
+        <nav class="navbar navbar-expand navbar-light bg-primary topbar static-top mb-1 sticky-top pl-2 pr-2 shadow">
           <ul class="navbar-nav mr-auto nav-vertical-wrapper">
             <app-globales-breadcrumbs></app-globales-breadcrumbs>
           </ul>
           <ul class="navbar-nav ml-auto">
+            <div class="topbar-divider d-none d-sm-block"></div>
             <li class="nav-item dropdown no-arrow my-auto text-center mr-1">
               <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
             </li>
             <div class="topbar-divider d-none d-sm-block"></div>
             <li class="nav-item dropdown no-arrow my-auto text-center">
               <app-globales-colormode></app-globales-colormode>
-            </li> 
+            </li>
             <div class="topbar-divider d-none d-sm-block"></div>
             <li class="nav-item dropdown no-arrow my-auto text-center ">
               <a class="nav-link dropdown-toggle h-100" id="userDropdown" role="button" data-toggle="dropdown"
@@ -76,8 +159,8 @@
           </ul>
         </nav>
 
-        
-        <div id="content" class="container-fluid px-4">
+
+        <div id="content" class="container-fluid">
           <div class="p-1 mt-4">
             <router-outlet></router-outlet>
           </div>

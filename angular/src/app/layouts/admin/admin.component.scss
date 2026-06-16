@@ -19,14 +19,24 @@
 #wrapper {
   display: flex;
   height: 100vh;
-  overflow: hidden;
+  overflow: visible;
 }
 
 #accordionSidebar {
   height: 100vh;
-  overflow-y: auto;
+  overflow-y: visible;
   flex-shrink: 0;
   z-index: 1040; // Sidebar por debajo del Topbar dropdown
+  .sidebar-inner { 
+    height: 100%;
+    overflow-y: auto;
+  }
+  #accordionSidebar {
+    display: flex !important; // Fuerza a que se muestre como flex
+    position: absolute !important; // Para que flote sobre el contenido
+    height: 100vh !important;
+    left: 0;
+  }
 }
 
 #content-wrapper {

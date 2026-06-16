@@ -1,40 +1,42 @@
-:host {
-  --fondo-select: #fff;
-  --fondo-font-select: #2c3e50;
-  --arrow-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234A90E2'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+.custom-language-select {
+  position: relative;
+  display: inline-block;
   
-  &[data-theme='dark'], 
-  &:host-context([data-theme='dark']) {
-    --fondo-select: #2c3e50;
-    --fondo-font-select: #fff;
-    --arrow-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234A90E2'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  select {
+    appearance: none;
+    background: var(--fondo-font-select); // Fondo translúcido
+    border: 0;
+    padding: 5px 5px 5px 5px; // Espacio extra a la derecha para la flecha
+    color: var(--fondo-font-select);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    backdrop-filter: blur(10px); // Efecto desenfoque estilo iOS
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.2);
+      border-color: #4A90E2;
+      box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
+    }
+  }
+
+  // Posicionamos la flecha manualmente para que no dependa del navegador
+  i {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; // El clic pasa a través del icono
+    font-size: 0.7rem;
+    color: #4A90E2;
   }
 }
 
-.custom-select {
-  background-color: var(--fondo-select);
-  color: var(--fondo-font-select);
-  
-  /* 2. Quitar la flecha fea por defecto del navegador */
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-
-  /* 3. Poner nuestra propia flecha (barra) */
-  background-image: var(--arrow-image);
-  background-repeat: no-repeat;
-  background-position: right 8px center;
-  background-size: 18px;
-
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: var(--fondo-select);
-  }
-}
-
-.custom-select option {
-  background-color: var(--fondo-select); 
-  color: var(--fondo-font-select);
+// Estilo para las opciones cuando el usuario abre el select
+select option {
+  background: #fff; // Fondo sólido para el dropdown
+  color: #333;
+  padding: 10px;
 }
