@@ -9,5 +9,6 @@
   "PAGES_ALERTS": "Alertas",
   "PAGES_CATALOG": "Catalogo",
   "PAGE_STOCK": "Existencia",
-  "PAGE_WAREHOUSE": "Bodega"
+  "PAGE_WAREHOUSE": "Bodega",
+  "PAGE_CUSTOMIZABLE": "Variables de entorno"
 }

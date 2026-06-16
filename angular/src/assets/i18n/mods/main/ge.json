@@ -9,5 +9,6 @@
   "PAGES_ALERTS": "Warnmeldungen",
   "PAGES_CATALOG": "Katalog",
   "PAGE_STOCK": "Aktie",
-  "PAGE_WAREHOUSE": "Lager"
+  "PAGE_WAREHOUSE": "Lager",
+  "PAGE_CUSTOMIZABLE": "Umgebungsvariablen"
 }

@@ -9,5 +9,6 @@
   "PAGES_ALERTS": "Alertes",
   "PAGES_CATALOG": "Catalogue",
   "PAGE_STOCK": "Action",
-  "PAGE_WAREHOUSE": "Entrepôt"
+  "PAGE_WAREHOUSE": "Entrepôt", 
+  "PAGE_CUSTOMIZABLE": "Variables d'environnement"
 }
