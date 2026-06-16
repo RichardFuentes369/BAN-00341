@@ -18,7 +18,7 @@ export const MeRoutes: Routes = [
 
   {
     path: PATH_ME_SETTINGS,
-    data: { breadcrumb: BREADCRUMB_PATH_ME_PROFILE },
+    data: { breadcrumb: BREADCRUMB_PATH_ME_SETTINGS },
     title: TITLE_PATH_ME_SETTINGS,
     canActivate: [
       adminGuard

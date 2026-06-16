@@ -68,6 +68,7 @@
   "REPORT_PERMISSION_TITLE": "Report",
   "REPORT_PERMISSION_SUBTITLE": "of permissions",
   
+  "BUTTON_UPDATE_INFO": "Update",
   "BUTTON_USER_CREATE": "Create user",
   "BUTTON_USER_EDIT": "Edit user",
   "BUTTON_ADMIN": "Admins",
