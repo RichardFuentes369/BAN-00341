@@ -37,6 +37,8 @@ export class AsignarPermisosComponent implements OnInit{
   title: any = {}
   permisos: any[] = []
 
+  mostratTodo: boolean = false
+
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
@@ -90,7 +92,6 @@ export class AsignarPermisosComponent implements OnInit{
     return text ? text.trim().replace(/\s+/g, '\n') : '';
   }
 
-
   mostrarCards = true;
   isAnimationDone = false;
 
@@ -106,6 +107,13 @@ export class AsignarPermisosComponent implements OnInit{
   toggleCollapse(nombrePermiso: string, isToggle: boolean) {
     const response  = this.permisos.find((e: any) => e.mpm_permiso == nombrePermiso)
     response.mpm_toogle = !isToggle
+  }
+
+  toggleAllCollapse(){
+    for (const elm of this.permisos) {
+      elm.mpm_toogle = !this.mostratTodo
+    }
+    this.mostratTodo = !this.mostratTodo
   }
 
 }

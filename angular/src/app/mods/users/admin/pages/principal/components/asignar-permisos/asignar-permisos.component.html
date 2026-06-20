@@ -1,6 +1,13 @@
 <div class="mb-4 border-0 rounded-0">
   <div class="d-flex justify-content-between align-items-center px-3 pb-2">
     <h4 class="m-0 fw-bold" [innerHTML]="'mod-users.ASSIGMENT_ADMIN_TITLE' | translate:title"></h4>
+    <span class="custom-tooltip tooltip-left mt-1 mb-1" 
+      [attr.data-title]="mostrarCards === true ? ('global-card.WORD_SHOW' | translate) : ('global-card.WORD_HIDE' | translate)" 
+      (click)="toggleAllCollapse()">
+      <button class="btn btn-sm btn-light rounded-circle shadow-sm">
+        <i [class]="mostratTodo ? 'fa fa-chevron-down' : 'fa fa-chevron-up'"></i>
+      </button>
+    </span>
   </div>
   <hr class="mt-0 ml-3 mr-3">
   <div class="p-3 pt-0" style="position: relative;">
@@ -15,8 +22,7 @@
               (click)="toggleCollapse(modulos.mpm_permiso, modulos.mpm_toogle)">
               {{ modulos.mpm_nombre }}
             </a>
-            <span class="custom-tooltip tooltip-left mt-1 mb-1"
-              [attr.data-title]="mostrarCards ? ('global-card.WORD_HIDE' | translate) : ('global-card.WORD_SHOW' | translate)">
+            <span class="custom-tooltip tooltip-left mt-1 mb-1" [attr.data-title]="mostrarCards ? ('global-card.WORD_HIDE' | translate) : ('global-card.WORD_SHOW' | translate)">
               <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toggleCollapse(modulos.mpm_permiso, modulos.mpm_toogle)">
                 <i [class]="modulos.mpm_toogle ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
               </button>

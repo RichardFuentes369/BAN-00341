@@ -10,7 +10,6 @@ import { STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINA
 import { NAME_PAGE, LAYOUT_ADMIN_PAGE_LOGOUT, LAYOUT_PAGE_PROFILE, LAYOUT_PAGE_SETTINGS, LAYOUT_PAGE_DASHBOARD } from '@layout/const/layouts.const'
 import { LAYOUT_ADMIN_PAGE_MOD } from '@layout/const/layouts.const'
 import { ColormodeComponent } from '@component/globales/colormode/colormode.component';
-import { DateComponent } from '@component/globales/date/date.component';
 import { AuthService } from '@guard/service/auth.service';
 import { PrincipalService } from '@mod/users/admin/pages/principal/service/principal.service';
 import { SettingsService } from '@mod/me/admin/pages/settings/service/settings.service';
@@ -39,7 +38,6 @@ import { MOD_ALERT_PAGE_EXPIRATION, MOD_ALERT_PAGE_STOCK } from '@mod/alerts/con
   selector: 'app-layout-admin',
   standalone: true,
   imports: [
-    DateComponent,
     BreadcrumbsComponent,
     ColormodeComponent,
     IdiomaComponent,
