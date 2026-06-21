@@ -156,8 +156,8 @@
   }
 
   thead {
-    background: var(--table-head-background)!important;
-    color: var(--table-head-text);
+    background: var(--grid_table_crud-head-background)!important;
+    color: var(--grid_table_crud-head-text);
     border-radius: 8px !important;
   }
 
@@ -203,7 +203,7 @@
 
         td {
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); // Sombra más pronunciada en hover
-          border-color: var(--table-row-select) !important; // Opcional: cambia el borde al color principal
+          border-color: var(--grid_table_crud-row-select) !important; // Opcional: cambia el borde al color principal
         }
       }
     }
@@ -218,42 +218,42 @@
     vertical-align: middle;
 
     // Bordes superior e inferior de la tarjeta
-    border-top: 1px solid var(--table-row-color-line) !important;
-    border-bottom: 1px solid var(--table-row-color-line) !important;
+    border-top: 1px solid var(--grid_table_crud-row-color-line) !important;
+    border-bottom: 1px solid var(--grid_table_crud-row-color-line) !important;
 
     border-left: none !important;
     border-right: none !important;
 
     &:first-child {
-      border-left: 1px solid var(--table-row-color-line) !important;
+      border-left: 1px solid var(--grid_table_crud-row-color-line) !important;
       border-radius: 8px 0 0 8px !important;
     }
 
     &:last-child {
-      border-right: 1px solid var(--table-row-color-line) !important;
+      border-right: 1px solid var(--grid_table_crud-row-color-line) !important;
       border-radius: 0 8px 8px 0 !important;
     }
   }
 
   tr.selected-row {
     // Cambiamos el fondo de toda la estructura del TR de un solo golpe
-    background-color: var(--table-row-select) !important;
+    background-color: var(--grid_table_crud-row-select) !important;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2) !important;
 
     td {
-      color: var(--table-row-text-select) !important;
+      color: var(--grid_table_crud-row-text-select) !important;
       font-weight: 500;
 
       // Sincronizamos los bordes perimetrales con el color de selección
-      border-top-color: var(--table-row-select) !important;
-      border-bottom-color: var(--table-row-select) !important;
+      border-top-color: var(--grid_table_crud-row-select) !important;
+      border-bottom-color: var(--grid_table_crud-row-select) !important;
 
       &:first-child {
-        border-left-color: var(--table-row-select) !important;
+        border-left-color: var(--grid_table_crud-row-select) !important;
       }
 
       &:last-child {
-        border-right-color: var(--table-row-select) !important;
+        border-right-color: var(--grid_table_crud-row-select) !important;
       }
 
       /* Ajuste de elementos hijos dentro de la tarjeta roja */
@@ -270,7 +270,7 @@
       .badge,
       .btn-actions {
         background-color: #ffffff !important;
-        color: var(--table-row-select) !important;
+        color: var(--grid_table_crud-row-select) !important;
       }
     }
   }
@@ -358,32 +358,32 @@
 }
 
 .text-cargar-ecxel {
-  color: var(--table-button-cargar_excel);
+  color: var(--grid_table_crud-button-cargar_excel);
 }
 .text-crear {
-  color: var(--table-button-crear);
+  color: var(--grid_table_crud-button-crear);
 }
 .text-ver {
-  color: var(--table-button-ver);
+  color: var(--grid_table_crud-button-ver);
 }
 .text-editar {
-  color: var(--table-button-editar);
+  color: var(--grid_table_crud-button-editar);
 }
 .text-estado-usuario{
-  color: var(--table-button-estado_usuario);
+  color: var(--grid_table_crud-button-estado_usuario);
 }
 .text-eliminar-inidividual{
-  color: var(--table-button-eliminar_individual);
+  color: var(--grid_table_crud-button-eliminar_individual);
 }
 .text-eliminar-multiple{
-  color: var(--table-button-eliminar_multiple);
+  color: var(--grid_table_crud-button-eliminar_multiple);
 }
 .text-asignar-permisos {
-  color: var(--table-button-asignar_permisos);
+  color: var(--grid_table_crud-button-asignar_permisos);
 }
 .text-asignar-productos{
-  color: var(--table-button-asignar_productos);
+  color: var(--grid_table_crud-button-asignar_productos);
 }
 .text-limpiar{
-  color: var(--table-button-limpiar);
+  color: var(--grid_table_crud-button-limpiar);
 }

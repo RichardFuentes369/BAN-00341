@@ -3,8 +3,8 @@
     <span class="floating-number-filter text-center" (click)="openFilterMinimize()">
       {{ contador }}
     </span>
-    <button class="floating-button btn btn-sm btn-primary" (click)="openFilterMinimize()">
-      <i [ngClass]="icon"></i>
+    <button class="floating-button btn btn-sm btn-search" (click)="openFilterMinimize()">
+      <i [ngClass]="icon" class="text-white"></i>
     </button>
   </span>
 
@@ -15,7 +15,7 @@
     <button class="btn-minimize-card" (click)="openFilterMinimize()">
       <i class="fa fa-window-minimize"></i>
     </button>
-    <h3 class="header">{{ 'global-search.TITTLE_COMPONENT' | translate }}</h3>
+    <h3 class="header-search">{{ 'global-search.TITTLE_COMPONENT' | translate }}</h3>
     <div class="card-body">
       <div class="container mt-2">
         <div #contenedorFilter></div>

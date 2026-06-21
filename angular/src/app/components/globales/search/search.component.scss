@@ -1,5 +1,9 @@
 ::ng-deep {
 
+  .btn-search {
+    background-color: var(--search-background);
+  }
+
   .header {
     background: var(--search-head-background) !important;
     border-bottom: none; 
@@ -64,7 +68,7 @@
       visibility: visible;
     }
 
-    .header {
+    .header-search {
       margin: 0;
       padding: 12px;
       background: var(--search-head-background);

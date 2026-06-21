@@ -3,8 +3,8 @@
     {{ contador }}
   </span> -->
   <span class="custom-tooltip tooltip-left" [attr.data-title]="'global-report.TITTLE_COMPONENT' | translate">
-    <button class="floating-button btn btn-sm btn-primary" (click)="openReportMinimize()">
-      <i [ngClass]="icon"></i>
+    <button class="floating-button btn btn-sm btn-report" (click)="openReportMinimize()">
+      <i [ngClass]="icon" class="text-white"></i>
     </button>
   </span>
 </div>
@@ -13,7 +13,7 @@
   <button class="btn-close-card" (click)="$event.stopPropagation(); closeReport()">
     <i class="fa fa-times"></i>
   </button>
-  <h3 class="header">{{ 'global-report.TITTLE_COMPONENT' | translate}}</h3>
+  <h3 class="header-report">{{ 'global-report.TITTLE_COMPONENT' | translate}}</h3>
   <div class="card-body">
     <div class="container mt-2">
       <div class="card shadow-sm mb-2 p-2">

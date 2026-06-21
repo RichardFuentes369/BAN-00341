@@ -76,8 +76,8 @@
   }
 
   &.is-selected {
-    background-color: var(--table-row-select) !important;
-    border-color: var(--table-row-select) !important;
+    background-color: var(--grid_table_crud-row-select) !important;
+    border-color: var(--grid_table_crud-row-select) !important;
     background-image: none !important;
 
     .card-body, .card-footer {
@@ -89,7 +89,7 @@
 
     .badge {
       background-color: #ffffff !important;
-      color: var(--table-row-select) !important;
+      color: var(--grid_table_crud-row-select) !important;
       border: none;
     }
   }
@@ -224,32 +224,32 @@
 }
 
 .text-cargar-ecxel {
-  color: var(--table-button-cargar_excel);
+  color: var(--grid_table_crud-button-cargar_excel);
 }
 .text-crear {
-  color: var(--table-button-crear);
+  color: var(--grid_table_crud-button-crear);
 }
 .text-ver {
-  color: var(--table-button-ver);
+  color: var(--grid_table_crud-button-ver);
 }
 .text-editar {
-  color: var(--table-button-editar);
+  color: var(--grid_table_crud-button-editar);
 }
 .text-estado-usuario{
-  color: var(--table-button-estado_usuario);
+  color: var(--grid_table_crud-button-estado_usuario);
 }
 .text-eliminar-inidividual{
-  color: var(--table-button-eliminar_individual);
+  color: var(--grid_table_crud-button-eliminar_individual);
 }
 .text-eliminar-multiple{
-  color: var(--table-button-eliminar_multiple);
+  color: var(--grid_table_crud-button-eliminar_multiple);
 }
 .text-asignar-permisos {
-  color: var(--table-button-asignar_permisos);
+  color: var(--grid_table_crud-button-asignar_permisos);
 }
 .text-asignar-productos{
-  color: var(--table-button-asignar_productos);
+  color: var(--grid_table_crud-button-asignar_productos);
 }
 .text-limpiar{
-  color: var(--table-button-limpiar);
+  color: var(--grid_table_crud-button-limpiar);
 }

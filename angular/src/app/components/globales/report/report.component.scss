@@ -1,6 +1,10 @@
 ::ng-deep {
+  .btn-report {
+    background-color: var(--search-background);
+  }
+
   .header {
-    background: var(--search-head-background) !important;
+    background: var(--report-head-background) !important;
     border-bottom: none; 
   }
 
@@ -62,10 +66,10 @@
       visibility: visible;
     }
 
-    .header {
+    .header-report {
       margin: 0;
       padding: 12px;
-      background: var(--gradient-header);
+      background: var(--report-head-background);
       border-top-left-radius: 12px !important;
       color: white;
       text-align: center;

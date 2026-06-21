@@ -41,7 +41,7 @@
     "card": {
       "resalter": "#0A18F5"      
     },
-    "table": {
+    "grid_table_crud": {
       "head": {
           "text": "#FFFFFF",
           "background": "#0A18F5"
@@ -70,12 +70,14 @@
       }
     },
     "search": {
+      "background": "#0A18F5", 
       "head": {
         "text": "#FFFFFF",
         "background": "#0A18F5"
       }
     },
     "report": {
+      "background": "#0A18F5", 
       "head": {
         "text": "#FFFFFF",
         "background": "#0A18F5"
@@ -124,7 +126,7 @@
     "card": {
       "resalter": "#1ED636"     
     },
-    "table": {
+    "grid_table_crud": {
       "head": {
         "text": "#FFFFFF",
         "background": "#1ED636"
@@ -153,12 +155,14 @@
       }
     },
     "search": {
+      "background": "#1ED636", 
       "head": {
         "text": "#FFFFFF",
         "background": "#1ED636"
       }
     },
     "report": {
+      "background": "#1ED636", 
       "head": {
         "text": "#FFFFFF",
         "background": "#1ED636"
