@@ -1,0 +1,102 @@
+{
+  "light": {
+    "layout": {
+      "back": {
+        "background": "#EDEDED"
+      },
+      "side": {
+        "background": "#0A18F5"
+      },
+      "header": {
+        "background": "#0A18F5",
+        "link-disabled": "#CCC6C6",
+        "link-active": "#FFFFFF",
+        "link-hover": "#EDE4E4",
+        "text-nickname": "#E8E3E3",
+        "separator": "#E8E3E3"
+      },
+      "footer": {
+        "background": "#878383",
+        "text": "#FFFFFF"
+      }
+    },
+    "card": {
+      "resalter": "#0A18F5"      
+    },
+    "table": {
+      "head": {
+        "text": "#FFFFFF",
+        "background": "#0A18F5"
+      },
+      "row": {
+        "text-select": "#FFFFFF",
+        "select": "#AB0505"
+      }
+    },
+    "modal": {
+      "head": {
+        "text": "#FFFFFF",
+        "background": "#0A18F5"
+      }
+    },
+    "search": {
+      "head": {
+        "text": "#FFFFFF",
+        "background": "#0A18F5"
+      }
+    },
+    "report": {
+
+    }
+  },
+  "dark": {
+    "layout": {
+      "back": {
+        "background": "#EDEDED"
+      },
+      "side": {
+        "background": "#1ED636"
+      },
+      "header": {
+        "background": "#1ED636",
+        "link-disabled": "#F5F5F5",
+        "link-active": "#FFFFFF",
+        "link-hover": "#218838",
+        "text-nickname": "#004A00",
+        "separator": "#E8E3E3"
+      },
+      "footer": {
+        "background": "#FFFFFF",
+        "text": "#00000"
+      }
+    },
+    "card": {
+      "resalter": "#1ED636"     
+    },
+    "table": {
+      "head": {
+        "text": "#FFFFFF",
+        "background": "#1ED636"
+      },
+      "row": {
+        "text-select": "#FFFFFF",
+        "select": "#B3B1B1"
+      }
+    },
+    "modal": {
+      "head": {
+        "text": "#FFFFFF",
+        "background": "#1ED636"
+      }
+    },
+    "search": {
+      "head": {
+        "text": "#FFFFFF",
+        "background": "#1ED636"
+      }
+    },
+    "report": {
+
+    }
+  }
+}

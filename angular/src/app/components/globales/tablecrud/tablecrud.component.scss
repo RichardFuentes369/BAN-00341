@@ -1,30 +1,15 @@
 /* --- (Tu sección :host se mantiene igual) --- */
 :host {
   --layout-topbar-height: 4rem;
-  --layout-topbar-height-modal: 0rem;
-  --botoneria-height: 72px;
-  --primary-gradient: radial-gradient(circle at center, #598bcc 16%, #224abe 100%);
-  --bg-selected: #d51c1c;
-  --bg-row: #ffffff;
-  --bg-table-container: #f8fafc;
-  --bg-text-selected: #fff;
-  --text-main: #1e293b;
-  --text-muted: #64748b;
-  --border-color: rgba(0, 0, 0, 0.05);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
   display: block;
+
+  --bg-row: #ffffff;
+  --text-main: #1e293b;
+  --border-color: rgba(0, 0, 0, 0.05);
 
   &[data-theme='dark'],
   &:host-context([data-theme='dark']) {
-    --primary-gradient: radial-gradient(circle at center, #1a1a1a 16%, #000 100%);
-    --bg-selected: #334155;
     --bg-row: #ffffff;
-    /* Ajustado para modo oscuro real */
-    --bg-table-container: #0f172a;
-    --bg-text-selected: #fff;
-    --text-main: #1e293b;
-    --text-muted: #94a3b8;
     --border-color: rgba(255, 255, 255, 0.05);
   }
 }
@@ -171,8 +156,8 @@
   }
 
   thead {
-    background: var(--primary-gradient) !important;
-    color: var(--bg-text-selected);
+    background: var(--table-head-background)!important;
+    color: var(--table-head-text);
     border-radius: 8px !important;
   }
 
@@ -218,7 +203,7 @@
 
         td {
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); // Sombra más pronunciada en hover
-          border-color: var(--primary-color, #0d6efd) !important; // Opcional: cambia el borde al color principal
+          border-color: var(--table-row-select) !important; // Opcional: cambia el borde al color principal
         }
       }
     }
@@ -233,42 +218,42 @@
     vertical-align: middle;
 
     // Bordes superior e inferior de la tarjeta
-    border-top: 1px solid var(--border-color) !important;
-    border-bottom: 1px solid var(--border-color) !important;
+    border-top: 1px solid var(--table-row-color-line) !important;
+    border-bottom: 1px solid var(--table-row-color-line) !important;
 
     border-left: none !important;
     border-right: none !important;
 
     &:first-child {
-      border-left: 1px solid var(--border-color) !important;
+      border-left: 1px solid var(--table-row-color-line) !important;
       border-radius: 8px 0 0 8px !important;
     }
 
     &:last-child {
-      border-right: 1px solid var(--border-color) !important;
+      border-right: 1px solid var(--table-row-color-line) !important;
       border-radius: 0 8px 8px 0 !important;
     }
   }
 
   tr.selected-row {
     // Cambiamos el fondo de toda la estructura del TR de un solo golpe
-    background-color: var(--bg-selected) !important;
+    background-color: var(--table-row-select) !important;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2) !important;
 
     td {
-      color: var(--bg-text-selected) !important;
+      color: var(--table-row-text-select) !important;
       font-weight: 500;
 
       // Sincronizamos los bordes perimetrales con el color de selección
-      border-top-color: var(--bg-selected) !important;
-      border-bottom-color: var(--bg-selected) !important;
+      border-top-color: var(--table-row-select) !important;
+      border-bottom-color: var(--table-row-select) !important;
 
       &:first-child {
-        border-left-color: var(--bg-selected) !important;
+        border-left-color: var(--table-row-select) !important;
       }
 
       &:last-child {
-        border-right-color: var(--bg-selected) !important;
+        border-right-color: var(--table-row-select) !important;
       }
 
       /* Ajuste de elementos hijos dentro de la tarjeta roja */
@@ -285,7 +270,7 @@
       .badge,
       .btn-actions {
         background-color: #ffffff !important;
-        color: var(--bg-selected) !important;
+        color: var(--table-row-select) !important;
       }
     }
   }

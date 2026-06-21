@@ -2,16 +2,10 @@
 :host {
   display: block;
   height: 100%;
-  --color-borde-resalte: #4e73df;
-
-  &[data-theme='dark'],
-  &:host-context([data-theme='dark']) {
-    --color-borde-resalte: #94a3b8;
-  }
 }
 
 .border-left-primary {
-  border-left: 0.25rem solid var(--color-borde-resalte) !important;
+  border-left: 0.25rem solid var(--card-resalter) !important;
 }
 
 /*Card estilo*/

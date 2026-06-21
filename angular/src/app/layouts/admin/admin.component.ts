@@ -14,16 +14,16 @@ import { AuthService } from '@guard/service/auth.service';
 import { PrincipalService } from '@mod/users/admin/pages/principal/service/principal.service';
 import { SettingsService } from '@mod/me/admin/pages/settings/service/settings.service';
 
-import { 
-  ADMIN_PAGE_MENU_PERSMISSION_USERS, 
-  ADMIN_PAGE_MENU_PERSMISSION_MODULES, 
-  ADMIN_PAGE_MENU_PERSMISSION_CATALOG, 
-  ADMIN_PAGE_MENU_PERSMISSION_LOSS, 
+import {
+  ADMIN_PAGE_MENU_PERSMISSION_USERS,
+  ADMIN_PAGE_MENU_PERSMISSION_MODULES,
+  ADMIN_PAGE_MENU_PERSMISSION_CATALOG,
+  ADMIN_PAGE_MENU_PERSMISSION_LOSS,
   ADMIN_PAGE_MENU_PERSMISSION_WAREHOUSE,
-  LAYOUT_ADMIN_PAGE_USERS, 
-  LAYOUT_ADMIN_PAGE_MODULES, 
-  LAYOUT_ADMIN_PAGE_CATALOG, 
-  LAYOUT_ADMIN_PAGE_LOSS, 
+  LAYOUT_ADMIN_PAGE_USERS,
+  LAYOUT_ADMIN_PAGE_MODULES,
+  LAYOUT_ADMIN_PAGE_CATALOG,
+  LAYOUT_ADMIN_PAGE_LOSS,
   LAYOUT_ADMIN_PAGE_WAREHOUSE,
   LAYOUT_ADMIN_PAGE_MENU,
   ADMIN_PAGE_MENU_PERSMISSION_ALERTS,
@@ -87,11 +87,11 @@ export class AdminComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private userService :AuthService,
-    private principalService :PrincipalService,
+    private userService: AuthService,
+    private principalService: PrincipalService,
     private translate: TranslateService,
     private settingsService: SettingsService
-  ) {}
+  ) { }
 
   minimizarSliderbar: boolean = false;
   nombreModulo: string = '';
@@ -101,7 +101,6 @@ export class AdminComponent implements OnInit {
 
   async ngOnInit() {
     this.ejecutarInitReal()
-    
     this.settingsService.refreshAction$.subscribe(() => {
       this.ejecutarInitReal()
     });
@@ -115,24 +114,22 @@ export class AdminComponent implements OnInit {
     this.lastName = lastName
   }
 
-
   upperFirst(texto: string) {
-    if (!texto) return texto; 
+    if (!texto) return texto;
     return texto.charAt(0).toUpperCase() + texto.slice(1);
   }
 
-  idiomaCambiar(valor: string){
+  idiomaCambiar(valor: string) {
     this.translate.use(valor)
   }
 
-  cerrarSession(){
+  cerrarSession() {
     localStorage.removeItem(STORAGE_KEY_TOKEN_ADMIN)
     localStorage.removeItem(STORAGE_KEY_TOKEN_FINAL)
     this.router.navigate([LAYOUT_ADMIN_PAGE_LOGOUT]);
   }
 
-  mostrarMenuLateral(){
+  mostrarMenuLateral() {
     this.minimizarSliderbar = !this.minimizarSliderbar
   }
-
 }
