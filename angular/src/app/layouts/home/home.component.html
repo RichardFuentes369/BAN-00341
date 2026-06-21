@@ -1,26 +1,27 @@
 <div id="wrapper">
   <div id="content-wrapper" class="d-flex flex-column u-final">
-    
-    <div class="sticky-top header-transition" [class.header-compact]="isScrolled">
-      
-      <div class="bg-primary text-white">
-        <div class="d-flex bd-highlight justify-content-between container p-0">
-          <div class="p-2 flex-grow-1 bd-highlight">
-            <a class="nav-link" [routerLink]="LAYOUT_HOME_PAGE_START">
+
+    <div class="sticky-top header-transition bg-gradient-header-custom" [class.header-compact]="isScrolled">
+      <nav class="container navbar navbar-expand navbar-light bg-gradient-header-custom my-md-n2 topbar static-top pl-2 pr-2">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link text-white" [routerLink]="LAYOUT_HOME_PAGE_START">
               <i class="fas fa-fw fa-tachometer-alt"></i>
             </a>
-          </div>
-          <div class="p-2 bd-highlight">
-            <app-globales-colormode></app-globales-colormode>
-          </div>
-          <div class="p-2 bd-highlight">
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto align-items-center">
+          <div class="topbar-divider d-none d-sm-block bg-white" style="opacity: 0.5;"></div>
+          <li class="nav-item mx-2">
             <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
-          </div>
-          <div class="p-2 bd-highlight">
-            <div class="sidebar-brand-text"> {{NAME_PAGE}} </div>
-          </div>
-        </div>
-      </div>
+          </li>
+          <div class="topbar-divider d-none d-sm-block bg-white" style="opacity: 0.5;"></div>
+          <li class="nav-item mx-2">
+            <app-globales-colormode></app-globales-colormode>
+          </li>
+        </ul>
+      </nav>
 
       <nav class="navbar navbar-expand-lg navbar-light bg-dark static-top shadow menu p-0">
         <marquee direction="left" class="container">
@@ -57,10 +58,10 @@
       <router-outlet></router-outlet>
     </div>
 
-    <footer class="sticky-footer bg-white shadow-lg mt-auto">
+    <footer class="sticky-footer bg-gradient-footer-custom shadow-lg mt-auto">
       <div class="container my-auto">
         <div class="copyright text-center my-auto p-3">
-          <span>Copyright &copy; {{CURRENT_YEAR}}</span>
+          <span class="text-custom-footer">Copyright &copy; {{CURRENT_YEAR}}</span>
         </div>
       </div>
     </footer>

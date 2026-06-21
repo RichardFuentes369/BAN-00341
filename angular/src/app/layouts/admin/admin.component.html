@@ -10,7 +10,7 @@
         <div class="sidebar-brand-text mx-3">{{NAME_PAGE}}</div>
       </a>
 
-      <hr class="sidebar-divider bg-white mb-0">
+      <hr class="sidebar-divider bg-separator-customer mb-0">
 
       <li class="nav-item">
         <a class="nav-link collapsed" [routerLink]="LAYOUT_ADMIN_PAGE_MENU"  data-toggle="collapse" data-target="#collapseMenu" aria-expanded="true"
@@ -21,7 +21,7 @@
         <div id="collapseWarehouse" class="collapse" aria-labelledby="headingWarehouse" data-parent="#accordionSidebar"></div>
       </li>
 
-      <hr class="sidebar-divider bg-white">
+      <hr class="sidebar-divider bg-separator-customer">
 
       <div class="sidebar-heading">
         {{ 'layout-admin.WORD_MODULES' | translate}}
@@ -101,7 +101,7 @@
         </div>
       </li>
 
-      <hr class="sidebar-divider d-none d-md-block">
+      <hr class="sidebar-divider bg-separator-customer d-none d-md-block">
 
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle" (click)="mostrarMenuLateral()"></button>

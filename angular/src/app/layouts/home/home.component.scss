@@ -1,0 +1,17 @@
+:host {
+  .bg-separator-customer {
+    background-color: var(--layout-index-side-separator) !important;
+  }
+
+  .bg-gradient-header-custom {
+    background-color: var(--layout-index-header-background) !important;
+  }
+
+  .bg-gradient-footer-custom {
+    background-color: var(--layout-index-footer-background) !important;
+  }
+
+  .text-custom-footer {
+    color: var(--layout-index-footer-text) !important;
+  }
+}

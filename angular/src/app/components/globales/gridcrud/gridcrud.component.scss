@@ -1,27 +1,14 @@
 :host {
   --layout-topbar-height: 4rem;
   --layout-topbar-height-modal: 0rem;
-  --botoneria-height: 72px;
-  --primary-gradient: radial-gradient(circle at center, #598bcc 16%, #224abe 100%);
-  --bg-selected: #d51c1c;
-  --bg-row: #ffffff;
-  --bg-table-container: #f8fafc;
-  --bg-text-selected: #fff;
   --text-main: #1e293b;
   --text-muted: #64748b;
   --border-color: rgba(0, 0, 0, 0.05);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
   display: block;
 
   &[data-theme='dark'],
   &:host-context([data-theme='dark']) {
-    --primary-gradient: radial-gradient(circle at center, #1a1a1a 16%, #000 100%);
-    --bg-selected: #334155;
-    --bg-row: #ffffff;
     /* Ajustado para modo oscuro real */
-    --bg-table-container: #0f172a;
-    --bg-text-selected: #fff;
     --text-main: #1e293b;
     --text-muted: #94a3b8;
     --border-color: rgba(255, 255, 255, 0.05);
@@ -89,8 +76,8 @@
   }
 
   &.is-selected {
-    background-color: var(--bg-selected) !important;
-    border-color: var(--bg-selected) !important;
+    background-color: var(--table-row-select) !important;
+    border-color: var(--table-row-select) !important;
     background-image: none !important;
 
     .card-body, .card-footer {
@@ -102,7 +89,7 @@
 
     .badge {
       background-color: #ffffff !important;
-      color: var(--bg-selected) !important;
+      color: var(--table-row-select) !important;
       border: none;
     }
   }

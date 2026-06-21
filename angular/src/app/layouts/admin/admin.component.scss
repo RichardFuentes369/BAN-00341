@@ -3,24 +3,28 @@
   height: 100vh;
   overflow: hidden;
 
+  .bg-separator-customer {
+    background-color: var(--layout-admin-side-separator) !important;
+  }
+
   .bg-gradient-side-custom {
-    background-color: var(--layout-side-background) !important;
+    background-color: var(--layout-admin-side-background) !important;
   }
 
   .bg-gradient-header-custom {
-    background-color: var(--layout-header-background) !important;
+    background-color: var(--layout-admin-header-background) !important;
   }
 
   .bg-gradient-footer-custom {
-    background-color: var(--layout-footer-background) !important;
+    background-color: var(--layout-admin-footer-background) !important;
   }
 
   .text-custom-footer {
-    color: var(--layout-footer-text) !important;
+    color: var(--layout-admin-footer-text) !important;
   }
 
   .text-nickname {
-    color: var(--layout-header-text-nickname) !important;
+    color: var(--layout-admin-header-text-nickname) !important;
   }
 }
 
@@ -69,7 +73,7 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  background-color: var(--layout-back-background) !important;;
+  background-color: var(--layout-admin-back-background) !important;;
   z-index: 1; 
   position: relative;
   -webkit-overflow-scrolling: touch;

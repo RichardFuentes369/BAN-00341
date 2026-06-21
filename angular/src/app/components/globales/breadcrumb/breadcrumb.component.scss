@@ -30,7 +30,7 @@
 }
 
 .breadcrumb-link {
-  color: var(--layout-header-link-disabled); // Gris suave para pasos anteriores
+  color: var(--layout-breadcrumbs-link-disabled); // Gris suave para pasos anteriores
   text-decoration: none !important;
   font-weight: 500;
   transition: all 0.2s ease;
@@ -38,14 +38,14 @@
   align-items: center;
 
   &:hover {
-    color: var(--layout-header-link-hover); // Azul UTS al pasar el mouse
+    color: var(--layout-breadcrumbs-link-hover); // Azul UTS al pasar el mouse
     transform: translateY(-1px);
   }
 }
 
 .breadcrumb-separator {
   margin: 0 12px;
-  color: var(--layout-header-separator);
+  color: var(--layout-breadcrumbs-separator);
   font-size: 0.65rem; // El chevron más pequeño se ve más elegante
   display: flex;
   align-items: center;
@@ -53,7 +53,7 @@
 }
 
 .breadcrumb-current {
-  color: var(--layout-header-link-active); 
+  color: var(--layout-breadcrumbs-link-active); 
   font-weight: 700;
   letter-spacing: 0.01em;
 }

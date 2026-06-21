@@ -1,23 +1,41 @@
 {
   "light": {
     "layout": {
-      "back": {
-        "background": "#EDEDED"
-      },
-      "side": {
-        "background": "#0A18F5"
-      },
-      "header": {
-        "background": "#0A18F5",
+      "breadcrumbs": {
         "link-disabled": "#CCC6C6",
         "link-active": "#FFFFFF",
         "link-hover": "#EDE4E4",
-        "text-nickname": "#E8E3E3",
         "separator": "#E8E3E3"
       },
-      "footer": {
-        "background": "#878383",
-        "text": "#FFFFFF"
+      "index": {
+        "back": {
+          "background": "#EDEDED"
+        },
+        "header": {
+          "background": "#0A18F5",
+          "text-nickname": "#E8E3E3"
+        },
+        "footer": {
+          "background": "#878383",
+          "text": "#FFFFFF"
+        }
+      },
+      "admin": {
+        "back": {
+          "background": "#EDEDED"
+        },
+        "side": {
+          "background": "#0A18F5",
+          "separator": "#FFFFFF"
+        },
+        "header": {
+          "background": "#0A18F5",
+          "text-nickname": "#E8E3E3"
+        },
+        "footer": {
+          "background": "#878383",
+          "text": "#FFFFFF"
+        }
       }
     },
     "card": {
@@ -46,28 +64,49 @@
       }
     },
     "report": {
-
+      "head": {
+        "text": "#FFFFFF",
+        "background": "#0A18F5"
+      }
     }
   },
   "dark": {
     "layout": {
-      "back": {
-        "background": "#EDEDED"
-      },
-      "side": {
-        "background": "#1ED636"
-      },
-      "header": {
-        "background": "#1ED636",
+      "breadcrumbs": {
         "link-disabled": "#F5F5F5",
         "link-active": "#FFFFFF",
         "link-hover": "#218838",
-        "text-nickname": "#004A00",
         "separator": "#E8E3E3"
       },
-      "footer": {
-        "background": "#FFFFFF",
-        "text": "#00000"
+      "index": {
+        "back": {
+          "background": "#EDEDED"
+        },
+        "header": {
+          "background": "#1ED636",
+          "text-nickname": "#004A00"
+        },
+        "footer": {
+          "background": "#FFFFFF",
+          "text": "#00000"
+        }
+      },
+      "admin": {
+        "back": {
+          "background": "#EDEDED"
+        },
+        "side": {
+          "background": "#1ED636",
+          "separator": "#EEFF0D"
+        },
+        "header": {
+          "background": "#1ED636",
+          "text-nickname": "#004A00"
+        },
+        "footer": {
+          "background": "#FFFFFF",
+          "text": "#00000"
+        }
       }
     },
     "card": {
@@ -96,7 +135,10 @@
       }
     },
     "report": {
-
+      "head": {
+        "text": "#FFFFFF",
+        "background": "#1ED636"
+      }
     }
   }
 }
