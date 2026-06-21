@@ -55,7 +55,7 @@
                     [disabled]="idsSeleccionados.length >= 1">
               <i class="fa fa-upload"
                 [class.text-muted]="idsSeleccionados.length !== 0"
-                [class.text-primary]="idsSeleccionados.length === 0"></i>
+                [class.text-cargar-ecxel]="idsSeleccionados.length === 0"></i>
               <div class="nameButton text-lowercase">
                 {{ 'global-tablecrud.BUTTON_OPTION_UPLOAD' | translate }}
               </div>
@@ -68,8 +68,8 @@
             <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
                     (click)="newItem()" 
                     [disabled]="idsSeleccionados.length >= 1">
-              <i class="fa-solid fa-circle-plus text-primary icon-main"
-                [class.text-prmary]="idsSeleccionados.length === 0"
+              <i class="fa-solid fa-circle-plus icon-main"
+                [class.text-crear]="idsSeleccionados.length === 0"
                 [class.text-muted]="idsSeleccionados.length >= 1"></i>
               <div class="nameButton text-lowercase">
                 {{ 'global-tablecrud.BUTTON_OPTION_CREATE' | translate }}
@@ -84,7 +84,7 @@
                     (click)="assign($event)" 
                     [disabled]="idsSeleccionados.length !== 1">
               <i class="fa-solid fa-key" 
-                [class.text-warning]="idsSeleccionados.length === 1"
+                [class.text-asignar-permisos]="idsSeleccionados.length === 1"
                 [class.text-muted]="idsSeleccionados.length !== 1"></i>
               <div class="nameButton text-lowercase">
                 {{ 'global-tablecrud.BUTTON_OPTION_ASSIGN_PERMISSION' | translate }}
@@ -99,7 +99,7 @@
                     (click)="assign($event)" 
                     [disabled]="idsSeleccionados.length !== 1">
               <i class="fa-solid fa-list"
-                [class.text-success]="idsSeleccionados.length === 1"
+                [class.text-asignar-productos]="idsSeleccionados.length === 1"
                 [class.text-muted]="idsSeleccionados.length !== 1"></i>
               <div class="nameButton text-lowercase">
                 {{ 'global-tablecrud.BUTTON_OPTION_ASSIGN_PRODUCTS' | translate }}
@@ -114,7 +114,7 @@
                     (click)="seeItem()" 
                     [disabled]="idsSeleccionados.length !== 1">
               <i class="fa-solid fa-eye" 
-                [class.text-primary]="idsSeleccionados.length === 1"
+                [class.text-ver]="idsSeleccionados.length === 1"
                 [class.text-muted]="idsSeleccionados.length !== 1"></i>
               <div class="nameButton text-lowercase">
                 {{ 'global-tablecrud.BUTTON_OPTION_SEE' | translate }}
@@ -129,7 +129,7 @@
                     (click)="editItem()" 
                     [disabled]="idsSeleccionados.length !== 1">
               <i class="fa-solid fa-pen-to-square" 
-                [class.text-warning]="idsSeleccionados.length === 1"
+                [class.text-editar]="idsSeleccionados.length === 1"
                 [class.text-muted]="idsSeleccionados.length !== 1"></i>
               <div class="nameButton text-lowercase">
                 {{ 'global-tablecrud.BUTTON_OPTION_EDIT' | translate }}
@@ -144,7 +144,7 @@
                     (click)="activedItem()" 
                     [disabled]="idsSeleccionados.length == 0">
               <i class="fas fa-user-slash" 
-                [class.text-warning]="idsSeleccionados.length >= 1"
+                [class.text-estado-usuario]="idsSeleccionados.length >= 1"
                 [class.text-muted]="idsSeleccionados.length == 0"></i>
               <div class="nameButton text-lowercase">
                 {{ 'global-tablecrud.BUTTON_OPTION_STATUS' | translate }}
@@ -159,7 +159,7 @@
                     (click)="deleteItem()" 
                     [disabled]="idsSeleccionados.length === 0 || idsSeleccionados.length > 1">
               <i class="fa-solid fa-trash-can" 
-                [class.text-danger]="idsSeleccionados.length > 0"
+                [class.text-eliminar-inidividual]="idsSeleccionados.length > 0"
                 [class.text-muted]="idsSeleccionados.length === 0 || idsSeleccionados.length > 1"></i>
               <div class="nameButton text-lowercase">
                 {{ 'global-tablecrud.BUTTON_OPTION_DELETE' | translate }}
@@ -174,7 +174,7 @@
                     (click)="deleteItem()" 
                     [disabled]="idsSeleccionados.length === 0">
               <i class="fa-solid fa-trash-can" 
-                [class.text-danger]="idsSeleccionados.length > 0"
+                [class.text-eliminar-multiple]="idsSeleccionados.length > 0"
                 [class.text-muted]="idsSeleccionados.length === 0"></i>
               <div class="nameButton text-lowercase">
                 {{ 'global-tablecrud.BUTTON_OPTION_DELETE' | translate }}
@@ -189,7 +189,7 @@
                     (click)="selectionClear()" 
                     [disabled]="idsSeleccionados.length === 0">
               <i class="fa-solid fa-broom" 
-                [class.text-secondary]="idsSeleccionados.length > 0"
+                [class.text-limpiar]="idsSeleccionados.length > 0"
                 [class.text-muted]="idsSeleccionados.length === 0"></i>
               <div class="nameButton text-lowercase">
                 {{ 'global-tablecrud.BUTTON_OPTION_CLEAR' | translate }}

@@ -43,12 +43,24 @@
     },
     "table": {
       "head": {
-        "text": "#FFFFFF",
-        "background": "#0A18F5"
+          "text": "#FFFFFF",
+          "background": "#0A18F5"
       },
       "row": {
         "text-select": "#FFFFFF",
         "select": "#AB0505"
+      },
+      "button": {
+        "cargar_excel": "#10B981", 
+        "crear": "#059669",
+        "ver": "#0A18F5",
+        "editar": "#3B82F6",
+        "estado_usuario": "#F59E0B",
+        "eliminar_individual": "#EF4444",
+        "eliminar_multiple": "#B91C1C",
+        "asignar_permisos": "#E8E417",
+        "asignar_productos": "#6D28D9",
+        "limpiar": "#6B7280"
       }
     },
     "modal": {
@@ -120,6 +132,18 @@
       "row": {
         "text-select": "#FFFFFF",
         "select": "#B3B1B1"
+      },
+      "button": {
+        "cargar_excel": "#1ED636",
+        "crear": "#16A34A",
+        "ver": "#0A18F5",
+        "editar": "#3B82F6",
+        "estado_usuario": "#F59E0B",
+        "eliminar_individual": "#EF4444",
+        "eliminar_multiple": "#B91C1C",
+        "asignar_permisos": "#6D28D9",
+        "asignar_productos": "#8B5CF6",
+        "limpiar": "#6B7280"
       }
     },
     "modal": {
