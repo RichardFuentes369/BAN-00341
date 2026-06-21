@@ -30,12 +30,13 @@
 
 .sticky-header {
   position: sticky;
-  top: 4rem!important;
-  z-index: 1; 
+  top: 4rem !important;
+  z-index: 1;
   background-color: var(--sticky-bg) !important;
   background-color: rgba(255, 255, 255, 0.95) !important;
   width: 100%;
-  padding: 1.1rem 0; /* Ajustado para dar aire similar a la tabla */
+  padding: 1.1rem 0;
+  /* Ajustado para dar aire similar a la tabla */
 }
 
 /* BOTONES ESTILO LINK (Como en la tabla) */
@@ -54,7 +55,7 @@
   &:disabled {
     opacity: 0.35;
     cursor: default; // Cursor flecha normal para deshabilitados
-    
+
     i {
       color: var(--text-muted) !important;
     }
@@ -83,8 +84,9 @@
   transition: all 0.25s ease;
 
   &:hover:not(.is-selected) {
-    background-color: rgba(89, 139, 204, 0.04) !important;
-    border-color: rgba(89, 139, 204, 0.2) !important;
+    // background-color: rgba(89, 139, 204, 0.04) !important;
+    background-color: var(--layout-admin-menu-color_hover);
+    border-color: rgba(123, 204, 89, 0.2) !important;
     transform: translateY(-2px);
   }
 
@@ -93,11 +95,24 @@
     border-color: var(--bg-selected) !important;
     background-image: none !important;
 
-    .card-body, .card-footer {
+    .card-body,
+    .card-footer {
       color: #ffffff !important;
-      h6, p, i, b { color: #ffffff !important; }
-      span { color: #000000 !important; }
-      .text-muted { color: rgba(255, 255, 255, 0.8) !important; }
+
+      h6,
+      p,
+      i,
+      b {
+        color: #ffffff !important;
+      }
+
+      span {
+        color: #000000 !important;
+      }
+
+      .text-muted {
+        color: rgba(255, 255, 255, 0.8) !important;
+      }
     }
 
     .badge {
@@ -223,4 +238,23 @@
     font-weight: 500;
     /* Opcional: para darle un grosor intermedio */
   }
+}
+
+.title-custom {
+  color: var(--layout-admin-back-color_title) !important;
+  background-color: transparent;
+}
+
+.card {
+  background-color: var(--card-background) !important;
+  transition: background-color 0.3s ease; // Muy importante para que sea suave
+
+  &:hover {
+    background-color: var(--card-hover) !important;
+    cursor: pointer;
+  }
+}
+
+.text-card-custom {
+  color: var(--card-text) !important;
 }

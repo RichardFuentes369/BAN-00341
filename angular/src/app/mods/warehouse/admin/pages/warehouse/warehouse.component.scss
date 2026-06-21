@@ -25,3 +25,8 @@
   position: relative;
   overflow: visible; 
 }
+
+.title-custom {
+  color: var(--layout-admin-back-color_title) !important;
+  background-color: transparent;
+}

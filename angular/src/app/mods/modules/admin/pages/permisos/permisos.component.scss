@@ -31,3 +31,8 @@
   overflow: hidden; 
   transition: max-height 0.3s cubic-bezier(0, 1, 0, 1); 
 }
+
+.title-custom {
+  color: var(--layout-admin-back-color_title) !important;
+  background-color: transparent;
+}
