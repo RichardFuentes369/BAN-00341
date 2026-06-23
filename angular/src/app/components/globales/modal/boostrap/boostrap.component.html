@@ -23,13 +23,13 @@
       </div>
       <div class="modal-footer pt-1 pb-1">
         @if(cancel){
-          <button type="button" class="btn btn-secondary btn-sm closeModalButton btnCancel" data-dismiss="modal" (click)="buttonCloseM()">{{buttonCancel}}</button>
+          <button type="button" class="btn btn-sm closeModalButton btnCancel" data-dismiss="modal" (click)="buttonCloseM()">{{buttonCancel}}</button>
         }
         @if(save){
-          <button type="button" class="btn btn-primary btn-sm btnSave disabled" (click)="buttonSaveM()">{{buttonSave}}</button>
+          <button type="button" class="btn btn-sm btnSave disabled" (click)="buttonSaveM()">{{buttonSave}}</button>
         }
         @if(edit){
-          <button type="button" class="btn btn-primary btn-sm btnUpdate disabled" (click)="buttonUpdateM()">{{buttonEdit}}</button>
+          <button type="button" class="btn btn-sm btnUpdate disabled" (click)="buttonUpdateM()">{{buttonEdit}}</button>
         }
       </div>
     </div>
