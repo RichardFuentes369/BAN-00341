@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { CardComponent } from '@component/globales/card/card.component';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { SearchComponent } from '@component/globales/search/search.component';
@@ -13,6 +12,7 @@ import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPON
 import { CREAR_TIPO_COMPONENT, EDITAR_TIPO_COMPONENT, FILTRO_TIPO_COMPONENT, VER_TIPO_COMPONENT } from '@mod/merma/const/loss.conts';
 import Swal from 'sweetalert2';
 import { GridcrudComponent } from '@component/globales/gridcrud/gridcrud.component';
+import { KpicardComponent } from '@component/globales/kpicard/kpicard.component';
 
 @Component({
   selector: 'app-merma-tipo',
@@ -23,7 +23,7 @@ import { GridcrudComponent } from '@component/globales/gridcrud/gridcrud.compone
     SearchComponent,
     LoadingComponent,
     ModalBoostrapComponent,
-    CardComponent
+    KpicardComponent
   ],
   templateUrl: './tipo.component.html',
   styleUrl: './tipo.component.scss',

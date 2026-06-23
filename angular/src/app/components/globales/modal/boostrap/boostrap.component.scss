@@ -22,12 +22,21 @@
   }
 
   .modal-header {
-    background: var(--modal-head-background) !important;
+    background: var(--modal-head_background_color) !important;
     border-bottom: none;
   }
 
   .modal-title {
-    color: var(--modal-head-text) !important;
+    color: var(--modal-head_text_color) !important;
+  }
+  
+  .modal-body {
+    background-color: var(--modal-back_color_background) !important;
+  }
+
+  .modal-footer {
+    color: var(--modal-footer_text_color) !important;
+    background-color: var(--modal-footer_background_color) !important;
   }
 
   .modal-header .close {

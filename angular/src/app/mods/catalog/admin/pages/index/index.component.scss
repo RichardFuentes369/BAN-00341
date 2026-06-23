@@ -13,6 +13,7 @@
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
   display: block;
+  --filter: none !important;
 
   &[data-theme='dark'],
   &:host-context([data-theme='dark']) {
@@ -25,6 +26,7 @@
     --text-main: #1e293b;
     --text-muted: #94a3b8;
     --border-color: rgba(255, 255, 255, 0.05);
+    --filter: invert(1) brightness(100) !important;
   }
 }
 
@@ -241,20 +243,25 @@
 }
 
 .title-custom {
-  color: var(--layout-admin-back-color_title) !important;
+  color: var(--layout-admin-back_color_title) !important;
   background-color: transparent;
 }
 
 .card {
-  background-color: var(--card-background) !important;
+  background-color: var(--card_menu-background) !important;
   transition: background-color 0.3s ease; // Muy importante para que sea suave
 
   &:hover {
-    background-color: var(--card-hover) !important;
+    background-color: var(--card_menu-hover) !important;
     cursor: pointer;
   }
 }
 
+.colored-icon {
+  filter: var(--filter);
+  transition: filter 0.3s ease; /* Transición suave al cambiar de tema */
+}
+
 .text-card-custom {
-  color: var(--card-text) !important;
+  color: var(--card_menu-text) !important;
 }

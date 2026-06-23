@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CardComponent } from '@component/globales/card/card.component';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { SearchComponent } from '@component/globales/search/search.component';
@@ -14,6 +13,7 @@ import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPON
 import { CREAR_WAREHOUSE_COMPONENT, EDITAR_WAREHOUSE_COMPONENT, FILTRO_WAREHOUSE_COMPONENT, VER_WAREHOUSE_COMPONENT } from '@mod/warehouse/const/warehouse.const';
 import Swal from 'sweetalert2';
 import { ReporteTrazabilidadComponent } from './components/reporte-trazabilidad/reporte-trazabilidad.component';
+import { KpicardComponent } from '@component/globales/kpicard/kpicard.component';
 
 @Component({
   selector: 'app-warehouse',
@@ -24,7 +24,7 @@ import { ReporteTrazabilidadComponent } from './components/reporte-trazabilidad/
     LoadingComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
-    CardComponent,
+    KpicardComponent,
     ReporteTrazabilidadComponent
   ],
   templateUrl: './warehouse.component.html',

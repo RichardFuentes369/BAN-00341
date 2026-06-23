@@ -12,7 +12,7 @@ import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PRO
 import { CREAR_PROVEEDOR_COMPONENT, EDITAR_PROVEEDOR_COMPONENT, FILTRO_PROVEEDOR_COMPONENT, VER_PROVEEDOR_COMPONENT } from '@mod/catalog/const/catalog.const';
 import Swal from 'sweetalert2';
 import { ProveedoresService } from './service/proveedores.service';
-import { CardComponent } from '@component/globales/card/card.component';
+import { KpicardComponent } from '@component/globales/kpicard/kpicard.component';
 
 @Component({
   selector: 'app-proveedores',
@@ -23,7 +23,7 @@ import { CardComponent } from '@component/globales/card/card.component';
     LoadingComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
-    CardComponent
+    KpicardComponent
   ],
   templateUrl: './proveedores.component.html',
   styleUrl: './proveedores.component.scss',

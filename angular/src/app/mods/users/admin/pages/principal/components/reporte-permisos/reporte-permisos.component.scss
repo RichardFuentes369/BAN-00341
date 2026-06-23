@@ -9,3 +9,10 @@
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
+h5 {
+  font-size: 1.1rem;
+  color: var(--grid_table_crud-text_color);
+  font-weight: 700;
+  margin: 0;
+}

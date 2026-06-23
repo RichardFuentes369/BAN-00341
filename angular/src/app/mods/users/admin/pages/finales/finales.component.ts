@@ -16,7 +16,7 @@ import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import { CREAR_USUARIO_COMPONENT, EDITAR_USUARIO_COMPONENT, FILTRO_USUARIO_COMPONENT, REPORT_USUARIO_COMPONENT, STORAGE_KEY_PROFILE_FINAL, VER_USUARIO_COMPONENT } from '@mod/users/const/users.const'
 import { LoadingComponent } from '@component/globales/loading/loading.component';
-import { CardComponent } from '@component/globales/card/card.component';
+import { KpicardComponent } from '@component/globales/kpicard/kpicard.component';
 import { HttpParams } from '@angular/common/http';
 
 @Component({
@@ -29,7 +29,7 @@ import { HttpParams } from '@angular/common/http';
     LoadingComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
-    CardComponent,
+    KpicardComponent,
   ],
   templateUrl: './finales.component.html',
   styleUrl: './finales.component.scss'

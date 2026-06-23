@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { CardComponent } from '@component/globales/card/card.component';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { SearchComponent } from '@component/globales/search/search.component';
@@ -13,6 +12,7 @@ import { CREAR_MEDIDA_COMPONENT, EDITAR_MEDIDA_COMPONENT, FILTRO_MEDIDA_COMPONEN
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import Swal from 'sweetalert2';
 import { GridcrudComponent } from '@component/globales/gridcrud/gridcrud.component';
+import { KpicardComponent } from '@component/globales/kpicard/kpicard.component';
 
 @Component({
   selector: 'app-medida',
@@ -23,7 +23,7 @@ import { GridcrudComponent } from '@component/globales/gridcrud/gridcrud.compone
     SearchComponent,
     LoadingComponent,
     ModalBoostrapComponent,
-    CardComponent
+    KpicardComponent
   ],
   templateUrl: './medida.component.html',
   styleUrl: './medida.component.scss',

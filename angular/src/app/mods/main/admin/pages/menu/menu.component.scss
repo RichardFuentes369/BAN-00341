@@ -88,7 +88,7 @@
 
   &:hover:not(.is-selected) {
     // background-color: rgba(89, 139, 204, 0.04) !important;
-    background-color: var(--layout-admin-menu-color_hover);
+    background-color: var(--layout-admin-menu_color_hover);
     border-color: rgba(123, 204, 89, 0.2) !important;
     transform: translateY(-2px);
   }
@@ -244,16 +244,16 @@
 }
 
 .title-custom {
-  color: var(--layout-admin-back-color_title) !important;
+  color: var(--layout-admin-back_color_title) !important;
   background-color: transparent;
 }
 
 .card {
-  background-color: var(--card-background) !important;
+  background-color: var(--card_menu-background) !important;
   transition: background-color 0.3s ease; // Muy importante para que sea suave
 
   &:hover {
-    background-color: var(--card-hover) !important;
+    background-color: var(--card_menu-hover) !important;
     cursor: pointer;
   }
 }
@@ -264,5 +264,5 @@
 }
 
 .text-card-custom {
-  color: var(--card-text) !important;
+  color: var(--card_menu-text) !important;
 }

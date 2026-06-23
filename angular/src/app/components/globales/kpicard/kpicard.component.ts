@@ -2,21 +2,21 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-information-card',
+  selector: 'app-globales-kpicard',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './card.component.html',
-  styleUrl: './card.component.scss',
+  templateUrl: './kpicard.component.html',
+  styleUrl: './kpicard.component.scss',
 })
-export class CardComponent {
+export class KpicardComponent {
   @Input() img: string = '';
   @Input() title: string = '';
-  
+
   // Variable que realmente se muestra en el HTML
   displayValue: number = 0;
   private _content: number = 0;
 
-  @Input() 
+  @Input()
   set content(value: string | number) {
     // Convertimos a número por si llega como string
     const newValue = Number(value) || 0;
@@ -35,7 +35,7 @@ export class CardComponent {
 
       // Efecto "easeOutExpo" para que se vea fluido
       const easeOut = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      
+
       this.displayValue = Math.floor(easeOut * (endValue - startValue) + startValue);
 
       if (progress < 1) {

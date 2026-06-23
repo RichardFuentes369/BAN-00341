@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CardComponent } from '@component/globales/card/card.component';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { SearchComponent } from '@component/globales/search/search.component';
@@ -14,6 +13,7 @@ import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPON
 import { CARGAR_PRODUCT_COMPONENT, CREAR_PRODUCT_COMPONENT, EDITAR_PRODUCT_COMPONENT, FILTRO_PRODUCT_COMPONENT, MOD_CATEGORY_PAGE_BRAND, VER_PRODUCT_COMPONENT } from '@mod/catalog/const/catalog.const';
 import Swal from 'sweetalert2';
 import { MarcaService } from '../marcas/service/marca.service';
+import { KpicardComponent } from '@component/globales/kpicard/kpicard.component';
 
 @Component({
   selector: 'app-productos',
@@ -24,7 +24,7 @@ import { MarcaService } from '../marcas/service/marca.service';
     LoadingComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
-    CardComponent,
+    KpicardComponent,
   ],
   templateUrl: './productos.component.html',
   styleUrl: './productos.component.scss',

@@ -1,9 +1,9 @@
   .btn-report {
-    background-color: var(--search-background);
+    background-color: var(--report-button_background_color);
   }
 
   .header {
-    background: var(--report-head-background) !important;
+    background: var(--report-head_background_color) !important;
     border-bottom: none;
   }
 
@@ -71,7 +71,7 @@
     .header-report {
       margin: 0;
       padding: 12px;
-      background: var(--report-head-background);
+      background: var(--report-head_background_color);
       border-top-left-radius: 12px !important;
       color: white;
       text-align: center;
@@ -102,4 +102,8 @@
 
   .btn-minimize-card {
     left: 35px;
+  }
+
+  .icon_color {
+    color: var(--search-icon_background_color);
   }

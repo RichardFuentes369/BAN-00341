@@ -20,7 +20,6 @@
   top: 4rem!important;
   z-index: 1; 
   background-color: var(--sticky-bg) !important;
-  background-color: rgba(255, 255, 255, 0.95) !important;
   width: 100%;
   padding: 1.1rem 0; /* Ajustado para dar aire similar a la tabla */
 }
@@ -76,8 +75,8 @@
   }
 
   &.is-selected {
-    background-color: var(--grid_table_crud-row-select) !important;
-    border-color: var(--grid_table_crud-row-select) !important;
+    background-color: var(--grid_table_crud-row_select) !important;
+    border-color: var(--grid_table_crud-row_select) !important;
     background-image: none !important;
 
     .card-body, .card-footer {
@@ -89,7 +88,7 @@
 
     .badge {
       background-color: #ffffff !important;
-      color: var(--grid_table_crud-row-select) !important;
+      color: var(--grid_table_crud-row_select) !important;
       border: none;
     }
   }
@@ -108,6 +107,13 @@
 }
 
 
+.title {
+  font-size: 1.1rem;
+  color: var(--grid_table_crud-text_color);
+  font-weight: 700;
+  margin: 0;
+}
+
 .botoneria {
   display: flex;
   justify-content: flex-end;
@@ -117,7 +123,6 @@
   top: var(--layout-topbar-height) !important;
   z-index: 1;
   /* Valor alto para asegurar que nada pase por encima */
-  background-color: rgba(255, 255, 255, 0.95) !important;
   backdrop-filter: blur(8px);
   padding: 18px 25px;
 
@@ -126,7 +131,7 @@
 
     h5 {
       font-size: 1.1rem;
-      color: var(--text-main);
+      color: var(--grid_table_crud-text_color);
       font-weight: 700;
       margin: 0;
     }
@@ -224,32 +229,36 @@
 }
 
 .text-cargar-ecxel {
-  color: var(--grid_table_crud-button-cargar_excel);
+  color: var(--grid_table_crud-button_cargar_excel);
 }
 .text-crear {
-  color: var(--grid_table_crud-button-crear);
+  color: var(--grid_table_crud-button_crear);
 }
 .text-ver {
-  color: var(--grid_table_crud-button-ver);
+  color: var(--grid_table_crud-button_ver);
 }
 .text-editar {
-  color: var(--grid_table_crud-button-editar);
+  color: var(--grid_table_crud-button_editar);
 }
 .text-estado-usuario{
-  color: var(--grid_table_crud-button-estado_usuario);
+  color: var(--grid_table_crud-button_estado_usuario);
 }
 .text-eliminar-inidividual{
-  color: var(--grid_table_crud-button-eliminar_individual);
+  color: var(--grid_table_crud-button_eliminar_individual);
 }
 .text-eliminar-multiple{
-  color: var(--grid_table_crud-button-eliminar_multiple);
+  color: var(--grid_table_crud-button_eliminar_multiple);
 }
 .text-asignar-permisos {
-  color: var(--grid_table_crud-button-asignar_permisos);
+  color: var(--grid_table_crud-button_asignar_permisos);
 }
 .text-asignar-productos{
-  color: var(--grid_table_crud-button-asignar_productos);
+  color: var(--grid_table_crud-button_asignar_productos);
 }
 .text-limpiar{
-  color: var(--grid_table_crud-button-limpiar);
+  color: var(--grid_table_crud-button_limpiar);
+}
+
+.bg_grid_table_crud_custom{
+  background-color: var(--grid_table_crud-background_color) !important;
 }

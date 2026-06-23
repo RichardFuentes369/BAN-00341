@@ -1,9 +1,9 @@
 .btn-search {
-  background-color: var(--search-background);
+  background-color: var(--search-button_background_color);
 }
 
 .header {
-  background: var(--search-head-background) !important;
+  background: var(--search-head_background_color) !important;
   border-bottom: none;
 }
 
@@ -72,7 +72,7 @@
   .header-search {
     margin: 0;
     padding: 12px;
-    background: var(--search-head-background);
+    background: var(--search-head_background_color);
     border-top-left-radius: 12px !important;
     color: white;
     text-align: center;
@@ -103,4 +103,9 @@
 
 .btn-minimize-card {
   left: 35px;
+}
+
+
+.icon_color {
+  color: var(--search-icon_background_color);
 }

@@ -43,7 +43,6 @@
   top: var(--layout-topbar-height) !important;
   z-index: 1;
   /* Valor alto para asegurar que nada pase por encima */
-  background-color: rgba(255, 255, 255, 0.95) !important;
   backdrop-filter: blur(8px);
   padding: 18px 25px;
   border-bottom: 1px solid var(--border-color);
@@ -53,7 +52,7 @@
 
     h5 {
       font-size: 1.1rem;
-      color: var(--text-main);
+      color: var(--grid_table_crud-text_color);
       font-weight: 700;
       margin: 0;
     }
@@ -156,8 +155,8 @@
   }
 
   thead {
-    background: var(--grid_table_crud-head-background)!important;
-    color: var(--grid_table_crud-head-text);
+    background: var(--grid_table_crud-head_background)!important;
+    color: var(--grid_table_crud-head_text);
     border-radius: 8px !important;
   }
 
@@ -203,7 +202,7 @@
 
         td {
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); // Sombra más pronunciada en hover
-          border-color: var(--grid_table_crud-row-select) !important; // Opcional: cambia el borde al color principal
+          border-color: var(--grid_table_crud-row_select) !important; // Opcional: cambia el borde al color principal
         }
       }
     }
@@ -218,42 +217,42 @@
     vertical-align: middle;
 
     // Bordes superior e inferior de la tarjeta
-    border-top: 1px solid var(--grid_table_crud-row-color-line) !important;
-    border-bottom: 1px solid var(--grid_table_crud-row-color-line) !important;
+    border-top: 1px solid var(--grid_table_crud-row_color-line) !important;
+    border-bottom: 1px solid var(--grid_table_crud-row_color-line) !important;
 
     border-left: none !important;
     border-right: none !important;
 
     &:first-child {
-      border-left: 1px solid var(--grid_table_crud-row-color-line) !important;
+      border-left: 1px solid var(--grid_table_crud-row_color-line) !important;
       border-radius: 8px 0 0 8px !important;
     }
 
     &:last-child {
-      border-right: 1px solid var(--grid_table_crud-row-color-line) !important;
+      border-right: 1px solid var(--grid_table_crud-row_color-line) !important;
       border-radius: 0 8px 8px 0 !important;
     }
   }
 
   tr.selected-row {
     // Cambiamos el fondo de toda la estructura del TR de un solo golpe
-    background-color: var(--grid_table_crud-row-select) !important;
+    background-color: var(--grid_table_crud-row_select) !important;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2) !important;
 
     td {
-      color: var(--grid_table_crud-row-text-select) !important;
+      color: var(--grid_table_crud-row_text_select) !important;
       font-weight: 500;
 
       // Sincronizamos los bordes perimetrales con el color de selección
-      border-top-color: var(--grid_table_crud-row-select) !important;
-      border-bottom-color: var(--grid_table_crud-row-select) !important;
+      border-top-color: var(--grid_table_crud-row_select) !important;
+      border-bottom-color: var(--grid_table_crud-row_select) !important;
 
       &:first-child {
-        border-left-color: var(--grid_table_crud-row-select) !important;
+        border-left-color: var(--grid_table_crud-row_select) !important;
       }
 
       &:last-child {
-        border-right-color: var(--grid_table_crud-row-select) !important;
+        border-right-color: var(--grid_table_crud-row_select) !important;
       }
 
       /* Ajuste de elementos hijos dentro de la tarjeta roja */
@@ -270,7 +269,7 @@
       .badge,
       .btn-actions {
         background-color: #ffffff !important;
-        color: var(--grid_table_crud-row-select) !important;
+        color: var(--grid_table_crud-row_select) !important;
       }
     }
   }
@@ -357,33 +356,41 @@
   }
 }
 
+.text-custom-select{
+  color: var(--select-background_color);
+}
+
 .text-cargar-ecxel {
-  color: var(--grid_table_crud-button-cargar_excel);
+  color: var(--grid_table_crud-button_cargar_excel);
 }
 .text-crear {
-  color: var(--grid_table_crud-button-crear);
+  color: var(--grid_table_crud-button_crear);
 }
 .text-ver {
-  color: var(--grid_table_crud-button-ver);
+  color: var(--grid_table_crud-button_ver);
 }
 .text-editar {
-  color: var(--grid_table_crud-button-editar);
+  color: var(--grid_table_crud-button_editar);
 }
 .text-estado-usuario{
-  color: var(--grid_table_crud-button-estado_usuario);
+  color: var(--grid_table_crud-button_estado_usuario);
 }
 .text-eliminar-inidividual{
-  color: var(--grid_table_crud-button-eliminar_individual);
+  color: var(--grid_table_crud-button_eliminar_individual);
 }
 .text-eliminar-multiple{
-  color: var(--grid_table_crud-button-eliminar_multiple);
+  color: var(--grid_table_crud-button_eliminar_multiple);
 }
 .text-asignar-permisos {
-  color: var(--grid_table_crud-button-asignar_permisos);
+  color: var(--grid_table_crud-button_asignar_permisos);
 }
 .text-asignar-productos{
-  color: var(--grid_table_crud-button-asignar_productos);
+  color: var(--grid_table_crud-button_asignar_productos);
 }
 .text-limpiar{
-  color: var(--grid_table_crud-button-limpiar);
+  color: var(--grid_table_crud-button_limpiar);
+}
+
+.bg_grid_table_crud_custom{
+  background-color: var(--grid_table_crud-background_color) !important;
 }

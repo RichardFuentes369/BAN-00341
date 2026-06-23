@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { CardComponent } from '@component/globales/card/card.component';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { SearchComponent } from '@component/globales/search/search.component';
@@ -13,6 +12,7 @@ import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import { CREAR_REGISTRO_COMPONENT, EDITAR_REGISTRO_COMPONENT, VER_REGISTRO_COMPONENT } from '@mod/merma/const/loss.conts';
 import Swal from 'sweetalert2';
+import { KpicardComponent } from '@component/globales/kpicard/kpicard.component';
 
 @Component({
   selector: 'app-merma-registro',
@@ -23,7 +23,7 @@ import Swal from 'sweetalert2';
     LoadingComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
-    CardComponent
+    KpicardComponent
   ],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.scss',

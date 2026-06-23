@@ -1,14 +1,14 @@
-<div class="card shadow card-custom pt-0 px-4 rounded-0">
+<div class="card shadow card-custom pt-0 px-4 bg_grid_table_crud_custom">
   @if(!accioneson){
     <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center px-0 mt-3 mb-2">
       <div class="title-container mb-2 mb-md-0">
-        <h5 class="m-0 fw-bold text-secondary">{{ title }}</h5>
+        <h5 class="m-0 fw-bold">{{ title }}</h5>
       </div>
     </div>
     <div class="entries-container my-2 d-flex justify-content-center align-items-center gap-2 w-100">
       <label class="small text-muted d-flex align-items-center gap-2 bg-light px-3 py-2 rounded-pill shadow-sm my-auto">
         {{ 'global-gridcrud.PAGINATION_INFO_SHOW' | translate }}
-        <select class="form-select form-select-sm w-auto border-0 bg-transparent fw-bold text-primary"
+        <select class="form-select form-select-sm w-auto border-0 bg-transparent fw-bold select_custom"
           style="width: 75px; height: 32px; cursor: pointer;" [(ngModel)]="dtOptions.pageLength"
           (change)="cambiarLimiteRegistros($event)">
           <option [value]="5">5</option>
@@ -23,7 +23,7 @@
   @if(accioneson){
     <div class="botoneria d-flex flex-column flex-md-row align-items-start align-items-md-center px-0">
       <div class="title-container mb-2 mb-md-0">
-        <h5 class="m-0 fw-bold text-secondary">{{ title }}</h5>
+        <h5 class="m-0 fw-bold">{{ title }}</h5>
         @if(habilitarSeleccion){
           <span class="text-muted animated fadeIn" style="font-size: 0.85rem;">
             {{ 'global-tablecrud.WORD_SELECTED' | translate }}:
