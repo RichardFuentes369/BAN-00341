@@ -59,6 +59,7 @@
     background: white;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     z-index: 2000;
+    border-radius: 12px 0 0 12px;
     transition: transform 0.4s ease, visibility 0.4s;
     visibility: hidden;
     overflow: visible;
