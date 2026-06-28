@@ -15,6 +15,7 @@
 
   "BUTTON_TYPE": "Type de perte",
   "BUTTON_RECORD": "Registres de perte",
+  "BUTTON_HISTORY": "Historique des pertes",
   
   "REGISTER": {
     "LEGEND_TITLE": "Pertes appliquées",
@@ -75,6 +76,10 @@
     "COLUMN_TOTAL": "Total",
 
     "CARD_TOTAL_TYPE_TITLE": "Total types"
+  },
+
+  "HISTORY": {
+
   },
 
   "SWAL_WARNING_REVERSE_CHANGE": "Cette action est irréversible!",

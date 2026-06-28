@@ -15,6 +15,7 @@
 
   "BUTTON_TYPE": "Tipo de pérdida",
   "BUTTON_RECORD": "Registros de pérdida",
+  "BUTTON_HISTORY": "Histórico de pérdida",
 
   "REGISTER": {
     "LEGEND_TITLE": "Mermas aplicadas",
@@ -82,6 +83,10 @@
     "COLUMN_TOTAL": "Total",
 
     "CARD_TOTAL_TYPE_TITLE": "Total tipos"
+  },
+
+  "HISTORY": {
+
   },
 
   "SWAL_WARNING_REVERSE_CHANGE": "¡No podrás revertir esto!",

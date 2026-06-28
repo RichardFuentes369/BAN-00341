@@ -29,6 +29,14 @@ export class FilterRegistroMermaDto {
 
     @IsOptional()
     @IsString()
+    year?: string;
+
+    @IsOptional()
+    @IsString()
+    month?: string;
+
+    @IsOptional()
+    @IsString()
     cantidad?: string;   
 
     @IsOptional()

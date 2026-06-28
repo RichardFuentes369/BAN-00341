@@ -90,4 +90,21 @@ export class MermasController {
   ) {
     return this.mermasService.contadoresRegistro(lang);
   }
+
+
+
+
+
+
+  @Get('obtener-historico-registro-mermas')
+  findHistory(
+    @Query('lang') lang: string,
+    @Query() FilterRegistroMermaDto: FilterRegistroMermaDto,
+    @GetUser('id') userId: number
+  ) {
+    return this.mermasService.findHistory(
+      FilterRegistroMermaDto, 
+      lang
+    );
+  }
 }

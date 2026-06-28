@@ -31,7 +31,7 @@ import {
 } from '@mod/main/const/main.const';
 import { MOD_USER_PAGE_ADMIN, MOD_USER_PAGE_FINAL } from '@mod/users/const/users.const';
 import { MOD_CATEGORY_PAGE_BRAND, MOD_CATEGORY_PAGE_EXTENT, MOD_CATEGORY_PAGE_PRODUCT, MOD_CATEGORY_PAGE_SUPPLIER } from '@mod/catalog/const/catalog.const';
-import { MOD_MERMA_PAGE_REGISTRO, MOD_MERMA_PAGE_TIPOS } from '@mod/merma/const/loss.conts';
+import { MOD_MERMA_PAGE_HISTORICO, MOD_MERMA_PAGE_REGISTRO, MOD_MERMA_PAGE_TIPOS } from '@mod/merma/const/loss.conts';
 import { MOD_ALERT_PAGE_EXPIRATION, MOD_ALERT_PAGE_STOCK } from '@mod/alerts/const/alerts.const';
 
 @Component({
@@ -70,6 +70,7 @@ export class AdminComponent implements OnInit {
   public ADMIN_PAGE_MENU_PERSMISSION_LOSS = ADMIN_PAGE_MENU_PERSMISSION_LOSS
   public MOD_MERMA_PAGE_TIPOS = MOD_MERMA_PAGE_TIPOS
   public MOD_MERMA_PAGE_REGISTRO = MOD_MERMA_PAGE_REGISTRO
+  public MOD_MERMA_PAGE_HISTORICO = MOD_MERMA_PAGE_HISTORICO
 
   public ADMIN_PAGE_MENU_PERSMISSION_ALERTS = ADMIN_PAGE_MENU_PERSMISSION_ALERTS
   public MOD_ALERT_PAGE_EXPIRATION = MOD_ALERT_PAGE_EXPIRATION

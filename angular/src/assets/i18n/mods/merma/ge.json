@@ -15,6 +15,7 @@
 
   "BUTTON_TYPE": "Verlustart",
   "BUTTON_RECORD": "Verlustaufzeichnungen",
+  "BUTTON_HISTORY": "Verlusthistorie",
   
   "REGISTER": {
     "LEGEND_TITLE": "Angewandter Schwund",
@@ -75,6 +76,10 @@
     "COLUMN_TOTAL": "Gesamt",
 
     "CARD_TOTAL_TYPE_TITLE": "Types insgesamt"
+  },
+
+  "HISTORY": {
+
   },
 
   "SWAL_WARNING_REVERSE_CHANGE": "Diese Änderung kann nicht rückgängig gemacht werden!",

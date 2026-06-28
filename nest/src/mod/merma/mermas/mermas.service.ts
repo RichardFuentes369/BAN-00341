@@ -1,7 +1,7 @@
 import { Inject, Injectable, NotFoundException, forwardRef } from '@nestjs/common';
 import { CreateMermaDto } from './dto/create-merma.dto';
 import { UpdateMermaDto } from './dto/update-merma.dto';
-import { In, Like, Repository } from 'typeorm';
+import { Between, In, Like, Repository } from 'typeorm';
 import { Merma } from './entities/merma.entity';
 import { I18nService } from 'nestjs-i18n';
 import { FilterRegistroMermaDto } from './dto/filter-merma.dto';
@@ -22,6 +22,41 @@ export class MermasService {
   listarPropiedadesTabla(repository: Repository<any>) {
     const metadata = repository.metadata;
     return metadata.columns.map((column) => column.propertyName);
+  }
+
+  // este sirve para saber los años del historico
+  // para los meses sera una lista estatica
+  // y cuando pase año y mes solo saldran los de ese mes (el original "findAll")
+  async findHistory(filterDto: FilterRegistroMermaDto, lang: string) {
+    const { limit, page } = filterDto;
+    const skipReal = (page == 1) ? 0 : (page - 1) * limit;
+
+    const rawAnios = await this.mermaRepository.query(`
+        SELECT DISTINCT YEAR(FROM_UNIXTIME(fecha_reporte)) AS anio 
+        FROM mod_merma_mermas 
+        ORDER BY anio DESC 
+        LIMIT ? OFFSET ?
+    `, [limit, skipReal]);
+
+    const aniosFormateados = rawAnios.map(r => ({ anho: r.anio }));
+
+    const totalAniosResult = await this.mermaRepository.query(`
+        SELECT COUNT(DISTINCT YEAR(FROM_UNIXTIME(fecha_reporte))) as total 
+        FROM mod_merma_mermas
+    `);
+    const totalAnios = totalAniosResult[0].total;
+
+    return {
+        result: aniosFormateados, 
+        pagination: {
+            page: +page,
+            perPage: +limit,
+            totalRecord: totalAnios,
+            totalPages: Math.ceil(totalAnios / limit),
+            previous: (page > 1) ? page - 1 : null,
+            next: ((page * limit) < totalAnios) ? page + 1 : null,
+        }
+    };
   }
 
   async findAll(filterDto: FilterRegistroMermaDto, lang: string) {
@@ -51,6 +86,26 @@ export class MermasService {
     if (filterDto.observaciones) where.observaciones = Like(`%${filterDto.observaciones}`);
     if (filterDto.id_tipo_merma) where.id_tipo_merma = Like(`%${filterDto.id_tipo_merma}`);
     if (filterDto.id_lote) where.id_lote = Like(`%${filterDto.id_lote}`);
+
+        if(filterDto.year){
+      let inicioUnix: number;
+      let finUnix: number;
+
+      if(filterDto.month){
+        const fechaInicio = new Date(+filterDto.year, +filterDto.month - 1, 1, 0, 0, 0);
+        const fechaFin = new Date(+filterDto.year, +filterDto.month, 0, 23, 59, 59);
+        inicioUnix = Math.floor(fechaInicio.getTime() / 1000);
+        finUnix = Math.floor(fechaFin.getTime() / 1000);
+      }else{
+        const fechaInicio = new Date(+filterDto.year, 0, 1, 0, 0, 0);
+        const fechaFin = new Date(+filterDto.year, 11, 31, 23, 59, 59);
+        
+        inicioUnix = Math.floor(fechaInicio.getTime() / 1000);
+        finUnix = Math.floor(fechaFin.getTime() / 1000);
+      }
+
+      where.fecha_reporte = Between(inicioUnix, finUnix);
+    }
 
     const peticion = async (page) => {
       return await this.mermaRepository.find({
@@ -172,4 +227,5 @@ export class MermasService {
 
     return data
   }
+
 }

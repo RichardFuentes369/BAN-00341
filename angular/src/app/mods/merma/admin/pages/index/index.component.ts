@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 import { AuthService } from '@guard/service/auth.service';
-import { MOD_MERMA_PAGE_REGISTRO, MOD_MERMA_PAGE_TIPOS } from '@mod/merma/const/loss.conts';
+import { MOD_MERMA_PAGE_HISTORICO, MOD_MERMA_PAGE_REGISTRO, MOD_MERMA_PAGE_TIPOS } from '@mod/merma/const/loss.conts';
 import { TranslateModule } from '@ngx-translate/core';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 
@@ -26,6 +26,7 @@ export class IndexComponent implements OnInit{
 
   public MOD_MERMA_PAGE_TIPOS = MOD_MERMA_PAGE_TIPOS
   public MOD_MERMA_PAGE_REGISTRO = MOD_MERMA_PAGE_REGISTRO
+  public MOD_MERMA_PAGE_HISTORICO = MOD_MERMA_PAGE_HISTORICO
 
   menu: any[] = []
 
