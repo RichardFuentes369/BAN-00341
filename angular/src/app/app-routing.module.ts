@@ -49,7 +49,7 @@ const routes: Routes = [
       {
         path: 'me',
         data: { breadcrumb: BREADCRUMB_PATH_MENU },
-        loadChildren: () => import('@mod/me/routes/me-admin.routing').then(x=>x.MeRoutes)
+        loadChildren: () => import('@mod/me/admin/routes/me-admin.routing').then(x=>x.MeRoutes)
       },
       {
         path: '**',
@@ -72,7 +72,7 @@ const routes: Routes = [
       {
         path: 'me',
         data: { breadcrumb: BREADCRUMB_PATH_MENU },
-        loadChildren: () => import('@mod/me/routes/me-final.routing').then(x=>x.MeRoutes)
+        loadChildren: () => import('@mod/me/final/routes/me-final.routing').then(x=>x.MeRoutes)
       },
       {
         path: '**',

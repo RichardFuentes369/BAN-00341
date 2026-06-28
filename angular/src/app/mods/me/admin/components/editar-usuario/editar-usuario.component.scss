@@ -1,0 +1,26 @@
+/*Card estilo*/
+.card-custom {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: none;
+  background-color: var(--grid_table_crud-background_color) !important;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+h5 {
+  font-size: 1.1rem;
+  color: var(--grid_table_crud-text_color);
+  font-weight: 700;
+  margin: 0;
+}
+
+legend {
+  color: #000000;
+}
+
+label {
+  color: #000000;
+}
