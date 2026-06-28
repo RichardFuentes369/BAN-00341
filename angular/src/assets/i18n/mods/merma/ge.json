@@ -3,6 +3,9 @@
   
   "PAGE_TYPE_TITLE": "Verlustart",
   "PAGE_RECORD_TITLE": "Verlustaufzeichnungen",
+  "PAGE_YEAS_TITLE": "Jährliches Protokoll",
+  "PAGE_MONTHS_TITLE": "Monatliches Protokoll",
+  "PAGE_HISTORY_TITLE": "Historischer Verlauf",
 
   "MODULE_TITLE": "Schwund",
   "TABLE_TITLE": "Datensätze",
@@ -79,7 +82,7 @@
   },
 
   "HISTORY": {
-
+    "CARD_TOTAL_HISTORY_TITLE": "Gesamthistorie"
   },
 
   "SWAL_WARNING_REVERSE_CHANGE": "Diese Änderung kann nicht rückgängig gemacht werden!",

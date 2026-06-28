@@ -3,6 +3,9 @@
 
   "PAGE_TYPE_TITLE": "Loss Type",
   "PAGE_RECORD_TITLE": "Loss Records",
+  "PAGE_YEAS_TITLE": "Yearly record",
+  "PAGE_MONTHS_TITLE": "Monthly record",
+  "PAGE_HISTORY_TITLE": "Historical record",
 
   "MODULE_TITLE": "Shrink",
   "TABLE_TITLE": "Records",
@@ -79,7 +82,7 @@
   },
 
   "HISTORY": {
-
+    "CARD_TOTAL_HISTORY_TITLE": "Historical total"
   },
   
   "SWAL_WARNING_REVERSE_CHANGE": "You cannot reverse this!",

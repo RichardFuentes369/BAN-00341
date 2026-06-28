@@ -106,5 +106,17 @@ export class MermasController {
       FilterRegistroMermaDto, 
       lang
     );
+  }  
+  
+  @Get('obtener-periodo-meses')
+  findHistoryMonth(
+    @Query('lang') lang: string,
+    @Query() FilterRegistroMermaDto: FilterRegistroMermaDto,
+    @GetUser('id') userId: number
+  ) {
+    return this.mermasService.findHistoryMonth(
+      FilterRegistroMermaDto, 
+      lang
+    );
   }
 }

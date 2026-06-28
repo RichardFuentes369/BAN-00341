@@ -3,6 +3,9 @@
 
   "PAGE_TYPE_TITLE": "Tipo de pérdida",
   "PAGE_RECORD_TITLE": "Registros de pérdida",
+  "PAGE_HISTORY_TITLE": "Registro histórico",
+  "PAGE_YEAS_TITLE": "Registro año",
+  "PAGE_MONTHS_TITLE": "Registro mes",
 
   "MODULE_TITLE": "Merma",
   "TABLE_TITLE": "Registros",
@@ -86,7 +89,7 @@
   },
 
   "HISTORY": {
-
+    "CARD_TOTAL_HISTORY_TITLE": "Total historico"
   },
 
   "SWAL_WARNING_REVERSE_CHANGE": "¡No podrás revertir esto!",

@@ -1,7 +1,7 @@
 <div class="mb-4 border-0 rounded-0">
   <div class="d-flex justify-content-between align-items-center px-3 pb-2">
     <h4 class="m-0 fw-bold text-bold title-custom">
-      {{ 'mod-catalog.PAGE_EXTENT_TITLE' | translate }}
+      {{ 'mod-merma.PAGE_HISTORY_TITLE' | translate }}
     </h4>
 
     <span class="custom-tooltip tooltip-left"
@@ -50,10 +50,8 @@
         [filters]="filters" 
         [title]="titlePage" 
         [wordItem]="wordItem"
-        (verItem)="verData($event)"
-        (crearNuevoItem)="crearData($event)" 
-        (editarItem)="editarData($event)" 
-        (eliminarItem)="eliminarData($event)">
+        [mostrarTotal]="mostrarTotal"
+        (verItem)="verData($event)">
       </app-globales-gridcrud>
     </div>
     } @else {
@@ -62,10 +60,4 @@
     </div>
     }
   </div>
-
-  <app-globales-modal-boostrap 
-    [tamano]="tamano" [scrollable]="scrollable" [title]="title" [subtitle]="subtitle" [save]="save"
-    [buttonSave]="buttonSave" [edit]="edit" [buttonEdit]="buttonEdit" [cancel]="cancel" [buttonCancel]="buttonCancel"
-    [componentePrecargado]="componentePrecargado" [cierreModal]="cierreModal" (actualizarTabla)="refrescarTabla()">
-  </app-globales-modal-boostrap>
 </div>

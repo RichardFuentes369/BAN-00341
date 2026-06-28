@@ -3,6 +3,9 @@
 
   "PAGE_TYPE_TITLE": "Type de perte",
   "PAGE_RECORD_TITLE": "Registres de perte",
+  "PAGE_YEAS_TITLE": "Registre annuel",
+  "PAGE_MONTHS_TITLE": "Registre mensuel",
+  "PAGE_HISTORY_TITLE": "Historique",
 
   "MODULE_TITLE": "Démarque",
   "TABLE_TITLE": "Registres",
@@ -79,7 +82,7 @@
   },
 
   "HISTORY": {
-
+    "CARD_TOTAL_HISTORY_TITLE": "Total historique"
   },
 
   "SWAL_WARNING_REVERSE_CHANGE": "Cette action est irréversible!",
