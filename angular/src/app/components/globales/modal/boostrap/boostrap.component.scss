@@ -39,6 +39,18 @@
     background-color: var(--modal-footer_background_color) !important;
   }
 
+  fieldset {
+    color: var(--modal-fieldset_line_color);
+  }
+
+  legend {
+    color: var(--modal-legend_text_color);
+  }
+
+  label {
+    color: var(--modal-label_text_color);
+  }
+
   .modal-header .close {
     color: white;
     opacity: 0.8;
@@ -46,7 +58,6 @@
       opacity: 1;
     }
   }
-
 
   .btnCancel{
     color: var(--modal-button_cancel_text_color);

@@ -65,6 +65,9 @@
       "button_limpiar": "#6B7280"
     },
     "modal": {
+      "fieldset_line_color": "#0b4a75",
+      "legend_text_color": "#0b4a75",
+      "label_text_color": "#000000",
       "head_text_color": "#FFFFFF",
       "head_background_color": "#0b4a75",
       "back_color_background": "#EDEDED",
@@ -159,6 +162,9 @@
       "button_limpiar": "#4B5563"
     },
     "modal": {
+      "fieldset_line_color": "#0b4a75",
+      "legend_text_color": "#FFFFFF",
+      "label_text_color": "#FFFFFF",
       "head_text_color": "#FFFFFF",
       "head_background_color": "#000000",
       "back_color_background": "#1F1E1E",
