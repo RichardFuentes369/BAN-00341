@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GridcrudComponent } from '@component/globales/gridcrud/gridcrud.component';
 import { KpicardComponent } from '@component/globales/kpicard/kpicard.component';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
@@ -31,6 +31,7 @@ export class AnhosMermaComponent implements OnInit, OnDestroy {
   // construcator
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private userService: AuthService,
     private permisosService: PermisosService,
     private registroService: RegistroService,
@@ -173,7 +174,9 @@ export class AnhosMermaComponent implements OnInit, OnDestroy {
   }
 
   async actualizarContadores() {
-    const data = await this.registroService.obtenerTotale()
+    let year = (this.route.snapshot.queryParams?.['year'] != undefined) ? this.route.snapshot.queryParams?.['year'] : null
+    let month = (this.route.snapshot.queryParams?.['month'] != undefined) ? this.route.snapshot.queryParams?.['month'] : null
+    const data = await this.registroService.obtenerTotale(year, month)
     this.count_total_extent = data.data.count_total_extent
   }
 }

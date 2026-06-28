@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { SearchComponent } from '@component/globales/search/search.component';
@@ -33,6 +33,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
   // construcator
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private userService :AuthService,
     private permisosService :PermisosService,
     private registroService :RegistroService,
@@ -51,7 +52,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
 
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
-  endPoint = 'registro-mermas/obtener-registro-mermas'
+  endPoint = `registro-mermas/obtener-registro-mermas?month=${(!this.route.snapshot.queryParams?.['month'])?null:this.route.snapshot.queryParams?.['month']}&year=${(!this.route.snapshot.queryParams?.['anho'])?null:this.route.snapshot.queryParams?.['anho']}`
   habilitarSeleccion = true
   filters = ''
 
@@ -151,7 +152,10 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
     }
 
     const permisos = await this.permisosService.permisos(userData.data.id,'registro_merma')
-    this.permisos = permisos.data
+
+    const esHistorico = this.router.url.includes('/historico');
+    this.permisos = esHistorico ? [] : permisos.data;
+
     // sessionStorage.removeItem('nit')
     // sessionStorage.removeItem('razon_social')
     // sessionStorage.removeItem('correo')
@@ -335,7 +339,9 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
   }
 
   async actualizarContadores (){
-    const data = await this.registroService.obtenerTotale()
+    let year = (this.route.snapshot.queryParams?.['year'] != undefined) ? this.route.snapshot.queryParams?.['year'] : null
+    let month = (this.route.snapshot.queryParams?.['month'] != undefined) ? this.route.snapshot.queryParams?.['month'] : null
+    const data = await this.registroService.obtenerTotale(year, month)
     this.count_total_register_merma = data.data.count_total_register_merma
   }
 }

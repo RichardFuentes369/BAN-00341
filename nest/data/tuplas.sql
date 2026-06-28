@@ -14,9 +14,13 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping data for table BAN_00341.mod_bodega: ~1 rows (approximately)
+-- Dumping data for table BAN_00341.mod_bodega: ~5 rows (approximately)
 INSERT INTO `mod_bodega` (`id`, `lote`, `fecha_entrada`, `fecha_vencimiento`, `cantidad_comprada`, `cantidad_vendida`, `cantidad_en_bodega`, `estado`, `id_producto`, `id_proveedor`) VALUES
-	(26, 'MCRE96', 1781067600, 1782881999, 58600, 3250, 48350, 'disponible', 10, 3);
+	(26, 'MCRE96', 1770613200, 1782881999, 58600, 3250, 55100, 'disponible', 10, 3),
+	(27, 'Lecf282', 1776920400, 1787374799, 250, 0, 215, 'disponible', 1, 2),
+	(28, 'sdas1', 1781154000, 1786683599, 1232, 0, 950, 'disponible', 8, 3),
+	(29, '23dss', 1786942800, 1803704399, 896, 0, 686, 'disponible', 53, 2),
+	(30, 'ad85w', 1759726800, 1789621199, 58233, 0, 58137, 'disponible', 11, 1);
 
 -- Dumping data for table BAN_00341.mod_catalogo_marcas: ~8 rows (approximately)
 INSERT INTO `mod_catalogo_marcas` (`id`, `nombre`) VALUES
@@ -61,10 +65,13 @@ INSERT INTO `mod_catalogo_proveedores` (`id`, `razon_social`, `direccion`, `corr
 	(3, 'Proveedor 3', 'calle 125 # 32 - 15', 'proveedor3@gmail.com', '3162547852', '1', '1000241002'),
 	(4, 'Proveedor 4', 'calle 206 # 55 - 95', 'proveedor4@gmail.com', '3504289963', '1', '1000241004');
 
--- Dumping data for table BAN_00341.mod_merma_mermas: ~2 rows (approximately)
+-- Dumping data for table BAN_00341.mod_merma_mermas: ~5 rows (approximately)
 INSERT INTO `mod_merma_mermas` (`id`, `cantidad`, `fecha_reporte`, `observacion`, `id_tipo_merma`, `id_lote`, `valor_perdido`) VALUES
-	(39, 2000, 1781067600, 'asdasdasd', 2, 26, 2850),
-	(40, 5000, 1781240400, 'dasdasd', 5, 26, 21212);
+	(42, 250, 1776834000, 'asdasd', 2, 26, 285556),
+	(43, 35, 1777352400, 'asdasd', 9, 27, 8500),
+	(44, 282, 1780894800, 'adasd', 2, 28, 250),
+	(45, 210, 1799557200, 'asdasd', 8, 29, 1222),
+	(46, 96, 1766638800, 'dasdasd', 2, 30, 1211);
 
 -- Dumping data for table BAN_00341.mod_merma_tipos: ~10 rows (approximately)
 INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
@@ -79,7 +86,7 @@ INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
 	(9, 'Robo o Extravío'),
 	(10, 'Vencimiento');
 
--- Dumping data for table BAN_00341.mod_permisos_modulo: ~85 rows (approximately)
+-- Dumping data for table BAN_00341.mod_permisos_modulo: ~91 rows (approximately)
 INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`, `tiene_permisos`, `descripcion`, `modulo_padre_id`) VALUES
 	(1, 'Usuarios', 'usuarios', 1, 0, 'Modulo usuarios', NULL),
 	(2, 'Administradores', 'administradores', 0, 1, 'Permiso administradores, modulo usuarios', 1),
@@ -165,9 +172,11 @@ INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`
 	(110, 'Editar', 'editar', 0, 1, 'Permiso editar, submodulo json, modulo variables del sistema', 102),
 	(111, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo json, modulo variables del sistema', 102),
 	(112, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso eliminar_multiple, submodulo json, modulo variables del sistema', 102),
-	(113, 'Personalizacion', 'estilos_sistema', 0, 1, 'Modulo general para el estilos del sistema', NULL);
+	(113, 'Personalizacion', 'estilos_sistema', 0, 1, 'Modulo general para el estilos del sistema', NULL),
+	(114, 'Historico merma', 'historico_merma', 0, 1, 'Permiso historico_merma, modulo merma', 44),
+	(115, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo historico_merma, modulo merma', 114);
 
--- Dumping data for table BAN_00341.mod_permisos_modulo_asignacion: ~113 rows (approximately)
+-- Dumping data for table BAN_00341.mod_permisos_modulo_asignacion: ~115 rows (approximately)
 INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descripcion`, `id_modulo`, `modulo_padre_id`, `user_id`) VALUES
 	(241, 'Estado (usuario)', 'estado_usuario', 'Permiso estado usuario, submodulo administradores, modulo usuarios', 8, 2, 1),
 	(242, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar individual, submodulo administradores, modulo usuarios', 6, 2, 1),
@@ -281,7 +290,9 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(554, 'Variables del sistema', 'variables_sistema', 'Modulo configurables', 95, NULL, 1),
 	(555, 'Personalizacion', 'estilos_sistema', 'Modulo general para el estilos del sistema', 113, NULL, 1),
 	(556, 'Merma', 'merma', 'Modulo merma', 44, NULL, 1),
-	(557, 'Modulos', 'modulos', 'Modulo modulos', 17, NULL, 1);
+	(557, 'Modulos', 'modulos', 'Modulo modulos', 17, NULL, 1),
+	(558, 'Historico merma', 'historico_merma', 'Permiso historico_merma, modulo merma', 114, 44, 1),
+	(560, 'Ver', 'ver', 'Permiso ver, submodulo historico_merma, modulo merma', 115, 114, 1);
 
 -- Dumping data for table BAN_00341.mod_usuarios_admin: ~3 rows (approximately)
 INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES

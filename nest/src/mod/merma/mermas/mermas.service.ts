@@ -121,11 +121,11 @@ export class MermasService {
     if (filterDto.id_tipo_merma) where.id_tipo_merma = Like(`%${filterDto.id_tipo_merma}`);
     if (filterDto.id_lote) where.id_lote = Like(`%${filterDto.id_lote}`);
 
-    if (filterDto.year) {
-      let inicioUnix: number;
-      let finUnix: number;
+    let inicioUnix: number;
+    let finUnix: number;
 
-      if (filterDto.month) {
+    if (filterDto.year != 'null') {
+      if (filterDto.month != 'null') {
         const fechaInicio = new Date(+filterDto.year, +filterDto.month - 1, 1, 0, 0, 0);
         const fechaFin = new Date(+filterDto.year, +filterDto.month, 0, 23, 59, 59);
         inicioUnix = Math.floor(fechaInicio.getTime() / 1000);
@@ -133,13 +133,20 @@ export class MermasService {
       } else {
         const fechaInicio = new Date(+filterDto.year, 0, 1, 0, 0, 0);
         const fechaFin = new Date(+filterDto.year, 11, 31, 23, 59, 59);
-
         inicioUnix = Math.floor(fechaInicio.getTime() / 1000);
         finUnix = Math.floor(fechaFin.getTime() / 1000);
       }
-
-      where.fecha_reporte = Between(inicioUnix, finUnix);
+      // where.fecha_reporte = Between(inicioUnix, finUnix);
+    }else{
+      const anioActual = new Date().getFullYear();
+      const fechaInicio = new Date(anioActual, 0, 1, 0, 0, 0);
+      const fechaFin = new Date(anioActual, 11, 31, 23, 59, 59);
+      inicioUnix = Math.floor(fechaInicio.getTime() / 1000);
+      finUnix = Math.floor(fechaFin.getTime() / 1000);
+      // where.fecha_reporte = Between(inicioUnix, finUnix);
     }
+
+    where.fecha_reporte = Between(inicioUnix, finUnix);
 
     const peticion = async (page) => {
       return await this.mermaRepository.find({
@@ -250,16 +257,31 @@ export class MermasService {
     };
   }
 
-  async contadoresRegistro(
-    lang: string
-  ) {
-    const cont1 = await this.mermaRepository.count()
+  async contadoresRegistro(year: string, month: string, lang: string) {
+    const anio = (year && year !== 'null') ? parseInt(year, 10) : new Date().getFullYear();
+    const mes = (month && month !== 'null') ? parseInt(month, 10) : null;
 
-    const data = {
-      "count_total_register_merma": cont1,
+    let fechaInicio: Date;
+    let fechaFin: Date;
+
+    if (mes !== null) {
+      fechaInicio = new Date(anio, mes - 1, 1, 0, 0, 0);
+      fechaFin = new Date(anio, mes, 0, 23, 59, 59);
+    } else {
+      fechaInicio = new Date(anio, 0, 1, 0, 0, 0);
+      fechaFin = new Date(anio, 11, 31, 23, 59, 59);
     }
 
-    return data
+    const inicioUnix = Math.floor(fechaInicio.getTime() / 1000);
+    const finUnix = Math.floor(fechaFin.getTime() / 1000);
+
+    const where: any = { fecha_reporte: Between(inicioUnix, finUnix) };
+    
+    const cont1 = await this.mermaRepository.count({ where });
+
+    return {
+      "count_total_register_merma": cont1,
+    };
   }
 
 }

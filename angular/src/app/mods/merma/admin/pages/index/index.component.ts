@@ -27,6 +27,7 @@ export class IndexComponent implements OnInit{
   public MOD_MERMA_PAGE_TIPOS = MOD_MERMA_PAGE_TIPOS
   public MOD_MERMA_PAGE_REGISTRO = MOD_MERMA_PAGE_REGISTRO
   public MOD_MERMA_PAGE_HISTORICO = MOD_MERMA_PAGE_HISTORICO
+  public CURRENT_YEAR = new Date().getFullYear();
 
   menu: any[] = []
 

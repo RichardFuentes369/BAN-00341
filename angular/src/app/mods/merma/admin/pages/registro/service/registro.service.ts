@@ -12,7 +12,7 @@ export class RegistroService {
 
   constructor(private translate: TranslateService) { }
 
-  async obtenerTotale(){
+  async obtenerTotale(year: string, month: string){
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'registro-mermas/obtener-contadores-registro-merma/'
     let urlCopleta = environment.apiUrl+complemento
@@ -26,6 +26,8 @@ export class RegistroService {
       method: 'get',
       url: urlCopleta,
       params: {
+        year: year,
+        month: month,
         lang: lang,
       }
     })

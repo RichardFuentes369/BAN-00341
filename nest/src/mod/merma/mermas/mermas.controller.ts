@@ -86,15 +86,12 @@ export class MermasController {
   // contadores
   @Get('obtener-contadores-registro-merma')
   async contadores(
+    @Query('year') year:string,
+    @Query('month') month:string,
     @Query('lang') lang:string,
   ) {
-    return this.mermasService.contadoresRegistro(lang);
+    return this.mermasService.contadoresRegistro(year, month, lang);
   }
-
-
-
-
-
 
   @Get('obtener-historico-registro-mermas')
   findHistory(

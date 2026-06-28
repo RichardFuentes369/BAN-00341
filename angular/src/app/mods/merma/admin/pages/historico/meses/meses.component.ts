@@ -174,7 +174,9 @@ export class MesesMermaComponent implements OnInit, OnDestroy {
   }
 
   async actualizarContadores() {
-    const data = await this.registroService.obtenerTotale()
+    let year = (this.route.snapshot.queryParams?.['year'] != undefined) ? this.route.snapshot.queryParams?.['year'] : null
+    let month = (this.route.snapshot.queryParams?.['month'] != undefined) ? this.route.snapshot.queryParams?.['month'] : null
+    const data = await this.registroService.obtenerTotale(year, month)
     this.count_total_extent = data.data.count_total_extent
   }
 }
