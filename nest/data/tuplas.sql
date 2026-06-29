@@ -65,7 +65,7 @@ INSERT INTO `mod_catalogo_proveedores` (`id`, `razon_social`, `direccion`, `corr
 	(3, 'Proveedor 3', 'calle 125 # 32 - 15', 'proveedor3@gmail.com', '3162547852', '1', '1000241002'),
 	(4, 'Proveedor 4', 'calle 206 # 55 - 95', 'proveedor4@gmail.com', '3504289963', '1', '1000241004');
 
--- Dumping data for table BAN_00341.mod_merma_mermas: ~5 rows (approximately)
+-- Dumping data for table BAN_00341.mod_merma_mermas: ~4 rows (approximately)
 INSERT INTO `mod_merma_mermas` (`id`, `cantidad`, `fecha_reporte`, `observacion`, `id_tipo_merma`, `id_lote`, `valor_perdido`) VALUES
 	(42, 250, 1776834000, 'asdasd', 2, 26, 285556),
 	(43, 35, 1777352400, 'asdasd', 9, 27, 8500),
@@ -86,7 +86,7 @@ INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
 	(9, 'Robo o Extravío'),
 	(10, 'Vencimiento');
 
--- Dumping data for table BAN_00341.mod_permisos_modulo: ~91 rows (approximately)
+-- Dumping data for table BAN_00341.mod_permisos_modulo: ~87 rows (approximately)
 INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`, `tiene_permisos`, `descripcion`, `modulo_padre_id`) VALUES
 	(1, 'Usuarios', 'usuarios', 1, 0, 'Modulo usuarios', NULL),
 	(2, 'Administradores', 'administradores', 0, 1, 'Permiso administradores, modulo usuarios', 1),
@@ -116,7 +116,7 @@ INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`
 	(35, 'Editar', 'editar', 0, 0, 'Permiso editar, submodulo proveedores, modulo catalogo', 26),
 	(36, 'Eliminar (individual)', 'eliminar_individual', 0, 0, 'Permiso eliminar_individual, submodulo proveedores, modulo catalogo', 26),
 	(37, 'Eliminar (multiple)', 'eliminar_multiple', 0, 0, 'Permiso eliminar_multiple, submodulo proveedores, modulo catalogo', 26),
-	(38, 'Productos', 'productos', 1, 1, 'Permiso productos, modulo catalogo', 22),
+	(38, 'Productos', 'productos', 0, 1, 'Permiso productos, modulo catalogo', 22),
 	(39, 'Ver', 'ver', 0, 0, 'Permiso ver, submodulo productos, modulo catalogo', 38),
 	(40, 'Crear', 'crear', 0, 0, 'Permiso crear, submodulo productos, modulo catalogo', 38),
 	(41, 'Editar', 'editar', 0, 0, 'Permiso editar, submodulo productos, modulo catalogo', 38),
@@ -140,41 +140,41 @@ INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`
 	(65, 'Ver', 'ver', 0, 0, 'ver', 64),
 	(66, 'Crear', 'crear', 0, 0, 'crear', 64),
 	(67, 'Editar', 'editar', 0, 0, 'editar', 64),
-	(68, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo json, modulo variables del sistema', 64),
+	(68, 'Eliminar (individual)', 'eliminar_individual', 0, 0, 'Permiso eliminar_individual, submodulo json, modulo variables del sistema', 64),
 	(69, 'Eliminar (multiple)', 'eliminar_multiple', 0, 0, 'eliminar_multiple', 64),
 	(75, 'Descargar (Reporte permisos)', 'descarga_reporte_permisos', 0, 0, 'Permiso descarga_reporte_permisos usuario, submodulo administradores, modulo usuarios', 2),
-	(78, 'Descargar (Reporte trazabilidad)', 'descarga_reporte_trazabilidad', 1, 0, 'descarga_reporte_trazabilidad', 64),
+	(78, 'Descargar (Reporte trazabilidad)', 'descarga_reporte_trazabilidad', 0, 0, 'descarga_reporte_trazabilidad', 64),
 	(79, 'Marcas', 'marcas', 0, 1, 'Permiso marcas, modulo catalogo', 22),
-	(80, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo marcas, modulo catalogo', 79),
-	(81, 'Crear', 'crear', 0, 1, 'Permiso crear, submodulo marcas, modulo catalogo', 79),
-	(82, 'Editar', 'editar', 0, 1, 'Permiso editar, submodulo marcas, modulo catalogo', 79),
-	(83, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo marcas, modulo catalogo', 79),
-	(84, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso eliminar_multiple, submodulo marcas, modulo catalogo', 79),
-	(85, 'asignar_productos', 'asignar_productos', 0, 1, 'Permiso asignar_productos, submodulo marcas, modulo catalogo', 79),
+	(80, 'Ver', 'ver', 0, 0, 'Permiso ver, submodulo marcas, modulo catalogo', 79),
+	(81, 'Crear', 'crear', 0, 0, 'Permiso crear, submodulo marcas, modulo catalogo', 79),
+	(82, 'Editar', 'editar', 0, 0, 'Permiso editar, submodulo marcas, modulo catalogo', 79),
+	(83, 'Eliminar (individual)', 'eliminar_individual', 0, 0, 'Permiso eliminar_individual, submodulo marcas, modulo catalogo', 79),
+	(84, 'Eliminar (multiple)', 'eliminar_multiple', 0, 0, 'Permiso eliminar_multiple, submodulo marcas, modulo catalogo', 79),
+	(85, 'asignar_productos', 'asignar_productos', 0, 0, 'Permiso asignar_productos, submodulo marcas, modulo catalogo', 79),
 	(86, 'Unidad de medida', 'unidad_de_medida', 0, 1, 'Permiso unidad_de_medida, modulo catalogo', 22),
-	(87, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo unidad_de_medida, modulo catalogo', 86),
-	(88, 'Crear', 'crear', 0, 1, 'Permiso crear, submodulo unidad_de_medida, modulo catalogo', 86),
-	(89, 'Editar', 'editar', 0, 1, 'Permiso editar, submodulo unidad_de_medida, modulo catalogo', 86),
-	(90, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo unidad_de_medida, modulo catalogo', 86),
+	(87, 'Ver', 'ver', 0, 0, 'Permiso ver, submodulo unidad_de_medida, modulo catalogo', 86),
+	(88, 'Crear', 'crear', 0, 0, 'Permiso crear, submodulo unidad_de_medida, modulo catalogo', 86),
+	(89, 'Editar', 'editar', 0, 0, 'Permiso editar, submodulo unidad_de_medida, modulo catalogo', 86),
+	(90, 'Eliminar (individual)', 'eliminar_individual', 0, 0, 'Permiso eliminar_individual, submodulo unidad_de_medida, modulo catalogo', 86),
 	(91, 'Alertas', 'alertas', 1, 0, 'Modulo alertas', NULL),
-	(92, 'Caducidad', 'alerta_caducidad', 0, 1, 'Aquí se mostrara la información de los lotes de los productos activos, con el detalle de (dias a vencer o ya vencidos)', 91),
-	(94, 'Stock', 'alerta_stock', 0, 1, 'Aquí se mostrara a cerca de los productos que están en su stock o por debajo de el.', 91),
+	(92, 'Caducidad', 'alerta_caducidad', 0, 0, 'Aquí se mostrara la información de los lotes de los productos activos, con el detalle de (dias a vencer o ya vencidos)', 91),
+	(94, 'Stock', 'alerta_stock', 0, 0, 'Aquí se mostrara a cerca de los productos que están en su stock o por debajo de el.', 91),
 	(95, 'Variables del sistema', 'variables_sistema', 1, 0, 'Modulo configurables', NULL),
 	(101, 'VAR', 'system_var', 0, 1, 'Permiso var, modulo configurable', 95),
 	(102, 'JSON', 'system_json', 0, 1, 'Permiso json, modulo configurable', 95),
-	(103, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo var, modulo variables del sistema', 101),
-	(104, 'Crear', 'crear', 0, 1, 'Permiso crear, submodulo var, modulo variables del sistema', 101),
-	(105, 'Editar', 'editar', 0, 1, 'Permiso editar, submodulo var, modulo variables del sistema', 101),
-	(106, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo var, modulo variables del sistema', 101),
-	(107, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso eliminar_multiple, submodulo var, modulo variables del sistema', 101),
-	(108, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo json, modulo variables del sistema', 102),
-	(109, 'Crear', 'crear', 0, 1, 'Permiso crear, submodulo json, modulo variables del sistema', 102),
-	(110, 'Editar', 'editar', 0, 1, 'Permiso editar, submodulo json, modulo variables del sistema', 102),
-	(111, 'Eliminar (individual)', 'eliminar_individual', 0, 1, 'Permiso eliminar_individual, submodulo json, modulo variables del sistema', 102),
-	(112, 'Eliminar (multiple)', 'eliminar_multiple', 0, 1, 'Permiso eliminar_multiple, submodulo json, modulo variables del sistema', 102),
-	(113, 'Personalizacion', 'estilos_sistema', 0, 1, 'Modulo general para el estilos del sistema', NULL),
+	(103, 'Ver', 'ver', 0, 0, 'Permiso ver, submodulo var, modulo variables del sistema', 101),
+	(104, 'Crear', 'crear', 0, 0, 'Permiso crear, submodulo var, modulo variables del sistema', 101),
+	(105, 'Editar', 'editar', 0, 0, 'Permiso editar, submodulo var, modulo variables del sistema', 101),
+	(106, 'Eliminar (individual)', 'eliminar_individual', 0, 0, 'Permiso eliminar_individual, submodulo var, modulo variables del sistema', 101),
+	(107, 'Eliminar (multiple)', 'eliminar_multiple', 0, 0, 'Permiso eliminar_multiple, submodulo var, modulo variables del sistema', 101),
+	(108, 'Ver', 'ver', 0, 0, 'Permiso ver, submodulo json, modulo variables del sistema', 102),
+	(109, 'Crear', 'crear', 0, 0, 'Permiso crear, submodulo json, modulo variables del sistema', 102),
+	(110, 'Editar', 'editar', 0, 0, 'Permiso editar, submodulo json, modulo variables del sistema', 102),
+	(111, 'Eliminar (individual)', 'eliminar_individual', 0, 0, 'Permiso eliminar_individual, submodulo json, modulo variables del sistema', 102),
+	(112, 'Eliminar (multiple)', 'eliminar_multiple', 0, 0, 'Permiso eliminar_multiple, submodulo json, modulo variables del sistema', 102),
+	(113, 'Personalizacion', 'estilos_sistema', 0, 0, 'Modulo general para el estilos del sistema', NULL),
 	(114, 'Historico merma', 'historico_merma', 0, 1, 'Permiso historico_merma, modulo merma', 44),
-	(115, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo historico_merma, modulo merma', 114);
+	(115, 'Ver', 'ver', 0, 0, 'Permiso ver, submodulo historico_merma, modulo merma', 114);
 
 -- Dumping data for table BAN_00341.mod_permisos_modulo_asignacion: ~115 rows (approximately)
 INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descripcion`, `id_modulo`, `modulo_padre_id`, `user_id`) VALUES
@@ -187,7 +187,6 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(248, 'Crear', 'crear', 'Permiso crear, submodulo finales, modulo usuarios', 12, 10, 1),
 	(249, 'Editar', 'editar', 'Permiso editar, submodulo finales, modulo usuarios', 13, 10, 1),
 	(250, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar individual, submodulo finales, modulo usuarios', 14, 10, 1),
-	(252, 'Estado (usuario)', 'estado_usuario', 'Permiso estado usuario, submodulo finales, modulo usuarios', 16, 10, 1),
 	(258, 'Ver', 'ver', 'ver', 65, 64, 1),
 	(259, 'Crear', 'crear', 'crear', 66, 64, 1),
 	(260, 'Editar', 'editar', 'editar', 67, 64, 1),
@@ -232,7 +231,6 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(482, 'Ver', 'ver', 'Permiso ver, submodulo tipo_merma, modulo merma', 47, 45, 1),
 	(484, 'Permisos (asignar)\r\n', 'asignar_permisos', 'Permiso asignar_permisos usuario, submodulo administradores, modulo usuarios', 9, 2, 1),
 	(485, 'Administradores', 'administradores', 'Permiso administradores, modulo usuarios', 2, 1, 1),
-	(487, 'Catalogo', 'catalogo', 'Modulo catalogo', 22, NULL, 9),
 	(488, 'Proveedores', 'proveedores', 'Permiso proveedores, modulo catalogo', 26, 22, 9),
 	(489, 'Ver', 'ver', 'Permiso ver, submodulo proveedores, modulo catalogo', 33, 26, 9),
 	(490, 'Crear', 'crear', 'Permiso crear, submodulo proveedores, modulo catalogo', 34, 26, 9),
@@ -277,22 +275,24 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(533, 'Catalogo', 'catalogo', 'Modulo catalogo', 22, NULL, 1),
 	(535, 'Bodega', 'bodega', 'Modulo bodega', 64, NULL, 1),
 	(536, 'Alertas', 'alertas', 'Modulo alertas', 91, NULL, 1),
-	(543, 'VAR', 'system_var', 'Permiso var, modulo configurable', 101, 95, 1),
-	(544, 'Ver', 'ver', 'Permiso ver, submodulo var, modulo variables del sistema', 103, 101, 1),
-	(545, 'Crear', 'crear', 'Permiso crear, submodulo var, modulo variables del sistema', 104, 101, 1),
-	(546, 'Editar', 'editar', 'Permiso editar, submodulo var, modulo variables del sistema', 105, 101, 1),
-	(547, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo var, modulo variables del sistema', 106, 101, 1),
 	(548, 'JSON', 'system_json', 'Permiso json, modulo configurable', 102, 95, 1),
-	(549, 'Ver', 'ver', 'Permiso ver, submodulo json, modulo variables del sistema', 108, 102, 1),
-	(550, 'Crear', 'crear', 'Permiso crear, submodulo json, modulo variables del sistema', 109, 102, 1),
-	(551, 'Editar', 'editar', 'Permiso editar, submodulo json, modulo variables del sistema', 110, 102, 1),
-	(552, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo json, modulo variables del sistema', 111, 102, 1),
 	(554, 'Variables del sistema', 'variables_sistema', 'Modulo configurables', 95, NULL, 1),
 	(555, 'Personalizacion', 'estilos_sistema', 'Modulo general para el estilos del sistema', 113, NULL, 1),
 	(556, 'Merma', 'merma', 'Modulo merma', 44, NULL, 1),
 	(557, 'Modulos', 'modulos', 'Modulo modulos', 17, NULL, 1),
 	(558, 'Historico merma', 'historico_merma', 'Permiso historico_merma, modulo merma', 114, 44, 1),
-	(560, 'Ver', 'ver', 'Permiso ver, submodulo historico_merma, modulo merma', 115, 114, 1);
+	(560, 'Ver', 'ver', 'Permiso ver, submodulo historico_merma, modulo merma', 115, 114, 1),
+	(562, 'Estado (usuario)', 'estado_usuario', 'Permiso estado usuario, submodulo finales, modulo usuarios', 16, 10, 1),
+	(563, 'Ver', 'ver', 'Permiso ver, submodulo json, modulo variables del sistema', 108, 102, 1),
+	(564, 'Ver', 'ver', 'Permiso ver, submodulo var, modulo variables del sistema', 103, 101, 1),
+	(565, 'Crear', 'crear', 'Permiso crear, submodulo json, modulo variables del sistema', 109, 102, 1),
+	(566, 'Crear', 'crear', 'Permiso crear, submodulo var, modulo variables del sistema', 104, 101, 1),
+	(567, 'Editar', 'editar', 'Permiso editar, submodulo json, modulo variables del sistema', 110, 102, 1),
+	(568, 'Editar', 'editar', 'Permiso editar, submodulo var, modulo variables del sistema', 105, 101, 1),
+	(569, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo json, modulo variables del sistema', 111, 102, 1),
+	(570, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo var, modulo variables del sistema', 106, 101, 1),
+	(571, 'VAR', 'system_var', 'Permiso var, modulo configurable', 101, 95, 1),
+	(572, 'Catalogo', 'catalogo', 'Modulo catalogo', 22, NULL, 9);
 
 -- Dumping data for table BAN_00341.mod_usuarios_admin: ~3 rows (approximately)
 INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
@@ -305,6 +305,14 @@ INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `passwo
 	(1, 'final1', 'final1', 'final1@gmail.com', 'Qwerty9601', 1),
 	(2, 'final2', 'final2', 'final2@gmail.com', 'Qwerty9601', 1),
 	(3, 'final3', 'final3', 'final3@gmail.com', 'Qwerty9601', 1);
+
+-- Dumping data for table BAN_00341.mod_vars_json: ~1 rows (approximately)
+INSERT INTO `mod_vars_json` (`id`, `nombre`, `valor`) VALUES
+	(1, 'custom_system', '{\r\n  "light": {\r\n    "layout": {\r\n      "breadcrumbs": {\r\n        "link-disabled": "#B6F2C0",\r\n        "link-active": "#FFFFFF",\r\n        "link-hover": "#EDE4E4",\r\n        "separator": "#E8E3E3"\r\n      },\r\n      "index": {\r\n        "header_color_background": "#0b4a75",\r\n        "back_color_background": "#EDEDED",\r\n        "back_color_title": "#000000",\r\n        "back_color_p": "#878382",\r\n        "background_color_card": "#FFFFFF",\r\n        "background_color_card_menu": "#FAF5F5",\r\n        "backg_color_textcard": "#000000",\r\n        "footer_text_background": "#FFFFFF",\r\n        "footer_color_background": "#878383"\r\n      },\r\n      "admin": {\r\n        "header_color_background": "#069E21",\r\n        "header_text_nickname": "#FFFFFF",\r\n        "back_color_title": "#000000",\r\n        "back_color_background": "#EDEDED",\r\n        "side_color_background": "#0b4a75",\r\n        "side_color_icon_text": "rgba(255, 255, 255, 0.4)",\r\n        "side_color_hover_icon_text": "#0b4a75",\r\n        "side_color_hover_amount": 20,\r\n        "side_line_color_separator": "#FFFFFF",\r\n        "menu_color_hover": "#E3DEDE",\r\n        "footer_color_background": "#575555",\r\n        "footer_color_text": "#FFFFFF"\r\n      }\r\n    },\r\n    "kpicard": {\r\n      "border_line_color": "#0A18F5",\r\n      "background_color": "#FFFFFF",\r\n      "text_color": "#948F8F",\r\n      "text_number_color": "#000000"\r\n    },\r\n    "card_menu": {\r\n      "text": "#000000",\r\n      "hover": "#CFCACA",\r\n      "background": "#FFFFFF"\r\n    },\r\n    "grid_table_crud": {\r\n      "text_color": "#948F8F",\r\n      "background_color": "#FFFFFF",\r\n      "head_text": "#FFFFFF",\r\n      "head_background": "#0A18F5",\r\n      "row_text_select": "#FFFFFF",\r\n      "row_select": "#AB0505",\r\n      "button_cargar_excel": "#10B981", \r\n      "button_crear": "#059669",\r\n      "button_ver": "#0A18F5",\r\n      "button_editar": "#3B82F6",\r\n      "button_estado_usuario": "#F59E0B",\r\n      "button_eliminar_individual": "#EF4444",\r\n      "button_eliminar_multiple": "#B91C1C",\r\n      "button_asignar_permisos": "#E8E417",\r\n      "button_asignar_productos": "#6D28D9",\r\n      "button_limpiar": "#6B7280"\r\n    },\r\n    "modal": {\r\n      "fieldset_line_color": "#0b4a75",\r\n      "legend_text_color": "#0b4a75",\r\n      "label_text_color": "#000000",\r\n      "head_text_color": "#FFFFFF",\r\n      "head_background_color": "#0b4a75",\r\n      "back_color_background": "#EDEDED",\r\n      "body_text_color": "#948F8F",\r\n      "body_background_color": "#FFFFFF",\r\n      "button_cancel_background_color": "#8A8484",\r\n      "button_cancel_text_color": "#FFFFFF",\r\n      "button_save_background_color": "#059669",\r\n      "button_save_text_color": "#FFFFFF",\r\n      "button_update_background_color": "#3B82F6",\r\n      "button_update_text_color": "#FFFFFF",\r\n      "footer_text_color": "#948F8F",\r\n      "footer_background_color": "#EDEDED"\r\n    },\r\n    "search": {\r\n      "button_background_color": "#0A18F5",\r\n      "icon_background_color": "#FFFFFF",\r\n      "head_text_color": "#FFFFFF",\r\n      "head_background_color": "#0A18F5"\r\n    },\r\n    "report": {\r\n      "button_background_color": "#0A18F5",\r\n      "icon_background_color": "#FFFFFF",\r\n      "head_text_color": "#FFFFFF",\r\n      "head_background_color": "#0A18F5"\r\n    }\r\n  },\r\n  \r\n  "dark": {\r\n    "layout": {\r\n      "breadcrumbs": {\r\n        "link-disabled": "#B6F2C0",\r\n        "link-active": "#FFFFFF",\r\n        "link-hover": "#EDE4E4",\r\n        "separator": "#E8E3E3"\r\n      },\r\n      "index": {\r\n        "header_color_background": "#000000",\r\n        "back_color_background": "#1F1E1E",\r\n        "backg_color_textcard": "#000000",\r\n        "back_color_title": "#FFFFFF",\r\n        "back_color_p": "#FFFFFF",\r\n        "background_color_card": "#595454",\r\n        "background_color_card_menu": "#EDEDED",\r\n        "footer_text_background": "#FFFFFF",\r\n        "footer_color_background": "#878383"\r\n      },\r\n      "admin": {\r\n        "header_color_background": "#069E21",\r\n        "header_text_nickname": "#FFFFFF",\r\n        "back_color_title": "#FFFFFF",\r\n        "back_color_background": "#1F1E1E",\r\n        "side_color_background": "#000000",\r\n        "side_color_icon_text": "rgba(255, 255, 255, 0.4)",\r\n        "side_color_hover_icon_text": "#0b4a75",\r\n        "side_color_hover_amount": 20,\r\n        "side_line_color_separator": "#FFFFFF",\r\n        "menu_color_hover": "#E3DEDE",\r\n        "footer_color_background": "#575555",\r\n        "footer_color_text": "#FFFFFF"\r\n      }\r\n    },\r\n    "kpicard": {\r\n      "border_line_color": "#157D00",\r\n      "background_color": "#DBD5D5",\r\n      "text_color": "#000000",\r\n      "text_number_color": "#000000"\r\n    },\r\n    "card_menu": {\r\n      "text": "#FFFFFF",\r\n      "hover": "#CFCACA",\r\n      "background": "#474747"\r\n    },\r\n    "grid_table_crud": {\r\n      "text_color": "#000000",\r\n      "background_color": "#DBD5D5",\r\n      "head_text": "#FFFFFF",\r\n      "head_background": "#111827",\r\n      "row_text_select": "#FFFFFF",\r\n      "row_select": "#1e3a8a",\r\n      "button_cargar_excel": "#065F46", \r\n      "button_crear": "#047857",\r\n      "button_ver": "#4338CA",\r\n      "button_editar": "#2563EB",\r\n      "button_estado_usuario": "#D97706",\r\n      "button_eliminar_individual": "#DC2626",\r\n      "button_eliminar_multiple": "#991B1B",\r\n      "button_asignar_permisos": "#CA8A04",\r\n      "button_asignar_productos": "#7C3AED",\r\n      "button_limpiar": "#4B5563"\r\n    },\r\n    "modal": {\r\n      "fieldset_line_color": "#0b4a75",\r\n      "legend_text_color": "#FFFFFF",\r\n      "label_text_color": "#FFFFFF",\r\n      "head_text_color": "#FFFFFF",\r\n      "head_background_color": "#000000",\r\n      "back_color_background": "#1F1E1E",\r\n      "body_text_color": "#948F8F",\r\n      "body_background_color": "#FFFFFF",\r\n      "button_cancel_background_color": "#8A8484",\r\n      "button_cancel_text_color": "#FFFFFF",\r\n      "button_save_background_color": "#047857",\r\n      "button_save_text_color": "#FFFFFF",\r\n      "button_update_background_color": "#2563EB",\r\n      "button_update_text_color": "#FFFFFF",\r\n      "footer_text_color": "#948F8F",\r\n      "footer_background_color": "#1F1E1E"\r\n    },\r\n    "search": {\r\n      "button_background_color": "#111827",\r\n      "icon_background_color": "#FFFFFF",\r\n      "head_text_color": "#FFFFFF",\r\n      "head_background_color": "#111827"\r\n    },\r\n    "report": {\r\n      "button_background_color": "#111827",\r\n      "icon_background_color": "#FFFFFF",\r\n      "head_text_color": "#FFFFFF",\r\n      "head_background_color": "#111827"\r\n    }\r\n  }\r\n}\r\n');
+
+-- Dumping data for table BAN_00341.mod_vars_var: ~1 rows (approximately)
+INSERT INTO `mod_vars_var` (`id`, `nombre`, `valor`) VALUES
+	(1, 'lecto_qr', '192.168.1.6');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

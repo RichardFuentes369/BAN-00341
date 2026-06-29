@@ -1,197 +1,189 @@
-<div class="">
-  <div id="wrapper">
-    <ul class="navbar-nav bg-background-side-custom sidebar sidebar-dark accordion"
-      [ngClass]="minimizarSliderbar == false ? 'toggled': ''" id="accordionSidebar">
+<div id="wrapper">
+  <ul class="navbar-nav bg-background-side-custom sidebar sidebar-dark accordion"
+    [ngClass]="minimizarSliderbar == false ? 'toggled': ''" id="accordionSidebar">
 
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" [routerLink]="LAYOUT_PAGE_DASHBOARD">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="bg_side_icon fas fa-fw fa-tachometer-alt"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">{{NAME_PAGE}}</div>
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" [routerLink]="LAYOUT_PAGE_DASHBOARD">
+      <div class="sidebar-brand-icon rotate-n-15">
+        <i class="bg_side_icon fas fa-fw fa-tachometer-alt"></i>
+      </div>
+      <div class="sidebar-brand-text mx-3">{{NAME_PAGE}}</div>
+    </a>
+
+    <hr class="sidebar-divider bg-line-separator-customer mb-0">
+
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="LAYOUT_ADMIN_PAGE_MENU">
+        <i class="bg_side_icon fa fa-bars" aria-hidden="true"></i>
+        <span class="bg_side_text">{{ 'mod-main.PAGES_MENU' | translate }}</span>
       </a>
+    </li>
 
-      <hr class="sidebar-divider bg-line-separator-customer mb-0">
+    <hr class="sidebar-divider bg-line-separator-customer">
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" [routerLink]="LAYOUT_ADMIN_PAGE_MENU" data-toggle="collapse"
-          data-target="#collapseMenu" aria-expanded="true" aria-controls="collapseMenu">
-          <i class="bg_side_icon fa fa-bars" aria-hidden="true"></i>
-          <span class="bg_side_text">{{ 'mod-main.PAGES_MENU' | translate }}</span>
-        </a>
-        <div id="collapseWarehouse" class="collapse" aria-labelledby="headingWarehouse" data-parent="#accordionSidebar">
+    <div class="sidebar-heading">
+      {{ 'layout-admin.WORD_MODULES' | translate}}
+    </div>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true"
+        aria-controls="collapseUsers">
+        <i class="bg_side_icon fa fa-users" aria-hidden="true"></i>
+        <span class="bg_side_text">{{ 'mod-main.PAGES_USERS' | translate }}</span>
+      </a>
+      <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+          <a class="collapse-item" [routerLink]="MOD_USER_PAGE_ADMIN">{{ 'mod-users.BUTTON_ADMIN' | translate }}</a>
+          <a class="collapse-item" [routerLink]="MOD_USER_PAGE_FINAL">{{ 'mod-users.BUTTON_FINAL' | translate }}</a>
         </div>
-      </li>
-
-      <hr class="sidebar-divider bg-line-separator-customer">
-
-      <div class="sidebar-heading">
-        {{ 'layout-admin.WORD_MODULES' | translate}}
       </div>
+    </li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true"
-          aria-controls="collapseUsers">
-          <i class="bg_side_icon fa fa-users" aria-hidden="true"></i>
-          <span class="bg_side_text">{{ 'mod-main.PAGES_USERS' | translate }}</span>
-        </a>
-        <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-            <a class="collapse-item" [routerLink]="MOD_USER_PAGE_ADMIN">{{ 'mod-users.BUTTON_ADMIN' | translate }}</a>
-            <a class="collapse-item" [routerLink]="MOD_USER_PAGE_FINAL">{{ 'mod-users.BUTTON_FINAL' | translate }}</a>
-          </div>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCatalog"
+        aria-expanded="true" aria-controls="collapseCatalog">
+        <i class="bg_side_icon fa fa-book" aria-hidden="true"></i>
+        <span class="bg_side_text">{{ 'mod-main.PAGES_CATALOG' | translate }}</span>
+      </a>
+      <div id="collapseCatalog" class="collapse" aria-labelledby="headingCatalog" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+          <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_SUPPLIER">{{ 'mod-catalog.BUTTON_SUPPLIER' |
+            translate}}</a>
+          <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_EXTENT">{{ 'mod-catalog.BUTTON_EXTENT' |
+            translate}}</a>
+          <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_BRAND">{{ 'mod-catalog.BUTTON_BRAND' |
+            translate}}</a>
+          <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_PRODUCT">{{ 'mod-catalog.BUTTON_PRODUCT' |
+            translate}}</a>
         </div>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCatalog"
-          aria-expanded="true" aria-controls="collapseCatalog">
-          <i class="bg_side_icon fa fa-book" aria-hidden="true"></i>
-          <span class="bg_side_text">{{ 'mod-main.PAGES_CATALOG' | translate }}</span>
-        </a>
-        <div id="collapseCatalog" class="collapse" aria-labelledby="headingCatalog" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-            <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_SUPPLIER">{{ 'mod-catalog.BUTTON_SUPPLIER' |
-              translate}}</a>
-            <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_EXTENT">{{ 'mod-catalog.BUTTON_EXTENT' |
-              translate}}</a>
-            <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_BRAND">{{ 'mod-catalog.BUTTON_BRAND' |
-              translate}}</a>
-            <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_PRODUCT">{{ 'mod-catalog.BUTTON_PRODUCT' |
-              translate}}</a>
-          </div>
-        </div>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" [routerLink]="LAYOUT_ADMIN_PAGE_WAREHOUSE" data-toggle="collapse"
-          data-target="#collapseWarehouse" aria-expanded="true" aria-controls="collapseWarehouse">
-          <i class="bg_side_icon fa fa-cubes" aria-hidden="true"></i>
-          <span class="bg_side_text">{{ 'mod-main.PAGE_WAREHOUSE' | translate }}</span>
-        </a>
-        <div id="collapseWarehouse" class="collapse" aria-labelledby="headingWarehouse" data-parent="#accordionSidebar">
-        </div>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLoss" aria-expanded="true"
-          aria-controls="collapseLoss">
-          <span class="fa-stack mx-auto">
-            <i class="bg_side_icon fas fa-box fa-stack-2x my-2"></i>
-            <i class="fas fa-bolt fa-stack-2x my-2 icon-customer"></i>
-          </span>
-          <span class="mx-3 bg_side_text">{{ 'mod-main.PAGES_LOSS' | translate }}</span>
-        </a>
-        <div id="collapseLoss" class="collapse" aria-labelledby="headingLoss" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-            <a class="collapse-item" [routerLink]="MOD_MERMA_PAGE_TIPOS">{{ 'mod-merma.BUTTON_TYPE' | translate}}</a>
-            <a class="collapse-item" [routerLink]="MOD_MERMA_PAGE_REGISTRO">{{ 'mod-merma.BUTTON_RECORD' | translate}}</a>
-            <a class="collapse-item" [routerLink]="MOD_MERMA_PAGE_HISTORICO">{{ 'mod-merma.BUTTON_HISTORY' | translate}}</a>
-          </div>
-        </div>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAlert" aria-expanded="true"
-          aria-controls="collapseAlert">
-          <i class="bg_side_icon fa fa-bell" aria-hidden="true"></i>
-          <span class="bg_side_text">{{ 'mod-main.PAGES_ALERTS' | translate }}</span>
-        </a>
-        <div id="collapseAlert" class="collapse" aria-labelledby="headingAlert" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-            <a class="collapse-item" [routerLink]="MOD_ALERT_PAGE_EXPIRATION">{{ 'mod-alerts.BUTTON_EXPIRATION' |
-              translate }}</a>
-            <a class="collapse-item" [routerLink]="MOD_ALERT_PAGE_STOCK">{{ 'mod-alerts.BUTTON_STOCK' | translate }}</a>
-          </div>
-        </div>
-      </li>
-
-      <hr class="sidebar-divider bg-line-separator-customer d-none d-md-block">
-
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle" (click)="mostrarMenuLateral()"></button>
       </div>
+    </li>
 
-    </ul>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="LAYOUT_ADMIN_PAGE_WAREHOUSE">
+        <i class="bg_side_icon fa fa-cubes" aria-hidden="true"></i>
+        <span class="bg_side_text">{{ 'mod-main.PAGE_WAREHOUSE' | translate }}</span>
+      </a>
+    </li>
 
-    <div id="content-wrapper" class="d-flex flex-column">
-      <div id="content-scroll-area">
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLoss" aria-expanded="true"
+        aria-controls="collapseLoss">
+        <span class="fa-stack mx-auto">
+          <i class="bg_side_icon fas fa-box fa-stack-2x my-2"></i>
+          <i class="fas fa-bolt fa-stack-2x my-2 icon-customer"></i>
+        </span>
+        <span class="mx-3 bg_side_text">{{ 'mod-main.PAGES_LOSS' | translate }}</span>
+      </a>
+      <div id="collapseLoss" class="collapse" aria-labelledby="headingLoss" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+          <a class="collapse-item" [routerLink]="MOD_MERMA_PAGE_TIPOS">{{ 'mod-merma.BUTTON_TYPE' | translate}}</a>
+          <a class="collapse-item" [routerLink]="MOD_MERMA_PAGE_REGISTRO">{{ 'mod-merma.BUTTON_RECORD' | translate}}</a>
+          <a class="collapse-item" [routerLink]="MOD_MERMA_PAGE_HISTORICO">{{ 'mod-merma.BUTTON_HISTORY' | translate}}</a>
+        </div>
+      </div>
+    </li>
 
-        <nav class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar static-top sticky-top pl-2 pr-2 shadow">
-          <ul class="navbar-nav mr-auto nav-vertical-wrapper">
-            <app-globales-breadcrumbs></app-globales-breadcrumbs>
-          </ul>
-          <ul class="navbar-nav ml-auto">
-            <div class="topbar-divider d-none d-sm-block"></div>
-            <li class="nav-item dropdown no-arrow my-auto text-center mr-1">
-              <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
-            </li>
-            <div class="topbar-divider d-none d-sm-block"></div>
-            <li class="nav-item dropdown no-arrow my-auto text-center">
-              <app-globales-colormode></app-globales-colormode>
-            </li>
-            <div class="topbar-divider d-none d-sm-block"></div>
-            <li class="nav-item dropdown no-arrow my-auto text-center ">
-              <a class="nav-link dropdown-toggle h-100" id="userDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline small text_nickname">
-                  {{firstName}} <br>
-                  {{lastName}}
-                </span>
-                <img class="img-profile rounded-circle" src="../../../assets/images/undraw_profile.svg">
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAlert" aria-expanded="true"
+        aria-controls="collapseAlert">
+        <i class="bg_side_icon fa fa-bell" aria-hidden="true"></i>
+        <span class="bg_side_text">{{ 'mod-main.PAGES_ALERTS' | translate }}</span>
+      </a>
+      <div id="collapseAlert" class="collapse" aria-labelledby="headingAlert" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+          <a class="collapse-item" [routerLink]="MOD_ALERT_PAGE_EXPIRATION">{{ 'mod-alerts.BUTTON_EXPIRATION' |
+            translate }}</a>
+          <a class="collapse-item" [routerLink]="MOD_ALERT_PAGE_STOCK">{{ 'mod-alerts.BUTTON_STOCK' | translate }}</a>
+        </div>
+      </div>
+    </li>
+
+    <hr class="sidebar-divider bg-line-separator-customer d-none d-md-block">
+
+    <div class="text-center d-none d-md-inline">
+      <button class="rounded-circle border-0" id="sidebarToggle" (click)="mostrarMenuLateral()"></button>
+    </div>
+
+  </ul>
+
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-scroll-area">
+
+      <nav class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar static-top sticky-top pl-2 pr-2 shadow">
+        <ul class="navbar-nav mr-auto nav-vertical-wrapper">
+          <app-globales-breadcrumbs></app-globales-breadcrumbs>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <div class="topbar-divider d-none d-sm-block"></div>
+          <li class="nav-item dropdown no-arrow my-auto text-center mr-1">
+            <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
+          </li>
+          <div class="topbar-divider d-none d-sm-block"></div>
+          <li class="nav-item dropdown no-arrow my-auto text-center">
+            <app-globales-colormode></app-globales-colormode>
+          </li>
+          <div class="topbar-divider d-none d-sm-block"></div>
+          <li class="nav-item dropdown no-arrow my-auto text-center ">
+            <a class="nav-link dropdown-toggle h-100" id="userDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <span class="mr-2 d-none d-lg-inline small text_nickname">
+                {{firstName}} <br>
+                {{lastName}}
+              </span>
+              <img class="img-profile rounded-circle" src="../../../assets/images/undraw_profile.svg">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+              <a class="dropdown-item" routerLinkActive="active" [routerLink]="LAYOUT_PAGE_PROFILE">
+                <i class="bg_side_icon fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                {{ 'layout-admin.DRADROPDOW_MENU_PROFILE' | translate}}
               </a>
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" routerLinkActive="active" [routerLink]="LAYOUT_PAGE_PROFILE">
-                  <i class="bg_side_icon fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  {{ 'layout-admin.DRADROPDOW_MENU_PROFILE' | translate}}
-                </a>
-                <a class="dropdown-item" routerLinkActive="active" [routerLink]="LAYOUT_PAGE_SETTINGS">
-                  <i class="bg_side_icon fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  {{ 'layout-admin.DRADROPDOW_MENU_SETTING' | translate}}
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" (click)="cerrarSession()" style="cursor: pointer;">
-                  <i class="bg_side_icon fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  {{ 'layout-admin.DRADROPDOW_MENU_LOGOUT' | translate}}
-                </a>
-              </div>
-            </li>
-          </ul>
-        </nav>
-
-        <div id="content" class="container-fluid">
-          <div class="p-1 mt-4">
-            <router-outlet></router-outlet>
-          </div>
-
-          <!-- <div class="watermark-cart">
-            <div class="cart-handle"></div>
-            <div class="cart-basket">
-              <div class="item appliance"></div>
-              <div class="item circle"></div>
-              <div class="item banana"></div>
-              <div class="item tomato"></div>
+              <a class="dropdown-item" routerLinkActive="active" [routerLink]="LAYOUT_PAGE_SETTINGS">
+                <i class="bg_side_icon fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                {{ 'layout-admin.DRADROPDOW_MENU_SETTING' | translate}}
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" (click)="cerrarSession()" style="cursor: pointer;">
+                <i class="bg_side_icon fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                {{ 'layout-admin.DRADROPDOW_MENU_LOGOUT' | translate}}
+              </a>
             </div>
-            <div class="cart-wheel-frame"></div>
-            <div class="cart-wheels">
-              <div class="wheel"></div>
-              <div class="wheel"></div>
-            </div>
-            <div class="road"></div>
-          </div> -->
+          </li>
+        </ul>
+      </nav>
+
+      <div id="content" class="container-fluid">
+        <div class="p-1 mt-4">
+          <router-outlet></router-outlet>
         </div>
 
-        <footer class="sticky-footer bg-gradient-footer-custom shadow-lg mt-auto">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span class="text-custom-footer">Copyright &copy; {{CURRENT_YEAR}}</span>
-            </div>
+        <div class="watermark-cart">
+          <div class="cart-handle"></div>
+          <div class="cart-basket">
+            <div class="item appliance"></div>
+            <div class="item circle"></div>
+            <div class="item banana"></div>
+            <div class="item tomato"></div>
           </div>
-        </footer>
+          <div class="cart-wheel-frame"></div>
+          <div class="cart-wheels">
+            <div class="wheel"></div>
+            <div class="wheel"></div>
+          </div>
+          <div class="road"></div>
+        </div>
       </div>
+
+      <footer class="sticky-footer bg-gradient-footer-custom shadow-lg mt-auto">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span class="text-custom-footer">Copyright &copy; {{CURRENT_YEAR}}</span>
+          </div>
+        </div>
+      </footer>
     </div>
   </div>
 </div>

@@ -1,0 +1,67 @@
+.landing-container {
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+.card-custom {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: none;
+  background-color: var(--layout-index-background_color_card) !important;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.title-custom {
+  color: var(--layout-index-back_color_title) !important;
+  background-color: transparent;
+}
+
+.title-card {
+  color: var(--layout-index-backg_color_textcard) !important;
+}
+
+.p-custom {
+  color: var(--layout-index-back_color_p) !important;
+  background-color: transparent;
+}
+
+
+.seccion {
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 { font-size: 2.5rem; margin-bottom: 40px; }
+}
+
+.modulos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 25px;
+  width: 90%;
+  max-width: 1000px;
+}
+
+.modulo-card {
+  background: var(--layout-index-background_color_card_menu)!important;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  transition: transform 0.3s ease;
+
+  h3 { margin: 0; font-size: 1.1rem; }
+}
+
+.colored-icon {
+  filter: var(--filter);
+  transition: filter 0.3s ease; /* Transición suave al cambiar de tema */
+}
+

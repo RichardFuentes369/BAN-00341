@@ -26,7 +26,9 @@ import {
   BrandModule,
   ExtentModule,
   SotckModule,
-  ExpirationModule
+  ExpirationModule,
+  VarModule,
+  JsonModule
 } from './mod/index'
 import { AppGateway } from './app.gateway';
 
@@ -63,6 +65,8 @@ import { AppGateway } from './app.gateway';
     ExtentModule,
     SotckModule,
     ExpirationModule,
+    VarModule,
+    JsonModule,
   ],
   controllers: [AppController],
   providers: [

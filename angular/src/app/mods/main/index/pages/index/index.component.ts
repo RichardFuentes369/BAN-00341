@@ -1,15 +1,13 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-mod-main-index',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './index.component.html',
-  styleUrl: './index.component.scss',
+  styleUrls: ['./index.component.scss'] // Asegúrate que sea styleUrls (plural)
 })
 export class MainIndexComponent {
-
-  nombre = 'Javier rIcardo bAron fueNTes'
-  
+  // Puedes añadir lógica aquí para filtrar datos de la tabla si lo deseas
 }

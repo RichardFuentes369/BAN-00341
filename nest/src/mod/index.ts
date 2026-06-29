@@ -18,3 +18,6 @@ export { MermasModule } from './merma/mermas/mermas.module';
 
 export { SotckModule } from './alerta/admin/sotck/sotck.module';
 export { ExpirationModule } from './alerta/admin/expiration/expiration.module'
+
+export { JsonModule } from './vars/admin/json/json.module';
+export { VarModule } from './vars/admin/var/var.module';

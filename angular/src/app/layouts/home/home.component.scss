@@ -4,14 +4,18 @@
   }
 
   .bg-gradient-header-custom {
-    background-color: var(--layout-index-header-background) !important;
+    background-color: var(--layout-index-header_color_background) !important;
+  }
+
+  #content-wrapper {
+    background-color: var(--layout-index-back_color_background) !important;
   }
 
   .bg-gradient-footer-custom {
-    background-color: var(--layout-index-footer-background) !important;
+    background-color: var(--layout-index-footer_color_background) !important;
   }
 
   .text-custom-footer {
-    color: var(--layout-index-footer-text) !important;
+    color: var(--layout-index-footer_text_background) !important;
   }
 }

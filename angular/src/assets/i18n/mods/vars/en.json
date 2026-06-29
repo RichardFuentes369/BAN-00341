@@ -5,5 +5,13 @@
   "PAGE_TITLE_VAR": "VAR",
   "PAGE_TITLE_JSON": "JSON",
   "BUTTON_VAR": "Var",
-  "BUTTON_JSON": "JSON"
+  "BUTTON_JSON": "JSON",
+  
+  "VARS": {
+    "CARD_TOTAL_VAR_TITLE": "Total variables"
+  },
+
+  "JSON": {
+    "CARD_TOTAL_JSON_TITLE": "Total variables JSON"
+  }
 }

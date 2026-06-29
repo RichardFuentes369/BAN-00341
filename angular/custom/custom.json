@@ -8,17 +8,15 @@
         "separator": "#E8E3E3"
       },
       "index": {
-        "back": {
-          "background": "#EDEDED"
-        },
-        "header": {
-          "background": "#0A18F5",
-          "text-nickname": "#E8E3E3"
-        },
-        "footer": {
-          "background": "#878383",
-          "text": "#FFFFFF"
-        }
+        "header_color_background": "#0b4a75",
+        "back_color_background": "#EDEDED",
+        "back_color_title": "#000000",
+        "back_color_p": "#878382",
+        "background_color_card": "#FFFFFF",
+        "background_color_card_menu": "#FAF5F5",
+        "backg_color_textcard": "#000000",
+        "footer_text_background": "#FFFFFF",
+        "footer_color_background": "#878383"
       },
       "admin": {
         "header_color_background": "#069E21",
@@ -105,17 +103,15 @@
         "separator": "#E8E3E3"
       },
       "index": {
-        "back": {
-          "background": "#EDEDED"
-        },
-        "header": {
-          "background": "#0A18F5",
-          "text-nickname": "#E8E3E3"
-        },
-        "footer": {
-          "background": "#878383",
-          "text": "#FFFFFF"
-        }
+        "header_color_background": "#000000",
+        "back_color_background": "#1F1E1E",
+        "backg_color_textcard": "#000000",
+        "back_color_title": "#FFFFFF",
+        "back_color_p": "#FFFFFF",
+        "background_color_card": "#595454",
+        "background_color_card_menu": "#EDEDED",
+        "footer_text_background": "#FFFFFF",
+        "footer_color_background": "#878383"
       },
       "admin": {
         "header_color_background": "#069E21",
