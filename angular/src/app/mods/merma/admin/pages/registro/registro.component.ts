@@ -129,6 +129,8 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
   mostrarCards = true;
   isAnimationDone = false;
 
+  anho = ''
+
   toggleCards() {
     this.mostrarCards = !this.mostrarCards;
     if (!this.mostrarCards) {
@@ -160,6 +162,8 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
     // sessionStorage.removeItem('nit')
     // sessionStorage.removeItem('razon_social')
     // sessionStorage.removeItem('correo')
+
+    this.anho = (this.route.snapshot.queryParams?.['anho']) ? this.route.snapshot.queryParams?.['anho'] : new Date().getFullYear()
 
     await this.actualizarContadores()
 
