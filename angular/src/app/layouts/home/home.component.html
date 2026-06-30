@@ -1,7 +1,7 @@
 <div id="wrapper">
   <div id="content-wrapper" class="d-flex flex-column u-final">
 
-    <div class="sticky-top header-transition bg-gradient-header-custom" [class.header-compact]="isScrolled">
+    <div class="fixed-top header-transition bg-gradient-header-custom" [class.header-compact]="isScrolled">
       <nav class="container navbar navbar-expand navbar-light bg-gradient-header-custom my-md-n2 topbar static-top pl-2 pr-2">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
@@ -26,7 +26,7 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-dark static-top shadow menu p-0">
         <marquee direction="left" class="container">
           <div class="container text-white">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique veritatis...
+            Mensaje de información o bienvenida indicando un marquee ....
           </div>
         </marquee>
       </nav>
@@ -54,7 +54,7 @@
       </nav>
     </div>
 
-    <div id="content" class="container mt-4 mb-2 flex-grow-1 mb-3">
+    <div id="content" class="container mt-4 mb-2 flex-grow-1 mb-3" style="    margin-top: 9rem !important;">
       <router-outlet></router-outlet>
     </div>
 
