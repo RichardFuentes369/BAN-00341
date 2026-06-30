@@ -51,6 +51,37 @@ export class JsonController {
     );
   }
 
+  @UseGuards(AdminGuard)
+  @Patch('editar-var-json')
+  update(
+    @Query('lang') lang: string,
+    @Query('_id') _id: string,
+    @Body() updateJsonDto: UpdateJsonDto,
+    @GetUser('id') userId: number
+  ) {
+    return this.jsonService.update(
+      lang,
+      +_id,
+      updateJsonDto,
+      userId
+    );
+  }
+
+  @UseGuards(AdminGuard)
+  @Delete('eliminar-var-json')
+  remove(
+    @Query('lang') lang:string,
+    @Query('_id') _id: string,
+    @GetUser('id') userId: number
+  ) {
+    const idsNumeros: number[] = _id.split(',').map(str => parseInt(str.trim(), 10));
+    return this.jsonService.remove(
+      lang,
+      idsNumeros,
+      userId
+    );
+  }
+
   // contadores
   @Get('obtener-contadores-json')
   async contadores(

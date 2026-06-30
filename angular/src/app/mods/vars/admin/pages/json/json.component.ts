@@ -12,6 +12,7 @@ import { JsonService } from './service/json.service';
 import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import { CREAR_VAR_COMPONENT, EDITAR_VAR_COMPONENT, VER_VAR_COMPONENT } from '@mod/vars/const/vars.const';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-json',
@@ -170,14 +171,14 @@ export class JsonComponent implements OnInit, OnDestroy {
   crearData (_id: string){
     this.tamano = "xl"
     this.scrollable = true
-    this.title = this.translate.instant('mod-catalog.PRODUCT.CREATE_TITLE')
-    this.subtitle = this.translate.instant('mod-catalog.PRODUCT.CREATE_SUBTITLE')
+    this.title = this.translate.instant('mod-vars.CREATE_TITLE')
+    this.subtitle = this.translate.instant('mod-vars.CREATE_SUBTITLE')
     this.save = true
-    this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
+    this.buttonSave = this.translate.instant('mod-vars.BUTTON_SAVE_')
     this.edit = false
-    this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
+    this.buttonEdit = this.translate.instant('mod-vars.BUTTON_UPDATE_')
     this.cancel = true
-    this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
+    this.buttonCancel = this.translate.instant('mod-vars.BUTTON_CANCEL')
     this.cierreModal = "true"
     this.componentePrecargado = CREAR_VAR_COMPONENT
 
@@ -189,18 +190,18 @@ export class JsonComponent implements OnInit, OnDestroy {
   }
 
   async verData(_id: string) {
-    this.title = this.translate.instant('mod-catalog.PRODUCT.SEE_TITLE')
+    this.title = this.translate.instant('mod-vars.SEE_TITLE')
     const response = await this.jsonService.getDataVar(_id)
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    this.translate.get('mod-catalog.PRODUCT.SEE_SUBTITLE', { "product_name": nombre }).subscribe((res: string) => { this.subtitle = res });
+    this.translate.get('mod-vars.SEE_SUBTITLE', { "var_name": nombre }).subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
     this.scrollable = true
     this.save = false
-    this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
+    this.buttonSave = this.translate.instant('mod-vars.BUTTON_SAVE_')
     this.edit = false
-    this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
+    this.buttonEdit = this.translate.instant('mod-vars.BUTTON_UPDATE_')
     this.cancel = true
-    this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
+    this.buttonCancel = this.translate.instant('mod-vars.BUTTON_CANCEL')
     this.cierreModal = "true"
     this.componentePrecargado = VER_VAR_COMPONENT
 
@@ -215,18 +216,18 @@ export class JsonComponent implements OnInit, OnDestroy {
   }
 
   async editarData(_id: string) {
-    this.title = this.translate.instant('mod-catalog.PRODUCT.EDIT_TITLE')
-    // const response = await this.productosService.getDataProduct(_id)
-    // const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    // this.translate.get('mod-catalog.PRODUCT.EDIT_SUBTITLE', { "product_name": nombre }).subscribe((res: string) => { this.subtitle = res });
+    this.title = this.translate.instant('mod-vars.EDIT_TITLE')
+    const response = await this.jsonService.getDataVar(_id)
+    const { nombre } = response.data || { nombre: 'xxxxxxx' }
+    this.translate.get('mod-vars.EDIT_SUBTITLE', { "var_name": nombre }).subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
     this.scrollable = true
     this.save = false
-    this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
+    this.buttonSave = this.translate.instant('mod-vars.BUTTON_SAVE_')
     this.edit = true
-    this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
+    this.buttonEdit = this.translate.instant('mod-vars.BUTTON_UPDATE_')
     this.cancel = true
-    this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
+    this.buttonCancel = this.translate.instant('mod-vars.BUTTON_CANCEL')
     this.componentePrecargado = EDITAR_VAR_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
@@ -242,34 +243,34 @@ export class JsonComponent implements OnInit, OnDestroy {
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
   async eliminarData(_id: string[]) {
-    // const response = await this.productosService.getDataProduct(_id[0])
-    // const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    // const name_user = (_id.length === 1) ? nombre : "(" + _id.length + ")"
-    // const count_users = (_id.length === 1) ? 'el' : 'los'
-    // const plural = (_id.length === 1) ? '' : 's'
+    const response = await this.jsonService.getDataVar(_id[0])
+    const { nombre } = response.data || { nombre: 'xxxxxxx' }
+    const name_user = (_id.length === 1) ? nombre : "(" + _id.length + ")"
+    const count_users = (_id.length === 1) ? 'la' : 'las'
+    const plural = (_id.length === 1) ? '' : 's'
 
-    // this.translate.get('mod-catalog.PRODUCT.SWAL_ARE_YOU_SURE_DELETE', { "art_the": count_users, "plural": plural, "product_name": name_user }).subscribe((translatedTitle: string) => {
-    //   Swal.fire({
-    //     title: translatedTitle,
-    //     text: this.translate.instant('mod-catalog.SWAL_WARNING_REVERSE_CHANGE'),
-    //     icon: 'warning',
-    //     showCancelButton: true,
-    //     confirmButtonText: this.translate.instant('mod-catalog.SWAL_BUTTON_DELETE'),
-    //     cancelButtonText: this.translate.instant('mod-catalog.SWAL_BUTTON_CANCEL')
-    //   }).then(async (result) => {
-    //     if (result.isConfirmed) {
-    //       if (result.isConfirmed) {
-    //         await this.productosService.deleteProduct(_id)
-    //         await this.someInput.reload()
-    //         Swal.fire({
-    //           title: this.translate.instant('mod-catalog.PRODUCT.SWAL_DELETED'),
-    //           text: this.translate.instant('mod-catalog.SWAL_DELETED_RECORD'),
-    //           icon: "success"
-    //         });
-    //       }
-    //     }
-    //   });
-    // });
+    this.translate.get('mod-vars.SWAL_ARE_YOU_SURE_DELETE_VAR', { "art_the": count_users, "plural": plural, "var_name": name_user }).subscribe((translatedTitle: string) => {
+      Swal.fire({
+        title: translatedTitle,
+        text: this.translate.instant('mod-vars.SWAL_WARNING_REVERSE_CHANGE'),
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: this.translate.instant('mod-vars.SWAL_BUTTON_DELETE'),
+        cancelButtonText: this.translate.instant('mod-vars.SWAL_BUTTON_CANCEL')
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          if (result.isConfirmed) {
+            await this.jsonService.deleteVar(_id)
+            await this.someInput.reload()
+            Swal.fire({
+              title: this.translate.instant('mod-vars.SWAL_DELETED'),
+              text: this.translate.instant('mod-vars.SWAL_DELETED_RECORD'),
+              icon: "success"
+            });
+          }
+        }
+      });
+    });
   }
 
   async filtroData() {

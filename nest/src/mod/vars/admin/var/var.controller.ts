@@ -40,7 +40,7 @@ export class VarController {
   @UseGuards(AdminGuard)
   @Post('crear-var-var')
   create(
-    @Query('lang') lang:string,
+    @Query('lang') lang: string,
     @Body() createVar: CreateVarDto,
     @GetUser('id') userId: number
   ) {
@@ -51,10 +51,41 @@ export class VarController {
     );
   }
 
+  @UseGuards(AdminGuard)
+  @Patch('editar-var-var')
+  update(
+    @Query('lang') lang: string,
+    @Query('_id') _id: string,
+    @Body() updateVarDto: UpdateVarDto,
+    @GetUser('id') userId: number
+  ) {
+    return this.varService.update(
+      lang,
+      +_id,
+      updateVarDto,
+      userId
+    );
+  }
+
+  @UseGuards(AdminGuard)
+  @Delete('eliminar-var-var')
+  remove(
+    @Query('lang') lang: string,
+    @Query('_id') _id: string,
+    @GetUser('id') userId: number
+  ) {
+    const idsNumeros: number[] = _id.split(',').map(str => parseInt(str.trim(), 10));
+    return this.varService.remove(
+      lang,
+      idsNumeros,
+      userId
+    );
+  }
+
   // contadores
   @Get('obtener-contadores-var')
   async contadores(
-    @Query('lang') lang:string,
+    @Query('lang') lang: string,
   ) {
     return this.varService.contadorVariables(lang);
   }

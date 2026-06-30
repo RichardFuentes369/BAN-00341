@@ -3458,6 +3458,100 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "eliminar-var-var",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nombre\": \"xxx\",\n    \"valor\": \"bla bla bla\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/var/eliminar-var-var?id=1&lang=en",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"var",
+												"eliminar-var-var"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "1"
+												},
+												{
+													"key": "lang",
+													"value": "en"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "editar-var-var",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nombre\": \"yyy\",\n    \"valor\": \"oh ya oh ya oh ya\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/var/editar-var-var?_id=12",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"var",
+												"editar-var-var"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "12"
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -3591,7 +3685,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"nombre\": \"xxx\",\n    \"valor\": {\n        \"light\": {\n            \"layout\": {\n            \"breadcrumbs\": {\n                \"link-disabled\": \"#B6F2C0\",\n                \"link-active\": \"#FFFFFF\",\n                \"link-hover\": \"#EDE4E4\",\n                \"separator\": \"#E8E3E3\"\n            },\n            \"index\": {\n                \"header_color_background\": \"#0b4a75\",\n                \"back_color_background\": \"#EDEDED\",\n                \"back_color_title\": \"#000000\",\n                \"back_color_p\": \"#878382\",\n                \"background_color_card\": \"#FFFFFF\",\n                \"background_color_card_menu\": \"#FAF5F5\",\n                \"backg_color_textcard\": \"#000000\",\n                \"footer_text_background\": \"#FFFFFF\",\n                \"footer_color_background\": \"#878383\"\n            },\n            \"admin\": {\n                \"header_color_background\": \"#069E21\",\n                \"header_text_nickname\": \"#FFFFFF\",\n                \"back_color_title\": \"#000000\",\n                \"back_color_background\": \"#EDEDED\",\n                \"side_color_background\": \"#0b4a75\",\n                \"side_color_icon_text\": \"rgba(255, 255, 255, 0.4)\",\n                \"side_color_hover_icon_text\": \"#0b4a75\",\n                \"side_color_hover_amount\": 20,\n                \"side_line_color_separator\": \"#FFFFFF\",\n                \"menu_color_hover\": \"#E3DEDE\",\n                \"footer_color_background\": \"#575555\",\n                \"footer_color_text\": \"#FFFFFF\"\n            }\n            },\n            \"kpicard\": {\n            \"border_line_color\": \"#0A18F5\",\n            \"background_color\": \"#FFFFFF\",\n            \"text_color\": \"#948F8F\",\n            \"text_number_color\": \"#000000\"\n            },\n            \"card_menu\": {\n            \"text\": \"#000000\",\n            \"hover\": \"#CFCACA\",\n            \"background\": \"#FFFFFF\"\n            },\n            \"grid_table_crud\": {\n            \"text_color\": \"#948F8F\",\n            \"background_color\": \"#FFFFFF\",\n            \"head_text\": \"#FFFFFF\",\n            \"head_background\": \"#0A18F5\",\n            \"row_text_select\": \"#FFFFFF\",\n            \"row_select\": \"#AB0505\",\n            \"button_cargar_excel\": \"#10B981\", \n            \"button_crear\": \"#059669\",\n            \"button_ver\": \"#0A18F5\",\n            \"button_editar\": \"#3B82F6\",\n            \"button_estado_usuario\": \"#F59E0B\",\n            \"button_eliminar_individual\": \"#EF4444\",\n            \"button_eliminar_multiple\": \"#B91C1C\",\n            \"button_asignar_permisos\": \"#E8E417\",\n            \"button_asignar_productos\": \"#6D28D9\",\n            \"button_limpiar\": \"#6B7280\"\n            },\n            \"modal\": {\n            \"fieldset_line_color\": \"#0b4a75\",\n            \"legend_text_color\": \"#0b4a75\",\n            \"label_text_color\": \"#000000\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#0b4a75\",\n            \"back_color_background\": \"#EDEDED\",\n            \"body_text_color\": \"#948F8F\",\n            \"body_background_color\": \"#FFFFFF\",\n            \"button_cancel_background_color\": \"#8A8484\",\n            \"button_cancel_text_color\": \"#FFFFFF\",\n            \"button_save_background_color\": \"#059669\",\n            \"button_save_text_color\": \"#FFFFFF\",\n            \"button_update_background_color\": \"#3B82F6\",\n            \"button_update_text_color\": \"#FFFFFF\",\n            \"footer_text_color\": \"#948F8F\",\n            \"footer_background_color\": \"#EDEDED\"\n            },\n            \"search\": {\n            \"button_background_color\": \"#0A18F5\",\n            \"icon_background_color\": \"#FFFFFF\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#0A18F5\"\n            },\n            \"report\": {\n            \"button_background_color\": \"#0A18F5\",\n            \"icon_background_color\": \"#FFFFFF\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#0A18F5\"\n            }\n        },\n        \n        \"dark\": {\n            \"layout\": {\n            \"breadcrumbs\": {\n                \"link-disabled\": \"#B6F2C0\",\n                \"link-active\": \"#FFFFFF\",\n                \"link-hover\": \"#EDE4E4\",\n                \"separator\": \"#E8E3E3\"\n            },\n            \"index\": {\n                \"header_color_background\": \"#000000\",\n                \"back_color_background\": \"#1F1E1E\",\n                \"backg_color_textcard\": \"#000000\",\n                \"back_color_title\": \"#FFFFFF\",\n                \"back_color_p\": \"#FFFFFF\",\n                \"background_color_card\": \"#595454\",\n                \"background_color_card_menu\": \"#EDEDED\",\n                \"footer_text_background\": \"#FFFFFF\",\n                \"footer_color_background\": \"#878383\"\n            },\n            \"admin\": {\n                \"header_color_background\": \"#069E21\",\n                \"header_text_nickname\": \"#FFFFFF\",\n                \"back_color_title\": \"#FFFFFF\",\n                \"back_color_background\": \"#1F1E1E\",\n                \"side_color_background\": \"#000000\",\n                \"side_color_icon_text\": \"rgba(255, 255, 255, 0.4)\",\n                \"side_color_hover_icon_text\": \"#0b4a75\",\n                \"side_color_hover_amount\": 20,\n                \"side_line_color_separator\": \"#FFFFFF\",\n                \"menu_color_hover\": \"#E3DEDE\",\n                \"footer_color_background\": \"#575555\",\n                \"footer_color_text\": \"#FFFFFF\"\n            }\n            },\n            \"kpicard\": {\n            \"border_line_color\": \"#157D00\",\n            \"background_color\": \"#DBD5D5\",\n            \"text_color\": \"#000000\",\n            \"text_number_color\": \"#000000\"\n            },\n            \"card_menu\": {\n            \"text\": \"#FFFFFF\",\n            \"hover\": \"#CFCACA\",\n            \"background\": \"#474747\"\n            },\n            \"grid_table_crud\": {\n            \"text_color\": \"#000000\",\n            \"background_color\": \"#DBD5D5\",\n            \"head_text\": \"#FFFFFF\",\n            \"head_background\": \"#111827\",\n            \"row_text_select\": \"#FFFFFF\",\n            \"row_select\": \"#1e3a8a\",\n            \"button_cargar_excel\": \"#065F46\", \n            \"button_crear\": \"#047857\",\n            \"button_ver\": \"#4338CA\",\n            \"button_editar\": \"#2563EB\",\n            \"button_estado_usuario\": \"#D97706\",\n            \"button_eliminar_individual\": \"#DC2626\",\n            \"button_eliminar_multiple\": \"#991B1B\",\n            \"button_asignar_permisos\": \"#CA8A04\",\n            \"button_asignar_productos\": \"#7C3AED\",\n            \"button_limpiar\": \"#4B5563\"\n            },\n            \"modal\": {\n            \"fieldset_line_color\": \"#0b4a75\",\n            \"legend_text_color\": \"#FFFFFF\",\n            \"label_text_color\": \"#FFFFFF\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#000000\",\n            \"back_color_background\": \"#1F1E1E\",\n            \"body_text_color\": \"#948F8F\",\n            \"body_background_color\": \"#FFFFFF\",\n            \"button_cancel_background_color\": \"#8A8484\",\n            \"button_cancel_text_color\": \"#FFFFFF\",\n            \"button_save_background_color\": \"#047857\",\n            \"button_save_text_color\": \"#FFFFFF\",\n            \"button_update_background_color\": \"#2563EB\",\n            \"button_update_text_color\": \"#FFFFFF\",\n            \"footer_text_color\": \"#948F8F\",\n            \"footer_background_color\": \"#1F1E1E\"\n            },\n            \"search\": {\n            \"button_background_color\": \"#111827\",\n            \"icon_background_color\": \"#FFFFFF\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#111827\"\n            },\n            \"report\": {\n            \"button_background_color\": \"#111827\",\n            \"icon_background_color\": \"#FFFFFF\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#111827\"\n            }\n        }\n    }\n}",
+											"raw": "{\n    \"nombre\": \"zzz\",\n    \"valor\": {\n        \"light\": {\n            \"layout\": {\n            \"breadcrumbs\": {\n                \"link-disabled\": \"#B6F2C0\",\n                \"link-active\": \"#FFFFFF\",\n                \"link-hover\": \"#EDE4E4\",\n                \"separator\": \"#E8E3E3\"\n            },\n            \"index\": {\n                \"header_color_background\": \"#0b4a75\",\n                \"back_color_background\": \"#EDEDED\",\n                \"back_color_title\": \"#000000\",\n                \"back_color_p\": \"#878382\",\n                \"background_color_card\": \"#FFFFFF\",\n                \"background_color_card_menu\": \"#FAF5F5\",\n                \"backg_color_textcard\": \"#000000\",\n                \"footer_text_background\": \"#FFFFFF\",\n                \"footer_color_background\": \"#878383\"\n            },\n            \"admin\": {\n                \"header_color_background\": \"#069E21\",\n                \"header_text_nickname\": \"#FFFFFF\",\n                \"back_color_title\": \"#000000\",\n                \"back_color_background\": \"#EDEDED\",\n                \"side_color_background\": \"#0b4a75\",\n                \"side_color_icon_text\": \"rgba(255, 255, 255, 0.4)\",\n                \"side_color_hover_icon_text\": \"#0b4a75\",\n                \"side_color_hover_amount\": 20,\n                \"side_line_color_separator\": \"#FFFFFF\",\n                \"menu_color_hover\": \"#E3DEDE\",\n                \"footer_color_background\": \"#575555\",\n                \"footer_color_text\": \"#FFFFFF\"\n            }\n            },\n            \"kpicard\": {\n            \"border_line_color\": \"#0A18F5\",\n            \"background_color\": \"#FFFFFF\",\n            \"text_color\": \"#948F8F\",\n            \"text_number_color\": \"#000000\"\n            },\n            \"card_menu\": {\n            \"text\": \"#000000\",\n            \"hover\": \"#CFCACA\",\n            \"background\": \"#FFFFFF\"\n            },\n            \"grid_table_crud\": {\n            \"text_color\": \"#948F8F\",\n            \"background_color\": \"#FFFFFF\",\n            \"head_text\": \"#FFFFFF\",\n            \"head_background\": \"#0A18F5\",\n            \"row_text_select\": \"#FFFFFF\",\n            \"row_select\": \"#AB0505\",\n            \"button_cargar_excel\": \"#10B981\", \n            \"button_crear\": \"#059669\",\n            \"button_ver\": \"#0A18F5\",\n            \"button_editar\": \"#3B82F6\",\n            \"button_estado_usuario\": \"#F59E0B\",\n            \"button_eliminar_individual\": \"#EF4444\",\n            \"button_eliminar_multiple\": \"#B91C1C\",\n            \"button_asignar_permisos\": \"#E8E417\",\n            \"button_asignar_productos\": \"#6D28D9\",\n            \"button_limpiar\": \"#6B7280\"\n            },\n            \"modal\": {\n            \"fieldset_line_color\": \"#0b4a75\",\n            \"legend_text_color\": \"#0b4a75\",\n            \"label_text_color\": \"#000000\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#0b4a75\",\n            \"back_color_background\": \"#EDEDED\",\n            \"body_text_color\": \"#948F8F\",\n            \"body_background_color\": \"#FFFFFF\",\n            \"button_cancel_background_color\": \"#8A8484\",\n            \"button_cancel_text_color\": \"#FFFFFF\",\n            \"button_save_background_color\": \"#059669\",\n            \"button_save_text_color\": \"#FFFFFF\",\n            \"button_update_background_color\": \"#3B82F6\",\n            \"button_update_text_color\": \"#FFFFFF\",\n            \"footer_text_color\": \"#948F8F\",\n            \"footer_background_color\": \"#EDEDED\"\n            },\n            \"search\": {\n            \"button_background_color\": \"#0A18F5\",\n            \"icon_background_color\": \"#FFFFFF\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#0A18F5\"\n            },\n            \"report\": {\n            \"button_background_color\": \"#0A18F5\",\n            \"icon_background_color\": \"#FFFFFF\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#0A18F5\"\n            }\n        },\n        \n        \"dark\": {\n            \"layout\": {\n            \"breadcrumbs\": {\n                \"link-disabled\": \"#B6F2C0\",\n                \"link-active\": \"#FFFFFF\",\n                \"link-hover\": \"#EDE4E4\",\n                \"separator\": \"#E8E3E3\"\n            },\n            \"index\": {\n                \"header_color_background\": \"#000000\",\n                \"back_color_background\": \"#1F1E1E\",\n                \"backg_color_textcard\": \"#000000\",\n                \"back_color_title\": \"#FFFFFF\",\n                \"back_color_p\": \"#FFFFFF\",\n                \"background_color_card\": \"#595454\",\n                \"background_color_card_menu\": \"#EDEDED\",\n                \"footer_text_background\": \"#FFFFFF\",\n                \"footer_color_background\": \"#878383\"\n            },\n            \"admin\": {\n                \"header_color_background\": \"#069E21\",\n                \"header_text_nickname\": \"#FFFFFF\",\n                \"back_color_title\": \"#FFFFFF\",\n                \"back_color_background\": \"#1F1E1E\",\n                \"side_color_background\": \"#000000\",\n                \"side_color_icon_text\": \"rgba(255, 255, 255, 0.4)\",\n                \"side_color_hover_icon_text\": \"#0b4a75\",\n                \"side_color_hover_amount\": 20,\n                \"side_line_color_separator\": \"#FFFFFF\",\n                \"menu_color_hover\": \"#E3DEDE\",\n                \"footer_color_background\": \"#575555\",\n                \"footer_color_text\": \"#FFFFFF\"\n            }\n            },\n            \"kpicard\": {\n            \"border_line_color\": \"#157D00\",\n            \"background_color\": \"#DBD5D5\",\n            \"text_color\": \"#000000\",\n            \"text_number_color\": \"#000000\"\n            },\n            \"card_menu\": {\n            \"text\": \"#FFFFFF\",\n            \"hover\": \"#CFCACA\",\n            \"background\": \"#474747\"\n            },\n            \"grid_table_crud\": {\n            \"text_color\": \"#000000\",\n            \"background_color\": \"#DBD5D5\",\n            \"head_text\": \"#FFFFFF\",\n            \"head_background\": \"#111827\",\n            \"row_text_select\": \"#FFFFFF\",\n            \"row_select\": \"#1e3a8a\",\n            \"button_cargar_excel\": \"#065F46\", \n            \"button_crear\": \"#047857\",\n            \"button_ver\": \"#4338CA\",\n            \"button_editar\": \"#2563EB\",\n            \"button_estado_usuario\": \"#D97706\",\n            \"button_eliminar_individual\": \"#DC2626\",\n            \"button_eliminar_multiple\": \"#991B1B\",\n            \"button_asignar_permisos\": \"#CA8A04\",\n            \"button_asignar_productos\": \"#7C3AED\",\n            \"button_limpiar\": \"#4B5563\"\n            },\n            \"modal\": {\n            \"fieldset_line_color\": \"#0b4a75\",\n            \"legend_text_color\": \"#FFFFFF\",\n            \"label_text_color\": \"#FFFFFF\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#000000\",\n            \"back_color_background\": \"#1F1E1E\",\n            \"body_text_color\": \"#948F8F\",\n            \"body_background_color\": \"#FFFFFF\",\n            \"button_cancel_background_color\": \"#8A8484\",\n            \"button_cancel_text_color\": \"#FFFFFF\",\n            \"button_save_background_color\": \"#047857\",\n            \"button_save_text_color\": \"#FFFFFF\",\n            \"button_update_background_color\": \"#2563EB\",\n            \"button_update_text_color\": \"#FFFFFF\",\n            \"footer_text_color\": \"#948F8F\",\n            \"footer_background_color\": \"#1F1E1E\"\n            },\n            \"search\": {\n            \"button_background_color\": \"#111827\",\n            \"icon_background_color\": \"#FFFFFF\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#111827\"\n            },\n            \"report\": {\n            \"button_background_color\": \"#111827\",\n            \"icon_background_color\": \"#FFFFFF\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#111827\"\n            }\n        }\n    }\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3613,6 +3707,100 @@
 												{
 													"key": "lang",
 													"value": "en"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "eliminar-var-json",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nombre\": \"zzz\",\n    \"valor\": {\n        \"light\": {\n            \"layout\": {\n            \"breadcrumbs\": {\n                \"link-disabled\": \"#B6F2C0\",\n                \"link-active\": \"#FFFFFF\",\n                \"link-hover\": \"#EDE4E4\",\n                \"separator\": \"#E8E3E3\"\n            },\n            \"index\": {\n                \"header_color_background\": \"#0b4a75\",\n                \"back_color_background\": \"#EDEDED\",\n                \"back_color_title\": \"#000000\",\n                \"back_color_p\": \"#878382\",\n                \"background_color_card\": \"#FFFFFF\",\n                \"background_color_card_menu\": \"#FAF5F5\",\n                \"backg_color_textcard\": \"#000000\",\n                \"footer_text_background\": \"#FFFFFF\",\n                \"footer_color_background\": \"#878383\"\n            },\n            \"admin\": {\n                \"header_color_background\": \"#069E21\",\n                \"header_text_nickname\": \"#FFFFFF\",\n                \"back_color_title\": \"#000000\",\n                \"back_color_background\": \"#EDEDED\",\n                \"side_color_background\": \"#0b4a75\",\n                \"side_color_icon_text\": \"rgba(255, 255, 255, 0.4)\",\n                \"side_color_hover_icon_text\": \"#0b4a75\",\n                \"side_color_hover_amount\": 20,\n                \"side_line_color_separator\": \"#FFFFFF\",\n                \"menu_color_hover\": \"#E3DEDE\",\n                \"footer_color_background\": \"#575555\",\n                \"footer_color_text\": \"#FFFFFF\"\n            }\n            },\n            \"kpicard\": {\n            \"border_line_color\": \"#0A18F5\",\n            \"background_color\": \"#FFFFFF\",\n            \"text_color\": \"#948F8F\",\n            \"text_number_color\": \"#000000\"\n            },\n            \"card_menu\": {\n            \"text\": \"#000000\",\n            \"hover\": \"#CFCACA\",\n            \"background\": \"#FFFFFF\"\n            },\n            \"grid_table_crud\": {\n            \"text_color\": \"#948F8F\",\n            \"background_color\": \"#FFFFFF\",\n            \"head_text\": \"#FFFFFF\",\n            \"head_background\": \"#0A18F5\",\n            \"row_text_select\": \"#FFFFFF\",\n            \"row_select\": \"#AB0505\",\n            \"button_cargar_excel\": \"#10B981\", \n            \"button_crear\": \"#059669\",\n            \"button_ver\": \"#0A18F5\",\n            \"button_editar\": \"#3B82F6\",\n            \"button_estado_usuario\": \"#F59E0B\",\n            \"button_eliminar_individual\": \"#EF4444\",\n            \"button_eliminar_multiple\": \"#B91C1C\",\n            \"button_asignar_permisos\": \"#E8E417\",\n            \"button_asignar_productos\": \"#6D28D9\",\n            \"button_limpiar\": \"#6B7280\"\n            },\n            \"modal\": {\n            \"fieldset_line_color\": \"#0b4a75\",\n            \"legend_text_color\": \"#0b4a75\",\n            \"label_text_color\": \"#000000\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#0b4a75\",\n            \"back_color_background\": \"#EDEDED\",\n            \"body_text_color\": \"#948F8F\",\n            \"body_background_color\": \"#FFFFFF\",\n            \"button_cancel_background_color\": \"#8A8484\",\n            \"button_cancel_text_color\": \"#FFFFFF\",\n            \"button_save_background_color\": \"#059669\",\n            \"button_save_text_color\": \"#FFFFFF\",\n            \"button_update_background_color\": \"#3B82F6\",\n            \"button_update_text_color\": \"#FFFFFF\",\n            \"footer_text_color\": \"#948F8F\",\n            \"footer_background_color\": \"#EDEDED\"\n            },\n            \"search\": {\n            \"button_background_color\": \"#0A18F5\",\n            \"icon_background_color\": \"#FFFFFF\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#0A18F5\"\n            },\n            \"report\": {\n            \"button_background_color\": \"#0A18F5\",\n            \"icon_background_color\": \"#FFFFFF\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#0A18F5\"\n            }\n        },\n        \n        \"dark\": {\n            \"layout\": {\n            \"breadcrumbs\": {\n                \"link-disabled\": \"#B6F2C0\",\n                \"link-active\": \"#FFFFFF\",\n                \"link-hover\": \"#EDE4E4\",\n                \"separator\": \"#E8E3E3\"\n            },\n            \"index\": {\n                \"header_color_background\": \"#000000\",\n                \"back_color_background\": \"#1F1E1E\",\n                \"backg_color_textcard\": \"#000000\",\n                \"back_color_title\": \"#FFFFFF\",\n                \"back_color_p\": \"#FFFFFF\",\n                \"background_color_card\": \"#595454\",\n                \"background_color_card_menu\": \"#EDEDED\",\n                \"footer_text_background\": \"#FFFFFF\",\n                \"footer_color_background\": \"#878383\"\n            },\n            \"admin\": {\n                \"header_color_background\": \"#069E21\",\n                \"header_text_nickname\": \"#FFFFFF\",\n                \"back_color_title\": \"#FFFFFF\",\n                \"back_color_background\": \"#1F1E1E\",\n                \"side_color_background\": \"#000000\",\n                \"side_color_icon_text\": \"rgba(255, 255, 255, 0.4)\",\n                \"side_color_hover_icon_text\": \"#0b4a75\",\n                \"side_color_hover_amount\": 20,\n                \"side_line_color_separator\": \"#FFFFFF\",\n                \"menu_color_hover\": \"#E3DEDE\",\n                \"footer_color_background\": \"#575555\",\n                \"footer_color_text\": \"#FFFFFF\"\n            }\n            },\n            \"kpicard\": {\n            \"border_line_color\": \"#157D00\",\n            \"background_color\": \"#DBD5D5\",\n            \"text_color\": \"#000000\",\n            \"text_number_color\": \"#000000\"\n            },\n            \"card_menu\": {\n            \"text\": \"#FFFFFF\",\n            \"hover\": \"#CFCACA\",\n            \"background\": \"#474747\"\n            },\n            \"grid_table_crud\": {\n            \"text_color\": \"#000000\",\n            \"background_color\": \"#DBD5D5\",\n            \"head_text\": \"#FFFFFF\",\n            \"head_background\": \"#111827\",\n            \"row_text_select\": \"#FFFFFF\",\n            \"row_select\": \"#1e3a8a\",\n            \"button_cargar_excel\": \"#065F46\", \n            \"button_crear\": \"#047857\",\n            \"button_ver\": \"#4338CA\",\n            \"button_editar\": \"#2563EB\",\n            \"button_estado_usuario\": \"#D97706\",\n            \"button_eliminar_individual\": \"#DC2626\",\n            \"button_eliminar_multiple\": \"#991B1B\",\n            \"button_asignar_permisos\": \"#CA8A04\",\n            \"button_asignar_productos\": \"#7C3AED\",\n            \"button_limpiar\": \"#4B5563\"\n            },\n            \"modal\": {\n            \"fieldset_line_color\": \"#0b4a75\",\n            \"legend_text_color\": \"#FFFFFF\",\n            \"label_text_color\": \"#FFFFFF\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#000000\",\n            \"back_color_background\": \"#1F1E1E\",\n            \"body_text_color\": \"#948F8F\",\n            \"body_background_color\": \"#FFFFFF\",\n            \"button_cancel_background_color\": \"#8A8484\",\n            \"button_cancel_text_color\": \"#FFFFFF\",\n            \"button_save_background_color\": \"#047857\",\n            \"button_save_text_color\": \"#FFFFFF\",\n            \"button_update_background_color\": \"#2563EB\",\n            \"button_update_text_color\": \"#FFFFFF\",\n            \"footer_text_color\": \"#948F8F\",\n            \"footer_background_color\": \"#1F1E1E\"\n            },\n            \"search\": {\n            \"button_background_color\": \"#111827\",\n            \"icon_background_color\": \"#FFFFFF\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#111827\"\n            },\n            \"report\": {\n            \"button_background_color\": \"#111827\",\n            \"icon_background_color\": \"#FFFFFF\",\n            \"head_text_color\": \"#FFFFFF\",\n            \"head_background_color\": \"#111827\"\n            }\n        }\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/json/eliminar-var-json?id=1&lang=en",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"json",
+												"eliminar-var-json"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "1"
+												},
+												{
+													"key": "lang",
+													"value": "en"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "editar-var-json",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nombre\": \"Admin1\",\n    \"valor\": \"true\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/json/editar-var-json?_id=1",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"json",
+												"editar-var-json"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
 												}
 											]
 										}

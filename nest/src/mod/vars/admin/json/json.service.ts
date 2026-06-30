@@ -2,7 +2,7 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateJsonDto } from './dto/create-json.dto';
 import { UpdateJsonDto } from './dto/update-json.dto';
 import { I18nService } from 'nestjs-i18n';
-import { IsNull, Repository } from 'typeorm';
+import { In, IsNull, Repository } from 'typeorm';
 import { Json } from './entities/json.entity';
 import { PaginationDto } from '@global/dto/pagination.dto';
 
@@ -127,6 +127,44 @@ export class JsonService {
         'status': 404,
       }
     }
+  }
+
+  async update(
+    lang: string, 
+    id: number, 
+    updateJsonDto: UpdateJsonDto,
+    userId: number
+  ) {
+    const property = await this.moduloRepository.findOne({
+      where: { id }
+    });
+
+    if(updateJsonDto.nombre){
+      if(updateJsonDto.nombre != property.nombre){
+  
+        let concidencia = await this.moduloRepository.findOne({
+          where: [ {nombre : updateJsonDto.nombre}]
+        });
+        
+        if(concidencia) throw new NotFoundException(
+          this.i18n.t('user.MSJ_ERROR_USER_EXIST', { lang, args: { correo: updateJsonDto.nombre } })
+        )
+        
+      }
+    }
+
+    return this.moduloRepository.save({
+      ...property, // existing fields
+      ...updateJsonDto // updated fields
+    });
+  }
+
+  async remove(
+    lang: string,
+    id: number[],
+    userId: number
+  ) {
+    return this.moduloRepository.delete({id: In(id)})
   }
 
   async contadorVariables(

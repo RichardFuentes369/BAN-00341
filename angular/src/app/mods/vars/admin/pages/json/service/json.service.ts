@@ -8,17 +8,17 @@ import axios from 'axios';
 @Injectable({
   providedIn: 'root',
 })
-export class JsonService { 
+export class JsonService {
 
   constructor(
     private http: HttpClient,
     private translate: TranslateService
-  ) {}
+  ) { }
 
-  async getDataVar(id: string){
+  async getDataVar(id: string) {
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'json/obtener-var-json'
-    let urlCopleta = environment.apiUrl+complemento
+    let urlCopleta = environment.apiUrl + complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
     return await axios.request({
@@ -35,10 +35,10 @@ export class JsonService {
     })
   }
 
-  async createVar(data: any){
+  async createVar(data: any) {
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'json/crear-var-json/'
-    let urlCopleta = environment.apiUrl+complemento
+    let urlCopleta = environment.apiUrl + complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
     return await axios.request({
@@ -55,10 +55,30 @@ export class JsonService {
     })
   }
 
-  async obtenerTotale(){
+  async deleteVar(id: string[]) {
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = 'json/eliminar-var-json/'
+    let urlCopleta = environment.apiUrl + complemento
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
+    return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
+      method: 'delete',
+      url: urlCopleta,
+      params: {
+        _id: id.join(','),
+        lang: lang,
+      }
+    })
+  }
+
+  async obtenerTotale() {
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'json/obtener-contadores-json/'
-    let urlCopleta = environment.apiUrl+complemento
+    let urlCopleta = environment.apiUrl + complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
     return await axios.request({
@@ -73,5 +93,5 @@ export class JsonService {
       }
     })
   }
-  
+
 }

@@ -1,12 +1,15 @@
 {
   "UNKNOW_MODULE_TITLE": "Unbekannt",
-
   "MODULE_TITLE": "Systemvariablen",
   "PAGE_TITLE_VAR": "VAR",
   "PAGE_TITLE_JSON": "JSON",
   "BUTTON_VAR": "Var",
   "BUTTON_JSON": "JSON",
-
+  "BUTTON_SAVE_": "Speichern",
+  "BUTTON_UPDATE_": "Aktualisieren",
+  "BUTTON_CANCEL": "Abbrechen",
+  "BUTTON_BACK": "Zurück",
+  "BUTTON_SEARCH": "Suchen",
   "LEGEND_TITLE_VAR": "Variablendaten",
   "LABEL_VAR_NAME": "Name",
   "LABEL_VAR_VALUE": "Wert",
@@ -14,11 +17,27 @@
   "PLACEHOLDER_VAR_VALUE": "Geben Sie einen Wert ein",
   "ERROR_VAR_NAME": "Bitte Namen eingeben",
   "ERROR_VAR_VALUE": "Bitte Wert eingeben",
-  
+  "CREATE_TITLE": "Erstellen",
+  "CREATE_SUBTITLE": "Neuer Datensatz",
+  "SEE_TITLE": "Anzeigen",
+  "SEE_SUBTITLE": "{{var_name}}",
+  "EDIT_TITLE": "Bearbeiten",
+  "EDIT_SUBTITLE": "{{var_name}}",
+  "TABLE_TITLE": "Datensätze",
+  "SWAL_ARE_YOU_SURE_UPDATE_VAR": "Sind Sie sicher, dass Sie die Variable {{var_name}} aktualisieren möchten?",
+  "SWAL_ARE_YOU_SURE_DELETE_VAR": "Sind Sie sicher, dass Sie {{art_the}} Variable{{plural}} {{var_name}} löschen möchten?",
+  "SWAL_WARNING_REVERSE_CHANGE": "Dies kann nicht rückgängig gemacht werden!",
+  "SWAL_CREATED": "Erstellt!",
+  "SWAL_CREATED_RECORD": "Erfolgreich erstellt.",
+  "SWAL_UPDATED": "Aktualisiert!",
+  "SWAL_UPDATED_RECORD": "Erfolgreich aktualisiert.",
+  "SWAL_BUTTON_DELETE": "Löschen",
+  "SWAL_BUTTON_CANCEL": "Abbrechen",
+  "SWAL_DELETED": "Gelöscht!",
+  "SWAL_DELETED_RECORD": "Erfolgreich gelöscht.",
   "VARS": {
     "CARD_TOTAL_VAR_TITLE": "Gesamtanzahl Variablen"
   },
-
   "JSON": {
     "CARD_TOTAL_JSON_TITLE": "Gesamtanzahl JSON-Variablen"
   }

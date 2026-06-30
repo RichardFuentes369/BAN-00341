@@ -1,12 +1,15 @@
 {
   "UNKNOW_MODULE_TITLE": "Inconnu",
-
   "MODULE_TITLE": "Variables système",
   "PAGE_TITLE_VAR": "VAR",
   "PAGE_TITLE_JSON": "JSON",
   "BUTTON_VAR": "Var",
   "BUTTON_JSON": "JSON",
-
+  "BUTTON_SAVE_": "Enregistrer",
+  "BUTTON_UPDATE_": "Mettre à jour",
+  "BUTTON_CANCEL": "Annuler",
+  "BUTTON_BACK": "Retour",
+  "BUTTON_SEARCH": "Rechercher",
   "LEGEND_TITLE_VAR": "Données de la variable",
   "LABEL_VAR_NAME": "Nom",
   "LABEL_VAR_VALUE": "Valeur",
@@ -14,11 +17,27 @@
   "PLACEHOLDER_VAR_VALUE": "Saisissez une valeur",
   "ERROR_VAR_NAME": "Veuillez entrer le nom",
   "ERROR_VAR_VALUE": "Veuillez entrer la valeur",
-  
+  "CREATE_TITLE": "Créer",
+  "CREATE_SUBTITLE": "Nouvel enregistrement",
+  "SEE_TITLE": "Voir",
+  "SEE_SUBTITLE": "{{var_name}}",
+  "EDIT_TITLE": "Modifier",
+  "EDIT_SUBTITLE": "{{var_name}}",
+  "TABLE_TITLE": "Registres",
+  "SWAL_ARE_YOU_SURE_UPDATE_VAR": "Êtes-vous sûr de vouloir mettre à jour la variable {{var_name}} ?",
+  "SWAL_ARE_YOU_SURE_DELETE_VAR": "Êtes-vous sûr de vouloir supprimer {{art_the}} variable{{plural}} {{var_name}} ?",
+  "SWAL_WARNING_REVERSE_CHANGE": "Vous ne pourrez pas revenir en arrière !",
+  "SWAL_CREATED": "Créé !",
+  "SWAL_CREATED_RECORD": "Créé avec succès.",
+  "SWAL_UPDATED": "Mis à jour !",
+  "SWAL_UPDATED_RECORD": "Mis à jour avec succès.",
+  "SWAL_BUTTON_DELETE": "Supprimer",
+  "SWAL_BUTTON_CANCEL": "Annuler",
+  "SWAL_DELETED": "Supprimé !",
+  "SWAL_DELETED_RECORD": "Supprimé avec succès.",
   "VARS": {
     "CARD_TOTAL_VAR_TITLE": "Total des variables"
   },
-
   "JSON": {
     "CARD_TOTAL_JSON_TITLE": "Total des variables JSON"
   }
