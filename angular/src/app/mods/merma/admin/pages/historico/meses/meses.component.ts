@@ -81,6 +81,7 @@ export class MesesMermaComponent implements OnInit, OnDestroy {
   cargarIdioma = true;
   mostrarCards = true;
   isAnimationDone = false;
+  anho = ''
 
   toggleCards() {
     this.mostrarCards = !this.mostrarCards;
@@ -95,6 +96,9 @@ export class MesesMermaComponent implements OnInit, OnDestroy {
   // metodos Init, Destroy
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
+
+    this.anho = (this.route.snapshot.queryParams?.['anho']) ? this.route.snapshot.queryParams?.['anho'] : new Date().getFullYear()
+
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
     const permiso_modulo = await this.permisosService.permisoPage(0, 'merma', userData.data.id)
