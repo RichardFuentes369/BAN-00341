@@ -6,6 +6,14 @@
   "PAGE_TITLE_JSON": "JSON",
   "BUTTON_VAR": "Var",
   "BUTTON_JSON": "JSON",
+
+  "LEGEND_TITLE_VAR": "Datos de la variable",
+  "LABEL_VAR_NAME": "Nombre",
+  "LABEL_VAR_VALUE": "Valor",
+  "PLACEHOLDER_VAR_NAME": "Ingrese un nombre",
+  "PLACEHOLDER_VAR_VALUE": "Ingrese un valor",
+  "ERROR_VAR_NAME": "Ingrese el nombre",
+  "ERROR_VAR_VALUE": "Ingrese el valor",
   
   "VARS": {
     "CARD_TOTAL_VAR_TITLE": "Total de variables"

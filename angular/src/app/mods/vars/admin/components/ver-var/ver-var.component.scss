@@ -1,0 +1,17 @@
+.code-input-style {
+  display: block;
+  width: 100%;
+  min-height: 200px; // Altura mínima para que no se vea como una línea
+  max-height: 50px; // Altura máxima con scroll
+  padding: 1rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  background-color: #eaecf4; // Fondo oscuro tipo VS Code
+  color: #000000;           // Color de texto base
+  border: 1px solid #a49f9f;
+  border-radius: 0.4rem;
+  overflow-x: auto;           // Scroll si es necesario
+  overflow-y: auto;           // Scroll si es necesario
+  white-space: pre-wrap;
+  margin: 0; 
+}

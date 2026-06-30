@@ -37,6 +37,20 @@ export class JsonController {
     );
   }
 
+  @UseGuards(AdminGuard)
+  @Post('crear-var-json')
+  create(
+    @Query('lang') lang:string,
+    @Body() createVar: CreateJsonDto,
+    @GetUser('id') userId: number
+  ) {
+    return this.jsonService.create(
+      lang,
+      createVar,
+      userId
+    );
+  }
+
   // contadores
   @Get('obtener-contadores-json')
   async contadores(

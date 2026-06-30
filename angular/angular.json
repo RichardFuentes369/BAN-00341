@@ -40,7 +40,8 @@
               "src/styles.scss",
               "src/assets/scss/platform.scss",
               "node_modules/datatables.net-dt/css/dataTables.dataTables.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/highlight.js/styles/atom-one-light.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

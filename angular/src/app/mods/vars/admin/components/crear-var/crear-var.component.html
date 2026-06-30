@@ -1,0 +1,53 @@
+<div class="">
+  <div class="col-xl-12 col-sm-12">
+    <fieldset class="border p-3 rounded">
+      <legend class="float-none w-auto p-1">
+        {{ 'mod-vars.LEGEND_TITLE_VAR' | translate }}
+      </legend>
+      <div class="col-xl col-sm-12">
+        <div class="col-sm-12 row p-0">
+          <label for="exampleInputEmail1">
+            {{ 'mod-vars.LABEL_VAR_NAME' | translate}}
+          </label>
+          <input type="text" class="form-control form-select-sm" [(ngModel)]="model.nombre"
+            (ngModelChange)="onInputChange()" [class.is-invalid]="validators.name"
+            placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
+          @if(validators.name) {
+          <span class="text-danger small">{{ 'mod-users.ERROR_USER_FIRSTNAME' | translate }}</span>
+          }
+        </div>
+        <div class="col-sm-12 row p-0 mt-4">
+          <label for="exampleInputEmail1">
+            {{ 'mod-vars.LABEL_VAR_VALUE' | translate}}
+          </label>
+
+          @if(tipoVariable == 'var'){
+          <input type="text" class="form-control form-select-sm" [(ngModel)]="model.valor"
+            (ngModelChange)="onInputChange()" [class.is-invalid]="validators.value"
+            placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
+            @if(validators.value) {
+            <span class="text-danger small">{{ 'mod-users.ERROR_USER_FIRSTNAME' | translate }}</span>
+            }
+          }
+          @else{
+          <textarea class="form-control form-select-sm" [(ngModel)]="model.valor"
+            (ngModelChange)="onInputChange()" 
+            [class.is-invalid]="validators.value"
+            placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
+          </textarea>
+            @if(validators.value) {
+            <span class="text-danger small">{{ 'mod-users.ERROR_USER_FIRSTNAME' | translate }}</span>
+            }
+          }
+        </div>
+        <div class="col-sm-12 row p-0">
+          <div class="col-sm-12">
+            <button class="btn btn-sm btn-primary btnAction d-none" (click)="crearVariable()">
+              {{ 'mod-users.BUTTON_USER_CREATE' | translate}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

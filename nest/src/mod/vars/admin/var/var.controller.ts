@@ -37,6 +37,20 @@ export class VarController {
     );
   }
 
+  @UseGuards(AdminGuard)
+  @Post('crear-var-var')
+  create(
+    @Query('lang') lang:string,
+    @Body() createVar: CreateVarDto,
+    @GetUser('id') userId: number
+  ) {
+    return this.varService.create(
+      lang,
+      createVar,
+      userId
+    );
+  }
+
   // contadores
   @Get('obtener-contadores-var')
   async contadores(

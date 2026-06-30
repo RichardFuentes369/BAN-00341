@@ -42,7 +42,8 @@
     <div class="table-container">
       <app-globales-tablecrud [campoFiltro]="showcampoFiltro" [endPoint]="endPoint" [columnas]="columnas"
         [habilitarSeleccion]="habilitarSeleccion" [permisosAcciones]="permisos" [filters]="filters" [title]="titlePage"
-        (verItem)="verData($event)">
+        (verItem)="verData($event)" (crearNuevoItem)="crearData($event)" (editarItem)="editarData($event)"
+        (eliminarItem)="eliminarData($event)">
       </app-globales-tablecrud>
     </div>
     } @else {
@@ -53,9 +54,9 @@
   </div>
   <!-- Fin tabla registros -->
 
-  <!-- <app-globales-modal-boostrap [tamano]="tamano" [scrollable]="scrollable" [title]="title" [subtitle]="subtitle"
+  <app-globales-modal-boostrap [tamano]="tamano" [scrollable]="scrollable" [title]="title" [subtitle]="subtitle"
     [save]="save" [buttonSave]="buttonSave" [edit]="edit" [buttonEdit]="buttonEdit" [cancel]="cancel"
     [buttonCancel]="buttonCancel" [componentePrecargado]="componentePrecargado" [cierreModal]="cierreModal"
     (actualizarTabla)="refrescarTabla()">
-  </app-globales-modal-boostrap> -->
+  </app-globales-modal-boostrap>
 </div>

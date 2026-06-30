@@ -81,6 +81,15 @@ export class VarService {
 
   }
 
+  findName(
+    name: string,
+  ) {
+    return this.moduloRepository.findOne({
+      where: [ {nombre : name}],
+      order: { id: 'DESC' }
+    });
+  }
+
   findOne(
     lang: string,
     id: number
@@ -89,6 +98,36 @@ export class VarService {
       where: [ {id : id}],
       order: { id: 'DESC' }
     });
+  }
+
+  async create(
+    lang: string,
+    createVarDto: CreateVarDto,
+    userId: number
+  ){
+    try {
+
+      const encontrarVariable = await this.findName(createVarDto.nombre)
+
+      if(encontrarVariable) throw new NotFoundException(
+        this.i18n.t('user.MSJ_ERROR_USER_EXIST', { lang, args: { nombre: createVarDto.nombre } })
+      )      
+  
+      this.moduloRepository.save(createVarDto);
+      return {
+        'title': this.i18n.t('user.MSJ_USUARIO_TITTLE', { lang }),
+        'message': this.i18n.t('user.MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE', { lang }),
+        'status': 200,
+      }
+
+    } catch (error) {
+      return {
+        'title': error.response.error,
+        'text': error.response.error,
+        'message': error.response.message,
+        'status': 404,
+      }
+    }
   }
 
   async contadorVariables(

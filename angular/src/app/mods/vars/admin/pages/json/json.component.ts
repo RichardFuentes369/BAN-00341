@@ -10,7 +10,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { JsonService } from './service/json.service';
 import { Subscription, timer } from 'rxjs';
-import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
+import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
+import { CREAR_VAR_COMPONENT, EDITAR_VAR_COMPONENT, VER_VAR_COMPONENT } from '@mod/vars/const/vars.const';
 
 @Component({
   selector: 'app-json',
@@ -20,7 +21,7 @@ import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH } from '@const/a
     // SearchComponent,
     LoadingComponent,
     TablecrudComponent,
-    // ModalBoostrapComponent,
+    ModalBoostrapComponent,
     KpicardComponent,
   ],
   templateUrl: './json.component.html',
@@ -166,76 +167,76 @@ export class JsonComponent implements OnInit, OnDestroy {
     this.titleTotalJson = this.translate.instant('mod-vars.JSON.CARD_TOTAL_JSON_TITLE')
   }
 
-  crearData(_id: string) {
-    // this.tamano = "xl"
-    // this.scrollable = true
-    // this.title = this.translate.instant('mod-catalog.PRODUCT.CREATE_TITLE')
-    // this.subtitle = this.translate.instant('mod-catalog.PRODUCT.CREATE_SUBTITLE')
-    // this.save = true
-    // this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
-    // this.edit = false
-    // this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
-    // this.cancel = true
-    // this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
-    // this.cierreModal = "true"
-    // this.componentePrecargado = CREAR_PRODUCT_COMPONENT
+  crearData (_id: string){
+    this.tamano = "xl"
+    this.scrollable = true
+    this.title = this.translate.instant('mod-catalog.PRODUCT.CREATE_TITLE')
+    this.subtitle = this.translate.instant('mod-catalog.PRODUCT.CREATE_SUBTITLE')
+    this.save = true
+    this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
+    this.edit = false
+    this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
+    this.cierreModal = "true"
+    this.componentePrecargado = CREAR_VAR_COMPONENT
 
-    // const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    // if (idButton) {
-    //   idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
-    //   idButton.click()
-    // }
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if (idButton) {
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
   }
 
   async verData(_id: string) {
-    // this.title = this.translate.instant('mod-catalog.PRODUCT.SEE_TITLE')
-    // const response = await this.productosService.getDataProduct(_id)
-    // const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    // this.translate.get('mod-catalog.PRODUCT.SEE_SUBTITLE', { "product_name": nombre }).subscribe((res: string) => { this.subtitle = res });
-    // this.tamano = "xl"
-    // this.scrollable = true
-    // this.save = false
-    // this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
-    // this.edit = false
-    // this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
-    // this.cancel = true
-    // this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
-    // this.cierreModal = "true"
-    // this.componentePrecargado = VER_PRODUCT_COMPONENT
+    this.title = this.translate.instant('mod-catalog.PRODUCT.SEE_TITLE')
+    const response = await this.jsonService.getDataVar(_id)
+    const { nombre } = response.data || { nombre: 'xxxxxxx' }
+    this.translate.get('mod-catalog.PRODUCT.SEE_SUBTITLE', { "product_name": nombre }).subscribe((res: string) => { this.subtitle = res });
+    this.tamano = "xl"
+    this.scrollable = true
+    this.save = false
+    this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
+    this.edit = false
+    this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
+    this.cierreModal = "true"
+    this.componentePrecargado = VER_VAR_COMPONENT
 
-    // const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    // if (idButton) {
-    //   this.router.navigate([], {
-    //     queryParams: { id_brand: this.route.snapshot.queryParams?.['id_brand'], id_product: _id },
-    //   });
-    //   idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
-    //   idButton.click()
-    // }
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if (idButton) {
+      this.router.navigate([], {
+        queryParams: { id_var_json: _id },
+      });
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
   }
 
   async editarData(_id: string) {
-    // this.title = this.translate.instant('mod-catalog.PRODUCT.EDIT_TITLE')
+    this.title = this.translate.instant('mod-catalog.PRODUCT.EDIT_TITLE')
     // const response = await this.productosService.getDataProduct(_id)
     // const { nombre } = response.data || { nombre: 'xxxxxxx' }
     // this.translate.get('mod-catalog.PRODUCT.EDIT_SUBTITLE', { "product_name": nombre }).subscribe((res: string) => { this.subtitle = res });
-    // this.tamano = "xl"
-    // this.scrollable = true
-    // this.save = false
-    // this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
-    // this.edit = true
-    // this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
-    // this.cancel = true
-    // this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
-    // this.componentePrecargado = EDITAR_PRODUCT_COMPONENT
+    this.tamano = "xl"
+    this.scrollable = true
+    this.save = false
+    this.buttonSave = this.translate.instant('mod-catalog.BUTTON_SAVE_')
+    this.edit = true
+    this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
+    this.componentePrecargado = EDITAR_VAR_COMPONENT
 
-    // const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    // if (idButton) {
-    //   this.router.navigate([], {
-    //     queryParams: { id_brand: this.route.snapshot.queryParams?.['id_brand'], id_product: _id },
-    //   });
-    //   idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
-    //   idButton.click()
-    // }
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if (idButton) {
+      this.router.navigate([], {
+        queryParams: { id_var_json: _id },
+      });
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
   }
 
   @ViewChild(TablecrudComponent)

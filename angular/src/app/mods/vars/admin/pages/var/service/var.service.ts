@@ -15,6 +15,46 @@ export class VarService {
     private translate: TranslateService
   ) {}
 
+  async getDataVar(id: string){
+    let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = 'var/obtener-var-var'
+    let urlCopleta = environment.apiUrl+complemento
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
+    return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
+      method: 'get',
+      url: urlCopleta,
+      params: {
+        _id: id,
+        lang: lang,
+      }
+    })
+  }
+
+  async createVar(data: any){
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = 'var/crear-var-var/'
+    let urlCopleta = environment.apiUrl+complemento
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
+    return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
+      method: 'post',
+      url: urlCopleta,
+      data: data,
+      params: {
+        lang: lang,
+      }
+    })
+  }
+
   async obtenerTotale(){
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'var/obtener-contadores-var/'

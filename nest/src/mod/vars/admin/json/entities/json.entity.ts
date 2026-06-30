@@ -8,7 +8,7 @@ export class Json {
 
   @Column({ nullable: true })
   nombre: string;
-
+  
   @Column({ type: 'json' })
-  valor: string;
+  valor: any;
 }
