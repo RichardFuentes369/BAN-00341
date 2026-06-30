@@ -151,10 +151,11 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     }
 
-    const permisos = await this.permisosService.permisos(userData.data.id,'registro_merma')
+    const permisos_registro = await this.permisosService.permisos(userData.data.id,'registro_merma')
+    const permisos_historico = await this.permisosService.permisos(userData.data.id,'historico_merma')
 
     const esHistorico = this.router.url.includes('/historico');
-    this.permisos = esHistorico ? [] : permisos.data;
+    this.permisos = esHistorico ? permisos_historico.data : permisos_registro.data;
 
     // sessionStorage.removeItem('nit')
     // sessionStorage.removeItem('razon_social')

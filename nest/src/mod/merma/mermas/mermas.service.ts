@@ -124,29 +124,31 @@ export class MermasService {
     let inicioUnix: number;
     let finUnix: number;
 
-    if (filterDto.year != 'null') {
-      if (filterDto.month != 'null') {
-        const fechaInicio = new Date(+filterDto.year, +filterDto.month - 1, 1, 0, 0, 0);
-        const fechaFin = new Date(+filterDto.year, +filterDto.month, 0, 23, 59, 59);
+    if(filterDto.year){
+      if (filterDto.year != 'null') {
+        if (filterDto.month != 'null') {
+          const fechaInicio = new Date(+filterDto.year, +filterDto.month - 1, 1, 0, 0, 0);
+          const fechaFin = new Date(+filterDto.year, +filterDto.month, 0, 23, 59, 59);
+          inicioUnix = Math.floor(fechaInicio.getTime() / 1000);
+          finUnix = Math.floor(fechaFin.getTime() / 1000);
+        } else {
+          const fechaInicio = new Date(+filterDto.year, 0, 1, 0, 0, 0);
+          const fechaFin = new Date(+filterDto.year, 11, 31, 23, 59, 59);
+          inicioUnix = Math.floor(fechaInicio.getTime() / 1000);
+          finUnix = Math.floor(fechaFin.getTime() / 1000);
+        }
+        // where.fecha_reporte = Between(inicioUnix, finUnix);
+      }else{
+        const anioActual = new Date().getFullYear();
+        const fechaInicio = new Date(anioActual, 0, 1, 0, 0, 0);
+        const fechaFin = new Date(anioActual, 11, 31, 23, 59, 59);
         inicioUnix = Math.floor(fechaInicio.getTime() / 1000);
         finUnix = Math.floor(fechaFin.getTime() / 1000);
-      } else {
-        const fechaInicio = new Date(+filterDto.year, 0, 1, 0, 0, 0);
-        const fechaFin = new Date(+filterDto.year, 11, 31, 23, 59, 59);
-        inicioUnix = Math.floor(fechaInicio.getTime() / 1000);
-        finUnix = Math.floor(fechaFin.getTime() / 1000);
+        // where.fecha_reporte = Between(inicioUnix, finUnix);
       }
-      // where.fecha_reporte = Between(inicioUnix, finUnix);
-    }else{
-      const anioActual = new Date().getFullYear();
-      const fechaInicio = new Date(anioActual, 0, 1, 0, 0, 0);
-      const fechaFin = new Date(anioActual, 11, 31, 23, 59, 59);
-      inicioUnix = Math.floor(fechaInicio.getTime() / 1000);
-      finUnix = Math.floor(fechaFin.getTime() / 1000);
-      // where.fecha_reporte = Between(inicioUnix, finUnix);
+      where.fecha_reporte = Between(inicioUnix, finUnix);
     }
 
-    where.fecha_reporte = Between(inicioUnix, finUnix);
 
     const peticion = async (page) => {
       return await this.mermaRepository.find({
