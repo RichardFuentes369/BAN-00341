@@ -24,6 +24,7 @@
       {{ 'layout-admin.WORD_MODULES' | translate}}
     </div>
 
+    @if(tienePermiso('usuarios', '', 0)){
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true"
         aria-controls="collapseUsers">
@@ -33,12 +34,18 @@
       <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-          <a class="collapse-item" [routerLink]="MOD_USER_PAGE_ADMIN">{{ 'mod-users.BUTTON_ADMIN' | translate }}</a>
-          <a class="collapse-item" [routerLink]="MOD_USER_PAGE_FINAL">{{ 'mod-users.BUTTON_FINAL' | translate }}</a>
+          @if(tienePermiso('usuarios', 'administradores', 1)){
+            <a class="collapse-item" [routerLink]="MOD_USER_PAGE_ADMIN">{{ 'mod-users.BUTTON_ADMIN' | translate }}</a>
+          }
+          @if(tienePermiso('usuarios', 'finales', 1)){
+            <a class="collapse-item" [routerLink]="MOD_USER_PAGE_FINAL">{{ 'mod-users.BUTTON_FINAL' | translate }}</a>
+          }
         </div>
       </div>
     </li>
+    }
 
+    @if(tienePermiso('catalogo', '', 0)){
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCatalog"
         aria-expanded="true" aria-controls="collapseCatalog">
@@ -48,59 +55,85 @@
       <div id="collapseCatalog" class="collapse" aria-labelledby="headingCatalog" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-          <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_SUPPLIER">{{ 'mod-catalog.BUTTON_SUPPLIER' |
-            translate}}</a>
-          <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_EXTENT">{{ 'mod-catalog.BUTTON_EXTENT' |
-            translate}}</a>
-          <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_BRAND">{{ 'mod-catalog.BUTTON_BRAND' |
-            translate}}</a>
-          <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_PRODUCT">{{ 'mod-catalog.BUTTON_PRODUCT' |
-            translate}}</a>
+          @if(tienePermiso('catalogo', 'proveedores', 1)){
+            <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_SUPPLIER">{{ 'mod-catalog.BUTTON_SUPPLIER' |
+              translate}}</a>
+          }
+          @if(tienePermiso('catalogo', 'productos', 1)){
+            <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_PRODUCT">{{ 'mod-catalog.BUTTON_PRODUCT' |
+              translate}}</a>
+          }
+          @if(tienePermiso('catalogo', 'marcas', 1)){
+            <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_BRAND">{{ 'mod-catalog.BUTTON_BRAND' |
+              translate}}</a>
+          }
+          @if(tienePermiso('catalogo', 'unidad_de_medida', 1)){
+            <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_EXTENT">{{ 'mod-catalog.BUTTON_EXTENT' |
+              translate}}</a>
+          }
         </div>
       </div>
     </li>
+    }
 
+    @if(tienePermiso('bodega', '', 0)){
     <li class="nav-item">
       <a class="nav-link" [routerLink]="LAYOUT_ADMIN_PAGE_WAREHOUSE">
         <i class="bg_side_icon fa fa-cubes" aria-hidden="true"></i>
         <span class="bg_side_text">{{ 'mod-main.PAGE_WAREHOUSE' | translate }}</span>
       </a>
     </li>
+    }
 
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLoss" aria-expanded="true"
-        aria-controls="collapseLoss">
-        <span class="fa-stack mx-auto">
-          <i class="bg_side_icon fas fa-box fa-stack-2x my-2"></i>
-          <i class="fas fa-bolt fa-stack-2x my-2 icon-customer"></i>
-        </span>
-        <span class="mx-3 bg_side_text">{{ 'mod-main.PAGES_LOSS' | translate }}</span>
-      </a>
-      <div id="collapseLoss" class="collapse" aria-labelledby="headingLoss" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-          <a class="collapse-item" [routerLink]="MOD_MERMA_PAGE_TIPOS">{{ 'mod-merma.BUTTON_TYPE' | translate}}</a>
-          <a class="collapse-item" [routerLink]="MOD_MERMA_PAGE_REGISTRO">{{ 'mod-merma.BUTTON_RECORD' | translate}}</a>
-          <a class="collapse-item" [routerLink]="MOD_MERMA_PAGE_HISTORICO">{{ 'mod-merma.BUTTON_HISTORY' | translate}}</a>
+    @if(tienePermiso('merma', '', 0)){
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLoss" aria-expanded="true"
+          aria-controls="collapseLoss">
+          <span class="fa-stack mx-auto">
+            <i class="bg_side_icon fas fa-box fa-stack-2x my-2"></i>
+            <i class="fas fa-bolt fa-stack-2x my-2 icon-customer"></i>
+          </span>
+          <span class="mx-3 bg_side_text">{{ 'mod-main.PAGES_LOSS' | translate }}</span>
+        </a>
+        <div id="collapseLoss" class="collapse" aria-labelledby="headingLoss" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+            @if(tienePermiso('merma', 'tipo_merma', 1)){
+              <a class="collapse-item" [routerLink]="MOD_MERMA_PAGE_TIPOS">{{ 'mod-merma.BUTTON_TYPE' | translate}}</a>
+            }
+            @if(tienePermiso('merma', 'registro_merma', 1)){
+              <a class="collapse-item" [routerLink]="MOD_MERMA_PAGE_REGISTRO">{{ 'mod-merma.BUTTON_RECORD' | translate}}</a>
+            }
+            @if(tienePermiso('merma', 'historico_merma', 1)){
+              <a class="collapse-item" [routerLink]="MOD_MERMA_PAGE_HISTORICO">{{ 'mod-merma.BUTTON_HISTORY' | translate}}</a>
+            }
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
+    }
 
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAlert" aria-expanded="true"
-        aria-controls="collapseAlert">
-        <i class="bg_side_icon fa fa-bell" aria-hidden="true"></i>
-        <span class="bg_side_text">{{ 'mod-main.PAGES_ALERTS' | translate }}</span>
-      </a>
-      <div id="collapseAlert" class="collapse" aria-labelledby="headingAlert" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-          <a class="collapse-item" [routerLink]="MOD_ALERT_PAGE_EXPIRATION">{{ 'mod-alerts.BUTTON_EXPIRATION' |
-            translate }}</a>
-          <a class="collapse-item" [routerLink]="MOD_ALERT_PAGE_STOCK">{{ 'mod-alerts.BUTTON_STOCK' | translate }}</a>
+
+    @if(tienePermiso('alertas', '', 0)){
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAlert" aria-expanded="true"
+          aria-controls="collapseAlert">
+          <i class="bg_side_icon fa fa-bell" aria-hidden="true"></i>
+          <span class="bg_side_text">{{ 'mod-main.PAGES_ALERTS' | translate }}</span>
+        </a>
+        <div id="collapseAlert" class="collapse" aria-labelledby="headingAlert" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+            @if(tienePermiso('alertas', 'alerta_caducidad', 1)){
+              <a class="collapse-item" [routerLink]="MOD_ALERT_PAGE_EXPIRATION">{{ 'mod-alerts.BUTTON_EXPIRATION' |
+              translate }}</a>
+            }
+            @if(tienePermiso('alertas', 'alerta_stock', 1)){
+              <a class="collapse-item" [routerLink]="MOD_ALERT_PAGE_STOCK">{{ 'mod-alerts.BUTTON_STOCK' | translate }}</a>
+            }
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
+    }
 
     <hr class="sidebar-divider bg-line-separator-customer d-none d-md-block">
 

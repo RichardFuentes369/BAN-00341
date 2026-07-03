@@ -33,6 +33,7 @@ import { MOD_USER_PAGE_ADMIN, MOD_USER_PAGE_FINAL } from '@mod/users/const/users
 import { MOD_CATEGORY_PAGE_BRAND, MOD_CATEGORY_PAGE_EXTENT, MOD_CATEGORY_PAGE_PRODUCT, MOD_CATEGORY_PAGE_SUPPLIER } from '@mod/catalog/const/catalog.const';
 import { MOD_MERMA_PAGE_HISTORICO, MOD_MERMA_PAGE_REGISTRO, MOD_MERMA_PAGE_TIPOS } from '@mod/merma/const/loss.conts';
 import { MOD_ALERT_PAGE_EXPIRATION, MOD_ALERT_PAGE_STOCK } from '@mod/alerts/const/alerts.const';
+import { PermisosService } from '@service/globales/permisos/permisos.service';
 
 @Component({
   selector: 'app-layout-admin',
@@ -91,7 +92,8 @@ export class AdminComponent implements OnInit {
     private userService: AuthService,
     private principalService: PrincipalService,
     private translate: TranslateService,
-    private settingsService: SettingsService
+    private settingsService: SettingsService,
+    private permisosService :PermisosService
   ) { }
 
   minimizarSliderbar: boolean = false;
@@ -100,11 +102,18 @@ export class AdminComponent implements OnInit {
   firstName: string = ''
   lastName: string = ''
 
+  menu: any[] = []
+
   async ngOnInit() {
     this.ejecutarInitReal()
     this.settingsService.refreshAction$.subscribe(() => {
       this.ejecutarInitReal()
     });
+
+
+    const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH)
+    const response = await this.permisosService.listaPermisos(userData.data.id)
+    this.menu = response.data
   }
 
   async ejecutarInitReal() {
@@ -132,5 +141,25 @@ export class AdminComponent implements OnInit {
 
   mostrarMenuLateral() {
     this.minimizarSliderbar = !this.minimizarSliderbar
+  }
+
+  tienePermiso(modulo: string, submodulo?: string, jerarquia: number = 0): boolean {
+    // Buscamos el objeto del módulo padre
+    const moduloPadre = this.menu.find(p => p.mpm_permiso === modulo);
+
+    // Si no existe el módulo, no tiene permisos
+    if (!moduloPadre || moduloPadre.asignado !== 1) {
+      return false;
+    }
+
+    // Si la jerarquía es 0, ya validamos el padre arriba
+    if (jerarquia === 0) {
+      return true;
+    }
+
+    // Si la jerarquía es 1, validamos el hijo
+    return moduloPadre.children?.some(
+      (hijo: any) => hijo.mpm_permiso === submodulo && hijo.asignado === 1
+    ) ?? false;
   }
 }
