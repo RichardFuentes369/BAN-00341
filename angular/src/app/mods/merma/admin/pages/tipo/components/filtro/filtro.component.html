@@ -1,10 +1,10 @@
 <div class="">
     <div class="col-xl col-sm-12 card pl-0 pr-0 pt-3 pb-4">
         <input type="text" class="d-none complementoRuta" value="">
-        <div class="col-sm-12">
-            <label for="exampleInputEmail1">
+        <div class="col-sm-12 mb-2">
+            <span for="exampleInputEmail1">
                 {{ 'mod-merma.TYPE.LABEL_NAME_TYPE' | translate}}
-            </label>
+            </span>
             <input type="text" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.nombre" aria-describedby="emailHelp" placeholder="{{ 'mod-merma.TYPE.PLACEHOLDER_NAME_TYPE' | translate}}">
         </div>
         <button class="d-none limpiarS" (click)="limpiar()"></button>

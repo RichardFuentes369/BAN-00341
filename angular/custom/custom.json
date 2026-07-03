@@ -82,12 +82,15 @@
     },
     "search": {
       "button_background_color": "#0A18F5",
+      "body_color_text": "#000000",
+      "back_color_background": "#EDEDED",
       "icon_background_color": "#FFFFFF",
       "head_text_color": "#FFFFFF",
       "head_background_color": "#0A18F5"
     },
     "report": {
-      "button_background_color": "#0A18F5",
+      "button_background_color": "#469443",
+      "back_color_background": "#EDEDED",
       "icon_background_color": "#FFFFFF",
       "head_text_color": "#FFFFFF",
       "head_background_color": "#0A18F5"
@@ -176,13 +179,16 @@
       "footer_background_color": "#1F1E1E"
     },
     "search": {
-      "button_background_color": "#111827",
+      "button_background_color": "#0A18F5",
+      "body_color_text": "#FFFFFF",
+      "back_color_background": "#948F8F",
       "icon_background_color": "#FFFFFF",
       "head_text_color": "#FFFFFF",
       "head_background_color": "#111827"
     },
     "report": {
-      "button_background_color": "#111827",
+      "button_background_color": "#469443",
+      "back_color_background": "#948F8F",
       "icon_background_color": "#FFFFFF",
       "head_text_color": "#FFFFFF",
       "head_background_color": "#111827"

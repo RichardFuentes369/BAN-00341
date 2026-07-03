@@ -1,34 +1,34 @@
 <div class="">
     <div class="col-xl col-sm-12 card pl-0 pr-0 pt-3 pb-4">
         <input type="text" class="d-none complementoRuta" value="">
-        <div class="col-sm-12">
-            <label for="exampleInputEmail1">
+        <div class="col-sm-12 mb-2">
+            <span class="" for="exampleInputEmail1">
                 {{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate}}
-            </label>
+            </span>
             <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.nombre" aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_NAME_PRODUCT' | translate}}">
         </div>
-        <div class="col-sm-12">
-            <label for="exampleInputEmail1">
+        <div class="col-sm-12 mb-2">
+            <span class="" for="exampleInputEmail1">
                 {{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate}}
-            </label>
+            </span>
             <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.marca" aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_BRAND_PRODUCT' | translate}}">
         </div>
-        <div class="col-sm-12">
-            <label for="exampleInputEmail1">
+        <div class="col-sm-12 mb-2">
+            <span class="" for="exampleInputEmail1">
                 {{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate}}
-            </label>
+            </span>
             <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.codigo_barra" aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate}}">
         </div>
-        <div class="col-sm-12">
-            <label for="exampleInputEmail1">
+        <div class="col-sm-12 mb-2">
+            <span class="" for="exampleInputEmail1">
                 {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_STOCK' | translate}}
-            </label>
+            </span>
             <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.stock_minimo" aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate}}">
         </div>
-        <div class="col-sm-12">
-            <label for="exampleInputEmail1">
+        <div class="col-sm-12 mb-2">
+            <span class="" for="exampleInputEmail1">
                 {{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate}}
-            </label>
+            </span>
             <select class="form-control custom-select form-select-sm" [(ngModel)]="model.unidad_medida">
               <option value="">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION' | translate }}</option>
               <option *ngFor="let medida of medidas" [value]="medida.nombre">

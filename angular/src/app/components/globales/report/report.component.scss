@@ -106,5 +106,9 @@
   }
 
   .icon_color {
-    color: var(--search-icon_background_color);
+    color: var(--report-icon_background_color);
+  }
+
+  .custom-bg {
+    background-color: var(--report-back_color_background);
   }

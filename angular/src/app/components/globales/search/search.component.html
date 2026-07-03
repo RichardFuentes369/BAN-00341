@@ -8,7 +8,7 @@
     </button>
   </span>
 
-  <div class="animated-card" [class.is-visible]="isFilterVisible">
+  <div class="animated-card custom-bg shadow-lg" [class.is-visible]="isFilterVisible">
     <button class="btn-close-card" (click)="$event.stopPropagation(); closeFilterEraser()">
       <i class="fa fa-times"></i>
     </button>
@@ -20,13 +20,23 @@
       <div class="container mt-2">
         <div #contenedorFilter></div>
       </div>
-      <div class="container mt-3 mb-2">
-        <button (click)="clearFilter()" class="btn btn-sm btn-secondary">
-          {{ 'global-search.BUTTON_CLEAR' | translate }}
-        </button>
-        <button (click)="actionFilter()" class="btn btn-sm btn-primary ms-2">
-          {{ 'global-search.BUTTON_FILTER' | translate }}
-        </button>
+      <div class="container mt-2 mb-2">
+        <div class="card shadow-sm">
+          <div class="d-flex justify-content-center align-items-center py-2">
+            <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-search.BUTTON_CLEAR' | translate">
+              <button (click)="clearFilter()" class="btn btn-sm btn-secondary rounded-circle mx-1">
+                <i class="fa fa-eraser"></i>
+                <!-- {{ 'global-search.BUTTON_CLEAR' | translate }} -->
+              </button>
+            </span>
+            <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-search.BUTTON_FILTER' | translate">
+              <button (click)="actionFilter()" class="btn btn-sm btn-primary  rounded-circle mx-1">
+                <i class="fa fa-filter"></i>
+                <!-- {{ 'global-search.BUTTON_FILTER' | translate }} -->
+              </button>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
