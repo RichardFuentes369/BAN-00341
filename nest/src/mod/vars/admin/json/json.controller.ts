@@ -89,4 +89,24 @@ export class JsonController {
   ) {
     return this.jsonService.contadorVariables(lang);
   }
+
+  @Get('getJson')
+  async getVar(
+    @Query('name') name: string
+  ) {
+    return this.jsonService.getJson(name);
+  }
+
+  @UseGuards(AdminGuard)
+  @Post('actualizar-ip-socket-barcode')
+  async ipSocket() {
+    return this.jsonService.actualizarIpSocket();
+  }
+
+  @Get('getJson')
+  async getJson(
+    @Query('name') name: string
+  ) {
+    return this.jsonService.getJson(name);
+  }
 }

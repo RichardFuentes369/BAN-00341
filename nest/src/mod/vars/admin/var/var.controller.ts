@@ -89,4 +89,11 @@ export class VarController {
   ) {
     return this.varService.contadorVariables(lang);
   }
+
+  @Get('getVar')
+  async getVar(
+    @Query('name') name: string
+  ) {
+    return this.varService.getVar(name);
+  }
 }

@@ -6,7 +6,7 @@
       <div class="sidebar-brand-icon rotate-n-15">
         <i class="bg_side_icon fas fa-fw fa-tachometer-alt"></i>
       </div>
-      <div class="sidebar-brand-text mx-3">{{NAME_PAGE}}</div>
+      <div class="sidebar-brand-text mx-3">{{nameApp}}</div>
     </a>
 
     <hr class="sidebar-divider bg-line-separator-customer mb-0">
@@ -146,11 +146,19 @@
   <div id="content-wrapper" class="d-flex flex-column">
     <div id="content-scroll-area">
 
-      <nav class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar static-top sticky-top pl-2 pr-2 shadow">
+      <nav class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar static-top sticky-top pl-2 pr-2 shadow h-auto">
         <ul class="navbar-nav mr-auto nav-vertical-wrapper">
           <app-globales-breadcrumbs></app-globales-breadcrumbs>
         </ul>
         <ul class="navbar-nav ml-auto">
+          <div class="topbar-divider d-none d-sm-block"></div>
+          <li class="nav-item dropdown no-arrow my-auto text-center mr-1">
+            <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'Ip local'">
+              <button class="btn btn-sm  rounded-circle mx-1 text-white" (click)="ipCopy()">
+                IP
+              </button>
+            </span>
+          </li>
           <div class="topbar-divider d-none d-sm-block"></div>
           <li class="nav-item dropdown no-arrow my-auto text-center mr-1">
             <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
@@ -187,6 +195,7 @@
           </li>
         </ul>
       </nav>
+
 
       <div id="content" class="container-fluid">
         <div class="p-1 mt-4">

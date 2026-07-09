@@ -1,10 +1,13 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException, UseGuards } from '@nestjs/common';
 import { CreateJsonDto } from './dto/create-json.dto';
 import { UpdateJsonDto } from './dto/update-json.dto';
 import { I18nService } from 'nestjs-i18n';
 import { In, IsNull, Repository } from 'typeorm';
 import { Json } from './entities/json.entity';
 import { PaginationDto } from '@global/dto/pagination.dto';
+import { execSync, spawn } from 'child_process';
+import * as os from 'os';
+
 
 @Injectable()
 export class JsonService {
@@ -84,7 +87,7 @@ export class JsonService {
     name: string,
   ) {
     return this.moduloRepository.findOne({
-      where: [ {nombre : name}],
+      where: [{ nombre: name }],
       order: { id: 'DESC' }
     });
   }
@@ -94,7 +97,7 @@ export class JsonService {
     id: number
   ) {
     return this.moduloRepository.findOne({
-      where: [ {id : id}],
+      where: [{ id: id }],
       order: { id: 'DESC' }
     });
   }
@@ -103,15 +106,15 @@ export class JsonService {
     lang: string,
     createJsonDto: CreateJsonDto,
     userId: number
-  ){
+  ) {
     try {
 
       const encontrarVariable = await this.findName(createJsonDto.nombre)
 
-      if(encontrarVariable) throw new NotFoundException(
+      if (encontrarVariable) throw new NotFoundException(
         this.i18n.t('user.MSJ_ERROR_USER_EXIST', { lang, args: { nombre: createJsonDto.nombre } })
-      )      
-  
+      )
+
       this.moduloRepository.save(createJsonDto);
       return {
         'title': this.i18n.t('user.MSJ_USUARIO_TITTLE', { lang }),
@@ -130,8 +133,8 @@ export class JsonService {
   }
 
   async update(
-    lang: string, 
-    id: number, 
+    lang: string,
+    id: number,
     updateJsonDto: UpdateJsonDto,
     userId: number
   ) {
@@ -139,17 +142,17 @@ export class JsonService {
       where: { id }
     });
 
-    if(updateJsonDto.nombre){
-      if(updateJsonDto.nombre != property.nombre){
-  
+    if (updateJsonDto.nombre) {
+      if (updateJsonDto.nombre != property.nombre) {
+
         let concidencia = await this.moduloRepository.findOne({
-          where: [ {nombre : updateJsonDto.nombre}]
+          where: [{ nombre: updateJsonDto.nombre }]
         });
-        
-        if(concidencia) throw new NotFoundException(
+
+        if (concidencia) throw new NotFoundException(
           this.i18n.t('user.MSJ_ERROR_USER_EXIST', { lang, args: { correo: updateJsonDto.nombre } })
         )
-        
+
       }
     }
 
@@ -164,18 +167,57 @@ export class JsonService {
     id: number[],
     userId: number
   ) {
-    return this.moduloRepository.delete({id: In(id)})
+    return this.moduloRepository.delete({ id: In(id) })
   }
 
   async contadorVariables(
     lang: string
-  ){
-    const cont1 =  await this.moduloRepository.count()
-    
+  ) {
+    const cont1 = await this.moduloRepository.count()
+
     const data = {
       "count_total_json": cont1
     }
 
     return data
   }
+
+  async getJson(name: string) {
+    return this.moduloRepository.findOne({
+      where: [{ nombre: name }]
+    });
+  }
+
+  async actualizarIpSocket() {
+    const nets = os.networkInterfaces();
+    let localIp = 'No encontrada';
+
+    for (const name of Object.keys(nets)) {
+      for (const net of nets[name]) {
+        if (net.family === 'IPv4' && !net.internal) {
+          localIp = net.address;
+          break;
+        }
+      }
+    }
+
+    const property = await this.moduloRepository.findOne({
+      where: [{ nombre: 'socket_barcode' }]
+    });
+
+    let config = JSON.parse(property.valor);
+
+    if (typeof config === 'string') {
+      config = JSON.parse(config);
+    }
+
+    config.ip_socket_barcode = nets.wlp2s0[0].address;
+
+    property.valor = JSON.stringify(config);
+
+    await this.moduloRepository.save(property);
+
+    return nets.wlp2s0[0].address;
+  }
+
 }

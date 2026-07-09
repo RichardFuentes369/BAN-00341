@@ -5,7 +5,6 @@ import { I18nService } from 'nestjs-i18n';
 import { In, Repository } from 'typeorm';
 import { Var } from './entities/var.entity';
 import { PaginationDto } from '@global/dto/pagination.dto';
-
 @Injectable()
 export class VarService {
   constructor(
@@ -85,7 +84,7 @@ export class VarService {
     name: string,
   ) {
     return this.moduloRepository.findOne({
-      where: [ {nombre : name}],
+      where: [{ nombre: name }],
       order: { id: 'DESC' }
     });
   }
@@ -95,7 +94,7 @@ export class VarService {
     id: number
   ) {
     return this.moduloRepository.findOne({
-      where: [ {id : id}],
+      where: [{ id: id }],
       order: { id: 'DESC' }
     });
   }
@@ -104,15 +103,15 @@ export class VarService {
     lang: string,
     createVarDto: CreateVarDto,
     userId: number
-  ){
+  ) {
     try {
 
       const encontrarVariable = await this.findName(createVarDto.nombre)
 
-      if(encontrarVariable) throw new NotFoundException(
+      if (encontrarVariable) throw new NotFoundException(
         this.i18n.t('user.MSJ_ERROR_USER_EXIST', { lang, args: { nombre: createVarDto.nombre } })
-      )      
-  
+      )
+
       this.moduloRepository.save(createVarDto);
       return {
         'title': this.i18n.t('user.MSJ_USUARIO_TITTLE', { lang }),
@@ -131,8 +130,8 @@ export class VarService {
   }
 
   async update(
-    lang: string, 
-    id: number, 
+    lang: string,
+    id: number,
     updateVarDto: UpdateVarDto,
     userId: number
   ) {
@@ -140,17 +139,17 @@ export class VarService {
       where: { id }
     });
 
-    if(updateVarDto.nombre){
-      if(updateVarDto.nombre != property.nombre){
-  
+    if (updateVarDto.nombre) {
+      if (updateVarDto.nombre != property.nombre) {
+
         let concidencia = await this.moduloRepository.findOne({
-          where: [ {nombre : updateVarDto.nombre}]
+          where: [{ nombre: updateVarDto.nombre }]
         });
-        
-        if(concidencia) throw new NotFoundException(
+
+        if (concidencia) throw new NotFoundException(
           this.i18n.t('user.MSJ_ERROR_USER_EXIST', { lang, args: { correo: updateVarDto.nombre } })
         )
-        
+
       }
     }
 
@@ -165,18 +164,24 @@ export class VarService {
     id: number[],
     userId: number
   ) {
-    return this.moduloRepository.delete({id: In(id)})
+    return this.moduloRepository.delete({ id: In(id) })
   }
 
   async contadorVariables(
     lang: string
-  ){
-    const cont1 =  await this.moduloRepository.count()
-    
+  ) {
+    const cont1 = await this.moduloRepository.count()
+
     const data = {
       "count_total_var": cont1
     }
 
     return data
+  }
+
+  async getVar(name: string){
+    return this.moduloRepository.findOne({
+      where: [{ nombre: name }]
+    });
   }
 }

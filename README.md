@@ -66,3 +66,8 @@ npx expo start -c   (inicio expo)
 eas build -p android --profile preview  (en la nube de expo)
 eas build -p android --profile preview --local (en mi local)
 ssh -p 443 -R0:localhost:3000 a.pinggy.io (abro el tunnel)
+
+
+// generar ejecutable
+npm i
+pkg ./ejecutable_code.js --targets node16-win-x64,node16-linux-x64,node16-macos-x64 --output dist/tunel

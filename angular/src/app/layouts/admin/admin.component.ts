@@ -34,6 +34,9 @@ import { MOD_CATEGORY_PAGE_BRAND, MOD_CATEGORY_PAGE_EXTENT, MOD_CATEGORY_PAGE_PR
 import { MOD_MERMA_PAGE_HISTORICO, MOD_MERMA_PAGE_REGISTRO, MOD_MERMA_PAGE_TIPOS } from '@mod/merma/const/loss.conts';
 import { MOD_ALERT_PAGE_EXPIRATION, MOD_ALERT_PAGE_STOCK } from '@mod/alerts/const/alerts.const';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
+import Swal from 'sweetalert2';
+import { VarService } from '@mod/vars/admin/pages/var/service/var.service';
+import { VarsService } from '@service/globales/vars/vars.service';
 
 @Component({
   selector: 'app-layout-admin',
@@ -93,12 +96,15 @@ export class AdminComponent implements OnInit {
     private principalService: PrincipalService,
     private translate: TranslateService,
     private settingsService: SettingsService,
-    private permisosService :PermisosService
+    private permisosService :PermisosService,
+    private varService :VarService,
+    private varsService: VarsService
   ) { }
 
   minimizarSliderbar: boolean = false;
   nombreModulo: string = '';
 
+  nameApp: string = ''
   firstName: string = ''
   lastName: string = ''
 
@@ -110,7 +116,11 @@ export class AdminComponent implements OnInit {
       this.ejecutarInitReal()
     });
 
-
+    const response1 = await this.varsService.obtenerVar('AppName') as any;
+    if (response1?.data?.valor) {
+      this.nameApp = response1.data.valor;
+    }
+    
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH)
     const response = await this.permisosService.listaPermisos(userData.data.id)
     this.menu = response.data
@@ -131,6 +141,33 @@ export class AdminComponent implements OnInit {
 
   idiomaCambiar(valor: string) {
     this.translate.use(valor)
+  }
+
+  async ipCopy(){
+    let endPoint = this.varService
+    const response = await endPoint.actualizarIpSocketBarcode()
+    if(response.data.status == 404){
+      Swal.fire({
+        title: response.data.message,
+        text: response.data.error,
+        icon: 'error',
+        confirmButtonText: 'Cool'
+      })
+    }
+
+    await navigator.clipboard.writeText(response.data);
+
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: `Ip ${response.data} copiada con exito`,
+      showConfirmButton: false,
+      timer: 1500
+    });
+
+    // console.log('actualizo la variable en base de datos')
+    // console.log('actualizo la variable para usar el socket')
+    // console.log('copio en un portapapeles para pegarla en cualquier otro lado')
   }
 
   cerrarSession() {

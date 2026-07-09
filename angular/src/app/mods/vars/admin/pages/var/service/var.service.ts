@@ -55,6 +55,10 @@ export class VarService {
     })
   }
 
+  async editVar(data: any){
+    
+  }
+
   async deleteVar(id: string[]) {
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'var/eliminar-var-var/'
@@ -87,6 +91,26 @@ export class VarService {
         [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
       },
       method: 'get',
+      url: urlCopleta,
+      params: {
+        lang: lang,
+      }
+    })
+  }
+
+  async actualizarIpSocketBarcode(){
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = `json/actualizar-ip-socket-barcode`
+    let urlCopleta = environment.apiUrl+complemento
+
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
+    return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
+      method: 'post',
       url: urlCopleta,
       params: {
         lang: lang,

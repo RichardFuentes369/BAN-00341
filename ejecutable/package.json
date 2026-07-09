@@ -1,0 +1,5 @@
+{
+  "name": "ejecutable",
+  "version": "1.0.0",
+  "bin": "ejecutable_code.js"
+}
