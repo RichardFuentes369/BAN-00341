@@ -13,7 +13,7 @@
 
     <li class="nav-item">
       <a class="nav-link" [routerLink]="LAYOUT_ADMIN_PAGE_MENU">
-        <i class="bg_side_icon fa fa-bars" aria-hidden="true"></i>
+        <i class="bg_side_icon fa fa-th" aria-hidden="true"></i>
         <span class="bg_side_text">{{ 'mod-main.PAGES_MENU' | translate }}</span>
       </a>
     </li>
@@ -137,7 +137,7 @@
 
     <hr class="sidebar-divider bg-line-separator-customer d-none d-md-block">
 
-    <div class="text-center d-none d-md-inline">
+    <div class="text-center d-none d-md-inline mt-xl-auto">
       <button class="rounded-circle border-0" id="sidebarToggle" (click)="mostrarMenuLateral()"></button>
     </div>
 
@@ -148,18 +148,14 @@
 
       <nav class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar static-top sticky-top pl-2 pr-2 shadow h-auto">
         <ul class="navbar-nav mr-auto nav-vertical-wrapper">
+
+          <span class="my-auto m-3" (click)="mostrarMenuLateral()" style="cursor: pointer;">
+            <i class="fa fa-bars text_nickname mt-1"></i>
+          </span>
+
           <app-globales-breadcrumbs></app-globales-breadcrumbs>
         </ul>
         <ul class="navbar-nav ml-auto">
-          <div class="topbar-divider d-none d-sm-block"></div>
-          <li class="nav-item dropdown no-arrow my-auto text-center mr-1">
-            <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'Ip local'">
-              <button class="btn btn-sm  rounded-circle mx-1 text-white" (click)="ipCopy()">
-                IP
-              </button>
-            </span>
-          </li>
-          <div class="topbar-divider d-none d-sm-block"></div>
           <li class="nav-item dropdown no-arrow my-auto text-center mr-1">
             <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
           </li>
@@ -171,11 +167,12 @@
           <li class="nav-item dropdown no-arrow my-auto text-center ">
             <a class="nav-link dropdown-toggle h-100" id="userDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
-              <span class="mr-2 d-none d-lg-inline small text_nickname">
+              <img class="img-profile rounded-circle" src="../../../assets/images/undraw_profile.svg">
+              <span class="ml-3 mr-2 d-none d-lg-inline small text_nickname">
                 {{firstName}} <br>
                 {{lastName}}
               </span>
-              <img class="img-profile rounded-circle" src="../../../assets/images/undraw_profile.svg">
+              <i class="ml-2 fa fa-chevron-down text_nickname"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
               <a class="dropdown-item" routerLinkActive="active" [routerLink]="LAYOUT_PAGE_PROFILE">
