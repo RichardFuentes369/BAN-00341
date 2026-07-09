@@ -1,54 +1,75 @@
 const { execSync, spawn } = require('child_process');
 const os = require('os');
+const readline = require('readline');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+const preguntarHost = () => {
+    return new Promise((resolve) => {
+        console.log('\nSelecciona el tipo de host:');
+        console.log('1) localhost');
+        console.log('2) Otro dominio/IP');
+        rl.question('Opción: ', (opcion) => {
+            if (opcion.trim() === '1') {
+                resolve('localhost');
+            } else if (opcion.trim() === '2') {
+                rl.question('Introduce el dominio o IP: ', (host) => {
+                    resolve(host.trim());
+                });
+            } else {
+                console.log('⚠️ Opción no válida, usando localhost por defecto.');
+                resolve('localhost');
+            }
+        });
+    });
+};
+
+const preguntarPuerto = () => {
+    return new Promise((resolve) => {
+        rl.question('Introduce el puerto local (default 3000): ', (input) => {
+            resolve(input.trim() || '3000');
+        });
+    });
+};
 
 async function main() {
     const platform = os.platform();
     console.log(`Detectado: ${platform}`);
 
-    // 1. Verificación de SSH
+    // 1. Obtener host y puerto
+    const host = await preguntarHost();
+    const puerto = await preguntarPuerto();
+    rl.close();
+
+    // 2. Verificación de SSH
     try {
         execSync('ssh -V', { stdio: 'ignore' });
-        console.log('✅ SSH detectado correctamente.');
+        console.log('✅ SSH detectado.');
     } catch (e) {
-        console.error('❌ SSH no encontrado. Por favor, asegúrate de tener instalado "openssh-client".');
+        console.error('❌ SSH no encontrado.');
         process.exit(1);
     }
 
-    // 2. Lanzar el túnel
-    console.log('🚀 Iniciando túnel hacia pinggy.io...');
+    // 3. Lanzar túnel
+    console.log(`🚀 Iniciando túnel para ${host}:${puerto} hacia pinggy.io...`);
     console.log('--------------------------------------');
 
-    /**
-     * Usamos stdio: 'inherit' para que todo lo que diga el proceso 
-     * de SSH aparezca directamente en tu terminal sin filtros.
-     * Esto evita que el ejecutable de 'pkg' se congele.
-     */
     const tunnel = spawn('ssh', [
         '-p', '443', 
         '-o', 'ServerAliveInterval=30',
         '-o', 'StrictHostKeyChecking=no', 
-        '-R0:localhost:3000', 
+        `-R0:${host}:${puerto}`, 
         'a.pinggy.io'
     ], {
         stdio: 'inherit'
     });
 
-    // Manejo de errores en caso de que el proceso SSH no pueda ni siquiera iniciarse
-    tunnel.on('error', (err) => {
-        console.error('\n❌ Error crítico al iniciar el proceso SSH:', err.message);
-    });
-
-    // Aviso si el túnel se cierra inesperadamente
     tunnel.on('close', (code) => {
-        if (code !== 0) {
-            console.log(`\n⚠️ El túnel se cerró inesperadamente con código: ${code}`);
-        } else {
-            console.log('\n✅ Túnel finalizado.');
-        }
+        if (code !== 0) console.log(`\n⚠️ Túnel cerrado con código: ${code}`);
     });
 }
 
-// Ejecutar
-main().catch((err) => {
-    console.error('Error fatal:', err);
-});
+main().catch((err) => console.error('Error fatal:', err));
