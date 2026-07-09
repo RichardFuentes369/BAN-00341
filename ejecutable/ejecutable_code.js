@@ -61,8 +61,13 @@ async function main() {
         '-p', '443', 
         '-o', 'ServerAliveInterval=30',
         '-o', 'StrictHostKeyChecking=no', 
+<<<<<<< HEAD
         '-R', `0:${host}:${puerto}`, 
         'tcp@a.pinggy.io'
+=======
+        '-R', `0:${host}:${puerto}`, // Nota: Separar el '-R' ayuda a evitar errores en Windows
+        'tcp@a.pinggy.io'            // 👈 AQUÍ: Agregamos 'tcp@' para que no use tu usuario local
+>>>>>>> 6dc83e9955086947dea1e25253f6431f32e1078d
     ], {
         stdio: 'inherit'
     });
