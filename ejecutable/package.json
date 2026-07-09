@@ -1,5 +1,10 @@
 {
-  "name": "ejecutable",
+  "name": "tunel-app",
   "version": "1.0.0",
-  "bin": "ejecutable_code.js"
+  "main": "ejecutable_code.js",
+  "bin": "ejecutable_code.js",
+  "pkg": {
+    "assets": [],
+    "targets": ["node16-win-x64", "node16-linux-x64", "node16-macos-x64"]
+  }
 }

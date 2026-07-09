@@ -61,8 +61,8 @@ async function main() {
         '-p', '443', 
         '-o', 'ServerAliveInterval=30',
         '-o', 'StrictHostKeyChecking=no', 
-        `-R0:${host}:${puerto}`, 
-        'a.pinggy.io'
+        '-R', `0:${host}:${puerto}`, 
+        'tcp@a.pinggy.io'
     ], {
         stdio: 'inherit'
     });
