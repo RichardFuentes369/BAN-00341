@@ -7,6 +7,21 @@
     background-color: var(--layout-index-header_color_background) !important;
   }
 
+  .bg_side_text, 
+  .bg_side_icon {
+    color: var(--layout-index-logo_color_icon_text) !important;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: color-mix(
+        in srgb, 
+        var(--layout-index-logo_color_icon_text), 
+        var(--layout-index-logo_color_hover_icon_text) 
+        var(--layout-index-logo_color_hover_amount)
+      ) !important;
+    }
+  }
+
   #content-wrapper {
     background-color: var(--layout-index-back_color_background) !important;
   }

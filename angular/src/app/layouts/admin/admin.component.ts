@@ -143,33 +143,6 @@ export class AdminComponent implements OnInit {
     this.translate.use(valor)
   }
 
-  async ipCopy(){
-    let endPoint = this.varService
-    const response = await endPoint.actualizarIpSocketBarcode()
-    if(response.data.status == 404){
-      Swal.fire({
-        title: response.data.message,
-        text: response.data.error,
-        icon: 'error',
-        confirmButtonText: 'Cool'
-      })
-    }
-
-    await navigator.clipboard.writeText(response.data);
-
-    Swal.fire({
-      position: "top-end",
-      icon: "success",
-      title: `Ip ${response.data} copiada con exito`,
-      showConfirmButton: false,
-      timer: 1500
-    });
-
-    // console.log('actualizo la variable en base de datos')
-    // console.log('actualizo la variable para usar el socket')
-    // console.log('copio en un portapapeles para pegarla en cualquier otro lado')
-  }
-
   cerrarSession() {
     localStorage.removeItem(STORAGE_KEY_TOKEN_ADMIN)
     localStorage.removeItem(STORAGE_KEY_TOKEN_FINAL)
