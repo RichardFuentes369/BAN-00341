@@ -3,10 +3,10 @@
     [ngClass]="minimizarSliderbar == false ? 'toggled': ''" id="accordionSidebar">
 
     <a class="sidebar-brand d-flex align-items-center justify-content-center" [routerLink]="LAYOUT_PAGE_DASHBOARD">
-      <div class="sidebar-brand-icon rotate-n-15">
+      <div class="sidebar-brand-icon rotate-n-15 text-center">
         <i class="bg_side_icon fas fa-fw fa-tachometer-alt"></i>
       </div>
-      <div class="sidebar-brand-text mx-3">{{nameApp}}</div>
+      <div class="sidebar-brand-text mx-3 bg_side_icon" [innerHTML]="nameApp"></div>
     </a>
 
     <hr class="sidebar-divider bg-line-separator-customer mb-0">

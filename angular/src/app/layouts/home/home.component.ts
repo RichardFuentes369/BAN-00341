@@ -7,6 +7,7 @@ import { filter } from 'rxjs/operators';
 
 import { NAME_PAGE, LAYOUT_HOME_PAGE_START, LAYOUT_HOME_PAGE_LOGIN_FINAL } from '@layout/const/layouts.const';
 import { ColormodeComponent } from '@component/globales/colormode/colormode.component';
+import { VarsService } from '@service/globales/vars/vars.service';
 
 @Component({
   selector: 'app-layout-home',
@@ -27,12 +28,15 @@ export class HomeComponent implements OnInit {
   public LAYOUT_HOME_PAGE_START = LAYOUT_HOME_PAGE_START;
   public LAYOUT_HOME_PAGE_LOGIN_FINAL = LAYOUT_HOME_PAGE_LOGIN_FINAL;
 
+  nameApp: string = ''
+  banner: string = ''
   isScrolled = false;
   showRouteIngreso: boolean = true;
 
   constructor(
     private translate: TranslateService, 
     private router: Router,
+    private varsService: VarsService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
@@ -51,13 +55,22 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.verificarRuta(this.router.url);
     this.router.events.pipe(
       filter((event: Event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
       this.verificarRuta(event.urlAfterRedirects);
     });
+
+    const response1 = await this.varsService.obtenerVar('AppName') as any;
+    if (response1?.data?.valor) {
+      this.nameApp = response1.data.valor;
+    }
+    const response2 = await this.varsService.obtenerVar('BannerBienvenida') as any;
+    if (response2?.data?.valor) {
+      this.banner = response2.data.valor;
+    }
   }
 
   private verificarRuta(url: string) {

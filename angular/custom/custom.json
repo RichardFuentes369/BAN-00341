@@ -15,6 +15,9 @@
         "background_color_card": "#FFFFFF",
         "background_color_card_menu": "#FAF5F5",
         "backg_color_textcard": "#000000",
+        "logo_color_icon_text": "rgba(255, 255, 255, 0.4)",
+        "logo_color_hover_icon_text": "#0b4a75",
+        "logo_color_hover_amount": 20,
         "footer_text_background": "#FFFFFF",
         "footer_color_background": "#878383"
       },
@@ -112,6 +115,9 @@
         "back_color_title": "#FFFFFF",
         "back_color_p": "#FFFFFF",
         "background_color_card": "#595454",
+        "logo_color_icon_text": "rgba(255, 255, 255, 0.4)",
+        "logo_color_hover_icon_text": "#0b4a75",
+        "logo_color_hover_amount": 20,
         "background_color_card_menu": "#EDEDED",
         "footer_text_background": "#FFFFFF",
         "footer_color_background": "#878383"
