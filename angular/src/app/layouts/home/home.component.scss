@@ -7,18 +7,13 @@
     background-color: var(--layout-index-header_color_background) !important;
   }
 
-  .bg_side_text, 
+  .bg_side_text,
   .bg_side_icon {
     color: var(--layout-index-logo_color_icon_text) !important;
     transition: color 0.3s ease;
 
     &:hover {
-      color: color-mix(
-        in srgb, 
-        var(--layout-index-logo_color_icon_text), 
-        var(--layout-index-logo_color_hover_icon_text) 
-        var(--layout-index-logo_color_hover_amount)
-      ) !important;
+      color: color-mix(in srgb, var(--layout-index-logo_color_icon_text), red 50%) !important;
     }
   }
 
@@ -33,4 +28,5 @@
   .text-custom-footer {
     color: var(--layout-index-footer_text_background) !important;
   }
+  
 }

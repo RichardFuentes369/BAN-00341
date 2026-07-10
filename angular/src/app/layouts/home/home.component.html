@@ -1,13 +1,22 @@
 <div id="wrapper">
   <div id="content-wrapper" class="d-flex flex-column u-final">
-
     <div class="fixed-top header-transition bg-gradient-header-custom" [class.header-compact]="isScrolled">
-      <nav class="container navbar navbar-expand navbar-light bg-gradient-header-custom my-md-n2 topbar static-top pl-2 pr-2">
+      <nav
+        class="container navbar navbar-expand navbar-light bg-gradient-header-custom my-md-n2 topbar static-top pl-2 pr-2">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link text-white" [routerLink]="LAYOUT_HOME_PAGE_START">
-              <i class="bg_side_icon fas fa-fw fa-tachometer-alt"></i>
-              <div class="sidebar-brand-text mx-3 text-center font-weight-bold bg_side_icon" [innerHTML]="nameApp"></div>
+            <a class="nav-link text-white d-flex align-items-center" [routerLink]="LAYOUT_HOME_PAGE_START">
+
+              <div class="bg-white rounded-5" style="position: relative; z-index: 1;">
+                <img src="assets/images/img_logo.png" alt="" width="50">
+              </div>
+
+              <div class="bg-white d-inline-block ml-n3 mr-3 rounded-bottom rounded-top" style="position: relative; z-index: 0;">
+                <span class="text-center font-weight-bold pl-2 bg_side_icon ml-2 mr-2  mt-1 mb-1" style="line-height: 0.9; display: block;"
+                  [innerHTML]="nameApp">
+                </span>
+              </div>
+
             </a>
           </li>
         </ul>
