@@ -1,0 +1,29 @@
+.card-custom {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: none;
+  background-color: var(--layout-index-background_color_card) !important;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.title-custom {
+  color: var(--layout-index-back_color_title) !important;
+  background-color: transparent;
+}
+
+.seccion {
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 { font-size: 2.5rem; margin-bottom: 40px; }
+}
+
+.p-custom {
+  color: var(--layout-index-back_color_p) !important;
+  background-color: transparent;
+}
