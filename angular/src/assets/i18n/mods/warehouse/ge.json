@@ -47,6 +47,7 @@
   "LABEL_COSTO_UNITARIO": "Stückkosten",
   "LABEL_PRECIO_VENTA_SUGERIDO": "Unverbindliche Preisempfehlung",
   "LABEL_ESTADO": "Status",
+  "LABEL_SORT": "Sortieren nach",
 
   "SELECT_SELECT_OPTION": "Auswählen", 
   "SELECT_AVAILABLE_OPTION": "Verfügbar", 

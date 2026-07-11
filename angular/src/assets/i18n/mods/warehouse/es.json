@@ -47,6 +47,7 @@
   "LABEL_COSTO_UNITARIO": "Costo unitario",
   "LABEL_PRECIO_VENTA_SUGERIDO": "Precio de venta sugerido",
   "LABEL_ESTADO": "Estado",
+  "LABEL_SORT": "Ordenar por",
 
   "SELECT_SELECT_OPTION": "Seleccionar", 
   "SELECT_AVAILABLE_OPTION": "Disponible", 

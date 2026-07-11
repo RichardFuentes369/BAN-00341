@@ -44,9 +44,12 @@
     "LABEL_BUSINESS_ADDRESS": "Bussiness Address",
     "LABEL_BUSSINESS_SORT": "Sort by",
 
-    "PLACEHOLDER_BUSINESS_NIT": "1000000005",
+    "PLACEHOLDER_BUSINESS_NIT": "Enter Tax ID number",
+    "PLACEHOLDER_BUSINESS_NAME": "Enter business or legal name",
+
+    "PLACEHOLDER_BUSINESS_NIT_F": "1000000005",
     "PLACEHOLDER_BUSINESS_DV": "Enter the verification digit",
-    "PLACEHOLDER_BUSINESS_NAME": "Exito s.a",
+    "PLACEHOLDER_BUSINESS_NAME_F": "Exito s.a",
     "PLACEHOLDER_BUSINESS_EMAIL": "example@company.com",
     "PLACEHOLDER_BUSINESS_PHONE": "e.g., +1 555 123 4567",
     "PLACEHOLDER_BUSINESS_ADDRESS": "Enter the primary business address",

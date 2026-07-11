@@ -43,9 +43,12 @@
     "LABEL_BUSINESS_ADDRESS": "Unternehmensadresse",
     "LABEL_BUSSINESS_SORT": "Sortieren nach",
 
-    "PLACEHOLDER_BUSINESS_NIT": "1000000005",
+
+    "PLACEHOLDER_BUSINESS_NIT": "Steuernummer eingeben",
+    "PLACEHOLDER_BUSINESS_NAME": "Firmenname oder rechtlichen Namen eingeben",
+    "PLACEHOLDER_BUSINESS_NIT_F": "1000000005",
     "PLACEHOLDER_BUSINESS_DV": "Prüfziffer eingeben",
-    "PLACEHOLDER_BUSINESS_NAME": "Exito s.a",
+    "PLACEHOLDER_BUSINESS_NAME_F": "Exito s.a",
     "PLACEHOLDER_BUSINESS_EMAIL": "beispiel@firma.de",
     "PLACEHOLDER_BUSINESS_PHONE": "z. B. +49 30 1234567",
     "PLACEHOLDER_BUSINESS_ADDRESS": "Geben Sie die Geschäftsadresse ein",

@@ -43,9 +43,12 @@
     "LABEL_BUSINESS_ADDRESS": "Adresse de l'entreprise",
     "LABEL_BUSSINESS_SORT": "Trier par",
 
-    "PLACEHOLDER_BUSINESS_NIT": "1000000005",
+    "PLACEHOLDER_BUSINESS_NIT": "Entrez le numéro d'identification fiscale",
+    "PLACEHOLDER_BUSINESS_NAME": "Entrez le nom de l'entreprise ou la raison sociale",
+
+    "PLACEHOLDER_BUSINESS_NIT_F": "1000000005",
     "PLACEHOLDER_BUSINESS_DV": "Entrez le chiffre de vérification",
-    "PLACEHOLDER_BUSINESS_NAME": "Exito s.a",
+    "PLACEHOLDER_BUSINESS_NAME_F": "Exito s.a",
     "PLACEHOLDER_BUSINESS_EMAIL": "exemple@entreprise.fr",
     "PLACEHOLDER_BUSINESS_PHONE": "Ex: +33 1 23 45 67 89",
     "PLACEHOLDER_BUSINESS_ADDRESS": "Entrez l'adresse du siège social",

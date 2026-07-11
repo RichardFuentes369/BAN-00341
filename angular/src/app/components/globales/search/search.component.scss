@@ -117,3 +117,9 @@
 .bgSearch {
   background-color: var(--search-back_color_background);
 }
+
+.scroll-container {
+  max-height: 300px; 
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}

@@ -47,6 +47,7 @@
   "LABEL_COSTO_UNITARIO": "Unit cost",
   "LABEL_PRECIO_VENTA_SUGERIDO": "Suggested retail price",
   "LABEL_ESTADO": "Status",
+  "LABEL_SORT": "Sort by",
 
   "SELECT_SELECT_OPTION": "Select", 
   "SELECT_AVAILABLE_OPTION": "Available", 

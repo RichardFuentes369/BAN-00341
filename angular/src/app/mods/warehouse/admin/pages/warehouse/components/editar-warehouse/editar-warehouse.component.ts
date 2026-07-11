@@ -289,7 +289,7 @@ export class EditarWarehouseComponent {
 
     if (this.validators.nit) {
       if (this.proveedor.nit != '') {
-        this.show_detail_provider = true
+        this.show_detail_provider = false
       } else {
         this.show_detail_provider = false
       }
