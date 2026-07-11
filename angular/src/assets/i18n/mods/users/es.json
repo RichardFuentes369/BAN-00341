@@ -47,6 +47,7 @@
   "LABEL_USER_EMAIL": "Correo",
   "LABEL_USER_PASSWORD": "Contraseña",
   "LABEL_USER_STATUS": "Estado",
+  "LABEL_USER_SORT": "Ordenar por",
 
   "PLACEHOLDER_USER_FIRSTNAME": "Juan Andres",
   "PLACEHOLDER_USER_LASTNAME": "Lozano Fonseca",
@@ -94,6 +95,9 @@
 
   "WORD_ACTIVED": "Activo",
   "WORD_INACTIVED": "Inactivo",
+  "COLUMN_ORDER": "Ordenar por",
+  "WORD_ASCENDING": "Ascendente",
+  "WORD_DESCENDING": "Descendente",
 
   "CONSOLE_ERROR_INVALID_TOKEN": "Token vacío o nulo detectado, limpiando...",
   "CONSOLE_MSJ_REDIRECTING_TO_ADMIN": "Redirigiendo a usuario administrador",

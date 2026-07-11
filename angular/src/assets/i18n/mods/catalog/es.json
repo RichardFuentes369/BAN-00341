@@ -15,6 +15,10 @@
   "BUTTON_BACK": "Volver",
   "BUTTON_SEARCH": "Buscar",
 
+  "WORD_SELECT_OPTION": "Seleccione",
+  "WORD_ASCENDING": "Ascendente",
+  "WORD_DESCENDING": "Descendente",
+
   "SUPPLIER": {
     "LEGEND_TITLE": "Datos del proveedor",
     "CREATE_TITLE": "Crear",
@@ -37,10 +41,11 @@
     "LABEL_BUSINESS_EMAIL": "Correo electrónico de la empresa",
     "LABEL_BUSINESS_PHONE": "Teléfono de la empresa",
     "LABEL_BUSINESS_ADDRESS": "Dirección de la empresa",
+    "LABEL_BUSSINESS_SORT": "Ordenar por",
     
-    "PLACEHOLDER_BUSINESS_NIT": "Ingrese el número de identificación tributaria",
+    "PLACEHOLDER_BUSINESS_NIT": "1000000005",
     "PLACEHOLDER_BUSINESS_DV": "Ingrese el dígito de verificación",
-    "PLACEHOLDER_BUSINESS_NAME": "Ingrese la razón social o nombre comercial",
+    "PLACEHOLDER_BUSINESS_NAME": "Exito s.a",
     "PLACEHOLDER_BUSINESS_EMAIL": "ejemplo@empresa.com",
     "PLACEHOLDER_BUSINESS_PHONE": "Ej: +57 300 123 4567",
     "PLACEHOLDER_BUSINESS_ADDRESS": "Ingrese la dirección física de la sede principal",

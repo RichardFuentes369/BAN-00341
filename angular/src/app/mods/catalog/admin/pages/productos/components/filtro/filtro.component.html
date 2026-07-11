@@ -1,42 +1,69 @@
 <div class="">
-    <div class="col-xl col-sm-12 card pl-0 pr-0 pt-3 pb-4">
-        <input type="text" class="d-none complementoRuta" value="">
-        <div class="col-sm-12 mb-2">
-            <span class="" for="exampleInputEmail1">
-                {{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate}}
-            </span>
-            <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.nombre" aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_NAME_PRODUCT' | translate}}">
-        </div>
-        <div class="col-sm-12 mb-2">
-            <span class="" for="exampleInputEmail1">
-                {{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate}}
-            </span>
-            <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.marca" aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_BRAND_PRODUCT' | translate}}">
-        </div>
-        <div class="col-sm-12 mb-2">
-            <span class="" for="exampleInputEmail1">
-                {{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate}}
-            </span>
-            <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.codigo_barra" aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate}}">
-        </div>
-        <div class="col-sm-12 mb-2">
-            <span class="" for="exampleInputEmail1">
-                {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_STOCK' | translate}}
-            </span>
-            <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.stock_minimo" aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate}}">
-        </div>
-        <div class="col-sm-12 mb-2">
-            <span class="" for="exampleInputEmail1">
-                {{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate}}
-            </span>
-            <select class="form-control custom-select form-select-sm" [(ngModel)]="model.unidad_medida">
-              <option value="">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION' | translate }}</option>
-              <option *ngFor="let medida of medidas" [value]="medida.nombre">
-                {{ medida.nombre }}
-              </option>
-            </select>
-        </div>
-        <button class="d-none limpiarS" (click)="limpiar()"></button>
-        <button class="d-none filtrar" (click)="filtrar()"></button>
+  <div class="col-xl col-sm-12 card pl-0 pr-0 pt-3 pb-4">
+    <input type="text" class="d-none complementoRuta" value="">
+    <div class="col-sm-12 mb-2">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate}}
+      </span>
+      <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.nombre"
+        aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_NAME_PRODUCT' | translate}}">
     </div>
+    <div class="col-sm-12 mb-2">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate}}
+      </span>
+      <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.marca"
+        aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_BRAND_PRODUCT' | translate}}">
+    </div>
+    <div class="col-sm-12 mb-2">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate}}
+      </span>
+      <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.codigo_barra"
+        aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate}}">
+    </div>
+    <div class="col-sm-12 mb-2">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_STOCK' | translate}}
+      </span>
+      <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.stock_minimo"
+        aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate}}">
+    </div>
+    <div class="col-sm-12 mb-2">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate}}
+      </span>
+      <select class="form-control custom-select form-select-sm" [(ngModel)]="model.unidad_medida">
+        <option value="">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION' | translate }}</option>
+        <option *ngFor="let medida of medidas" [value]="medida.nombre">
+          {{ medida.nombre }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-sm-12">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-catalog.SUPPLIER.LABEL_BUSSINESS_SORT' | translate}}
+      </span>
+      <div class="row">
+        <div class="col-sm">
+          <select name="" id="" class="form-control form-select-sm custom-select" [(ngModel)]="model.field">
+            <option value="">{{ 'mod-catalog.WORD_SELECT_OPTION' | translate}}</option>
+            <option value="id">{{ 'mod-catalog.PRODUCT.COLUMN_ID' | translate}}</option>
+            <option value="nombre">{{ 'mod-catalog.PRODUCT.COLUMN_NAME' | translate}}</option>
+            <option value="codigo_barra">{{ 'mod-catalog.PRODUCT.COLUMN_BAR_CODE' | translate}}</option>
+          </select>
+        </div>
+        <div class="col-sm">
+          <select name="" id="" class="form-control form-select-sm custom-select" [(ngModel)]="model.order">
+            <option value="">{{ 'mod-catalog.WORD_SELECT_OPTION' | translate}}</option>
+            <option value="asc">{{ 'mod-catalog.WORD_ASCENDING' | translate}}</option>
+            <option value="desc">{{ 'mod-catalog.WORD_DESCENDING' | translate}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <button class="d-none limpiarS" (click)="limpiar()"></button>
+    <button class="d-none filtrar" (click)="filtrar()"></button>
+  </div>
 </div>

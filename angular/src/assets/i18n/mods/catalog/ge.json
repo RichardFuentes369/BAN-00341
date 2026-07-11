@@ -15,6 +15,10 @@
   "BUTTON_BACK": "Zurück",
   "BUTTON_SEARCH": "Suchen",
 
+  "WORD_SELECT_OPTION": "Auswählen",
+  "WORD_ASCENDING": "Aufsteigend",
+  "WORD_DESCENDING": "Absteigend",
+
   "SUPPLIER": {
     "LEGEND_TITLE": "Lieferantendaten",
     "CREATE_TITLE": "Erstellen",
@@ -37,10 +41,11 @@
     "LABEL_BUSINESS_EMAIL": "Geschäftliche E-Mail",
     "LABEL_BUSINESS_PHONE": "Geschäftliche Telefonnummer",
     "LABEL_BUSINESS_ADDRESS": "Unternehmensadresse",
+    "LABEL_BUSSINESS_SORT": "Sortieren nach",
 
-    "PLACEHOLDER_BUSINESS_NIT": "Steuernummer eingeben",
+    "PLACEHOLDER_BUSINESS_NIT": "1000000005",
     "PLACEHOLDER_BUSINESS_DV": "Prüfziffer eingeben",
-    "PLACEHOLDER_BUSINESS_NAME": "Unternehmens- oder Firmenname eingeben",
+    "PLACEHOLDER_BUSINESS_NAME": "Exito s.a",
     "PLACEHOLDER_BUSINESS_EMAIL": "beispiel@firma.de",
     "PLACEHOLDER_BUSINESS_PHONE": "z. B. +49 30 1234567",
     "PLACEHOLDER_BUSINESS_ADDRESS": "Geben Sie die Geschäftsadresse ein",

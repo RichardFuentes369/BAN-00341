@@ -23,6 +23,8 @@ export class FiltroProductComponent {
     codigo_barra: '',
     stock_minimo: '',
     unidad_medida: '',
+    field: '',
+    order: ''
   }
 
   constructor(
@@ -40,6 +42,8 @@ export class FiltroProductComponent {
       codigo_barra: sessionStorage.getItem('codigo_barra') || '',
       stock_minimo: sessionStorage.getItem('stock_minimo') || '',
       unidad_medida: sessionStorage.getItem('unidad_medida') || '',
+      field: sessionStorage.getItem('field') || '',
+      order: sessionStorage.getItem('order') || ''
     }
 
     this.complementoFiltro = ''
@@ -58,6 +62,12 @@ export class FiltroProductComponent {
     if(this.model.unidad_medida != ''){
       this.complementoFiltro += `&unidad_medida=${this.model.unidad_medida}`
     }
+    if(this.model.field != ''){
+      this.complementoFiltro += `&field=${this.model.field}`      
+    }
+    if(this.model.order != ''){
+      this.complementoFiltro += `&order=${this.model.order}`      
+    }
     $(".complementoRuta").val(this.complementoFiltro)
   }
   
@@ -69,12 +79,16 @@ export class FiltroProductComponent {
     this.model.codigo_barra = ''
     this.model.stock_minimo = ''
     this.model.unidad_medida = ''
+    this.model.field = ''
+    this.model.order = ''
 
     sessionStorage.removeItem('nombre')
     sessionStorage.removeItem('marca')
     sessionStorage.removeItem('codigo_barra')
     sessionStorage.removeItem('stock_minimo')
     sessionStorage.removeItem('unidad_medida')
+    sessionStorage.removeItem('field')
+    sessionStorage.removeItem('order')
   }
   
   filtrar(){
@@ -85,6 +99,8 @@ export class FiltroProductComponent {
     sessionStorage.removeItem('codigo_barra')
     sessionStorage.removeItem('stock_minimo')
     sessionStorage.removeItem('unidad_medida')
+    sessionStorage.removeItem('field')
+    sessionStorage.removeItem('order')
 
     if(this.model.nombre != ''){
       this.complementoFiltro += `&nombre=${this.model.nombre}`
@@ -105,6 +121,14 @@ export class FiltroProductComponent {
     if(this.model.unidad_medida != ''){
       this.complementoFiltro += `&unidad_medida=${this.model.unidad_medida}`
       sessionStorage.setItem('unidad_medida', this.model.unidad_medida)
+    }
+    if(this.model.field != ''){
+      this.complementoFiltro += `&field=${this.model.field}`      
+      sessionStorage.setItem('field', this.model.field)
+    }
+    if(this.model.order != ''){
+      this.complementoFiltro += `&order=${this.model.order}`      
+      sessionStorage.setItem('order', this.model.order)
     }
     $(".complementoRuta").val(this.complementoFiltro)
   }

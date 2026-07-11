@@ -47,6 +47,7 @@
   "LABEL_USER_EMAIL": "Email address.",
   "LABEL_USER_PASSWORD": "Password.",
   "LABEL_USER_STATUS": "State", 
+  "LABEL_USER_SORT": "Sort by",
 
   "PLACEHOLDER_USER_FIRSTNAME": "Juan Andres", 
   "PLACEHOLDER_USER_LASTNAME": "Lozano Fonseca", 
@@ -92,6 +93,9 @@
   "COLUMN_STATUS": "Status",
   "WORD_ACTIVED": "Active",
   "WORD_INACTIVED": "Inactive",
+  "COLUMN_ORDER": "Order by",
+  "WORD_ASCENDING": "Ascending",
+  "WORD_DESCENDING": "Descending",
 
   "CONSOLE_ERROR_INVALID_TOKEN": "Empty or null token detected, clearing...",
   "CONSOLE_MSJ_REDIRECTING_TO": "",

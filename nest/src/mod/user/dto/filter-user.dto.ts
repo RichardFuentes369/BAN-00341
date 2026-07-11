@@ -20,7 +20,7 @@ export class FilterUserDto {
 
     @IsOptional()
     @IsString()
-    field?: string;
+    field: string;
 
     @IsOptional()
     @IsString()
