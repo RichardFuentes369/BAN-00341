@@ -17,7 +17,9 @@ export class FiltroUsuariosComponent implements OnInit {
     email: '',
     firstName: '',
     lastName: '',
-    isActive: ''
+    isActive: '',
+    field: '',
+    order: ''
   }
 
   async ngOnInit() {
@@ -25,7 +27,9 @@ export class FiltroUsuariosComponent implements OnInit {
       email: sessionStorage.getItem('email') || '',
       firstName: sessionStorage.getItem('firstName') || '',
       lastName: sessionStorage.getItem('lastName') || '',
-      isActive: sessionStorage.getItem('isActive') || ''
+      isActive: sessionStorage.getItem('isActive') || '',
+      field: sessionStorage.getItem('field') || '',
+      order: sessionStorage.getItem('order') || ''
     }
 
     this.complementoFiltro = ''
@@ -41,6 +45,12 @@ export class FiltroUsuariosComponent implements OnInit {
     if(this.model.isActive != ''){
       this.complementoFiltro += `&isActive=${this.model.isActive}`      
     }
+    if(this.model.field != ''){
+      this.complementoFiltro += `&field=${this.model.field}`      
+    }
+    if(this.model.order != ''){
+      this.complementoFiltro += `&order=${this.model.order}`      
+    }
     $(".complementoRuta").val(this.complementoFiltro)
   }
   
@@ -51,11 +61,15 @@ export class FiltroUsuariosComponent implements OnInit {
     this.model.firstName = ''
     this.model.lastName = ''
     this.model.isActive = ''
+    this.model.field = ''
+    this.model.order = ''
 
     sessionStorage.removeItem('email')
     sessionStorage.removeItem('firstName')
     sessionStorage.removeItem('lastName')
     sessionStorage.removeItem('isActive')
+    sessionStorage.removeItem('field')
+    sessionStorage.removeItem('order')
   }
   
   filtrar(){
@@ -65,6 +79,8 @@ export class FiltroUsuariosComponent implements OnInit {
     sessionStorage.removeItem('firstName')
     sessionStorage.removeItem('lastName')
     sessionStorage.removeItem('isActive')
+    sessionStorage.removeItem('field')
+    sessionStorage.removeItem('order')
 
     if(this.model.email != ''){
       this.complementoFiltro += `&email=${this.model.email}`
@@ -81,6 +97,14 @@ export class FiltroUsuariosComponent implements OnInit {
     if(this.model.isActive != ''){
       this.complementoFiltro += `&isActive=${this.model.isActive}`      
       sessionStorage.setItem('isActive', this.model.isActive)
+    }
+    if(this.model.field != ''){
+      this.complementoFiltro += `&field=${this.model.field}`      
+      sessionStorage.setItem('field', this.model.field)
+    }
+    if(this.model.order != ''){
+      this.complementoFiltro += `&order=${this.model.order}`      
+      sessionStorage.setItem('order', this.model.order)
     }
     $(".complementoRuta").val(this.complementoFiltro)
   }

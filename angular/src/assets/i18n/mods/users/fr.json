@@ -47,6 +47,7 @@
   "LABEL_USER_EMAIL": "Adresse e-mail.",
   "LABEL_USER_PASSWORD": "Mot de passe.",
   "LABEL_USER_STATUS": "État",
+  "LABEL_USER_SORT": "Trier par",
 
   "PLACEHOLDER_USER_FIRSTNAME": "Juan Andres",
   "PLACEHOLDER_USER_LASTNAME": "Lozano Fonseca",
@@ -93,6 +94,9 @@
 
   "WORD_ACTIVED": "Actif",
   "WORD_INACTIVED": "Inactif",
+  "COLUMN_ORDER": "Trier par",
+  "WORD_ASCENDING": "Croissant",
+  "WORD_DESCENDING": "Décroissant",
 
   "CONSOLE_ERROR_INVALID_TOKEN": "Jeton vide ou nul détecté, effacement en cours...",
   "CONSOLE_MSJ_REDIRECTING_TO": "",

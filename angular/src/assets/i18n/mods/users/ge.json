@@ -47,6 +47,7 @@
   "LABEL_USER_EMAIL": "E-Mail-Adresse.",
   "LABEL_USER_PASSWORD": "Passwort.",
   "LABEL_USER_STATUS": "Status",
+  "LABEL_USER_SORT": "Sortieren nach",
 
   "PLACEHOLDER_USER_FIRSTNAME": "Juan Andres",
   "PLACEHOLDER_USER_LASTNAME": "Lozano Fonseca",
@@ -94,6 +95,9 @@
 
   "WORD_ACTIVED": "Aktiv",
   "WORD_INACTIVED": "Inaktiv",
+  "COLUMN_ORDER": "Sortieren nach",
+  "WORD_ASCENDING": "Aufsteigend",
+  "WORD_DESCENDING": "Absteigend",
 
   "CONSOLE_ERROR_INVALID_TOKEN": "Leeres oder Null-Token erkannt, wird gelöscht...",
   "CONSOLE_MSJ_REDIRECTING_TO": "",

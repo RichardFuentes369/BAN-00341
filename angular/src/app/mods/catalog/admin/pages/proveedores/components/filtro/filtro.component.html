@@ -1,25 +1,53 @@
 <div class="">
-    <div class="col-xl col-sm-12 card pl-0 pr-0 pt-3 pb-4">
-        <input type="text" class="d-none complementoRuta" value="">
-        <div class="col-sm-12 mb-2">
-            <span class="" for="exampleInputEmail1">
-                {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}
-            </span>
-            <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.nit" aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}">
-        </div>
-        <div class="col-sm-12 mb-2">
-            <span class="" for="exampleInputEmail1">
-                {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NAME' | translate}}
-            </span>
-            <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.razon_social" aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NAME' | translate}}">
-        </div>
-        <div class="col-sm-12 mb-2">
-            <span class="" for="exampleInputEmail1">
-                {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_EMAIL' | translate}}
-            </span>
-            <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.correo" aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_EMAIL' | translate}}">
-        </div>
-        <button class="d-none limpiarS" (click)="limpiar()"></button>
-        <button class="d-none filtrar" (click)="filtrar()"></button>
+  <div class="col-xl col-sm-12 card pl-0 pr-0 pt-3 pb-4">
+    <input type="text" class="d-none complementoRuta" value="">
+    <div class="col-sm-12 mb-2">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}
+      </span>
+      <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.nit"
+        aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate}}">
     </div>
+    <div class="col-sm-12 mb-2">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NAME' | translate}}
+      </span>
+      <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.razon_social"
+        aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NAME' | translate}}">
+    </div>
+    <div class="col-sm-12 mb-2">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_EMAIL' | translate}}
+      </span>
+      <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.correo"
+        aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_EMAIL' | translate}}">
+    </div>
+
+    <div class="col-sm-12">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-catalog.SUPPLIER.LABEL_BUSSINESS_SORT' | translate}}
+      </span>
+      <div class="row">
+        <div class="col-sm">
+          <select name="" id="" class="form-control form-select-sm custom-select" [(ngModel)]="model.field">
+            <option value="">{{ 'mod-catalog.WORD_SELECT_OPTION' | translate}}</option>
+            <option value="id">{{ 'mod-catalog.SUPPLIER.COLUMN_ID' | translate}}</option>
+            <option value="nit">{{ 'mod-catalog.SUPPLIER.COLUMN_BUSINESS_NIT' | translate}}</option>
+            <option value="razon_social">{{ 'mod-catalog.SUPPLIER.COLUMN_BUSINESS_NAME' | translate}}</option>
+            <option value="direccion">{{ 'mod-catalog.SUPPLIER.COLUMN_BUSINESS_ADDRESS' | translate}}</option>
+            <option value="correo">{{ 'mod-catalog.SUPPLIER.COLUMN_BUSINESS_EMAIL' | translate}}</option>
+          </select>
+        </div>
+        <div class="col-sm">
+          <select name="" id="" class="form-control form-select-sm custom-select" [(ngModel)]="model.order">
+            <option value="">{{ 'mod-catalog.WORD_SELECT_OPTION' | translate}}</option>
+            <option value="asc">{{ 'mod-catalog.WORD_ASCENDING' | translate}}</option>
+            <option value="desc">{{ 'mod-catalog.WORD_DESCENDING' | translate}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <button class="d-none limpiarS" (click)="limpiar()"></button>
+    <button class="d-none filtrar" (click)="filtrar()"></button>
+  </div>
 </div>

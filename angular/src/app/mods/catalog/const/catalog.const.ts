@@ -9,7 +9,7 @@ export const TITLE_PATH_ADMIN_SUPPLIER = 'Proveedores';
 export const BREADCRUMB_PATH_ADMIN_SUPPLIER = 'mod-catalog.PAGE_SUPPLIER_TITLE';
 
 export const PATH_ADMIN_PRODUCT = 'productos';
-export const TITLE_PATH_ADMIN_PRODUCT = 'productos';
+export const TITLE_PATH_ADMIN_PRODUCT = 'Productos';
 export const BREADCRUMB_PATH_ADMIN_PRODUCT = 'mod-catalog.PAGE_PRODUCT_TITLE';
 
 export const PATH_ADMIN_BRAND = 'marcas';

@@ -31,7 +31,7 @@ export class AdminService {
     lang: string
   ) {
 
-    const { limit, page, field = 'id' , order = 'Asc' } = filterUserDto
+    const { limit, page, field = 'id', order = 'Asc' } = filterUserDto
     
     if(!filterUserDto.page && !filterUserDto.limit) throw new NotFoundException(
       this.i18n.t('user.MSJ_ERROR_PARAMETRO_LISTA_NO_ENVIADO', { lang, args: { field: field } })
