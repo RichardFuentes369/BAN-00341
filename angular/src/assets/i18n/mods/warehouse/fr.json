@@ -47,6 +47,7 @@
 	"LABEL_COSTO_UNITARIO": "Coût unitaire",
 	"LABEL_PRECIO_VENTA_SUGERIDO": "Prix de vente suggéré",
 	"LABEL_ESTADO": "État",
+  	"LABEL_SORT": "Trier par",
 
 	"SELECT_SELECT_OPTION": "Sélectionner", 
 	"SELECT_AVAILABLE_OPTION": "Disponible", 
@@ -62,7 +63,6 @@
 	"PLACEHOLDER_COSTO_UNITARIO": "Entrer le coût unitaire",
 	"PLACEHOLDER_PRECIO_VENTA_SUGERIDO": "Entrer le prix de vente suggéré",
 	"PLACEHOLDER_ESTADO": "Choisir l'état",
-
 	"CARD_TOTAL_REGISTER_TITLE": "Total des enregistrements",
 
 	"SWAL_ARE_YOU_SURE_DELETE_WAREHOUSE": "¿Êtes-vous sûr de vouloir supprimer ces enregistrements de l'entrepôt ?",

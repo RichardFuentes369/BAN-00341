@@ -168,7 +168,7 @@ export class CrearWarehouseComponent implements OnInit {
       this.form_new_batch = false
       this.show_detail_product = false
       if(this.proveedor.nit != ''){
-        this.show_detail_provider = true
+        this.show_detail_provider = false
       }else{
         this.show_detail_provider = false
       }
@@ -176,7 +176,7 @@ export class CrearWarehouseComponent implements OnInit {
 
     if(this.validators.nit) {
       if(this.proveedor.nit != ''){
-        this.show_detail_provider = true
+        this.show_detail_provider = false
       }else{
         this.show_detail_provider = false
       }

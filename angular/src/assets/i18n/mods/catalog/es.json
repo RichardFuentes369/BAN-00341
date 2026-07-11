@@ -42,10 +42,13 @@
     "LABEL_BUSINESS_PHONE": "Teléfono de la empresa",
     "LABEL_BUSINESS_ADDRESS": "Dirección de la empresa",
     "LABEL_BUSSINESS_SORT": "Ordenar por",
+
+    "PLACEHOLDER_BUSINESS_NIT": "Ingrese el número de identificación fiscal (NIT)",
+    "PLACEHOLDER_BUSINESS_NAME": "Ingrese el nombre del negocio o razón social",
     
-    "PLACEHOLDER_BUSINESS_NIT": "1000000005",
+    "PLACEHOLDER_BUSINESS_NIT_F": "1000000005",
     "PLACEHOLDER_BUSINESS_DV": "Ingrese el dígito de verificación",
-    "PLACEHOLDER_BUSINESS_NAME": "Exito s.a",
+    "PLACEHOLDER_BUSINESS_NAME_F": "Exito s.a",
     "PLACEHOLDER_BUSINESS_EMAIL": "ejemplo@empresa.com",
     "PLACEHOLDER_BUSINESS_PHONE": "Ej: +57 300 123 4567",
     "PLACEHOLDER_BUSINESS_ADDRESS": "Ingrese la dirección física de la sede principal",
