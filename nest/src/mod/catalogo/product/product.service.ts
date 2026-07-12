@@ -1,7 +1,7 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { In, Like, Repository } from 'typeorm';
+import { Between, In, LessThanOrEqual, Like, MoreThanOrEqual, Repository } from 'typeorm';
 import { Producto } from './entities/product.entity';
 import { I18nService } from 'nestjs-i18n';
 import { FilterProductrDto } from './dto/filter-product.dto';
@@ -48,9 +48,18 @@ export class ProductService {
     if (filterDto['nombre']) {
       where.nombre = Like(`%${filterDto['nombre']}%`);
     }
-    if (filterDto['stock_minimo']) {
-      where.stock_minimo = Like(`%${filterDto['stock_minimo']}%`);
+
+    const min = filterDto['stock_minimo'] ? parseInt(filterDto['stock_minimo']) : null;
+    const max = filterDto['stock_maximo'] ? parseInt(filterDto['stock_maximo']) : null;
+
+    if (min !== null && max !== null) {
+      where.stock_minimo = Between(min, max);
+    } else if (min !== null) {
+      where.stock_minimo = MoreThanOrEqual(min);
+    } else if (max !== null) {
+      where.stock_minimo = LessThanOrEqual(max);
     }
+    
     if (filterDto['unidad_medida']) {
       where.unidad_medida = Like(`%${filterDto['unidad_medida']}%`);
     }
@@ -264,5 +273,15 @@ export class ProductService {
     }
 
     return data
+  }
+
+  async listaProductos(id_marca: number, search: string) {
+    return await this.productRepository.find({
+      where: { 
+        id_marca: id_marca,
+        nombre: Like(`%${search}%`) 
+      },
+      take: 20 
+    });
   }
 }

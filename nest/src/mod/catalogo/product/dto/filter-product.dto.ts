@@ -49,7 +49,11 @@ export class FilterProductrDto {
   
   @IsOptional()
   @IsString()
-  stock_minimo?: string;    
+  stock_minimo?: string;  
+  
+  @IsOptional()
+  @IsString()
+  stock_maximo?: string;  
   
   @IsOptional()
   @IsString()

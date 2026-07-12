@@ -3,7 +3,7 @@ import { CreateWarehouseDto } from './dto/create-warehouse.dto';
 import { UpdateWarehouseDto } from './dto/update-warehouse.dto';
 import { Bodega } from './entities/warehouse.entity';
 import { I18nService } from 'nestjs-i18n';
-import { In, Like, Repository } from 'typeorm';
+import { Between, In, LessThanOrEqual, Like, MoreThanOrEqual, Repository } from 'typeorm';
 import { FilterWarehouseDto } from './dto/filter-warehouse.dto';
 import { FilterWarehouseProductDTO } from './dto/filter-lote-producto.dto';
 import { CreateMermaDto } from '@module/merma/mermas/dto/create-merma.dto';
@@ -48,17 +48,77 @@ export class WarehouseService {
     const where: any = {};
     
     // precisos y entre
-    if (filterDto.fecha_entrada) where.fecha_entrada = Like(`%${filterDto.fecha_entrada}%`);
-    if (filterDto.fecha_vencimiento) where.fecha_vencimiento = Like(`%${filterDto.fecha_vencimiento}%`);
-    if (filterDto.cantidad_en_bodega) where.cantidad_en_bodega = filterDto.cantidad_en_bodega;
-    if (filterDto.cantidad_comprada) where.cantidad_comprada = filterDto.cantidad_comprada;
-    if (filterDto.cantidad_vendida) where.cantidad_vendida = filterDto.cantidad_vendida;
+    const fecha_entrada_min = filterDto['fecha_entrada_minimo'] ? parseInt(filterDto['fecha_entrada_minimo']) : null;
+    const fecha_entrada_max = filterDto['fecha_entrada_maximo'] ? parseInt(filterDto['fecha_entrada_maximo']) : null;
+
+    if (fecha_entrada_min !== null && fecha_entrada_max !== null) {
+      where.fecha_entrada = Between(fecha_entrada_min, fecha_entrada_max);
+    } else if (fecha_entrada_min !== null) {
+      where.fecha_entrada = MoreThanOrEqual(fecha_entrada_min);
+    } else if (fecha_entrada_max !== null) {
+      where.fecha_entrada = LessThanOrEqual(fecha_entrada_max);
+    }
+
+    const fecha_vencimiento_min = filterDto['fecha_vencimiento_minimo'] ? parseInt(filterDto['fecha_vencimiento_minimo']) : null;
+    const fecha_vencimiento_max = filterDto['fecha_vencimiento_maximo'] ? parseInt(filterDto['fecha_vencimiento_maximo']) : null;
+
+    if (fecha_vencimiento_min !== null && fecha_vencimiento_max !== null) {
+      where.fecha_vencimiento = Between(fecha_vencimiento_min, fecha_vencimiento_max);
+    } else if (fecha_vencimiento_min !== null) {
+      where.fecha_vencimiento = MoreThanOrEqual(fecha_vencimiento_min);
+    } else if (fecha_vencimiento_max !== null) {
+      where.fecha_vencimiento = LessThanOrEqual(fecha_vencimiento_max);
+    }
+
+    const cantidad_en_bodega_min = filterDto['cantidad_en_bodega_minimo'] ? parseInt(filterDto['cantidad_en_bodega_minimo']) : null;
+    const cantidad_en_bodega_max = filterDto['cantidad_en_bodega_maximo'] ? parseInt(filterDto['cantidad_en_bodega_maximo']) : null;
+
+    if (cantidad_en_bodega_min !== null && cantidad_en_bodega_max !== null) {
+      where.cantidad_en_bodega = Between(cantidad_en_bodega_min, cantidad_en_bodega_max);
+    } else if (cantidad_en_bodega_min !== null) {
+      where.cantidad_en_bodega = MoreThanOrEqual(cantidad_en_bodega_min);
+    } else if (cantidad_en_bodega_max !== null) {
+      where.cantidad_en_bodega = LessThanOrEqual(cantidad_en_bodega_max);
+    }
+
+    const cantidad_comprada_min = filterDto['cantidad_comprada_minimo'] ? parseInt(filterDto['cantidad_comprada_minimo']) : null;
+    const cantidad_comprada_max = filterDto['cantidad_comprada_maximo'] ? parseInt(filterDto['cantidad_comprada_maximo']) : null;
+
+    if (cantidad_comprada_min !== null && cantidad_comprada_max !== null) {
+      where.cantidad_comprada = Between(cantidad_comprada_min, cantidad_comprada_max);
+    } else if (cantidad_comprada_min !== null) {
+      where.cantidad_comprada = MoreThanOrEqual(cantidad_comprada_min);
+    } else if (cantidad_comprada_max !== null) {
+      where.cantidad_comprada = LessThanOrEqual(cantidad_comprada_max);
+    }
+
+    const cantidad_vendida_min = filterDto['cantidad_vendida_minimo'] ? parseInt(filterDto['cantidad_vendida_minimo']) : null;
+    const cantidad_vendida_max = filterDto['cantidad_vendida_maximo'] ? parseInt(filterDto['cantidad_vendida_maximo']) : null;
+
+    if (cantidad_vendida_min !== null && cantidad_vendida_max !== null) {
+      where.cantidad_vendida = Between(cantidad_vendida_min, cantidad_vendida_max);
+    } else if (cantidad_vendida_min !== null) {
+      where.cantidad_vendida = MoreThanOrEqual(cantidad_vendida_min);
+    } else if (cantidad_vendida_min !== null) {
+      where.cantidad_vendida = LessThanOrEqual(cantidad_vendida_max);
+    }
+
+    // if(filterDto.producto) where.id_producto = Like(`%${filterDto.id_producto}%`);
     
     // precisos
-    if (filterDto.estado) where.estado = Like(`%${filterDto.estado}%`);
-    if (filterDto.id_producto) where.id_producto = filterDto.id_producto;
+    if (filterDto.id_marca) {
+      where.id_producto = where.id_producto || {};
+      where.id_producto.marca = { id: parseInt(filterDto.id_marca) };
+    }
+    if (filterDto.id_medida) {
+      where.id_producto = {
+        ...where.id_producto,
+        medida: { id: parseInt(filterDto.id_medida) }
+      };
+    }
+    if (filterDto.id_producto) where.id_producto = {id: parseInt(filterDto.id_producto)};
     if (filterDto.id_proveedor) where.id_proveedor = filterDto.id_proveedor;
-    if (filterDto.lote) where.lote = filterDto.lote;
+    if (filterDto.lote) where.lote = Like(`%${filterDto.lote}%`);
 
     const peticion = async (page) => {
       const lotes = await this.batchRepository.find({
@@ -99,10 +159,7 @@ export class WarehouseService {
         'next': (await peticion(page*limit)).length == 0 ? null : page+1 ,
         'totalRecord': await totalRecords()
       },
-      'order':{
-        'order': order,
-        'field': field
-      }
+      'order': { order, field }
     }]
   }
 

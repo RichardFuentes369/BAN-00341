@@ -15,7 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
 })
-export class SearchComponent{
+export class SearchComponent implements OnInit{
   @ViewChild('contenedorFilter', { read: ViewContainerRef }) contenedorDinamico!: ViewContainerRef;
 
   constructor(
@@ -26,6 +26,8 @@ export class SearchComponent{
   ) {}
 
   listaDeComponentes = new ListaComponentes();
+
+  oldParams = ''
 
   @Input()
   icon: string = 'fa fa-filter';  
@@ -46,6 +48,11 @@ export class SearchComponent{
     //   event.preventDefault();
     //   this.openFilterMinimize();
     // }
+  }
+
+
+  ngOnInit() {
+    console.log(this.route.snapshot.queryParams)
   }
 
   async openFilterMinimize() {
