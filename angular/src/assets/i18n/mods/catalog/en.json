@@ -84,6 +84,7 @@
     "COLUMN_STATUS": "Status",
     "COLUMN_UNIT_OF_MEASUREMENT": "Unit of measurement",
 
+    "LABEL_PRODUCT_NAME": "Product",
     "LABEL_CHECK_PERISHABLE": "Is perishable",
     "LABEL_NAME_PRODUCT": "Name",
     "LABEL_BRAND_PRODUCT": "Brand",

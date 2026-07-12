@@ -101,4 +101,9 @@ export class ProductController {
   ) {
     return this.productService.contadoresProductos(lang);
   }
+
+  @Get('productos-disponibles')
+  async getBrandsList(@Query('id_marca') id_marca: string, @Query('search') search: string) {
+    return await this.productService.listaProductos(+id_marca, search);
+  }
 }

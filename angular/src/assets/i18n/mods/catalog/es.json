@@ -83,6 +83,7 @@
     "COLUMN_STATUS": "Estado",
     "COLUMN_UNIT_OF_MEASUREMENT": "Unidad de medida",
 
+    "LABEL_PRODUCT_NAME": "Producto",
     "LABEL_CHECK_PERISHABLE": "Es perecedero",
     "LABEL_NAME_PRODUCT": "Nombre",
     "LABEL_BRAND_PRODUCT": "Marca",

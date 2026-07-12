@@ -20,7 +20,7 @@ export class FilterWarehouseDto {
 
     @IsOptional()
     @IsString()
-    field?: string;
+    field: string;
 
     @IsOptional()
     @IsString()
@@ -29,11 +29,31 @@ export class FilterWarehouseDto {
 
     @IsOptional()
     @IsString()
-    fecha_entrada?: string;   
+    id_medida?: string;  
 
     @IsOptional()
     @IsString()
-    fecha_vencimiento?: string;   
+    marca?: string;  
+
+    @IsOptional()
+    @IsString()
+    producto?: string;  
+
+    @IsOptional()
+    @IsString()
+    fecha_entrada_minimo?: string;   
+
+    @IsOptional()
+    @IsString()
+    fecha_entrada_maximo?: string;   
+
+    @IsOptional()
+    @IsString()
+    fecha_vencimiento_minimo?: string;   
+
+    @IsOptional()
+    @IsString()
+    fecha_vencimiento_maximo?: string;   
 
     @IsOptional()
     @IsString()
@@ -41,15 +61,31 @@ export class FilterWarehouseDto {
     
     @IsOptional()
     @IsString()
-    cantidad_comprada?: string;     
+    cantidad_comprada_minimo?: string;     
     
     @IsOptional()
     @IsString()
-    cantidad_vendida?: string;     
+    cantidad_comprada_maximo?: string;   
+    
+    @IsOptional()
+    @IsString()
+    cantidad_vendida_minimo?: string;    
+    
+    @IsOptional()
+    @IsString()
+    cantidad_vendida_maximo?: string;  
 
     @IsOptional()
     @IsString()
-    cantidad_en_bodega ?: string;   
+    cantidad_en_bodega_minimo ?: string;   
+
+    @IsOptional()
+    @IsString()
+    cantidad_en_bodega_maximo ?: string; 
+
+    @IsOptional()
+    @IsString()
+    id_marca?: string; 
 
     @IsOptional()
     @IsString()

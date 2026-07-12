@@ -144,7 +144,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
 
         // Mantengo tu estructura de URL original
         const separator = this.endPoint.includes('?') ? '&' : '?';
-        const fullUrl = `${this.url}${this.endPoint}${separator}page=${page}&limit=${dataTablesParameters.length}&${this.filters}${this.complementoEndPoint}&lang=${lang}`;
+        const fullUrl = `${this.url}${this.endPoint}${separator}page=${page}&limit=${dataTablesParameters.length}${this.filters}${this.complementoEndPoint}&lang=${lang}`;
 
         this.http.get<any>(fullUrl).subscribe({
           next: (res: any) => {

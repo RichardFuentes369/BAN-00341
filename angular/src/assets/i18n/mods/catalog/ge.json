@@ -84,6 +84,7 @@
     "COLUMN_STATUS": "Status",
     "COLUMN_UNIT_OF_MEASUREMENT": "Maßeinheit",
 
+    "LABEL_PRODUCT_NAME": "Produkt",
     "LABEL_CHECK_PERISHABLE": "Ist verderblich",
     "LABEL_NAME_PRODUCT": "Name",
     "LABEL_BRAND_PRODUCT": "Marke",

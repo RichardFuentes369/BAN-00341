@@ -22,6 +22,7 @@ export class FiltroProductComponent {
     marca: '',
     codigo_barra: '',
     stock_minimo: '',
+    stock_maximo: '',
     unidad_medida: '',
     field: '',
     order: ''
@@ -41,6 +42,7 @@ export class FiltroProductComponent {
       marca: sessionStorage.getItem('marca') || '',
       codigo_barra: sessionStorage.getItem('codigo_barra') || '',
       stock_minimo: sessionStorage.getItem('stock_minimo') || '',
+      stock_maximo: sessionStorage.getItem('stock_maximo') || '',
       unidad_medida: sessionStorage.getItem('unidad_medida') || '',
       field: sessionStorage.getItem('field') || '',
       order: sessionStorage.getItem('order') || ''
@@ -58,7 +60,10 @@ export class FiltroProductComponent {
     }
     if(this.model.stock_minimo != ''){
       this.complementoFiltro += `&stock_minimo=${this.model.stock_minimo}`
-    }    
+    }  
+    if(this.model.stock_maximo != ''){
+      this.complementoFiltro += `&stock_maximo=${this.model.stock_maximo}`
+    }   
     if(this.model.unidad_medida != ''){
       this.complementoFiltro += `&unidad_medida=${this.model.unidad_medida}`
     }
@@ -78,6 +83,7 @@ export class FiltroProductComponent {
     this.model.marca = ''
     this.model.codigo_barra = ''
     this.model.stock_minimo = ''
+    this.model.stock_maximo = ''
     this.model.unidad_medida = ''
     this.model.field = ''
     this.model.order = ''
@@ -86,6 +92,7 @@ export class FiltroProductComponent {
     sessionStorage.removeItem('marca')
     sessionStorage.removeItem('codigo_barra')
     sessionStorage.removeItem('stock_minimo')
+    sessionStorage.removeItem('stock_maximo')
     sessionStorage.removeItem('unidad_medida')
     sessionStorage.removeItem('field')
     sessionStorage.removeItem('order')
@@ -98,6 +105,7 @@ export class FiltroProductComponent {
     sessionStorage.removeItem('marca')
     sessionStorage.removeItem('codigo_barra')
     sessionStorage.removeItem('stock_minimo')
+    sessionStorage.removeItem('stock_maximo')
     sessionStorage.removeItem('unidad_medida')
     sessionStorage.removeItem('field')
     sessionStorage.removeItem('order')
@@ -117,6 +125,10 @@ export class FiltroProductComponent {
     if(this.model.stock_minimo != ''){
       this.complementoFiltro += `&stock_minimo=${this.model.stock_minimo}`
       sessionStorage.setItem('stock_minimo', this.model.stock_minimo)
+    }
+    if(this.model.stock_maximo != ''){
+      this.complementoFiltro += `&stock_maximo=${this.model.stock_maximo}`
+      sessionStorage.setItem('stock_maximo', this.model.stock_maximo)
     }
     if(this.model.unidad_medida != ''){
       this.complementoFiltro += `&unidad_medida=${this.model.unidad_medida}`
