@@ -1,5 +1,4 @@
 CTRL + SHIFT + V
-#### (Validar que no se pueda eliminar no por permiso si no por delete cascade)
 
 ## PENDIENTE 
 
@@ -24,50 +23,49 @@ CTRL + SHIFT + V
 		* funcion para indicar si se vendio o fue afectada por merma, necesitaria "codigo de barra" y lote - falta
 	```
 ### Bodega
+
 - habilitar el cargue por csv
 
 ## PENDIENTE (II PARTE)
+### Funcionalidades
+
+	1. Hacer el editar de Variables del sistema
+	2. Hacer vista para manejo de los colores
+	3. Hacer enpoint para marcar un producto como vendido o devolución (validar como)
+
 ### Filtros
 
-	CATALOGO/PRODUCTOS (Arreglar, quitar o mejorar los planchelholder)
-	CATALOGO/MARCAS => PRODUCTOS (ARREGLAR, YA NO PODRIA SELECCIONAR LA MARCA DESEADA, va por default)
-	BODEGA => Hacer
-	Merma/Registro perdida => Hacer
-	Merma/Registro perdida historico => Hacer (3)
-	Alertas/bodega => Hacer	
-	Alertas/Vencimiento => Hacer	
-	Variables del sistema/Var => Hacer	
-	Variables del sistema/Json => Hacer	
+	Merma > Registro perdida > filtro - order by
+	Alertas > vencimiento > filtro - order by > nombre de columnas
+	Alertas > bodega > reporte > nombre de columnas
+	Vatiables del sistems > Var > filtro - order by > nombre de columnas
+	Vatiables del sistems > JSON > filtro - order by > nombre de columnas
 
 ### Reportes
-	
-	Catalogo/Proveedores =>Reporte en csv y excel
-	Catalogo/Productod => Reporte en csv y excel
-	Catalogo/Marcas => Reporte en csv y excel
 
-	BODEGA
-		Reporte de stock de producto
-		Reporte de vencimientos de producto
-		Reporte de ingresos de producto
-		Reporte de mermas de producto
-		Reporte de lote afectados de producto
-		Reporte de productos en bodega 
+	Catalogo > Proveedores > ecxel | csv
+	Catalogo > Marca > ecxel | csv
+	Catalogo > Productos > ecxel | csv  (arreglar filtro stock between)
+	Bodega > ecxel | csv 
+	Merma > Registro perdida > excel | csv 
 
-	MERMAS/REGISTRO DE PERDIDA
-		Reporte de perdidas por producto
-		Reporte de perdidas por fecha
+## Entregables
+
+	1. Hacer manuales
 
 
-ng serve (inicio anular)
-nest start --watch  (inicio nest)
-pnpm run dev (inicio nest + angular)
-npx expo start -c   (inicio expo)
+## Manejo sistema
 
-eas build -p android --profile preview  (en la nube de expo)
-eas build -p android --profile preview --local (en mi local)
-ssh -p 443 -R0:localhost:3000 a.pinggy.io (abro el tunnel)
+	ng serve (inicio anular)
+	nest start --watch  (inicio nest)
+	pnpm run dev (inicio nest + angular)
+	npx expo start -c   (inicio expo)
+
+	eas build -p android --profile preview  (en la nube de expo)
+	eas build -p android --profile preview --local (en mi local)
+	ssh -p 443 -R0:localhost:3000 a.pinggy.io (abro el tunnel)
 
 
-// generar ejecutable
-npm i
-pkg ./ejecutable_code.js --targets node16-win-x64,node16-linux-x64,node16-macos-x64 --output dist/tunel
+	// generar ejecutable
+	npm i
+	pkg ./ejecutable_code.js --targets node16-win-x64,node16-linux-x64,node16-macos-x64 --output dist/tunel
