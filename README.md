@@ -29,11 +29,11 @@ CTRL + SHIFT + V
 ## PENDIENTE (II PARTE)
 ### Funcionalidades
 
-	1. Hacer el editar de Variables del sistema
-	2. Hacer vista para manejo de los colores
-	3. Hacer enpoint para marcar un producto como vendido o devolución (validar como)
-	4. Campanita de notificaciónes
-	5. Graficos
+	1. Hacer vista para manejo de los colores
+	2. Arreglar index
+	3. Hacer enpoint para marcar un producto como vendido o devolución (validar como) (*)
+	4. Campanita de notificaciónes (*)
+	5. Graficos (*)
 
 ### Ajustes
 
@@ -42,10 +42,8 @@ CTRL + SHIFT + V
 ### Filtros
 
 	(arreglar filtros que si limpio no limpie todo el filtro (si ya existia un filtro previo))
-	Alertas > vencimiento > filtro - order by > nombre de columnas
-	Alertas > bodega > reporte > nombre de columnas
-	Vatiables del sistems > Var > filtro - order by > nombre de columnas
-	Vatiables del sistems > JSON > filtro - order by > nombre de columnas
+	Alertas > vencimiento > filtro - order by > nombre de columnas (*)
+	Alertas > bodega > reporte > nombre de columnas (*)
 
 ### Reportes
 
