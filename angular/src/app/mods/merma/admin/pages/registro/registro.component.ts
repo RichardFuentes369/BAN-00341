@@ -28,31 +28,31 @@ import { KpicardComponent } from '@component/globales/kpicard/kpicard.component'
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.scss',
 })
-export class RegistroMermaComponent implements OnInit, OnDestroy{
+export class RegistroMermaComponent implements OnInit, OnDestroy {
 
   // construcator
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private userService :AuthService,
-    private permisosService :PermisosService,
-    private registroService :RegistroService,
+    private userService: AuthService,
+    private permisosService: PermisosService,
+    private registroService: RegistroService,
     private translate: TranslateService
   ) { }
-  
+
   private langSub: Subscription | undefined;
   permisos: any[] = []
 
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-merma.BUTTON_SEARCH')
-  iconFilter="fa fa-filter"
-  componenteFilter=''
+  iconFilter = "fa fa-filter"
+  componenteFilter = 'FiltroRegistroComponent'
   // fin datos envio al filtro
 
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
-  endPoint = `registro-mermas/obtener-registro-mermas?month=${(!this.route.snapshot.queryParams?.['month'])?null:this.route.snapshot.queryParams?.['month']}&year=${(!this.route.snapshot.queryParams?.['anho'])?null:this.route.snapshot.queryParams?.['anho']}`
+  endPoint = `registro-mermas/obtener-registro-mermas?month=${(!this.route.snapshot.queryParams?.['month']) ? null : this.route.snapshot.queryParams?.['month']}&year=${(!this.route.snapshot.queryParams?.['anho']) ? null : this.route.snapshot.queryParams?.['anho']}`
   habilitarSeleccion = true
   filters = ''
 
@@ -60,6 +60,16 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
     {
       title: this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH'),
       data: 'id_lote.lote',
+      className: 'text-center align-middle'
+    },
+    {
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+      data: 'id_lote.id_producto.codigo_barra',
+      className: 'text-center align-middle'
+    },
+    {
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME'),
+      data: 'id_lote.id_producto.nombre',
       className: 'text-center align-middle'
     },
     {
@@ -73,11 +83,11 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
       className: 'text-center align-middle',
       render: (data: any) => {
         if (!data) return '';
-        const date = new Date(Number(data) * 1000); 
+        const date = new Date(Number(data) * 1000);
         if (isNaN(date.getTime())) {
           return 'Fecha inválida';
         }
-        return date.toLocaleDateString('es-CO', { 
+        return date.toLocaleDateString('es-CO', {
           day: '2-digit',
           month: '2-digit',
           year: 'numeric'
@@ -141,21 +151,21 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
       this.isAnimationDone = false;
     }
   }
-  
+
   // metodos Init, Destroy
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
-    const permiso_modulo = await this.permisosService.permisoPage(0,'merma',userData.data.id)
-    const permiso_submodulo = await this.permisosService.permisoPage(44,'registro_merma',userData.data.id)
+    const permiso_modulo = await this.permisosService.permisoPage(0, 'merma', userData.data.id)
+    const permiso_submodulo = await this.permisosService.permisoPage(44, 'registro_merma', userData.data.id)
 
     if (permiso_modulo.data === "" || permiso_submodulo.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     }
 
-    const permisos_registro = await this.permisosService.permisos(userData.data.id,'registro_merma')
-    const permisos_historico = await this.permisosService.permisos(userData.data.id,'historico_merma')
+    const permisos_registro = await this.permisosService.permisos(userData.data.id, 'registro_merma')
+    const permisos_historico = await this.permisosService.permisos(userData.data.id, 'historico_merma')
 
     const esHistorico = this.router.url.includes('/historico');
     this.permisos = esHistorico ? permisos_historico.data : permisos_registro.data;
@@ -164,7 +174,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
     // sessionStorage.removeItem('razon_social')
     // sessionStorage.removeItem('correo')
 
-    this.mes = (this.route.snapshot.queryParams?.['month']) ? this.route.snapshot.queryParams?.['month']+'/' : ''
+    this.mes = (this.route.snapshot.queryParams?.['month']) ? this.route.snapshot.queryParams?.['month'] + '/' : ''
     this.anho = (this.route.snapshot.queryParams?.['anho']) ? this.route.snapshot.queryParams?.['anho'] : new Date().getFullYear()
 
     await this.actualizarContadores()
@@ -173,8 +183,8 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
       this.cargarIdioma = false;
       timer(200).subscribe(() => {
         this.actualizarContadores()
-        this.listar(); 
-        this.cambiarTextos(); 
+        this.listar();
+        this.cambiarTextos();
         this.cargarIdioma = true;
       });
     });
@@ -187,11 +197,21 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
   }
 
   // metodos Componente
-  listar(){
+  listar() {
     this.columnas = [
       {
-        title: this.translate.instant('mod-merma.REGISTER.COLUMN_ID'),
+        title: this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH'),
         data: 'id_lote.lote',
+        className: 'text-center align-middle'
+      },
+      {
+        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+        data: 'id_lote.id_producto.codigo_barra',
+        className: 'text-center align-middle'
+      },
+      {
+        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME'),
+        data: 'id_lote.id_producto.nombre',
         className: 'text-center align-middle'
       },
       {
@@ -200,12 +220,24 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH'),
+        title: this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE'),
         data: 'fecha_reporte',
-        className: 'text-center align-middle'
+        className: 'text-center align-middle',
+        render: (data: any) => {
+          if (!data) return '';
+          const date = new Date(Number(data) * 1000);
+          if (isNaN(date.getTime())) {
+            return 'Fecha inválida';
+          }
+          return date.toLocaleDateString('es-CO', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+          });
+        }
       },
       {
-        title: this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE'),
+        title: this.translate.instant('mod-merma.REGISTER.COLUMN_AMOUNT'),
         data: 'cantidad',
         className: 'text-center align-middle'
       },
@@ -219,15 +251,15 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
         data: 'observacion',
         className: 'text-center align-middle'
       },
-    ];  
+    ];
   }
 
-  cambiarTextos(){
+  cambiarTextos() {
     this.titlePage = this.translate.instant('mod-merma.TABLE_TITLE')
     this.titleTotalRegister = this.translate.instant('mod-merma.REGISTER.CARD_TOTAL_REGISTER_TITLE')
   }
 
-  crearData (_id: string){
+  crearData(_id: string) {
     this.tamano = "xl"
     this.scrollable = true
     this.title = this.translate.instant('mod-merma.REGISTER.CREATE_TITLE')
@@ -242,16 +274,16 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
     this.componentePrecargado = CREAR_REGISTRO_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
   }
 
-  async verData (_id: string){
+  async verData(_id: string) {
     this.title = this.translate.instant('mod-merma.REGISTER.SEE_TITLE')
     const response = await this.registroService.getDataRegister(_id)
-    this.translate.get('mod-merma.REGISTER.SEE_SUBTITLE', { "register_name": response.data?.id_lote?.lote }).subscribe((res: string) => {this.subtitle = res});
+    this.translate.get('mod-merma.REGISTER.SEE_SUBTITLE', { "register_name": response.data?.id_lote?.lote }).subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
     this.scrollable = true
     this.save = false
@@ -264,7 +296,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
     this.componentePrecargado = VER_REGISTRO_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       this.router.navigate([], {
         queryParams: { id_merma: _id },
       });
@@ -273,10 +305,10 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
     }
   }
 
-  async editarData (_id: string){
+  async editarData(_id: string) {
     this.title = this.translate.instant('mod-merma.REGISTER.EDIT_TITLE')
     const response = await this.registroService.getDataRegister(_id)
-    this.translate.get('mod-merma.REGISTER.SEE_SUBTITLE', { "register_name": response.data?.id_lote?.lote }).subscribe((res: string) => {this.subtitle = res});
+    this.translate.get('mod-merma.REGISTER.SEE_SUBTITLE', { "register_name": response.data?.id_lote?.lote }).subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
     this.scrollable = true
     this.save = false
@@ -289,7 +321,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
     this.componentePrecargado = EDITAR_REGISTRO_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       this.router.navigate([], {
         queryParams: { id_merma: _id },
       });
@@ -300,14 +332,14 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
 
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
-  async eliminarData (_id: string[]){
+  async eliminarData(_id: string[]) {
     const response = await this.registroService.getDataRegister(_id[0])
     const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
-    const name_user = (_id.length === 1) ? firstName+" "+lastName : "("+_id.length+")"
+    const name_user = (_id.length === 1) ? firstName + " " + lastName : "(" + _id.length + ")"
     const count_users = (_id.length === 1) ? 'el' : 'los'
     const plural = (_id.length === 1) ? '' : 's'
-    
-    this.translate.get('mod-merma.TYPE.SWAL_ARE_YOU_SURE_DELETE',{ "art_the": count_users, "plural": plural, "user_name": name_user}).subscribe((translatedTitle: string) => {
+
+    this.translate.get('mod-merma.TYPE.SWAL_ARE_YOU_SURE_DELETE', { "art_the": count_users, "plural": plural, "user_name": name_user }).subscribe((translatedTitle: string) => {
       Swal.fire({
         title: translatedTitle,
         text: this.translate.instant('mod-merma.SWAL_WARNING_REVERSE_CHANGE'),
@@ -331,21 +363,21 @@ export class RegistroMermaComponent implements OnInit, OnDestroy{
     });
   }
 
-  async filtroData(){
+  async filtroData() {
     let filtros = await $('.complementoRuta').val();
     this.router.navigate([], { queryParams: { search: (filtros) ? filtros : null }, });
-    if(typeof filtros === 'string'){
+    if (typeof filtros === 'string') {
       this.filters = filtros
     }
   }
 
-  async refrescarTabla (){
+  async refrescarTabla() {
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);
   }
 
-  async actualizarContadores (){
+  async actualizarContadores() {
     let year = (this.route.snapshot.queryParams?.['year'] != undefined) ? this.route.snapshot.queryParams?.['year'] : null
     let month = (this.route.snapshot.queryParams?.['month'] != undefined) ? this.route.snapshot.queryParams?.['month'] : null
     const data = await this.registroService.obtenerTotale(year, month)

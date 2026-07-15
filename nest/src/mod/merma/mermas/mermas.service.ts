@@ -1,7 +1,7 @@
 import { Inject, Injectable, NotFoundException, forwardRef } from '@nestjs/common';
 import { CreateMermaDto } from './dto/create-merma.dto';
 import { UpdateMermaDto } from './dto/update-merma.dto';
-import { Between, In, Like, Repository } from 'typeorm';
+import { Between, In, LessThanOrEqual, Like, MoreThanOrEqual, Repository } from 'typeorm';
 import { Merma } from './entities/merma.entity';
 import { I18nService } from 'nestjs-i18n';
 import { FilterRegistroMermaDto } from './dto/filter-merma.dto';
@@ -112,11 +112,53 @@ export class MermasService {
     const skipReal = (page == 1) ? 0 : (page - 1) * limit;
 
     const where: any = {};
+    
+    // precisos y entre
+    const cant_afec_min = filterDto['cantidad_afectada_minimo'] ? parseInt(filterDto['cantidad_afectada_minimo']) : null;
+    const cant_afec_max = filterDto['cantidad_afectada_maximo'] ? parseInt(filterDto['cantidad_afectada_maximo']) : null;
+    if (cant_afec_min !== null && cant_afec_max !== null) {
+      where.cantidad = Between(cant_afec_min, cant_afec_max);
+    } else if (cant_afec_min !== null) {
+      where.cantidad = MoreThanOrEqual(cant_afec_min);
+    } else if (cant_afec_max !== null) {
+      where.cantidad = LessThanOrEqual(cant_afec_max);
+    }
 
-    // precisos y entre ... validar
-    if (filterDto.cantidad) where.cantidad = Like(`%${filterDto.cantidad}`);
-    if (filterDto.fecha_reporte) where.fecha_reporte = Like(`%${filterDto.fecha_reporte}`);
-    if (filterDto.valor_perdido) where.valor_perdido = Like(`%${filterDto.valor_perdido}`);
+    const fecha_reporte_min = filterDto['fecha_reporte_minimo'] ? parseInt(filterDto['fecha_reporte_minimo']) : null;
+    const fecha_reporte_max = filterDto['fecha_reporte_maximo'] ? parseInt(filterDto['fecha_reporte_maximo']) : null;
+
+    if (fecha_reporte_min !== null && fecha_reporte_max !== null) {
+      where.fecha_reporte = Between(fecha_reporte_min, fecha_reporte_max);
+    } else if (fecha_reporte_min !== null) {
+      where.fecha_reporte = MoreThanOrEqual(fecha_reporte_min);
+    } else if (fecha_reporte_max !== null) {
+      where.fecha_reporte = LessThanOrEqual(fecha_reporte_max);
+    }
+
+    const valor_perdido_min = filterDto['valor_perdido_minimo'] ? parseInt(filterDto['valor_perdido_minimo']) : null;
+    const valor_perdido_max = filterDto['valor_perdido_maximo'] ? parseInt(filterDto['valor_perdido_maximo']) : null;
+
+    if (valor_perdido_min !== null && valor_perdido_max !== null) {
+      where.valor_perdido = Between(valor_perdido_min, valor_perdido_max);
+    } else if (valor_perdido_min !== null) {
+      where.valor_perdido = MoreThanOrEqual(valor_perdido_min);
+    } else if (valor_perdido_max !== null) {
+      where.valor_perdido = LessThanOrEqual(valor_perdido_max);
+    }
+    
+    where.id_lote = where.id_lote || {};
+
+    if (filterDto.lote) {
+      where.id_lote.lote = filterDto.lote;
+    }
+
+    if (filterDto.codigo_barra) {
+      where.id_lote.id_producto = {
+          ...where.id_lote.id_producto,
+          codigo_barra: filterDto.codigo_barra
+      };
+    }
+    
     if (filterDto.observaciones) where.observaciones = Like(`%${filterDto.observaciones}`);
     if (filterDto.id_tipo_merma) where.id_tipo_merma = Like(`%${filterDto.id_tipo_merma}`);
     if (filterDto.id_lote) where.id_lote = Like(`%${filterDto.id_lote}`);
@@ -148,7 +190,6 @@ export class MermasService {
       }
       where.fecha_reporte = Between(inicioUnix, finUnix);
     }
-
 
     const peticion = async (page) => {
       return await this.mermaRepository.find({

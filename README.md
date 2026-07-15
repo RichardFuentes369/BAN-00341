@@ -32,10 +32,12 @@ CTRL + SHIFT + V
 	1. Hacer el editar de Variables del sistema
 	2. Hacer vista para manejo de los colores
 	3. Hacer enpoint para marcar un producto como vendido o devolución (validar como)
+	4. Campanita de notificaciónes
+	5. Graficos
+
 
 ### Filtros
-
-	Merma > Registro perdida > filtro - order by
+	(arreglar filtros que si limpio no limpie todo el filtro (si ya existia un filtro previo))
 	Alertas > vencimiento > filtro - order by > nombre de columnas
 	Alertas > bodega > reporte > nombre de columnas
 	Vatiables del sistems > Var > filtro - order by > nombre de columnas
@@ -45,14 +47,13 @@ CTRL + SHIFT + V
 
 	Catalogo > Proveedores > ecxel | csv
 	Catalogo > Marca > ecxel | csv
-	Catalogo > Productos > ecxel | csv  (arreglar filtro stock between)
+	Catalogo > Productos > ecxel | csv  
 	Bodega > ecxel | csv 
 	Merma > Registro perdida > excel | csv 
 
 ## Entregables
 
 	1. Hacer manuales
-
 
 ## Manejo sistema
 
