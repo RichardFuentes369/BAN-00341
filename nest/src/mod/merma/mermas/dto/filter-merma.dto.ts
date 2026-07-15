@@ -37,15 +37,35 @@ export class FilterRegistroMermaDto {
 
     @IsOptional()
     @IsString()
-    cantidad?: string;   
+    lote?: string;  
 
     @IsOptional()
     @IsString()
-    fecha_reporte?: string;   
+    codigo_barra?: string;  
 
     @IsOptional()
     @IsString()
-    valor_perdido?: string;   
+    cantidad_afectada_minimo?: string;   
+
+    @IsOptional()
+    @IsString()
+    cantidad_afectada_maximo?: string;   
+
+    @IsOptional()
+    @IsString()
+    fecha_reporte_minimo?: string;       
+    
+    @IsOptional()
+    @IsString()
+    fecha_reporte_maximo?: string;   
+
+    @IsOptional()
+    @IsString()
+    valor_perdido_minimo?: string;   
+
+    @IsOptional()
+    @IsString()
+    valor_perdido_maximo?: string;   
 
     @IsOptional()
     @IsString()
@@ -53,10 +73,10 @@ export class FilterRegistroMermaDto {
 
     @IsOptional()
     @IsNumber()
-    id_tipo_merma?: number;     
-    
+    id_tipo_merma?: number;        
+
     @IsOptional()
-    @IsNumber()
+    @IsString()
     id_lote?: number;     
 
     @IsOptional()

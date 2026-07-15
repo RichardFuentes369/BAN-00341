@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GridcrudComponent } from '@component/globales/gridcrud/gridcrud.component';
 import { KpicardComponent } from '@component/globales/kpicard/kpicard.component';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
-import { SearchComponent } from '@component/globales/search/search.component';
 import { AuthService } from '@guard/service/auth.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
@@ -19,7 +18,6 @@ import { MOD_MERMA_PAGE_HISTORICO_YEAR } from '@mod/merma/const/loss.conts';
   imports: [
     TranslateModule,
     GridcrudComponent,
-    SearchComponent,
     LoadingComponent,
     KpicardComponent
   ],

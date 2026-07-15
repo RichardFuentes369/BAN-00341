@@ -33,14 +33,6 @@
   </div>
 
   <div class="mt-2 p-3 pt-0" style="position: relative;">
-    <div class="filter-wrapper">
-      <app-globales-search 
-        [icon]="iconFilter" 
-        [componente]="componenteFilter" 
-        (filtroItem)="filtroData()">
-      </app-globales-search>
-    </div>
-
     @if (cargarIdioma) {
     <div class="table-container">
       <app-globales-gridcrud
