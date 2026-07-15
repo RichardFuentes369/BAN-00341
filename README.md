@@ -35,8 +35,12 @@ CTRL + SHIFT + V
 	4. Campanita de notificaciónes
 	5. Graficos
 
+### Ajustes
+
+	(Cambiar de la tabla los header de alertas)
 
 ### Filtros
+
 	(arreglar filtros que si limpio no limpie todo el filtro (si ya existia un filtro previo))
 	Alertas > vencimiento > filtro - order by > nombre de columnas
 	Alertas > bodega > reporte > nombre de columnas
