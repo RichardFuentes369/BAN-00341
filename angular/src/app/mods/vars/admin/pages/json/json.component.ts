@@ -11,7 +11,7 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { JsonService } from './service/json.service';
 import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
-import { CREAR_VAR_COMPONENT, EDITAR_VAR_COMPONENT, VER_VAR_COMPONENT } from '@mod/vars/const/vars.const';
+import { CREAR_VAR_COMPONENT, EDITAR_VAR_COMPONENT, FILTRO_VAR_COMPONENT, VER_VAR_COMPONENT } from '@mod/vars/const/vars.const';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,7 +19,7 @@ import Swal from 'sweetalert2';
   standalone: true,
   imports: [
     TranslateModule,
-    // SearchComponent,
+    SearchComponent,
     LoadingComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
@@ -46,7 +46,7 @@ export class JsonComponent implements OnInit, OnDestroy {
   search = true
   buttonSearch = this.translate.instant('mod-users.BUTTON_SEARCH')
   iconFilter = "fa fa-filter"
-  componenteFilter = ''
+  componenteFilter = FILTRO_VAR_COMPONENT
   // fin datos envio al filtro
 
   // inicio datos que envio al componente tabla
@@ -57,13 +57,13 @@ export class JsonComponent implements OnInit, OnDestroy {
   filters = ''
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_ID'),
+      title: this.translate.instant('mod-vars.COLUMN_ID'),
       data: 'id',
       className: 'text-center align-middle',
       visible: false,
     },
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
+      title: this.translate.instant('mod-vars.COLUMN_NAME'),
       data: 'nombre',
       className: 'text-center align-middle'
     },
@@ -149,13 +149,13 @@ export class JsonComponent implements OnInit, OnDestroy {
   listar() {
     this.columnas = [
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_ID'),
+        title: this.translate.instant('mod-vars.COLUMN_ID'),
         data: 'id',
         className: 'text-center align-middle',
         visible: false,
       },
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
+        title: this.translate.instant('mod-vars.COLUMN_NAME'),
         data: 'nombre',
         className: 'text-center align-middle'
       },
@@ -168,7 +168,7 @@ export class JsonComponent implements OnInit, OnDestroy {
     this.titleTotalJson = this.translate.instant('mod-vars.JSON.CARD_TOTAL_JSON_TITLE')
   }
 
-  crearData (_id: string){
+  crearData(_id: string) {
     this.tamano = "xl"
     this.scrollable = true
     this.title = this.translate.instant('mod-vars.CREATE_TITLE')

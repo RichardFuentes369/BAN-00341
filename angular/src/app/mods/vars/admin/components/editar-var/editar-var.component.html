@@ -1,1 +1,54 @@
-<p>editar-var works!</p>
+<div class="">
+
+  @for (item of varJson; track item; let i = $index) {
+  <div class="col-xl-12 col-sm-12">
+    <fieldset class="border p-3 rounded">
+      <legend class="float-none w-auto p-1">
+        {{ 'mod-vars.LEGEND_TITLE_VAR' | translate }}
+      </legend>
+      <div class="col-xl col-sm-12">
+        <div class="col-sm-12 row p-0">
+          <label for="exampleInputEmail1">
+            {{ 'mod-vars.LABEL_VAR_NAME' | translate}}
+          </label>
+          <input type="text" class="form-control form-select-sm" [(ngModel)]="model.nombre"
+            (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nombre">
+          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+        </div>
+        <div class="col-sm-12 row p-0 mt-4">
+          <label for="exampleInputEmail1">
+            {{ 'mod-vars.LABEL_VAR_VALUE' | translate}}
+          </label>
+
+          @if(tipoVariable == 'var'){
+          <input type="text" class="form-control form-select-sm" [(ngModel)]="model.valor"
+            (ngModelChange)="onInputChange()" [class.is-invalid]="validators.valor">
+          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          }
+          @else{
+            <textarea 
+              class="form-control" 
+              [(ngModel)]="model.valor" 
+              name="valor"
+              (ngModelChange)="onInputChange()" 
+              [class.is-invalid]="validators.valor"
+              rows="5">
+            </textarea>
+          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          }
+
+
+          <div class="col-sm-12 row p-0">
+            <div class="col-sm-12">
+              <button class="btn btn-sm btn-primary btnAction d-none" (click)="actualizarData()">
+                {{ 'mod-users.BUTTON_USER_EDIT' | translate}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  }
+
+</div>

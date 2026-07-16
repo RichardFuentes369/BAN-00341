@@ -1,1 +1,14 @@
-<p>filtro-var works!</p>
+<div class="">
+  <div class="col-xl col-sm-12 card pl-0 pr-0 pt-3 pb-4">
+    <input type="text" class="d-none complementoRuta" value="">
+    <div class="col-sm-12">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-vars.LABEL_VAR_NAME' | translate}}
+      </span>
+      <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.nombre"
+        aria-describedby="emailHelp" placeholder="{{ 'mod-vars.PLACEHOLDER_VAR_NAME' | translate}}">
+    </div>
+    <button class="d-none limpiarS" (click)="limpiar()"></button>
+    <button class="d-none filtrar" (click)="filtrar()"></button>
+  </div>
+</div>

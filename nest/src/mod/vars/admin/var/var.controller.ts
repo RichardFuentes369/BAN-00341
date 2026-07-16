@@ -6,6 +6,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { GetUser } from 'src/decorator/getIdUser.decorator';
 import { PaginationDto } from '@global/dto/pagination.dto';
 import { AdminGuard } from '@guard/admin/admin.guard';
+import { FilterVarDto } from './dto/filter-var.dto';
 
 @Controller('var')
 export class VarController {
@@ -15,12 +16,12 @@ export class VarController {
   @Get('obtener-vars-var')
   findPaginada(
     @Query('lang') lang: string,
-    @Query() paginationDto: PaginationDto,
+    @Query() filterVarDto: FilterVarDto,
     @GetUser('id') userId: number
   ) {
     return this.varService.findPaginada(
       lang,
-      paginationDto
+      filterVarDto
     );
   }
 

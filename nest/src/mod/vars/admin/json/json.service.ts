@@ -2,11 +2,12 @@ import { Inject, Injectable, NotFoundException, UseGuards } from '@nestjs/common
 import { CreateJsonDto } from './dto/create-json.dto';
 import { UpdateJsonDto } from './dto/update-json.dto';
 import { I18nService } from 'nestjs-i18n';
-import { In, IsNull, Repository } from 'typeorm';
+import { In, IsNull, Like, Repository } from 'typeorm';
 import { Json } from './entities/json.entity';
 import { PaginationDto } from '@global/dto/pagination.dto';
 import { execSync, spawn } from 'child_process';
 import * as os from 'os';
+import { FilterJsonDto } from './dto/filter-json.dto';
 
 
 @Injectable()
@@ -22,21 +23,21 @@ export class JsonService {
     return metadata.columns.map((column) => column.propertyName);
   }
 
-  async findPaginada(lang: string, paginationDto: PaginationDto) {
+  async findPaginada(lang: string, filterJsonDto: FilterJsonDto) {
 
-    const { limit, page, field = 'id', order = 'Asc' } = paginationDto
+    const { limit, page, field = 'id', order = 'Asc' } = filterJsonDto
 
-    if (!paginationDto.page && !paginationDto.limit) throw new NotFoundException(
+    if (!filterJsonDto.page && !filterJsonDto.limit) throw new NotFoundException(
       this.i18n.t('modulo.MSJ_ERROR_PARAMETRO_LISTA_NO_ENVIADO', { lang, args: { field: field } })
     )
 
     if (field == '') throw new NotFoundException(
       this.i18n.t('modulo.MSJ_ERROR_PARAMETRO_CAMPO_FILTRO_NO_ENVIADO', { lang, args: { field: field } })
     )
-    if (!paginationDto.page) throw new NotFoundException(
+    if (!filterJsonDto.page) throw new NotFoundException(
       this.i18n.t('modulo.MSJ_ERROR_PARAMETRO_CAMPO_PAGE_NO_ENVIADO', { lang, args: { field: field } })
     )
-    if (!paginationDto.limit) throw new NotFoundException(
+    if (!filterJsonDto.limit) throw new NotFoundException(
       this.i18n.t('modulo.MSJ_ERROR_PARAMETRO_CAMPO_LIMIT_NO_ENVIADO', { lang, args: { field: field } })
     )
 
@@ -51,10 +52,17 @@ export class JsonService {
 
     const skipeReal = (page == 1) ? 0 : (page - 1) * limit
 
+    const where: any = {};
+
+    if (filterJsonDto.nombre !== undefined && filterJsonDto.nombre) {
+      where.nombre = Like(`%${filterJsonDto.nombre}%`);
+    }
+
     const peticion = async (page) => {
       return await this.moduloRepository.find({
         skip: page,
         take: limit,
+        where: where,
         order: {
           [field]: order
         }
