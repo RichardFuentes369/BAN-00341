@@ -76,7 +76,7 @@ export class FilterRegistroMermaDto {
     id_tipo_merma?: number;        
 
     @IsOptional()
-    @IsString()
+    @IsNumber()
     id_lote?: number;     
 
     @IsOptional()

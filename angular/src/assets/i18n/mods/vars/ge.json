@@ -35,6 +35,11 @@
   "SWAL_BUTTON_CANCEL": "Abbrechen",
   "SWAL_DELETED": "Gelöscht!",
   "SWAL_DELETED_RECORD": "Erfolgreich gelöscht.",
+  
+  "COLUMN_ID": "ID",
+  "COLUMN_NAME": "Name",
+  "COLUMN_VALUE": "Wert",
+  
   "VARS": {
     "CARD_TOTAL_VAR_TITLE": "Gesamtanzahl Variablen"
   },

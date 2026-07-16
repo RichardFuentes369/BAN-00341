@@ -6,6 +6,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { GetUser } from 'src/decorator/getIdUser.decorator';
 import { PaginationDto } from '@global/dto/pagination.dto';
 import { AdminGuard } from '@guard/admin/admin.guard';
+import { FilterJsonDto } from './dto/filter-json.dto';
 
 @Controller('json')
 export class JsonController {
@@ -15,12 +16,12 @@ export class JsonController {
   @Get('obtener-vars-json')
   findPaginada(
     @Query('lang') lang: string,
-    @Query() paginationDto: PaginationDto,
+    @Query() filterJsonDto: FilterJsonDto,
     @GetUser('id') userId: number
   ) {
     return this.jsonService.findPaginada(
       lang,
-      paginationDto
+      filterJsonDto
     );
   }
 
