@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as themeData from '../../../../../custom/custom.json';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-globales-colormode',
@@ -8,11 +9,18 @@ import * as themeData from '../../../../../custom/custom.json';
   styleUrl: './colormode.component.scss'
 })
 export class ColormodeComponent implements OnInit {
+
+  // construcator
+  constructor(
+    private _cookies: CookieService,
+  ) { }
+
   isDarkMode: boolean = false;
 
-  private config: any = (themeData as any).default || themeData;
+  private localConfig = localStorage.getItem('custom_system');
+  private config: any = this.localConfig ? JSON.parse(this.localConfig) : themeData;
 
-  ngOnInit() {
+  async ngOnInit() {
     const savedTheme = localStorage.getItem('theme') || 'light';
     this.isDarkMode = savedTheme === 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);

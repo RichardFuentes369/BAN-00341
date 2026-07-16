@@ -110,8 +110,8 @@ export class CrearVarComponent implements OnInit {
       if (response.data.status == 200) {
         ocultarModalOscura()
         Swal.fire({
-          title: this.translate.instant('mod-users.SWAL_CREATED'),
-          text: this.translate.instant('mod-users.SWAL_CREATED_RECORD'),
+          title: this.translate.instant('mod-vars.SWAL_CREATED'),
+          text: this.translate.instant('mod-vars.SWAL_CREATED_RECORD'),
           icon: "success"
         });
       }

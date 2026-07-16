@@ -138,10 +138,10 @@ export class EditarVarComponent implements OnInit {
         this.model.id
       ).then((response) => {
         ocultarModalOscura()
-        this.translate.get('mod-users.SWAL_ARE_YOU_SURE_UPDATE_USER').subscribe((translatedTitle: string) => {
+        this.translate.get('mod-vars.SWAL_ARE_YOU_SURE_UPDATE_VAR').subscribe((translatedTitle: string) => {
           Swal.fire({
-            title: this.translate.instant('mod-users.SWAL_UPDATED'),
-            text: this.translate.instant('mod-users.SWAL_UPDATED_RECORD'),
+            title: this.translate.instant('mod-vars.SWAL_UPDATED'),
+            text: this.translate.instant('mod-vars.SWAL_UPDATED_RECORD'),
             icon: "success"
           });
         })
