@@ -1,0 +1,70 @@
+<div class="col-sm-12 row">
+  <div class="col-sm-4">
+    <div class="card shadow-sm card-custom border_line_color bg_kpi_custom h-50 w-auto my-5">
+      <div class="card-body card-body-custom">
+        <div class="logo-container">
+          <img [src]="img" class="img-logo" alt="logo">
+        </div>
+        <div class="divider line_color"></div>
+        <div class="text-container">
+          <span class="title-text">{{ title }}</span>
+          <span class="content-text">{{ displayValue | number:'1.0-0' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 row">
+    <label for="" class="text-center">
+      Colores card menu
+    </label>
+    <div class="container row">
+      <div class="col text-center">
+        <label class="fw-bold mb-3">Light</label>
+
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span>Background</span>
+          <input type="color">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span>Text</span>
+          <input type="color">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span>Hover</span>
+          <input type="color">
+        </div>
+      </div>
+
+      <div class="col text-center">
+        <label class="fw-bold mb-3">Dark</label>
+
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span>Background</span>
+          <input type="color">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span>Text</span>
+          <input type="color">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span>Hover</span>
+          <input type="color">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card shadow-sm card-custom border_line_color bg_kpi_custom h-50 w-auto my-5">
+      <div class="card-body card-body-custom">
+        <div class="logo-container">
+          <img [src]="img" class="img-logo" alt="logo">
+        </div>
+        <div class="divider line_color"></div>
+        <div class="text-container">
+          <span class="title-text">{{ title }}</span>
+          <span class="content-text">{{ displayValue | number:'1.0-0' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

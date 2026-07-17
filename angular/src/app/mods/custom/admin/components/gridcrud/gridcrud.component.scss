@@ -1,0 +1,264 @@
+:host {
+  --layout-topbar-height: 4rem;
+  --layout-topbar-height-modal: 0rem;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: rgba(0, 0, 0, 0.05);
+  display: block;
+
+  &[data-theme='dark'],
+  &:host-context([data-theme='dark']) {
+    /* Ajustado para modo oscuro real */
+    --text-main: #1e293b;
+    --text-muted: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.sticky-header {
+  position: sticky;
+  top: 4rem!important;
+  z-index: 1; 
+  background-color: var(--sticky-bg) !important;
+  width: 100%;
+  padding: 1.1rem 0; /* Ajustado para dar aire similar a la tabla */
+}
+
+/* BOTONES ESTILO LINK (Como en la tabla) */
+.btn-nav-item {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, filter 0.2s ease;
+
+  &:hover:not(:disabled) {
+    transform: scale(1.15);
+    filter: brightness(1.1);
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: default; // Cursor flecha normal para deshabilitados
+    
+    i {
+      color: var(--text-muted) !important;
+    }
+  }
+}
+
+.counter-pill {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #dc3545;
+  color: white;
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 20px;
+  font-weight: bold;
+  border: 2px solid var(--sticky-bg);
+}
+
+/* CARDS (ESTILO TABLA) */
+.card-modern {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover:not(.is-selected) {
+    background-color: rgba(89, 139, 204, 0.04) !important;
+    border-color: rgba(89, 139, 204, 0.2) !important;
+    transform: translateY(-2px);
+  }
+
+  &.is-selected {
+    background-color: var(--grid_table_crud-row_select) !important;
+    border-color: var(--grid_table_crud-row_select) !important;
+    background-image: none !important;
+
+    .card-body, .card-footer {
+      color: #ffffff !important;
+      h6, p, i, b { color: #ffffff !important; }
+      span { color: #000000 !important; }
+      .text-muted { color: rgba(255, 255, 255, 0.8) !important; }
+    }
+
+    .badge {
+      background-color: #ffffff !important;
+      color: var(--grid_table_crud-row_select) !important;
+      border: none;
+    }
+  }
+}
+
+/*Card estilo*/
+.card-custom {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: none;
+  background-color: #ffffff;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.title {
+  font-size: 1.1rem;
+  color: var(--grid_table_crud-text_color);
+  font-weight: 700;
+  margin: 0;
+}
+
+.botoneria {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  position: sticky !important;
+  top: var(--layout-topbar-height) !important;
+  z-index: 1;
+  /* Valor alto para asegurar que nada pase por encima */
+  backdrop-filter: blur(8px);
+  padding: 18px 25px;
+
+  .title-container {
+    margin-right: auto;
+
+    h5 {
+      font-size: 1.1rem;
+      color: var(--grid_table_crud-text_color);
+      font-weight: 700;
+      margin: 0;
+    }
+  }
+
+  .actions-container {
+
+    // Estilos para los botones que tienen este efecto expansivo
+    .action-icon-btn {
+      background: transparent;
+      overflow: hidden;
+      /* Evita que el texto se desborde mientras crece */
+      white-space: nowrap;
+      /* Fuerza a que el texto se quede en una sola línea */
+      cursor: pointer;
+      padding: 6px 10px !important;
+      /* Un pequeño acolchado para el botón */
+      border-radius: 30px;
+      /* Lo hace ver tipo píldora moderna al expandirse */
+      transition: background-color 0.3s ease;
+
+      &:hover:not([disabled]) {
+        background-color: var(--surface-hover, #f1f3f4);
+        /* Un fondo sutil gris al pasar el mouse */
+
+        .nameButton {
+          max-width: 150px;
+          /* Valor seguro para que quepa la palabra completa */
+          opacity: 1;
+          margin-left: 8px;
+          /* Separación entre el ícono y el texto */
+        }
+      }
+
+      /* El tamaño del ícono grande */
+      .icon-main {
+        font-size: 1.3rem;
+        display: inline-block;
+      }
+
+      /* Estado inicial oculto del texto */
+      .nameButton {
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        font-weight: 600;
+        color: var(--text-main);
+        /* Esta transición genera el efecto suave de cortina/despliegue */
+        transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 0.2s ease,
+          margin 0.3s ease;
+      }
+
+      /* Si el botón está deshabilitado no debe expandirse ni cambiar cursor */
+      &:disabled {
+        cursor: not-allowed;
+        background: transparent !important;
+
+        .nameButton {
+          max-width: 0 !important;
+          opacity: 0 !important;
+        }
+      }
+    }
+  }
+
+  // Estilos iniciales para el texto (oculto)
+  .nameButton {
+    display: inline-block;
+    max-width: 0;
+    /* Empieza con ancho cero */
+    opacity: 0;
+    /* Empieza invisible para un fade suave */
+    overflow: hidden;
+    /* Esconde el texto mientras el ancho sea cero */
+    white-space: nowrap;
+    /* Evita que el texto se rompa en varias líneas al contraerse */
+    transition: max-width 0.3s ease-in-out, opacity 0.2s ease, margin 0.3s ease;
+    font-size: 14px;
+    /* Ajusta este valor a tu gusto (ej. 12px, 16px, 0.9rem) */
+    font-weight: 500;
+    /* Opcional: para darle un grosor intermedio */
+  }
+
+  .grid-responsive {
+    display: grid;
+    /* minmax(180px, 1fr) permite que cada tarjeta mida al menos 180px.
+      Si caben 5, pone 5. Si la pantalla se reduce y no caben, 
+      el navegador las mueve a la fila de abajo automáticamente.
+    */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    width: 100%;
+  }
+}
+
+.text-cargar-ecxel {
+  color: var(--grid_table_crud-button_cargar_excel);
+}
+.text-crear {
+  color: var(--grid_table_crud-button_crear);
+}
+.text-ver {
+  color: var(--grid_table_crud-button_ver);
+}
+.text-editar {
+  color: var(--grid_table_crud-button_editar);
+}
+.text-estado-usuario{
+  color: var(--grid_table_crud-button_estado_usuario);
+}
+.text-eliminar-inidividual{
+  color: var(--grid_table_crud-button_eliminar_individual);
+}
+.text-eliminar-multiple{
+  color: var(--grid_table_crud-button_eliminar_multiple);
+}
+.text-asignar-permisos {
+  color: var(--grid_table_crud-button_asignar_permisos);
+}
+.text-asignar-productos{
+  color: var(--grid_table_crud-button_asignar_productos);
+}
+.text-limpiar{
+  color: var(--grid_table_crud-button_limpiar);
+}
+
+.bg_grid_table_crud_custom{
+  background-color: var(--grid_table_crud-background_color) !important;
+}

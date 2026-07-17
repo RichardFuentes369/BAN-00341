@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalComponent } from './modal.component';
+import { KpicardComponent } from './kpicard.component';
 
-describe('ModalComponent', () => {
-  let component: ModalComponent;
-  let fixture: ComponentFixture<ModalComponent>;
+describe('KpicardComponent', () => {
+  let component: KpicardComponent;
+  let fixture: ComponentFixture<KpicardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ModalComponent]
+      declarations: [KpicardComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ModalComponent);
+    fixture = TestBed.createComponent(KpicardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -7,16 +7,16 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 
 import { TranslateModule } from '@ngx-translate/core';
 import { STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_TOKEN_ADMIN } from '@const/app.const';
-import { 
-  ADMIN_PAGE_MENU_PERSMISSION_USERS, 
-  ADMIN_PAGE_MENU_PERSMISSION_MODULES, 
-  ADMIN_PAGE_MENU_PERSMISSION_CATALOG, 
-  ADMIN_PAGE_MENU_PERSMISSION_LOSS, 
+import {
+  ADMIN_PAGE_MENU_PERSMISSION_USERS,
+  ADMIN_PAGE_MENU_PERSMISSION_MODULES,
+  ADMIN_PAGE_MENU_PERSMISSION_CATALOG,
+  ADMIN_PAGE_MENU_PERSMISSION_LOSS,
   ADMIN_PAGE_MENU_PERSMISSION_WAREHOUSE,
-  LAYOUT_ADMIN_PAGE_USERS, 
-  LAYOUT_ADMIN_PAGE_MODULES, 
-  LAYOUT_ADMIN_PAGE_CATALOG, 
-  LAYOUT_ADMIN_PAGE_LOSS, 
+  LAYOUT_ADMIN_PAGE_USERS,
+  LAYOUT_ADMIN_PAGE_MODULES,
+  LAYOUT_ADMIN_PAGE_CATALOG,
+  LAYOUT_ADMIN_PAGE_LOSS,
   LAYOUT_ADMIN_PAGE_WAREHOUSE,
   ADMIN_PAGE_MENU_PERSMISSION_ALERTS,
   LAYOUT_ADMIN_PAGE_ALERT,
@@ -32,16 +32,16 @@ import {
   imports: [
     RouterLink,
     TranslateModule
-],
+  ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss'
 })
-export class MenuAdminComponent implements OnInit{
+export class MenuAdminComponent implements OnInit {
 
   constructor(
     private router: Router,
     private userService: AuthService,
-    private permisosService :PermisosService
+    private permisosService: PermisosService
   ) { }
 
   public ADMIN_PAGE_MENU_PERSMISSION_USERS = ADMIN_PAGE_MENU_PERSMISSION_USERS

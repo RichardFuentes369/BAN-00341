@@ -1,25 +1,35 @@
 import { Component } from '@angular/core';
-import { LayoutComponent } from '@mod/custom/admin/components/layout/layout.component';
-import { CardComponent } from '@mod/custom/admin/components/card/card.component';
-import { ModalComponent } from '@mod/custom/admin/components/modal/modal.component';
-import { SearchComponent } from '@mod/custom/admin/components/search/search.component';
-import { ReportComponent } from '@mod/custom/admin/components/report/report.component';
-import { CrudComponent } from '@mod/custom/admin/components/crud/crud.component';
+import { CommonModule } from '@angular/common';
+import { MenuCustomComponent } from '../../components/menu/menu.component';
+import { TablecrudCustomComponent } from '../../components/tablecrud/tablecrud.component';
+import { GridcrudCustomComponent } from '../../components/gridcrud/gridcrud.component';
+import { KpicardCustomComponent } from '../../components/kpicard/kpicard.component';
 
 @Component({
   selector: 'app-index',
   standalone: true,
   imports: [
-    LayoutComponent,  
-    SearchComponent,
-    ReportComponent,
-    CardComponent,
-    ModalComponent,
-    CrudComponent
+    CommonModule, // Necesario para @if y @for
+    MenuCustomComponent,
+    KpicardCustomComponent,
+    TablecrudCustomComponent,
+    GridcrudCustomComponent,
   ],
   templateUrl: './index.component.html',
   styleUrl: './index.component.scss',
 })
 export class IndexComponent {
+  
+  // Estado independiente para cada componente
+  vistas = {
+    menu: true,
+    kpi: true,
+    table: true,
+    grid: true
+  };
 
+  // Método genérico para alternar cualquier sección
+  toggle(seccion: keyof typeof this.vistas) {
+    this.vistas[seccion] = !this.vistas[seccion];
+  }
 }
