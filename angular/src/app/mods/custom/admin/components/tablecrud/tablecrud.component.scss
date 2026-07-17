@@ -1,0 +1,404 @@
+/* --- (Tu sección :host se mantiene igual) --- */
+:host {
+  --layout-topbar-height: 4rem;
+  display: block;
+
+  --bg-row: #ffffff;
+  --text-main: #1e293b;
+  --border-color: rgba(0, 0, 0, 0.05);
+
+  &[data-theme='dark'],
+  &:host-context([data-theme='dark']) {
+    --bg-row: #ffffff;
+    --border-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* --- (Tus contenedores y botonería se mantienen igual) --- */
+.card-custom {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: none;
+  background-color: var(--bg-row);
+  overflow: visible !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.table-container {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: visible !important;
+  border: none;
+}
+
+.botoneria {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  position: sticky !important;
+  top: var(--layout-topbar-height) !important;
+  z-index: 1;
+  /* Valor alto para asegurar que nada pase por encima */
+  backdrop-filter: blur(8px);
+  padding: 18px 25px;
+  border-bottom: 1px solid var(--border-color);
+
+  .title-container {
+    margin-right: auto;
+
+    h5 {
+      font-size: 1.1rem;
+      color: var(--grid_table_crud-text_color);
+      font-weight: 700;
+      margin: 0;
+    }
+  }
+
+
+
+  .actions-container {
+
+    // Estilos para los botones que tienen este efecto expansivo
+    .action-icon-btn {
+      background: transparent;
+      overflow: hidden;
+      /* Evita que el texto se desborde mientras crece */
+      white-space: nowrap;
+      /* Fuerza a que el texto se quede en una sola línea */
+      cursor: pointer;
+      padding: 6px 10px !important;
+      /* Un pequeño acolchado para el botón */
+      border-radius: 30px;
+      /* Lo hace ver tipo píldora moderna al expandirse */
+      transition: background-color 0.3s ease;
+
+      &:hover:not([disabled]) {
+        background-color: var(--surface-hover, #f1f3f4);
+        /* Un fondo sutil gris al pasar el mouse */
+
+        .nameButton {
+          max-width: 150px;
+          /* Valor seguro para que quepa la palabra completa */
+          opacity: 1;
+          margin-left: 8px;
+          /* Separación entre el ícono y el texto */
+        }
+      }
+
+      /* El tamaño del ícono grande */
+      .icon-main {
+        font-size: 1.3rem;
+        display: inline-block;
+      }
+
+      /* Estado inicial oculto del texto */
+      .nameButton {
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        font-weight: 600;
+        color: var(--text-main);
+        /* Esta transición genera el efecto suave de cortina/despliegue */
+        transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 0.2s ease,
+          margin 0.3s ease;
+      }
+
+      /* Si el botón está deshabilitado no debe expandirse ni cambiar cursor */
+      &:disabled {
+        cursor: not-allowed;
+        background: transparent !important;
+
+        .nameButton {
+          max-width: 0 !important;
+          opacity: 0 !important;
+        }
+      }
+    }
+  }
+
+  // Estilos iniciales para el texto (oculto)
+  .nameButton {
+    display: inline-block;
+    max-width: 0;
+    /* Empieza con ancho cero */
+    opacity: 0;
+    /* Empieza invisible para un fade suave */
+    overflow: hidden;
+    /* Esconde el texto mientras el ancho sea cero */
+    white-space: nowrap;
+    /* Evita que el texto se rompa en varias líneas al contraerse */
+    transition: max-width 0.3s ease-in-out, opacity 0.2s ease, margin 0.3s ease;
+    font-size: 14px;
+    /* Ajusta este valor a tu gusto (ej. 12px, 16px, 0.9rem) */
+    font-weight: 500;
+    /* Opcional: para darle un grosor intermedio */
+  }
+}
+
+/* --- 4. DISEÑO DE LA TABLA + CLASE DE SELECCIÓN --- */
+::ng-deep {
+
+  .custom-length-wrapper {
+    display: none !important;
+  }
+
+  table {
+    border-collapse: separate !important;
+    border-spacing: 0 4px !important;
+    width: 100% !important;
+    background-color: transparent !important;
+  }
+
+  thead {
+    background: var(--grid_table_crud-head_background)!important;
+    color: var(--grid_table_crud-head_text);
+    border-radius: 8px !important;
+  }
+
+  th {
+    background: transparent !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    padding: 12px 12px !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    &::before,
+    &::after {
+      display: none !important;
+    }
+
+    &:first-child {
+      border-top-left-radius: 12px; 
+    }
+
+    &:last-child {
+      border-top-right-radius: 12px; 
+    }
+  }
+
+  tbody {
+    // Convierte el espaciado de la tabla para que permita separar las filas
+    border-collapse: separate;
+    border-spacing: 0 12px; // 💥 El truco mágico: 0 horizontal, 12px de separación vertical entre "tarjetas"
+    background-color: transparent !important; // Evita que el fondo del tbody tape el espacio
+
+    tr {
+      background-color: transparent !important;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+      td {
+        padding-top: 4px !important;    /* Ajusta este valor a tu gusto (más bajo = más delgado) */
+        padding-bottom: 4px !important; /* Ajusta este valor a tu gusto (más bajo = más delgado) */
+        vertical-align: middle;        /* Mantiene el texto perfectamente centrado verticalmente */
+      }
+
+      // Efecto hover sutil para que toda la "tarjeta" reaccione al pasar el mouse
+      &:hover {
+        cursor: pointer;
+        transform: translateY(-2px);
+
+        td {
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); // Sombra más pronunciada en hover
+          border-color: var(--grid_table_crud-row_select) !important; // Opcional: cambia el borde al color principal
+        }
+      }
+    }
+  }
+
+  td {
+    /* 💥 EL TRUCO: Volvemos el fondo transparente para que se vea el fondo del TR padre */
+    background-color: transparent !important;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    padding: 12px 16px !important;
+    vertical-align: middle;
+
+    // Bordes superior e inferior de la tarjeta
+    border-top: 1px solid var(--grid_table_crud-row_color-line) !important;
+    border-bottom: 1px solid var(--grid_table_crud-row_color-line) !important;
+
+    border-left: none !important;
+    border-right: none !important;
+
+    &:first-child {
+      border-left: 1px solid var(--grid_table_crud-row_color-line) !important;
+      border-radius: 8px 0 0 8px !important;
+    }
+
+    &:last-child {
+      border-right: 1px solid var(--grid_table_crud-row_color-line) !important;
+      border-radius: 0 8px 8px 0 !important;
+    }
+  }
+
+  tr.selected-row {
+    // Cambiamos el fondo de toda la estructura del TR de un solo golpe
+    background-color: var(--grid_table_crud-row_select) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2) !important;
+
+    td {
+      color: var(--grid_table_crud-row_text_select) !important;
+      font-weight: 500;
+
+      // Sincronizamos los bordes perimetrales con el color de selección
+      border-top-color: var(--grid_table_crud-row_select) !important;
+      border-bottom-color: var(--grid_table_crud-row_select) !important;
+
+      &:first-child {
+        border-left-color: var(--grid_table_crud-row_select) !important;
+      }
+
+      &:last-child {
+        border-right-color: var(--grid_table_crud-row_select) !important;
+      }
+
+      /* Ajuste de elementos hijos dentro de la tarjeta roja */
+      .text-muted,
+      i,
+      small,
+      span,
+      .fa,
+      .pi {
+        color: rgba(255, 255, 255, 0.9) !important;
+      }
+
+      /* Inversión de botones redondos o badges blancos que tienes a la derecha */
+      .badge,
+      .btn-actions {
+        background-color: #ffffff !important;
+        color: var(--grid_table_crud-row_select) !important;
+      }
+    }
+  }
+
+  /* --- 5. PUNTOS DE ESTADO --- */
+  .status-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  .dot-green {
+    background-color: #28a745;
+    box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
+    animation: pulse-green 2s infinite;
+  }
+
+  .dot-red {
+    background-color: #dc3545;
+    box-shadow: 0 0 8px rgba(220, 53, 69, 0.5);
+    animation: pulse-red 2s infinite;
+  }
+
+  /* AHORA EL GRIS TIENE EL MISMO EFECTO */
+  .dot-gray {
+    background-color: #6c757d;
+    box-shadow: 0 0 8px rgba(108, 117, 125, 0.5);
+    animation: pulse-gray 2s infinite;
+  }
+
+  /* --- ANIMACIONES DE PULSO --- */
+  @keyframes pulse-green {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+    }
+
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 6px rgba(40, 167, 69, 0);
+    }
+
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+    }
+  }
+
+  @keyframes pulse-red {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+    }
+
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 6px rgba(220, 53, 69, 0);
+    }
+
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+    }
+  }
+
+  @keyframes pulse-gray {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(108, 117, 125, 0.7);
+    }
+
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 6px rgba(108, 117, 125, 0);
+    }
+
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(108, 117, 125, 0);
+    }
+  }
+}
+
+.text-custom-select{
+  color: var(--select-background_color);
+}
+
+.text-cargar-ecxel {
+  color: var(--grid_table_crud-button_cargar_excel);
+}
+.text-crear {
+  color: var(--grid_table_crud-button_crear);
+}
+.text-ver {
+  color: var(--grid_table_crud-button_ver);
+}
+.text-editar {
+  color: var(--grid_table_crud-button_editar);
+}
+.text-estado-usuario{
+  color: var(--grid_table_crud-button_estado_usuario);
+}
+.text-eliminar-inidividual{
+  color: var(--grid_table_crud-button_eliminar_individual);
+}
+.text-eliminar-multiple{
+  color: var(--grid_table_crud-button_eliminar_multiple);
+}
+.text-asignar-permisos {
+  color: var(--grid_table_crud-button_asignar_permisos);
+}
+.text-asignar-productos{
+  color: var(--grid_table_crud-button_asignar_productos);
+}
+.text-limpiar{
+  color: var(--grid_table_crud-button_limpiar);
+}
+
+.bg_grid_table_crud_custom{
+  background-color: var(--grid_table_crud-background_color) !important;
+}

@@ -1,9 +1,74 @@
-<div class="">
-    <app-custom-layout></app-custom-layout>
-    <app-custom-card></app-custom-card>
-    <app-custom-crud></app-custom-crud>
-    <app-custom-crud></app-custom-crud>
-    <app-custom-modal></app-custom-modal>
-    <app-custom-search></app-custom-search>
-    <app-custom-report></app-custom-report>
+<div class="container-fluid p-4">
+  
+  <!-- Bloque Menú -->
+  <div class="card mb-4 border-0 shadow-sm">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+      <h5 class="m-0 fw-bold">Menú</h5>
+      <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toggle('menu')">
+        <i [class]="vistas.menu ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+      </button>
+    </div>
+    @if (vistas.menu) {
+      <div class="card-body animate__animated animate__fadeIn">
+        <app-custom-menu></app-custom-menu>
+      </div>
+    }
+  </div>
+
+  <hr>
+
+  <!-- Bloque KPI -->
+  <div class="card mb-4 border-0 shadow-sm">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+      <h5 class="m-0 fw-bold">KPI Card</h5>
+      <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toggle('kpi')">
+        <i [class]="vistas.kpi ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+      </button>
+    </div>
+    @if (vistas.kpi) {
+      <div class="card-body animate__animated animate__fadeIn">
+        <app-custom-kpicard></app-custom-kpicard>
+      </div>
+    }
+  </div>
+
+  <hr>
+
+  <!-- Bloque Table CRUD -->
+  <div class="card mb-4 border-0 shadow-sm">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+      <h5 class="m-0 fw-bold">Table CRUD</h5>
+      <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toggle('table')">
+        <i [class]="vistas.table ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+      </button>
+    </div>
+    @if (vistas.table) {
+      <div class="card-body animate__animated animate__fadeIn">
+        <app-custom-tablecrud></app-custom-tablecrud>
+      </div>
+    }
+  </div>
+
+  <hr>
+
+  <!-- Bloque Grid CRUD -->
+  <div class="card mb-4 border-0 shadow-sm">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+      <h5 class="m-0 fw-bold">Grid CRUD</h5>
+      <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toggle('grid')">
+        <i [class]="vistas.grid ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+      </button>
+    </div>
+    @if (vistas.grid) {
+      <div class="card-body animate__animated animate__fadeIn">
+        <app-custom-gridcrud></app-custom-gridcrud>
+      </div>
+    }
+  </div>
+
+  modal
+  search
+  layout (2) => index y admin
 </div>
+
+
