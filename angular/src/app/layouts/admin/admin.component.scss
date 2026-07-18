@@ -2,6 +2,10 @@
   display: block;
   height: 100vh;
   overflow: hidden;
+  
+  .h-custom {
+    height: 3rem !important;
+  }
 
   .bg-line-separator-customer {
     background-color: var(--layout-admin-side_line_color_separator) !important;
@@ -49,6 +53,43 @@
   }
 }
 
+#sidebarToggle {
+  /* Cambia la transición a transform, que es lo que realmente cambia */
+  transition: transform 0.4s ease, background-color 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  margin: 0 auto;
+  cursor: pointer;
+  
+  /* Asegura que el icono dentro tenga la transición de rotación */
+  &::after {
+    content: "\f053"; 
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    /* La transición debe estar aquí para que el giro del icono sea suave */
+    transition: transform 0.4s ease;
+    display: inline-block;
+  }
+}
+
+/* Estado cuando se presiona */
+#sidebarToggle.toggled::after {
+  transform: rotate(180deg);
+}
+
+#accordionSidebar.toggled .nav-item .collapse,
+#accordionSidebar.toggled .nav-item .collapsing {
+  position: relative !important; // Cambiamos absolute por relative
+  left: 0 !important;           // Quitamos el desplazamiento lateral
+  width: 100% !important;       // Aseguramos que ocupe el ancho disponible
+  z-index: 10;                  // Aseguramos que esté por encima
+}
+
 #wrapper {
   display: flex;
   height: 100vh;
@@ -57,18 +98,73 @@
 
 #accordionSidebar {
   height: 100vh;
-  overflow-y: visible;
+  transition: width 0.4s ease, opacity 0.4s ease;
+  overflow: hidden;
   flex-shrink: 0;
-  z-index: 1040; // Sidebar por debajo del Topbar dropdown
-  .sidebar-inner { 
-    height: 100%;
-    overflow-y: auto;
+  z-index: 1040;
+
+  // .titleApp {
+  //   transition: opacity 0.3s ease;
+  //   opacity: 0;
+  //   pointer-events: none;
+  // }
+
+  // --- ESCRITORIO ---
+  @media (min-width: 768px) {
+    &.toggled {
+      width: 0px !important;
+      opacity: 0;
+      pointer-events: none;
+    }
+    &:not(.toggled) {
+      width: 250px;
+      opacity: 1;
+    }
   }
-  #accordionSidebar {
-    display: flex !important; // Fuerza a que se muestre como flex
-    position: absolute !important; // Para que flote sobre el contenido
-    height: 100vh !important;
-    left: 0;
+
+  // --- MÓVIL ---
+  @media (max-width: 767.98px) {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    z-index: 1050; // Asegura que esté sobre el contenido
+    transition: left 0.4s ease, opacity 0.4s ease;
+    
+    .titleApp {
+      display: none !important;
+    }
+
+    // Cuando está "oculto" (toggled), lo movemos a la izquierda fuera de pantalla
+    &.toggled {
+      left: -250px !important; // Lo esconde hacia la izquierda
+      opacity: 0;
+    }
+
+    // Cuando está visible
+    &:not(.toggled) {
+      width: 7rem !important; // Ancho fijo para móvil
+      left: 0 !important;      // Visible en pantalla
+      opacity: 1;
+      box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+    }
+  }
+
+  // --- ANIMACIÓN DEL LOGO/TEXTO INTERNO ---
+  .logo-container {
+    transition: opacity 0.3s ease, visibility 0.3s, width 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+    white-space: nowrap; // Evita que el texto se salte de línea
+  }
+
+  // Cuando el sidebar está oculto (toggled), el logo se desvanece
+  &.toggled .logo-container {
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
   }
 }
 
@@ -257,3 +353,4 @@
   from { transform: rotate(-3deg) translateY(0); }
   to { transform: rotate(-3deg) translateY(-3px); }
 }
+

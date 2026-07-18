@@ -11362,8 +11362,8 @@ a:focus {
 
 .sidebar .nav-item .nav-link .img-profile,
 .topbar .nav-item .nav-link .img-profile {
-  height: 2rem;
-  width: 2rem
+  height: 1.5rem;
+  width: 1.5rem
 }
 
 .topbar {
@@ -11549,11 +11549,20 @@ a:focus {
   font-weight: 700
 }
 
+/* Estilo base (Escritorio / Pantallas grandes) */
 .sidebar .nav-item .collapse {
-  position: absolute;
+  position: fixed;
   left: calc(6.5rem + 1.5rem / 2);
   z-index: 1;
-  top: 2px
+  top: auto;
+}
+
+/* Estilo para Móviles y Tablets (hasta 991px) */
+@media (max-width: 991px) {
+  .sidebar .nav-item .collapse {
+    /* Eliminamos el !important y dejamos que la cascada CSS actúe */
+    margin-top: -4rem; 
+  }
 }
 
 .sidebar .nav-item .collapse .collapse-inner {

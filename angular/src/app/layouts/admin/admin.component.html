@@ -1,13 +1,15 @@
 <div id="wrapper">
-  <ul class="navbar-nav bg-background-side-custom sidebar sidebar-dark accordion"
-    [ngClass]="minimizarSliderbar == false ? 'toggled': ''" id="accordionSidebar">
+  <ul class="navbar-nav bg-background-side-custom sidebar sidebar-dark accordion" [class.toggled]="minimizarSliderbar"
+    id="accordionSidebar">
     <a class="nav-link d-flex align-items-center justify-content-center" [routerLink]="LAYOUT_PAGE_DASHBOARD">
       <div class="bg-white rounded-5" style="position: relative; z-index: 1;">
         <img src="assets/images/img_logo.png" alt="" width="50">
       </div>
-      
-      <div [class.d-none]="!minimizarSliderbar" class="bg-white d-inline-block ml-n3 mr-3 rounded-bottom rounded-top" style="position: relative; z-index: 0;">
-        <span class="text-dark text-center font-weight-bold pl-2 ml-2 mr-2  mt-1 mb-1"
+
+      <!-- Aquí aplicamos la clase logo-container para la animación -->
+      <div class="logo-container bg-white d-inline-block ml-n3 mr-3 rounded-bottom rounded-top"
+        style="position: relative; z-index: 0;">
+        <span class="text-dark titleApp font-weight-bold pl-2 ml-2 mr-2 mt-1 mb-1"
           style="line-height: 0.9; display: block;" [innerHTML]="nameApp">
         </span>
       </div>
@@ -140,9 +142,9 @@
     </li>
     }
 
-    <hr class="sidebar-divider bg-line-separator-customer d-none d-md-block">
+    <hr class="sidebar-divider bg-line-separator-customer d-md-block">
 
-    <div class="text-center d-none d-md-inline mt-xl-auto">
+    <div class="text-center mt-xl-auto mb-3">
       <button class="rounded-circle border-0" id="sidebarToggle" (click)="mostrarMenuLateral()"></button>
     </div>
 
@@ -152,7 +154,7 @@
     <div id="content-scroll-area">
 
       <nav
-        class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar static-top sticky-top pl-2 pr-2 shadow h-auto">
+        class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar static-top sticky-top pl-2 pr-2 shadow h-custom">
         <ul class="navbar-nav mr-auto nav-vertical-wrapper">
 
           <span class="my-auto m-3" (click)="mostrarMenuLateral()" style="cursor: pointer;">
@@ -162,16 +164,20 @@
           <app-globales-breadcrumbs></app-globales-breadcrumbs>
         </ul>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown no-arrow my-auto text-center mr-1">
-            <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
+          <li class="nav-item dropdown no-arrow my-auto text-center">
+            <app-globales-notification></app-globales-notification>
           </li>
           <div class="topbar-divider d-none d-sm-block"></div>
           <li class="nav-item dropdown no-arrow my-auto text-center">
             <app-globales-colormode></app-globales-colormode>
           </li>
           <div class="topbar-divider d-none d-sm-block"></div>
-          <li class="nav-item dropdown no-arrow my-auto text-center ">
-            <a class="nav-link dropdown-toggle h-100" id="userDropdown" role="button" data-toggle="dropdown"
+          <li class="nav-item dropdown no-arrow my-auto text-center">
+            <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
+          </li>
+          <div class="topbar-divider d-none d-sm-block"></div>
+          <li class="nav-item dropdown no-arrow my-auto text-center">
+            <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               <img class="img-profile rounded-circle" src="../../../assets/images/undraw_profile.svg">
               <span class="ml-3 mr-2 d-none d-lg-inline small text_nickname">
@@ -198,7 +204,6 @@
           </li>
         </ul>
       </nav>
-
 
       <div id="content" class="container-fluid">
         <div class="p-1 mt-4">
