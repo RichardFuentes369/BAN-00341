@@ -37,6 +37,7 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import Swal from 'sweetalert2';
 import { VarService } from '@mod/vars/admin/pages/var/service/var.service';
 import { VarsService } from '@service/globales/vars/vars.service';
+import { NotificationComponent } from '@component/globales/notification/notification.component';
 
 @Component({
   selector: 'app-layout-admin',
@@ -44,6 +45,7 @@ import { VarsService } from '@service/globales/vars/vars.service';
   imports: [
     BreadcrumbsComponent,
     ColormodeComponent,
+    NotificationComponent,
     IdiomaComponent,
     CommonModule,
     TranslateModule,
