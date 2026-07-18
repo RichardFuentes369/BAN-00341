@@ -1,73 +1,41 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
-import { BREADCRUMB_PATH_MENU } from '@const/app.const';
-import { BREADCRUMB_PATH_ADMIN_BRAND } from '@mod/catalog/const/catalog.const';
-import { BREADCRUMB_PATH_CATALOG, BREADCRUMB_PATH_MODULES, BREADCRUMB_PATH_USERS } from '@mod/main/const/main.const';
-import { BREADCRUMB_PATH_SUBMODULES } from '@mod/modules/const/modules.const';
-import { BREADCRUMB_PATH_ADMIN_USERS, BREADCRUMB_PATH_ASSIGN_ADMIN_USERS, BREADCRUMB_PATH_FINAL_USERS } from '@mod/users/const/users.const';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-export interface Breadcrumb {
-  label: string;
-  url: string;
-  queryParams?: any;
-}
-
 @Injectable({ providedIn: 'root' })
 export class BreadcrumbService {
-  private breadcrumbs = new BehaviorSubject<Breadcrumb[]>([]);
+  // BehaviorSubject retiene el valor actual incluso si el componente se suscribe después
+  private breadcrumbsSubject = new BehaviorSubject<Breadcrumb[]>([]);
+  breadcrumbs$ = this.breadcrumbsSubject.asObservable();
 
-  breadcrumbs$ = this.breadcrumbs.asObservable();
-
-  constructor(private router: Router) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    // Escucha cada final de navegación para actualizar los breadcrumbs
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
-      const root = this.router.routerState.snapshot.root;
-      const breadcrumbs: Breadcrumb[] = [];
-      this.addBreadcrumbs(root, breadcrumbs);
-      this.breadcrumbs.next(breadcrumbs);
+      const breadcrumbs = this.buildBreadcrumbs(this.router.routerState.root);
+      this.breadcrumbsSubject.next(breadcrumbs);
     });
   }
 
-  private addBreadcrumbs(route: ActivatedRouteSnapshot, breadcrumbs: Breadcrumb[], url: string = '') {
-    const children: ActivatedRouteSnapshot[] = route.children;
-    if (children.length === 0) return;
+  // Método auxiliar para construir el array de breadcrumbs
+  private buildBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: Breadcrumb[] = []): Breadcrumb[] {
+    const children = route.children;
+    if (children.length === 0) return breadcrumbs;
 
     for (const child of children) {
-      const routeURL: string = child.url.map(segment => segment.path).join('/');
+      const routeURL = child.snapshot.url.map(segment => segment.path).join('/');
       if (routeURL !== '') {
         url += `/${routeURL}`;
       }
 
-      const label = child.data['breadcrumb'];
+      const label = child.snapshot.data['breadcrumb']; // Asegúrate de definir 'breadcrumb' en tus rutas
       if (label) {
-        
-        let params = { ...child.queryParams };
-        if (
-          label === BREADCRUMB_PATH_MENU || 
-          label === BREADCRUMB_PATH_USERS || 
-          label === BREADCRUMB_PATH_ADMIN_USERS || 
-          label === BREADCRUMB_PATH_FINAL_USERS ||
-          label === BREADCRUMB_PATH_CATALOG ||
-          label === BREADCRUMB_PATH_MODULES || 
-          label === BREADCRUMB_PATH_ADMIN_BRAND 
-        ) {
-          params = {}
-        }
-
-        if (label === BREADCRUMB_PATH_SUBMODULES) {
-          delete params['id_submodule']
-        }
-
-        breadcrumbs.push({
-          label: label,
-          url: url,
-          queryParams: params
-        });
+        breadcrumbs.push({ label, url });
       }
-      this.addBreadcrumbs(child, breadcrumbs, url);
+      return this.buildBreadcrumbs(child, url, breadcrumbs);
     }
+    return breadcrumbs;
   }
 }

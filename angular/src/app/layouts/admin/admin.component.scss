@@ -4,11 +4,15 @@
   overflow: hidden;
   
   .h-custom {
-    height: 3rem !important;
+    height: 4rem !important;
   }
 
   .bg-line-separator-customer {
     background-color: var(--layout-admin-side_line_color_separator) !important;
+  }
+
+  .custom-breadcrum {
+    background-color: var(--layout-admin-bg_color_breadcrumb) !important;
   }
 
   .bg-background-side-custom {
@@ -354,3 +358,9 @@
   to { transform: rotate(-3deg) translateY(-3px); }
 }
 
+.topbar-secondary-sticky {
+  position: sticky;
+  top: 4rem; 
+  z-index: 1000; 
+  padding: 0.25rem;
+}

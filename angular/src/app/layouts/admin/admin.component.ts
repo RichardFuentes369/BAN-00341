@@ -103,7 +103,7 @@ export class AdminComponent implements OnInit {
     private varsService: VarsService
   ) { }
 
-  minimizarSliderbar: boolean = false;
+  minimizarSliderbar: boolean = true;
   nombreModulo: string = '';
 
   nameApp: string = ''
