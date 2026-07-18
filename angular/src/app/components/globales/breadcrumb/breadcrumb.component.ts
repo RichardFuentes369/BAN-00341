@@ -18,12 +18,10 @@ import { CommonModule } from '@angular/common';
 export class BreadcrumbsComponent implements OnInit {
   breadcrumbs: Breadcrumb[] = [];
 
-  constructor(
-    private breadcrumbService: BreadcrumbService,
-    private translate: TranslateService
-  ) {}
+  constructor(private breadcrumbService: BreadcrumbService) {}
 
   ngOnInit() {
+    // Al usar BehaviorSubject, esto recibirá el último valor inmediatamente
     this.breadcrumbService.breadcrumbs$.subscribe(data => {
       this.breadcrumbs = data;
     });
