@@ -12,7 +12,7 @@
   }
 
   .custom-breadcrum {
-    background-color: var(--layout-admin-bg_color_breadcrumb) !important;
+    background-color: var(--layout-breadcrumbs-bg_color_breadcrumb) !important;
   }
 
   .bg-background-side-custom {
@@ -115,15 +115,32 @@
 
   // --- ESCRITORIO ---
   @media (min-width: 768px) {
-    &.toggled {
-      width: 0px !important;
-      opacity: 0;
-      pointer-events: none;
-    }
-    &:not(.toggled) {
-      width: 250px;
-      opacity: 1;
-    }
+.logo-banner {
+  transition: opacity 0.3s ease-in-out, visibility 0.3s;
+  opacity: 0;           // Estado inicial: invisible
+  visibility: hidden;   // Lo quita del flujo de interacción
+}
+
+&.toggled {
+  width: 0px !important;
+  opacity: 0;
+  pointer-events: none;
+  
+  .logo-banner {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+&:not(.toggled) {
+  width: 250px;
+  opacity: 1;
+  
+  .logo-banner {
+    opacity: 1;         // Aparece suavemente
+    visibility: visible;
+  }
+}
   }
 
   // --- MÓVIL ---
@@ -160,7 +177,6 @@
     visibility: visible;
     white-space: nowrap; // Evita que el texto se salte de línea
   }
-
   // Cuando el sidebar está oculto (toggled), el logo se desvanece
   &.toggled .logo-container {
     opacity: 0;
@@ -364,3 +380,4 @@
   z-index: 1000; 
   padding: 0.25rem;
 }
+

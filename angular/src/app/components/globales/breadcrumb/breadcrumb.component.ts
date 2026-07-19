@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
-import { BreadcrumbService, Breadcrumb } from './service/breadcrumb.service';
+import { BreadcrumbService } from './service/breadcrumb.service';
 import { CommonModule } from '@angular/common';
+import { Breadcrumb } from './interface/breadcrumb.interface';
 
 @Component({
   selector: 'app-globales-breadcrumbs',

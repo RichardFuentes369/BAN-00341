@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { Breadcrumb } from '../interface/breadcrumb.interface';
 
 @Injectable({ providedIn: 'root' })
 export class BreadcrumbService {
