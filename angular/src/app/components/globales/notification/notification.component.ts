@@ -8,8 +8,4 @@ import { Component } from '@angular/core';
 })
 export class NotificationComponent {
 
-  toggleNotifications = () => {
-    console.log('abrir notificaciónes')
-  };
-
 }
