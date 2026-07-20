@@ -11560,7 +11560,6 @@ a:focus {
 /* Estilo para Móviles y Tablets (hasta 991px) */
 @media (max-width: 991px) {
   .sidebar .nav-item .collapse {
-    /* Eliminamos el !important y dejamos que la cascada CSS actúe */
     margin-top: -4rem; 
   }
 }

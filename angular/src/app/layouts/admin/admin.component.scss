@@ -2,7 +2,7 @@
   display: block;
   height: 100vh;
   overflow: hidden;
-  
+
   .h-custom {
     height: 4rem !important;
   }
@@ -20,21 +20,18 @@
   }
 
   .icon-customer {
-    color: var(--layout-admin-side_color_background)!important;
+    color: var(--layout-admin-side_color_background) !important;
   }
 
-  .bg_side_text, 
+  .bg_side_text,
   .bg_side_icon {
     color: var(--layout-admin-side_color_icon_text) !important;
     transition: color 0.3s ease;
 
     &:hover {
-      color: color-mix(
-        in srgb, 
-        var(--layout-admin-side_color_icon_text), 
-        var(--layout-admin-side_color_hover_icon_text) 
-        var(--layout-admin-side_color_hover_amount)
-      ) !important;
+      color: color-mix(in srgb,
+          var(--layout-admin-side_color_icon_text),
+          var(--layout-admin-side_color_hover_icon_text) var(--layout-admin-side_color_hover_amount)) !important;
     }
   }
 
@@ -69,10 +66,10 @@
   color: white;
   margin: 0 auto;
   cursor: pointer;
-  
+
   /* Asegura que el icono dentro tenga la transición de rotación */
   &::after {
-    content: "\f053"; 
+    content: "\f053";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     /* La transición debe estar aquí para que el giro del icono sea suave */
@@ -88,10 +85,9 @@
 
 #accordionSidebar.toggled .nav-item .collapse,
 #accordionSidebar.toggled .nav-item .collapsing {
-  position: relative !important; // Cambiamos absolute por relative
-  left: 0 !important;           // Quitamos el desplazamiento lateral
-  width: 100% !important;       // Aseguramos que ocupe el ancho disponible
-  z-index: 10;                  // Aseguramos que esté por encima
+  position: fixed !important;
+    top: auto;
+    margin-top: -4rem;
 }
 
 #wrapper {
@@ -107,66 +103,20 @@
   flex-shrink: 0;
   z-index: 1040;
 
-  // .titleApp {
-  //   transition: opacity 0.3s ease;
-  //   opacity: 0;
-  //   pointer-events: none;
-  // }
-
   // --- ESCRITORIO ---
-  @media (min-width: 768px) {
-.logo-banner {
-  transition: opacity 0.3s ease-in-out, visibility 0.3s;
-  opacity: 0;           // Estado inicial: invisible
-  visibility: hidden;   // Lo quita del flujo de interacción
-}
-
-&.toggled {
-  width: 0px !important;
-  opacity: 0;
-  pointer-events: none;
-  
-  .logo-banner {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-&:not(.toggled) {
-  width: 250px;
-  opacity: 1;
-  
-  .logo-banner {
-    opacity: 1;         // Aparece suavemente
-    visibility: visible;
-  }
-}
+  @media (min-width: 991px) {
+    .icon_menu_bar {
+      display: none;
+    }
   }
 
   // --- MÓVIL ---
-  @media (max-width: 767.98px) {
-    position: fixed;
-    top: 0;
-    height: 100%;
-    z-index: 1050; // Asegura que esté sobre el contenido
-    transition: left 0.4s ease, opacity 0.4s ease;
-    
-    .titleApp {
-      display: none !important;
+  @media (max-width: 991px) {
+    .logo-container {
+      margin-top: -0.5rem;
     }
-
-    // Cuando está "oculto" (toggled), lo movemos a la izquierda fuera de pantalla
-    &.toggled {
-      left: -250px !important; // Lo esconde hacia la izquierda
-      opacity: 0;
-    }
-
-    // Cuando está visible
-    &:not(.toggled) {
-      width: 7rem !important; // Ancho fijo para móvil
-      left: 0 !important;      // Visible en pantalla
-      opacity: 1;
-      box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+    .icon_menu_bar {
+      display: block;
     }
   }
 
@@ -177,6 +127,7 @@
     visibility: visible;
     white-space: nowrap; // Evita que el texto se salte de línea
   }
+
   // Cuando el sidebar está oculto (toggled), el logo se desvanece
   &.toggled .logo-container {
     opacity: 0;
@@ -211,7 +162,7 @@
   display: flex;
   flex-direction: column;
   background-color: var(--layout-admin-back_color_background) !important;
-  z-index: 1; 
+  z-index: 1;
   position: relative;
   -webkit-overflow-scrolling: touch;
 }
@@ -230,6 +181,7 @@
   .modal {
     z-index: 2000 !important;
   }
+
   // El fondo oscuro del modal (backdrop) debe subir también
   .modal-backdrop {
     z-index: 1900 !important;
@@ -263,53 +215,77 @@
     align-items: flex-end;
     gap: 5px;
     padding-bottom: 5px;
-    
+
     /* EFECTO REJILLA: Líneas horizontales y verticales */
-    background-image: 
-      linear-gradient(#333 1px, transparent 1px), 
+    background-image:
+      linear-gradient(#333 1px, transparent 1px),
       linear-gradient(90deg, #333 1px, transparent 1px);
-    background-size: 20px 20px; /* Tamaño de los cuadros de la rejilla */
+    background-size: 20px 20px;
+    /* Tamaño de los cuadros de la rejilla */
 
     .item {
       border: 2px solid #333;
       background: #eee;
-      z-index: 1; /* Para que se vean sobre la rejilla */
+      z-index: 1;
+      /* Para que se vean sobre la rejilla */
     }
-    .box { width: 25px; height: 25px; }
-    .large { width: 35px; height: 40px; }
-    .circle { width: 25px; height: 25px; border-radius: 50%; }
+
+    .box {
+      width: 25px;
+      height: 25px;
+    }
+
+    .large {
+      width: 35px;
+      height: 40px;
+    }
+
+    .circle {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+    }
+
     .banana {
-        width: 25px;
-        height: 15px;
-        background: #f7dc6f; 
-        border-radius: 0 100% 0 100%;
-        transform: rotate(-20deg);
-      }
+      width: 25px;
+      height: 15px;
+      background: #f7dc6f;
+      border-radius: 0 100% 0 100%;
+      transform: rotate(-20deg);
+    }
+
     .tomato {
       width: 25px;
       height: 22px;
       background: #e74c3c; // Rojo
       border-radius: 50% 50% 45% 45%;
+
       &::before {
         content: '';
         position: absolute;
-        top: -4px; left: 8px;
-        width: 8px; height: 4px;
-        background: #27ae60; 
+        top: -4px;
+        left: 8px;
+        width: 8px;
+        height: 4px;
+        background: #27ae60;
         border-radius: 50%;
       }
     }
+
     .appliance {
       width: 20px;
       height: 30px;
       background: #d5d8dc;
       border-radius: 2px 2px 8px 8px;
       border: 2px solid #333;
+
       &::after {
         content: '';
         position: absolute;
-        top: 5px; left: 5px;
-        width: 10px; height: 8px;
+        top: 5px;
+        left: 5px;
+        width: 10px;
+        height: 8px;
         background: #fff; // "Pantalla" o nivel de líquido
       }
     }
@@ -327,35 +303,43 @@
   }
 
   .cart-wheel-frame {
-    width: 100px; height: 8px; background: #333;
-    margin: -5px auto 0; border-radius: 4px;
+    width: 100px;
+    height: 8px;
+    background: #333;
+    margin: -5px auto 0;
+    border-radius: 4px;
   }
 
   .cart-wheels {
-    display: flex; justify-content: space-between; padding: 0 15px; margin-top: 2px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    margin-top: 2px;
+
     .wheel {
-      width: 22px; height: 22px; border: 4px solid #333;
-      border-radius: 50%; background: #fff;
+      width: 22px;
+      height: 22px;
+      border: 4px solid #333;
+      border-radius: 50%;
+      background: #fff;
       animation: rotateWheel 1s linear infinite;
     }
   }
 
   .road {
-    width: 150px; 
+    width: 150px;
     height: 6px;
     background: #333;
     margin-top: 10px;
     margin-left: -15px;
     position: relative;
-    
+
     /* Esta línea es la clave para que la carretera se mueva visualmente */
-    background-image: repeating-linear-gradient(
-      50deg,
-      #333,
-      #333 10px,
-      #fff 10px,
-      #fff 20px
-    );
+    background-image: repeating-linear-gradient(50deg,
+        #333,
+        #333 10px,
+        #fff 10px,
+        #fff 20px);
     animation: moveRoad 1s linear infinite;
   }
 }
@@ -364,20 +348,26 @@
   from {
     background-position: 0 0;
   }
+
   to {
-    background-position: -20px 0; /* Desplaza el patrón hacia la izquierda */
+    background-position: -20px 0;
+    /* Desplaza el patrón hacia la izquierda */
   }
 }
 
 @keyframes bounce {
-  from { transform: rotate(-3deg) translateY(0); }
-  to { transform: rotate(-3deg) translateY(-3px); }
+  from {
+    transform: rotate(-3deg) translateY(0);
+  }
+
+  to {
+    transform: rotate(-3deg) translateY(-3px);
+  }
 }
 
 .topbar-secondary-sticky {
   position: sticky;
-  top: 4rem; 
-  z-index: 1000; 
+  top: 4rem;
+  z-index: 1000;
   padding: 0.25rem;
 }
-
