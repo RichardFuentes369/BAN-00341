@@ -5,22 +5,17 @@
 
   .theme-switch {
     cursor: pointer;
-    color: white; /* Siempre blanco */
+    color: white;
+    /* Siempre blanco */
     transition: transform 0.3s ease, opacity 0.3s;
 
     &:hover {
       transform: scale(1.2);
       opacity: 0.8;
     }
-    
+
     i {
       transition: transform 0.5s ease;
     }
   }
-}
-
-.dropdown-menu-lg {
-    min-width: 280px;
-    max-width: 300px;
-    padding: 0;
 }
