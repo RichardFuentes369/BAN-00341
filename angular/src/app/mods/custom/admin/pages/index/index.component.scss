@@ -1,3 +1,13 @@
 h5:hover {
     cursor: pointer
 }
+.title-custom {
+  color: var(--layout-admin-back_color_title) !important;
+  background-color: transparent;
+}
+.card-custom {
+  background-color: var(--kpicard-background_color) !important;
+}
+.card-body {
+  background-color: var(--layout-admin-back_color_background) !important;
+}

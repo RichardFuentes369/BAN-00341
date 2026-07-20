@@ -103,6 +103,11 @@
   line-height: 1;
 }
 
+.title-custom {
+  color: var(--layout-admin-back_color_title) !important;
+  background-color: transparent;
+}
+
 /* Ajustes Responsive */
 @media (max-width: 768px) {
   .card-body-custom {
