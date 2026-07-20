@@ -36,7 +36,7 @@
 
 // Estilo para las opciones cuando el usuario abre el select
 select option {
-  background: #fff; // Fondo sólido para el dropdown
+  background-color: var(--input-background_color) !important; 
   color: #333;
   padding: 10px;
 }
