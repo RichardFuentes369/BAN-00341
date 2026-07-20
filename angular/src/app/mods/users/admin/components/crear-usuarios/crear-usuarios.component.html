@@ -10,7 +10,7 @@
             <label for="exampleInputEmail1">
               {{ 'mod-users.LABEL_USER_FIRSTNAME' | translate}}
             </label>
-            <input type="text" class="form-control form-select-sm" [(ngModel)]="model.firstName" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.firstName" placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
+            <input type="text" class="form-control form-select-sm box-input" [(ngModel)]="model.firstName" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.firstName" placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
             @if(validators.firstName) {
               <span class="text-danger small">{{ 'mod-users.ERROR_USER_FIRSTNAME' | translate }}</span>
             }

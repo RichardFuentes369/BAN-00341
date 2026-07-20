@@ -4,12 +4,14 @@ import { MenuCustomComponent } from '../../components/menu/menu.component';
 import { TablecrudCustomComponent } from '../../components/tablecrud/tablecrud.component';
 import { GridcrudCustomComponent } from '../../components/gridcrud/gridcrud.component';
 import { KpicardCustomComponent } from '../../components/kpicard/kpicard.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-index',
   standalone: true,
   imports: [
     CommonModule, // Necesario para @if y @for
+    TranslateModule,
     MenuCustomComponent,
     KpicardCustomComponent,
     TablecrudCustomComponent,

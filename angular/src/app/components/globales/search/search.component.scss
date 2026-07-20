@@ -118,8 +118,10 @@
   background-color: var(--search-back_color_background);
 }
 
-.scroll-container {
-  max-height: 300px; 
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+.card {
+  background-color: var(--input-background_color) !important; 
+}
+
+span {
+  color: var(--modal-label_text_color);
 }

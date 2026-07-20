@@ -66,6 +66,12 @@
       "button_asignar_productos": "#6D28D9",
       "button_limpiar": "#6B7280"
     },
+    "input": {
+      "text_color_placeholder": "#B6C2B4",
+      "background_color": "#FFFFFF",
+      "text_color": "#000000",
+      "border_color": "#4cd523"
+    },
     "modal": {
       "fieldset_line_color": "#0b4a75",
       "legend_text_color": "#0b4a75",
@@ -168,6 +174,12 @@
       "button_asignar_productos": "#7C3AED",
       "button_limpiar": "#4B5563"
     },
+    "input": {
+      "text_color_placeholder": "#9E9E95",
+      "background_color": "#000000",
+      "text_color": "#ffffff",
+      "border_color": "#4cd523"
+    },
     "modal": {
       "fieldset_line_color": "#0b4a75",
       "legend_text_color": "#FFFFFF",
@@ -189,7 +201,7 @@
     "search": {
       "button_background_color": "#0A18F5",
       "body_color_text": "#FFFFFF",
-      "back_color_background": "#948F8F",
+      "back_color_background": "#1F1E1E",
       "icon_background_color": "#FFFFFF",
       "head_text_color": "#FFFFFF",
       "head_background_color": "#111827"
