@@ -21,17 +21,28 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './index.component.scss',
 })
 export class IndexComponent {
-  
+
+  mostratTodo = false;
+
   // Estado independiente para cada componente
   vistas = {
-    menu: true,
-    kpi: true,
-    table: true,
-    grid: true
+    menu: false,
+    kpi: false,
+    table: false,
+    grid: false
   };
 
   // Método genérico para alternar cualquier sección
   toggle(seccion: keyof typeof this.vistas) {
     this.vistas[seccion] = !this.vistas[seccion];
+  }
+
+  toggleAll() {
+    this.mostratTodo = !this.mostratTodo
+    console.log(this.mostratTodo)
+
+    this.vistas = Object.fromEntries(
+      Object.keys(this.vistas).map(key => [key, this.mostratTodo])
+    ) as typeof this.vistas;
   }
 }
