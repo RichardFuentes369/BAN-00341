@@ -73,7 +73,7 @@
 
             <div class="row">
                 @for (item of datos; track item.id) {
-                <div class="col-12 col-md-3 mb-3 pt-1 pb-1 animate__fadeIn">
+                <div class="col-12 col-sm mb-3 pt-1 pb-1 animate__fadeIn">
                     <!-- Fíjate en la clase is-selected y card-modern -->
                     <div class="card card-modern h-100 shadow-sm pointer"
                         [class.is-selected]="idsSeleccionados.includes(item.id)" (click)="toggleSelection(item.id)">
@@ -216,7 +216,7 @@
 
             <div class="row">
                 @for (item of datos; track item.id) {
-                <div class="col-12 col-md-3 mb-3 pt-1 pb-1 animate__fadeIn">
+                <div class="col-12 col-sm mb-3 pt-1 pb-1 animate__fadeIn">
                     <!-- Fíjate en la clase is-selected y card-modern -->
                     <div class="card card-modern h-100 shadow-sm pointer"
                         [class.is-selected]="idsSeleccionados.includes(item.id)" (click)="toggleSelection(item.id)">

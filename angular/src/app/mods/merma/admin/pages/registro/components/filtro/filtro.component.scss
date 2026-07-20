@@ -34,9 +34,22 @@
   }
 }
 
-.custom-text {
-    color: var(--search-body_color_text);
+.card {
+  background-color: var(--input-background_color) !important; 
 }
-.custom-bg {
-    background-color: var(--search-back_color_background);
+.form-control {
+  background-color: var(--input-background_color) !important; 
+  color: var(--input-text_color) !important;
+}
+.form-control::placeholder {
+  color: var(--input-text_color_placeholder) !important; 
+  opacity: 1;
+}
+span {
+  color: var(--modal-label_text_color);
+}
+.scroll-card {
+  max-height: 300px; 
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }

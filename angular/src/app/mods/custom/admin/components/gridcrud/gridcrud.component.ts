@@ -18,7 +18,6 @@ export class GridcrudCustomComponent implements OnInit {
   datos = [
     { id: 1, nombre: 'Elemento A', descripcion: 'Descripción A' },
     { id: 2, nombre: 'Elemento B', descripcion: 'Descripción B' },
-    { id: 3, nombre: 'Elemento C', descripcion: 'Descripción C' },
   ];
 
   ngOnInit(): void { }
