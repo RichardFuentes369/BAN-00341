@@ -156,7 +156,8 @@
       <nav
         class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar static-top sticky-top pl-2 pr-2  h-custom">
         <ul class="navbar-nav mr-auto d-flex align-items-center w-100">
-          <i class="mx-4 icon_menu_bar fa fa-bars my-auto text-white" style="cursor: pointer;" (click)="mostrarMenuLateral()"></i>
+          <i class="mx-4 icon_menu_bar fa fa-bars my-auto text-white" style="cursor: pointer;"
+            (click)="mostrarMenuLateral()"></i>
           <div class="ml-auto d-flex align-items-center">
             <div class="topbar-divider d-none d-sm-block"></div>
             <li class="nav-item dropdown no-arrow my-auto text-center list-unstyled">
@@ -175,24 +176,31 @@
               <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
                 <img class="img-profile rounded-circle" src="../../../assets/images/undraw_profile.svg">
-                <span class="ml-3 mr-2 d-none d-lg-inline small text_nickname text-left" style="display: inline-block; vertical-align: middle;">
+                <span class="ml-3 mr-2 d-none d-lg-inline small text_nickname text-left"
+                  style="display: inline-block; vertical-align: middle;">
                   {{firstName}} <br>
                   {{lastName}}
                 </span>
                 <i class="ml-2 fa fa-chevron-down text_nickname"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" routerLinkActive="active" [routerLink]="LAYOUT_PAGE_PROFILE">
-                  <i class=" fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                <a class="dropdown-item" [ngClass]="isDarkMode === 'light' ? 'text-gray-800' : 'text-gray-400'"
+                  [routerLink]="LAYOUT_PAGE_PROFILE">
+                  <i class=" fas fa-user fa-sm fa-fw mr-2"
+                    [ngClass]="isDarkMode === 'light' ? 'text-gray-800' : 'text-gray-400'"></i>
                   {{ 'layout-admin.DRADROPDOW_MENU_PROFILE' | translate}}
                 </a>
-                <a class="dropdown-item" routerLinkActive="active" [routerLink]="LAYOUT_PAGE_SETTINGS">
-                  <i class=" fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                <a class="dropdown-item" [ngClass]="isDarkMode === 'light' ? 'text-gray-800' : 'text-gray-400'"
+                  [routerLink]="LAYOUT_PAGE_SETTINGS">
+                  <i class=" fas fa-cogs fa-sm fa-fw mr-2"
+                    [ngClass]="isDarkMode === 'light' ? 'text-gray-800' : 'text-gray-400'"></i>
                   {{ 'layout-admin.DRADROPDOW_MENU_SETTING' | translate}}
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" (click)="cerrarSession()" style="cursor: pointer;">
-                  <i class=" fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                <a class="dropdown-item" [ngClass]="isDarkMode === 'light' ? 'text-gray-800' : 'text-gray-400'"
+                  (click)="cerrarSession()" style="cursor: pointer;">
+                  <i class=" fas fa-sign-out-alt fa-sm fa-fw mr-2"
+                    [ngClass]="isDarkMode === 'light' ? 'text-gray-800' : 'text-gray-400'"></i>
                   {{ 'layout-admin.DRADROPDOW_MENU_LOGOUT' | translate}}
                 </a>
               </div>
