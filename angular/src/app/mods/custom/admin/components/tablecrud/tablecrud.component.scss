@@ -402,3 +402,8 @@
 .bg_grid_table_crud_custom{
   background-color: var(--grid_table_crud-background_color) !important;
 }
+
+.title-custom {
+  color: var(--layout-admin-back_color_title) !important;
+  background-color: transparent;
+}
