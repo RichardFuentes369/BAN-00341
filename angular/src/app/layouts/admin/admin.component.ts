@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router'
 import { TranslateModule, TranslateService } from '@ngx-translate/core'
 
@@ -112,6 +112,8 @@ export class AdminComponent implements OnInit {
 
   menu: any[] = []
 
+  isDarkMode: string = ''
+
   async ngOnInit() {
     this.ejecutarInitReal()
     this.settingsService.refreshAction$.subscribe(() => {
@@ -139,6 +141,12 @@ export class AdminComponent implements OnInit {
   upperFirst(texto: string) {
     if (!texto) return texto;
     return texto.charAt(0).toUpperCase() + texto.slice(1);
+  }
+
+  @HostListener('window:themeChanged', ['$event'])
+  onThemeChanged(event: Event): void {
+    const customEvent = event as CustomEvent;
+    this.isDarkMode = customEvent.detail;
   }
 
   idiomaCambiar(valor: string) {

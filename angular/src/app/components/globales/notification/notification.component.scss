@@ -6,7 +6,6 @@
   .theme-switch {
     cursor: pointer;
     color: white;
-    /* Siempre blanco */
     transition: transform 0.3s ease, opacity 0.3s;
 
     &:hover {
@@ -18,4 +17,24 @@
       transition: transform 0.5s ease;
     }
   }
+
+  /* --- Ancho adaptable para evitar desbordes en móviles --- */
+  .dropdown-menu {
+    width: 90vw;            /* Ocupa el 90% del ancho de la pantalla en móviles */
+    max-width: 380px;       /* Pero no pasará de 380px en pantallas grandes/PC */
+    min-width: 280px;       /* Un ancho mínimo para que no se vea aplastado */
+    left: auto !important;  /* Rompe la alineación fija si interfiere */
+    
+    @media (min-width: 991px) {
+      right: 0 !important;      /* Lo alineamos a la derecha en PC */
+    }
+    
+    @media (max-width: 991px) {
+      right: -3.5rem !important; /* <--- Añadido 'rem' (o usa 'px') */
+    }
+  }
+}
+
+.dropdown-menu {
+  background-color: var(--input-background_color) !important; 
 }

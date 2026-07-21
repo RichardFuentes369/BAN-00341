@@ -24,14 +24,22 @@ export class ColormodeComponent implements OnInit {
     const savedTheme = localStorage.getItem('theme') || 'light';
     this.isDarkMode = savedTheme === 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
+
+    const evento = new CustomEvent('themeChanged', { detail: savedTheme });
+    window.dispatchEvent(evento);
+
     this.loadCustom()
   }
 
   toggleTheme = () => {
     this.isDarkMode = !this.isDarkMode;
     const theme = this.isDarkMode ? 'dark' : 'light';
-
+    
     document.documentElement.setAttribute('data-theme', theme);
+
+    const evento = new CustomEvent('themeChanged', { detail: theme });
+    window.dispatchEvent(evento);
+
     localStorage.setItem('theme', theme);
     this.loadCustom()
   };
