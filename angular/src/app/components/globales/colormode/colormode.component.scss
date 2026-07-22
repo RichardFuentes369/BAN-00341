@@ -5,7 +5,7 @@
 
   .theme-switch {
     cursor: pointer;
-    color: white; /* Siempre blanco */
+    color: var(--layout-admin-heder_color_icons);
     transition: transform 0.3s ease, opacity 0.3s;
 
     &:hover {

@@ -34,6 +34,17 @@
   border: none;
 }
 
+.title-container {
+  margin-right: auto;
+
+  h5, span {
+    font-size: 1.1rem;
+    color: var(--grid_table_crud-text_color);
+    font-weight: 700;
+    margin: 0;
+  }
+}
+
 .botoneria {
   display: flex;
   justify-content: flex-end;
@@ -117,6 +128,10 @@
           max-width: 0 !important;
           opacity: 0 !important;
         }
+        
+        i {
+          color: var(--grid_table_crud-button_group_disabled) !important; 
+        }
       }
     }
   }
@@ -198,6 +213,7 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
 
       td {
+        color: var(--grid_table_crud-row_text_color) !important;
         padding-top: 4px !important;    /* Ajusta este valor a tu gusto (más bajo = más delgado) */
         padding-bottom: 4px !important; /* Ajusta este valor a tu gusto (más bajo = más delgado) */
         vertical-align: middle;        /* Mantiene el texto perfectamente centrado verticalmente */

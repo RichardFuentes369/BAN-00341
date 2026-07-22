@@ -1,8 +1,15 @@
-<div class="theme-switch-container nav-link">
-  <a class="nav-link dropdown-toggle" id="alertsDropdown" role="button" data-toggle="dropdown">
-    <i class="fas fa-bell fa-fw"></i>
-    <span class="badge badge-danger badge-counter mr-3">3+</span>
+<div class="theme-switch-container">
+  <!-- El enlace principal de Bootstrap -->
+  <a class="nav-link dropdown-toggle color_icons theme-switch" id="alertsDropdown" role="button" data-toggle="dropdown">
+    
+    <!-- Contenedor exacto que agrupa campana y número -->
+    <span class="bell-wrapper">
+      <i class="fas fa-bell fa-fw bell-icon"></i>
+      <span class="badge badge-danger badge-counter">3+</span>
+    </span>
+
   </a>
+  
   <div class="dropdown-menu dropdown-menu-lg shadow animated--grow-in dropdown-menu-right mt-n2"
     aria-labelledby="userDropdown">
     <span class="dropdown-item dropdown-header">15 Notifications</span>

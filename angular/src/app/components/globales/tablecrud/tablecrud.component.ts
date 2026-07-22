@@ -202,16 +202,12 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
         "lengthMenu": `${this.translate.instant('global-tablecrud.TABLE_INFO_SHOW')} _MENU_ ${this.translate.instant('global-tablecrud.TABLE_INFO_RECORDS')}`,
         "zeroRecords": "No se encontraron resultados",
         "emptyTable": `${this.translate.instant('global-tablecrud.TABLE_INFO_NO_INFO')}`,
-        "info": `${this.translate.instant('global-tablecrud.TABLE_INFO_SHOWING')} _START_ ${this.translate.instant('global-tablecrud.TABLE_INFO_TO')} _END_ ${this.translate.instant('global-tablecrud.TABLE_INFO_OF')} _TOTAL_ ${this.translate.instant('global-tablecrud.TABLE_INFO_ENTRIES')}`,
+        "info": `<span style="font-size: 0.85rem;color: var(--grid_table_crud-text_color) !important;">${this.translate.instant('global-tablecrud.TABLE_INFO_SHOWING')} _START_ ${this.translate.instant('global-tablecrud.TABLE_INFO_TO')} _END_ ${this.translate.instant('global-tablecrud.TABLE_INFO_OF')} _TOTAL_ ${this.translate.instant('global-tablecrud.TABLE_INFO_ENTRIES')}</span>`,
         "paginate": {
-          // "first": `${this.translate.instant('global-tablecrud.TABLE_INFO_FIRST')}`,
-          // "last": `${this.translate.instant('global-tablecrud.TABLE_INFO_LAST')}`,
-          // "next": `${this.translate.instant('global-tablecrud.TABLE_INFO_NEXT')}`,
-          // "previous": `${this.translate.instant('global-tablecrud.TABLE_INFO_PREVIOUS')}`
-          "first": `<i class="fa-solid fa-angles-left"></i>`,
-          "previous": `<i class="fa-solid fa-angle-left"></i>`,
-          "next": `<i class="fa-solid fa-angle-right"></i>`,
-          "last": `<i class="fa-solid fa-angles-right"></i>`,
+          "first": `<i class="fa-solid fa-angles-left" style="color: var(--grid_table_crud-text_color) !important;"></i>`,
+          "previous": `<i class="fa-solid fa-angle-left" style="color: var(--grid_table_crud-text_color) !important;"></i>`,
+          "next": `<i class="fa-solid fa-angle-right" style="color: var(--grid_table_crud-text_color) !important;"></i>`,
+          "last": `<i class="fa-solid fa-angles-right" style="color: var(--grid_table_crud-text_color) !important;"></i>`,
         }
       },
       columns: this.habilitarSeleccion ? [columnaSeleccion, ...this.columnas] : [...this.columnas],
