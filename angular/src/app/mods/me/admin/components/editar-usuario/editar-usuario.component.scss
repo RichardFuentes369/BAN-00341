@@ -18,9 +18,9 @@ h5 {
 }
 
 legend {
-  color: #000000;
+  color: var(--modal-legend_text_color);
 }
 
 label {
-  color: #000000;
+  color: var(--modal-label_text_color);
 }
