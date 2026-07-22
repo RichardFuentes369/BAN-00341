@@ -38,6 +38,7 @@ import Swal from 'sweetalert2';
 import { VarService } from '@mod/vars/admin/pages/var/service/var.service';
 import { VarsService } from '@service/globales/vars/vars.service';
 import { NotificationComponent } from '@component/globales/notification/notification.component';
+import { FullscreenComponent } from '@component/globales/fullscreem/fullscreen.component';
 
 @Component({
   selector: 'app-layout-admin',
@@ -45,6 +46,7 @@ import { NotificationComponent } from '@component/globales/notification/notifica
   imports: [
     BreadcrumbsComponent,
     ColormodeComponent,
+    FullscreenComponent,
     NotificationComponent,
     IdiomaComponent,
     CommonModule,
