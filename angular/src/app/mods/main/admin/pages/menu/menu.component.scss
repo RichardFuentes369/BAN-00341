@@ -87,9 +87,6 @@
   transition: all 0.25s ease;
 
   &:hover:not(.is-selected) {
-    // background-color: rgba(89, 139, 204, 0.04) !important;
-    background-color: var(--layout-admin-menu_color_hover);
-    border-color: rgba(123, 204, 89, 0.2) !important;
     transform: translateY(-2px);
   }
 
@@ -244,7 +241,7 @@
 }
 
 .title-custom {
-  color: var(--layout-admin-back_color_title) !important;
+  color: var(--layout-admin-page_color_title) !important;
   background-color: transparent;
 }
 

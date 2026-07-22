@@ -5,36 +5,46 @@
 
   .theme-switch {
     cursor: pointer;
-    color: white;
-    transition: transform 0.3s ease, opacity 0.3s;
+    color: var(--layout-admin-heder_color_icons);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 
-    &:hover {
-      transform: scale(1.2);
-      opacity: 0.8;
-    }
+    // Contenedor estricto para la campana y el número
+    .bell-wrapper {
+      position: relative; // El número se anclará exactamente aquí
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
 
-    i {
-      transition: transform 0.5s ease;
-    }
-  }
+      // Solo el icono de la campana se agranda
+      .bell-icon {
+        display: inline-block;
+        transition: transform 0.3s ease, opacity 0.3s;
 
-  /* --- Ancho adaptable para evitar desbordes en móviles --- */
-  .dropdown-menu {
-    width: 90vw;            /* Ocupa el 90% del ancho de la pantalla en móviles */
-    max-width: 380px;       /* Pero no pasará de 380px en pantallas grandes/PC */
-    min-width: 280px;       /* Un ancho mínimo para que no se vea aplastado */
-    left: auto !important;  /* Rompe la alineación fija si interfiere */
-    
-    @media (min-width: 991px) {
-      right: 0 !important;      /* Lo alineamos a la derecha en PC */
-    }
-    
-    @media (max-width: 991px) {
-      right: -3.5rem !important; /* <--- Añadido 'rem' (o usa 'px') */
+        &:hover {
+          transform: scale(1.25);
+          opacity: 0.8;
+        }
+      }
+
+      // El número queda perfecto al lado de la campana sin salirse
+      .badge-counter {
+        position: absolute;
+        top: -6px;   // Altura exacta respecto a la campana
+        right: -8px;  // Distancia a la derecha exacta
+        transform: none !important;
+        font-size: 0.55rem;
+        padding: 0.2em 0.4em;
+      }
     }
   }
 }
 
 .dropdown-menu {
   background-color: var(--input-background_color) !important; 
+}
+
+.color_icons {
+  color: var(--layout-admin-heder_color_icons) !important;
 }

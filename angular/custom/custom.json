@@ -15,6 +15,7 @@
         "back_color_p": "#878382",
         "background_color_card": "#FFFFFF",
         "background_color_card_menu": "#FAF5F5",
+        "page_color_title": "#000000",
         "backg_color_textcard": "#000000",
         "logo_color_icon_text": "#000000",
         "logo_color_hover_icon_text": "#0b4a75",
@@ -24,15 +25,24 @@
       },
       "admin": {
         "header_color_background": "#069E21",
-        "header_text_nickname": "#FFFFFF",
-        "back_color_title": "#000000",
-        "back_color_background": "#EDEDED",
+        "main_background_color": "#EDEDED",
+        "heder_color_icons": "#FFFFFF",
+        "heder_nickname_color": "#FFFFFF",
+        "dropdawn_text_color": "#4F4D4D",
+        "dropdawn_background": "#FFFFFF",
+        "dropdown_hover_background": "#E8E3E3",
+
         "side_color_background": "#0b4a75",
         "side_color_icon_text": "rgba(255, 255, 255, 0.4)",
         "side_color_hover_icon_text": "#0b4a75",
         "side_color_hover_amount": 20,
         "side_line_color_separator": "#FFFFFF",
-        "menu_color_hover": "#E3DEDE",
+        "side_dropdawn_text_color": "#4F4D4D",
+        "side_dropdawn_background": "#FFFFFF",
+        "side_dropdown_hover_background": "#E8E3E3",
+        
+        "page_color_title": "#000000",
+
         "footer_color_background": "#575555",
         "footer_color_text": "#FFFFFF"
       }
@@ -53,8 +63,10 @@
       "background_color": "#FFFFFF",
       "head_text": "#FFFFFF",
       "head_background": "#0A18F5",
+      "row_text_color": "#000000",
       "row_text_select": "#FFFFFF",
       "row_select": "#AB0505",
+      "button_group_disabled": "#BEBFC2",
       "button_cargar_excel": "#10B981", 
       "button_crear": "#059669",
       "button_ver": "#0A18F5",
@@ -127,29 +139,39 @@
         "logo_color_hover_icon_text": "#0b4a75",
         "logo_color_hover_amount": 20,
         "background_color_card_menu": "#EDEDED",
+        "page_color_title": "#FFFFFF",
         "footer_text_background": "#FFFFFF",
         "footer_color_background": "#878383"
       },
       "admin": {
         "header_color_background": "#069E21",
-        "header_text_nickname": "#FFFFFF",
-        "back_color_title": "#FFFFFF",
-        "back_color_background": "#1F1E1E",
+        "main_background_color": "#1F1E1E",
+        "heder_color_icons": "#DEDEDE",
+        "heder_nickname_color": "#FFFFFF",
+        "dropdawn_text_color": "#FFFFFF",
+        "dropdawn_background": "#000000",
+        "dropdown_hover_background": "#8A8686",
+        
         "side_color_background": "#000000",
         "side_color_icon_text": "rgba(255, 255, 255, 0.4)",
         "side_color_hover_icon_text": "#0b4a75",
         "side_color_hover_amount": 20,
         "side_line_color_separator": "#FFFFFF",
-        "menu_color_hover": "#E3DEDE",
+        "side_dropdawn_text_color": "#FFFFFF",
+        "side_dropdawn_background": "#000000",
+        "side_dropdown_hover_background": "#8A8686",
+        
+        "page_color_title": "#FFFFFF",
+
         "footer_color_background": "#575555",
         "footer_color_text": "#FFFFFF"
       }
     },
     "kpicard": {
       "border_line_color": "#157D00",
-      "background_color": "#DBD5D5",
-      "text_color": "#000000",
-      "text_number_color": "#000000"
+      "background_color": "#000000",
+      "text_color": "#FFFFFF",
+      "text_number_color": "#FFFFFF"
     },
     "card_menu": {
       "text": "#FFFFFF",
@@ -157,12 +179,14 @@
       "background": "#474747"
     },
     "grid_table_crud": {
-      "text_color": "#000000",
-      "background_color": "#DBD5D5",
+      "text_color": "#FFFFFF",
+      "background_color": "#000000",
       "head_text": "#FFFFFF",
       "head_background": "#111827",
+      "row_text_color": "#FFFFFF",
       "row_text_select": "#FFFFFF",
       "row_select": "#1e3a8a",
+      "button_group_disabled": "#BEBFC2",
       "button_cargar_excel": "#065F46", 
       "button_crear": "#047857",
       "button_ver": "#4338CA",

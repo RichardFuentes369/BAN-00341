@@ -2,6 +2,12 @@
 :host {
   display: block;
   height: 100%;
+  --filter: none !important;
+
+  &[data-theme='dark'],
+  &:host-context([data-theme='dark']) {
+    --filter: invert(1) brightness(100) !important;
+  }
 }
 
 .bg_kpi_custom {
@@ -53,6 +59,12 @@
   /* Altura fija para consistencia visual */
   object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.05));
+}
+
+.colored-icon {
+  filter: var(--filter);
+  transition: filter 0.3s ease;
+  /* Transición suave al cambiar de tema */
 }
 
 /* Divisor vertical */

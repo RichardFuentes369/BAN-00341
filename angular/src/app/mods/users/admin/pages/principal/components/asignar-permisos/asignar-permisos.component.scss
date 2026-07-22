@@ -1,4 +1,4 @@
-.custom-tooltipA {
+.custom-tooltipA { 
   position: relative;
   display: inline-flex;
   cursor: help;
@@ -59,10 +59,11 @@
 }
 
 .title-custom {
-  color: var(--layout-admin-back_color_title) !important;
+  color: var(--layout-admin-page_color_title) !important;
   background-color: transparent;
 }
 
 .card-custom {
-  background-color: var(--kpicard-background_color) !important;
+  color: var(--grid_table_crud-row_text_color) !important;
+  background-color: var(--grid_table_crud-background_color) !important;
 }

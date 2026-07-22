@@ -50,8 +50,25 @@
   }
 
   .text_nickname {
-    color: var(--layout-admin-header_text_nickname) !important;
+    color: var(--layout-admin-heder_nickname_color) !important;
   }
+
+  .color_icons {
+    color: var(--layout-admin-heder_color_icons) !important;
+  }
+
+  .dropdawn_color_text {
+    color: var(--layout-admin-dropdawn_text_color) !important;
+  }
+}
+
+// Esto es para que se muestren las card
+// una vez este collapse o no
+#accordionSidebar.toggled .nav-item .collapse,
+#accordionSidebar.toggled .nav-item .collapsing {
+  position: fixed !important;
+    top: auto;
+    margin-top: -4rem;
 }
 
 #sidebarToggle {
@@ -78,22 +95,8 @@
   }
 }
 
-/* Estado cuando se presiona */
 #sidebarToggle.toggled::after {
   transform: rotate(180deg);
-}
-
-#accordionSidebar.toggled .nav-item .collapse,
-#accordionSidebar.toggled .nav-item .collapsing {
-  position: fixed !important;
-    top: auto;
-    margin-top: -4rem;
-}
-
-#wrapper {
-  display: flex;
-  height: 100vh;
-  overflow: visible;
 }
 
 #accordionSidebar {
@@ -139,6 +142,12 @@
   }
 }
 
+#wrapper {
+  display: flex;
+  height: 100vh;
+  overflow: visible;
+}
+
 #content-wrapper {
   flex: 1;
   display: flex;
@@ -147,21 +156,12 @@
   overflow: hidden;
 }
 
-.topbar {
-  flex-shrink: 0;
-  z-index: 1030; // Nivel suficiente para estar sobre el contenido
-
-  .dropdown-menu {
-    z-index: 1060 !important; // Por encima de todo en el layout
-  }
-}
-
 #content-scroll-area {
   flex: 1;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  background-color: var(--layout-admin-back_color_background) !important;
+  background-color: var(--layout-admin-main_background_color) !important;
   z-index: 1;
   position: relative;
   -webkit-overflow-scrolling: touch;
@@ -372,8 +372,24 @@
   padding: 0.25rem;
 }
 
-
 .dropdown-menu {
-  background-color: var(--input-background_color) !important; 
+  background-color: var(--layout-admin-dropdawn_background) !important; 
+  .dropdown-item {
+    &:hover {
+      background-color: var(--layout-admin-dropdown_hover_background) !important;
+      color: var(--layout-admin-dropdawn_text_color) !important;
+    }
+  }
+}
+
+.collapse-inner {
+  background-color: var(--layout-admin-side_dropdawn_background) !important; 
+}
+.collapse-item {
+  color: var(--layout-admin-side_dropdawn_text_color) !important;
+  &:hover {
+    background-color: var(--layout-admin-side_dropdown_hover_background) !important;
+    color: var(--layout-admin-side_dropdawn_text_color) !important;
+  }
 }
 

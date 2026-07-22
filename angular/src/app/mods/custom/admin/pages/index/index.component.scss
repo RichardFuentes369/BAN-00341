@@ -1,12 +1,18 @@
-h5:hover {
+.title_card:hover {
     cursor: pointer
 }
 .title-custom {
-  color: var(--layout-admin-back_color_title) !important;
+  color: var(--layout-admin-page_color_title) !important;
   background-color: transparent;
 }
+
+.bg_system {
+  background-color: var(--layout-admin-main_background_color)!important;
+}
+
 .card-custom {
-  background-color: var(--kpicard-background_color) !important;
+  color: var(--grid_table_crud-row_text_color) !important;
+  background-color: var(--grid_table_crud-background_color) !important;
 }
 .card-body {
   background-color: var(--layout-admin-back_color_background) !important;

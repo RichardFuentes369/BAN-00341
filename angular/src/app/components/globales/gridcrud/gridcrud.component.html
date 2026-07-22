@@ -2,13 +2,13 @@
   <div class="grid-content-body px-4 py-4 card card-custom shadow bg_grid_table_crud_custom">
  
     <div class="sticky-header pt-md-0">
-      <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between">
+      <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between my-n3 mb-1">
         <div class="title-container mb-2 mb-md-0">
           <h5 class="m-0 fw-bold title">{{ title }}</h5>
-            <span class="text-muted animated fadeIn" style="font-size: 0.85rem;">
-              {{ 'global-tablecrud.WORD_SELECTED' | translate }}:
-              <b class="text-dark">{{idsSeleccionados.length}}</b>
-            </span>
+          <span class="custom_text animated fadeIn" style="font-size: 0.85rem;">
+            {{ 'global-tablecrud.WORD_SELECTED' | translate }}
+            (<b>{{idsSeleccionados.length}}</b>)
+          </span>
         </div>
         <div class="d-flex justify-content-center">
           <label
@@ -193,7 +193,7 @@
     </div>
 
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-5 gap-3">
-      <div class="text-muted small">
+      <div class="color_info_page small">
         @if (totalRegistros > 0) {
         {{ 'global-gridcrud.PAGINATION_INFO_SHOWING' | translate}} {{ desdeConteo }} - {{ hastaConteo }}
         {{ 'global-gridcrud.TABLE_INFO_OF' | translate }} {{ totalRegistros }}
