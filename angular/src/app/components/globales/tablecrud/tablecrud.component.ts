@@ -28,6 +28,8 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() accioneson: boolean = true;
   @Input() campoFiltro: boolean = false;
   @Input() endPoint: string = '';
+  @Input() orderField: string = '';
+  @Input() order: string = '';
   @Input() complementoEndPoint: string = '';
   @Input() filters: string = '';
   @Input() columnas: any[] = [];
@@ -205,6 +207,14 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
 
         // Mantengo tu estructura de URL original
         const separator = this.endPoint.includes('?') ? '&' : '?';
+
+        const tieneField = this.filters.includes("&field");
+        const tieneOrder = this.filters.includes("&order");
+
+        if (!tieneField || !tieneOrder) {
+          this.filters = `${this.filters || ''}&field=${this.orderField}&order=${this.order}`;
+        }
+
         const fullUrl = `${this.url}${this.endPoint}${separator}page=${page}&limit=${dataTablesParameters.length}${this.filters}${this.complementoEndPoint}&lang=${lang}`;
 
         this.http.get<any>(fullUrl).subscribe({

@@ -1,6 +1,6 @@
 :host {
-  --layout-topbar-height: 4rem;
-  --layout-topbar-height-modal: 0rem;
+  --layout-topbar-height-web: 6.5rem;
+  --layout-topbar-height-mobil: 8rem;
   --text-main: #1e293b;
   --text-muted: #64748b;
   --border-color: rgba(0, 0, 0, 0.05);
@@ -17,12 +17,17 @@
 
 .sticky-header {
   position: sticky;
-  top: 4rem !important;
+  top: var(--layout-topbar-height-web) !important;
   z-index: 1;
   background-color: var(--grid_table_crud-background_color) !important;
+  
+  @media (max-width: 768px) {
+    top: var(--layout-topbar-height-mobil) !important;
+  }
+
   width: 100%;
   // padding: 1.1rem 0;
-  padding-top: 46px;
+  // padding-top: 46px;
   padding-bottom: 5px;
   /* Ajustado para dar aire similar a la tabla */
 }
@@ -67,7 +72,7 @@
 .card-modern {
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  background-color: #ffffff;
+  background-color: var(--modal-head_background);
   cursor: pointer;
   transition: all 0.25s ease;
 
@@ -140,13 +145,14 @@
   }
 }
 
+
+
 .botoneria {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 12px;
   position: sticky !important;
-  top: var(--layout-topbar-height) !important;
   z-index: 1;
   /* Valor alto para asegurar que nada pase por encima */
   backdrop-filter: blur(8px);
@@ -304,5 +310,12 @@
 }
 
 .color_info_page {
+  color: var(--grid_table_crud-text_color) !important;
+}
+
+.text-title {
+  color: var(--grid_table_crud-row_text_color) !important;
+}
+.text-subtitle {
   color: var(--grid_table_crud-text_color) !important;
 }

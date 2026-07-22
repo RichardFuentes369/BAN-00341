@@ -55,6 +55,8 @@ export class WarehoseComponent implements OnInit, OnDestroy{
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = 'batch/obtener-registro-lotes'
+  orderField = 'id'
+  order = 'desc'
   complementoEndPoint = ``
   habilitarSeleccion = true
   filters = ''

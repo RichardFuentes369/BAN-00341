@@ -1,0 +1,8 @@
+.form-control {
+  background-color: var(--input-background_color) !important; 
+  color: var(--input-text_color) !important;
+}
+.form-control::placeholder {
+  color: var(--input-text_color_placeholder) !important; 
+  opacity: 1;
+}

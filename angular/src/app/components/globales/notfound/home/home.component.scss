@@ -11,3 +11,18 @@
     max-width: 800px;
     width: 100%;
 }
+
+.card-custom {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: none;
+  background-color: var(--modal-back_color_background) !important;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.title-custom {
+  color: var(--layout-index-page_color_title) !important;
+  background-color: transparent;
+}

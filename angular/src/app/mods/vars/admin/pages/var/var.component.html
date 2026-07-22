@@ -38,7 +38,8 @@
     @if (cargarIdioma) {
     <div class="table-container">
       <app-globales-tablecrud [campoFiltro]="showcampoFiltro" [endPoint]="endPoint" [columnas]="columnas"
-        [habilitarSeleccion]="habilitarSeleccion" [permisosAcciones]="permisos" [filters]="filters" [title]="titlePage"
+        [habilitarSeleccion]="habilitarSeleccion" [permisosAcciones]="permisos" [filters]="filters" 
+        [orderField]="orderField" [order]="order" [title]="titlePage"
         (verItem)="verData($event)" (crearNuevoItem)="crearData($event)" (editarItem)="editarData($event)"
         (eliminarItem)="eliminarData($event)">
       </app-globales-tablecrud>

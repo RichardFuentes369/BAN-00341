@@ -72,6 +72,9 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = 'admin/obtener-usuarios-administradores'
+  orderField = 'id'
+  order = 'asc'
+
   habilitarSeleccion = true
   filters = ''
   columnas: any[] = [

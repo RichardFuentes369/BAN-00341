@@ -52,6 +52,8 @@ export class VarComponent implements OnInit, OnDestroy {
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = 'var/obtener-vars-var'
+  orderField = 'id'
+  order = 'asc'
   complementoEndPoint = '';
   habilitarSeleccion = true
   filters = ''

@@ -133,11 +133,12 @@ export class EditarWarehouseComponent {
   cargarIdioma = true
   accioneson = false
   endPoint = ``
+  orderField = 'id'
+  order = 'desc'
   columnas: any[] = [
     {
       title: this.translate.instant('mod-merma.REGISTER.COLUMN_ID'),
       data: 'id',
-      visible: false,
       className: 'text-center'
     },
     {
