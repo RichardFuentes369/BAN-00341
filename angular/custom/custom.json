@@ -1,6 +1,10 @@
 {
   "light": {
     "layout": {
+      "scroll": {
+        "color": "#A19C9D",
+        "background_color": "transparent"
+      },
       "breadcrumbs": {
         "link-disabled": "#B6F2C0",
         "link-active": "#FFFFFF",
@@ -13,9 +17,7 @@
         "back_color_background": "#EDEDED",
         "back_color_title": "#000000",
         "back_color_p": "#878382",
-        "background_color_card": "#FFFFFF",
         "background_color_card_menu": "#FAF5F5",
-        "page_color_title": "#000000",
         "backg_color_textcard": "#000000",
         "logo_color_icon_text": "#000000",
         "logo_color_hover_icon_text": "#0b4a75",
@@ -121,12 +123,16 @@
   
   "dark": {
     "layout": {
+      "scroll": {
+        "color": "#D4CFD0",
+        "background_color": "transparent"
+      },
       "breadcrumbs": {
         "link-disabled": "#B6F2C0",
         "link-active": "#FFFFFF",
         "link-hover": "#EDE4E4",
         "separator": "#E8E3E3",
-        "bg_color_breadcrumb": "#000000"
+        "bg_color_breadcrumb": "#141414"
       },
       "index": {
         "header_color_background": "#000000",
@@ -134,12 +140,10 @@
         "backg_color_textcard": "#000000",
         "back_color_title": "#FFFFFF",
         "back_color_p": "#FFFFFF",
-        "background_color_card": "#000000",
         "logo_color_icon_text": "#000000",
         "logo_color_hover_icon_text": "#0b4a75",
         "logo_color_hover_amount": 20,
         "background_color_card_menu": "#EDEDED",
-        "page_color_title": "#FFFFFF",
         "footer_text_background": "#FFFFFF",
         "footer_color_background": "#878383"
       },
@@ -169,7 +173,7 @@
     },
     "kpicard": {
       "border_line_color": "#157D00",
-      "background_color": "#000000",
+      "background_color": "#2B2A2A",
       "text_color": "#FFFFFF",
       "text_number_color": "#FFFFFF"
     },
@@ -180,7 +184,7 @@
     },
     "grid_table_crud": {
       "text_color": "#FFFFFF",
-      "background_color": "#000000",
+      "background_color": "#2B2A2A",
       "head_text": "#FFFFFF",
       "head_background": "#111827",
       "row_text_color": "#FFFFFF",
@@ -210,7 +214,7 @@
       "label_text_color": "#FFFFFF",
       "head_text_color": "#FFFFFF",
       "head_background_color": "#242323",
-      "back_color_background": "#0A0A0A",
+      "back_color_background": "#2B2A2A",
       "body_text_color": "#948F8F",
       "body_background_color": "#FFFFFF",
       "button_cancel_background_color": "#8A8484",

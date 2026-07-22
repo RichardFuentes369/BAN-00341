@@ -53,6 +53,8 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = `registro-mermas/obtener-registro-mermas?month=${(!this.route.snapshot.queryParams?.['month']) ? null : this.route.snapshot.queryParams?.['month']}&year=${(!this.route.snapshot.queryParams?.['anho']) ? null : this.route.snapshot.queryParams?.['anho']}`
+  orderField = 'id'
+  order = 'desc'
   habilitarSeleccion = true
   filters = ''
 

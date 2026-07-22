@@ -12620,3 +12620,34 @@ body.sidebar-toggled footer.sticky-footer {
 .u-final {
   min-height: 100vh
 }
+
+
+/* --- 1. Método Moderno (Firefox) --- */
+* {
+  scrollbar-width: thin;
+  /* Primer valor: color del scroll | Segundo: 'transparent' para el fondo */
+  scrollbar-color: var(--layout-scroll-color) var(--layout-scroll-background_color); 
+}
+
+/* --- 2. Método WebKit (Chrome, Edge, Safari) --- */
+::-webkit-scrollbar {
+  width: 6px;  /* Más estilizado y delgado */
+  height: 6px; 
+}
+
+/* Riel transparente para mantener la limpieza visual */
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+/* La barra deslizante principal */
+::-webkit-scrollbar-thumb {
+  background: var(--layout-scroll-color);
+  border-radius: 9999px;
+  transition: background 0.3s ease;
+}
+
+/* Color al pasar el cursor por encima (mezcla automáticamente un 20% de negro para oscurecerlo) */
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--layout-scroll-color) 80%, black 20%);
+}

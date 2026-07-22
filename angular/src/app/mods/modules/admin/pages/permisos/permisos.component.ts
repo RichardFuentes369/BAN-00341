@@ -91,6 +91,8 @@ export class PermisosComponent implements OnInit {
   titlePage = this.translate.instant('mod-users.TABLE_TITLE')
   showcampoFiltro = true
   endPoint = ``
+  orderField = 'id'
+  order = 'asc'
   habilitarSeleccion = true
   columnas = [
     {

@@ -52,6 +52,8 @@ export class JsonComponent implements OnInit, OnDestroy {
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = 'json/obtener-vars-json'
+  orderField = 'id'
+  order = 'asc'
   complementoEndPoint = '';
   habilitarSeleccion = true
   filters = ''

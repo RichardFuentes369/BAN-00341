@@ -55,6 +55,8 @@ export class ProductosComponent implements OnInit, OnDestroy{
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = 'product/obtener-productos'
+  orderField = 'id'
+  order = 'asc'
   idBrand = this.route.snapshot.queryParams?.['id_brand'];
   complementoEndPoint = this.idBrand ? `&id_marca=${this.idBrand}` : '';
   habilitarSeleccion = true

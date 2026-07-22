@@ -1,15 +1,14 @@
 /* --- (Tu sección :host se mantiene igual) --- */
 :host {
-  --layout-topbar-height: 4rem;
+  --layout-topbar-height-web: 5rem;
+  --layout-topbar-height-mobil: 6rem;
   display: block;
 
-  --bg-row: #ffffff;
   --text-main: #1e293b;
   --border-color: rgba(0, 0, 0, 0.05);
 
   &[data-theme='dark'],
   &:host-context([data-theme='dark']) {
-    --bg-row: #ffffff;
     --border-color: rgba(255, 255, 255, 0.05);
   }
 }
@@ -21,7 +20,7 @@
   flex-direction: column;
   border-radius: 12px;
   border: none;
-  background-color: var(--bg-row);
+  background-color: #ffffff;
   overflow: visible !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -51,11 +50,16 @@
   align-items: center;
   gap: 12px;
   position: sticky !important;
-  top: var(--layout-topbar-height) !important;
+  top: var(--layout-topbar-height-web) !important;
+  
+  @media (max-width: 768px) {
+    top: var(--layout-topbar-height-mobil) !important;
+  }
+
   z-index: 1;
   /* Valor alto para asegurar que nada pase por encima */
   backdrop-filter: blur(8px);
-  padding-top: 35px;
+  padding-top: 20px;
   padding-bottom: 5px;
   border-bottom: 1px solid var(--border-color);
 
@@ -69,8 +73,6 @@
       margin: 0;
     }
   }
-
-
 
   .actions-container {
 
@@ -417,5 +419,9 @@
 }
 
 .bg_grid_table_crud_custom{
+  background-color: var(--grid_table_crud-background_color) !important;
+}
+
+.detail_table_custom {
   background-color: var(--grid_table_crud-background_color) !important;
 }
