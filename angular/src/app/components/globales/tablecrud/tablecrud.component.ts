@@ -87,7 +87,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
 
   cambiarLimiteRegistros(event: any) {
     const nuevoLimite = parseInt(event.target.value, 10);
-    
+
     this.dtOptions.pageLength = nuevoLimite;
 
     if (this.datatableElement && this.datatableElement.dtInstance) {
@@ -122,9 +122,10 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
       processing: true,
       searching: false,
       serverSide: true,
-      responsive: true,    
-      autoWidth: false,    
-      scrollX: true,       
+      pagingType: 'full_numbers',
+      responsive: true,
+      autoWidth: false,
+      scrollX: true,
       scrollY: '',
       scrollCollapse: false,
       lengthMenu: [5, 10, 20, 30, 40, 50, 100],
@@ -137,6 +138,66 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
         if (tableElement) {
           tableElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+
+        const styleId = 'dt-pagination-styles';
+        let styleElement = document.getElementById(styleId) as HTMLStyleElement;
+
+        if (!styleElement) {
+          styleElement = document.createElement('style');
+          styleElement.id = styleId;
+          document.head.appendChild(styleElement);
+        }
+
+        const cssRules = `
+          /* Estilo base de los botones de paginación */
+          .dt-container .dt-paging .dt-paging-button {
+            background-color: #f3f4f6 !important;
+            border: 1px solid #d1d5db !important;
+            border-radius: 26px !important;
+            padding: 6px 12px !important;
+            margin: 0 3px !important;
+            cursor: pointer !important;
+            background-image: none !important;
+            box-shadow: none !important;
+          }
+
+          /* Hover y Focus forzados */
+          .dt-container .dt-paging .dt-paging-button:hover:not(.disabled):not(.current),
+          .dt-container .dt-paging .dt-paging-button:focus:not(.disabled):not(.current) {
+            background-color: color-mix(in srgb, var(--grid_table_crud-head_background) 50%, white) !important;
+            color: #fdfeff !important;
+            border-color: #9ca3af !important;
+            background-image: none !important;
+          }
+
+          /* Página actual / activa (Selector con mayor especificidad + hijos) */
+          div.dt-container div.dt-paging .dt-paging-button.current,
+          div.dt-container div.dt-paging .dt-paging-button.current:hover,
+          div.dt-container div.dt-paging .dt-paging-button.current *,
+          div.dt-container div.dt-paging .dt-paging-button.current:hover * {
+            background-color: var(--grid_table_crud-head_background) !important;
+            color: #ffffff !important;
+            border-color: var(--grid_table_crud-head_background) !important;
+            background-image: none !important;
+          }
+        `;
+
+        styleElement.innerHTML = cssRules;
+
+        setTimeout(() => {
+          const currentButton = document.querySelector('.dt-paging .dt-paging-button.current') as HTMLElement;
+          if (currentButton) {
+            currentButton.style.setProperty('background-color', 'var(--grid_table_crud-head_background)', 'important');
+            currentButton.style.setProperty('color', '#ffffff', 'important');
+            currentButton.style.setProperty('border-color', 'var(--grid_table_crud-head_background)', 'important');
+
+            // Forzar también sus hijos si los tiene
+            const children = currentButton.querySelectorAll('*');
+            children.forEach((child: any) => {
+              child.style.setProperty('color', '#ffffff', 'important');
+            });
+          }
+        }, 30);
       },
       ajax: (dataTablesParameters: any, callback) => {
         const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
@@ -204,10 +265,10 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
         "emptyTable": `${this.translate.instant('global-tablecrud.TABLE_INFO_NO_INFO')}`,
         "info": `<span style="font-size: 0.85rem;color: var(--grid_table_crud-text_color) !important;">${this.translate.instant('global-tablecrud.TABLE_INFO_SHOWING')} _START_ ${this.translate.instant('global-tablecrud.TABLE_INFO_TO')} _END_ ${this.translate.instant('global-tablecrud.TABLE_INFO_OF')} _TOTAL_ ${this.translate.instant('global-tablecrud.TABLE_INFO_ENTRIES')}</span>`,
         "paginate": {
-          "first": `<i class="fa-solid fa-angles-left" style="color: var(--grid_table_crud-text_color) !important;"></i>`,
-          "previous": `<i class="fa-solid fa-angle-left" style="color: var(--grid_table_crud-text_color) !important;"></i>`,
-          "next": `<i class="fa-solid fa-angle-right" style="color: var(--grid_table_crud-text_color) !important;"></i>`,
-          "last": `<i class="fa-solid fa-angles-right" style="color: var(--grid_table_crud-text_color) !important;"></i>`,
+          "first": `<i class="fa-solid fa-angles-left""></i>`,
+          "previous": `<i class="fa-solid fa-angle-left""></i>`,
+          "next": `<i class="fa-solid fa-angle-right""></i>`,
+          "last": `<i class="fa-solid fa-angles-right""></i>`,
         }
       },
       columns: this.habilitarSeleccion ? [columnaSeleccion, ...this.columnas] : [...this.columnas],
@@ -259,7 +320,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
         $checkbox.prop('checked', isSelected);
 
         $row.off('click').on('click', (e: any) => {
-          const rowElement = row as HTMLElement; 
+          const rowElement = row as HTMLElement;
           const rectRow = rowElement.getBoundingClientRect();
           const y = e.clientY - rectRow.top;
 

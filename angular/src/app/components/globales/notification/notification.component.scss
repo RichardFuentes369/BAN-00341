@@ -42,9 +42,15 @@
 }
 
 .dropdown-menu {
-  background-color: var(--input-background_color) !important; 
+  background-color: var(--layout-admin-dropdawn_background) !important; 
 }
 
 .color_icons {
   color: var(--layout-admin-heder_color_icons) !important;
+}
+
+.custom_notify {
+  width: 17rem !important;
+  max-width: 17rem !important; /* Por si Bootstrap usa max-width */
+  right: 0;
 }

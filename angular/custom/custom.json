@@ -90,7 +90,7 @@
       "label_text_color": "#000000",
       "head_text_color": "#FFFFFF",
       "head_background_color": "#0b4a75",
-      "back_color_background": "#EDEDED",
+      "back_color_background": "#F7F2F2",
       "body_text_color": "#948F8F",
       "body_background_color": "#FFFFFF",
       "button_cancel_background_color": "#8A8484",
@@ -130,11 +130,11 @@
       },
       "index": {
         "header_color_background": "#000000",
-        "back_color_background": "#1F1E1E",
+        "back_color_background": "#0A0A0A",
         "backg_color_textcard": "#000000",
         "back_color_title": "#FFFFFF",
         "back_color_p": "#FFFFFF",
-        "background_color_card": "#595454",
+        "background_color_card": "#000000",
         "logo_color_icon_text": "#000000",
         "logo_color_hover_icon_text": "#0b4a75",
         "logo_color_hover_amount": 20,
@@ -145,7 +145,7 @@
       },
       "admin": {
         "header_color_background": "#069E21",
-        "main_background_color": "#1F1E1E",
+        "main_background_color": "#0A0A0A",
         "heder_color_icons": "#DEDEDE",
         "heder_nickname_color": "#FFFFFF",
         "dropdawn_text_color": "#FFFFFF",
@@ -158,12 +158,12 @@
         "side_color_hover_amount": 20,
         "side_line_color_separator": "#FFFFFF",
         "side_dropdawn_text_color": "#FFFFFF",
-        "side_dropdawn_background": "#000000",
+        "side_dropdawn_background": "#302F2F",
         "side_dropdown_hover_background": "#8A8686",
         
         "page_color_title": "#FFFFFF",
 
-        "footer_color_background": "#575555",
+        "footer_color_background": "#0F0F0F",
         "footer_color_text": "#FFFFFF"
       }
     },
@@ -209,8 +209,8 @@
       "legend_text_color": "#FFFFFF",
       "label_text_color": "#FFFFFF",
       "head_text_color": "#FFFFFF",
-      "head_background_color": "#000000",
-      "back_color_background": "#1F1E1E",
+      "head_background_color": "#242323",
+      "back_color_background": "#0A0A0A",
       "body_text_color": "#948F8F",
       "body_background_color": "#FFFFFF",
       "button_cancel_background_color": "#8A8484",
@@ -220,7 +220,7 @@
       "button_update_background_color": "#2563EB",
       "button_update_text_color": "#FFFFFF",
       "footer_text_color": "#948F8F",
-      "footer_background_color": "#1F1E1E"
+      "footer_background_color": "#242323"
     },
     "search": {
       "button_background_color": "#0A18F5",
