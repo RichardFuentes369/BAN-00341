@@ -1,7 +1,7 @@
 /* --- (Tu sección :host se mantiene igual) --- */
 :host {
   --layout-topbar-height-web: 5rem;
-  --layout-topbar-height-mobil: 6rem;
+  --layout-topbar-height-mobil: 5rem;
   display: block;
 
   --text-main: #1e293b;
@@ -36,7 +36,18 @@
 .title-container {
   margin-right: auto;
 
-  h5, span {
+  h5 {
+    font-size: 1.1rem;
+    color: var(--grid_table_crud-title_color);
+    font-weight: 700;
+    margin: 0;
+  }
+}
+
+.title-container {
+  margin-right: auto;
+
+  span {
     font-size: 1.1rem;
     color: var(--grid_table_crud-text_color);
     font-weight: 700;
@@ -62,18 +73,7 @@
   padding-top: 20px;
   padding-bottom: 5px;
   border-bottom: 1px solid var(--border-color);
-
-  .title-container {
-    margin-right: auto;
-
-    h5 {
-      font-size: 1.1rem;
-      color: var(--grid_table_crud-text_color);
-      font-weight: 700;
-      margin: 0;
-    }
-  }
-
+  
   .actions-container {
 
     // Estilos para los botones que tienen este efecto expansivo
