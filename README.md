@@ -29,33 +29,60 @@ CTRL + SHIFT + V
 ## PENDIENTE (II PARTE)
 ### Funcionalidades
 
-	1. Hacer vista para manejo de los colores
-	2. Arreglar index
+	1. Editar bodega
+	2. Editar registros de perdida
 	3. Hacer enpoint para marcar un producto como vendido o devolución (validar como) (*)
 	4. Campanita de notificaciónes (*)
-	5. Graficos (*)
+	5. Reportes
+		Catalogo > Proveedores > ecxel | csv
+		Catalogo > Marca > ecxel | csv
+		Catalogo > Productos > ecxel | csv  
+		Bodega > ecxel | csv 
+		Merma > Registro perdida > excel | csv 
+	6. Graficos (*)
+	7. Alertas > vencimiento > filtro - order by > nombre de columnas (*)
+	8. Alertas > bodega > reporte > nombre de columnas (*)
 
 ### Ajustes
 
-	(Cambiar de la tabla los header de alertas)
+	1. Arreglar index
+	2. Cambiar de la tabla los header de alertas
+	3. (arreglar filtros que si limpio no limpie todo el filtro (si ya existia un filtro previo))
 
-### Filtros
-
-	(arreglar filtros que si limpio no limpie todo el filtro (si ya existia un filtro previo))
-	Alertas > vencimiento > filtro - order by > nombre de columnas (*)
-	Alertas > bodega > reporte > nombre de columnas (*)
-
-### Reportes
-
-	Catalogo > Proveedores > ecxel | csv
-	Catalogo > Marca > ecxel | csv
-	Catalogo > Productos > ecxel | csv  
-	Bodega > ecxel | csv 
-	Merma > Registro perdida > excel | csv 
+### Tener en cuenta diseño
+	layout admin
+		barra lateral
+		barra horizontal
+               breadcrumbs
+               iconos
+		fondo
+		footer
+    search
+    report
+    modal
+    input
+    card
+		
+	layout index
+		banner
+		header
+		
+	notfound
+	nopermission
 
 ## Entregables
 
 	1. Hacer manuales
+		- hacer manual para usar tunnel de cloudflare
+		- hacer manuales de usuario
+		- hacer manual de instalación del backend, frontend y base de datos
+
+	2. Otros entregables
+		- hacer investigacion de porque no se pudo usar una api de ean13
+		- casos de uso
+		- mer
+		- diagrama de clases
+		- diagrama de secuencia
 
 ## Manejo sistema
 

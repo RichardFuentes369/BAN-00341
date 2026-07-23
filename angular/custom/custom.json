@@ -61,6 +61,7 @@
       "background": "#FFFFFF"
     },
     "grid_table_crud": {
+      "title_color": "#3B3939",
       "text_color": "#948F8F",
       "background_color": "#FFFFFF",
       "head_text": "#FFFFFF",
@@ -183,6 +184,7 @@
       "background": "#474747"
     },
     "grid_table_crud": {
+      "title_color": "#FFFFFF",
       "text_color": "#FFFFFF",
       "background_color": "#2B2A2A",
       "head_text": "#FFFFFF",
