@@ -52,6 +52,8 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = 'supplier/obtener-proveedores'
+  orderField = 'id'
+  order = 'asc'
   habilitarSeleccion = true
   filters = ''
   columnas: any[] = [

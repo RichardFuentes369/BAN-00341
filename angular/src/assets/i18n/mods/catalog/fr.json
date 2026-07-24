@@ -20,6 +20,7 @@
   "WORD_DESCENDING": "Décroissant",
 
   "SUPPLIER": {
+    "WORD_SUPPLIER": "Fournisseur",
     "LEGEND_TITLE": "Données du fournisseur",
     "CREATE_TITLE": "Créer",
     "CREATE_SUBTITLE": "Nouveau fournisseur",
@@ -64,6 +65,7 @@
   },
 
   "PRODUCT": {
+    "WORD_PRODUCT": "Produit",
     "LEGEND_TITLE_PRODUCT": "Données du produit",
     "ASSIGMENT_PRODUCT_TITLE_BREADCRUMB": "Produits",
     "UPLOAD_TITLE": "Charger les produits",
@@ -104,6 +106,8 @@
     "PLACEHOLDER_ERROR_DIAS_PRODUCT": "L'alerte jaune ne peut pas être inférieure à l'alerte orange",
     "PLACEHOLDER_ERROR_DIAS_NULOS": "Les alertes jaune et rouge doivent être supérieures à 0",
     "PLACEHOLDER_STATUS_PRODUCT": "Sélectionnez un état",
+
+    "WORD_COMMENT": "Commentaire",
 
     "SELECT_PRODUCT_STATUS": "Sélectionner", 
     "SELECT_PRODUCT_OPTION_ACTIVED": "Actif", 

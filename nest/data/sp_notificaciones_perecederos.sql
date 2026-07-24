@@ -41,8 +41,8 @@ BEGIN
         mb.id_producto,
         mb.lote,
         FROM_UNIXTIME(mb.fecha_entrada) AS fecha_entrada,
-        FROM_UNIXTIME(mb.fecha_vencimiento) AS fecha_vencimiento,
-        DATEDIFF(FROM_UNIXTIME(mb.fecha_vencimiento), CURDATE()) AS dias_restantes,
+        IF(mb.fecha_vencimiento IS NULL, '**********', FROM_UNIXTIME(mb.fecha_vencimiento)) AS fecha_vencimiento,
+        IF(mb.fecha_vencimiento IS NULL, '**********', DATEDIFF(FROM_UNIXTIME(mb.fecha_vencimiento), CURDATE())) AS dias_restantes,
         CASE 
             WHEN DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) > mcprod.alerta_amarilla THEN 'Artículo en alerta verde' 
             WHEN DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) > mcprod.alerta_naranja 

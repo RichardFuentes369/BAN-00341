@@ -37,6 +37,7 @@
   "COLUMN_STATUS": "Status",
   "WORD_ASCENDING": "Ascending",
   "WORD_DESCENDING": "Descending",
+  "WORD_DAYS_REMAINING": "Days remaining",
 
   "LEGEND_TITLE": "Batch data",
   "LABEL_LOTE": "Batch",

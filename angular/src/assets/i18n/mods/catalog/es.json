@@ -20,6 +20,7 @@
   "WORD_DESCENDING": "Descendente",
 
   "SUPPLIER": {
+    "WORD_SUPPLIER": "Proveedor",
     "LEGEND_TITLE": "Datos del proveedor",
     "CREATE_TITLE": "Crear",
     "CREATE_SUBTITLE": "Nuevo proveedor",
@@ -64,6 +65,7 @@
   },
 
   "PRODUCT": {
+    "WORD_PRODUCT": "Producto",
     "LEGEND_TITLE_PRODUCT": "Datos del producto",
     "ASSIGMENT_PRODUCT_TITLE_BREADCRUMB": "Productos",
     "UPLOAD_TITLE": "Cargar", 
@@ -104,6 +106,8 @@
     "PLACEHOLDER_ERROR_DIAS_PRODUCT": "La alerta amarilla no puede ser menor a la alerta naranja",
     "PLACEHOLDER_ERROR_DIAS_NULOS": "La alerta amarilla y la alerta roja deben ser mayor a 0",
     "PLACEHOLDER_STATUS_PRODUCT": "Seleccione un estado",
+
+    "WORD_COMMENT": "Comentario",
 
     "SELECT_PRODUCT_STATUS": "Seleccionar", 
     "SELECT_PRODUCT_OPTION_ACTIVED": "Activo", 
