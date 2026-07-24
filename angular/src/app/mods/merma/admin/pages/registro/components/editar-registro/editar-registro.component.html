@@ -87,11 +87,17 @@
         @if (btn_new_lote && puedoCrearLote) {
         <div class="d-flex flex-row-reverse">
           <div class="p-2">
-            <button class="btn btn-sm btn-primary" (click)="goTo('admin/mod/catalog/proveedores', 0)">
-              {{ 'mod-catalog.SUPPLIER.CREATE_TITLE' | translate }} {{ 'mod-catalog.SUPPLIER.CREATE_SUBTITLE' |
-              translate }}
+            <button class="btn btn-sm btn-primary" (click)="goTo('admin/mod/warehouse', 0)">
+              {{ 'mod-warehouse.CREATE_TITLE' | translate }} {{ 'mod-warehouse.LABEL_LOTE' | translate }}
             </button>
           </div>
+        </div>
+        }
+        @if (btn_new_lote && !puedoCrearLote) {
+        <div class="d-flex justify-content-between">
+          <small class="text-danger">
+            {{ 'mod-warehouse.MSJ_ERROR_CREATE_PRODUCTS_PERMISSION' | translate }}
+          </small>
         </div>
         }
         @if(show_detail_lote){

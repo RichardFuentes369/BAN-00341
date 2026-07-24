@@ -132,11 +132,9 @@ export class EditarRegistroComponent {
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
-
-    const permisos_catalogo_productos = await this.permisosService.permisoPage(0,'catalogo',userData.data.id)
-    const permisos_lote = await this.permisosService.permisoPage(0,'bodega',userData.data.id)
-    const permisos_merma = await this.permisosService.permisoPage(0,'merma',userData.data.id)
-    const permisos_merma_registro = await this.permisosService.permisoPage(44,'registro_merma',userData.data.id)
+    
+    this.permisos_catalogo_productos = (await this.permisosService.permisos(userData.data.id,'productos')).data
+    this.permisos_lote = (await this.permisosService.permisos(userData.data.id,'bodega')).data
 
     // validaciones de permisos
 

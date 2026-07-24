@@ -156,6 +156,9 @@ export class CrearWarehouseComponent implements OnInit {
 
     this.validators.id_producto = (this.model.id_producto === null || !regexBarCode.test((this.producto.codigo_barra as any).toString()));
     this.validators.id_proveedor = (this.model.id_proveedor === null || !regexNIT.test((this.proveedor.nit as any).toString()));
+    this.validators.id_producto = (this.producto.nombre === null);
+    this.validators.id_proveedor = (this.proveedor.razon_social === null);
+
     this.validators.lote = (this.model.lote === '');
     this.validators.fecha_entrada = (this.model.fecha_entrada === '');
     this.validators.fecha_vencimiento = (this.model.fecha_vencimiento === '');
