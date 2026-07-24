@@ -63,7 +63,8 @@ BEGIN
     FROM mod_bodega mb
     LEFT JOIN mod_catalogo_productos mcprod ON mb.id_producto = mcprod.id
     LEFT JOIN mod_catalogo_proveedores mcprov ON mb.id_proveedor = mcprov.id
-    WHERE mb.cantidad_en_bodega > 1;
+    WHERE mb.cantidad_en_bodega > 1 
+    and mb.fecha_vencimiento IS NOT NULL;
 
     -- 3. Obtener el total para la paginación
     SELECT COUNT(*) INTO v_total_registros FROM temp_notificaciones_stock;
