@@ -28,10 +28,10 @@ CTRL + SHIFT + V
 
 ## PENDIENTE (II PARTE)
 ### Funcionalidades
-	1. Editar bodega
-	2. Editar registros de perdida
+	1. Editar bodega (*)
+	2. Editar registros de perdida (*)
 	3. Hacer enpoint para marcar un producto como vendido o devolución (validar como) (*)
-	4. Campanita de notificaciónes (*)
+	4. Campanita de notificaciónes (+/-)
 	5. Reportes
 		Catalogo > Proveedores > ecxel | csv
 		Catalogo > Marca > ecxel | csv
@@ -39,14 +39,13 @@ CTRL + SHIFT + V
 		Bodega > ecxel | csv 
 		Merma > Registro perdida > excel | csv 
 	6. Graficos (*)
-	7. Alertas > vencimiento > filtro|reporte (*)
-	8. Alertas > bodega > filtro|reporte (*)
+	7. Alertas > vencimiento > filtro (muy triplehp, pero facil) |reporte (*)
+	8. Alertas > bodega > filtro (muy triplehp, pero facil) |reporte (*)
 
 ### Ajustes
 
 	1. Arreglar index
-	2. Cambiar de la tabla los header de alertas
-	3. (arreglar filtros que si limpio no limpie todo el filtro (si ya existia un filtro previo))
+	2. (arreglar filtros que si limpio no limpie todo el filtro (si ya existia un filtro previo))
 
 ### Tener en cuenta diseño
 	layout admin

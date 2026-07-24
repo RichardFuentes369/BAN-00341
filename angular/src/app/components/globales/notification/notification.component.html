@@ -1,34 +1,28 @@
 <div class="theme-switch-container">
-  <!-- El enlace principal de Bootstrap -->
   <a class="nav-link dropdown-toggle color_icons theme-switch" id="alertsDropdown" role="button" data-toggle="dropdown">
-    
-    <!-- Contenedor exacto que agrupa campana y número -->
     <span class="bell-wrapper">
       <i class="fas fa-bell fa-fw bell-icon"></i>
-      <span class="badge badge-danger badge-counter">3+</span>
+      <span class="badge badge-danger badge-counter">+2</span>
     </span>
 
   </a>
   
   <div class="dropdown-menu dropdown-menu-lg shadow animated--grow-in dropdown-menu-right custom_notify"
     aria-labelledby="userDropdown">
-    <span class="dropdown-item dropdown-header">15 Notifications</span>
+    <span class="dropdown-header text-center">2 {{ 'global-notify.TITTLE_MODULE' | translate}}</span>
     <div class="dropdown-divider"></div>
-    <a href="#" class="dropdown-item dropdown-header">
-      <i class="bi bi-envelope me-2"></i> 4 new messages
+    @if(tienePermiso('alerta_caducidad')){
+    <a [routerLink]="MOD_ALERT_PAGE_EXPIRATION" class="dropdown-item dropdown-header">
+      <i class="bi bi-envelope me-2"></i> {{ 'mod-alerts.BUTTON_EXPIRATION' | translate }}
       <span class="float-end text-secondary fs-7">3 mins</span>
     </a>
     <div class="dropdown-divider"></div>
-    <a href="#" class="dropdown-item dropdown-header">
-      <i class="bi bi-people-fill me-2"></i> 8 friend requests
+    }
+    @if(tienePermiso('alerta_stock')){
+    <a [routerLink]="MOD_ALERT_PAGE_STOCK" class="dropdown-item dropdown-header">
+      <i class="bi bi-people-fill me-2"></i> {{ 'mod-alerts.BUTTON_STOCK' | translate }}
       <span class="float-end text-secondary fs-7">12 hours</span>
     </a>
-    <div class="dropdown-divider"></div>
-    <a href="#" class="dropdown-item dropdown-header">
-      <i class="bi bi-file-earmark-fill me-2"></i> 3 new reports
-      <span class="float-end text-secondary fs-7">2 days</span>
-    </a>
-    <div class="dropdown-divider"></div>
-    <a href="#" class="dropdown-item dropdown-footer"> See All Notifications </a>
+    }
   </div>
 </div>

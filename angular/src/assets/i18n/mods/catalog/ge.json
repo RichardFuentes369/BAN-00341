@@ -104,8 +104,8 @@
     "PLACEHOLDER_COD_BAR_PRODUCT": "Geben Sie einen gültigen EAN-13-Barcode ein (13 Stellen)",
     "PLACEHOLDER_STOCK_PRODUCT": "Geben Sie die Mindestproduktmenge ein",
     "PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT": "Wählen Sie eine Maßeinheit aus",
-    "PLACEHOLDER_ERROR_DIAS_PRODUCT": "Die gelbe Warnmeldung darf nicht kleiner als die orangefarbene sein",
-    "PLACEHOLDER_ERROR_DIAS_NULOS": "Gelbe und rote Warnmeldungen müssen größer als 0 sein",
+    "PLACEHOLDER_ERROR_DIAS_PRODUCT": "Die gelbe Warnstufe darf nicht kleiner als oder gleich der orangen Warnstufe sein",
+    "PLACEHOLDER_ERROR_DIAS_NULOS": "Die gelbe und die orange Warnstufe müssen größer als 0 sein",
     "PLACEHOLDER_STATUS_PRODUCT": "Status auswählen",
 
     "WORD_COMMENT": "Kommentar",

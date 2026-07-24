@@ -120,7 +120,6 @@
     </li>
     }
 
-
     @if(tienePermiso('alertas', '', 0)){
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAlert" aria-expanded="true"
@@ -167,11 +166,13 @@
             <li class="nav-item dropdown no-arrow my-auto text-center list-unstyled">
               <app-globales-colormode></app-globales-colormode>
             </li>
-            <div class="topbar-divider d-none d-sm-block"></div>
-            <li class="nav-item dropdown no-arrow my-auto text-center list-unstyled">
-              <app-globales-notification></app-globales-notification>
-            </li>
-            <div class="topbar-divider d-none d-sm-block"></div>
+            @if(tienePermiso('alertas', '', 0)){
+              <div class="topbar-divider d-none d-sm-block"></div>
+              <li class="nav-item dropdown no-arrow my-auto text-center list-unstyled">
+                <app-globales-notification></app-globales-notification>
+              </li>
+            }
+            <div class="topbar-divider d-none d-sm-block hide-on-mobile"></div>
             <li class="nav-item dropdown no-arrow my-auto text-center list-unstyled">
               <app-globales-fullscreem></app-globales-fullscreem>
             </li>

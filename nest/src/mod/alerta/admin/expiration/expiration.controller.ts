@@ -16,7 +16,9 @@ export class ExpirationController {
   ) {
     const reporte = await this.expirationService.findAll(
       query.page,
-      query.limit
+      query.limit,
+      query.field,
+      query.order,
     )
     return reporte
   }  

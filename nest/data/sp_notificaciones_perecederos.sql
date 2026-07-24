@@ -19,21 +19,55 @@ USE `BAN_00341`;
 -- Dumping structure for procedure BAN_00341.sp_notificaciones_perecederos
 DROP PROCEDURE IF EXISTS `sp_notificaciones_perecederos`;
 DELIMITER //
-CREATE PROCEDURE `sp_notificaciones_perecederos`(
-    IN p_pagina_actual INT,
-    IN p_registros_por_pagina INT
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_notificaciones_perecederos`(
+	IN `p_pagina_actual` INT,
+	IN `p_registros_por_pagina` INT,
+	IN `p_order_field` VARCHAR(50),
+	IN `p_order_direction` VARCHAR(4)
 )
+LANGUAGE SQL
+NOT DETERMINISTIC
+CONTAINS SQL
+SQL SECURITY DEFINER
+COMMENT ''
 BEGIN
     -- Declaración de variables
     DECLARE v_offset INT;
     DECLARE v_total_registros INT;
+    DECLARE v_sql_query TEXT;
     
-    -- 1. Normalización de parámetros
+    -- 1. Normalización de parámetros de paginación
     SET p_pagina_actual = IFNULL(p_pagina_actual, 1);
     SET p_registros_por_pagina = IFNULL(p_registros_por_pagina, 10);
     SET v_offset = (p_pagina_actual - 1) * p_registros_por_pagina;
 
-    -- 2. Crear tabla temporal con la lógica de negocio
+    -- 2. Normalización de parámetros de ordenamiento (con valores por defecto y seguridad)
+    SET p_order_field = LOWER(IFNULL(p_order_field, 'fecha_vencimiento'));
+    SET p_order_direction = UPPER(IFNULL(p_order_direction, 'ASC'));
+    
+    -- Validar dirección para evitar inyección SQL
+    IF p_order_direction NOT IN ('ASC', 'DESC') THEN
+        SET p_order_direction = 'ASC';
+    END IF;
+
+    -- Validar que la columna solicitada exista en la tabla temporal para evitar errores
+    SET p_order_field = CASE p_order_field
+        WHEN 'id_producto' THEN 'id_producto'
+        WHEN 'lote' THEN 'lote'
+        WHEN 'fecha_entrada' THEN 'fecha_entrada'
+        WHEN 'fecha_vencimiento' THEN 'fecha_vencimiento'
+        WHEN 'dias_restantes' THEN 'dias_restantes'
+        WHEN 'estado_alerta' THEN 'estado_alerta'
+        WHEN 'cantidad_comprada' THEN 'cantidad_comprada'
+        WHEN 'cantidad_vendida' THEN 'cantidad_vendida'
+        WHEN 'estado' THEN 'estado'
+        WHEN 'nombre_producto' THEN 'nombre_producto'
+        WHEN 'nombre_proveedor' THEN 'nombre_proveedor'
+        WHEN 'cantidad_en_bodega' THEN 'cantidad_en_bodega'
+        ELSE 'fecha_vencimiento' -- Columna por defecto si mandan una inválida
+    END;
+
+    -- 3. Crear tabla temporal con la lógica de negocio
     DROP TEMPORARY TABLE IF EXISTS temp_notificaciones_stock;
     
     CREATE TEMPORARY TABLE temp_notificaciones_stock AS
@@ -64,33 +98,33 @@ BEGIN
     LEFT JOIN mod_catalogo_productos mcprod ON mb.id_producto = mcprod.id
     LEFT JOIN mod_catalogo_proveedores mcprov ON mb.id_proveedor = mcprov.id
     WHERE mb.cantidad_en_bodega > 1 
-    and mb.fecha_vencimiento IS NOT NULL;
+    AND mb.fecha_vencimiento IS NOT NULL;
 
-    -- 3. Obtener el total para la paginación
+    -- 4. Obtener el total para la paginación
     SELECT COUNT(*) INTO v_total_registros FROM temp_notificaciones_stock;
 
-    -- 4. Retornar Metadatos
+    -- 5. Retornar Metadatos
     SELECT 
         v_total_registros AS total,
         p_registros_por_pagina AS perPage,
         p_pagina_actual AS currentPage,
         CEIL(v_total_registros / p_registros_por_pagina) AS lastPage;
 
-    -- 5. Retornar Datos paginados
+    -- 6. Retornar Datos paginados con Ordenamiento Dinámico
     SET @l = p_registros_por_pagina;
     SET @o = v_offset;
     
-    PREPARE stmt FROM 'SELECT * FROM temp_notificaciones_stock LIMIT ? OFFSET ?';
+    -- Construcción segura de la consulta dinámica incluyendo ORDER BY
+    SET v_sql_query = CONCAT(
+        'SELECT * FROM temp_notificaciones_stock ORDER BY ', 
+        p_order_field, ' ', p_order_direction, 
+        ' LIMIT ? OFFSET ?'
+    );
+    
+    PREPARE stmt FROM v_sql_query;
     EXECUTE stmt USING @l, @o;
     DEALLOCATE PREPARE stmt;
 
-    -- 6. Limpieza
+    -- 7. Limpieza
     DROP TEMPORARY TABLE IF EXISTS temp_notificaciones_stock;
-END//
-DELIMITER ;
-
-/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+END
