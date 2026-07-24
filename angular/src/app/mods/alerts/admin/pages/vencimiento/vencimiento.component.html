@@ -24,7 +24,8 @@
     @if (cargarIdioma) {
     <div class="table-container">
       <app-globales-tablecrud [campoFiltro]="showcampoFiltro" [endPoint]="endPoint" [columnas]="columnas"
-        [habilitarSeleccion]="habilitarSeleccion" [permisosAcciones]="permisos" [filters]="filters" [title]="titlePage">
+        [habilitarSeleccion]="habilitarSeleccion" [permisosAcciones]="permisos" [filters]="filters" 
+        [orderField]="orderField" [order]="order" [title]="titlePage">
       </app-globales-tablecrud>
     </div>
     } @else {

@@ -120,17 +120,17 @@
       </legend>
       <div class="row" *ngIf="mostrarSeccion.esPerecedero" [class.animate__fadeIn]="mostrarSeccion.esPerecedero" [class.animate__fadeOut]="!mostrarSeccion.esPerecedero">
         <div class="form-check form-switch d-flex mb-2 justify-content-center">
-          <input class="form-check-input" type="checkbox" role="switch" [(ngModel)]="model.es_perecedero">
+          <input class="form-check-input" type="checkbox" role="switch" [(ngModel)]="model.es_perecedero" (ngModelChange)="onInputChange()">
         </div>
         @if(model.es_perecedero) {
           <div class="row mt-3">
             <div class="col-sm-6">
               <label class="small text-muted">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_YELLOW_ALERT' | translate }}</label>
-              <input type="number" min="1" class="form-control form-select-sm" [(ngModel)]="model.alerta_amarilla">
+              <input type="number" min="1" class="form-control form-select-sm" [(ngModel)]="model.alerta_amarilla" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.error_dias">
             </div>
             <div class="col-sm-6">
               <label class="small text-muted">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_ORANGE_ALERT' | translate }}</label>
-              <input type="number" min="1" class="form-control form-select-sm" [(ngModel)]="model.alerta_naranja">
+              <input type="number" min="1" class="form-control form-select-sm" [(ngModel)]="model.alerta_naranja" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.error_dias">
             </div>
           </div>
           @if(validators.error_dias) {

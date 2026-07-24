@@ -104,14 +104,14 @@ export class CrearProductoComponent implements OnInit {
     this.validators.estado = (this.model.estado === null);
 
     if(this.model.es_perecedero){
-      this.validators.error_dias = (this.model.alerta_amarilla < this.model.alerta_naranja);
+      this.validators.error_dias = (this.model.alerta_naranja >= this.model.alerta_amarilla);
       this.validators.error_dias_nulos = (this.model.alerta_naranja === 0 || this.model.alerta_amarilla === 0);
     }
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
-    (!this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.id_medida && !this.validators.estado) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+    (!this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.id_medida && !this.validators.estado && !this.validators.error_dias && !this.validators.error_dias_nulos) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
 
-    return !this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.id_medida && !this.validators.estado
+    return !this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.id_medida && !this.validators.estado && !this.validators.error_dias && !this.validators.error_dias_nulos
   }
 
   async crearProducto() {

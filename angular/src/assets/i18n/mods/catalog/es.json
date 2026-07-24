@@ -103,8 +103,8 @@
     "PLACEHOLDER_COD_BAR_PRODUCT": "Ingresa un código de barras EAN-13 válido (13 dígitos)",
     "PLACEHOLDER_STOCK_PRODUCT": "Ingresa la cantidad mínima de productos",
     "PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT": "Seleccione una unidad de medida",
-    "PLACEHOLDER_ERROR_DIAS_PRODUCT": "La alerta amarilla no puede ser menor a la alerta naranja",
-    "PLACEHOLDER_ERROR_DIAS_NULOS": "La alerta amarilla y la alerta roja deben ser mayor a 0",
+    "PLACEHOLDER_ERROR_DIAS_PRODUCT": "La alerta amarilla no puede ser menor o igual a la alerta naranja",
+    "PLACEHOLDER_ERROR_DIAS_NULOS": "La alerta amarilla y la alerta naranja deben ser mayor a 0",
     "PLACEHOLDER_STATUS_PRODUCT": "Seleccione un estado",
 
     "WORD_COMMENT": "Comentario",

@@ -44,6 +44,8 @@ export class VencimientoComponent implements OnInit {
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = `alert-expiration/reporte-stock-vencimiento?`
+  orderField = 'dias_restantes'
+  order = 'asc'
   habilitarSeleccion = true
   filters = ''
   columnas: any[] = [

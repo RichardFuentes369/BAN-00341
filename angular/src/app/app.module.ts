@@ -30,6 +30,7 @@ export function createTranslateLoader(http: HttpClient) {
       // inicio globales
       { baseTranslateUrl, moduleName: 'components/globales/breadcrumb', namespace: 'global-breadcrumb' },
       { baseTranslateUrl, moduleName: 'components/globales/idioma', namespace: 'global-idioma' },
+      { baseTranslateUrl, moduleName: 'components/globales/notification', namespace: 'global-notify' },
       { baseTranslateUrl, moduleName: 'components/globales/loading', namespace: 'global-loading' },
       { baseTranslateUrl, moduleName: 'components/globales/login', namespace: 'global-login' },
       { baseTranslateUrl, moduleName: 'components/globales/card', namespace: 'global-card' },

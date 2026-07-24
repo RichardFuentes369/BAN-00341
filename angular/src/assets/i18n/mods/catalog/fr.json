@@ -103,8 +103,8 @@
     "PLACEHOLDER_COD_BAR_PRODUCT": "Saisissez un code-barres EAN-13 valide (13 chiffres)",
     "PLACEHOLDER_STOCK_PRODUCT": "Saisissez la quantité minimale de produits",
     "PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT": "Sélectionnez une unité de mesure",
-    "PLACEHOLDER_ERROR_DIAS_PRODUCT": "L'alerte jaune ne peut pas être inférieure à l'alerte orange",
-    "PLACEHOLDER_ERROR_DIAS_NULOS": "Les alertes jaune et rouge doivent être supérieures à 0",
+    "PLACEHOLDER_ERROR_DIAS_PRODUCT": "L'alerte jaune ne peut pas être inférieure ou égale à l'alerte orange",
+    "PLACEHOLDER_ERROR_DIAS_NULOS": "L'alerte jaune et l'alerte orange doivent être supérieures à 0",
     "PLACEHOLDER_STATUS_PRODUCT": "Sélectionnez un état",
 
     "WORD_COMMENT": "Commentaire",
