@@ -33,7 +33,7 @@ export class StockComponent implements OnInit {
     private router: Router,
     private userService: AuthService,
     private route: ActivatedRoute,
-    private permisosService :PermisosService,
+    private permisosService: PermisosService,
     private alertasService: AlertasService,
     private translate: TranslateService
   ) { }
@@ -48,42 +48,25 @@ export class StockComponent implements OnInit {
   filters = ''
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-users.COLUMN_NAMES'),
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME'),
       data: 'nombre',
       visible: true,
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-users.COLUMN_EMAIL'),
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_STOCK') + ' <br> (' + this.translate.instant('mod-catalog.PRODUCT.LABEL_MINIMUM_QUANTITY') + ')',
       data: 'stock_minimo',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-users.COLUMN_NAMES'),
+      title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA'),
       data: 'total_productos_disponibles',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-users.COLUMN_STATUS'),
+      title: this.translate.instant('mod-catalog.PRODUCT.WORD_COMMENT'),
       data: 'aviso_stock',
       className: 'text-center align-middle',
-      // width: '50px',
-      // render: (data: any, type: any) => {
-      //   if (type === 'display') {
-      //     const statusText = data
-      //       ? this.translate.instant('mod-users.WORD_ACTIVED')
-      //       : this.translate.instant('mod-users.WORD_INACTIVED');
-
-      //     const dotClass = data ? 'dot-green' : 'dot-gray';
-
-      //     return `
-      //       <span class="custom-tooltip tooltip-bottom" data-title="${statusText}">
-      //         <span class="status-dot ${dotClass}"></span>
-      //       </span>
-      //     `;
-      //   }
-      //   return data;
-      // }
     }
   ];
   permisosAcciones = this.permisos
@@ -98,14 +81,14 @@ export class StockComponent implements OnInit {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
-    const permiso_modulo = await this.permisosService.permisoPage(0,'alertas',userData.data.id)
-    const permiso_submodulo = await this.permisosService.permisoPage(91,'alerta_stock',userData.data.id)
+    const permiso_modulo = await this.permisosService.permisoPage(0, 'alertas', userData.data.id)
+    const permiso_submodulo = await this.permisosService.permisoPage(91, 'alerta_stock', userData.data.id)
 
     if (permiso_modulo.data === "" || permiso_submodulo.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     }
 
-    const permisos = await this.permisosService.permisos(userData.data.id,'alerta_stock')
+    const permisos = await this.permisosService.permisos(userData.data.id, 'alerta_stock')
     this.permisos = permisos.data;
     this.permisosAcciones = this.permisos;
 
@@ -123,59 +106,42 @@ export class StockComponent implements OnInit {
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarIdioma = false;
       timer(50).subscribe(() => {
-        this.listar(); 
-    //     this.actualizarContadores();
-        this.cambiarTextos(); 
+        this.listar();
+        //     this.actualizarContadores();
+        this.cambiarTextos();
         this.cargarIdioma = true;
       });
     });
   }
 
   // metodos Componente
-  listar(){
+  listar() {
     this.columnas = [
       {
-        title: this.translate.instant('mod-users.COLUMN_NAMES'),
+        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME'),
         data: 'nombre',
-        visible: false,
+        visible: true,
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-users.COLUMN_EMAIL'),
+        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_STOCK') + ' <br> (' + this.translate.instant('mod-catalog.PRODUCT.LABEL_MINIMUM_QUANTITY') + ')',
         data: 'stock_minimo',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-users.COLUMN_NAMES'),
+        title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA'),
         data: 'total_productos_disponibles',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-users.COLUMN_STATUS'),
+        title: this.translate.instant('mod-catalog.PRODUCT.WORD_COMMENT'),
         data: 'aviso_stock',
         className: 'text-center align-middle',
-        // width: '50px',
-        // render: (data: any, type: any) => {
-        //   if (type === 'display') {
-        //     const statusText = data
-        //       ? this.translate.instant('mod-users.WORD_ACTIVED')
-        //       : this.translate.instant('mod-users.WORD_INACTIVED');
-
-        //     const dotClass = data ? 'dot-green' : 'dot-gray';
-
-        //     return `
-        //       <span class="custom-tooltip tooltip-bottom" data-title="${statusText}">
-        //         <span class="status-dot ${dotClass}"></span>
-        //       </span>
-        //     `;
-        //   }
-        //   return data;
-        // }
       }
     ]
   }
 
-  cambiarTextos(){
+  cambiarTextos() {
     this.titlePage = this.translate.instant('mod-users.TABLE_TITLE')
     // this.titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
     // this.titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')

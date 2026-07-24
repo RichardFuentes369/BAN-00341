@@ -37,6 +37,7 @@
   "COLUMN_STATUS": "Estado",
   "WORD_ASCENDING": "Ascendente",
   "WORD_DESCENDING": "Descendente",
+  "WORD_DAYS_REMAINING" : "Días restantes",
 
   "LEGEND_TITLE": "Datos de lote",
   "LABEL_LOTE": "Lote",
