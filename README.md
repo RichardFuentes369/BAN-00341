@@ -22,8 +22,8 @@ CTRL + SHIFT + V
 		Merma > Registro perdida > excel | csv 
 	6. Graficos (*)
 
-	7. Alertas > vencimiento > filtro (muy triplehp, pero facil) |reporte (*)
-	8. Alertas > bodega > filtro (muy triplehp, pero facil) |reporte (*)
+	7. Alertas > vencimiento > filtro (muy triplehp, pero facil) | reporte (*) | ver
+	8. Alertas > bodega > filtro (muy triplehp, pero facil) | reporte (*)
 
 ### Ajustes
 
