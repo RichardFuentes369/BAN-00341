@@ -12,3 +12,40 @@
   color: var(--input-text_color) !important;
   opacity: 1; /* Opcional: elimina la transparencia por defecto que aplica Bootstrap */
 }
+
+
+// Estilo para el input (dentro del componente)
+:host ::ng-deep {
+  .custom-select.ng-select {
+    &.ng-select-has-value .ng-placeholder,
+    &.ng-select-focused .ng-placeholder {
+      display: none !important;
+    }
+  }
+}
+
+// ESTILO GLOBAL (Fuera del :host)
+// Esto asegura que la lista tenga fondo blanco y se vea
+::ng-deep .ng-dropdown-panel.custom-select {
+  background-color: #ffffff !important;
+  border: 1px solid #dee2e6 !important;
+  box-shadow: 0 5px 15px rgba(0,0,0,.2) !important;
+  z-index: 9999 !important; // Para que no quede detrás del modal
+  height: auto;
+
+  .ng-dropdown-panel-items {
+    background-color: #fff !important; // Fondo de la lista
+    
+    .ng-option {
+      background-color: #fff !important;
+      
+      &.ng-option-marked {
+        background-color: #f0f0f0 !important;
+      }
+      &.ng-option-selected {
+        background-color: #e8f0fe !important;
+        color: #0d6efd !important;
+      }
+    }
+  }
+}

@@ -19,10 +19,12 @@ import { Breadcrumb } from './interface/breadcrumb.interface';
 export class BreadcrumbsComponent implements OnInit {
   breadcrumbs: Breadcrumb[] = [];
 
-  constructor(private breadcrumbService: BreadcrumbService) {}
+  constructor(
+    private breadcrumbService: BreadcrumbService,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit() {
-    // Al usar BehaviorSubject, esto recibirá el último valor inmediatamente
     this.breadcrumbService.breadcrumbs$.subscribe(data => {
       this.breadcrumbs = data;
     });
