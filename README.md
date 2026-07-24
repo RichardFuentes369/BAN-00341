@@ -2,33 +2,12 @@ CTRL + SHIFT + V
 
 ## PENDIENTE 
 
-### Mermas y CronJobs
-
-- si uso el enpoint igualmente [se puede usar para comprar, vender, colocar merma]
-- depende del estado de la bodega podria agregar mas merma o no
-		
-	Merma
-	```
-		Cuando yo consulte las mermas toca buscar (lote + producto)
-		Registro de perdida [
-			Agregar id de usuario que hizo el registro
-		]
-	```
-		
-	CRONJOBS
-	```
-		* cronjob para avisar por correo "se queda sin stock" - ya esta andando
-		* cronjob para avisar por correo las de vencimiento - ya esta andando
-		
-		* funcion para indicar si se vendio o fue afectada por merma, necesitaria "codigo de barra" y lote - falta
-	```
 ### Bodega
 
 - habilitar el cargue por csv
 
 ## PENDIENTE (II PARTE)
 ### Funcionalidades
-	1. Editar bodega (*)
 	2. Editar registros de perdida (*)
 	3. Hacer enpoint para marcar un producto como vendido o devolución (validar como) (*)
 	4. Campanita de notificaciónes (+/-)
@@ -41,12 +20,9 @@ CTRL + SHIFT + V
 	6. Graficos (*)
 	7. Alertas > vencimiento > filtro (muy triplehp, pero facil) |reporte (*)
 	8. Alertas > bodega > filtro (muy triplehp, pero facil) |reporte (*)
-
 ### Ajustes
-
 	1. Arreglar index
 	2. (arreglar filtros que si limpio no limpie todo el filtro (si ya existia un filtro previo))
-
 ### Tener en cuenta diseño
 	layout admin
 		barra lateral
@@ -97,3 +73,9 @@ CTRL + SHIFT + V
 	// generar ejecutable
 	npm i
 	pkg ./ejecutable_code.js --targets node16-win-x64,node16-linux-x64,node16-macos-x64 --output dist/tunel
+
+
+
+
+bodega editar registro, (tengo un problema de valdiaciónes con el producto y proveedor, a veces cambia el boton editar y a veces no)
+merma editar registro, al cambiar el producto por alguno que no existe (no podria crear productos y tengo permisos)

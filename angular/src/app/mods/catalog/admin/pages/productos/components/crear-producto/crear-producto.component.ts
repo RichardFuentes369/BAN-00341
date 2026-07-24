@@ -104,7 +104,11 @@ export class CrearProductoComponent implements OnInit {
     this.validators.estado = (this.model.estado === null);
 
     if(this.model.es_perecedero){
-      this.validators.error_dias = (this.model.alerta_naranja >= this.model.alerta_amarilla);
+      this.validators.error_dias = (
+        this.model.alerta_amarilla <= this.model.alerta_naranja || 
+        this.model.alerta_amarilla === null || 
+        this.model.alerta_naranja === null
+      );
       this.validators.error_dias_nulos = (this.model.alerta_naranja === 0 || this.model.alerta_amarilla === 0);
     }
 

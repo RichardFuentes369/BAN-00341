@@ -62,6 +62,9 @@ export class EditarWarehouseComponent {
   puedoCrearProductos = false
   puedoCrearProveedores = false
 
+  ultimoCodigoBarra = ''
+  ultimoNit = ''
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -77,7 +80,9 @@ export class EditarWarehouseComponent {
       map(() => this.checkValidation())
     ).subscribe(isValid => {
       this.isFormValid = isValid;
-      if (isValid) {
+      if (this.esCodigoValido) {
+        this.ultimoCodigoBarra = this.producto.codigo_barra
+        this.ultimoNit = this.proveedor.nit
         this.buscarProducto();
         this.buscarProveedor();
       }
@@ -268,8 +273,9 @@ export class EditarWarehouseComponent {
     this.validators.codigo_barra = (this.producto.codigo_barra === null || !regexBarCode.test((this.producto.codigo_barra as any).toString()))
     this.validators.nit = (this.proveedor.nit === null || !regexNIT.test((this.proveedor.nit as any).toString()));
 
-    this.validators.id_producto = (this.model.id_producto === null || !regexBarCode.test((this.producto.codigo_barra as any).toString()));
-    this.validators.id_proveedor = (this.model.id_proveedor === null || !regexNIT.test((this.proveedor.nit as any).toString()));
+    this.validators.id_producto = (this.model.id_producto == null || this.model.id_producto == '' || !regexBarCode.test((this.producto.codigo_barra as any).toString()));
+    this.validators.id_proveedor = (this.model.id_proveedor == null || this.model.id_proveedor == '' || !regexNIT.test((this.proveedor.nit as any).toString()));
+    
     this.validators.lote = (this.model.lote === '');
     this.validators.fecha_entrada = (this.model.fecha_entrada === '');
     this.validators.fecha_vencimiento = (this.model.fecha_vencimiento === '');
@@ -324,6 +330,8 @@ export class EditarWarehouseComponent {
       respuesta = !this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado && !this.validators.menor_a_merma_mas_vendida
     }
 
+    console.log(respuesta)
+
     return respuesta
   }
 
@@ -356,9 +364,12 @@ export class EditarWarehouseComponent {
       if (error.response) {
         const statusCode = error.response.status;
         if (statusCode === 404) {
+          this.model.id_producto = ''
+          this.checkValidation()
+
           const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
           // boton.classList.add('disabled')
-          this.show_detail_product = false
+          this.show_detail_product = false          
           this.btn_new_product = true
           if (this.permisos_catalogo_productos.find(obj => obj.permiso_permiso === 'crear') == undefined) {
             this.puedoCrearProductos = false
@@ -389,6 +400,8 @@ export class EditarWarehouseComponent {
       if (error.response) {
         const statusCode = error.response.status;
         if (statusCode === 404) {
+          this.model.id_proveedor = ''
+          this.checkValidation()
           this.show_detail_provider = false
           this.btn_new_provider = true
           this.form_new_batch = false
