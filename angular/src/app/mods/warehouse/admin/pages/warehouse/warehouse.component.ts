@@ -278,7 +278,7 @@ export class WarehoseComponent implements OnInit, OnDestroy{
         data: 'fecha_vencimiento',
         className: 'text-center align-middle',
         render: (data: any) => {
-          if (!data) return '';
+        if (!data) return '';
           const date = new Date(Number(data) * 1000); 
           if (isNaN(date.getTime())) {
             return 'Fecha inválida';
