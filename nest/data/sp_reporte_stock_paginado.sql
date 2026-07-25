@@ -1,44 +1,49 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               10.11.14-MariaDB-0ubuntu0.24.04.1 - Ubuntu 24.04
--- Server OS:                    debian-linux-gnu
--- HeidiSQL Version:             12.8.0.6908
--- --------------------------------------------------------
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
 USE `BAN_00341`;
 
 -- Dumping structure for procedure BAN_00341.sp_reporte_stock_paginado
 DROP PROCEDURE IF EXISTS `sp_reporte_stock_paginado`;
 DELIMITER //
-CREATE PROCEDURE `sp_reporte_stock_paginado`(
-    IN p_pagina_actual INT,
-    IN p_registros_por_pagina INT
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_reporte_stock_paginado`(
+    IN `p_pagina_actual` INT,
+    IN `p_registros_por_pagina` INT,
+    IN `p_order_field` VARCHAR(50),
+    IN `p_order_direction` VARCHAR(4)
 )
+LANGUAGE SQL
+NOT DETERMINISTIC
+CONTAINS SQL
+SQL SECURITY DEFINER
+COMMENT 'Reporte de stock paginado con ordenamiento dinámico seguro'
 BEGIN
     -- Declaración de variables
     DECLARE v_offset INT;
-    DECLARE v_limit INT;
     DECLARE v_total_registros INT;
+    DECLARE v_sql_query TEXT;
     
-    -- 1. LÓGICA DE PAGINACIÓN SEGURA
-    IF p_registros_por_pagina IS NULL OR p_registros_por_pagina <= 0 THEN
-        SET v_limit = 999999999; 
-        SET v_offset = 0;
-    ELSE
-        SET v_limit = p_registros_por_pagina;
-        SET v_offset = (IFNULL(p_pagina_actual, 1) - 1) * p_registros_por_pagina;
+    -- 1. Normalización de parámetros de paginación
+    SET p_pagina_actual = IFNULL(p_pagina_actual, 1);
+    SET p_registros_por_pagina = IFNULL(p_registros_por_pagina, 10);
+    SET v_offset = (p_pagina_actual - 1) * p_registros_por_pagina;
+
+    -- 2. Normalización de parámetros de ordenamiento (con valores por defecto y seguridad)
+    SET p_order_field = LOWER(IFNULL(p_order_field, 'nombre'));
+    SET p_order_direction = UPPER(IFNULL(p_order_direction, 'ASC'));
+    
+    -- Validar dirección para evitar inyección SQL
+    IF p_order_direction NOT IN ('ASC', 'DESC') THEN
+        SET p_order_direction = 'ASC';
     END IF;
 
-    -- 2. TABLA TEMPORAL CON LA LÓGICA DE TU CONSULTA
+    -- Validar que la columna solicitada exista en la tabla temporal (Whitelist correspondiente a este SP)
+    SET p_order_field = CASE p_order_field
+        WHEN 'nombre' THEN 'nombre'
+        WHEN 'stock_minimo' THEN 'stock_minimo'
+        WHEN 'total_productos_disponibles' THEN 'total_productos_disponibles'
+        WHEN 'aviso_stock' THEN 'aviso_stock'
+        ELSE 'nombre' -- Columna por defecto si envían una inválida
+    END;
+
+    -- 3. Crear tabla temporal con la lógica de negocio de stock
     DROP TEMPORARY TABLE IF EXISTS temp_stock_reporte;
     
     CREATE TEMPORARY TABLE temp_stock_reporte AS
@@ -46,7 +51,7 @@ BEGIN
         t.nombre,
         t.stock_minimo,
         t.total_productos_disponibles,
-        CASE 		  
+        CASE          
             WHEN t.total_productos_disponibles = 0
                 THEN 'ADVERTENCIA: Stock agotado'
             WHEN t.total_productos_disponibles > t.stock_minimo
@@ -71,31 +76,32 @@ BEGIN
         WHERE mcp.estado = true
     ) AS t;
 
-    -- 3. TOTALES
+    -- 4. Obtener el total para la paginación
     SELECT COUNT(*) INTO v_total_registros FROM temp_stock_reporte;
 
-    -- 4. RESULTADO 1: METADATOS
+    -- 5. Retornar Metadatos
     SELECT 
         v_total_registros AS total,
-        IFNULL(p_registros_por_pagina, v_total_registros) AS perPage,
-        IFNULL(p_pagina_actual, 1) AS currentPage,
-        CEIL(v_total_registros / IFNULL(p_registros_por_pagina, v_total_registros)) AS lastPage;
+        p_registros_por_pagina AS perPage,
+        p_pagina_actual AS currentPage,
+        CEIL(v_total_registros / p_registros_por_pagina) AS lastPage;
 
-    -- 5. RESULTADO 2: DATOS PAGINADOS
-    SET @l = v_limit;
+    -- 6. Retornar Datos paginados con Ordenamiento Dinámico
+    SET @l = p_registros_por_pagina;
     SET @o = v_offset;
     
-    PREPARE stmt FROM 'SELECT * FROM temp_stock_reporte LIMIT ? OFFSET ?';
+    -- Construcción segura de la consulta dinámica incluyendo ORDER BY
+    SET v_sql_query = CONCAT(
+        'SELECT * FROM temp_stock_reporte ORDER BY ', 
+        p_order_field, ' ', p_order_direction, 
+        ' LIMIT ? OFFSET ?'
+    );
+    
+    PREPARE stmt FROM v_sql_query;
     EXECUTE stmt USING @l, @o;
     DEALLOCATE PREPARE stmt;
 
-    -- Limpieza
+    -- 7. Limpieza
     DROP TEMPORARY TABLE IF EXISTS temp_stock_reporte;
 END//
 DELIMITER ;
-
-/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

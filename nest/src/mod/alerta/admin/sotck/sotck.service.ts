@@ -12,13 +12,15 @@ export class SotckService {
     @Inject('DATA_SOURCE') private readonly dataSource: DataSource,
   ) {}
 
-  async findAll(page: string, limit: string) {
+  async findAll(page: string, limit: string, field: string, order: string) {
     try {
       const result = await this.dataSource.manager.query(
-        'CALL sp_reporte_stock_paginado(?,?)',
+        'CALL sp_reporte_stock_paginado(?,?,?,?)',
         [
           (page === 'null') ? null : page,
           (limit === 'null') ? null : limit,
+          (field === 'null') ? null : field,
+          (order === 'null') ? null : order,
         ]
       )
       return result;

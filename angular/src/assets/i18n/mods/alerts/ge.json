@@ -7,5 +7,10 @@
   "MODULE_TITLE": "Warnmeldungen",
 
   "BUTTON_EXPIRATION": "Ablauf",
-  "BUTTON_STOCK": "Lager"
+  "BUTTON_STOCK": "Lager",
+
+  "LABEL_ALERT_SORT": "Sortieren nach",
+  "SELECT_STATUS_ALERT_SELECT_OPTION": "Auswählen",
+  "WORD_ASCENDING": "Aufsteigend",
+  "WORD_DESCENDING": "Absteigend"
 }

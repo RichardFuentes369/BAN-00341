@@ -11,6 +11,7 @@ import { SearchComponent } from '@component/globales/search/search.component';
 import { ReportComponent } from '@component/globales/report/report.component';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
+import { FILTRO_ALERTS_V_COMPONENT } from '@mod/alerts/const/alerts.const';
 
 @Component({
   selector: 'app-vencimiento',
@@ -18,7 +19,7 @@ import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.comp
   imports: [
     CommonModule,
     TranslateModule,
-    // SearchComponent,
+    SearchComponent,
     // ReportComponent,
     LoadingComponent,
     TablecrudComponent
@@ -40,6 +41,14 @@ export class VencimientoComponent implements OnInit {
 
   private langSub: Subscription | undefined;
   permisos: any[] = []
+
+  // inicio datos envio al filtro
+  search = true
+  buttonSearch = this.translate.instant('mod-users.BUTTON_SEARCH')
+  iconFilter="fa fa-filter"
+  componenteFilter=FILTRO_ALERTS_V_COMPONENT
+  // fin datos envio al filtro
+  
 
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
@@ -313,6 +322,14 @@ export class VencimientoComponent implements OnInit {
     // this.titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
     // this.titleTotalActivedUsers = this.translate.instant('mod-users.CARD_TOTAL_ACTIVED_USERS')
     // this.titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
+  }
+
+  async filtroData(){
+    let filtros = $('.complementoRuta').val()
+    this.router.navigate([], { queryParams: { search: (filtros) ? filtros : null }, });
+    if(typeof filtros === 'string'){
+      this.filters = filtros
+    }
   }
 
   tienePermiso(nombre: string): boolean {
