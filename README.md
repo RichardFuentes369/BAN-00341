@@ -10,20 +10,19 @@ CTRL + SHIFT + V
 ### Funcionalidades
 
 	1. tengo muchos bugs en los editar y crear cuando son [productos, proveedores] [validar todos los formularios y posibilidades] (*)
-	2. Editar registros de perdida (*)
-	3. Hacer enpoint para marcar un producto como vendido o devolución (validar como) (*)
+	2. Hacer enpoint para marcar un producto como vendido o devolución (validar como) (*)
 
-	4. Campanita de notificaciónes (+/-)
-	5. Reportes
+	3. Campanita de notificaciónes (+/-)
+	4. Reportes
 		Catalogo > Proveedores > ecxel | csv
 		Catalogo > Marca > ecxel | csv
 		Catalogo > Productos > ecxel | csv  
 		Bodega > ecxel | csv 
 		Merma > Registro perdida > excel | csv 
-	6. Graficos (*)
+	5. Graficos (*)
 
-	7. Alertas > vencimiento > filtro (muy triplehp, pero facil) | reporte (*) | ver
-	8. Alertas > bodega > filtro (muy triplehp, pero facil) | reporte (*)
+	6. Alertas > vencimiento > filtro (muy triplehp, pero facil) | reporte (*) | ver
+	7. Alertas > bodega > filtro (muy triplehp, pero facil) | reporte (*)
 
 ### Ajustes
 
