@@ -16,7 +16,9 @@ export class SotckController {
   ) {
     const reporte = await this.sotckService.findAll(
       query.page,
-      query.limit
+      query.limit,
+      query.field,
+      query.order,
     )
     return reporte
   }

@@ -7,5 +7,10 @@
   "MODULE_TITLE": "Alerts",
 
   "BUTTON_EXPIRATION": "Expiration",
-  "BUTTON_STOCK": "Stock"
+  "BUTTON_STOCK": "Stock",
+
+  "LABEL_ALERT_SORT": "Sort by",
+  "SELECT_STATUS_ALERT_SELECT_OPTION": "Select",
+  "WORD_ASCENDING": "Ascending",
+  "WORD_DESCENDING": "Descending"
 }

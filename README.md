@@ -9,20 +9,22 @@ CTRL + SHIFT + V
 ## PENDIENTE (II PARTE)
 ### Funcionalidades
 
-	1. tengo muchos bugs en los editar y crear cuando son [productos, proveedores] [validar todos los formularios y posibilidades] (*)
+	1. Checkear todos los editar (hay bugs) [Algunos campos actualizan, otros no] [Los select dependientes]
 	2. Hacer enpoint para marcar un producto como vendido o devolución (validar como) (*)
 
-	3. Campanita de notificaciónes (+/-)
-	4. Reportes
+	3. Reportes
 		Catalogo > Proveedores > ecxel | csv
 		Catalogo > Marca > ecxel | csv
 		Catalogo > Productos > ecxel | csv  
 		Bodega > ecxel | csv 
 		Merma > Registro perdida > excel | csv 
-	5. Graficos (*)
+	4. Graficos (*)
 
-	6. Alertas > vencimiento > filtro (muy triplehp, pero facil) | reporte (*) | ver
-	7. Alertas > bodega > filtro (muy triplehp, pero facil) | reporte (*)
+	5. Alertas > vencimiento > filtro (muy triplehp, pero facil) | reporte (*) | ver
+	6. Alertas > bodega > filtro (muy triplehp, pero facil) | reporte (*) | ver
+
+	7. Campanita de notificaciónes (+/-) (mirar si hay algo que me acualice en tiempo real)
+	8. Permisos (mirar si hay algo que me acualice en tiempo real)
 
 ### Ajustes
 

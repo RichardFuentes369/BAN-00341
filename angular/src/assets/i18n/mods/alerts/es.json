@@ -7,5 +7,10 @@
   "MODULE_TITLE": "Alertas",
 
   "BUTTON_EXPIRATION": "Vencimiento",
-  "BUTTON_STOCK": "Bodega"
+  "BUTTON_STOCK": "Bodega",
+
+  "LABEL_ALERT_SORT": "Ordenar por",
+  "SELECT_STATUS_ALERT_SELECT_OPTION": "Seleccione",
+  "WORD_ASCENDING": "Ascendente",
+  "WORD_DESCENDING": "Descendente"
 }

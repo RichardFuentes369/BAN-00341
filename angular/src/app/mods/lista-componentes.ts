@@ -42,6 +42,8 @@ import { EditarVarComponent } from '@mod/vars/admin/components/editar-var/editar
 import { FiltroVarComponent } from '@mod/vars/admin/components/filtro-var/filtro-var.component';
 import { ReporteComponent } from '@mod/vars/admin/components/reporte/reporte.component';
 import { VerVarComponent } from '@mod/vars/admin/components/ver-var/ver-var.component';
+import { FiltroAlertsVComponent } from './alerts/admin/pages/vencimiento/components/filtro/filtro.component';
+import { FiltroAlertsSStockComponent } from './alerts/admin/pages/stock/components/filtro/filtro.component';
 
 export class ListaComponentes {
 
@@ -241,6 +243,14 @@ export class ListaComponentes {
     {
       name: 'VerVarComponent',
       componente: VerVarComponent
+    },  
+    {
+      name: 'FiltroAlertsVComponent',
+      componente: FiltroAlertsVComponent
+    },  
+    {
+      name: 'FiltroAlertsSStockComponent',
+      componente: FiltroAlertsSStockComponent
     },  
   ];
 
