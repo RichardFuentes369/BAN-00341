@@ -21,6 +21,10 @@
     }
   }
 
+  .modal-content {
+    border-radius: 1rem !important;
+  }
+
   .modal-header {
     background: var(--modal-head_background_color) !important;
     border-bottom: none;
@@ -29,7 +33,7 @@
   .modal-title {
     color: var(--modal-head_text_color) !important;
   }
-  
+
   .modal-body {
     background-color: var(--modal-back_color_background) !important;
   }
@@ -54,40 +58,45 @@
   .modal-header .close {
     color: white;
     opacity: 0.8;
+
     &:hover {
       opacity: 1;
     }
   }
 
-  .btnCancel{
+  .btnCancel {
     color: var(--modal-button_cancel_text_color);
     background-color: var(--modal-button_cancel_background_color);
   }
-  .btnSave{
+
+  .btnSave {
     color: var(--modal-button_save_text_color);
     background-color: var(--modal-button_save_background_color);
   }
-  .btnUpdate{
+
+  .btnUpdate {
     color: var(--modal-button_update_text_color);
     background-color: var(--modal-button_update_background_color);
   }
 
-  .btnCancel, .btnSave, .btnUpdate {
-  transition: all 0.2s ease-in-out; // Animación suave
-  border: none;
-  
-  &:hover {
-    // Oscurece el botón un 10%
-    filter: brightness(90%);
-    // Opcional: añade un pequeño efecto de sombra para mayor profundidad
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
-    cursor: pointer;
+  .btnCancel,
+  .btnSave,
+  .btnUpdate {
+    transition: all 0.2s ease-in-out; // Animación suave
+    border: none;
+
+    &:hover {
+      // Oscurece el botón un 10%
+      filter: brightness(90%);
+      // Opcional: añade un pequeño efecto de sombra para mayor profundidad
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    &:active {
+      // Cuando haces clic, se oscurece un poco más
+      filter: brightness(80%);
+      transform: translateY(1px); // Efecto de "presionado"
+    }
   }
-  
-  &:active {
-    // Cuando haces clic, se oscurece un poco más
-    filter: brightness(80%);
-    transform: translateY(1px); // Efecto de "presionado"
-  }
-}
 }
