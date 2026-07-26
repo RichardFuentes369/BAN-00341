@@ -1,15 +1,14 @@
 /* --- (Tu sección :host se mantiene igual) --- */
 :host {
-  --layout-topbar-height: 4rem;
+  --layout-topbar-height-web: 5rem;
+  --layout-topbar-height-mobil: 5rem;
   display: block;
 
-  --bg-row: #ffffff;
   --text-main: #1e293b;
   --border-color: rgba(0, 0, 0, 0.05);
 
   &[data-theme='dark'],
   &:host-context([data-theme='dark']) {
-    --bg-row: #ffffff;
     --border-color: rgba(255, 255, 255, 0.05);
   }
 }
@@ -57,8 +56,6 @@
       margin: 0;
     }
   }
-
-
 
   .actions-container {
 
@@ -116,6 +113,10 @@
         .nameButton {
           max-width: 0 !important;
           opacity: 0 !important;
+        }
+        
+        i {
+          color: var(--grid_table_crud-button_group_disabled) !important; 
         }
       }
     }
@@ -198,6 +199,7 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
 
       td {
+        color: var(--grid_table_crud-row_text_color) !important;
         padding-top: 4px !important;    /* Ajusta este valor a tu gusto (más bajo = más delgado) */
         padding-bottom: 4px !important; /* Ajusta este valor a tu gusto (más bajo = más delgado) */
         vertical-align: middle;        /* Mantiene el texto perfectamente centrado verticalmente */
@@ -406,4 +408,8 @@
 .title-custom {
   color: var(--layout-admin-page_color_title) !important;
   background-color: transparent;
+}
+
+.detail_table_custom {
+  background-color: var(--grid_table_crud-background_color) !important;
 }

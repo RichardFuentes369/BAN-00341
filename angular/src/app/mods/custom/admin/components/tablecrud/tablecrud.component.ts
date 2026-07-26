@@ -22,7 +22,7 @@ export class TablecrudCustomComponent implements OnInit {
     private translate: TranslateService,
   ) { }
 
-  title: string = 'Prueba';
+  title: string = 'Registros';
   idsSeleccionados: number[] = [];
   dtTrigger: Subject<any> = new Subject<any>();
 
@@ -31,11 +31,11 @@ export class TablecrudCustomComponent implements OnInit {
     { title: 'Nombre', data: 'nombre' },
   ];
   datos = [
-    { id: 1, nombre: 'Producto A' },
-    { id: 2, nombre: 'Producto B' },
-    { id: 3, nombre: 'Producto C' },
-    { id: 4, nombre: 'Producto D' },
-    { id: 5, nombre: 'Producto E' }
+    { id: 1, nombre: 'Producto A', descripcion: 'Descripción A' },
+    { id: 2, nombre: 'Producto B', descripcion: 'Descripción B' },
+    { id: 3, nombre: 'Producto C', descripcion: 'Descripción C' },
+    { id: 4, nombre: 'Producto D', descripcion: 'Descripción D' },
+    { id: 5, nombre: 'Producto E', descripcion: 'Descripción E' }
   ];
 
   dtOptions: Config = {};

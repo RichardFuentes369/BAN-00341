@@ -2,18 +2,14 @@
   <div class="col-sm my-5">
     <div class="card shadow card-custom pt-0 px-4 bg_grid_table_crud_custom">
       <div class="botoneria d-flex flex-column flex-md-row align-items-md-center px-0 mt-3 mb-3">
-        <h5 class="m-0 fw-bold">{{ title }}</h5>
-
-        <div class="actions-container d-flex flex-wrap align-items-center ms-md-auto">
-          <span>
-            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center">
-              <i class="fa fa-upload" [class.text-muted]="idsSeleccionados.length !== 0"
-                [class.text-cargar-ecxel]="idsSeleccionados.length === 0"></i>
-              <div class="nameButton text-lowercase">
-                {{ 'global-tablecrud.BUTTON_OPTION_UPLOAD' | translate }}
-              </div>
-            </button>
+        <div class="title-container mb-2 mb-md-0">
+          <h5 class="m-0 fw-bold">{{ title }}</h5>
+          <span class="custom_text animated fadeIn" style="font-size: 0.85rem;">
+            {{ 'global-tablecrud.WORD_SELECTED' | translate }}
+            (<b>{{idsSeleccionados.length}}</b>)
           </span>
+        </div>
+        <div class="actions-container d-flex flex-wrap align-items-center ms-md-auto">
           <span>
             <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
               [disabled]="idsSeleccionados.length >= 1">
