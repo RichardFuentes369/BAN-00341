@@ -1,0 +1,22 @@
+.form-control {
+  background-color: var(--input-background_color) !important; 
+  color: var(--input-text_color) !important;
+}
+.form-control::placeholder {
+  color: var(--input-text_color_placeholder) !important; 
+  opacity: 1;
+}
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: color-mix(in srgb, var(--input-background_color) 90%, var(--input-text_color)) !important;
+  color: var(--input-text_color) !important;
+  opacity: 1; /* Opcional: elimina la transparencia por defecto que aplica Bootstrap */
+}
+span {
+  color: var(--modal-label_text_color);
+}
+.scroll-card {
+  max-height: 300px; 
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}

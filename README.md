@@ -18,6 +18,9 @@ CTRL + SHIFT + V
 		Catalogo > Productos > ecxel | csv  
 		Bodega > ecxel | csv 
 		Merma > Registro perdida > excel | csv 
+		Alertas > Vencimiento > excel | csv 
+		Alertas > Bodega > excel | csv 
+		
 	4. Graficos (*)
 
 	5. Alertas > vencimiento > filtro (muy triplehp, pero facil) | reporte (*) | ver

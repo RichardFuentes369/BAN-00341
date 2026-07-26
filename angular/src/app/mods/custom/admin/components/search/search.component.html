@@ -1,0 +1,82 @@
+<div class="col-sm-12 row">
+
+  <div class="col-sm-2"></div>
+
+  <div class="col-sm my-5">
+
+    <div class="custom-bg shadow-lg">
+      <button class="btn-close-card ml-3">
+        <i class="fa fa-times"></i>
+      </button>
+      <button class="btn-minimize-card ml-3">
+        <i class="fa fa-window-minimize"></i>
+      </button>
+      <h3 class="header-search">Buscar</h3>
+      <div class="card-body">
+        <div class="container mt-2">
+          <app-user-filtro></app-user-filtro>
+        </div>
+        <div class="container mt-2 mb-2">
+          <div class="card shadow-sm">
+            <div class="d-flex justify-content-center align-items-center py-2">
+              <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-search.BUTTON_CLEAR' | translate">
+                <button class="btn btn-sm btn-secondary rounded-circle mx-1">
+                  <i class="fa fa-eraser"></i>
+                </button>
+              </span>
+              <span class="custom-tooltip tooltip-bottom" [attr.data-title]="'global-search.BUTTON_FILTER' | translate">
+                <button class="btn btn-sm btn-primary  rounded-circle mx-1">
+                  <i class="fa fa-filter"></i>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-sm-2"></div>
+
+  <div class="col-sm-4 row">
+    <label for="" class="text-center title-custom">
+      Colores tablecrud
+    </label>
+    <div class="container row">
+      <div class="col text-center">
+        <label class="fw-bold mb-3 title-custom">Light</label>
+
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="title-custom">Background</span>
+          <input type="color">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="title-custom">Text</span>
+          <input type="color">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="title-custom">Hover</span>
+          <input type="color">
+        </div>
+      </div>
+
+      <div class="col text-center">
+        <label class="fw-bold mb-3 title-custom">Dark</label>
+
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="title-custom">Background</span>
+          <input type="color">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="title-custom">Text</span>
+          <input type="color">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="title-custom">Hover</span>
+          <input type="color">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

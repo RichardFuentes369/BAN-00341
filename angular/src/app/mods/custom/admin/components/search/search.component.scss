@@ -1,0 +1,107 @@
+.btn-search {
+    background-color: var(--search-button_background_color);
+}
+
+.header {
+    background: var(--search-head_background_color) !important;
+    border-bottom: none;
+}
+
+.modal-header .close {
+    color: white;
+    opacity: 0.8;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.floating-group {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-button {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    z-index: 100;
+}
+
+.floating-number-filter {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 101;
+    cursor: pointer;
+}
+
+.header-search {
+    margin: 0;
+    padding: 12px;
+    background: var(--search-head_background_color);
+    border-top-left-radius: 12px !important;
+    color: white;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.btn-close-card,
+.btn-minimize-card {
+    position: absolute;
+    top: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    z-index: 2001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.btn-close-card {
+    left: 10px;
+}
+
+.btn-minimize-card {
+    left: 35px;
+}
+
+
+.icon_color {
+    color: var(--search-icon_background_color);
+}
+
+.custom-bg {
+    background-color: var(--search-back_color_background);
+}
+
+.bgSearch {
+    background-color: var(--search-back_color_background);
+}
+
+.card {
+    background-color: var(--input-background_color) !important;
+}
+
+span {
+    color: var(--modal-label_text_color);
+}
