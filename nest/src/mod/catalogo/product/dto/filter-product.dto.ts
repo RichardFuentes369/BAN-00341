@@ -54,6 +54,18 @@ export class FilterProductrDto {
   @IsOptional()
   @IsString()
   stock_maximo?: string;  
+
+  @IsOptional()
+  @IsNumber()
+  id_medida?: number;   
+  
+  @IsOptional()
+  @IsNumber()
+  es_perecedero ?: number;     
+  
+  @IsOptional()
+  @IsNumber()
+  estado ?: number;     
   
   @IsOptional()
   @IsString()

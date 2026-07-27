@@ -19,6 +19,9 @@
   "WORD_ASCENDING": "Croissant",
   "WORD_DESCENDING": "Décroissant",
 
+  "WORD_YES": "Oui",
+  "WORD_NO": "Non",
+
   "SUPPLIER": {
     "WORD_SUPPLIER": "Fournisseur",
     "LEGEND_TITLE": "Données du fournisseur",

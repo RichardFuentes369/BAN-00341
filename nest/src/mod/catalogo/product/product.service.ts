@@ -59,12 +59,17 @@ export class ProductService {
     } else if (max !== null) {
       where.stock_minimo = LessThanOrEqual(max);
     }
-
-    if (filterDto['unidad_medida']) {
-      where.unidad_medida = Like(`%${filterDto['unidad_medida']}%`);
+    if (filterDto['id_medida']) {
+      where.id_medida = Like(`%${filterDto['id_medida']}%`);
     }
     if (filterDto['id_marca']) {
       where.id_marca = filterDto['id_marca'];
+    }
+    if (filterDto['es_perecedero'] != undefined) {
+      where.es_perecedero = (filterDto['es_perecedero'] === 1) ? 1 : 0;
+    }
+    if (filterDto['estado'] != undefined) {
+      where.estado = (filterDto['estado'] === 1) ? 1 : 0;
     }
 
     const totalRecords = await this.productRepository.count({ where });
@@ -289,6 +294,32 @@ export class ProductService {
 
     const nombreVal = getSearchValue(allParams.nombre);
     if (nombreVal) where.nombre = Like(`%${nombreVal}%`);
+
+    const stockValMin = getSearchValue(allParams.stock_minimo);
+    const stockValMax = getSearchValue(allParams.stock_maximo);
+
+    if (stockValMin && stockValMax) {
+      where.stock_minimo = Between(stockValMin, stockValMax);
+    } else if (stockValMin && !stockValMax) {
+      where.stock_minimo = MoreThanOrEqual(stockValMin);
+    } else if (stockValMax && !stockValMin) {
+      where.stock_minimo = LessThanOrEqual(stockValMax);
+    }
+
+    const estadoVal = getSearchValue(allParams.estado);
+    if (estadoVal) where.estado = estadoVal;
+
+    const marcaVal = getSearchValue(allParams.id_marca);
+    if (marcaVal) where.id_marca = marcaVal;
+
+    const medidaVal = getSearchValue(allParams.id_medida);
+    if (medidaVal) where.id_medida = medidaVal;
+
+    const codigobarraVal = getSearchValue(allParams.codigo_barra);
+    if (codigobarraVal) where.codigo_barra = codigobarraVal;
+
+    const perecederoaVal = getSearchValue(allParams.es_perecedero);
+    if (perecederoaVal) where.es_perecedero = perecederoaVal;
 
     const data = await this.productRepository.find({ where });
 

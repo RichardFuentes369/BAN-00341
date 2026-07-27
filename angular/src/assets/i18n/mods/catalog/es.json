@@ -19,6 +19,9 @@
   "WORD_ASCENDING": "Ascendente",
   "WORD_DESCENDING": "Descendente",
 
+  "WORD_YES": "Si",
+  "WORD_NO": "No",
+
   "SUPPLIER": {
     "WORD_SUPPLIER": "Proveedor",
     "LEGEND_TITLE": "Datos del proveedor",
