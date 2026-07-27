@@ -22,6 +22,8 @@ export class ReporteProductoComponent {
     alerta_naranja: '',
     estado: '',
     codigo_barra: '',
+    medida: '',
+    marca: '',
   }
 
   limpiar(){
@@ -33,6 +35,8 @@ export class ReporteProductoComponent {
     this.model.alerta_naranja = ''
     this.model.estado = ''
     this.model.codigo_barra = ''
+    this.model.medida = ''
+    this.model.marca = ''
   }
 
   generar(formato: 'excel' | 'csv') {
@@ -62,6 +66,12 @@ export class ReporteProductoComponent {
     }
     if(this.model.codigo_barra != ''){
       this.complementoFiltro += `&codigo_barra=${this.model.codigo_barra}`
+    }
+    if(this.model.medida != ''){
+      this.complementoFiltro += `&medida=${this.model.medida}`
+    }
+    if(this.model.marca != ''){
+      this.complementoFiltro += `&marca=${this.model.marca}`
     }
     $(".complementoRuta").val(this.complementoFiltro)
   }  
