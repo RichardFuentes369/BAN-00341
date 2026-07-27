@@ -16,6 +16,9 @@
     <div class="filter-wrapper">
       <app-globales-search [icon]="iconFilter" [componente]="componenteFilter" (filtroItem)="filtroData()">
       </app-globales-search>
+
+      <app-globales-report [icon]="iconReport" [componente]="componenteReport" (reportItem)="reportData($event)">
+      </app-globales-report>
     </div>
 
     @if (cargarIdioma) {

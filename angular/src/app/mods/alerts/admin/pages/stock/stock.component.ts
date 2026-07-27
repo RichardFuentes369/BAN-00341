@@ -11,7 +11,8 @@ import { SearchComponent } from '@component/globales/search/search.component';
 import { ReportComponent } from '@component/globales/report/report.component';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
-import { FILTRO_ALERTS_S_COMPONENT } from '@mod/alerts/const/alerts.const';
+import { FILTRO_ALERTS_S_COMPONENT, REPORT_ALERT_STOCK_COMPONENT } from '@mod/alerts/const/alerts.const';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-stock',
@@ -20,7 +21,7 @@ import { FILTRO_ALERTS_S_COMPONENT } from '@mod/alerts/const/alerts.const';
     CommonModule,
     TranslateModule,
     SearchComponent,
-    // ReportComponent,
+    ReportComponent,
     LoadingComponent,
     TablecrudComponent
   ],
@@ -48,6 +49,11 @@ export class StockComponent implements OnInit {
   iconFilter="fa fa-filter"
   componenteFilter=FILTRO_ALERTS_S_COMPONENT
   // fin datos envio al filtro
+
+  // inicio datos envio report
+  iconReport = "fa fa-file-download"
+  componenteReport = REPORT_ALERT_STOCK_COMPONENT
+  // fin datos envio repor
 
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
@@ -167,5 +173,54 @@ export class StockComponent implements OnInit {
 
   tienePermiso(nombre: string): boolean {
     return this.permisosAcciones?.some((permiso) => permiso.permiso_permiso === nombre);
+  }
+
+  reportData(formato: string) {
+    const complementoRuta = $(".complementoRuta").val()
+    const querySearch = this.route.snapshot.queryParamMap.get('search');
+
+    const compRuta: string = typeof complementoRuta === 'string' ? complementoRuta : '';
+    const qSearch: string = querySearch ?? '';
+
+    const configParams = new URLSearchParams(compRuta.replace(/^[&?]/, ''));
+    const searchParams = new URLSearchParams(qSearch.replace(/^[&?]/, ''));
+
+    const allKeys = Array.from(new Set([...Array.from(configParams.keys()), ...Array.from(searchParams.keys())]));
+
+    const reporteConfig = allKeys.map(key => {
+      return {
+        field: key,
+        value: searchParams.get(key) || '',
+        show: configParams.get(key) === 'true'
+      };
+    });
+
+    let params = new HttpParams();
+
+    reporteConfig.forEach(item => {
+      if (item.value) {
+        params = params.append(item.field, item.value);
+      }
+      if (item.show) {
+        params = params.append(item.field, 'true');
+      }
+    });
+
+    this.alertasService.descargarReporte('alert-stock', formato, params).subscribe({
+      next: (blob: Blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        const extension = formato === 'excel' ? 'xlsx' : 'csv';
+        a.download = `reporte_lotes_${new Date().getTime()}.${extension}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      },
+      error: (err) => {
+        console.error('Error al descargar el reporte', err);
+      }
+    });
   }
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query, Res } from '@nestjs/common';
 import { SupplierService } from './supplier.service';
 import { Proveedor } from './entities/supplier.entity';
 import { ApiTags } from '@nestjs/swagger';
@@ -7,10 +7,11 @@ import { GetUser } from 'src/decorator/getIdUser.decorator';
 import { FilterCategoryrDto } from '@module/catalogo/supplier/dto/filter-supplier.dto';
 import { UpdateSupplierDto } from './dto/update-supplier.dto';
 import { CreateSupplierDto } from './dto/create-supplier.dto';
+import { Response } from 'express';
 
 @Controller('supplier')
 export class SupplierController {
-  constructor(private readonly supplierService: SupplierService) {}
+  constructor(private readonly supplierService: SupplierService) { }
 
   @Get('obtener-proveedores')
   findAll(
@@ -29,8 +30,8 @@ export class SupplierController {
     @GetUser('id') userId: number
   ) {
     return this.supplierService.findOne(lang, +_id);
-  }  
-  
+  }
+
   @UseGuards(AdminGuard)
   @Get('obtener-proveedor-por-nit')
   finOneForNit(
@@ -76,9 +77,36 @@ export class SupplierController {
   // contadores
   @Get('obtener-contadores-proveedores')
   async contadores(
-    @Query('lang') lang:string,
+    @Query('lang') lang: string,
   ) {
     return this.supplierService.contadoresProveedores(lang);
   }
-  
+
+  // reportes
+  @Get('excel')
+  async downloadExcel(
+    @Query('lang') lang: string,
+    @Query() columns: any,
+    @GetUser('id') userId: number,
+    @Res() res: Response
+  ) {
+    const buffer = await this.supplierService.generarExcel(columns, lang);
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', 'attachment; filename=reporte.xlsx');
+    res.send(buffer);
+  }
+
+  @Get('csv')
+  async downloadCsv(
+    @Query('lang') lang: string,
+    @Query() columns: any,
+    @GetUser('id') userId: number,
+    @Res() res: Response
+  ) {
+    const csv = await this.supplierService.generarCsv(columns, lang);
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename=reporte.csv');
+    res.status(200).send(csv);
+  }
+
 }

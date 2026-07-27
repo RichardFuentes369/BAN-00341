@@ -5,6 +5,7 @@ import { I18nService } from 'nestjs-i18n';
 import { In, Like, Repository } from 'typeorm';
 import { Extent } from './entities/extent.entity';
 import { FilterExtentDto } from './dto/filter-extent.dto';
+import * as ExcelJS from 'exceljs';
 
 @Injectable()
 export class ExtentService {
@@ -12,14 +13,14 @@ export class ExtentService {
     @Inject('EXTENT_REPOSITORY')
     private extentRepository: Repository<Extent>,
     private i18n: I18nService
-  ) {}
+  ) { }
 
   listarPropiedadesTabla(repository: Repository<any>) {
     const metadata = repository.metadata;
     return metadata.columns.map((column) => column.propertyName);
   }
 
-  async findAllList(lang: string){
+  async findAllList(lang: string) {
     const registro = await this.extentRepository.find();
     return [{
       'result': registro,
@@ -54,14 +55,14 @@ export class ExtentService {
       take: limit,
       where: where,
       order: { [field]: order },
-      relations: { productos: true } 
+      relations: { productos: true }
     });
 
     const result = registros.map(marcas => {
       return {
         ...marcas,
         total1: marcas.productos ? marcas.productos.length : 0,
-        productos: undefined 
+        productos: undefined
       };
     });
 
@@ -79,11 +80,11 @@ export class ExtentService {
   }
 
   async findOne(
-    lang: string, 
+    lang: string,
     id: number
   ) {
-    const extent = await this.extentRepository.findOne({ 
-      where: { id } 
+    const extent = await this.extentRepository.findOne({
+      where: { id }
     });
     if (!extent) throw new NotFoundException(
       this.i18n.t('category.MSJ_CATEGORIA_NO_ENCONTRADA', { lang })
@@ -92,8 +93,8 @@ export class ExtentService {
   }
 
   async create(
-    lang: string, 
-    extentDto: CreateExtentDto, 
+    lang: string,
+    extentDto: CreateExtentDto,
     userId: number
   ) {
     try {
@@ -118,9 +119,9 @@ export class ExtentService {
   }
 
   async update(
-    lang: string, 
-    id: number, 
-    extentData: UpdateExtentDto, 
+    lang: string,
+    id: number,
+    extentData: UpdateExtentDto,
     userId: number
   ) {
     const exists = await this.extentRepository.findOne({ where: { nombre: extentData.nombre } });
@@ -130,7 +131,7 @@ export class ExtentService {
     );
 
     const brand = await this.findOne(lang, id);
-    
+
     return this.extentRepository.save({
       ...brand,
       ...extentData
@@ -138,13 +139,13 @@ export class ExtentService {
   }
 
   async remove(lang: string, ids: number[], userId: number) {
-    try {  
+    try {
       this.extentRepository.delete({ id: In(ids) })
-  
+
       return {
-          'title': this.i18n.t('categoria.MSJ_CATEGORY_TITTLE', { lang }),
-          'message': this.i18n.t('categoria.MSN_PERMISO_REMOVIDO_OK', { lang }),
-          'status': 200,
+        'title': this.i18n.t('categoria.MSJ_CATEGORY_TITTLE', { lang }),
+        'message': this.i18n.t('categoria.MSN_PERMISO_REMOVIDO_OK', { lang }),
+        'status': 200,
       };
     } catch (error) {
       return {
@@ -155,17 +156,92 @@ export class ExtentService {
     }
 
   }
-  
+
   async contadoresExtent(
     lang: string
-  ){
-    const cont1 =  await this.extentRepository.count()
+  ) {
+    const cont1 = await this.extentRepository.count()
 
     const data = {
       "count_total_extent": cont1
     }
 
     return data
+  }
+
+  // reporte pendiente permisos
+  async generarExcel(allParams: any, lang: string) {
+    const where: any = {};
+
+    const getSearchValue = (param: any) => {
+      if (Array.isArray(param)) {
+        const val = param.find(v => v !== 'true');
+        return (val !== undefined && val !== '') ? val : null;
+      }
+      return (param !== 'true' && param !== '' && param !== undefined) ? param : null;
+    };
+
+    const nombreVal = getSearchValue(allParams.nombre);
+    if (nombreVal) where.nombre = Like(`%${nombreVal}%`);
+
+    const data = await this.extentRepository.find({ where });
+
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Reporte de Medida');
+
+    const masterColumns = [
+      { header: 'Id', key: 'id', width: 10 },
+      { header: 'Nombre', key: 'nombre', width: 30 },
+    ];
+
+    const dynamicColumns = masterColumns.filter(col => {
+      const val = allParams[col.key];
+      return Array.isArray(val) ? val.includes('true') : val === 'true';
+    });
+
+    worksheet.columns = dynamicColumns;
+    worksheet.addRows(data);
+    return await workbook.xlsx.writeBuffer();
+  }
+
+  async generarCsv(allParams: any, lang: string) {
+    const where: any = {};
+
+    const getSearchValue = (param: any) => {
+      if (Array.isArray(param)) {
+        const val = param.find(v => v !== 'true');
+        return (val !== undefined && val !== '') ? val : null;
+      }
+      return (param !== 'true' && param !== '' && param !== undefined) ? param : null;
+    };
+
+    const nombreVal = getSearchValue(allParams.nombre);
+    if (nombreVal) where.nombre = Like(`%${nombreVal}%`);
+
+    const data = await this.extentRepository.find({ where });
+
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Reporte de Medida');
+
+    const masterColumns = [
+      { header: 'Id', key: 'id', width: 10 },
+      { header: 'Nombre', key: 'nombre', width: 30 },
+    ];
+
+    const dynamicColumns = masterColumns.filter(col => {
+      const val = allParams[col.key];
+      return Array.isArray(val) ? val.includes('true') : val === 'true';
+    });
+
+    worksheet.columns = dynamicColumns;
+    worksheet.addRows(data);
+
+    return await workbook.csv.writeBuffer({
+      formatterOptions: {
+        delimiter: ',',
+        quote: '"'
+      }
+    });
   }
 
 }

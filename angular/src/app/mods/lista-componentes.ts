@@ -44,6 +44,12 @@ import { ReporteComponent } from '@mod/vars/admin/components/reporte/reporte.com
 import { VerVarComponent } from '@mod/vars/admin/components/ver-var/ver-var.component';
 import { FiltroAlertsVComponent } from './alerts/admin/pages/vencimiento/components/filtro/filtro.component';
 import { FiltroAlertsSStockComponent } from './alerts/admin/pages/stock/components/filtro/filtro.component';
+import { ReporteProveedorComponent } from './catalog/admin/pages/proveedores/components/reporte/reporte.component';
+import { ReporteMedidaComponent } from './catalog/admin/pages/medida/component/reporte/reporte.component';
+import { ReporteMarcaComponent } from './catalog/admin/pages/marcas/components/reporte/reporte.component';
+import { ReporteProductoComponent } from './catalog/admin/pages/productos/components/reporte/reporte.component';
+import { ReporteVencimientoComponent } from './alerts/admin/pages/vencimiento/components/reporte/reporte.component';
+import { ReporteStockComponent } from './alerts/admin/pages/stock/components/reporte/reporte.component';
 
 export class ListaComponentes {
 
@@ -126,7 +132,11 @@ export class ListaComponentes {
     {
       name: 'EditarProductoComponent',
       componente: EditarProductoComponent  
-    }, 
+    },   
+    {
+      name: 'ReporteProductoComponent',
+      componente: ReporteProductoComponent  
+    },  
     // modulo catalogo
     // marca
     {
@@ -145,6 +155,10 @@ export class ListaComponentes {
       name: 'EditarMarcaComponent',
       componente: EditarMarcaComponent  
     },    
+    {
+      name: 'ReporteMarcaComponent',
+      componente: ReporteMarcaComponent  
+    },    
     // modulo catalogo
     // unidad medida
     {
@@ -162,6 +176,10 @@ export class ListaComponentes {
     {
       name: 'EditarMedidaComponent',
       componente: EditarMedidaComponent
+    },
+    {
+      name: 'ReporteMedidaComponent',
+      componente: ReporteMedidaComponent
     },
 
     // modulo merma
@@ -237,8 +255,8 @@ export class ListaComponentes {
       componente: FiltroVarComponent
     },  
     {
-      name: 'ReporteComponent',
-      componente: ReporteComponent
+      name: 'ReporteProveedorComponent',
+      componente: ReporteProveedorComponent
     },  
     {
       name: 'VerVarComponent',
@@ -251,6 +269,14 @@ export class ListaComponentes {
     {
       name: 'FiltroAlertsSStockComponent',
       componente: FiltroAlertsSStockComponent
+    },  
+    {
+      name: 'ReporteVencimientoComponent',
+      componente: ReporteVencimientoComponent
+    },  
+    {
+      name: 'ReporteStockComponent',
+      componente: ReporteStockComponent
     },  
   ];
 

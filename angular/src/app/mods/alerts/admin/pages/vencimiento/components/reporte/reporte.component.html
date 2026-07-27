@@ -1,0 +1,54 @@
+<div class="">
+  <div class="col-xl col-sm-12 card pl-0 pr-0 pt-3 pb-4 scroll-card">
+
+    <input type="text" class="d-none complementoRuta" value="">
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.lote">
+      <span class="small font-weight-bold">{{ 'mod-warehouse.COLUMN_BATCH' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.fecha_entrada">
+      <span class="small font-weight-bold">{{ 'mod-warehouse.LABEL_FECHA_ENTRADA' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.fecha_vencimiento">
+      <span class="small font-weight-bold">{{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.dias_restantes">
+      <span class="small font-weight-bold">{{ 'mod-warehouse.WORD_DAYS_REMAINING' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.estado_alerta">
+      <span class="small font-weight-bold">{{ 'mod-warehouse.LABEL_ESTADO' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.cantidad_comprada">
+      <span class="small font-weight-bold">{{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.cantidad_vendida">
+      <span class="small font-weight-bold">{{ 'mod-warehouse.LABEL_CANTIDAD_VENDIDA' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.estado">
+      <span class="small font-weight-bold">{{ 'mod-warehouse.LABEL_ESTADO' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.nombre_producto">
+      <span class="small font-weight-bold">{{ 'mod-catalog.PRODUCT.WORD_PRODUCT' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.nombre_proveedor">
+      <span class="small font-weight-bold">{{ 'mod-catalog.SUPPLIER.WORD_SUPPLIER' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.cantidad_en_bodega">
+      <span class="small font-weight-bold">{{ 'mod-warehouse.LABEL_CANTIDAD_BODEGA' | translate}}</span>
+    </div>
+    <button class="d-none limpiarR" (click)="limpiar()"></button>
+    <button class="d-none excel" (click)="generar('excel')"></button>
+    <button class="d-none csv" (click)="generar('csv')"></button>
+  </div>
+</div>
+

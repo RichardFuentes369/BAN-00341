@@ -13,18 +13,14 @@ CTRL + SHIFT + V
 	2. Hacer enpoint para marcar un producto como vendido o devolución (validar como) (*)
 
 	3. Reportes
-		Catalogo > Proveedores > ecxel | csv
-		Catalogo > Marca > ecxel | csv
-		Catalogo > Productos > ecxel | csv  
+		Catalogo > Productos > ecxel | csv  (falta marca)
 		Bodega > ecxel | csv 
-		Merma > Registro perdida > excel | csv 
-		Alertas > Vencimiento > excel | csv 
-		Alertas > Bodega > excel | csv 
+		Merma > Registro perdida > ecxel | csv 
 		
 	4. Graficos (*)
 
-	5. Alertas > vencimiento > filtro (muy triplehp, pero facil) | reporte (*) | ver
-	6. Alertas > bodega > filtro (muy triplehp, pero facil) | reporte (*) | ver
+	5. Alertas > vencimiento > filtro (muy triplehp, pero facil) | ver
+	6. Alertas > bodega > filtro (muy triplehp, pero facil) | ver
 
 	7. Campanita de notificaciónes (+/-) (mirar si hay algo que me acualice en tiempo real)
 	8. Permisos (mirar si hay algo que me acualice en tiempo real)

@@ -1,14 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards, Res } from '@nestjs/common';
 import { BrandService } from './brand.service';
 import { CreateBrandDto } from './dto/create-brand.dto';
 import { UpdateBrandDto } from './dto/update-brand.dto';
 import { GetUser } from 'src/decorator/getIdUser.decorator';
 import { FilterBrandDto } from './dto/filter-category.dto';
 import { AdminGuard } from '@guard/admin/admin.guard';
+import { Response } from 'express';
 
 @Controller('brand')
 export class BrandController {
-  constructor(private readonly brandService: BrandService) {}
+  constructor(private readonly brandService: BrandService) { }
 
   @Get('obtener-marcas')
   findAll(
@@ -17,7 +18,7 @@ export class BrandController {
     @GetUser('id') userId: number
   ) {
     return this.brandService.findAll(
-      FilterBrandDto, 
+      FilterBrandDto,
       lang
     );
   }
@@ -30,7 +31,7 @@ export class BrandController {
     @GetUser('id') userId: number
   ) {
     return this.brandService.findOne(
-      lang, 
+      lang,
       +_id
     );
   }
@@ -43,8 +44,8 @@ export class BrandController {
     @GetUser('id') userId: number
   ) {
     return this.brandService.create(
-      lang, 
-      brandData, 
+      lang,
+      brandData,
       userId
     );
   }
@@ -58,9 +59,9 @@ export class BrandController {
     @GetUser('id') userId: number
   ) {
     return this.brandService.update(
-      lang, 
-      +_id, 
-      brandData, 
+      lang,
+      +_id,
+      brandData,
       userId
     );
   }
@@ -74,8 +75,8 @@ export class BrandController {
   ) {
     const idsNumeros: number[] = _id.split(',').map(str => parseInt(str.trim(), 10));
     return this.brandService.remove(
-      lang, 
-      idsNumeros, 
+      lang,
+      idsNumeros,
       userId
     );
   }
@@ -88,8 +89,35 @@ export class BrandController {
   // contadores
   @Get('obtener-contadores-marcas')
   async contadores(
-    @Query('lang') lang:string,
+    @Query('lang') lang: string,
   ) {
     return this.brandService.contadoresMarcas(lang);
+  }
+
+  // reportes
+  @Get('excel')
+  async downloadExcel(
+    @Query('lang') lang: string,
+    @Query() columns: any,
+    @GetUser('id') userId: number,
+    @Res() res: Response
+  ) {
+    const buffer = await this.brandService.generarExcel(columns, lang);
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', 'attachment; filename=reporte.xlsx');
+    res.send(buffer);
+  }
+
+  @Get('csv')
+  async downloadCsv(
+    @Query('lang') lang: string,
+    @Query() columns: any,
+    @GetUser('id') userId: number,
+    @Res() res: Response
+  ) {
+    const csv = await this.brandService.generarCsv(columns, lang);
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename=reporte.csv');
+    res.status(200).send(csv);
   }
 }

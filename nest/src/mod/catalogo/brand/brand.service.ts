@@ -6,6 +6,7 @@ import { CreateBrandDto } from './dto/create-brand.dto';
 import { UpdateBrandDto } from './dto/update-brand.dto';
 import { FilterBrandDto } from './dto/filter-category.dto';
 import { Producto } from '../product/entities/product.entity';
+import * as ExcelJS from 'exceljs';
 
 @Injectable()
 export class BrandService {
@@ -15,7 +16,7 @@ export class BrandService {
     @Inject('PRODUCT_REPOSITORY')
     private productRepository: Repository<Producto>,
     private i18n: I18nService
-  ) {}
+  ) { }
 
   listarPropiedadesTabla(repository: Repository<any>) {
     const metadata = repository.metadata;
@@ -50,14 +51,14 @@ export class BrandService {
       take: limit,
       where: where,
       order: { [field]: order },
-      relations: { productos: true } 
+      relations: { productos: true }
     });
 
     const result = registros.map(marcas => {
       return {
         ...marcas,
         total1: marcas.productos ? marcas.productos.length : 0,
-        productos: undefined 
+        productos: undefined
       };
     });
 
@@ -75,11 +76,11 @@ export class BrandService {
   }
 
   async findOne(
-    lang: string, 
+    lang: string,
     id: number
   ) {
-    const category = await this.brandRepository.findOne({ 
-      where: { id } 
+    const category = await this.brandRepository.findOne({
+      where: { id }
     });
     if (!category) throw new NotFoundException(
       this.i18n.t('category.MSJ_CATEGORIA_NO_ENCONTRADA', { lang })
@@ -88,8 +89,8 @@ export class BrandService {
   }
 
   async create(
-    lang: string, 
-    brandData: CreateBrandDto, 
+    lang: string,
+    brandData: CreateBrandDto,
     userId: number
   ) {
     try {
@@ -114,19 +115,19 @@ export class BrandService {
   }
 
   async update(
-    lang: string, 
-    id: number, 
-    brandData: UpdateBrandDto, 
+    lang: string,
+    id: number,
+    brandData: UpdateBrandDto,
     userId: number
   ) {
     const exists = await this.brandRepository.findOne({ where: { nombre: brandData.nombre } });
-    
+
     if (exists && exists.id != id) throw new NotFoundException(
       this.i18n.t('categoria.MSJ_ERROR_BRAND_EXISTE', { lang })
     );
-    
+
     const brand = await this.findOne(lang, id);
-    
+
     return this.brandRepository.save({
       ...brand,
       ...brandData
@@ -139,28 +140,28 @@ export class BrandService {
         where: { id: In(ids) },
         relations: { productos: true },
       });
-      
+
       const resultado = marcas.map(mar => ({
         ...mar,
         total_productos: mar.productos.length
       }));
-  
+
       const tieneHijos = marcas.some(cat => cat.productos.length > 0);
-      
+
       if (tieneHijos) {
         return {
           title: this.i18n.t('categoria.MSJ_MARCA_TITTLE', { lang }),
           message: this.i18n.t('categoria.MSJ_ERROR_MARCA_TIENE_PRODUCTOS_HIJOS', { lang }),
-          status: 404, 
+          status: 404,
         };
       }
-  
+
       this.brandRepository.delete({ id: In(ids) })
-  
+
       return {
-          'title': this.i18n.t('categoria.MSJ_CATEGORY_TITTLE', { lang }),
-          'message': this.i18n.t('categoria.MSN_PERMISO_REMOVIDO_OK', { lang }),
-          'status': 200,
+        'title': this.i18n.t('categoria.MSJ_CATEGORY_TITTLE', { lang }),
+        'message': this.i18n.t('categoria.MSN_PERMISO_REMOVIDO_OK', { lang }),
+        'status': 200,
       };
     } catch (error) {
       return {
@@ -175,19 +176,94 @@ export class BrandService {
   async listaMarcas(search: string) {
     return await this.brandRepository.find({
       where: { nombre: Like(`%${search}%`) },
-      take: 20 
+      take: 20
     });
   }
 
   async contadoresMarcas(
     lang: string
-  ){
-    const cont1 =  await this.brandRepository.count()
+  ) {
+    const cont1 = await this.brandRepository.count()
 
     const data = {
       "count_total_brands": cont1
     }
 
     return data
+  }
+
+  // reporte pendiente permisos
+  async generarExcel(allParams: any, lang: string) {
+    const where: any = {};
+
+    const getSearchValue = (param: any) => {
+      if (Array.isArray(param)) {
+        const val = param.find(v => v !== 'true');
+        return (val !== undefined && val !== '') ? val : null;
+      }
+      return (param !== 'true' && param !== '' && param !== undefined) ? param : null;
+    };
+
+    const nombreVal = getSearchValue(allParams.nombre);
+    if (nombreVal) where.nombre = Like(`%${nombreVal}%`);
+
+    const data = await this.brandRepository.find({ where });
+
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Reporte de Medida');
+
+    const masterColumns = [
+      { header: 'Id', key: 'id', width: 10 },
+      { header: 'Nombre', key: 'nombre', width: 30 },
+    ];
+
+    const dynamicColumns = masterColumns.filter(col => {
+      const val = allParams[col.key];
+      return Array.isArray(val) ? val.includes('true') : val === 'true';
+    });
+
+    worksheet.columns = dynamicColumns;
+    worksheet.addRows(data);
+    return await workbook.xlsx.writeBuffer();
+  }
+
+  async generarCsv(allParams: any, lang: string) {
+    const where: any = {};
+
+    const getSearchValue = (param: any) => {
+      if (Array.isArray(param)) {
+        const val = param.find(v => v !== 'true');
+        return (val !== undefined && val !== '') ? val : null;
+      }
+      return (param !== 'true' && param !== '' && param !== undefined) ? param : null;
+    };
+
+    const nombreVal = getSearchValue(allParams.nombre);
+    if (nombreVal) where.nombre = Like(`%${nombreVal}%`);
+
+    const data = await this.brandRepository.find({ where });
+
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Reporte de Medida');
+
+    const masterColumns = [
+      { header: 'Id', key: 'id', width: 10 },
+      { header: 'Nombre', key: 'nombre', width: 30 },
+    ];
+
+    const dynamicColumns = masterColumns.filter(col => {
+      const val = allParams[col.key];
+      return Array.isArray(val) ? val.includes('true') : val === 'true';
+    });
+
+    worksheet.columns = dynamicColumns;
+    worksheet.addRows(data);
+
+    return await workbook.csv.writeBuffer({
+      formatterOptions: {
+        delimiter: ',',
+        quote: '"'
+      }
+    });
   }
 }

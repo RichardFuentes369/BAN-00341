@@ -1,1 +1,36 @@
-<p>reporte works!</p>
+<div class="shadow-sm border-light">
+  <div class="col-xl col-sm-12 card pl-0 pr-0 pt-3 pb-4 mb-2">
+    <input type="text" class="d-none complementoRuta" value="">
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.nombre">
+      <span class="small font-weight-bold">{{ 'mod-catalog.PRODUCT.COLUMN_NAME' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.stock_minimo">
+      <span class="small font-weight-bold">{{ 'mod-catalog.PRODUCT.COLUMN_STOCK' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.es_perecedero">
+      <span class="small font-weight-bold">{{ 'mod-catalog.PRODUCT.LABEL_CHECK_PERISHABLE' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.alerta_amarilla">
+      <span class="small font-weight-bold">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_YELLOW_ALERT' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.alerta_naranja">
+      <span class="small font-weight-bold">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_ORANGE_ALERT' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.estado">
+      <span class="small font-weight-bold">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_STATUS' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.codigo_barra">
+      <span class="small font-weight-bold">{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate}}</span>
+    </div>
+    <button class="d-none limpiarR" (click)="limpiar()"></button>
+    <button class="d-none excel" (click)="generar('excel')"></button>
+    <button class="d-none csv" (click)="generar('csv')"></button>
+  </div>
+</div>

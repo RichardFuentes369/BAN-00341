@@ -15,7 +15,7 @@ export class ProductService {
     @Inject('PRODUCT_REPOSITORY')
     private productRepository: Repository<Producto>,
     private i18n: I18nService
-  ) {}
+  ) { }
 
   listarPropiedadesTabla(repository: Repository<any>) {
     const metadata = repository.metadata;
@@ -59,7 +59,7 @@ export class ProductService {
     } else if (max !== null) {
       where.stock_minimo = LessThanOrEqual(max);
     }
-    
+
     if (filterDto['unidad_medida']) {
       where.unidad_medida = Like(`%${filterDto['unidad_medida']}%`);
     }
@@ -73,7 +73,7 @@ export class ProductService {
       take: limit,
       where: where,
       relations: {
-        marca: true, 
+        marca: true,
         medida: true
       },
       order: { [field]: order }
@@ -99,45 +99,45 @@ export class ProductService {
     );
     if (prodcut.estado) {
       prodcut.estado = true;
-    }else{
+    } else {
       prodcut.estado = false;
     }
     return prodcut;
   }
 
   async findOneBarcode(lang: string, barcode: string) {
-    const prodcut = await this.productRepository.findOne({ 
-      where: { codigo_barra: barcode }, 
-      relations: { marca: true, medida: true } 
+    const prodcut = await this.productRepository.findOne({
+      where: { codigo_barra: barcode },
+      relations: { marca: true, medida: true }
     });
     if (!prodcut) throw new NotFoundException(
       this.i18n.t('categoria.MSJ_ERROR_PRODUCT_NOT_EXISTS', { lang })
     );
     if (prodcut.estado) {
       prodcut.estado = true;
-    }else{
+    } else {
       prodcut.estado = false;
     }
     return prodcut;
   }
 
   async findOneBarcodeApi(lang: string, barcode: string) {
-    const prodcut = await this.productRepository.findOne({ 
-      where: { codigo_barra: barcode }, 
-      relations: { marca: true, medida: true } 
+    const prodcut = await this.productRepository.findOne({
+      where: { codigo_barra: barcode },
+      relations: { marca: true, medida: true }
     });
     if (prodcut == null) return null;
     if (prodcut.estado) {
       prodcut.estado = true;
-    }else{
+    } else {
       prodcut.estado = false;
     }
     return prodcut;
   }
 
   async create(
-    lang: string, 
-    productData: CreateProductDto, 
+    lang: string,
+    productData: CreateProductDto,
     userId: number
   ) {
     try {
@@ -146,7 +146,7 @@ export class ProductService {
         this.i18n.t('categoria.MSJ_ERROR_PRODUCT_EXISTE', { lang })
       );
 
-      if(productData.es_perecedero === false){
+      if (productData.es_perecedero === false) {
         productData.alerta_amarilla = null
         productData.alerta_naranja = null
       }
@@ -167,19 +167,19 @@ export class ProductService {
   }
 
   async update(
-    lang: string, 
-    id: number, 
-    productData: UpdateProductDto, 
+    lang: string,
+    id: number,
+    productData: UpdateProductDto,
     userId: number
   ) {
-    const prodcut = await this.productRepository.findOne({ where: { id }});
+    const prodcut = await this.productRepository.findOne({ where: { id } });
     const exists = await this.productRepository.findOne({ where: { codigo_barra: productData.codigo_barra } });
 
     if (prodcut.codigo_barra != productData.codigo_barra && exists) throw new NotFoundException(
       this.i18n.t('categoria.MSJ_ERROR_CATEGORY_BAR_CODE_EXISTE', { lang })
     );
 
-    if(productData.es_perecedero === false){
+    if (productData.es_perecedero === false) {
       productData.alerta_amarilla = null
       productData.alerta_naranja = null
     }
@@ -206,7 +206,7 @@ export class ProductService {
     stream.push(null);
 
     const reader = new ExcelJS.stream.xlsx.WorkbookReader(stream, {});
-    
+
     const BATCH_SIZE = 5000;
     let batch: any[] = [];
     let totalProcessed = 0;
@@ -262,12 +262,12 @@ export class ProductService {
       throw error;
     }
   }
-  
+
   async contadoresProductos(
     lang: string
-  ){
-    const cont1 =  await this.productRepository.count()
-    
+  ) {
+    const cont1 = await this.productRepository.count()
+
     const data = {
       "count_total_products": cont1,
     }
@@ -275,13 +275,101 @@ export class ProductService {
     return data
   }
 
+  // reporte pendiente permisos
+  async generarExcel(allParams: any, lang: string) {
+    const where: any = {};
+
+    const getSearchValue = (param: any) => {
+      if (Array.isArray(param)) {
+        const val = param.find(v => v !== 'true');
+        return (val !== undefined && val !== '') ? val : null;
+      }
+      return (param !== 'true' && param !== '' && param !== undefined) ? param : null;
+    };
+
+    const nombreVal = getSearchValue(allParams.nombre);
+    if (nombreVal) where.nombre = Like(`%${nombreVal}%`);
+
+    const data = await this.productRepository.find({ where });
+
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Reporte de Productos');
+
+    const masterColumns = [
+      { header: 'Id', key: 'id', width: 10 },
+      { header: 'Nombre', key: 'nombre', width: 30 },
+      { header: 'Stock minimo', key: 'stock_minimo', width: 30 },
+      { header: 'Es perecedero', key: 'es_perecedero', width: 30 },
+      { header: 'Alerta amarilla', key: 'alerta_amarilla', width: 30 },
+      { header: 'Alerta naranja', key: 'alerta_naranja', width: 30 },
+      { header: 'Estado', key: 'estado', width: 30 },
+      { header: 'Codigo de barra', key: 'codigo_barra', width: 30 },
+    ];
+
+    const dynamicColumns = masterColumns.filter(col => {
+      const val = allParams[col.key];
+      return Array.isArray(val) ? val.includes('true') : val === 'true';
+    });
+
+    worksheet.columns = dynamicColumns;
+    worksheet.addRows(data);
+    return await workbook.xlsx.writeBuffer();
+  }
+
+  async generarCsv(allParams: any, lang: string) {
+    const where: any = {};
+
+    const getSearchValue = (param: any) => {
+      if (Array.isArray(param)) {
+        const val = param.find(v => v !== 'true');
+        return (val !== undefined && val !== '') ? val : null;
+      }
+      return (param !== 'true' && param !== '' && param !== undefined) ? param : null;
+    };
+
+    const nombreVal = getSearchValue(allParams.nombre);
+    if (nombreVal) where.nombre = Like(`%${nombreVal}%`);
+
+    const data = await this.productRepository.find({ where });
+
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Reporte de Productos');
+
+    const masterColumns = [
+      { header: 'Id', key: 'id', width: 10 },
+      { header: 'Nombre', key: 'nombre', width: 30 },
+      { header: 'Stock minimo', key: 'stock_minimo', width: 30 },
+      { header: 'Es perecedero', key: 'es_perecedero', width: 30 },
+      { header: 'Alerta amarilla', key: 'alerta_amarilla', width: 30 },
+      { header: 'Alerta naranja', key: 'alerta_naranja', width: 30 },
+      { header: 'Estado', key: 'estado', width: 30 },
+      { header: 'Codigo de barra', key: 'codigo_barra', width: 30 },
+    ];
+
+
+    const dynamicColumns = masterColumns.filter(col => {
+      const val = allParams[col.key];
+      return Array.isArray(val) ? val.includes('true') : val === 'true';
+    });
+
+    worksheet.columns = dynamicColumns;
+    worksheet.addRows(data);
+
+    return await workbook.csv.writeBuffer({
+      formatterOptions: {
+        delimiter: ',',
+        quote: '"'
+      }
+    });
+  }
+
   async listaProductos(id_marca: number, search: string) {
     return await this.productRepository.find({
-      where: { 
+      where: {
         id_marca: id_marca,
-        nombre: Like(`%${search}%`) 
+        nombre: Like(`%${search}%`)
       },
-      take: 20 
+      take: 20
     });
   }
 }

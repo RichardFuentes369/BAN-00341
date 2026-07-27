@@ -1,1 +1,36 @@
-<p>reporte works!</p>
+<div class="shadow-sm border-light">
+  <div class="col-xl col-sm-12 card pl-0 pr-0 pt-3 pb-4 mb-2">
+    <input type="text" class="d-none complementoRuta" value="">
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.id">
+      <span class="small font-weight-bold">{{ 'mod-catalog.SUPPLIER.COLUMN_ID' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.nit">
+      <span class="small font-weight-bold">{{ 'mod-catalog.SUPPLIER.COLUMN_BUSINESS_NIT' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.dv">
+      <span class="small font-weight-bold">DV</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.razon_social">
+      <span class="small font-weight-bold">{{ 'mod-catalog.SUPPLIER.COLUMN_BUSINESS_NAME' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.direccion">
+      <span class="small font-weight-bold">{{ 'mod-catalog.SUPPLIER.COLUMN_BUSINESS_ADDRESS' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.telefono">
+      <span class="small font-weight-bold">{{ 'mod-catalog.SUPPLIER.COLUMN_BUSINESS_PHONE' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.correo">
+      <span class="small font-weight-bold">{{ 'mod-catalog.SUPPLIER.COLUMN_BUSINESS_EMAIL' | translate}}</span>
+    </div>
+    <button class="d-none limpiarR" (click)="limpiar()"></button>
+    <button class="d-none excel" (click)="generar('excel')"></button>
+    <button class="d-none csv" (click)="generar('csv')"></button>
+  </div>
+</div>
