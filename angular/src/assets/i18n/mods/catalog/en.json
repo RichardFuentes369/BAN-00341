@@ -20,6 +20,9 @@
   "WORD_ASCENDING": "Ascending",
   "WORD_DESCENDING": "Descending",
 
+  "WORD_YES": "Yes",
+  "WORD_NO": "No",
+
   "SUPPLIER": {
     "WORD_SUPPLIER": "Supplier",
     "LEGEND_TITLE": "Supplier data",
