@@ -13,7 +13,6 @@ CTRL + SHIFT + V
 	2. Hacer enpoint para marcar un producto como vendido o devolución (validar como) (*)
 
 	3. Reportes
-		Catalogo > Productos > ecxel | csv  (falta marca)
 		Bodega > ecxel | csv 
 		Merma > Registro perdida > ecxel | csv 
 		

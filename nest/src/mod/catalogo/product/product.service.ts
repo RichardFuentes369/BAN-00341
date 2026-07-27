@@ -321,11 +321,22 @@ export class ProductService {
     const perecederoaVal = getSearchValue(allParams.es_perecedero);
     if (perecederoaVal) where.es_perecedero = perecederoaVal;
 
-    const data = await this.productRepository.find({ where });
+    const data = await this.productRepository.find({
+      where,
+      relations: ['marca', 'medida']
+    });
+
+    // Mapeamos los datos extrayendo directamente el string del nombre
+    const formattedData = data.map(item => ({
+      ...item,
+      medida: item.medida ? item.medida.nombre : '',
+      marca: item.marca ? item.marca.nombre : '',
+    }));
 
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet('Reporte de Productos');
 
+    // Las keys ahora son simples ('medida' y 'marca'), apuntando al texto plano generado arriba
     const masterColumns = [
       { header: 'Id', key: 'id', width: 10 },
       { header: 'Nombre', key: 'nombre', width: 30 },
@@ -335,15 +346,22 @@ export class ProductService {
       { header: 'Alerta naranja', key: 'alerta_naranja', width: 30 },
       { header: 'Estado', key: 'estado', width: 30 },
       { header: 'Codigo de barra', key: 'codigo_barra', width: 30 },
+      { header: 'Medida', key: 'medida', width: 30 },
+      { header: 'Marca', key: 'marca', width: 30 },
     ];
 
     const dynamicColumns = masterColumns.filter(col => {
-      const val = allParams[col.key];
+      let paramKey = col.key;
+      // Ajustamos el mapeo inverso para que el filtro reconozca id_medida / id_marca
+      if (col.key === 'medida') paramKey = 'medida';
+      if (col.key === 'marca') paramKey = 'marca';
+
+      const val = allParams[paramKey];
       return Array.isArray(val) ? val.includes('true') : val === 'true';
     });
 
     worksheet.columns = dynamicColumns;
-    worksheet.addRows(data);
+    worksheet.addRows(formattedData);
     return await workbook.xlsx.writeBuffer();
   }
 
@@ -361,7 +379,43 @@ export class ProductService {
     const nombreVal = getSearchValue(allParams.nombre);
     if (nombreVal) where.nombre = Like(`%${nombreVal}%`);
 
-    const data = await this.productRepository.find({ where });
+    const stockValMin = getSearchValue(allParams.stock_minimo);
+    const stockValMax = getSearchValue(allParams.stock_maximo);
+
+    if (stockValMin && stockValMax) {
+      where.stock_minimo = Between(stockValMin, stockValMax);
+    } else if (stockValMin && !stockValMax) {
+      where.stock_minimo = MoreThanOrEqual(stockValMin);
+    } else if (stockValMax && !stockValMin) {
+      where.stock_minimo = LessThanOrEqual(stockValMax);
+    }
+
+    const estadoVal = getSearchValue(allParams.estado);
+    if (estadoVal) where.estado = estadoVal;
+
+    const marcaVal = getSearchValue(allParams.id_marca);
+    if (marcaVal) where.id_marca = marcaVal;
+
+    const medidaVal = getSearchValue(allParams.id_medida);
+    if (medidaVal) where.id_medida = medidaVal;
+
+    const codigobarraVal = getSearchValue(allParams.codigo_barra);
+    if (codigobarraVal) where.codigo_barra = codigobarraVal;
+
+    const perecederoaVal = getSearchValue(allParams.es_perecedero);
+    if (perecederoaVal) where.es_perecedero = perecederoaVal;
+
+    const data = await this.productRepository.find({
+      where,
+      relations: ['marca', 'medida']
+    });
+
+    // Mapeamos los datos extrayendo directamente el string del nombre para el CSV
+    const formattedData = data.map(item => ({
+      ...item,
+      medida: item.medida ? item.medida.nombre : '',
+      marca: item.marca ? item.marca.nombre : '',
+    }));
 
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet('Reporte de Productos');
@@ -375,16 +429,21 @@ export class ProductService {
       { header: 'Alerta naranja', key: 'alerta_naranja', width: 30 },
       { header: 'Estado', key: 'estado', width: 30 },
       { header: 'Codigo de barra', key: 'codigo_barra', width: 30 },
+      { header: 'Medida', key: 'medida', width: 30 },
+      { header: 'Marca', key: 'marca', width: 30 },
     ];
 
-
     const dynamicColumns = masterColumns.filter(col => {
-      const val = allParams[col.key];
+      let paramKey = col.key;
+      if (col.key === 'medida') paramKey = 'medida';
+      if (col.key === 'marca') paramKey = 'marca';
+
+      const val = allParams[paramKey];
       return Array.isArray(val) ? val.includes('true') : val === 'true';
     });
 
     worksheet.columns = dynamicColumns;
-    worksheet.addRows(data);
+    worksheet.addRows(formattedData);
 
     return await workbook.csv.writeBuffer({
       formatterOptions: {
