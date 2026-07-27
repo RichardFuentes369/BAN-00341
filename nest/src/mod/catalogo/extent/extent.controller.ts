@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards, Res } from '@nestjs/common';
 import { ExtentService } from './extent.service';
 import { FilterExtentDto } from './dto/filter-extent.dto';
 import { GetUser } from 'src/decorator/getIdUser.decorator';
 import { AdminGuard } from '@guard/admin/admin.guard';
 import { CreateExtentDto } from './dto/create-extent.dto';
 import { UpdateExtentDto } from './dto/update-extent.dto';
+import { Response } from 'express';
 
 @Controller('extent')
 export class ExtentController {
@@ -97,6 +98,33 @@ export class ExtentController {
     @Query('lang') lang:string,
   ) {
     return this.extentService.contadoresExtent(lang);
+  }
+
+  // reportes
+  @Get('excel')
+  async downloadExcel(
+    @Query('lang') lang: string,
+    @Query() columns: any,
+    @GetUser('id') userId: number,
+    @Res() res: Response
+  ) {
+    const buffer = await this.extentService.generarExcel(columns, lang);
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', 'attachment; filename=reporte.xlsx');
+    res.send(buffer);
+  }
+
+  @Get('csv')
+  async downloadCsv(
+    @Query('lang') lang: string,
+    @Query() columns: any,
+    @GetUser('id') userId: number,
+    @Res() res: Response
+  ) {
+    const csv = await this.extentService.generarCsv(columns, lang);
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename=reporte.csv');
+    res.status(200).send(csv);
   }
 
 }

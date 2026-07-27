@@ -14,3 +14,6 @@ export const MOD_ALERT_PAGE_STOCK =  '/admin/mod/alerts/stock/';
 
 export const FILTRO_ALERTS_S_COMPONENT = 'FiltroAlertsSStockComponent';
 export const FILTRO_ALERTS_V_COMPONENT = 'FiltroAlertsVComponent';
+
+export const REPORT_ALERT_VENCIMIENTO_COMPONENT = 'ReporteVencimientoComponent';
+export const REPORT_ALERT_STOCK_COMPONENT = 'ReporteStockComponent';

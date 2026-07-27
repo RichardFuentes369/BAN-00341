@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { SearchComponent } from '@component/globales/search/search.component';
@@ -8,11 +8,13 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { MarcaService } from './service/marca.service';
 import { Subscription, timer } from 'rxjs';
-import { CREAR_MARCA_COMPONENT, EDITAR_MARCA_COMPONENT, FILTRO_MARCA_COMPONENT, MOD_CATEGORY_PAGE_PRODUCT_FOR_BRAND, VER_MARCA_COMPONENT } from '@mod/catalog/const/catalog.const';
+import { CREAR_MARCA_COMPONENT, EDITAR_MARCA_COMPONENT, FILTRO_MARCA_COMPONENT, MOD_CATEGORY_PAGE_PRODUCT_FOR_BRAND, REPORT_MARCA_COMPONENT, VER_MARCA_COMPONENT } from '@mod/catalog/const/catalog.const';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import Swal from 'sweetalert2';
 import { GridcrudComponent } from '@component/globales/gridcrud/gridcrud.component';
 import { KpicardComponent } from '@component/globales/kpicard/kpicard.component';
+import { ReportComponent } from '@component/globales/report/report.component';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-marcas',
@@ -20,6 +22,7 @@ import { KpicardComponent } from '@component/globales/kpicard/kpicard.component'
   imports: [
     TranslateModule,
     SearchComponent,
+    ReportComponent,
     LoadingComponent,
     GridcrudComponent,
     ModalBoostrapComponent,
@@ -28,26 +31,32 @@ import { KpicardComponent } from '@component/globales/kpicard/kpicard.component'
   templateUrl: './marcas.component.html',
   styleUrl: './marcas.component.scss',
 })
-export class MarcasComponent implements OnInit, OnDestroy{
+export class MarcasComponent implements OnInit, OnDestroy {
 
   // construcator
   constructor(
     private router: Router,
-    private userService :AuthService,
-    private permisosService :PermisosService,
-    private marcaService :MarcaService,
+    private userService: AuthService,
+    private route: ActivatedRoute,
+    private permisosService: PermisosService,
+    private marcaService: MarcaService,
     private translate: TranslateService
   ) { }
-  
+
   private langSub: Subscription | undefined;
   permisos: any[] = []
 
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-catalog.BUTTON_SEARCH')
-  iconFilter="fa fa-filter"
-  componenteFilter=FILTRO_MARCA_COMPONENT
+  iconFilter = "fa fa-filter"
+  componenteFilter = FILTRO_MARCA_COMPONENT
   // fin datos envio al filtro
+
+  // inicio datos envio report
+  iconReport = "fa fa-file-download"
+  componenteReport = REPORT_MARCA_COMPONENT
+  // fin datos envio repor
 
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
@@ -117,14 +126,14 @@ export class MarcasComponent implements OnInit, OnDestroy{
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
-    const permiso_modulo = await this.permisosService.permisoPage(0,'catalogo',userData.data.id)
-    const permiso_submodulo = await this.permisosService.permisoPage(22,'marcas',userData.data.id)
+    const permiso_modulo = await this.permisosService.permisoPage(0, 'catalogo', userData.data.id)
+    const permiso_submodulo = await this.permisosService.permisoPage(22, 'marcas', userData.data.id)
 
     if (permiso_modulo.data === "" || permiso_submodulo.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     }
 
-    const permisos = await this.permisosService.permisos(userData.data.id,'marcas')
+    const permisos = await this.permisosService.permisos(userData.data.id, 'marcas')
     this.permisos = permisos.data
     // sessionStorage.removeItem('nit')
     // sessionStorage.removeItem('razon_social')
@@ -136,8 +145,8 @@ export class MarcasComponent implements OnInit, OnDestroy{
       this.cargarIdioma = false;
       timer(200).subscribe(() => {
         this.actualizarContadores()
-        this.listar(); 
-        this.cambiarTextos(); 
+        this.listar();
+        this.cambiarTextos();
         this.cargarIdioma = true;
       });
     });
@@ -150,7 +159,7 @@ export class MarcasComponent implements OnInit, OnDestroy{
   }
 
   // metodos Componente
-  listar(){
+  listar() {
     this.columnas = [
       {
         title: this.translate.instant('mod-catalog.BRAND.COLUMN_ID'),
@@ -168,16 +177,16 @@ export class MarcasComponent implements OnInit, OnDestroy{
         data: 'totalProductos',
         className: 'text-center align-middle'
       },
-    ];  
+    ];
   }
 
-  cambiarTextos(){
+  cambiarTextos() {
     this.wordItem = this.translate.instant('mod-catalog.PRODUCT.ASSIGMENT_PRODUCT_TITLE_BREADCRUMB')
     this.titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
     this.titleTotalSuppliers = this.translate.instant('mod-catalog.BRAND.CARD_TOTAL_BRANDS_TITLE')
   }
-  
-  crearData (_id: string){
+
+  crearData(_id: string) {
     this.tamano = "xl"
     this.scrollable = false
     this.title = this.translate.instant('mod-catalog.BRAND.CREATE_TITLE')
@@ -192,17 +201,17 @@ export class MarcasComponent implements OnInit, OnDestroy{
     this.componentePrecargado = CREAR_MARCA_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
   }
 
-  async verData (_id: string){
+  async verData(_id: string) {
     this.title = this.translate.instant('mod-catalog.BRAND.SEE_TITLE')
     const response = await this.marcaService.getDataBrand(_id)
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    this.translate.get('mod-catalog.BRAND.EDIT_SUBTITLE', { "brand_name": nombre }).subscribe((res: string) => {this.subtitle = res});
+    this.translate.get('mod-catalog.BRAND.EDIT_SUBTITLE', { "brand_name": nombre }).subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
     this.scrollable = false
     this.save = false
@@ -215,7 +224,7 @@ export class MarcasComponent implements OnInit, OnDestroy{
     this.componentePrecargado = VER_MARCA_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       this.router.navigate([], {
         queryParams: { id_brand: _id },
       });
@@ -224,11 +233,11 @@ export class MarcasComponent implements OnInit, OnDestroy{
     }
   }
 
-  async editarData (_id: string){
+  async editarData(_id: string) {
     this.title = this.translate.instant('mod-catalog.BRAND.EDIT_TITLE')
     const response = await this.marcaService.getDataBrand(_id)
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    this.translate.get('mod-catalog.BRAND.EDIT_SUBTITLE', { "brand_name": nombre }).subscribe((res: string) => {this.subtitle = res});
+    this.translate.get('mod-catalog.BRAND.EDIT_SUBTITLE', { "brand_name": nombre }).subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
     this.scrollable = false
     this.save = false
@@ -237,10 +246,10 @@ export class MarcasComponent implements OnInit, OnDestroy{
     this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
     this.cancel = true
     this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
-    this.componentePrecargado = EDITAR_MARCA_COMPONENT  
+    this.componentePrecargado = EDITAR_MARCA_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       this.router.navigate([], {
         queryParams: { id_brand: _id },
       });
@@ -251,14 +260,14 @@ export class MarcasComponent implements OnInit, OnDestroy{
 
   @ViewChild(GridcrudComponent)
   someInput!: GridcrudComponent
-  async eliminarData (_id: string[]){
+  async eliminarData(_id: string[]) {
     const response = await this.marcaService.getDataBrand(_id[0])
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    const brand_name = (_id.length === 1) ? nombre : "("+_id.length+")"
+    const brand_name = (_id.length === 1) ? nombre : "(" + _id.length + ")"
     const count_users = (_id.length === 1) ? 'el' : 'los'
     const plural = (_id.length === 1) ? '' : 's'
 
-    this.translate.get('mod-catalog.BRAND.SWAL_ARE_YOU_SURE_DELETE',{ "art_the": count_users, "plural": plural, "brand_name": brand_name}).subscribe((translatedTitle: string) => {
+    this.translate.get('mod-catalog.BRAND.SWAL_ARE_YOU_SURE_DELETE', { "art_the": count_users, "plural": plural, "brand_name": brand_name }).subscribe((translatedTitle: string) => {
       Swal.fire({
         title: translatedTitle,
         text: this.translate.instant('mod-catalog.SWAL_WARNING_REVERSE_CHANGE'),
@@ -279,7 +288,7 @@ export class MarcasComponent implements OnInit, OnDestroy{
                 icon: "success"
               });
             }
-            
+
             if (response.data.status == 404) {
               Swal.fire({
                 title: this.translate.instant('mod-catalog.BRAND.SWAL_DELETED'),
@@ -293,7 +302,7 @@ export class MarcasComponent implements OnInit, OnDestroy{
     });
   }
 
-  asignarData (data: { id: string, ctrlKey: boolean }){
+  asignarData(data: { id: string, ctrlKey: boolean }) {
     const url = `${MOD_CATEGORY_PAGE_PRODUCT_FOR_BRAND}?id_brand=${data.id}`;
     if (data.ctrlKey) {
       window.open(url, '_blank');
@@ -302,23 +311,72 @@ export class MarcasComponent implements OnInit, OnDestroy{
     }
   }
 
-  async filtroData(){
+  async filtroData() {
     let filtros = await $('.complementoRuta').val();
     this.router.navigate([], { queryParams: { search: (filtros) ? filtros : null }, });
-    if(typeof filtros === 'string'){
+    if (typeof filtros === 'string') {
       this.filters = filtros
     }
   }
 
-  async refrescarTabla (){
+  async refrescarTabla() {
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);
   }
 
-  async actualizarContadores (){
+  async actualizarContadores() {
     const data = await this.marcaService.obtenerTotale()
     this.count_total_brands = data.data.count_total_brands
+  }
+
+  reportData(formato: string) {
+    const complementoRuta = $(".complementoRuta").val()
+    const querySearch = this.route.snapshot.queryParamMap.get('search');
+
+    const compRuta: string = typeof complementoRuta === 'string' ? complementoRuta : '';
+    const qSearch: string = querySearch ?? '';
+
+    const configParams = new URLSearchParams(compRuta.replace(/^[&?]/, ''));
+    const searchParams = new URLSearchParams(qSearch.replace(/^[&?]/, ''));
+
+    const allKeys = Array.from(new Set([...Array.from(configParams.keys()), ...Array.from(searchParams.keys())]));
+
+    const reporteConfig = allKeys.map(key => {
+      return {
+        field: key,
+        value: searchParams.get(key) || '',
+        show: configParams.get(key) === 'true'
+      };
+    });
+
+    let params = new HttpParams();
+
+    reporteConfig.forEach(item => {
+      if (item.value) {
+        params = params.append(item.field, item.value);
+      }
+      if (item.show) {
+        params = params.append(item.field, 'true');
+      }
+    });
+
+    this.marcaService.descargarReporte(formato, params).subscribe({
+      next: (blob: Blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        const extension = formato === 'excel' ? 'xlsx' : 'csv';
+        a.download = `reporte_lotes_${new Date().getTime()}.${extension}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      },
+      error: (err) => {
+        console.error('Error al descargar el reporte', err);
+      }
+    });
   }
 
 }

@@ -252,7 +252,7 @@ export class AdminService {
     const data = await this.adminRepository.find({ where });
 
     const workbook = new ExcelJS.Workbook();
-    const worksheet = workbook.addWorksheet('Reporte de Lotes');
+    const worksheet = workbook.addWorksheet('Reporte de Administradores');
 
     const masterColumns = [
       { header: 'Id', key: 'id', width: 10 },

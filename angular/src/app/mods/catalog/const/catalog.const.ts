@@ -35,16 +35,20 @@ export const CREAR_PRODUCT_COMPONENT = 'CrearProductoComponent';
 export const VER_PRODUCT_COMPONENT = 'VerProductoComponent';
 export const EDITAR_PRODUCT_COMPONENT = 'EditarProductoComponent';
 export const FILTRO_PRODUCT_COMPONENT = 'FiltroProductComponent';
+export const REPORT_PRODUCT_COMPONENT = 'ReporteProductoComponent';
+
 
 export const CREAR_PROVEEDOR_COMPONENT = 'CrearProveedorComponent';
 export const VER_PROVEEDOR_COMPONENT = 'VerProveedorComponent';
 export const EDITAR_PROVEEDOR_COMPONENT = 'EditarProveedorComponent';
 export const FILTRO_PROVEEDOR_COMPONENT = 'FiltroProveedorComponent';
+export const REPORT_PROVEEDOR_COMPONENT = 'ReporteProveedorComponent';
 
 export const CREAR_MARCA_COMPONENT = 'CrearMarcaComponent';
 export const VER_MARCA_COMPONENT = 'VerMarcaComponent';
 export const EDITAR_MARCA_COMPONENT = 'EditarMarcaComponent';
 export const FILTRO_MARCA_COMPONENT = 'FiltroMarcaComponent';
+export const REPORT_MARCA_COMPONENT = 'ReporteMarcaComponent';
 
 export const VER_CATEGORIA_COMPONENT = 'VerCategoriaComponent';
 export const CREAR_CATEGORIA_COMPONENT = 'CrearCategoriaComponent';
@@ -55,3 +59,4 @@ export const CREAR_MEDIDA_COMPONENT = 'CrearMedidaComponent';
 export const VER_MEDIDA_COMPONENT = 'VerMedidaComponent';
 export const EDITAR_MEDIDA_COMPONENT = 'EditarMedidaComponent';
 export const FILTRO_MEDIDA_COMPONENT = 'FiltroMedidaComponent';
+export const REPORT_MEDIDA_COMPONENT = 'ReporteMedidaComponent';

@@ -10,10 +10,12 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { ProductosService } from './service/productos.service';
 import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
-import { CARGAR_PRODUCT_COMPONENT, CREAR_PRODUCT_COMPONENT, EDITAR_PRODUCT_COMPONENT, FILTRO_PRODUCT_COMPONENT, MOD_CATEGORY_PAGE_BRAND, VER_PRODUCT_COMPONENT } from '@mod/catalog/const/catalog.const';
+import { CARGAR_PRODUCT_COMPONENT, CREAR_PRODUCT_COMPONENT, EDITAR_PRODUCT_COMPONENT, FILTRO_PRODUCT_COMPONENT, MOD_CATEGORY_PAGE_BRAND, REPORT_PRODUCT_COMPONENT, VER_PRODUCT_COMPONENT } from '@mod/catalog/const/catalog.const';
 import Swal from 'sweetalert2';
 import { MarcaService } from '../marcas/service/marca.service';
 import { KpicardComponent } from '@component/globales/kpicard/kpicard.component';
+import { HttpParams } from '@angular/common/http';
+import { ReportComponent } from '@component/globales/report/report.component';
 
 @Component({
   selector: 'app-productos',
@@ -21,6 +23,7 @@ import { KpicardComponent } from '@component/globales/kpicard/kpicard.component'
   imports: [
     TranslateModule,
     SearchComponent,
+    ReportComponent,
     LoadingComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
@@ -29,28 +32,33 @@ import { KpicardComponent } from '@component/globales/kpicard/kpicard.component'
   templateUrl: './productos.component.html',
   styleUrl: './productos.component.scss',
 })
-export class ProductosComponent implements OnInit, OnDestroy{
+export class ProductosComponent implements OnInit, OnDestroy {
 
   // construcator
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private userService :AuthService,
-    private permisosService :PermisosService,
-    private productosService :ProductosService,
-    private brandService :MarcaService,
+    private userService: AuthService,
+    private permisosService: PermisosService,
+    private productosService: ProductosService,
+    private brandService: MarcaService,
     private translate: TranslateService
   ) { }
-  
+
   private langSub: Subscription | undefined;
   permisos: any[] = []
 
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-users.BUTTON_SEARCH')
-  iconFilter="fa fa-filter"
-  componenteFilter=FILTRO_PRODUCT_COMPONENT
+  iconFilter = "fa fa-filter"
+  componenteFilter = FILTRO_PRODUCT_COMPONENT
   // fin datos envio al filtro
+
+  // inicio datos envio report
+  iconReport = "fa fa-file-download"
+  componenteReport = REPORT_PRODUCT_COMPONENT
+  // fin datos envio repor
 
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
@@ -95,10 +103,10 @@ export class ProductosComponent implements OnInit, OnDestroy{
       width: '50px',
       render: (data: any, type: any) => {
         if (type === 'display') {
-          const statusText = data 
-            ? this.translate.instant('mod-users.WORD_ACTIVED') 
+          const statusText = data
+            ? this.translate.instant('mod-users.WORD_ACTIVED')
             : this.translate.instant('mod-users.WORD_INACTIVED');
-          
+
           const dotClass = data ? 'dot-green' : 'dot-gray';
 
           return `
@@ -160,14 +168,14 @@ export class ProductosComponent implements OnInit, OnDestroy{
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
-    const permiso_modulo = await this.permisosService.permisoPage(0,'catalogo',userData.data.id)
-    const permiso_submodulo = await this.permisosService.permisoPage(22,'productos',userData.data.id)
+    const permiso_modulo = await this.permisosService.permisoPage(0, 'catalogo', userData.data.id)
+    const permiso_submodulo = await this.permisosService.permisoPage(22, 'productos', userData.data.id)
 
     if (permiso_modulo.data === "" || permiso_submodulo.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     }
-    
-    if(this.route.snapshot.queryParams?.['id_brand']){
+
+    if (this.route.snapshot.queryParams?.['id_brand']) {
       try {
         const existBrand = await this.brandService.getDataBrand(this.route.snapshot.queryParams?.['id_brand']);
       } catch (error) {
@@ -175,7 +183,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
       }
     }
 
-    const permisos = await this.permisosService.permisos(userData.data.id,'productos')
+    const permisos = await this.permisosService.permisos(userData.data.id, 'productos')
     this.permisos = permisos.data
     sessionStorage.removeItem('nombre')
     sessionStorage.removeItem('codigo_barra')
@@ -188,8 +196,8 @@ export class ProductosComponent implements OnInit, OnDestroy{
       this.cargarIdioma = false;
       timer(200).subscribe(() => {
         this.actualizarContadores()
-        this.listar(); 
-        this.cambiarTextos(); 
+        this.listar();
+        this.cambiarTextos();
         this.cargarIdioma = true;
       });
     });
@@ -202,7 +210,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
   }
 
   // metodos Componente
-  listar(){
+  listar() {
     this.columnas = [
       {
         title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_ID'),
@@ -236,22 +244,22 @@ export class ProductosComponent implements OnInit, OnDestroy{
         className: 'text-center align-middle',
         width: '50px',
         render: (data: any, type: any) => {
-            if (type === 'display') {
-              const statusText = data 
-                ? this.translate.instant('mod-users.WORD_ACTIVED') 
-                : this.translate.instant('mod-users.WORD_INACTIVED');
-              
-              const dotClass = data ? 'dot-green' : 'dot-gray';
+          if (type === 'display') {
+            const statusText = data
+              ? this.translate.instant('mod-users.WORD_ACTIVED')
+              : this.translate.instant('mod-users.WORD_INACTIVED');
 
-              return `
+            const dotClass = data ? 'dot-green' : 'dot-gray';
+
+            return `
                 <span class="custom-tooltip tooltip-bottom" data-title="${statusText}">
                   <span class="status-dot ${dotClass}"></span>
                 </span>
               `;
-            }
-            return data;
           }
-        },
+          return data;
+        }
+      },
       {
         title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_UNIT_OF_MEASUREMENT'),
         data: 'medida.nombre',
@@ -261,12 +269,12 @@ export class ProductosComponent implements OnInit, OnDestroy{
   }
 
   // metodos Componente
-  cambiarTextos(){
+  cambiarTextos() {
     this.titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
     this.titleTotalProducts = this.translate.instant('mod-catalog.PRODUCT.CARD_TOTAL_PRODUCTS_TITLE')
   }
 
-  crearData (_id: string){
+  crearData(_id: string) {
     this.tamano = "xl"
     this.scrollable = true
     this.title = this.translate.instant('mod-catalog.PRODUCT.CREATE_TITLE')
@@ -281,13 +289,13 @@ export class ProductosComponent implements OnInit, OnDestroy{
     this.componentePrecargado = CREAR_PRODUCT_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
   }
 
-  cargarData(_id: string){
+  cargarData(_id: string) {
     this.title = this.translate.instant('mod-catalog.PRODUCT.UPLOAD_TITLE')
     this.subtitle = this.translate.instant('mod-catalog.PRODUCT.UPLOAD_SUBTITLE')
     this.tamano = "xl"
@@ -302,7 +310,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
     this.componentePrecargado = CARGAR_PRODUCT_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       this.router.navigate([], {
         queryParams: { id_brand: this.route.snapshot.queryParams?.['id_brand'], id_product: _id },
       });
@@ -311,11 +319,11 @@ export class ProductosComponent implements OnInit, OnDestroy{
     }
   }
 
-  async verData (_id: string){
+  async verData(_id: string) {
     this.title = this.translate.instant('mod-catalog.PRODUCT.SEE_TITLE')
     const response = await this.productosService.getDataProduct(_id)
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    this.translate.get('mod-catalog.PRODUCT.SEE_SUBTITLE', { "product_name": nombre }).subscribe((res: string) => {this.subtitle = res});
+    this.translate.get('mod-catalog.PRODUCT.SEE_SUBTITLE', { "product_name": nombre }).subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
     this.scrollable = true
     this.save = false
@@ -328,7 +336,7 @@ export class ProductosComponent implements OnInit, OnDestroy{
     this.componentePrecargado = VER_PRODUCT_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       this.router.navigate([], {
         queryParams: { id_brand: this.route.snapshot.queryParams?.['id_brand'], id_product: _id },
       });
@@ -337,11 +345,11 @@ export class ProductosComponent implements OnInit, OnDestroy{
     }
   }
 
-  async editarData (_id: string){
+  async editarData(_id: string) {
     this.title = this.translate.instant('mod-catalog.PRODUCT.EDIT_TITLE')
     const response = await this.productosService.getDataProduct(_id)
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    this.translate.get('mod-catalog.PRODUCT.EDIT_SUBTITLE', { "product_name": nombre }).subscribe((res: string) => {this.subtitle = res});
+    this.translate.get('mod-catalog.PRODUCT.EDIT_SUBTITLE', { "product_name": nombre }).subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
     this.scrollable = true
     this.save = false
@@ -353,9 +361,9 @@ export class ProductosComponent implements OnInit, OnDestroy{
     this.componentePrecargado = EDITAR_PRODUCT_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       this.router.navigate([], {
-        queryParams: { id_brand: this.route.snapshot.queryParams?.['id_brand'], id_product: _id},
+        queryParams: { id_brand: this.route.snapshot.queryParams?.['id_brand'], id_product: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
@@ -364,14 +372,14 @@ export class ProductosComponent implements OnInit, OnDestroy{
 
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
-  async eliminarData (_id: string[]){
+  async eliminarData(_id: string[]) {
     const response = await this.productosService.getDataProduct(_id[0])
     const { nombre } = response.data || { nombre: 'xxxxxxx' }
-    const name_user = (_id.length === 1) ? nombre: "("+_id.length+")"
+    const name_user = (_id.length === 1) ? nombre : "(" + _id.length + ")"
     const count_users = (_id.length === 1) ? 'el' : 'los'
     const plural = (_id.length === 1) ? '' : 's'
-    
-    this.translate.get('mod-catalog.PRODUCT.SWAL_ARE_YOU_SURE_DELETE',{ "art_the": count_users, "plural": plural, "product_name": name_user}).subscribe((translatedTitle: string) => {
+
+    this.translate.get('mod-catalog.PRODUCT.SWAL_ARE_YOU_SURE_DELETE', { "art_the": count_users, "plural": plural, "product_name": name_user }).subscribe((translatedTitle: string) => {
       Swal.fire({
         title: translatedTitle,
         text: this.translate.instant('mod-catalog.SWAL_WARNING_REVERSE_CHANGE'),
@@ -395,25 +403,74 @@ export class ProductosComponent implements OnInit, OnDestroy{
     });
   }
 
-  async filtroData(){
+  async filtroData() {
     let filtros = await $('.complementoRuta').val();
     this.router.navigate([], {
       queryParams: { search: filtros },
     });
-    if(typeof filtros === 'string'){
+    if (typeof filtros === 'string') {
       this.filters = filtros
     }
   }
 
-  async refrescarTabla (){
+  async refrescarTabla() {
     console.log('actualice')
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);
   }
 
-  async actualizarContadores (){
+  async actualizarContadores() {
     const data = await this.productosService.obtenerTotale()
     this.count_total_products = data.data.count_total_products
+  }
+
+  reportData(formato: string) {
+    const complementoRuta = $(".complementoRuta").val()
+    const querySearch = this.route.snapshot.queryParamMap.get('search');
+
+    const compRuta: string = typeof complementoRuta === 'string' ? complementoRuta : '';
+    const qSearch: string = querySearch ?? '';
+
+    const configParams = new URLSearchParams(compRuta.replace(/^[&?]/, ''));
+    const searchParams = new URLSearchParams(qSearch.replace(/^[&?]/, ''));
+
+    const allKeys = Array.from(new Set([...Array.from(configParams.keys()), ...Array.from(searchParams.keys())]));
+
+    const reporteConfig = allKeys.map(key => {
+      return {
+        field: key,
+        value: searchParams.get(key) || '',
+        show: configParams.get(key) === 'true'
+      };
+    });
+
+    let params = new HttpParams();
+
+    reporteConfig.forEach(item => {
+      if (item.value) {
+        params = params.append(item.field, item.value);
+      }
+      if (item.show) {
+        params = params.append(item.field, 'true');
+      }
+    });
+
+    this.productosService.descargarReporte(formato, params).subscribe({
+      next: (blob: Blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        const extension = formato === 'excel' ? 'xlsx' : 'csv';
+        a.download = `reporte_lotes_${new Date().getTime()}.${extension}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      },
+      error: (err) => {
+        console.error('Error al descargar el reporte', err);
+      }
+    });
   }
 }

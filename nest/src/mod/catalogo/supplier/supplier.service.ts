@@ -5,6 +5,7 @@ import { FilterCategoryrDto } from '@module/catalogo/supplier/dto/filter-supplie
 import { I18nService } from 'nestjs-i18n';
 import { UpdateSupplierDto } from './dto/update-supplier.dto';
 import { CreateSupplierDto } from './dto/create-supplier.dto';
+import * as ExcelJS from 'exceljs';
 
 @Injectable()
 export class SupplierService {
@@ -12,7 +13,7 @@ export class SupplierService {
     @Inject('SUPPLIER_REPOSITORY')
     private supplierRepository: Repository<Proveedor>,
     private i18n: I18nService
-  ) {}
+  ) { }
 
   listarPropiedadesTabla(repository: Repository<any>) {
     const metadata = repository.metadata;
@@ -56,7 +57,7 @@ export class SupplierService {
 
     const data = result.map(s => ({
       ...s,
-      nitCompleto: s.fullNit 
+      nitCompleto: s.fullNit
     }));
 
     return [{
@@ -78,8 +79,8 @@ export class SupplierService {
       this.i18n.t('proveedor.MSJ_PROVEEDOR_NO_ENCONTRADO', { lang })
     );
     return supplier;
-  }  
-  
+  }
+
   async findOneForNit(lang: string, _nit: string) {
     const supplier = await this.supplierRepository.findOne({ where: { nit: _nit } });
     if (!supplier) throw new NotFoundException(
@@ -89,8 +90,8 @@ export class SupplierService {
   }
 
   async create(
-    lang: string, 
-    supplierData: CreateSupplierDto, 
+    lang: string,
+    supplierData: CreateSupplierDto,
     userId: number
   ) {
     try {
@@ -116,9 +117,9 @@ export class SupplierService {
   }
 
   async update(
-    lang: string, 
-    id: number, 
-    supplierData: UpdateSupplierDto, 
+    lang: string,
+    id: number,
+    supplierData: UpdateSupplierDto,
     userId: number
   ) {
 
@@ -141,13 +142,128 @@ export class SupplierService {
 
   async contadoresProveedores(
     lang: string
-  ){
-    const cont1 =  await this.supplierRepository.count()
-    
+  ) {
+    const cont1 = await this.supplierRepository.count()
+
     const data = {
       "count_total_suppliers": cont1,
     }
 
     return data
+  }
+
+  // reporte pendiente permisos
+  async generarExcel(allParams: any, lang: string) {
+    const where: any = {};
+
+    const getSearchValue = (param: any) => {
+      if (Array.isArray(param)) {
+        const val = param.find(v => v !== 'true');
+        return (val !== undefined && val !== '') ? val : null;
+      }
+      return (param !== 'true' && param !== '' && param !== undefined) ? param : null;
+    };
+
+    const razonVal = getSearchValue(allParams.razon_social);
+    if (razonVal) where.razon_social = Like(`%${razonVal}%`);
+
+    const direccionVal = getSearchValue(allParams.direccion);
+    if (direccionVal) where.direccion = Like(`%${direccionVal}%`);
+
+    const correoVal = getSearchValue(allParams.correo);
+    if (correoVal) where.correo = Like(`%${correoVal}%`);
+    
+    const telefonoVal = getSearchValue(allParams.telefono);
+    if (telefonoVal) where.telefono = Like(`%${telefonoVal}%`);
+
+    const nitVal = getSearchValue(allParams.nit);
+    if (nitVal) where.nit = Like(`%${nitVal}%`);
+
+    const dvVal = getSearchValue(allParams.dv);
+    if (dvVal) where.dv = Like(`%${dvVal}%`);
+
+    const data = await this.supplierRepository.find({ where });
+
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Reporte de Proveedores');
+
+    const masterColumns = [
+      { header: 'Id', key: 'id', width: 10 },
+      { header: 'Razon social', key: 'razon_social', width: 30 },
+      { header: 'Direccion', key: 'direccion', width: 20 },
+      { header: 'Correo', key: 'correo', width: 20 },
+      { header: 'Telefono', key: 'telefono', width: 15 },
+      { header: 'Nit', key: 'nit', width: 15 },
+      { header: 'Dv', key: 'dv', width: 15 },
+    ];
+
+    const dynamicColumns = masterColumns.filter(col => {
+      const val = allParams[col.key];
+      return Array.isArray(val) ? val.includes('true') : val === 'true';
+    });
+
+    worksheet.columns = dynamicColumns;
+    worksheet.addRows(data);
+    return await workbook.xlsx.writeBuffer();
+  }
+
+  async generarCsv(allParams: any, lang: string) {
+    const where: any = {};
+
+    const getSearchValue = (param: any) => {
+      if (Array.isArray(param)) {
+        const val = param.find(v => v !== 'true');
+        return (val !== undefined && val !== '') ? val : null;
+      }
+      return (param !== 'true' && param !== '' && param !== undefined) ? param : null;
+    };
+
+    const razonVal = getSearchValue(allParams.razon_social);
+    if (razonVal) where.razon_social = Like(`%${razonVal}%`);
+
+    const direccionVal = getSearchValue(allParams.direccion);
+    if (direccionVal) where.direccion = Like(`%${direccionVal}%`);
+
+    const correoVal = getSearchValue(allParams.correo);
+    if (correoVal) where.correo = Like(`%${correoVal}%`);
+    
+    const telefonoVal = getSearchValue(allParams.telefono);
+    if (telefonoVal) where.telefono = Like(`%${telefonoVal}%`);
+
+    const nitVal = getSearchValue(allParams.nit);
+    if (nitVal) where.nit = Like(`%${nitVal}%`);
+
+    const dvVal = getSearchValue(allParams.dv);
+    if (dvVal) where.dv = Like(`%${dvVal}%`);
+
+    const data = await this.supplierRepository.find({ where });
+
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Reporte de Proveedores');
+
+    const masterColumns = [
+      { header: 'Id', key: 'id', width: 10 },
+      { header: 'Razon social', key: 'razon_social', width: 30 },
+      { header: 'Direccion', key: 'direccion', width: 20 },
+      { header: 'Correo', key: 'correo', width: 20 },
+      { header: 'Telefono', key: 'telefono', width: 15 },
+      { header: 'Nit', key: 'nit', width: 15 },
+      { header: 'Dv', key: 'dv', width: 15 },
+    ];
+
+    const dynamicColumns = masterColumns.filter(col => {
+      const val = allParams[col.key];
+      return Array.isArray(val) ? val.includes('true') : val === 'true';
+    });
+
+    worksheet.columns = dynamicColumns;
+    worksheet.addRows(data);
+
+    return await workbook.csv.writeBuffer({
+      formatterOptions: {
+        delimiter: ',',
+        quote: '"'
+      }
+    });
   }
 }
