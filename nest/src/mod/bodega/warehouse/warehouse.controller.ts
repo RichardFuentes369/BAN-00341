@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards, Res } from '@nestjs/common';
 import { WarehouseService } from './warehouse.service';
 import { CreateWarehouseDto } from './dto/create-warehouse.dto';
 import { UpdateWarehouseDto } from './dto/update-warehouse.dto';
@@ -6,6 +6,7 @@ import { GetUser } from 'src/decorator/getIdUser.decorator';
 import { FilterWarehouseDto } from './dto/filter-warehouse.dto';
 import { AdminGuard } from '@guard/admin/admin.guard';
 import { FilterWarehouseProductDTO } from './dto/filter-lote-producto.dto';
+import { Response } from 'express';
 
 @Controller('batch')
 export class WarehouseController {
@@ -96,5 +97,32 @@ export class WarehouseController {
     @Query('lang') lang:string,
   ) {
     return this.warehouseService.contadoresLote(lang);
+  }
+
+  // reportes
+  @Get('excel')
+  async downloadExcel(
+    @Query('lang') lang: string,
+    @Query() columns: any,
+    @GetUser('id') userId: number,
+    @Res() res: Response
+  ) {
+    const buffer = await this.warehouseService.generarExcel(columns, lang);
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', 'attachment; filename=reporte.xlsx');
+    res.send(buffer);
+  }
+
+  @Get('csv')
+  async downloadCsv(
+    @Query('lang') lang: string,
+    @Query() columns: any,
+    @GetUser('id') userId: number,
+    @Res() res: Response
+  ) {
+    const csv = await this.warehouseService.generarCsv(columns, lang);
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename=reporte.csv');
+    res.status(200).send(csv);
   }
 }

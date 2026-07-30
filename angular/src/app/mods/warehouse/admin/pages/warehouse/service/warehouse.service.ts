@@ -4,13 +4,18 @@ import { environment } from '@environment/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { toTimestampp } from '@function/System'
 import axios from 'axios';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BodegaService {
   
-  constructor(private translate: TranslateService) { }
+  constructor(
+    private http: HttpClient,
+    private translate: TranslateService
+  ) { }
 
   async getDataLote(id: string){
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
@@ -92,6 +97,22 @@ export class BodegaService {
         lang: lang,
       }
     })
+  }
+
+  descargarReporte(tipo: string, parametros: any): Observable<Blob> {
+    const urlCompleta = `${environment.apiUrl}batch/${tipo}`;
+    const token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN);
+
+    const headers = new HttpHeaders({
+      [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+      'Accept': tipo === 'excel' ? 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' : 'text/csv'
+    });
+
+    return this.http.get(urlCompleta, {
+      headers: headers,
+      params: parametros,
+      responseType: 'blob'
+    });
   }
 
   async obtenerTotale(){

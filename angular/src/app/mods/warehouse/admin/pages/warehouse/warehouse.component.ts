@@ -10,10 +10,12 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { BodegaService } from './service/warehouse.service';
 import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
-import { CREAR_WAREHOUSE_COMPONENT, EDITAR_WAREHOUSE_COMPONENT, FILTRO_WAREHOUSE_COMPONENT, VER_WAREHOUSE_COMPONENT } from '@mod/warehouse/const/warehouse.const';
+import { CREAR_WAREHOUSE_COMPONENT, EDITAR_WAREHOUSE_COMPONENT, FILTRO_WAREHOUSE_COMPONENT, REPORT_WAREHOUSE_COMPONENT, VER_WAREHOUSE_COMPONENT } from '@mod/warehouse/const/warehouse.const';
 import Swal from 'sweetalert2';
 import { ReporteTrazabilidadComponent } from './components/reporte-trazabilidad/reporte-trazabilidad.component';
 import { KpicardComponent } from '@component/globales/kpicard/kpicard.component';
+import { ReportComponent } from '@component/globales/report/report.component';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-warehouse',
@@ -21,6 +23,7 @@ import { KpicardComponent } from '@component/globales/kpicard/kpicard.component'
   imports: [
     TranslateModule,
     SearchComponent,
+    ReportComponent,
     LoadingComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
@@ -51,6 +54,11 @@ export class WarehoseComponent implements OnInit, OnDestroy{
   iconFilter="fa fa-filter"
   componenteFilter=FILTRO_WAREHOUSE_COMPONENT
   // fin datos envio al filtro
+  
+  // inicio datos envio report
+  iconReport = "fa fa-file-download"
+  componenteReport = REPORT_WAREHOUSE_COMPONENT
+  // fin datos envio repor
 
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
@@ -449,5 +457,54 @@ export class WarehoseComponent implements OnInit, OnDestroy{
   async actualizarContadores (){
     const data = await this.bodegaService.obtenerTotale()
     this.count_total_products = data.data.count_total_products
+  }
+
+  reportData(formato: string) {
+    const complementoRuta = $(".complementoRuta").val()
+    const querySearch = this.route.snapshot.queryParamMap.get('search');
+
+    const compRuta: string = typeof complementoRuta === 'string' ? complementoRuta : '';
+    const qSearch: string = querySearch ?? '';
+
+    const configParams = new URLSearchParams(compRuta.replace(/^[&?]/, ''));
+    const searchParams = new URLSearchParams(qSearch.replace(/^[&?]/, ''));
+
+    const allKeys = Array.from(new Set([...Array.from(configParams.keys()), ...Array.from(searchParams.keys())]));
+
+    const reporteConfig = allKeys.map(key => {
+      return {
+        field: key,
+        value: searchParams.get(key) || '',
+        show: configParams.get(key) === 'true'
+      };
+    });
+
+    let params = new HttpParams();
+
+    reporteConfig.forEach(item => {
+      if (item.value) {
+        params = params.append(item.field, item.value);
+      }
+      if (item.show) {
+        params = params.append(item.field, 'true');
+      }
+    });
+
+    this.bodegaService.descargarReporte(formato, params).subscribe({
+      next: (blob: Blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        const extension = formato === 'excel' ? 'xlsx' : 'csv';
+        a.download = `reporte_lotes_${new Date().getTime()}.${extension}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      },
+      error: (err) => {
+        console.error('Error al descargar el reporte', err);
+      }
+    });
   }
 }
