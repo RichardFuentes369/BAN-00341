@@ -41,6 +41,9 @@ export class SearchComponent implements OnInit{
 
   @Output()
   filtroItem = new EventEmitter<string>()
+  @Output() 
+  originalItem = new EventEmitter<void>();
+
 
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -77,18 +80,10 @@ export class SearchComponent implements OnInit{
 
   async clearFilter(){
     $('.limpiarS').click()
+    let filtros = await $('.complementoRuta').val('');
     this.filtroItem.emit()
     this.contador = await sessionStorage.length
-    if (this.route.snapshot.queryParams['search']) {
-      this.router.navigate([], {
-        relativeTo: this.route,
-        queryParams: { 
-          search: null
-        },
-        queryParamsHandling: 'merge',
-        replaceUrl: true 
-      });
-    }
+    this.originalItem.emit()
   }
   
   async closeFilterEraser(){

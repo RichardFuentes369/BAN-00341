@@ -1,0 +1,45 @@
+<div class="shadow-sm border-light">
+  <div class="col-xl col-sm-12 card pl-0 pr-0 pt-3 pb-4 mb-2">
+    <input type="text" class="d-none complementoRuta" value="">
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.id">
+      <span class="small font-weight-bold">{{ 'mod-merma.REGISTER.COLUMN_ID' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.lote_producto">
+      <span class="small font-weight-bold">{{ 'mod-merma.REGISTER.COLUMN_BATCH' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.codigo_barra_producto">
+      <span class="small font-weight-bold">{{ 'mod-catalog.PRODUCT.COLUMN_BAR_CODE' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.nombre_producto">
+      <span class="small font-weight-bold">{{ 'mod-catalog.PRODUCT.COLUMN_NAME' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.tipo_merma">
+      <span class="small font-weight-bold">{{ 'mod-merma.REGISTER.COLUMN_TYPE' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.fecha_reporte">
+      <span class="small font-weight-bold">{{ 'mod-merma.REGISTER.COLUMN_REPORT_DATE' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.cantidad_afectada">
+      <span class="small font-weight-bold">{{ 'mod-merma.REGISTER.COLUMN_AMOUNT' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.valor_perdido">
+      <span class="small font-weight-bold">{{ 'mod-merma.REGISTER.COLUMN_LOST_VALUE' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.observacion">
+      <span class="small font-weight-bold">{{ 'mod-merma.REGISTER.COLUMN_OBSERVATION' | translate}}</span>
+    </div>
+    
+    <button class="d-none limpiarR" (click)="limpiar()"></button>
+    <button class="d-none excel" (click)="generar('excel')"></button>
+    <button class="d-none csv" (click)="generar('csv')"></button>
+  </div>
+</div>

@@ -548,7 +548,7 @@ export class WarehouseService {
     return await workbook.xlsx.writeBuffer();
   }
 
-async generarCsv(allParams: any, lang: string) {
+  async generarCsv(allParams: any, lang: string) {
     const where: any = {};
 
     const getSearchValue = (param: any) => {
@@ -716,7 +716,7 @@ async generarCsv(allParams: any, lang: string) {
 
     // Construcción del contenido CSV
     const headers = dynamicColumns.map(col => escapeCsvValue(col.header)).join(',');
-    
+
     const rows = formattedData.map(item => {
       return dynamicColumns.map(col => escapeCsvValue((item as any)[col.key])).join(',');
     });

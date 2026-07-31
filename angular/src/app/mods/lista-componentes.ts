@@ -50,6 +50,7 @@ import { ReporteMarcaComponent } from './catalog/admin/pages/marcas/components/r
 import { ReporteProductoComponent } from './catalog/admin/pages/productos/components/reporte/reporte.component';
 import { ReporteVencimientoComponent } from './alerts/admin/pages/vencimiento/components/reporte/reporte.component';
 import { ReporteStockComponent } from './alerts/admin/pages/stock/components/reporte/reporte.component';
+import { ReporteRegistroComponent } from './merma/admin/pages/registro/components/reporte/reporte.component';
 
 export class ListaComponentes {
 
@@ -217,6 +218,10 @@ export class ListaComponentes {
     {
       name: 'CrearRegistroComponent',
       componente: CrearRegistroComponent
+    },  
+    {
+      name: 'ReporteRegistroComponent',
+      componente: ReporteRegistroComponent
     },  
 
     // modulo bodega

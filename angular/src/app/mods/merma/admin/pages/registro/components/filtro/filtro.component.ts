@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { RegistroService } from '../../../registro/service/registro.service';
@@ -39,7 +39,6 @@ export class FiltroRegistroComponent {
     private registroService: RegistroService,
     private tipoService: TipoService
   ){
-
   }
 
   async ngOnInit() {
@@ -97,7 +96,7 @@ export class FiltroRegistroComponent {
   }
   
   limpiar(){
-    $(".complementoRuta").val('')
+    $(".complementoRuta").val()
     this.complementoFiltro = ''
     this.model.lote = ''
     this.model.codigo_barra = ''

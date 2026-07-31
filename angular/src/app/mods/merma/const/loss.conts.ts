@@ -39,4 +39,5 @@ export const FILTRO_TIPO_COMPONENT = 'FiltroTipoMermaComponent';
 export const CREAR_REGISTRO_COMPONENT = 'CrearRegistroComponent';
 export const VER_REGISTRO_COMPONENT = 'VerRegistroComponent';
 export const EDITAR_REGISTRO_COMPONENT = 'EditarRegistroComponent';
+export const REPORT_MERMA_REGISTER_COMPONENT = 'ReporteRegistroComponent';
 export const FILTRO_REGISTRO_COMPONENT = 'FiltroRegistroComponent';

@@ -10,9 +10,11 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { RegistroService } from './service/registro.service';
 import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
-import { CREAR_REGISTRO_COMPONENT, EDITAR_REGISTRO_COMPONENT, VER_REGISTRO_COMPONENT } from '@mod/merma/const/loss.conts';
+import { CREAR_REGISTRO_COMPONENT, EDITAR_REGISTRO_COMPONENT, REPORT_MERMA_REGISTER_COMPONENT, VER_REGISTRO_COMPONENT } from '@mod/merma/const/loss.conts';
 import Swal from 'sweetalert2';
 import { KpicardComponent } from '@component/globales/kpicard/kpicard.component';
+import { ReportComponent } from '@component/globales/report/report.component';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-merma-registro',
@@ -20,6 +22,7 @@ import { KpicardComponent } from '@component/globales/kpicard/kpicard.component'
   imports: [
     TranslateModule,
     SearchComponent,
+    ReportComponent,
     LoadingComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
@@ -42,13 +45,18 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
 
   private langSub: Subscription | undefined;
   permisos: any[] = []
-
+  
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-merma.BUTTON_SEARCH')
   iconFilter = "fa fa-filter"
   componenteFilter = 'FiltroRegistroComponent'
   // fin datos envio al filtro
+
+  // inicio datos envio report
+  iconReport = "fa fa-file-download"
+  componenteReport = REPORT_MERMA_REGISTER_COMPONENT
+  // fin datos envio repor
 
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
@@ -141,8 +149,11 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
   mostrarCards = true;
   isAnimationDone = false;
 
-  anho = ''
-  mes = ''
+  // anho = ''
+  // mes = ''
+
+  anhoActual = ''
+  mesActual = ''
 
   toggleCards() {
     this.mostrarCards = !this.mostrarCards;
@@ -176,8 +187,8 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
     // sessionStorage.removeItem('razon_social')
     // sessionStorage.removeItem('correo')
 
-    this.mes = (this.route.snapshot.queryParams?.['month']) ? this.route.snapshot.queryParams?.['month'] + '/' : ''
-    this.anho = (this.route.snapshot.queryParams?.['anho']) ? this.route.snapshot.queryParams?.['anho'] : new Date().getFullYear()
+    this.anhoActual = (this.route.snapshot.queryParams?.['anho']) ? this.route.snapshot.queryParams?.['anho'] : new Date().getFullYear();
+    this.mesActual = (this.route.snapshot.queryParams?.['month']) ? this.route.snapshot.queryParams?.['month'] : '';
 
     await this.actualizarContadores()
 
@@ -367,10 +378,40 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
 
   async filtroData() {
     let filtros = await $('.complementoRuta').val();
-    this.router.navigate([], { queryParams: { search: (filtros) ? filtros : null }, });
+    const queryParams: any = {
+      anho: this.anhoActual || null,  
+      month: this.mesActual || null, 
+      search: (filtros) ? filtros : null,
+    };
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: '',
+      replaceUrl: true
+    });
+    
     if (typeof filtros === 'string') {
       this.filters = filtros
     }
+  }
+
+  async estadoOriginal(){
+    const queryParams: any = {
+      search: null,
+      anho: this.anhoActual || null,  
+      month: this.mesActual || null   
+    };
+  
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: '',
+      replaceUrl: true
+    });
+
+    this.actualizarContadores()
+    await this.someInput.reload()
   }
 
   async refrescarTabla() {
@@ -384,5 +425,66 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
     let month = (this.route.snapshot.queryParams?.['month'] != undefined) ? this.route.snapshot.queryParams?.['month'] : null
     const data = await this.registroService.obtenerTotale(year, month)
     this.count_total_register_merma = data.data.count_total_register_merma
+  }
+
+  reportData(formato: string) {
+    const complementoRuta = $(".complementoRuta").val()
+    const querySearch = this.route.snapshot.queryParamMap.get('search');
+
+    const compRuta: string = typeof complementoRuta === 'string' ? complementoRuta : '';
+    const qSearch: string = querySearch ?? '';
+
+    const configParams = new URLSearchParams(compRuta.replace(/^[&?]/, ''));
+    const searchParams = new URLSearchParams(qSearch.replace(/^[&?]/, ''));
+
+    const allKeys = Array.from(new Set([...Array.from(configParams.keys()), ...Array.from(searchParams.keys())]));
+
+    const reporteConfig = allKeys.map(key => {
+      return {
+        field: key,
+        value: searchParams.get(key) || '',
+        show: configParams.get(key) === 'true'
+      };
+    });
+
+    let params = new HttpParams();
+
+    // 1. Mapeo normal de tus columnas de reporte
+    reporteConfig.forEach(item => {
+      if (item.value) {
+        params = params.append(item.field, item.value);
+      }
+      if (item.show) {
+        params = params.append(item.field, 'true');
+      }
+    });
+
+    // 2. AGREGAR EXPLÍCITAMENTE YEAR Y MONTH (Leyéndolos directo de configParams o la ruta)
+    const anhoFinal = configParams.get('year') || this.route.snapshot.queryParamMap.get('anho') || this.route.snapshot.queryParamMap.get('year');
+    const mesFinal = configParams.get('month') || this.route.snapshot.queryParamMap.get('month');
+
+    if (anhoFinal) {
+      params = params.set('year', anhoFinal);
+    }
+    if (mesFinal) {
+      params = params.set('month', mesFinal);
+    }
+
+    this.registroService.descargarReporte(formato, params).subscribe({
+      next: (blob: Blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        const extension = formato === 'excel' ? 'xlsx' : 'csv';
+        a.download = `reporte_lotes_${new Date().getTime()}.${extension}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      },
+      error: (err) => {
+        console.error('Error al descargar el reporte', err);
+      }
+    });
   }
 }
