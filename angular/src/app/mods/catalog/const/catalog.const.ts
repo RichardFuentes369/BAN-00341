@@ -25,6 +25,7 @@ export const MOD_CATEGORY_PAGE_PRODUCT =  '/admin/mod/catalog/productos';
 export const MOD_CATEGORY_PAGE_EXTENT =  '/admin/mod/catalog/unidad_de_medida';
 export const MOD_CATEGORY_PAGE_SUPPLIER =  '/admin/mod/catalog/proveedores/';
 export const MOD_CATEGORY_PAGE_PRODUCT_FOR_BRAND =  '/admin/mod/catalog/marcas/productos/';
+export const MOD_CATEGORY_PAGE_PRODUCT_FOR_EXTENT =  '/admin/mod/catalog/unidad_de_medida/productos/';
 
 export const PATH_ASSIGN_PRODUCT_USERS = 'productos';
 export const TITLE_PATH_ASSIGN_PRODUCT_USERS = 'Asignar productos';

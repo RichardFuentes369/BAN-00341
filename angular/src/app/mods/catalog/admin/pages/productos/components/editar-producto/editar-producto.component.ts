@@ -50,6 +50,7 @@ export class EditarProductoComponent implements OnInit {
   isLoading: boolean = false
   filtro: string = ''
   isReadonly:boolean = false
+  estaBloqueado: boolean = false
 
   constructor(
     private router: Router,
@@ -103,6 +104,17 @@ export class EditarProductoComponent implements OnInit {
       this.getMedida()
     }else{
       this.isReadonly = true
+      this.getMarca()
+      this.getMedida()
+    }    
+    
+    if(!this.route.snapshot.queryParams?.['id_extent']){
+      this.estaBloqueado = false
+      this.getMarcas();
+      this.getMedida()
+    }else{
+      this.estaBloqueado = true
+      this.model.id_medida = +this.route.snapshot.queryParams?.['id_extent']
       this.getMarca()
       this.getMedida()
     }

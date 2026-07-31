@@ -33,7 +33,6 @@ export class ExtentController {
     );
   }
 
-
   @UseGuards(AdminGuard)
   @Get('obtener-unidad-de-medida')
   findOne(

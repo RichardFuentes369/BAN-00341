@@ -6,7 +6,6 @@ import { TranslateService } from '@ngx-translate/core';
 import axios from 'axios';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root',
 })

@@ -49,3 +49,8 @@
     }
   }
 }
+
+.select-bloqueado {
+  pointer-events: none; /* Evita cualquier interacción del mouse o táctil */
+  background-color: #f0f0f0; /* Opcional: un color sutil para indicar que está bloqueado */
+}

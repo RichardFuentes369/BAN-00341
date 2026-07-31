@@ -31,6 +31,7 @@ export class CrearProductoComponent implements OnInit {
   filtro: string = ''
   isReadonly:boolean = false
   fielddBarCode: boolean = true
+  estaBloqueado: boolean = false
 
   model = {
     es_perecedero: false,
@@ -73,12 +74,24 @@ export class CrearProductoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     if(!this.route.snapshot.queryParams?.['id_brand']){
       this.isReadonly = false
       this.getMarcas();
       this.getMedida()
     }else{
       this.isReadonly = true
+      this.getMarca()
+      this.getMedida()
+    }
+    
+    if(!this.route.snapshot.queryParams?.['id_extent']){
+      this.estaBloqueado = false
+      this.getMarcas();
+      this.getMedida()
+    }else{
+      this.estaBloqueado = true
+      this.model.id_medida = +this.route.snapshot.queryParams?.['id_extent']
       this.getMarca()
       this.getMedida()
     }

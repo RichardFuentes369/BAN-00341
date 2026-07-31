@@ -82,7 +82,7 @@
         </div>
         <div class="col-sm-6 form-group mb-3">
           <label>{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</label>
-          <select class="form-control form-select-sm" [(ngModel)]="model.id_medida" (ngModelChange)="onInputChange(item)" [class.is-invalid]="validators.unidad_medida">
+          <select class="form-control form-select-sm" [class.select-bloqueado]="estaBloqueado" [(ngModel)]="model.id_medida" (ngModelChange)="onInputChange(item)" [class.is-invalid]="validators.unidad_medida">
             <option [ngValue]="0">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION' | translate }}</option>
             <option *ngFor="let medida of medidas" [ngValue]="medida.id">
               {{ medida.nombre }}

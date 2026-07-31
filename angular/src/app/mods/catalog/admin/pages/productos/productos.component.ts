@@ -10,12 +10,13 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { ProductosService } from './service/productos.service';
 import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
-import { CARGAR_PRODUCT_COMPONENT, CREAR_PRODUCT_COMPONENT, EDITAR_PRODUCT_COMPONENT, FILTRO_PRODUCT_COMPONENT, MOD_CATEGORY_PAGE_BRAND, REPORT_PRODUCT_COMPONENT, VER_PRODUCT_COMPONENT } from '@mod/catalog/const/catalog.const';
+import { CARGAR_PRODUCT_COMPONENT, CREAR_PRODUCT_COMPONENT, EDITAR_PRODUCT_COMPONENT, FILTRO_PRODUCT_COMPONENT, MOD_CATEGORY_PAGE_BRAND, MOD_CATEGORY_PAGE_EXTENT, REPORT_PRODUCT_COMPONENT, VER_PRODUCT_COMPONENT } from '@mod/catalog/const/catalog.const';
 import Swal from 'sweetalert2';
 import { MarcaService } from '../marcas/service/marca.service';
 import { KpicardComponent } from '@component/globales/kpicard/kpicard.component';
 import { HttpParams } from '@angular/common/http';
 import { ReportComponent } from '@component/globales/report/report.component';
+import { MedidaService } from '../medida/service/medida.service';
 
 @Component({
   selector: 'app-productos',
@@ -42,6 +43,7 @@ export class ProductosComponent implements OnInit, OnDestroy {
     private permisosService: PermisosService,
     private productosService: ProductosService,
     private brandService: MarcaService,
+    private medidaService: MedidaService,
     private translate: TranslateService
   ) { }
 
@@ -66,7 +68,8 @@ export class ProductosComponent implements OnInit, OnDestroy {
   orderField = 'id'
   order = 'asc'
   idBrand = this.route.snapshot.queryParams?.['id_brand'];
-  complementoEndPoint = this.idBrand ? `&id_marca=${this.idBrand}` : '';
+  idExtent = this.route.snapshot.queryParams?.['id_extent'];
+  complementoEndPoint = (this.idBrand) ? `&id_marca=${this.idBrand}` : (this.idExtent) ? `&id_medida=${this.idExtent}`: '';
   habilitarSeleccion = true
   filters = ''
   columnas: any[] = [
@@ -180,6 +183,14 @@ export class ProductosComponent implements OnInit, OnDestroy {
         const existBrand = await this.brandService.getDataBrand(this.route.snapshot.queryParams?.['id_brand']);
       } catch (error) {
         this.router.navigate([MOD_CATEGORY_PAGE_BRAND]);
+      }
+    }
+
+    if (this.route.snapshot.queryParams?.['id_extent']) {
+      try {
+        const existExtent = await this.medidaService.getDataExtent(this.route.snapshot.queryParams?.['id_extent']);
+      } catch (error) {
+        this.router.navigate([MOD_CATEGORY_PAGE_EXTENT]);
       }
     }
 
@@ -312,7 +323,7 @@ export class ProductosComponent implements OnInit, OnDestroy {
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if (idButton) {
       this.router.navigate([], {
-        queryParams: { id_brand: this.route.snapshot.queryParams?.['id_brand'], id_product: _id },
+        queryParams: { id_brand: this.route.snapshot.queryParams?.['id_brand'], id_extent: this.route.snapshot.queryParams?.['id_extent'], id_product: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
@@ -338,7 +349,7 @@ export class ProductosComponent implements OnInit, OnDestroy {
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if (idButton) {
       this.router.navigate([], {
-        queryParams: { id_brand: this.route.snapshot.queryParams?.['id_brand'], id_product: _id },
+        queryParams: { id_brand: this.route.snapshot.queryParams?.['id_brand'], id_extent: this.route.snapshot.queryParams?.['id_extent'], id_product: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
@@ -363,7 +374,7 @@ export class ProductosComponent implements OnInit, OnDestroy {
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if (idButton) {
       this.router.navigate([], {
-        queryParams: { id_brand: this.route.snapshot.queryParams?.['id_brand'], id_product: _id },
+        queryParams: { id_brand: this.route.snapshot.queryParams?.['id_brand'], id_extent: this.route.snapshot.queryParams?.['id_extent'], id_product: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
@@ -406,7 +417,8 @@ export class ProductosComponent implements OnInit, OnDestroy {
   async filtroData() {
     let filtros = await $('.complementoRuta').val();
     const queryParams: any = {
-      idbrand: this.idBrand || null,  
+      id_brand: this.idBrand || null,  
+      id_extent: this.idExtent || null,  
       search: (filtros) ? filtros : null,
     };
 
@@ -424,7 +436,8 @@ export class ProductosComponent implements OnInit, OnDestroy {
 
   async estadoOriginal(){
     const queryParams: any = {
-      idbrand: this.idBrand || null,  
+      id_brand: this.idBrand || null,  
+      id_extent: this.idExtent || null, 
       search: null,
     };
   

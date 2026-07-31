@@ -8,7 +8,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { MedidaService } from './service/medida.service';
 import { Subscription, timer } from 'rxjs';
-import { CREAR_MEDIDA_COMPONENT, EDITAR_MEDIDA_COMPONENT, FILTRO_MEDIDA_COMPONENT, REPORT_MEDIDA_COMPONENT, VER_MEDIDA_COMPONENT } from '@mod/catalog/const/catalog.const';
+import { CREAR_MEDIDA_COMPONENT, EDITAR_MEDIDA_COMPONENT, FILTRO_MEDIDA_COMPONENT, MOD_CATEGORY_PAGE_PRODUCT_FOR_BRAND, MOD_CATEGORY_PAGE_PRODUCT_FOR_EXTENT, REPORT_MEDIDA_COMPONENT, VER_MEDIDA_COMPONENT } from '@mod/catalog/const/catalog.const';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import Swal from 'sweetalert2';
 import { GridcrudComponent } from '@component/globales/gridcrud/gridcrud.component';
@@ -301,6 +301,15 @@ export class MedidaComponent implements OnInit, OnDestroy {
         }
       });
     });
+  }
+
+  asignarData(data: { id: string, ctrlKey: boolean }) {
+    const url = `${MOD_CATEGORY_PAGE_PRODUCT_FOR_EXTENT}?id_extent=${data.id}`;
+    if (data.ctrlKey) {
+      window.open(url, '_blank');
+    } else {
+      this.router.navigate([MOD_CATEGORY_PAGE_PRODUCT_FOR_EXTENT], { queryParams: { id_extent: data.id } });
+    }
   }
 
   async filtroData() {

@@ -33,6 +33,22 @@ export class ProductosService {
     })
   }
 
+  async getDataExtent(_id: number){
+    let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = `extent/obtener-unidad-de-medida?_id=${_id}`
+    let urlCopleta = environment.apiUrl+complemento
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
+    return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
+      method: 'get',
+      url: urlCopleta,
+    })
+  }
+
   async getDataBrandSearch(term: string = ''){
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = `brand/marcas-disponibles?search=${term}`
@@ -205,7 +221,6 @@ export class ProductosService {
       }
     })
   }
-
 
   async descargarPlantilla() {
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
