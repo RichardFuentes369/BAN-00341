@@ -405,12 +405,38 @@ export class ProductosComponent implements OnInit, OnDestroy {
 
   async filtroData() {
     let filtros = await $('.complementoRuta').val();
+    const queryParams: any = {
+      idbrand: this.idBrand || null,  
+      search: (filtros) ? filtros : null,
+    };
+
     this.router.navigate([], {
-      queryParams: { search: filtros },
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: '',
+      replaceUrl: true
     });
+
     if (typeof filtros === 'string') {
       this.filters = filtros
     }
+  }
+
+  async estadoOriginal(){
+    const queryParams: any = {
+      idbrand: this.idBrand || null,  
+      search: null,
+    };
+  
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: '',
+      replaceUrl: true
+    });
+
+    this.actualizarContadores()
+    await this.someInput.reload()
   }
 
   async refrescarTabla() {
