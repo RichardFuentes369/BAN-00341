@@ -89,6 +89,7 @@ export class SearchComponent implements OnInit{
   async closeFilterEraser(){
     $('.limpiarS').click()
     this.clickeado = !this.clickeado
+    let filtros = await $('.complementoRuta').val('');
     this.filtroItem.emit()
     this.isFilterVisible = false
     this.contador = await sessionStorage.length

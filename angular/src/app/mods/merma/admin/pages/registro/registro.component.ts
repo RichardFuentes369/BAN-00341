@@ -395,25 +395,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
       this.filters = filtros
     }
   }
-
-  async estadoOriginal(){
-    const queryParams: any = {
-      search: null,
-      anho: this.anhoActual || null,  
-      month: this.mesActual || null   
-    };
   
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: queryParams,
-      queryParamsHandling: '',
-      replaceUrl: true
-    });
-
-    this.actualizarContadores()
-    await this.someInput.reload()
-  }
-
   async refrescarTabla() {
     setTimeout(async () => {
       await this.someInput.reload()
