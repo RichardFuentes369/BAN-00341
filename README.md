@@ -23,7 +23,6 @@ CTRL + SHIFT + V
 ### Ajustes
 
 	1. Arreglar index
-	2. (arreglar filtros que si limpio no limpie todo el filtro (si ya existia un filtro previo))
 	
 ### Tener en cuenta diseño
 	layout admin

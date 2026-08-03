@@ -31,6 +31,14 @@ export class FilterExtentDto {
   @IsString()
   nombre?: string;
 
+  // @IsOptional()
+  // @IsString()
+  // cantidad_minimo?: string;  
+  
+  // @IsOptional()
+  // @IsString()
+  // cantidad_maximo?: string;  
+
   @IsOptional()
   @IsString()
   lang?: string;

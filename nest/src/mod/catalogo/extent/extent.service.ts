@@ -2,7 +2,7 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateExtentDto } from './dto/create-extent.dto';
 import { UpdateExtentDto } from './dto/update-extent.dto';
 import { I18nService } from 'nestjs-i18n';
-import { In, Like, Repository } from 'typeorm';
+import { Between, In, LessThanOrEqual, Like, MoreThanOrEqual, Repository } from 'typeorm';
 import { Extent } from './entities/extent.entity';
 import { FilterExtentDto } from './dto/filter-extent.dto';
 import * as ExcelJS from 'exceljs';
@@ -65,6 +65,20 @@ export class ExtentService {
         productos: undefined
       };
     });
+
+    // const min = filterDto['cantidad_minimo'] ? parseInt(filterDto['cantidad_minimo']) : null;
+    // const max = filterDto['cantidad_maximo'] ? parseInt(filterDto['cantidad_maximo']) : null;
+
+    // const registrosFiltrados = result.filter(item => {
+    //   if (min !== null && max !== null) {
+    //     return item.total1 >= min && item.total1 <= max;
+    //   } else if (min !== null) {
+    //     return item.total1 >= min;
+    //   } else if (max !== null) {
+    //     return item.total1 <= max;
+    //   }
+    //   return true;
+    // });
 
     return [{
       'result': result,

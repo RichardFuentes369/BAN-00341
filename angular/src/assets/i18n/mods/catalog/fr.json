@@ -22,6 +22,8 @@
   "WORD_YES": "Oui",
   "WORD_NO": "Non",
 
+  "WORD_QUANTITY": "Quantité",
+
   "SUPPLIER": {
     "WORD_SUPPLIER": "Fournisseur",
     "LEGEND_TITLE": "Données du fournisseur",
