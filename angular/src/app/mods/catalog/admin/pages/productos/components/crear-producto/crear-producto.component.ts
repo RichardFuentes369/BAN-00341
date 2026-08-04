@@ -29,7 +29,7 @@ export class CrearProductoComponent implements OnInit {
   medidas: any[] = [];
   isLoading: boolean = false
   filtro: string = ''
-  isReadonly:boolean = false
+  isReadonly: boolean = false
   fielddBarCode: boolean = true
   estaBloqueado: boolean = false
 
@@ -38,10 +38,10 @@ export class CrearProductoComponent implements OnInit {
     estado: null,
     codigo_barra: '',
     nombre: '',
-    id_marca: null, 
+    id_marca: null,
     stock_minimo: 1,
     id_medida: 0,
-    alerta_amarilla: 1, 
+    alerta_amarilla: 1,
     alerta_naranja: 1
   };
 
@@ -75,21 +75,21 @@ export class CrearProductoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(!this.route.snapshot.queryParams?.['id_brand']){
+    if (!this.route.snapshot.queryParams?.['id_brand']) {
       this.isReadonly = false
       this.getMarcas();
       this.getMedida()
-    }else{
+    } else {
       this.isReadonly = true
       this.getMarca()
       this.getMedida()
     }
-    
-    if(!this.route.snapshot.queryParams?.['id_extent']){
+
+    if (!this.route.snapshot.queryParams?.['id_extent']) {
       this.estaBloqueado = false
       this.getMarcas();
       this.getMedida()
-    }else{
+    } else {
       this.estaBloqueado = true
       this.model.id_medida = +this.route.snapshot.queryParams?.['id_extent']
       this.getMarca()
@@ -116,25 +116,48 @@ export class CrearProductoComponent implements OnInit {
     this.validators.id_medida = (this.model.id_medida === 0);
     this.validators.estado = (this.model.estado === null);
 
-    if(this.model.es_perecedero){
+    console.log(this.validators)
+
+    if (this.model.es_perecedero) {
       this.validators.error_dias = (
-        this.model.alerta_amarilla <= this.model.alerta_naranja || 
-        this.model.alerta_amarilla === null || 
+        this.model.alerta_amarilla <= this.model.alerta_naranja ||
+        this.model.alerta_amarilla === null ||
         this.model.alerta_naranja === null
       );
       this.validators.error_dias_nulos = (this.model.alerta_naranja === 0 || this.model.alerta_amarilla === 0);
     }
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
-    (!this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.id_medida && !this.validators.estado && !this.validators.error_dias && !this.validators.error_dias_nulos) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
 
-    return !this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.id_medida && !this.validators.estado && !this.validators.error_dias && !this.validators.error_dias_nulos
+    if(this.model.es_perecedero){
+      (
+        !this.validators.nombre && 
+        !this.validators.marca && 
+        !this.validators.codigo_barra && 
+        !this.validators.stock_minimo && 
+        !this.validators.id_medida && 
+        !this.validators.estado && 
+        !this.validators.error_dias && 
+        !this.validators.error_dias_nulos
+      ) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+      return !this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.id_medida && !this.validators.estado && !this.validators.error_dias && !this.validators.error_dias_nulos
+    }else{
+      (
+        !this.validators.nombre && 
+        !this.validators.marca && 
+        !this.validators.codigo_barra && 
+        !this.validators.stock_minimo && 
+        !this.validators.id_medida && 
+        !this.validators.estado
+      ) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+      return !this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.id_medida && !this.validators.estado
+    }
   }
 
   async crearProducto() {
     if (this.isFormValid) {
       const response = await this.productosService.createProduct(this.model);
-      
+
       if (response.data.status == 200) {
         ocultarModalOscura();
         Swal.fire({
@@ -178,8 +201,8 @@ export class CrearProductoComponent implements OnInit {
     } finally {
       this.isLoading = false;
     }
-  }  
-  
+  }
+
   async getMedida() {
     this.isLoading = true;
     try {
@@ -195,14 +218,14 @@ export class CrearProductoComponent implements OnInit {
 
     try {
       const response = await this.productosService.getDataBrand(this.route.snapshot.queryParams?.['id_brand']);
-      const marca = response.data; 
+      const marca = response.data;
 
       const exists = this.marcas.find(m => m.id === marca.id);
       if (!exists) {
-        this.marcas = [...this.marcas, marca]; 
+        this.marcas = [...this.marcas, marca];
       }
-      
-      this.model.id_marca = marca.id; 
+
+      this.model.id_marca = marca.id;
     } catch (error) {
       console.error("Error al cargar la marca inicial", error);
     }
@@ -213,7 +236,7 @@ export class CrearProductoComponent implements OnInit {
     this.checkValidation()
   }
 
-  ean13(option: number){
+  ean13(option: number) {
     switch (option) {
       case 1:
         this.fielddBarCode = true
@@ -237,7 +260,7 @@ export class CrearProductoComponent implements OnInit {
     esPerecedero: true,
   }
 
-  toogleSection(sectionActive: string){
+  toogleSection(sectionActive: string) {
     if (sectionActive in this.mostrarSeccion) {
       const key = sectionActive as keyof typeof this.mostrarSeccion;
       this.mostrarSeccion[key] = !this.mostrarSeccion[key];
