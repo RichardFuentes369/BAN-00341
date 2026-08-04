@@ -239,8 +239,30 @@ export class EditarProductoComponent implements OnInit {
 
 
     const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
-    (!this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.unidad_medida && !this.validators.estado && !this.validators.error_dias && !this.validators.error_dias_nulos) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
-    return !this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.unidad_medida && !this.validators.estado && !this.validators.error_dias && !this.validators.error_dias_nulos
+
+        if(this.model.es_perecedero){
+      (
+        !this.validators.nombre && 
+        !this.validators.marca && 
+        !this.validators.codigo_barra && 
+        !this.validators.stock_minimo && 
+        !this.validators.unidad_medida && 
+        !this.validators.estado && 
+        !this.validators.error_dias && 
+        !this.validators.error_dias_nulos
+      ) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+      return !this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.unidad_medida && !this.validators.estado && !this.validators.error_dias && !this.validators.error_dias_nulos
+    }else{
+      (
+        !this.validators.nombre && 
+        !this.validators.marca && 
+        !this.validators.codigo_barra && 
+        !this.validators.stock_minimo && 
+        !this.validators.unidad_medida && 
+        !this.validators.estado
+      ) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+      return !this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.unidad_medida && !this.validators.estado
+    }
   }
 
   async actualizarData() {
