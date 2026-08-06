@@ -24,8 +24,8 @@ export const _PAGE_ADMIN_MOD =  '/admin/mod';
 
 export const _PAGE_BACK_HOME =  '/home/inicio';
 
-export const _PAGE_ADMIN_PROFILE =  '/admin/me/perfil';
-export const _PAGE_FINAL_PROFILE =  '/final/me/perfil';
+export const _PAGE_ADMIN_PROFILE =  '/admin/me/profile';
+export const _PAGE_FINAL_PROFILE =  '/final/me/profile';
 
 export const _PAGE_NOT_FOUND_ADMIN =  '/admin/notfound';
 export const _PAGE_NOT_FOUND_FINAL =  '/final/notfound';
