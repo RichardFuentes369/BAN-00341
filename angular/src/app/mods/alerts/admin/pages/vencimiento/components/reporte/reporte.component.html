@@ -7,6 +7,10 @@
       <span class="small font-weight-bold">{{ 'mod-warehouse.COLUMN_BATCH' | translate}}</span>
     </div>
     <div class="container d-flex align-items-center">
+      <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.codigo_barra">
+      <span class="small font-weight-bold">{{ 'mod-catalog.PRODUCT.COLUMN_BAR_CODE' | translate}}</span>
+    </div>
+    <div class="container d-flex align-items-center">
       <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.fecha_entrada">
       <span class="small font-weight-bold">{{ 'mod-warehouse.LABEL_FECHA_ENTRADA' | translate}}</span>
     </div>
@@ -20,7 +24,7 @@
     </div>
     <div class="container d-flex align-items-center">
       <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.estado_alerta">
-      <span class="small font-weight-bold">{{ 'mod-warehouse.LABEL_ESTADO' | translate}}</span>
+      <span class="small font-weight-bold">{{ 'mod-alerts.LABEL_STATUS_ALERT' | translate}}</span>
     </div>
     <div class="container d-flex align-items-center">
       <input type="checkbox" class="form-check mr-2" [(ngModel)]="model.cantidad_comprada">

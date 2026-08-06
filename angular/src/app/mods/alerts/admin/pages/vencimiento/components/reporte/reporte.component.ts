@@ -15,6 +15,7 @@ export class ReporteVencimientoComponent {
 
   model = {
     lote: '',
+    codigo_barra: '',
     fecha_entrada: '',
     fecha_vencimiento: '',
     dias_restantes: '',
@@ -29,6 +30,7 @@ export class ReporteVencimientoComponent {
 
   limpiar() {
     this.model.lote = ''
+    this.model.codigo_barra = ''
     this.model.fecha_entrada = ''
     this.model.fecha_vencimiento = ''
     this.model.dias_restantes = ''
@@ -47,6 +49,9 @@ export class ReporteVencimientoComponent {
     
     if (this.model.lote != '') {
       this.complementoFiltro += `&lote=${this.model.lote}`
+    }    
+    if (this.model.codigo_barra != '') {
+      this.complementoFiltro += `&codigo_barra=${this.model.codigo_barra}`
     }
     if (this.model.fecha_entrada != '') {
       this.complementoFiltro += `&fecha_entrada=${this.model.fecha_entrada}`

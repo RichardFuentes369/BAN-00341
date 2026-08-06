@@ -73,13 +73,45 @@ export class ExpirationService {
     const registrosPorPagina = 999999;
     const orderField = allParams.orderField || 'nombre';
     const orderDirection = allParams.orderDirection || 'ASC';
+    const p_lote = allParams.p_lote;
+    const p_codigo_barra = allParams.p_codigo_barra;
+    const p_nombre_producto = allParams.p_nombre_producto;
+    const p_estado_alerta = allParams.p_estado_alerta;
+    const p_cantidad_comprada_min = allParams.p_cantidad_comprada_min;
+    const p_cantidad_comprada_max = allParams.p_cantidad_comprada_max;
+    const p_cantidad_vendida_min = allParams.p_cantidad_vendida_min;
+    const p_cantidad_vendida_max = allParams.p_cantidad_vendida_max;
+    const p_cantidad_bodega_min = allParams.p_cantidad_bodega_min;
+    const p_cantidad_bodega_max = allParams.p_cantidad_bodega_max;
+    const p_dias_restantes_min = allParams.p_dias_restantes_min;
+    const p_dias_restantes_max = allParams.p_dias_restantes_max;
+    const p_fecha_entrada_min = allParams.p_fecha_entrada_min;
+    const p_fecha_entrada_max = allParams.p_fecha_entrada_max;
+    const p_fecha_vencimiento_min = allParams.p_fecha_vencimiento_min;
+    const p_fecha_vencimiento_max = allParams.p_fecha_vencimiento_max;
 
-    const query = 'CALL sp_notificaciones_perecederos(?, ?, ?, ?)';
+    const query = 'CALL sp_notificaciones_perecederos(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
     const parameters = [
       paginaActual,
       registrosPorPagina,
       orderField,
-      orderDirection
+      orderDirection,
+      p_lote,
+      p_codigo_barra,
+      p_nombre_producto,
+      p_estado_alerta,
+      p_cantidad_comprada_min,
+      p_cantidad_comprada_max,
+      p_cantidad_vendida_min,
+      p_cantidad_vendida_max,
+      p_cantidad_bodega_min,
+      p_cantidad_bodega_max,
+      p_dias_restantes_min,
+      p_dias_restantes_max,
+      p_fecha_entrada_min,
+      p_fecha_entrada_max,
+      p_fecha_vencimiento_min,
+      p_fecha_vencimiento_max
     ];
 
     const resultadoSp = await this.dataSource.query(query, parameters);
@@ -92,6 +124,7 @@ export class ExpirationService {
     const masterColumns = [
       { header: 'Id Producto', key: 'id_producto', width: 30 },
       { header: 'Lote', key: 'lote', width: 15 },
+      { header: 'Codigo de barras', key: 'codigo_barra', width: 15 },
       { header: 'Fecha de ingreso', key: 'fecha_entrada', width: 15 },
       { header: 'Fecha de vencimiento', key: 'fecha_vencimiento', width: 15 },
       { header: 'Dias restantes', key: 'dias_restantes', width: 15 },
@@ -122,13 +155,45 @@ export class ExpirationService {
     const registrosPorPagina = 999999;
     const orderField = allParams.orderField || 'nombre';
     const orderDirection = allParams.orderDirection || 'ASC';
+    const p_lote = allParams.p_lote;
+    const p_codigo_barra = allParams.p_codigo_barra;
+    const p_nombre_producto = allParams.p_nombre_producto;
+    const p_estado_alerta = allParams.p_estado_alerta;
+    const p_cantidad_comprada_min = allParams.p_cantidad_comprada_min;
+    const p_cantidad_comprada_max = allParams.p_cantidad_comprada_max;
+    const p_cantidad_vendida_min = allParams.p_cantidad_vendida_min;
+    const p_cantidad_vendida_max = allParams.p_cantidad_vendida_max;
+    const p_cantidad_bodega_min = allParams.p_cantidad_bodega_min;
+    const p_cantidad_bodega_max = allParams.p_cantidad_bodega_max;
+    const p_dias_restantes_min = allParams.p_dias_restantes_min;
+    const p_dias_restantes_max = allParams.p_dias_restantes_max;
+    const p_fecha_entrada_min = allParams.p_fecha_entrada_min;
+    const p_fecha_entrada_max = allParams.p_fecha_entrada_max;
+    const p_fecha_vencimiento_min = allParams.p_fecha_vencimiento_min;
+    const p_fecha_vencimiento_max = allParams.p_fecha_vencimiento_max;
 
-    const query = 'CALL sp_notificaciones_perecederos(?, ?, ?, ?)';
+    const query = 'CALL sp_notificaciones_perecederos(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
     const parameters = [
       paginaActual,
       registrosPorPagina,
       orderField,
-      orderDirection
+      orderDirection,
+      p_lote,
+      p_codigo_barra,
+      p_nombre_producto,
+      p_estado_alerta,
+      p_cantidad_comprada_min,
+      p_cantidad_comprada_max,
+      p_cantidad_vendida_min,
+      p_cantidad_vendida_max,
+      p_cantidad_bodega_min,
+      p_cantidad_bodega_max,
+      p_dias_restantes_min,
+      p_dias_restantes_max,
+      p_fecha_entrada_min,
+      p_fecha_entrada_max,
+      p_fecha_vencimiento_min,
+      p_fecha_vencimiento_max
     ];
 
     const resultadoSp = await this.dataSource.query(query, parameters);
@@ -141,6 +206,7 @@ export class ExpirationService {
     const masterColumns = [
       { header: 'Id Producto', key: 'id_producto', width: 30 },
       { header: 'Lote', key: 'lote', width: 15 },
+      { header: 'Codigo de barras', key: 'codigo_barra', width: 15 },
       { header: 'Fecha de ingreso', key: 'fecha_entrada', width: 15 },
       { header: 'Fecha de vencimiento', key: 'fecha_vencimiento', width: 15 },
       { header: 'Dias restantes', key: 'dias_restantes', width: 15 },
