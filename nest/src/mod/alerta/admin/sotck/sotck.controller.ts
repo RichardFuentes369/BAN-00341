@@ -20,6 +20,13 @@ export class SotckController {
       query.limit,
       query.field,
       query.order,
+      query.p_codigo_barra,
+      query.p_nombre_producto,
+      query.p_stock_min,
+      query.p_stock_max,
+      query.p_bodega_min,
+      query.p_bodega_max,
+      query.p_aviso_stock
     )
     return reporte
   }

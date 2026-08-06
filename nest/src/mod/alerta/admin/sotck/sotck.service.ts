@@ -13,15 +13,34 @@ export class SotckService {
     @Inject('DATA_SOURCE') private readonly dataSource: DataSource,
   ) { }
 
-  async findAll(page: string, limit: string, field: string, order: string) {
+  async findAll(
+    page: string, 
+    limit: string, 
+    field: string, 
+    order: string,
+    p_codigo_barra: string,    
+    p_nombre_producto: string,    
+    p_stock_min: string,   
+    p_stock_max: string,   
+    p_bodega_min: string,   
+    p_bodega_max: string,   
+    p_aviso_stock: string,
+  ) {
     try {
       const result = await this.dataSource.manager.query(
-        'CALL sp_reporte_stock_paginado(?,?,?,?)',
+        'CALL sp_reporte_stock_paginado(?,?,?,?,?,?,?,?,?,?,?)',
         [
           (page === 'null') ? null : page,
           (limit === 'null') ? null : limit,
           (field === 'null') ? null : field,
           (order === 'null') ? null : order,
+          (p_codigo_barra === 'null') ? null : p_codigo_barra,
+          (p_nombre_producto === 'null') ? null : p_nombre_producto,
+          (p_stock_min === 'null') ? null : p_stock_min,
+          (p_stock_max === 'null') ? null : p_stock_max,
+          (p_bodega_min === 'null') ? null : p_bodega_min,
+          (p_bodega_max === 'null') ? null : p_bodega_max,
+          (p_aviso_stock === 'null') ? null : p_aviso_stock,
         ]
       )
       return result;
@@ -37,13 +56,27 @@ export class SotckService {
     const registrosPorPagina = 999999;
     const orderField = allParams.orderField || 'nombre';
     const orderDirection = allParams.orderDirection || 'ASC';
+    const p_codigo_barra = allParams.p_codigo_barra;    
+    const p_nombre_producto = allParams.p_nombre_producto;    
+    const p_stock_min = allParams.p_stock_min;   
+    const p_stock_max = allParams.p_stock_max;   
+    const p_bodega_min = allParams.p_bodega_min;   
+    const p_bodega_max = allParams.p_bodega_max;   
+    const p_aviso_stock = allParams.p_aviso_stock;
 
-    const query = 'CALL sp_reporte_stock_paginado(?, ?, ?, ?)';
+    const query = 'CALL sp_reporte_stock_paginado(?,?,?,?,?,?,?,?,?,?,?)';
     const parameters = [
       paginaActual,
       registrosPorPagina,
       orderField,
-      orderDirection
+      orderDirection,
+      p_codigo_barra,
+      p_nombre_producto,
+      p_stock_min,
+      p_stock_max,
+      p_bodega_min,
+      p_bodega_max,
+      p_aviso_stock
     ];
 
     const resultadoSp = await this.dataSource.query(query, parameters);
@@ -54,6 +87,7 @@ export class SotckService {
     const worksheet = workbook.addWorksheet('Reporte de Stock');
 
     const masterColumns = [
+      { header: 'Codigo de barra', key: 'codigo_barra', width: 30 },
       { header: 'Nombre del Producto', key: 'nombre', width: 30 },
       { header: 'Stock Mínimo', key: 'stock_minimo', width: 15 },
       { header: 'Disponibles', key: 'total_productos_disponibles', width: 15 },
@@ -77,15 +111,29 @@ export class SotckService {
     const registrosPorPagina = 999999;
     const orderField = allParams.orderField || 'nombre';
     const orderDirection = allParams.orderDirection || 'ASC';
+    const p_codigo_barra = allParams.p_codigo_barra;    
+    const p_nombre_producto = allParams.p_nombre_producto;    
+    const p_stock_min = allParams.p_stock_min;   
+    const p_stock_max = allParams.p_stock_max;   
+    const p_bodega_min = allParams.p_bodega_min;   
+    const p_bodega_max = allParams.p_bodega_max;   
+    const p_aviso_stock = allParams.p_aviso_stock;
 
-    const query = 'CALL sp_reporte_stock_paginado(?, ?, ?, ?)';
+    const query = 'CALL sp_reporte_stock_paginado(?,?,?,?,?,?,?,?,?,?,?)';
     const parameters = [
       paginaActual,
       registrosPorPagina,
       orderField,
-      orderDirection
+      orderDirection,
+      p_codigo_barra,
+      p_nombre_producto,
+      p_stock_min,
+      p_stock_max,
+      p_bodega_min,
+      p_bodega_max,
+      p_aviso_stock
     ];
-
+    
     const resultadoSp = await this.dataSource.query(query, parameters);
 
     const data = resultadoSp[1] || [];
@@ -94,6 +142,7 @@ export class SotckService {
     const worksheet = workbook.addWorksheet('Reporte de Stock');
 
     const masterColumns = [
+      { header: 'Codigo de barra', key: 'codigo_barra', width: 30 },
       { header: 'Nombre del Producto', key: 'nombre', width: 30 },
       { header: 'Stock Mínimo', key: 'stock_minimo', width: 15 },
       { header: 'Disponibles', key: 'total_productos_disponibles', width: 15 },

@@ -22,12 +22,19 @@
   "LEGEND_TITLE_ALERT": "Datos de la alerta de vencimiento",
   "LABEL_STATUS_ALERT": "Estado de la alerta",
 
-  "OPTION": {
+  "OPTION_VENCIMIENTO": {
     "ITEM_ON_GREEN_ALERT": "Artículo en alerta verde",
     "ITEM_ON_YELLOW_ALERT": "Artículo en alerta amarilla",
     "ITEM_ON_ORANGE_ALERT": "Artículo en alerta naranja",
     "ITEM_ON_RED_ALERT": "Artículo en alerta roja",
     "ITEM_EXPIRED": "Artículo vencido",
     "ITEM_NOT_PERISHABLE": "Artículo no perecedero"
+  },
+
+  "OPTION_STOCK": {
+    "ITEM_ON_GREEN_ALERT": "Aun cuenta con stock disponible",
+    "ITEM_ON_YELLOW_ALERT": "Está al limite de su stock",
+    "ITEM_ON_ORANGE_ALERT": "Pedir ya, bajo el mínimo",
+    "ITEM_ON_RED_ALERT": "Stock agotado"
   }
 }

@@ -62,7 +62,13 @@ export class StockComponent implements OnInit {
   filters = ''
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME'),
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+      data: 'codigo_barra',
+      visible: true,
+      className: 'text-center align-middle'
+    },
+    {
+      title: this.translate.instant('mod-warehouse.COLUMN_PRODUCT'),
       data: 'nombre',
       visible: true,
       className: 'text-center align-middle'
@@ -132,7 +138,13 @@ export class StockComponent implements OnInit {
   listar() {
     this.columnas = [
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME'),
+        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+        data: 'codigo_barra',
+        visible: true,
+        className: 'text-center align-middle'
+      },
+      {
+        title: this.translate.instant('mod-warehouse.COLUMN_PRODUCT'),
         data: 'nombre',
         visible: true,
         className: 'text-center align-middle'

@@ -22,12 +22,19 @@
   "LEGEND_TITLE_ALERT": "Daten zur Ablaufwarnung",
   "LABEL_STATUS_ALERT": "Alarmstatus",
   
-  "OPTION": {
+  "OPTION_VENCIMIENTO": {
     "ITEM_ON_GREEN_ALERT": "Artikel in Grünalarm",
     "ITEM_ON_YELLOW_ALERT": "Artikel in Gelbalarm",
     "ITEM_ON_ORANGE_ALERT": "Artikel in Orangealarm",
     "ITEM_ON_RED_ALERT": "Artikel in Rotealarm",
     "ITEM_EXPIRED": "Abgelaufener Artikel",
     "ITEM_NOT_PERISHABLE": "Unverderblicher Artikel"
+  },
+
+  "OPTION_STOCK": {
+    "ITEM_ON_GREEN_ALERT": "Bestand ist noch verfügbar",
+    "ITEM_ON_YELLOW_ALERT": "Es ist an der Bestandsgrenze",
+    "ITEM_ON_ORANGE_ALERT": "Jetzt bestellen, unter dem Minimum",
+    "ITEM_ON_RED_ALERT": "Bestand erschöpft"
   }
 }

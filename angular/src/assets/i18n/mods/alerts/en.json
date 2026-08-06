@@ -22,12 +22,19 @@
   "LEGEND_TITLE_ALERT": "Expiration Alert Data",
   "LABEL_STATUS_ALERT": "Alert status",
 
-  "OPTION": {
+  "OPTION_VENCIMIENTO": {
     "ITEM_ON_GREEN_ALERT": "Item on green alert",
     "ITEM_ON_YELLOW_ALERT": "Item on yellow alert",
     "ITEM_ON_ORANGE_ALERT": "Item on orange alert",
     "ITEM_ON_RED_ALERT": "Item on red alert",
     "ITEM_EXPIRED": "Expired item",
     "ITEM_NOT_PERISHABLE": "Non-perishable item"
+  },
+  
+  "OPTION_STOCK": {
+    "ITEM_ON_GREEN_ALERT": "Stock is still available",
+    "ITEM_ON_YELLOW_ALERT": "It is at its stock limit",
+    "ITEM_ON_ORANGE_ALERT": "Order now, below minimum",
+    "ITEM_ON_RED_ALERT": "Stock depleted"
   }
 }

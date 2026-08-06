@@ -7,8 +7,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_reporte_stock_paginado`(
     IN `p_pagina_actual` INT,
     IN `p_registros_por_pagina` INT,
     IN `p_order_field` VARCHAR(50),
-    IN `p_order_direction` VARCHAR(4)
-)
+    IN `p_order_direction` VARCHAR(4),
+    -- Parámetros de filtrado
+    IN `p_codigo_barra` VARCHAR(100),
+    IN `p_nombre_producto` VARCHAR(100),
+    IN `p_stock_min` DECIMAL(12,4),
+    IN `p_stock_max` DECIMAL(12,4),
+    IN `p_bodega_min` DECIMAL(12,4),
+    IN `p_bodega_max` DECIMAL(12,4),
+    IN `p_aviso_stock` VARCHAR(100)
+)   
 LANGUAGE SQL
 NOT DETERMINISTIC
 CONTAINS SQL
@@ -43,12 +51,13 @@ BEGIN
         ELSE 'nombre' -- Columna por defecto si envían una inválida
     END;
 
-    -- 3. Crear tabla temporal con la lógica de negocio de stock
+    -- 3. Crear tabla temporal con la lógica de negocio de stock y aplicación de filtros opcionales
     DROP TEMPORARY TABLE IF EXISTS temp_stock_reporte;
     
     CREATE TEMPORARY TABLE temp_stock_reporte AS
     SELECT 
         t.nombre,
+        t.codigo_barra,
         t.stock_minimo,
         t.total_productos_disponibles,
         CASE          
@@ -57,7 +66,7 @@ BEGIN
             WHEN t.total_productos_disponibles > t.stock_minimo
                 THEN 'ADVERTENCIA: Aun cuenta con stock disponible'
             WHEN t.total_productos_disponibles = t.stock_minimo
-                THEN 'ADVERTENCIA: Está al limite de su stock '
+                THEN 'ADVERTENCIA: Está al limite de su stock'
             WHEN t.total_productos_disponibles < t.stock_minimo AND t.total_productos_disponibles > 0 
                 THEN 'ADVERTENCIA: Pedir ya, bajo el mínimo'
         END AS aviso_stock
@@ -65,6 +74,7 @@ BEGIN
         SELECT 
             mcp.id,
             mcp.nombre,
+            mcp.codigo_barra,
             mcp.stock_minimo,
             COALESCE((
                 SELECT SUM(mb.cantidad_en_bodega)
@@ -76,23 +86,37 @@ BEGIN
         WHERE mcp.estado = true
     ) AS t;
 
-    -- 4. Obtener el total para la paginación
-    SELECT COUNT(*) INTO v_total_registros FROM temp_stock_reporte;
+    -- 4. Crear tabla temporal final aplicando el filtro de aviso_stock sobre el campo ya calculado
+    DROP TEMPORARY TABLE IF EXISTS temp_stock_filtrado;
+    
+    CREATE TEMPORARY TABLE temp_stock_filtrado AS
+    SELECT *
+    FROM temp_stock_reporte
+    WHERE (p_nombre_producto IS NULL OR nombre LIKE CONCAT('%', p_nombre_producto, '%'))
+      AND (p_codigo_barra IS NULL OR codigo_barra LIKE CONCAT('%', p_codigo_barra, '%'))
+      AND (p_stock_min IS NULL OR stock_minimo >= p_stock_min)
+      AND (p_stock_max IS NULL OR stock_minimo <= p_stock_max)
+      AND (p_bodega_min IS NULL OR total_productos_disponibles >= p_bodega_min)
+      AND (p_bodega_max IS NULL OR total_productos_disponibles <= p_bodega_max)
+      AND (p_aviso_stock IS NULL OR aviso_stock LIKE CONCAT('%', p_aviso_stock, '%'));
 
-    -- 5. Retornar Metadatos
+    -- 5. Obtener el total para la paginación
+    SELECT COUNT(*) INTO v_total_registros FROM temp_stock_filtrado;
+
+    -- 6. Retornar Metadatos
     SELECT 
         v_total_registros AS total,
         p_registros_por_pagina AS perPage,
         p_pagina_actual AS currentPage,
         CEIL(v_total_registros / p_registros_por_pagina) AS lastPage;
 
-    -- 6. Retornar Datos paginados con Ordenamiento Dinámico
+    -- 7. Retornar Datos paginados con Ordenamiento Dinámico
     SET @l = p_registros_por_pagina;
     SET @o = v_offset;
     
     -- Construcción segura de la consulta dinámica incluyendo ORDER BY
     SET v_sql_query = CONCAT(
-        'SELECT * FROM temp_stock_reporte ORDER BY ', 
+        'SELECT * FROM temp_stock_filtrado ORDER BY ', 
         p_order_field, ' ', p_order_direction, 
         ' LIMIT ? OFFSET ?'
     );
@@ -101,7 +125,8 @@ BEGIN
     EXECUTE stmt USING @l, @o;
     DEALLOCATE PREPARE stmt;
 
-    -- 7. Limpieza
+    -- 8. Limpieza
     DROP TEMPORARY TABLE IF EXISTS temp_stock_reporte;
+    DROP TEMPORARY TABLE IF EXISTS temp_stock_filtrado;
 END//
 DELIMITER ;

@@ -14,6 +14,7 @@ export class ReporteStockComponent {
   complementoFiltro = ''
 
   model = {
+    codigo_barra: '',
     nombre: '',
     stock_minimo: '',
     total_productos_disponibles: '',
@@ -21,6 +22,7 @@ export class ReporteStockComponent {
   }
 
   limpiar(){
+    this.model.codigo_barra = ''
     this.model.nombre = ''
     this.model.stock_minimo = ''
     this.model.total_productos_disponibles = ''
@@ -31,6 +33,9 @@ export class ReporteStockComponent {
 
     this.complementoFiltro = ''
 
+    if(this.model.codigo_barra != ''){
+      this.complementoFiltro += `&codigo_barra=${this.model.codigo_barra}`
+    }
     if(this.model.nombre != ''){
       this.complementoFiltro += `&nombre=${this.model.nombre}`
     }
