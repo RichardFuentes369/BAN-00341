@@ -94,7 +94,7 @@ export class VarComponent implements OnInit, OnDestroy {
   // fin datos envio al modal
 
   // inicio datos envio card information
-  img_user_actived = "assets/images/img_admin.png"
+  img_user_actived = "assets/images/img_var.png"
   titlePage = this.translate.instant('mod-vars.TABLE_TITLE')
   titleTotalVar = this.translate.instant('mod-vars.VARS.CARD_TOTAL_VAR_TITLE')
   count_total_var = '0'

@@ -101,7 +101,7 @@ export class MedidaComponent implements OnInit, OnDestroy {
 
   // inicio datos envio card information
   wordItem = this.translate.instant('mod-catalog.PRODUCT.ASSIGMENT_PRODUCT_TITLE_BREADCRUMB')
-  img_user_actived = "assets/images/img_admin.png"
+  img_user_actived = "assets/images/img_extent.png"
   titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
   titleTotalSuppliers = this.translate.instant('mod-catalog.EXTENT.CARD_TOTAL_EXTENT_TITLE')
   count_total_extent = 0

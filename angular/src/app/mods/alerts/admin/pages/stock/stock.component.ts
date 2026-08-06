@@ -13,6 +13,7 @@ import { LoadingComponent } from '@component/globales/loading/loading.component'
 import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
 import { FILTRO_ALERTS_S_COMPONENT, REPORT_ALERT_STOCK_COMPONENT } from '@mod/alerts/const/alerts.const';
 import { HttpParams } from '@angular/common/http';
+import { KpicardComponent } from '@component/globales/kpicard/kpicard.component';
 
 @Component({
   selector: 'app-stock',
@@ -23,7 +24,8 @@ import { HttpParams } from '@angular/common/http';
     SearchComponent,
     ReportComponent,
     LoadingComponent,
-    TablecrudComponent
+    TablecrudComponent,
+    KpicardComponent
   ],
   templateUrl: './stock.component.html',
   styleUrl: './stock.component.scss',
@@ -95,6 +97,25 @@ export class StockComponent implements OnInit {
   titlePage = this.translate.instant('mod-users.TABLE_TITLE')
 
   cargarIdioma = true;
+
+  // inicio datos envio card information
+  img_user_actived = "assets/images/img_alert_warehouse.png"
+  titleTotalSuppliers = this.translate.instant('mod-warehouse.CARD_TOTAL_LOT_TITLE')
+  count_total_stock = 0
+  // fin datos envio card information
+
+  mostrarCards = true;
+  isAnimationDone = false;
+
+  toggleCards() {
+    this.mostrarCards = !this.mostrarCards;
+    if (!this.mostrarCards) {
+      this.isAnimationDone = true;
+    } else {
+      // this.actualizarContadores()
+      this.isAnimationDone = false;
+    }
+  }
 
   // metodos Init, Destroy
   async ngOnInit() {
@@ -185,6 +206,10 @@ export class StockComponent implements OnInit {
 
   tienePermiso(nombre: string): boolean {
     return this.permisosAcciones?.some((permiso) => permiso.permiso_permiso === nombre);
+  }
+
+  async rowsCountData(_rowsCount: string) {
+    this.count_total_stock = parseInt(_rowsCount)
   }
 
   reportData(formato: string) {

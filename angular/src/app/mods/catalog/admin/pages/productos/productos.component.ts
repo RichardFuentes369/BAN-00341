@@ -146,7 +146,7 @@ export class ProductosComponent implements OnInit, OnDestroy {
   // fin datos envio al modal
 
   // inicio datos envio card information
-  img_user_actived = "assets/images/img_admin.png"
+  img_user_actived = "assets/images/img_product.png"
   titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
   titleTotalProducts = this.translate.instant('mod-catalog.PRODUCT.CARD_TOTAL_PRODUCTS_TITLE')
   titleTotalProductsActived = this.translate.instant('mod-catalog.PRODUCT.CARD_TOTAL_ACTIVED_PRODUCTS')

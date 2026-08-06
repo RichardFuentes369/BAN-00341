@@ -117,7 +117,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   // fin datos envio al modal
 
   // inicio datos envio card information
-  img_user_actived = "assets/images/img_admin.png"
+  img_user_actived = "assets/images/img_supplier.png"
   titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
   titleTotalSuppliers = this.translate.instant('mod-catalog.SUPPLIER.CARD_TOTAL_SUPPLIERS_TITLE')
   count_total_suppliers = 0

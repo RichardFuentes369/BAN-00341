@@ -139,7 +139,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
   // fin datos envio al modal
 
   // inicio datos envio card information
-  img_user_actived = "assets/images/img_admin.png"
+  img_user_actived = "assets/images/img_supplier.png"
   titlePage = this.translate.instant('mod-merma.TABLE_TITLE')
   titleTotalRegister = this.translate.instant('mod-merma.REGISTER.CARD_TOTAL_REGISTER_TITLE')
   count_total_register_merma = '0'

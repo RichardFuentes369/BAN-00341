@@ -14,6 +14,7 @@ import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.comp
 import { FILTRO_ALERTS_V_COMPONENT, REPORT_ALERT_VENCIMIENTO_COMPONENT, VER_ALERTS_V_COMPONENT } from '@mod/alerts/const/alerts.const';
 import { HttpParams } from '@angular/common/http';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
+import { KpicardComponent } from '@component/globales/kpicard/kpicard.component';
 
 @Component({
   selector: 'app-vencimiento',
@@ -25,7 +26,8 @@ import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boost
     ReportComponent,
     LoadingComponent,
     TablecrudComponent,
-    ModalBoostrapComponent
+    ModalBoostrapComponent,
+    KpicardComponent
   ],
   templateUrl: './vencimiento.component.html',
   styleUrl: './vencimiento.component.scss',
@@ -149,6 +151,25 @@ export class VencimientoComponent implements OnInit {
   // fin datos envio al modal
 
   cargarIdioma = true;
+
+  // inicio datos envio card information
+  img_user_actived = "assets/images/img_expiration.png"
+  titleTotalSuppliers = this.translate.instant('mod-warehouse.CARD_TOTAL_LOT_TITLE')
+  count_total_vencimiento = 0
+  // fin datos envio card information
+
+  mostrarCards = true;
+  isAnimationDone = false;
+
+  toggleCards() {
+    this.mostrarCards = !this.mostrarCards;
+    if (!this.mostrarCards) {
+      this.isAnimationDone = true;
+    } else {
+      // this.actualizarContadores()
+      this.isAnimationDone = false;
+    }
+  }
 
   // metodos Init, Destroy
   async ngOnInit() {
@@ -304,6 +325,10 @@ export class VencimientoComponent implements OnInit {
 
   tienePermiso(nombre: string): boolean {
     return this.permisosAcciones?.some((permiso) => permiso.permiso_permiso === nombre);
+  }
+
+  async rowsCountData(_rowsCount: string) {
+    this.count_total_vencimiento = parseInt(_rowsCount)
   }
 
   reportData(formato: string) {

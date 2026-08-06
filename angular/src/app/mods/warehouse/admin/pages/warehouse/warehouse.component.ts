@@ -179,7 +179,7 @@ export class WarehoseComponent implements OnInit, OnDestroy{
   // fin datos envio al modal
 
   // inicio datos envio card information
-  img_user_actived = "assets/images/img_admin.png"
+  img_user_actived = "assets/images/img_warehouse.png"
   titlePage = this.translate.instant('mod-warehouse.TABLE_TITLE')
   titleTotalLot = this.translate.instant('mod-warehouse.CARD_TOTAL_LOT_TITLE')
   count_total_products = '0'

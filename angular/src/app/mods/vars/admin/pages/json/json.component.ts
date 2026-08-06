@@ -89,7 +89,7 @@ export class JsonComponent implements OnInit, OnDestroy {
   // fin datos envio al modal
 
   // inicio datos envio card information
-  img_user_actived = "assets/images/img_admin.png"
+  img_user_actived = "assets/images/img_json.png"
   titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
   titleTotalJson = this.translate.instant('mod-vars.JSON.CARD_TOTAL_JSON_TITLE')
   count_total_json = '0'

@@ -101,7 +101,7 @@ export class MarcasComponent implements OnInit, OnDestroy {
 
   // inicio datos envio card information
   wordItem = this.translate.instant('mod-catalog.PRODUCT.ASSIGMENT_PRODUCT_TITLE_BREADCRUMB')
-  img_user_actived = "assets/images/img_admin.png"
+  img_user_actived = "assets/images/img_brands.png"
   titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
   titleTotalSuppliers = this.translate.instant('mod-catalog.BRAND.CARD_TOTAL_BRANDS_TITLE')
   count_total_brands = 0

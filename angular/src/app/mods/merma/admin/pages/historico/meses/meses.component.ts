@@ -70,9 +70,9 @@ export class MesesMermaComponent implements OnInit, OnDestroy {
   // inicio datos envio card information
   wordItem = ''
   mostrarTotal = false
-  img_user_actived = "assets/images/img_admin.png"
+  img_user_actived = "assets/images/img_history.png"
   titlePage = this.translate.instant('mod-merma.TABLE_TITLE')
-  titleTotalSuppliers = this.translate.instant('mod-merma.HISTORY.CARD_TOTAL_HISTORY_TITLE')
+  titleTotalSuppliers = this.translate.instant('mod-warehouse.CARD_TOTAL_LOT_TITLE')
   count_total_month = 0
   // fin datos envio card information
 
