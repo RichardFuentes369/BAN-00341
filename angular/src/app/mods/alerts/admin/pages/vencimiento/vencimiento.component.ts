@@ -63,6 +63,7 @@ export class VencimientoComponent implements OnInit {
   endPoint = `alert-expiration/reporte-stock-vencimiento?`
   orderField = 'dias_restantes'
   order = 'asc'
+  
   habilitarSeleccion = true
   filters = ''
   columnas: any[] = [
@@ -261,6 +262,8 @@ export class VencimientoComponent implements OnInit {
     // this.titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
   }
 
+  someInput!: TablecrudComponent
+
   async verDataLazy(filaSeleccionada: string) {
       
     sessionStorage.setItem('rowSelectedLazy', JSON.stringify(filaSeleccionada))
@@ -291,6 +294,12 @@ export class VencimientoComponent implements OnInit {
     if (typeof filtros === 'string') {
       this.filters = filtros
     }
+  }
+
+  async refrescarTabla (){
+    setTimeout(async () => {
+      await this.someInput.reload()
+    }, 100);
   }
 
   tienePermiso(nombre: string): boolean {

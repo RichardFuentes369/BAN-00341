@@ -19,5 +19,15 @@
   "SEE_TITLE": "Expiration alert information",
   "SEE_SUBTITLE": "",
 
-  "LEGEND_TITLE_ALERT": "Expiration Alert Data"
+  "LEGEND_TITLE_ALERT": "Expiration Alert Data",
+  "LABEL_STATUS_ALERT": "Alert status",
+
+  "OPTION": {
+    "ITEM_ON_GREEN_ALERT": "Item on green alert",
+    "ITEM_ON_YELLOW_ALERT": "Item on yellow alert",
+    "ITEM_ON_ORANGE_ALERT": "Item on orange alert",
+    "ITEM_ON_RED_ALERT": "Item on red alert",
+    "ITEM_EXPIRED": "Expired item",
+    "ITEM_NOT_PERISHABLE": "Non-perishable item"
+  }
 }

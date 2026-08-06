@@ -20,6 +20,7 @@ export class ExpirationService {
     p_lote: string,
     p_codigo_barra: string,
     p_nombre_producto: string,
+    p_estado_alerta: string,
     p_cantidad_comprada_min: string,
     p_cantidad_comprada_max: string,
     p_cantidad_vendida_min: string,
@@ -31,11 +32,11 @@ export class ExpirationService {
     p_fecha_entrada_min: string,
     p_fecha_entrada_max: string,
     p_fecha_vencimiento_min: string,
-    p_fecha_vencimiento_max: string
+    p_fecha_vencimiento_max: string,
   ) {
     try {
       const result = await this.dataSource.manager.query(
-        'CALL sp_notificaciones_perecederos(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+        'CALL sp_notificaciones_perecederos(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
         [
           (page === 'null') ? null : page,
           (limit === 'null') ? null : limit,
@@ -44,6 +45,7 @@ export class ExpirationService {
           (p_lote === 'null') ? null : p_lote,
           (p_codigo_barra === 'null') ? null : p_codigo_barra,
           (p_nombre_producto === 'null') ? null : p_nombre_producto,
+          (p_estado_alerta === 'null') ? null : p_estado_alerta,
           (p_cantidad_comprada_min === 'null') ? null : p_cantidad_comprada_min,
           (p_cantidad_comprada_max === 'null') ? null : p_cantidad_comprada_max,
           (p_cantidad_vendida_min === 'null') ? null : p_cantidad_vendida_min,

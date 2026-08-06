@@ -19,5 +19,15 @@
   "SEE_TITLE": "Información de alerta de vencimiento",
   "SEE_SUBTITLE": "",
 
-  "LEGEND_TITLE_ALERT": "Datos de la alerta de vencimiento"
+  "LEGEND_TITLE_ALERT": "Datos de la alerta de vencimiento",
+  "LABEL_STATUS_ALERT": "Estado de la alerta",
+
+  "OPTION": {
+    "ITEM_ON_GREEN_ALERT": "Artículo en alerta verde",
+    "ITEM_ON_YELLOW_ALERT": "Artículo en alerta amarilla",
+    "ITEM_ON_ORANGE_ALERT": "Artículo en alerta naranja",
+    "ITEM_ON_RED_ALERT": "Artículo en alerta roja",
+    "ITEM_EXPIRED": "Artículo vencido",
+    "ITEM_NOT_PERISHABLE": "Artículo no perecedero"
+  }
 }

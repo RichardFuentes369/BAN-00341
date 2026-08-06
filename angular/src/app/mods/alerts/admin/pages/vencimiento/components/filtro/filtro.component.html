@@ -23,16 +23,22 @@
         [(ngModel)]="model.p_nombre_producto" aria-describedby="emailHelp"
         placeholder="{{ 'mod-warehouse.PLACEHOLDER_LOTE_F' | translate}}">
     </div>
+    <!-- p_estado_alerta -->
     <div class="col-sm-12 mb-2">
       <span class="" for="exampleInputEmail1">
-        {{ 'mod-warehouse.LABEL_FECHA_ENTRADA' | translate}}
+        {{ 'mod-alerts.LABEL_STATUS_ALERT' | translate}}
       </span>
       <div class="row">
         <div class="col-sm">
-          <input type="date" class="form-control form-select-sm" [(ngModel)]="model.p_fecha_entrada_min">
-        </div>
-        <div class="col-sm">
-          <input type="date" class="form-control form-select-sm" [(ngModel)]="model.p_fecha_entrada_max">
+          <select name="" id="" class="form-control form-select-sm custom-select" [(ngModel)]="model.p_estado_alerta">
+            <option value="">{{ 'mod-users.SELECT_STATUS_USER_SELECT_OPTION' | translate}}</option>
+            <option value="Artículo en alerta verde">{{ 'mod-alerts.OPTION.ITEM_ON_GREEN_ALERT' | translate}}</option>
+            <option value="Artículo en alerta amarilla">{{ 'mod-alerts.OPTION.ITEM_ON_YELLOW_ALERT' | translate}}</option>
+            <option value="Artículo en alerta naranja">{{ 'mod-alerts.OPTION.ITEM_ON_ORANGE_ALERT' | translate}}</option>
+            <option value="Artículo en alerta roja">{{ 'mod-alerts.OPTION.ITEM_ON_RED_ALERT' | translate}}</option>
+            <option value="Artículo vencido">{{ 'mod-alerts.OPTION.ITEM_EXPIRED' | translate}}</option>
+            <option value="Artículo no perecedero">{{ 'mod-alerts.OPTION.ITEM_NOT_PERISHABLE' | translate}}</option>
+          </select>
         </div>
       </div>
     </div>
@@ -49,7 +55,6 @@
         </div>
       </div>
     </div>
-
     <div class="col-sm-12 mb-2">
       <span class="" for="exampleInputEmail1">
         {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}
@@ -84,7 +89,6 @@
         </div>
       </div>
     </div>
-
     <div class="col-sm-12 mb-2">
       <span class="" for="exampleInputEmail1">
         {{ 'mod-alerts.LABEL_REMAINING_DAYS' | translate}}
@@ -102,7 +106,6 @@
         </div>
       </div>
     </div>
-
     <div class="col-sm-12 mb-2">
       <span class="" for="exampleInputEmail1">
         {{ 'mod-warehouse.LABEL_CANTIDAD_BODEGA' | translate}}

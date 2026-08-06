@@ -23,6 +23,7 @@ export class ExpirationController {
       query.p_lote,
       query.p_codigo_barra,
       query.p_nombre_producto,
+      query.p_estado_alerta,
       query.p_cantidad_comprada_min,
       query.p_cantidad_comprada_max,
       query.p_cantidad_vendida_min,

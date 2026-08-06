@@ -19,5 +19,15 @@
   "SEE_TITLE": "Information d'alerte d'expiration",
   "SEE_SUBTITLE": "",
 
-  "LEGEND_TITLE_ALERT": "Données de l'alerte d'expiration"
+  "LEGEND_TITLE_ALERT": "Données de l'alerte d'expiration",
+  "LABEL_STATUS_ALERT": "Statut de l'alerte",
+
+  "OPTION": {
+    "ITEM_ON_GREEN_ALERT": "Article en alerte verte",
+    "ITEM_ON_YELLOW_ALERT": "Article en alerte jaune",
+    "ITEM_ON_ORANGE_ALERT": "Article en alerte orange",
+    "ITEM_ON_RED_ALERT": "Article en alerte rouge",
+    "ITEM_EXPIRED": "Article périmé",
+    "ITEM_NOT_PERISHABLE": "Article non périssable"
+  }
 }

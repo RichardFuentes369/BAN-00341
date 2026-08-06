@@ -19,5 +19,15 @@
   "SEE_TITLE": "Verfallswarninformation",
   "SEE_SUBTITLE": "",
 
-  "LEGEND_TITLE_ALERT": "Daten zur Ablaufwarnung"
+  "LEGEND_TITLE_ALERT": "Daten zur Ablaufwarnung",
+  "LABEL_STATUS_ALERT": "Alarmstatus",
+  
+  "OPTION": {
+    "ITEM_ON_GREEN_ALERT": "Artikel in Grünalarm",
+    "ITEM_ON_YELLOW_ALERT": "Artikel in Gelbalarm",
+    "ITEM_ON_ORANGE_ALERT": "Artikel in Orangealarm",
+    "ITEM_ON_RED_ALERT": "Artikel in Rotealarm",
+    "ITEM_EXPIRED": "Abgelaufener Artikel",
+    "ITEM_NOT_PERISHABLE": "Unverderblicher Artikel"
+  }
 }

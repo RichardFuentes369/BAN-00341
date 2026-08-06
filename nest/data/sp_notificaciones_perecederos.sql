@@ -12,6 +12,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_notificaciones_perecederos`(
     IN `p_lote` VARCHAR(100),
     IN `p_codigo_barra` VARCHAR(100),
     IN `p_nombre_producto` VARCHAR(100),
+    IN `p_estado_alerta` VARCHAR(100),
     IN `p_cantidad_comprada_min` DECIMAL(12,4),
     IN `p_cantidad_comprada_max` DECIMAL(12,4),
     IN `p_cantidad_vendida_min` DECIMAL(12,4),
@@ -72,53 +73,56 @@ BEGIN
     DROP TEMPORARY TABLE IF EXISTS temp_notificaciones_stock;
     
     CREATE TEMPORARY TABLE temp_notificaciones_stock AS
-    SELECT 
-        mb.id_producto,
-        mb.lote,
-        FROM_UNIXTIME(mb.fecha_entrada) AS fecha_entrada,
-        IF(mb.fecha_vencimiento IS NULL, '**********', FROM_UNIXTIME(mb.fecha_vencimiento)) AS fecha_vencimiento,
-        IF(mb.fecha_vencimiento IS NULL, '**********', DATEDIFF(FROM_UNIXTIME(mb.fecha_vencimiento), CURDATE())) AS dias_restantes,
-        CASE 
-            WHEN DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) > mcprod.alerta_amarilla THEN 'Artículo en alerta verde' 
-            WHEN DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) > mcprod.alerta_naranja 
-                 AND DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) <= mcprod.alerta_amarilla THEN 'Artículo en alerta amarilla'
-            WHEN DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) > 3 
-                 AND DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) <= mcprod.alerta_naranja THEN 'Artículo en alerta naranja' 
-            WHEN DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) <= 3 
-                 AND DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) >= 0 THEN 'Artículo en alerta roja' 
-            WHEN DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) < 0 THEN 'Artículo vencido'
-            ELSE 'Artículo no perecedero'
-        END AS estado_alerta,
-        mb.cantidad_comprada,
-        mb.cantidad_vendida,
-        mb.estado,
-        mcprod.codigo_barra AS codigo_barra,
-        mcprod.nombre AS nombre_producto,
-        mcprov.razon_social AS nombre_proveedor,
-        mb.cantidad_en_bodega
-    FROM mod_bodega mb
-    LEFT JOIN mod_catalogo_productos mcprod ON mb.id_producto = mcprod.id
-    LEFT JOIN mod_catalogo_proveedores mcprov ON mb.id_proveedor = mcprov.id
-    WHERE mb.cantidad_en_bodega > 1 
-      AND mb.fecha_vencimiento IS NOT NULL
-      -- Filtros de texto (Soportan NULL o '')
-      AND (p_lote IS NULL OR p_lote = '' OR mb.lote LIKE CONCAT('%', p_lote, '%'))
-      AND (p_codigo_barra IS NULL OR p_codigo_barra = '' OR mcprod.codigo_barra LIKE CONCAT('%', p_codigo_barra, '%'))
-      AND (p_nombre_producto IS NULL OR p_nombre_producto = '' OR mcprod.nombre LIKE CONCAT('%', p_nombre_producto, '%'))
-      
-      -- Filtros de rangos numéricos y de fechas (Min / Max)
-      AND (p_cantidad_comprada_min IS NULL OR mb.cantidad_comprada >= p_cantidad_comprada_min)
-      AND (p_cantidad_comprada_max IS NULL OR mb.cantidad_comprada <= p_cantidad_comprada_max)
-      AND (p_cantidad_vendida_min IS NULL OR mb.cantidad_vendida >= p_cantidad_vendida_min)
-      AND (p_cantidad_vendida_max IS NULL OR mb.cantidad_vendida <= p_cantidad_vendida_max)
-      AND (p_cantidad_bodega_min IS NULL OR mb.cantidad_en_bodega >= p_cantidad_bodega_min)
-      AND (p_cantidad_bodega_max IS NULL OR mb.cantidad_en_bodega <= p_cantidad_bodega_max)
-      AND (p_dias_restantes_min IS NULL OR DATEDIFF(FROM_UNIXTIME(mb.fecha_vencimiento), CURDATE()) >= p_dias_restantes_min)
-      AND (p_dias_restantes_max IS NULL OR DATEDIFF(FROM_UNIXTIME(mb.fecha_vencimiento), CURDATE()) <= p_dias_restantes_max)
-      AND (p_fecha_entrada_min IS NULL OR mb.fecha_entrada >= p_fecha_entrada_min)
-      AND (p_fecha_entrada_max IS NULL OR mb.fecha_entrada <= p_fecha_entrada_max)
-      AND (p_fecha_vencimiento_min IS NULL OR mb.fecha_vencimiento >= p_fecha_vencimiento_min)
-		AND (p_fecha_vencimiento_max IS NULL OR mb.fecha_vencimiento <= p_fecha_vencimiento_max);
+    SELECT * FROM (
+        SELECT
+            mb.id_producto,
+            mb.lote,
+            FROM_UNIXTIME(mb.fecha_entrada) AS fecha_entrada,
+            IF(mb.fecha_vencimiento IS NULL, '**********', FROM_UNIXTIME(mb.fecha_vencimiento)) AS fecha_vencimiento,
+            IF(mb.fecha_vencimiento IS NULL, '**********', DATEDIFF(FROM_UNIXTIME(mb.fecha_vencimiento), CURDATE())) AS dias_restantes,
+            CASE 
+                WHEN DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) > mcprod.alerta_amarilla THEN 'Artículo en alerta verde' 
+                WHEN DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) > mcprod.alerta_naranja 
+                    AND DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) <= mcprod.alerta_amarilla THEN 'Artículo en alerta amarilla'
+                WHEN DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) > 3 
+                    AND DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) <= mcprod.alerta_naranja THEN 'Artículo en alerta naranja' 
+                WHEN DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) <= 3 
+                    AND DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) >= 0 THEN 'Artículo en alerta roja' 
+                WHEN DATEDIFF(DATE(FROM_UNIXTIME(mb.fecha_vencimiento)), CURDATE()) < 0 THEN 'Artículo vencido'
+                ELSE 'Artículo no perecedero'
+            END AS estado_alerta,
+            mb.cantidad_comprada,
+            mb.cantidad_vendida,
+            mb.estado,
+            mcprod.codigo_barra AS codigo_barra,
+            mcprod.nombre AS nombre_producto,
+            mcprov.razon_social AS nombre_proveedor,
+            mb.cantidad_en_bodega
+        FROM mod_bodega mb
+        LEFT JOIN mod_catalogo_productos mcprod ON mb.id_producto = mcprod.id
+        LEFT JOIN mod_catalogo_proveedores mcprov ON mb.id_proveedor = mcprov.id
+        WHERE mb.cantidad_en_bodega > 1 
+        AND mb.fecha_vencimiento IS NOT NULL
+        -- Filtros de texto (Soportan NULL o '')
+        AND (p_lote IS NULL OR p_lote = '' OR mb.lote LIKE CONCAT('%', p_lote, '%'))
+        AND (p_codigo_barra IS NULL OR p_codigo_barra = '' OR mcprod.codigo_barra LIKE CONCAT('%', p_codigo_barra, '%'))
+        AND (p_nombre_producto IS NULL OR p_nombre_producto = '' OR mcprod.nombre LIKE CONCAT('%', p_nombre_producto, '%'))
+        
+        -- Filtros de rangos numéricos y de fechas (Min / Max)
+        AND (p_cantidad_comprada_min IS NULL OR mb.cantidad_comprada >= p_cantidad_comprada_min)
+        AND (p_cantidad_comprada_max IS NULL OR mb.cantidad_comprada <= p_cantidad_comprada_max)
+        AND (p_cantidad_vendida_min IS NULL OR mb.cantidad_vendida >= p_cantidad_vendida_min)
+        AND (p_cantidad_vendida_max IS NULL OR mb.cantidad_vendida <= p_cantidad_vendida_max)
+        AND (p_cantidad_bodega_min IS NULL OR mb.cantidad_en_bodega >= p_cantidad_bodega_min)
+        AND (p_cantidad_bodega_max IS NULL OR mb.cantidad_en_bodega <= p_cantidad_bodega_max)
+        AND (p_dias_restantes_min IS NULL OR DATEDIFF(FROM_UNIXTIME(mb.fecha_vencimiento), CURDATE()) >= p_dias_restantes_min)
+        AND (p_dias_restantes_max IS NULL OR DATEDIFF(FROM_UNIXTIME(mb.fecha_vencimiento), CURDATE()) <= p_dias_restantes_max)
+        AND (p_fecha_entrada_min IS NULL OR mb.fecha_entrada >= p_fecha_entrada_min)
+        AND (p_fecha_entrada_max IS NULL OR mb.fecha_entrada <= p_fecha_entrada_max)
+        AND (p_fecha_vencimiento_min IS NULL OR mb.fecha_vencimiento >= p_fecha_vencimiento_min)
+        AND (p_fecha_vencimiento_max IS NULL OR mb.fecha_vencimiento <= p_fecha_vencimiento_max)
+    ) AS subquery
+    WHERE (p_estado_alerta IS NULL OR p_estado_alerta = '' OR estado_alerta LIKE CONCAT('%', p_estado_alerta, '%'));
 
     -- 4. Obtener el total para la paginación
     SELECT COUNT(*) INTO v_total_registros FROM temp_notificaciones_stock;
