@@ -94,7 +94,7 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
   img = "assets/images/img_admin.png"
   titlePage = this.translate.instant('mod-merma.TABLE_TITLE')
   titleTotalSuppliers = this.translate.instant('mod-merma.TYPE.CARD_TOTAL_TYPE_TITLE')
-  count_total_type_merma = '0'
+  count_total_type_merma = 0
   // fin datos envio card information
 
   cargarIdioma = true;
@@ -106,7 +106,6 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
     if (!this.mostrarCards) {
       this.isAnimationDone = true;
     } else {
-      this.actualizarContadores()
       this.isAnimationDone = false;
     }
   }
@@ -127,13 +126,10 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
     this.permisos = permisos.data
     sessionStorage.removeItem('nombre')
 
-    await this.actualizarContadores()
-
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarIdioma = false;
       timer(200).subscribe(() => {
         this.listar(); 
-        this.actualizarContadores();
         this.cambiarTextos(); 
         this.cargarIdioma = true;
       });
@@ -220,6 +216,10 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
     }
   }
 
+  async rowsCountData(_rowsCount: string) {
+    this.count_total_type_merma = parseInt(_rowsCount)
+  }
+
   async editarData (_id: string){
     this.title = this.translate.instant('mod-merma.TYPE.EDIT_TITLE')
     const response = await this.tipoService.getDataTipo(_id)
@@ -290,10 +290,5 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);
-  }
-
-  async actualizarContadores (){
-    const data = await this.tipoService.obtenerTotale()
-    this.count_total_type_merma = data.data.count_total_type_merma
   }
 }

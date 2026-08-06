@@ -254,6 +254,8 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
               return item;
             });
 
+            this.rowsCountItem.emit(recordsTotal.toString())
+
             callback({
               recordsTotal: recordsTotal,
               recordsFiltered: recordsTotal,
@@ -405,6 +407,8 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
     return this.permisosAcciones?.some((permiso) => permiso.permiso_permiso === nombre);
   }
 
+  // Outputs
+  @Output() rowsCountItem = new EventEmitter<string>();
   @Output() cargarItem = new EventEmitter<string>();
   @Output() verItem = new EventEmitter<string>();
   @Output() verItemPeresozo = new EventEmitter<string>();

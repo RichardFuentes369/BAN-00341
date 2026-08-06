@@ -120,7 +120,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   img_user_actived = "assets/images/img_admin.png"
   titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
   titleTotalSuppliers = this.translate.instant('mod-catalog.SUPPLIER.CARD_TOTAL_SUPPLIERS_TITLE')
-  count_total_suppliers = '0'
+  count_total_suppliers = 0
   // fin datos envio card information
 
   cargarIdioma = true;
@@ -132,7 +132,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     if (!this.mostrarCards) {
       this.isAnimationDone = true;
     } else {
-      this.actualizarContadores()
+      // this.actualizarContadores()
       this.isAnimationDone = false;
     }
   }
@@ -155,12 +155,12 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     sessionStorage.removeItem('razon_social')
     sessionStorage.removeItem('correo')
 
-    await this.actualizarContadores()
+    // await this.actualizarContadores()
 
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarIdioma = false;
       timer(200).subscribe(() => {
-        this.actualizarContadores()
+        // this.actualizarContadores()
         this.listar(); 
         this.cambiarTextos(); 
         this.cargarIdioma = true;
@@ -263,6 +263,10 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     }
   }
 
+  async rowsCountData(_rowsCount: string) {
+    this.count_total_suppliers = parseInt(_rowsCount)
+  }
+
   async editarData (_id: string){
     this.title = this.translate.instant('mod-catalog.SUPPLIER.EDIT_TITLE')
     const response = await this.proveedoresService.getDataProvider(_id)
@@ -335,10 +339,10 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     }, 100);
   }
 
-  async actualizarContadores (){
-    const data = await this.proveedoresService.obtenerTotale()
-    this.count_total_suppliers = data.data.count_total_suppliers
-  }
+  // async actualizarContadores (){
+  //   const data = await this.proveedoresService.obtenerTotale()
+  //   this.count_total_suppliers = data.data.count_total_suppliers
+  // }
 
   reportData(formato: string) {
     const complementoRuta = $(".complementoRuta").val()

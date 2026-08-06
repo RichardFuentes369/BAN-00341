@@ -272,9 +272,13 @@ export class ProductService {
     lang: string
   ) {
     const cont1 = await this.productRepository.count()
+    const cont2 = await this.productRepository.count({ where: { estado: true } })
+    const cont3 = await this.productRepository.count({ where: { estado: false } })
 
     const data = {
       "count_total_products": cont1,
+      "count_actived_products": cont2,
+      "count_suspend_products": cont3
     }
 
     return data

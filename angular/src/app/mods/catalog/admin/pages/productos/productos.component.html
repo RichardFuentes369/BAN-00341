@@ -17,7 +17,9 @@
     [class.animate__fadeOut]="!mostrarCards || !cargarIdioma">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-2 mb-3 align-items-stretch">
       @for (card of [
-      {img: img_user_actived, title: titleTotalProducts, count: count_total_products}
+      {img: img_user_actived, title: titleTotalProducts, count: count_total_products},
+      {img: img_user_actived, title: titleTotalProductsActived, count: count_actived_products},
+      {img: img_user_actived, title: titleTotalProductsInactived, count: count_suspend_products}
       ]; track $index) {
       <div class="col d-flex">
         <app-globales-kpicard class="w-100 h-100" [img]="card.img" [title]="card.title" [content]="card.count">

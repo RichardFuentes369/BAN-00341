@@ -73,7 +73,7 @@ export class MesesMermaComponent implements OnInit, OnDestroy {
   img_user_actived = "assets/images/img_admin.png"
   titlePage = this.translate.instant('mod-merma.TABLE_TITLE')
   titleTotalSuppliers = this.translate.instant('mod-merma.HISTORY.CARD_TOTAL_HISTORY_TITLE')
-  count_total_extent = '0'
+  count_total_month = 0
   // fin datos envio card information
 
   cargarIdioma = true;
@@ -86,7 +86,6 @@ export class MesesMermaComponent implements OnInit, OnDestroy {
     if (!this.mostrarCards) {
       this.isAnimationDone = true;
     } else {
-      this.actualizarContadores()
       this.isAnimationDone = false;
     }
   }
@@ -112,12 +111,9 @@ export class MesesMermaComponent implements OnInit, OnDestroy {
     // sessionStorage.removeItem('razon_social')
     // sessionStorage.removeItem('correo')
 
-    await this.actualizarContadores()
-
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarIdioma = false;
       timer(200).subscribe(() => {
-        this.actualizarContadores()
         this.listar();
         this.cambiarTextos();
         this.cargarIdioma = true;
@@ -158,6 +154,11 @@ export class MesesMermaComponent implements OnInit, OnDestroy {
     this.router.navigate([MOD_MERMA_PAGE_HISTORICO_PERIODO], { queryParams: { anho: this.route.snapshot.queryParams?.['anho'], month: _id } });
   }
 
+  async rowsCountData(_rowsCount: string) {
+    this.count_total_month = parseInt(_rowsCount)
+  }
+
+
   @ViewChild(GridcrudComponent)
   someInput!: GridcrudComponent
 
@@ -173,12 +174,5 @@ export class MesesMermaComponent implements OnInit, OnDestroy {
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);
-  }
-
-  async actualizarContadores() {
-    let year = (this.route.snapshot.queryParams?.['year'] != undefined) ? this.route.snapshot.queryParams?.['year'] : null
-    let month = (this.route.snapshot.queryParams?.['month'] != undefined) ? this.route.snapshot.queryParams?.['month'] : null
-    const data = await this.registroService.obtenerTotale(year, month)
-    this.count_total_extent = data.data.count_total_extent
   }
 }

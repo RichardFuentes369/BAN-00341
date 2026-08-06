@@ -132,7 +132,9 @@
     "SWAL_ARE_YOU_SURE_UPDATE": "Are you sure you want to update the product{{plural}} {{product_name}}?",
     "SWAL_ARE_YOU_SURE_DELETE": "Are you sure you want to delete the product{{plural}} {{product_name}}?",
 
-    "CARD_TOTAL_PRODUCTS_TITLE": "Total products"
+    "CARD_TOTAL_PRODUCTS_TITLE": "Total products",
+    "CARD_TOTAL_ACTIVED_PRODUCTS": "Total active products",
+    "CARD_TOTAL_SUSPENDED_PRODUCTS": "Total suspended products"
   },
 
   "BRAND": {

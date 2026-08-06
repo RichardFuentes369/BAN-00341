@@ -104,7 +104,7 @@ export class MedidaComponent implements OnInit, OnDestroy {
   img_user_actived = "assets/images/img_admin.png"
   titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
   titleTotalSuppliers = this.translate.instant('mod-catalog.EXTENT.CARD_TOTAL_EXTENT_TITLE')
-  count_total_extent = '0'
+  count_total_extent = 0
   // fin datos envio card information
 
   cargarIdioma = true;
@@ -116,7 +116,6 @@ export class MedidaComponent implements OnInit, OnDestroy {
     if (!this.mostrarCards) {
       this.isAnimationDone = true;
     } else {
-      this.actualizarContadores()
       this.isAnimationDone = false;
     }
   }
@@ -139,12 +138,10 @@ export class MedidaComponent implements OnInit, OnDestroy {
     // sessionStorage.removeItem('razon_social')
     // sessionStorage.removeItem('correo')
 
-    await this.actualizarContadores()
 
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarIdioma = false;
       timer(200).subscribe(() => {
-        this.actualizarContadores()
         this.listar();
         this.cambiarTextos();
         this.cargarIdioma = true;
@@ -231,6 +228,10 @@ export class MedidaComponent implements OnInit, OnDestroy {
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
+  }
+
+  async rowsCountData(_rowsCount: string) {
+    this.count_total_extent = parseInt(_rowsCount)
   }
 
   async editarData(_id: string) {
@@ -324,11 +325,6 @@ export class MedidaComponent implements OnInit, OnDestroy {
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);
-  }
-
-  async actualizarContadores() {
-    const data = await this.medidaService.obtenerTotale()
-    this.count_total_extent = data.data.count_total_extent
   }
 
   reportData(formato: string) {

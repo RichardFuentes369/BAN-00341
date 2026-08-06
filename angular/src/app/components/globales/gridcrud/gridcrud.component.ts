@@ -90,6 +90,8 @@ export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
           this.totalRegistros = pagination.totalRecord;
           this.totalPaginas = Math.ceil(this.totalRegistros / this.perPage) || 1;
 
+          this.rowsCountItem.emit(pagination.totalRecord)
+
           // Lógica de conteo corregida
           this.desdeConteo = result.length > 0 ? (this.paginaActual - 1) * this.perPage + 1 : 0;
           this.hastaConteo = Math.min(this.desdeConteo + result.length - 1, this.totalRegistros);
@@ -142,6 +144,7 @@ export class GridcrudComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   // Outputs
+  @Output() rowsCountItem = new EventEmitter<string>();
   @Output() cargarItem = new EventEmitter<string>();
   @Output() verItem = new EventEmitter<string>();
   @Output() crearNuevoItem = new EventEmitter<string>();

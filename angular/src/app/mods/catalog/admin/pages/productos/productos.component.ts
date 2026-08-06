@@ -149,7 +149,11 @@ export class ProductosComponent implements OnInit, OnDestroy {
   img_user_actived = "assets/images/img_admin.png"
   titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
   titleTotalProducts = this.translate.instant('mod-catalog.PRODUCT.CARD_TOTAL_PRODUCTS_TITLE')
+  titleTotalProductsActived = this.translate.instant('mod-catalog.PRODUCT.CARD_TOTAL_ACTIVED_PRODUCTS')
+  titleTotalProductsInactived = this.translate.instant('mod-catalog.PRODUCT.CARD_TOTAL_SUSPENDED_PRODUCTS')
   count_total_products = '0'
+  count_actived_products = '0'
+  count_suspend_products = '0'
   // fin datos envio card information
 
   cargarIdioma = true;
@@ -462,6 +466,8 @@ export class ProductosComponent implements OnInit, OnDestroy {
   async actualizarContadores() {
     const data = await this.productosService.obtenerTotale()
     this.count_total_products = data.data.count_total_products
+    this.count_actived_products = data.data.count_actived_products
+    this.count_suspend_products = data.data.count_suspend_products
   }
 
   reportData(formato: string) {

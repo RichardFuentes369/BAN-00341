@@ -132,7 +132,9 @@
     "SWAL_ARE_YOU_SURE_UPDATE": "Sind Sie sicher, dass Sie das Produkt{{plural}} {{product_name}} aktualisieren möchten?",
     "SWAL_ARE_YOU_SURE_DELETE": "Sind Sie sicher, dass Sie das Produkt{{plural}} {{product_name}} löschen möchten?",
 
-    "CARD_TOTAL_PRODUCTS_TITLE": "Gesamtprodukte"
+    "CARD_TOTAL_PRODUCTS_TITLE": "Gesamtzahl der Produkte",
+    "CARD_TOTAL_ACTIVED_PRODUCTS": "Aktive Produkte gesamt",
+    "CARD_TOTAL_SUSPENDED_PRODUCTS": "Gesperrte Produkte gesamt"
   },
 
   "BRAND": {
