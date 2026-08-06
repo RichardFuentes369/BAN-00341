@@ -58,7 +58,7 @@ export class StockComponent implements OnInit {
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = `alert-stock/reporte-stock-bodega?`
-  habilitarSeleccion = true
+  habilitarSeleccion = false
   filters = ''
   columnas: any[] = [
     {

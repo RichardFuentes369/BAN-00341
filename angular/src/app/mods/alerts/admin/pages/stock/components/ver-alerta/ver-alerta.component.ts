@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './ver-alerta.component.html',
   styleUrl: './ver-alerta.component.scss',
 })
-export class VerAlertaComponent {
+export class VerAlertaSComponent {
 
 }

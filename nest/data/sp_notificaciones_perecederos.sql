@@ -1,29 +1,29 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               10.11.14-MariaDB-0ubuntu0.24.04.1 - Ubuntu 24.04
--- Server OS:                    debian-linux-gnu
--- HeidiSQL Version:             12.8.0.6908
--- --------------------------------------------------------
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
 USE `BAN_00341`;
 
 -- Dumping structure for procedure BAN_00341.sp_notificaciones_perecederos
 DROP PROCEDURE IF EXISTS `sp_notificaciones_perecederos`;
 DELIMITER //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_notificaciones_perecederos`(
-	IN `p_pagina_actual` INT,
-	IN `p_registros_por_pagina` INT,
-	IN `p_order_field` VARCHAR(50),
-	IN `p_order_direction` VARCHAR(4)
+    IN `p_pagina_actual` INT,
+    IN `p_registros_por_pagina` INT,
+    IN `p_order_field` VARCHAR(50),
+    IN `p_order_direction` VARCHAR(4),
+    -- Nuevos parámetros de filtrado (si van NULL o '', no aplican)
+    IN `p_lote` VARCHAR(100),
+    IN `p_codigo_barra` VARCHAR(100),
+    IN `p_nombre_producto` VARCHAR(100),
+    IN `p_cantidad_comprada_min` DECIMAL(12,4),
+    IN `p_cantidad_comprada_max` DECIMAL(12,4),
+    IN `p_cantidad_vendida_min` DECIMAL(12,4),
+    IN `p_cantidad_vendida_max` DECIMAL(12,4),
+    IN `p_cantidad_bodega_min` DECIMAL(12,4),
+    IN `p_cantidad_bodega_max` DECIMAL(12,4),
+    IN `p_dias_restantes_min` INT,
+    IN `p_dias_restantes_max` INT,
+    IN `p_fecha_entrada_min` BIGINT,
+    IN `p_fecha_entrada_max` BIGINT,
+    IN `p_fecha_vencimiento_min` BIGINT,
+    IN `p_fecha_vencimiento_max` BIGINT
 )
 LANGUAGE SQL
 NOT DETERMINISTIC
@@ -61,13 +61,14 @@ BEGIN
         WHEN 'cantidad_comprada' THEN 'cantidad_comprada'
         WHEN 'cantidad_vendida' THEN 'cantidad_vendida'
         WHEN 'estado' THEN 'estado'
+        WHEN 'codigo_barra' THEN 'codigo_barra'
         WHEN 'nombre_producto' THEN 'nombre_producto'
         WHEN 'nombre_proveedor' THEN 'nombre_proveedor'
         WHEN 'cantidad_en_bodega' THEN 'cantidad_en_bodega'
         ELSE 'fecha_vencimiento' -- Columna por defecto si mandan una inválida
     END;
 
-    -- 3. Crear tabla temporal con la lógica de negocio
+    -- 3. Crear tabla temporal con la lógica de negocio y filtros inteligentes
     DROP TEMPORARY TABLE IF EXISTS temp_notificaciones_stock;
     
     CREATE TEMPORARY TABLE temp_notificaciones_stock AS
@@ -91,6 +92,7 @@ BEGIN
         mb.cantidad_comprada,
         mb.cantidad_vendida,
         mb.estado,
+        mcprod.codigo_barra AS codigo_barra,
         mcprod.nombre AS nombre_producto,
         mcprov.razon_social AS nombre_proveedor,
         mb.cantidad_en_bodega
@@ -98,7 +100,25 @@ BEGIN
     LEFT JOIN mod_catalogo_productos mcprod ON mb.id_producto = mcprod.id
     LEFT JOIN mod_catalogo_proveedores mcprov ON mb.id_proveedor = mcprov.id
     WHERE mb.cantidad_en_bodega > 1 
-    AND mb.fecha_vencimiento IS NOT NULL;
+      AND mb.fecha_vencimiento IS NOT NULL
+      -- Filtros de texto (Soportan NULL o '')
+      AND (p_lote IS NULL OR p_lote = '' OR mb.lote LIKE CONCAT('%', p_lote, '%'))
+      AND (p_codigo_barra IS NULL OR p_codigo_barra = '' OR mcprod.codigo_barra LIKE CONCAT('%', p_codigo_barra, '%'))
+      AND (p_nombre_producto IS NULL OR p_nombre_producto = '' OR mcprod.nombre LIKE CONCAT('%', p_nombre_producto, '%'))
+      
+      -- Filtros de rangos numéricos y de fechas (Min / Max)
+      AND (p_cantidad_comprada_min IS NULL OR mb.cantidad_comprada >= p_cantidad_comprada_min)
+      AND (p_cantidad_comprada_max IS NULL OR mb.cantidad_comprada <= p_cantidad_comprada_max)
+      AND (p_cantidad_vendida_min IS NULL OR mb.cantidad_vendida >= p_cantidad_vendida_min)
+      AND (p_cantidad_vendida_max IS NULL OR mb.cantidad_vendida <= p_cantidad_vendida_max)
+      AND (p_cantidad_bodega_min IS NULL OR mb.cantidad_en_bodega >= p_cantidad_bodega_min)
+      AND (p_cantidad_bodega_max IS NULL OR mb.cantidad_en_bodega <= p_cantidad_bodega_max)
+      AND (p_dias_restantes_min IS NULL OR DATEDIFF(FROM_UNIXTIME(mb.fecha_vencimiento), CURDATE()) >= p_dias_restantes_min)
+      AND (p_dias_restantes_max IS NULL OR DATEDIFF(FROM_UNIXTIME(mb.fecha_vencimiento), CURDATE()) <= p_dias_restantes_max)
+      AND (p_fecha_entrada_min IS NULL OR mb.fecha_entrada >= p_fecha_entrada_min)
+      AND (p_fecha_entrada_max IS NULL OR mb.fecha_entrada <= p_fecha_entrada_max)
+      AND (p_fecha_vencimiento_min IS NULL OR mb.fecha_vencimiento >= p_fecha_vencimiento_min)
+		AND (p_fecha_vencimiento_max IS NULL OR mb.fecha_vencimiento <= p_fecha_vencimiento_max);
 
     -- 4. Obtener el total para la paginación
     SELECT COUNT(*) INTO v_total_registros FROM temp_notificaciones_stock;
@@ -111,20 +131,26 @@ BEGIN
         CEIL(v_total_registros / p_registros_por_pagina) AS lastPage;
 
     -- 6. Retornar Datos paginados con Ordenamiento Dinámico
+    SET @inicio = v_offset;
     SET @l = p_registros_por_pagina;
     SET @o = v_offset;
-    
-    -- Construcción segura de la consulta dinámica incluyendo ORDER BY
+
+    -- Construcción segura de la consulta dinámica incluyendo el consecutivo
     SET v_sql_query = CONCAT(
-        'SELECT * FROM temp_notificaciones_stock ORDER BY ', 
-        p_order_field, ' ', p_order_direction, 
+        'SELECT
+            (@inicio := @inicio + 1) AS id,
+            t.*
+        FROM temp_notificaciones_stock t
+        ORDER BY ',
+        p_order_field, ' ', p_order_direction,
         ' LIMIT ? OFFSET ?'
     );
-    
+
     PREPARE stmt FROM v_sql_query;
     EXECUTE stmt USING @l, @o;
     DEALLOCATE PREPARE stmt;
 
     -- 7. Limpieza
     DROP TEMPORARY TABLE IF EXISTS temp_notificaciones_stock;
-END
+END //
+DELIMITER ;

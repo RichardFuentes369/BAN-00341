@@ -1,1 +1,80 @@
-<p>ver-alerta works!</p>
+<div class="">
+
+  @for (item of alerta; track item; let i = $index) {
+  <div class="col-xl-12 col-sm-12">
+    <div class="col-xl-12 col-sm-12">
+      <fieldset class="border p-3 rounded">
+        <legend class="float-none w-auto p-1">
+          {{ 'mod-alerts.LEGEND_TITLE_ALERT' | translate }}
+        </legend>
+        <div class="col-sm-12 row p-0">
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-catalog.PRODUCT.COLUMN_BAR_CODE' | translate}}
+            </label>
+            <input type="text" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp"
+              value="{{item.codigo_barra}}" readonly>
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-catalog.PRODUCT.WORD_PRODUCT' | translate}}
+            </label>
+            <input type="text" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp"
+              value="{{item.nombre_producto}}" readonly>
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-catalog.SUPPLIER.WORD_SUPPLIER' | translate}}
+            </label>
+            <input type="text" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp"
+              value="{{item.nombre_proveedor}}" readonly>
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}
+            </label>
+            <input type="number" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp"
+              value="{{item.cantidad_comprada}}" readonly>
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-warehouse.LABEL_CANTIDAD_BODEGA' | translate}}
+            </label>
+            <input type="number" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp"
+              value="{{item.cantidad_en_bodega}}" readonly>
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-warehouse.LABEL_CANTIDAD_VENDIDA' | translate}}
+            </label>
+            <input type="number" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp"
+              value="{{item.cantidad_vendida}}" readonly>
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-warehouse.WORD_DAYS_REMAINING' | translate}}
+            </label>
+            <input type="number" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp"
+              value="{{item.dias_restantes}}" readonly>
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-warehouse.LABEL_FECHA_ENTRADA' | translate}}
+            </label>
+            <input type="text" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp"
+              [value]="formatearFecha(item.fecha_entrada)" readonly>
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}
+            </label>
+            <input type="text" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp"
+              [value]="formatearFecha(item.fecha_vencimiento)" readonly>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  }
+
+</div>

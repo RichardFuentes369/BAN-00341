@@ -407,6 +407,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Output() cargarItem = new EventEmitter<string>();
   @Output() verItem = new EventEmitter<string>();
+  @Output() verItemPeresozo = new EventEmitter<string>();
   @Output() crearNuevoItem = new EventEmitter<string>();
   @Output() editarItem = new EventEmitter<string>();
   @Output() eliminarItem = new EventEmitter<string[]>();
@@ -416,6 +417,16 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   uploadItem() { if (this.idsSeleccionados.length === 0) this.cargarItem.emit(); }
   newItem() { if (this.idsSeleccionados.length === 0) this.crearNuevoItem.emit(); }
   seeItem() { if (this.idsSeleccionados.length === 1) this.verItem.emit(this.idsSeleccionados[0]); }
+  seeItemLazy() { 
+    this.datatableElement.dtInstance.then((dtInstance: any) => {
+      const filaCompleta = dtInstance.rows().data().toArray().find(
+        (item: any) => (item.id || item.IDENTIFICADOR) === this.idsSeleccionados[0]
+      );
+      if (filaCompleta) {
+        this.verItemPeresozo.emit(filaCompleta);
+      }
+    });
+  }
   editItem() { if (this.idsSeleccionados.length === 1) this.editarItem.emit(this.idsSeleccionados[0]); }
   deleteItem() { if (this.idsSeleccionados.length > 0) this.eliminarItem.emit(this.idsSeleccionados); }
   activedItem() { if (this.idsSeleccionados.length > 0) this.activarItem.emit(this.idsSeleccionados); }

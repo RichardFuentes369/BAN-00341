@@ -107,6 +107,21 @@
             </button>
           </span>
         }
+
+        @if(tienePermiso('ver_lazy')){
+          <span>
+            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
+                    (click)="seeItemLazy()" 
+                    [disabled]="idsSeleccionados.length !== 1">
+              <i class="fa-solid fa-eye" 
+                [class.text-ver]="idsSeleccionados.length === 1"
+                [class.text-muted]="idsSeleccionados.length !== 1"></i>
+              <div class="nameButton text-lowercase">
+                {{ 'global-tablecrud.BUTTON_OPTION_SEE' | translate }}
+              </div>
+            </button>
+          </span>
+        }
   
         @if(tienePermiso('ver')){
           <span>

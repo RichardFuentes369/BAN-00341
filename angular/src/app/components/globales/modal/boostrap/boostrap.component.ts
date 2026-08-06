@@ -69,6 +69,7 @@ export class ModalBoostrapComponent implements OnDestroy {
     const modalElement = document.getElementById('staticBackdrop');
     if (modalElement) {
       this.renderer.removeClass(modalElement, 'show');
+      sessionStorage.removeItem('rowSelectedLazy')
       
       setTimeout(() => {
         this.renderer.setStyle(modalElement, 'display', 'none');

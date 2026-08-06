@@ -20,6 +20,21 @@ export class ExpirationController {
       query.limit,
       query.field,
       query.order,
+      query.p_lote,
+      query.p_codigo_barra,
+      query.p_nombre_producto,
+      query.p_cantidad_comprada_min,
+      query.p_cantidad_comprada_max,
+      query.p_cantidad_vendida_min,
+      query.p_cantidad_vendida_max,
+      query.p_cantidad_bodega_min,
+      query.p_cantidad_bodega_max,
+      query.p_dias_restantes_min,
+      query.p_dias_restantes_max,
+      query.p_fecha_entrada_min,
+      query.p_fecha_entrada_max,
+      query.p_fecha_vencimiento_min,
+      query.p_fecha_vencimiento_max
     )
     return reporte
   }

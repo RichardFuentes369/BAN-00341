@@ -5,14 +5,15 @@ import { AuthService } from '@guard/service/auth.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AlertasService } from '../../service/alertas.service';
 import { Subscription, timer } from 'rxjs';
-import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
+import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { SearchComponent } from '@component/globales/search/search.component';
 import { ReportComponent } from '@component/globales/report/report.component';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
-import { FILTRO_ALERTS_V_COMPONENT, REPORT_ALERT_VENCIMIENTO_COMPONENT } from '@mod/alerts/const/alerts.const';
+import { FILTRO_ALERTS_V_COMPONENT, REPORT_ALERT_VENCIMIENTO_COMPONENT, VER_ALERTS_V_COMPONENT } from '@mod/alerts/const/alerts.const';
 import { HttpParams } from '@angular/common/http';
+import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 
 @Component({
   selector: 'app-vencimiento',
@@ -23,7 +24,8 @@ import { HttpParams } from '@angular/common/http';
     SearchComponent,
     ReportComponent,
     LoadingComponent,
-    TablecrudComponent
+    TablecrudComponent,
+    ModalBoostrapComponent
   ],
   templateUrl: './vencimiento.component.html',
   styleUrl: './vencimiento.component.scss',
@@ -71,50 +73,16 @@ export class VencimientoComponent implements OnInit {
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-warehouse.LABEL_FECHA_ENTRADA'),
-      data: 'fecha_entrada',
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+      data: 'codigo_barra',
       visible: true,
-      className: 'text-center align-middle',
-      render: (data: any) => {
-        if (!data) return '';
-
-        const date = new Date(data);
-
-        if (isNaN(date.getTime())) {
-          return 'Fecha inválida';
-        }
-
-        return date.toLocaleDateString('es-CO', {
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric',
-          timeZone: 'UTC' // Importante para evitar que cambie de día por la zona horaria local
-        });
-      }
+      className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-warehouse.LABEL_FECHA_VENCIMIENTO'),
-      data: 'fecha_vencimiento',
+      title: this.translate.instant('mod-catalog.PRODUCT.WORD_PRODUCT'),
+      data: 'nombre_producto',
       visible: true,
-      className: 'text-center align-middle',
-      render: (data: any) => {
-        if (!data) return '';
-
-        if (data === "**********") return '';
-
-        const date = new Date(data);
-
-        if (isNaN(date.getTime())) {
-          return 'Fecha inválida';
-        }
-
-        return date.toLocaleDateString('es-CO', {
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric',
-          timeZone: 'UTC' // Importante para evitar que cambie de día por la zona horaria local
-        });
-      }
+      className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-warehouse.WORD_DAYS_REMAINING'),
@@ -132,46 +100,52 @@ export class VencimientoComponent implements OnInit {
       visible: true,
       className: 'text-center align-middle'
     },
-    {
-      title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_COMPRADA'),
-      data: 'cantidad_comprada',
-      className: 'text-center align-middle'
-    },
-    {
-      title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_VENDIDA'),
-      data: 'cantidad_vendida',
-      className: 'text-center align-middle'
-    },
-    {
-      title: this.translate.instant('mod-warehouse.LABEL_ESTADO'),
-      data: 'estado',
-      className: 'text-center align-middle'
-    },
-
-    {
-      title: this.translate.instant('mod-catalog.PRODUCT.WORD_PRODUCT'),
-      data: 'nombre_producto',
-      visible: true,
-      className: 'text-center align-middle'
-    },
-
-    {
-      title: this.translate.instant('mod-catalog.SUPPLIER.WORD_SUPPLIER'),
-      data: 'nombre_proveedor',
-      visible: true,
-      className: 'text-center align-middle'
-    },
-
-    {
-      title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA'),
-      data: 'cantidad_en_bodega',
-      className: 'text-center align-middle'
-    },
+    // {
+    //   title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_COMPRADA'),
+    //   data: 'cantidad_comprada',
+    //   className: 'text-center align-middle'
+    // },
+    // {
+    //   title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_VENDIDA'),
+    //   data: 'cantidad_vendida',
+    //   className: 'text-center align-middle'
+    // },
+    // {
+    //   title: this.translate.instant('mod-warehouse.LABEL_ESTADO'),
+    //   data: 'estado',
+    //   className: 'text-center align-middle'
+    // },
+    // {
+    //   title: this.translate.instant('mod-catalog.SUPPLIER.WORD_SUPPLIER'),
+    //   data: 'nombre_proveedor',
+    //   visible: true,
+    //   className: 'text-center align-middle'
+    // },
+    // {
+    //   title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA'),
+    //   data: 'cantidad_en_bodega',
+    //   className: 'text-center align-middle'
+    // },
   ];
   permisosAcciones = this.permisos
   // fin datos que envio al componente tabla
 
   titlePage = this.translate.instant('mod-users.TABLE_TITLE')
+
+  // inicio datos envio al modal
+  tamano = ""
+  scrollable = false
+  title = ""
+  subtitle = ""
+  save = true
+  buttonSave = this.translate.instant('mod-users.BUTTON_SAVE_')
+  edit = true
+  buttonEdit = this.translate.instant('mod-users.BUTTON_UPDATE_')
+  cancel = true
+  buttonCancel = this.translate.instant('mod-users.BUTTON_CANCEL')
+  cierreModal = "true"
+  componentePrecargado = ""
+  // fin datos envio al modal
 
   cargarIdioma = true;
 
@@ -223,50 +197,16 @@ export class VencimientoComponent implements OnInit {
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-warehouse.LABEL_FECHA_ENTRADA'),
-        data: 'fecha_entrada',
+        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+        data: 'codigo_barra',
         visible: true,
-        className: 'text-center align-middle',
-        render: (data: any) => {
-          if (!data) return '';
-
-          const date = new Date(data);
-
-          if (isNaN(date.getTime())) {
-            return 'Fecha inválida';
-          }
-
-          return date.toLocaleDateString('es-CO', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric',
-            timeZone: 'UTC' // Importante para evitar que cambie de día por la zona horaria local
-          });
-        }
+        className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-warehouse.LABEL_FECHA_VENCIMIENTO'),
-        data: 'fecha_vencimiento',
+        title: this.translate.instant('mod-catalog.PRODUCT.WORD_PRODUCT'),
+        data: 'nombre_producto',
         visible: true,
-        className: 'text-center align-middle',
-        render: (data: any) => {
-          if (!data) return '';
-
-          if (data === "**********") return '';
-
-          const date = new Date(data);
-
-          if (isNaN(date.getTime())) {
-            return 'Fecha inválida';
-          }
-
-          return date.toLocaleDateString('es-CO', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric',
-            timeZone: 'UTC' // Importante para evitar que cambie de día por la zona horaria local
-          });
-        }
+        className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-warehouse.WORD_DAYS_REMAINING'),
@@ -284,41 +224,32 @@ export class VencimientoComponent implements OnInit {
         visible: true,
         className: 'text-center align-middle'
       },
-      {
-        title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_COMPRADA'),
-        data: 'cantidad_comprada',
-        className: 'text-center align-middle'
-      },
-      {
-        title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_VENDIDA'),
-        data: 'cantidad_vendida',
-        className: 'text-center align-middle'
-      },
-      {
-        title: this.translate.instant('mod-warehouse.LABEL_ESTADO'),
-        data: 'estado',
-        className: 'text-center align-middle'
-      },
-
-      {
-        title: this.translate.instant('mod-catalog.PRODUCT.WORD_PRODUCT'),
-        data: 'nombre_producto',
-        visible: true,
-        className: 'text-center align-middle'
-      },
-
-      {
-        title: this.translate.instant('mod-catalog.SUPPLIER.WORD_SUPPLIER'),
-        data: 'nombre_proveedor',
-        visible: true,
-        className: 'text-center align-middle'
-      },
-
-      {
-        title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA'),
-        data: 'cantidad_en_bodega',
-        className: 'text-center align-middle'
-      },
+      // {
+      //   title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_COMPRADA'),
+      //   data: 'cantidad_comprada',
+      //   className: 'text-center align-middle'
+      // },
+      // {
+      //   title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_VENDIDA'),
+      //   data: 'cantidad_vendida',
+      //   className: 'text-center align-middle'
+      // },
+      // {
+      //   title: this.translate.instant('mod-warehouse.LABEL_ESTADO'),
+      //   data: 'estado',
+      //   className: 'text-center align-middle'
+      // },
+      // {
+      //   title: this.translate.instant('mod-catalog.SUPPLIER.WORD_SUPPLIER'),
+      //   data: 'nombre_proveedor',
+      //   visible: true,
+      //   className: 'text-center align-middle'
+      // },
+      // {
+      //   title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA'),
+      //   data: 'cantidad_en_bodega',
+      //   className: 'text-center align-middle'
+      // },
     ]
   }
 
@@ -328,6 +259,30 @@ export class VencimientoComponent implements OnInit {
     // this.titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
     // this.titleTotalActivedUsers = this.translate.instant('mod-users.CARD_TOTAL_ACTIVED_USERS')
     // this.titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
+  }
+
+  async verDataLazy(filaSeleccionada: string) {
+      
+    sessionStorage.setItem('rowSelectedLazy', JSON.stringify(filaSeleccionada))
+    
+    this.title = this.translate.instant('mod-alerts.SEE_TITLE')
+    this.translate.get('mod-alerts.SEE_SUBTITLE').subscribe((res: string) => { this.subtitle = res });
+    this.tamano = "xl"
+    this.scrollable = false
+    this.save = false
+    this.buttonSave = this.translate.instant('mod-users.BUTTON_SAVE_')
+    this.edit = false
+    this.buttonEdit = this.translate.instant('mod-users.BUTTON_UPDATE_')
+    this.cancel = true
+    this.buttonCancel = this.translate.instant('mod-users.BUTTON_CANCEL')
+    this.cierreModal = "true"
+    this.componentePrecargado = 'VerAlertaVComponent'
+
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
+    if (idButton) {
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
+      idButton.click()
+    }
   }
 
   async filtroData() {

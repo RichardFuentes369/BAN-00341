@@ -12,5 +12,12 @@
   "LABEL_ALERT_SORT": "Trier par",
   "SELECT_STATUS_ALERT_SELECT_OPTION": "Sélectionner",
   "WORD_ASCENDING": "Croissant",
-  "WORD_DESCENDING": "Décroissant"
+  "WORD_DESCENDING": "Décroissant",
+
+  "LABEL_REMAINING_DAYS": "Jours restants",
+
+  "SEE_TITLE": "Information d'alerte d'expiration",
+  "SEE_SUBTITLE": "",
+
+  "LEGEND_TITLE_ALERT": "Données de l'alerte d'expiration"
 }

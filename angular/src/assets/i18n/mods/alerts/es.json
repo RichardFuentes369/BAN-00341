@@ -12,5 +12,12 @@
   "LABEL_ALERT_SORT": "Ordenar por",
   "SELECT_STATUS_ALERT_SELECT_OPTION": "Seleccione",
   "WORD_ASCENDING": "Ascendente",
-  "WORD_DESCENDING": "Descendente"
+  "WORD_DESCENDING": "Descendente",
+
+  "LABEL_REMAINING_DAYS": "Días restantes",
+
+  "SEE_TITLE": "Información de alerta de vencimiento",
+  "SEE_SUBTITLE": "",
+
+  "LEGEND_TITLE_ALERT": "Datos de la alerta de vencimiento"
 }

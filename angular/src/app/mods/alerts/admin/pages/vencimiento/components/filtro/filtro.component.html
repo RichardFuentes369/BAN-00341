@@ -1,6 +1,126 @@
 <div class="">
   <div class="col-xl col-sm-12 card pl-0 pr-0 pt-3 pb-4 scroll-card">
     <input type="text" class="d-none complementoRuta" value="">
+    <div class="col-sm-12 mb-2">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-warehouse.LABEL_LOTE' | translate}}
+      </span>
+      <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.p_lote"
+        aria-describedby="emailHelp" placeholder="{{ 'mod-warehouse.PLACEHOLDER_LOTE_F' | translate}}">
+    </div>
+    <div class="col-sm-12 mb-2">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)
+      </span>
+      <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.p_codigo_barra"
+        aria-describedby="emailHelp" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}">
+    </div>
+    <div class="col-sm-12 mb-2">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}
+      </span>
+      <input type="email" class="form-control form-select-sm" id="exampleInputEmail1"
+        [(ngModel)]="model.p_nombre_producto" aria-describedby="emailHelp"
+        placeholder="{{ 'mod-warehouse.PLACEHOLDER_LOTE_F' | translate}}">
+    </div>
+    <div class="col-sm-12 mb-2">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-warehouse.LABEL_FECHA_ENTRADA' | translate}}
+      </span>
+      <div class="row">
+        <div class="col-sm">
+          <input type="date" class="form-control form-select-sm" [(ngModel)]="model.p_fecha_entrada_min">
+        </div>
+        <div class="col-sm">
+          <input type="date" class="form-control form-select-sm" [(ngModel)]="model.p_fecha_entrada_max">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 mb-2">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}
+      </span>
+      <div class="row">
+        <div class="col-sm">
+          <input type="date" class="form-control form-select-sm" [(ngModel)]="model.p_fecha_vencimiento_min">
+        </div>
+        <div class="col-sm">
+          <input type="date" class="form-control form-select-sm" [(ngModel)]="model.p_fecha_vencimiento_max">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 mb-2">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}
+      </span>
+      <div class="row">
+        <div class="col-sm">
+          <input type="email" class="form-control form-select-sm" id="exampleInputEmail1"
+            [(ngModel)]="model.p_cantidad_comprada_min" aria-describedby="emailHelp"
+            placeholder="{{ 'mod-warehouse.PLACEHOLDER_STOCK_MIN_F' | translate}}">
+        </div>
+        <div class="col-sm">
+          <input type="email" class="form-control form-select-sm" id="exampleInputEmail1"
+            [(ngModel)]="model.p_cantidad_comprada_max" aria-describedby="emailHelp"
+            placeholder="{{ 'mod-warehouse.PLACEHOLDER_STOCK_MAX_F' | translate}}">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 mb-2">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-warehouse.LABEL_CANTIDAD_VENDIDA' | translate}}
+      </span>
+      <div class="row">
+        <div class="col-sm">
+          <input type="email" class="form-control form-select-sm" id="exampleInputEmail1"
+            [(ngModel)]="model.p_cantidad_vendida_min" aria-describedby="emailHelp"
+            placeholder="{{ 'mod-warehouse.PLACEHOLDER_STOCK_MIN_F' | translate}}">
+        </div>
+        <div class="col-sm">
+          <input type="email" class="form-control form-select-sm" id="exampleInputEmail1"
+            [(ngModel)]="model.p_cantidad_vendida_max" aria-describedby="emailHelp"
+            placeholder="{{ 'mod-warehouse.PLACEHOLDER_STOCK_MAX_F' | translate}}">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 mb-2">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-alerts.LABEL_REMAINING_DAYS' | translate}}
+      </span>
+      <div class="row">
+        <div class="col-sm">
+          <input type="email" class="form-control form-select-sm" id="exampleInputEmail1"
+            [(ngModel)]="model.p_dias_restantes_min" aria-describedby="emailHelp"
+            placeholder="{{ 'mod-warehouse.PLACEHOLDER_STOCK_MIN_F' | translate}}">
+        </div>
+        <div class="col-sm">
+          <input type="email" class="form-control form-select-sm" id="exampleInputEmail1"
+            [(ngModel)]="model.p_dias_restantes_max" aria-describedby="emailHelp"
+            placeholder="{{ 'mod-warehouse.PLACEHOLDER_STOCK_MAX_F' | translate}}">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 mb-2">
+      <span class="" for="exampleInputEmail1">
+        {{ 'mod-warehouse.LABEL_CANTIDAD_BODEGA' | translate}}
+      </span>
+      <div class="row">
+        <div class="col-sm">
+          <input type="email" class="form-control form-select-sm" id="exampleInputEmail1"
+            [(ngModel)]="model.p_cantidad_bodega_min" aria-describedby="emailHelp"
+            placeholder="{{ 'mod-warehouse.PLACEHOLDER_STOCK_MIN_F' | translate}}">
+        </div>
+        <div class="col-sm">
+          <input type="email" class="form-control form-select-sm" id="exampleInputEmail1"
+            [(ngModel)]="model.p_cantidad_bodega_max" aria-describedby="emailHelp"
+            placeholder="{{ 'mod-warehouse.PLACEHOLDER_STOCK_MAX_F' | translate}}">
+        </div>
+      </div>
+    </div>
+
     <div class="col-sm-12">
       <span class="" for="exampleInputEmail1">
         {{ 'mod-alerts.LABEL_ALERT_SORT' | translate}}

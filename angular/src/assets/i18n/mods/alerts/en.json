@@ -12,5 +12,12 @@
   "LABEL_ALERT_SORT": "Sort by",
   "SELECT_STATUS_ALERT_SELECT_OPTION": "Select",
   "WORD_ASCENDING": "Ascending",
-  "WORD_DESCENDING": "Descending"
+  "WORD_DESCENDING": "Descending",
+
+  "LABEL_REMAINING_DAYS": "Remaining days",
+
+  "SEE_TITLE": "Expiration alert information",
+  "SEE_SUBTITLE": "",
+
+  "LEGEND_TITLE_ALERT": "Expiration Alert Data"
 }

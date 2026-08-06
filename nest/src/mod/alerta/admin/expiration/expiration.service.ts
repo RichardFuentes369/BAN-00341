@@ -12,15 +12,50 @@ export class ExpirationService {
     @Inject('DATA_SOURCE') private readonly dataSource: DataSource,
   ) { }
 
-  async findAll(page: string, limit: string, field: string, order: string) {
+  async findAll(
+    page: string, 
+    limit: string, 
+    field: string, 
+    order: string,
+    p_lote: string,
+    p_codigo_barra: string,
+    p_nombre_producto: string,
+    p_cantidad_comprada_min: string,
+    p_cantidad_comprada_max: string,
+    p_cantidad_vendida_min: string,
+    p_cantidad_vendida_max: string,
+    p_cantidad_bodega_min: string,
+    p_cantidad_bodega_max: string,
+    p_dias_restantes_min: string,
+    p_dias_restantes_max: string,
+    p_fecha_entrada_min: string,
+    p_fecha_entrada_max: string,
+    p_fecha_vencimiento_min: string,
+    p_fecha_vencimiento_max: string
+  ) {
     try {
       const result = await this.dataSource.manager.query(
-        'CALL sp_notificaciones_perecederos(?,?,?,?)',
+        'CALL sp_notificaciones_perecederos(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
         [
           (page === 'null') ? null : page,
           (limit === 'null') ? null : limit,
           (field === 'null') ? null : field,
           (order === 'null') ? null : order,
+          (p_lote === 'null') ? null : p_lote,
+          (p_codigo_barra === 'null') ? null : p_codigo_barra,
+          (p_nombre_producto === 'null') ? null : p_nombre_producto,
+          (p_cantidad_comprada_min === 'null') ? null : p_cantidad_comprada_min,
+          (p_cantidad_comprada_max === 'null') ? null : p_cantidad_comprada_max,
+          (p_cantidad_vendida_min === 'null') ? null : p_cantidad_vendida_min,
+          (p_cantidad_vendida_max === 'null') ? null : p_cantidad_vendida_max,
+          (p_cantidad_bodega_min === 'null') ? null : p_cantidad_bodega_min,
+          (p_cantidad_bodega_max === 'null') ? null : p_cantidad_bodega_max,
+          (p_dias_restantes_min === 'null') ? null : p_dias_restantes_min,
+          (p_dias_restantes_max === 'null') ? null : p_dias_restantes_max,
+          (p_fecha_entrada_min === 'null') ? null : p_fecha_entrada_min,
+          (p_fecha_entrada_max === 'null') ? null : p_fecha_entrada_max,
+          (p_fecha_vencimiento_min === 'null') ? null : p_fecha_vencimiento_min,
+          (p_fecha_vencimiento_max === 'null') ? null : p_fecha_vencimiento_max,
         ]
       )
       return result;

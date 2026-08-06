@@ -25,7 +25,7 @@
     <div class="table-container">
       <app-globales-tablecrud [campoFiltro]="showcampoFiltro" [endPoint]="endPoint" [columnas]="columnas"
         [habilitarSeleccion]="habilitarSeleccion" [permisosAcciones]="permisos" [filters]="filters" 
-        [orderField]="orderField" [order]="order" [title]="titlePage">
+        [orderField]="orderField" [order]="order" [title]="titlePage" (verItemPeresozo)="verDataLazy($event)">
       </app-globales-tablecrud>
     </div>
     } @else {
@@ -35,4 +35,9 @@
     }
   </div>
   <!-- Fin tabla registros -->
+
+  <app-globales-modal-boostrap [tamano]="tamano" [scrollable]="scrollable" [title]="title" [subtitle]="subtitle"
+    [save]="save" [buttonSave]="buttonSave" [edit]="edit" [buttonEdit]="buttonEdit" [cancel]="cancel"
+    [buttonCancel]="buttonCancel" [componentePrecargado]="componentePrecargado" [cierreModal]="cierreModal">
+  </app-globales-modal-boostrap>
 </div>

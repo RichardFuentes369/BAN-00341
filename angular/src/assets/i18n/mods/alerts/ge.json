@@ -12,5 +12,12 @@
   "LABEL_ALERT_SORT": "Sortieren nach",
   "SELECT_STATUS_ALERT_SELECT_OPTION": "Auswählen",
   "WORD_ASCENDING": "Aufsteigend",
-  "WORD_DESCENDING": "Absteigend"
+  "WORD_DESCENDING": "Absteigend",
+
+  "LABEL_REMAINING_DAYS": "Verbleibende Tage",
+
+  "SEE_TITLE": "Verfallswarninformation",
+  "SEE_SUBTITLE": "",
+
+  "LEGEND_TITLE_ALERT": "Daten zur Ablaufwarnung"
 }
