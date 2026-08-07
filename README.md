@@ -11,14 +11,7 @@ CTRL + SHIFT + V
 
 	1. Checkear todos los editar (hay bugs) [Algunos campos actualizan, otros no] [Los select dependientes]
 	2. Hacer enpoint para marcar un producto como vendido o devolución (validar como) (*)
-		
 	3. Graficos (*)
-
-	4. Alertas > vencimiento > filtro (muy triplehp, pero facil) | ver
-	5. Alertas > bodega > filtro (muy triplehp, pero facil) | ver
-
-	6. Campanita de notificaciónes (+/-) (mirar si hay algo que me acualice en tiempo real)
-	7. Permisos (mirar si hay algo que me acualice en tiempo real)
 
 ### Ajustes
 
