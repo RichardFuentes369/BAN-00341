@@ -16,6 +16,10 @@
           <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].head_background" (ngModelChange)="refreshData()">
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Head text color</label>
+          <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].head_text_color" (ngModelChange)="refreshData()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
           <label class="title-custom">Row text color</label>
           <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].row_text_color" (ngModelChange)="refreshData()">
         </div>

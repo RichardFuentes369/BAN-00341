@@ -151,10 +151,10 @@
     background: var(--grid_table_crud_custom-head_background) !important;
     border-radius: 8px !important;
   }
-
+  
   th {
     background: transparent !important;
-    color: #ffffff !important;
+    color: var(--grid_table_crud_custom-head_text_color) !important;
     font-weight: 600;
     text-align: center;
     white-space: nowrap;

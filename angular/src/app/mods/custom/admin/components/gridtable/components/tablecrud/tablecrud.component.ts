@@ -134,6 +134,7 @@ export class TablecrudCustomComponent implements OnInit {
           --grid_table_crud_custom-text_color: ${temaActual.text_color};
           --grid_table_crud_custom-background_color: ${temaActual.background_color};
           --grid_table_crud_custom-head_background: ${temaActual.head_background};
+          --grid_table_crud_custom-head_text_color: ${temaActual.head_text_color};
           --grid_table_crud_custom-row_text_color: ${temaActual.row_text_color};
           --grid_table_crud_custom-row_text_select: ${temaActual.row_text_select};
           --grid_table_crud_custom-row_select: ${temaActual.row_select};
