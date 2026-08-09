@@ -1,0 +1,108 @@
+<div class="card-preview-container col-sm-12 row">
+  <div class="col-sm bg_system rounded-5 p-5">
+    <div class="card shadow card-custom pt-0 px-4 bg_grid_table_crud_custom">
+      <!-- Botonera -->
+      <div class="bg_grid_table_crud_custom botoneria d-flex flex-column flex-md-row align-items-md-center px-0  mb-3">
+        <div class="title-container mt-2 mb-2 mb-md-0">
+          <h5 class="m-0 fw-bold title">{{ title }}</h5>
+          <span class="custom_text" style="font-size: 0.85rem;">
+            {{ 'global-tablecrud.WORD_SELECTED' | translate }}
+            (<b>{{idsSeleccionados.length}}</b>)
+          </span>
+        </div>
+
+        <div class="actions-container d-flex flex-wrap align-items-center ms-md-auto">
+          <span>
+            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
+              [disabled]="idsSeleccionados.length >= 1">
+              <i class="fa-solid fa-circle-plus icon-main" [class.text-crear]="idsSeleccionados.length === 0"
+                [class.text-muted]="idsSeleccionados.length >= 1"></i>
+              <div class="nameButton text-lowercase">
+                {{ 'global-tablecrud.BUTTON_OPTION_CREATE' | translate }}
+              </div>
+            </button>
+          </span>
+          <span>
+            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
+              [disabled]="idsSeleccionados.length !== 1">
+              <i class="fa-solid fa-list" [class.text-asignar-productos]="idsSeleccionados.length === 1"
+                [class.text-muted]="idsSeleccionados.length !== 1"></i>
+              <div class="nameButton text-lowercase">
+                {{ 'global-tablecrud.BUTTON_OPTION_ASSIGN_PRODUCTS' | translate }}
+              </div>
+            </button>
+          </span>
+          <span>
+            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
+              [disabled]="idsSeleccionados.length !== 1">
+              <i class="fa-solid fa-eye" [class.text-ver]="idsSeleccionados.length === 1"
+                [class.text-muted]="idsSeleccionados.length !== 1"></i>
+              <div class="nameButton text-lowercase">
+                {{ 'global-tablecrud.BUTTON_OPTION_SEE' | translate }}
+              </div>
+            </button>
+          </span>
+          <span>
+            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
+              [disabled]="idsSeleccionados.length !== 1">
+              <i class="fa-solid fa-pen-to-square" [class.text-editar]="idsSeleccionados.length === 1"
+                [class.text-muted]="idsSeleccionados.length !== 1"></i>
+              <div class="nameButton text-lowercase">
+                {{ 'global-tablecrud.BUTTON_OPTION_EDIT' | translate }}
+              </div>
+            </button>
+          </span>
+          <span>
+            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
+              [disabled]="idsSeleccionados.length === 0 || idsSeleccionados.length > 1">
+              <i class="fa-solid fa-trash-can" [class.text-eliminar-inidividual]="idsSeleccionados.length > 0"
+                [class.text-muted]="idsSeleccionados.length === 0 || idsSeleccionados.length > 1"></i>
+              <div class="nameButton text-lowercase">
+                {{ 'global-tablecrud.BUTTON_OPTION_DELETE' | translate }}
+              </div>
+            </button>
+          </span>
+          <span>
+            <button class="btn p-0 border-0 action-icon-btn d-flex align-items-center"
+              [disabled]="idsSeleccionados.length === 0">
+              <i class="fa-solid fa-broom" [class.text-limpiar]="idsSeleccionados.length > 0"
+                [class.text-muted]="idsSeleccionados.length === 0"></i>
+              <div class="nameButton text-lowercase">
+                {{ 'global-tablecrud.BUTTON_OPTION_CLEAR' | translate }}
+              </div>
+            </button>
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        @for (item of datos; track item.id) {
+        <div class="col-12 col-sm mb-3 pt-1 pb-1 animate__fadeIn">
+          <!-- Fíjate en la clase is-selected y card-modern -->
+          <div class="card card-modern h-100 shadow-sm pointer" [class.is-selected]="idsSeleccionados.includes(item.id)"
+            (click)="toggleSelection(item.id)">
+
+            <div class="card-body text-center d-flex flex-column align-items-center justify-content-center py-4">
+              <h6 class="fw-bold mb-1 text-title text-truncate w-100">{{item.nombre}}</h6>
+              <p class="small text-subtitle text-muted mb-0 text-truncate-2">{{item.descripcion}}</p>
+            </div>
+
+            <!-- Footer opcional para totales -->
+            <div class="card-footer bg-transparent border-0 text-center pt-3 pb-3">
+              <span class="badge rounded-pill border border-primary-subtle fw-medium text-primary bg-light px-3 ">
+                <!-- Puedes ajustar esto según lo necesites -->
+                Total: {{item.id}}
+              </span>
+            </div>
+          </div>
+        </div>
+        } @empty {
+        <div class="col-12 text-center py-5">
+          <i class="fa-solid fa-box-open d-block mb-2 opacity-25" style="font-size: 3rem;"></i>
+          <span class="text-muted">No hay información</span>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

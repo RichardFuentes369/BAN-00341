@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuCustomComponent } from '../../components/menu/menu.component';
-import { TablecrudCustomComponent } from '../../components/tablecrud/tablecrud.component';
-import { GridcrudCustomComponent } from '../../components/gridcrud/gridcrud.component';
 import { KpicardCustomComponent } from '../../components/kpicard/kpicard.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { ModalCustomComponent } from '../../components/modal/modal.component';
 import { SearchCustomComponent } from '../../components/search/search.component';
 import { InputSelectCustomComponent } from '../../components/input-select/input-select.component';
 import { VarsService } from '@service/globales/vars/vars.service';
+import { GridtableCustomComponent } from '../../components/gridtable/gridtable.component';
 
 @Component({
   selector: 'app-index',
@@ -19,8 +18,7 @@ import { VarsService } from '@service/globales/vars/vars.service';
     TranslateModule,
     MenuCustomComponent,
     KpicardCustomComponent,
-    TablecrudCustomComponent,
-    GridcrudCustomComponent,
+    GridtableCustomComponent,
     ModalCustomComponent,
     SearchCustomComponent
   ],
@@ -39,10 +37,10 @@ export class IndexComponent implements OnInit {
   vistas = {
     layoutIndex: false,
     layoutAdmin: false,
-    menu: true,
+    menu: false,
     input_select: false,
     kpi: false,
-    table_grid: false,
+    table_grid: true,
     modal: false,
     search: false,
     report: false,
@@ -52,6 +50,7 @@ export class IndexComponent implements OnInit {
   custom_json_input: any = {};
   custom_json_kpi: any = {};
   custom_json_menu: any = {};
+  custom_json_grid_table: any = {};
 
   async ngOnInit() {
     this.currentTheme = await localStorage.getItem('theme') || 'light';
@@ -69,6 +68,10 @@ export class IndexComponent implements OnInit {
       this.custom_json_menu = {
         light: parsed.light.card_menu,
         dark: parsed.dark.card_menu 
+      }
+      this.custom_json_grid_table = {
+        light: parsed.light.grid_table_crud,
+        dark: parsed.dark.grid_table_crud 
       }
     }
   }

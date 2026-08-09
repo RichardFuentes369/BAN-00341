@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './gridcrud.component.scss',
 })
 export class GridcrudCustomComponent implements OnInit {
-  title: string = 'Prueba';
+  title: string = 'Registros';
   idsSeleccionados: number[] = [];
 
   // Datos estáticos definidos aquí mismo

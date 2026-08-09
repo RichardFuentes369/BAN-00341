@@ -1,25 +1,23 @@
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2 } from '@angular/core';
+import { Component, ElementRef, Input, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { GridcrudCustomComponent } from './components/gridcrud/gridcrud.component';
+import { TablecrudCustomComponent } from './components/tablecrud/tablecrud.component';
 
 @Component({
-  selector: 'app-custom-menu',
+  selector: 'app-custom-gridtable',
   standalone: true,
-  imports: [TranslateModule, FormsModule],
-  templateUrl: './menu.component.html',
-  styleUrl: './menu.component.scss',
+  imports: [TranslateModule, FormsModule, GridcrudCustomComponent, TablecrudCustomComponent],
+  templateUrl: './gridtable.component.html',
+  styleUrl: './gridtable.component.scss',
 })
-export class MenuCustomComponent implements OnInit, OnDestroy {
+export class GridtableCustomComponent {
 
   @Input() theme: string = ''
-  img1 = 'assets/images/img_users.png'
-  img2 = 'assets/images/img_catalog.png'
 
   private themeListener!: (event: any) => void;
 
-  _jsonMenutData: any = {};
-
-  @Output() jsonMenuChanges = new EventEmitter<any>();
+  _jsonGridTableCrudData: any = {};
 
   constructor(private renderer: Renderer2, private elRef: ElementRef) { }
 
@@ -43,9 +41,9 @@ export class MenuCustomComponent implements OnInit, OnDestroy {
   }
 
   @Input()
-  set json_menu(value: any) {
+  set json_grid_table(value: any) {
     if (value) {
-      this._jsonMenutData = {
+      this._jsonGridTableCrudData = {
         light: {
           text_color: value.light?.text_color || value.light?.bg || '#ffffff',
           icon_color: value.light?.icon_color || value.light?.label || '#000000',
@@ -65,12 +63,12 @@ export class MenuCustomComponent implements OnInit, OnDestroy {
     }
   }
 
-  get json_menu(): any {
-    return this._jsonMenutData;
+  get json_grid_table(): any {
+    return this._jsonGridTableCrudData;
   }
 
   aplicarEstilosVisuales() {
-    const temaActual = this._jsonMenutData[this.theme];
+    const temaActual = this._jsonGridTableCrudData[this.theme];
 
     if (temaActual) {
       const container = this.elRef.nativeElement.querySelector('.card-preview-container');
