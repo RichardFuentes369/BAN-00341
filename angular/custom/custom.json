@@ -185,7 +185,7 @@
     "card_menu": {
       "text_color": "#FFFFFF",
       "icon_color": "#FFFFFF",
-      "hover_card_color": "#CFCACA",
+      "hover_card_color": "#716f6f",
       "background_card_color": "#474747"
     },
     "grid_table_crud": {

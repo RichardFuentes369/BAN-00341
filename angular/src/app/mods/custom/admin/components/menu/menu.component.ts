@@ -53,10 +53,10 @@ export class MenuCustomComponent implements OnInit, OnDestroy {
           hover_card_color: value.light?.hover_card_color || value.light?.label || '#000000',
         },
         dark: {
-          text_color: value.light?.text_color || value.light?.bg || '#ffffff',
-          icon_color: value.light?.icon_color || value.light?.label || '#000000',
-          background_card_color: value.light?.background_card_color || value.light?.text || '#000000',
-          hover_card_color: value.light?.hover_card_color || value.light?.label || '#000000',
+          text_color: value.dark?.text_color || value.dark?.bg || '#ffffff',
+          icon_color: value.dark?.icon_color || value.dark?.label || '#000000',
+          background_card_color: value.dark?.background_card_color || value.dark?.text || '#000000',
+          hover_card_color: value.dark?.hover_card_color || value.dark?.label || '#000000',
         }
       };
       

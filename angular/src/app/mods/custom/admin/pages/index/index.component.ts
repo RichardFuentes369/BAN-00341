@@ -65,10 +65,10 @@ export class IndexComponent implements OnInit {
       this.custom_json_kpi = {
         light: parsed.light.kpicard,
         dark: parsed.dark.kpicard
-      }
+      };
       this.custom_json_menu = {
         light: parsed.light.card_menu,
-        dark: parsed.dark.card_menu
+        dark: parsed.dark.card_menu 
       }
     }
   }
