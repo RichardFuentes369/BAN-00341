@@ -1,59 +1,47 @@
-<div class="col-sm-12 row">
-  <div class="col-sm my-auto">
-    <span class="" for="exampleInputEmail1">
+<div class="card-preview-container col-sm-12 row">
+  <div class="col-sm-4 row">
+    <div class="container row">
+      <div class="col text-center">
+        <label class="fw-bold mb-3 title-custom text-uppercase">{{ theme }}</label>
+
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Background color</label>
+          <input type="color" [(ngModel)]="_jsonInputData[theme].background_color" (input)="aplicarEstilosVisuales()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Label color</label>
+          <input type="color" [(ngModel)]="_jsonInputData[theme].label_color" (input)="aplicarEstilosVisuales()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Text color</label>
+          <input type="color" [(ngModel)]="_jsonInputData[theme].text_color" (input)="aplicarEstilosVisuales()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Placeholder color</label>
+          <input type="color" [(ngModel)]="_jsonInputData[theme].text_color_placeholder" (input)="aplicarEstilosVisuales()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Border color</label>
+          <input type="color" [(ngModel)]="_jsonInputData[theme].border_color" (input)="aplicarEstilosVisuales()">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm bg_system rounded-5 p-5">
+    <label class="label-color">
       {{ 'mod-users.LABEL_USER_FIRSTNAME' | translate}}
-    </span>
+    </label>
     <input type="text" class="form-control form-select-sm" id="exampleInputEmail1"
       placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
-    <span class="" for="exampleInputEmail1">
+    
+    <label class="label-color">
       {{ 'mod-users.LABEL_USER_FIRSTNAME' | translate}}
-    </span>
+    </label>
     <select name="" id="" class="form-control form-select-sm custom-select">
       <option value="">{{ 'mod-users.SELECT_STATUS_USER_SELECT_OPTION' | translate}}</option>
       <option value="">Option A</option>
       <option value="">Option B</option>
       <option value="">Option C</option>
     </select>
-
-  </div>
-  <div class="col-sm-4 row">
-    <label for="" class="text-center title-custom">
-      Colores card menu
-    </label>
-    <div class="container row">
-      <div class="col text-center">
-        <label class="fw-bold mb-3 title-custom ">Light</label>
-
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Background</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Text</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-      </div>
-
-      <div class="col text-center">
-        <label class="fw-bold mb-3 title-custom">Dark</label>
-
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Background</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Text</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-      </div>
-    </div>
   </div>
 </div>

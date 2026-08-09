@@ -10,7 +10,7 @@
         </legend>
         <div class="row" *ngIf="mostrarSeccion.productSeccion" [class.animate__fadeIn]="mostrarSeccion.productSeccion" [class.animate__fadeOut]="!mostrarSeccion.productSeccion">
           <div class="col-sm-12 form-group mb-3">
-            <label>{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
+            <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
             <input type="text" class="form-control form-select-sm" [class]="(fielddBarCode) ? 'bg-light' :''" [(ngModel)]="producto.codigo_barra" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.codigo_barra" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}" [disabled]="fielddBarCode">
             @if(validators.producto_inactivo) {
             <div class="d-flex justify-content-between">
@@ -48,15 +48,15 @@
             @if(show_detail_product){
             <div class="row mt-3">
               <div class="col-sm-6 form-group">
-                <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
+                <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
                 <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.nombre" disabled>
               </div>
               <div class="col-sm-6 form-group">
-                <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
+                <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
                 <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.marca" disabled>
               </div>
               <div class="col-sm form-group">
-                <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</label>
+                <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</label>
                 <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.unidad_medida" disabled>
               </div>
             </div>
@@ -90,7 +90,7 @@
         </legend>
         <div class="row" *ngIf ="mostrarSeccion.providerSeccion" [class.animate__fadeIn]="mostrarSeccion.providerSeccion" [class.animate__fadeOut]="!mostrarSeccion.providerSeccion">
           <div class="col-sm-12 form-group mb-3">
-            <label>{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}</label>
+            <label class="label-color">{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}</label>
             <input type="text" class="form-control form-select-sm" [(ngModel)]="proveedor.nit" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nit" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate}}">
             @if(validators.nit) {
               <span class="text-danger small">{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate }}</span>
@@ -98,11 +98,11 @@
             @if(show_detail_provider){
             <div class="row mt-3">
               <div class="col-sm-6 form-group">
-                <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
+                <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
                 <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="proveedor.razon_social" disabled>
               </div>
               <div class="col-sm-6 form-group">
-                <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
+                <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
                 <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="proveedor.correo" disabled>
               </div>
             </div>
@@ -138,7 +138,7 @@
         </legend>
         <div class="row" *ngIf="mostrarSeccion.batchSeccion" [class.animate__fadeIn]="mostrarSeccion.batchSeccion" [class.animate__fadeOut]="!mostrarSeccion.batchSeccion">
           <div class="col-sm-12 form-group">
-            <label for="exampleInputEmail1">
+            <label class="label-color">
               {{ 'mod-warehouse.LABEL_LOTE' | translate}}
             </label>
             <input type="text" class="form-control form-select-sm" [(ngModel)]="model.lote" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.lote" placeholder="{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate}}">
@@ -147,7 +147,7 @@
             }
           </div> 
           <div class="col-sm-12 form-group">
-            <label for="exampleInputEmail1">
+            <label class="label-color">
               {{ 'mod-warehouse.LABEL_FECHA_ENTRADA' | translate}}
             </label>
             <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_entrada" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.fecha_entrada" placeholder="{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate}}">
@@ -157,7 +157,7 @@
           </div> 
           @if(producto.es_perecedero){
             <div class="col-sm-12 form-group">
-              <label for="exampleInputEmail1">
+              <label class="label-color">
                 {{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}
               </label>
               <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_vencimiento" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.fecha_vencimiento" placeholder="{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate}}">
@@ -167,7 +167,7 @@
             </div> 
           }
           <div class="col-sm-12 form-group">
-            <label for="exampleInputEmail1">
+            <label class="label-color">
               {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}  
             </label>
             <input type="number" min="0" class="form-control form-select-sm" [(ngModel)]="model.cantidad_comprada" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.cantidad_comprada" placeholder="{{ 'mod-warehouse.PLACEHOLDER_CANTIDAD_COMPRADA' | translate}}">
@@ -177,7 +177,7 @@
             }
           </div> 
           <div class="col-sm-12 form-group">
-            <label for="exampleInputEmail1">
+            <label class="label-color">
               {{ 'mod-warehouse.LABEL_ESTADO' | translate}}
             </label>
             <select class="form-control custom-select form-select-sm" [(ngModel)]="model.estado" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.estado">

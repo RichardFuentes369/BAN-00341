@@ -1,7 +1,3 @@
-<!-- <div class="">
-  @for (item of lote; track item; let  i = $index) {
-  }
-</div> -->
 <div class="">
   <div class="col-xl col-sm-12">
     <fieldset class="border p-3 rounded">
@@ -13,19 +9,19 @@
       </legend>
       <div class="row" *ngIf="mostrarSeccion.productSeccion" [class.animate__fadeIn]="mostrarSeccion.productSeccion" [class.animate__fadeOut]="!mostrarSeccion.productSeccion">
         <div class="col-sm-12 form-group mb-3">
-          <label>{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
+          <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
           <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="model.codigo_barra" disabled>
           <div class="row mt-3">
             <div class="col-sm-6 form-group">
-              <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
+              <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
               <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.nombre" disabled>
             </div>
             <div class="col-sm-6 form-group">
-              <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
+              <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
               <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.marca" disabled>
             </div>
             <div class="col-sm form-group">
-              <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</label>
+              <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</label>
               <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.unidad_medida" disabled>
             </div>
           </div>
@@ -42,15 +38,15 @@
       </legend>
       <div class="row" *ngIf ="mostrarSeccion.providerSeccion" [class.animate__fadeIn]="mostrarSeccion.providerSeccion" [class.animate__fadeOut]="!mostrarSeccion.providerSeccion">
         <div class="col-sm-12 form-group mb-3">
-          <label>{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}</label>
+          <label class="label-color">{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}</label>
           <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="proveedor.nit" disabled>
           <div class="row mt-3">
             <div class="col-sm-6 form-group">
-              <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
+              <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
               <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="proveedor.razon_social" disabled>
             </div>
             <div class="col-sm-6 form-group">
-              <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
+              <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
               <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="proveedor.correo" disabled>
             </div>
           </div>
@@ -67,20 +63,20 @@
       </legend>
       <div class="row" *ngIf="mostrarSeccion.batchSeccion" [class.animate__fadeIn]="mostrarSeccion.batchSeccion" [class.animate__fadeOut]="!mostrarSeccion.batchSeccion">
         <div class="col-sm-12 form-group">
-          <label for="exampleInputEmail1">
+          <label class="label-color">
             {{ 'mod-warehouse.LABEL_LOTE' | translate}}
           </label>
           <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="model.lote" disabled>
         </div>
         <div class="col-sm-12 form-group">
-          <label for="exampleInputEmail1">
+          <label class="label-color">
             {{ 'mod-warehouse.LABEL_FECHA_ENTRADA' | translate}}
           </label>
           <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="model.fecha_entrada" disabled>
         </div>
         @if(producto.es_perecedero){
         <div class="col-sm-12 form-group">
-          <label for="exampleInputEmail1">
+          <label class="label-color">
             {{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}
           </label>
           <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="model.fecha_vencimiento" disabled>
@@ -89,28 +85,28 @@
         <div class="col-sm-12 form-group">
           <div class="row">
             <div class="col-sm-6 form-group">
-              <label for="exampleInputEmail1">
+              <label class="label-color">
                 {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}
               </label>
               <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="model.cantidad_comprada" disabled>
               <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
             </div>
             <div class="col-sm-6 form-group">
-              <label for="exampleInputEmail1">
+              <label class="label-color">
                 {{ 'mod-warehouse.LABEL_CANTIDAD_VENDIDA' | translate}}
               </label>
               <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="model.cantidad_vendida" disabled>
               <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
             </div>
             <div class="col-sm-6 form-group">
-              <label for="exampleInputEmail1">
+              <label class="label-color">
                 {{ 'mod-warehouse.LABEL_CANTIDAD_AFECTADA' | translate}}
               </label>
               <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="cantidad_afectada_por_merma" disabled>
               <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
             </div>
             <div class="col-sm-6 form-group">
-              <label for="exampleInputEmail1">
+              <label class="label-color">
                 {{ 'mod-warehouse.LABEL_CANTIDAD_BODEGA' | translate}}
               </label>
               <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="model.cantidad_en_bodega" disabled>
@@ -119,7 +115,7 @@
           </div>
         </div>
         <div class="col-sm-12 form-group">
-          <label for="exampleInputEmail1">
+          <label class="label-color">
             {{ 'mod-warehouse.LABEL_ESTADO' | translate}}
           </label>
           <select class="form-control custom-select form-select-sm bg-light" [(ngModel)]="model.estado" disabled>

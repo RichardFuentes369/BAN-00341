@@ -82,6 +82,7 @@
       "button_limpiar": "#6B7280"
     },
     "input": {
+      "label_color": "#000000",
       "text_color_placeholder": "#B6C2B4",
       "background_color": "#FFFFFF",
       "text_color": "#000000",
@@ -205,6 +206,7 @@
       "button_limpiar": "#4B5563"
     },
     "input": {
+      "label_color": "#FFFFFF",
       "text_color_placeholder": "#9E9E95",
       "background_color": "#000000",
       "text_color": "#ffffff",

@@ -1,6 +1,7 @@
 .form-control {
   background-color: var(--input-background_color) !important; 
   color: var(--input-text_color) !important;
+  border-color: var(--input-border_color) !important;
 }
 .form-control::placeholder {
   color: var(--input-text_color_placeholder) !important; 
@@ -11,4 +12,8 @@
   background-color: color-mix(in srgb, var(--input-background_color) 90%, var(--input-text_color)) !important;
   color: var(--input-text_color) !important;
   opacity: 1; /* Opcional: elimina la transparencia por defecto que aplica Bootstrap */
+}
+
+.label-color {
+  color: var(--input_custom-label_color) !important;
 }

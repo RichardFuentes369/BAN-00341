@@ -1,4 +1,5 @@
 export const STORAGE_KEY_TOKEN = 'token';
+export const STORAGE_KEY_THEME = 'theme';
 export const STORAGE_KEY_TOKEN_ADMIN = 'token_admin';
 export const STORAGE_KEY_TOKEN_FINAL = 'token_final';
 export const STORAGE_KEY_PROFILE = 'profile';

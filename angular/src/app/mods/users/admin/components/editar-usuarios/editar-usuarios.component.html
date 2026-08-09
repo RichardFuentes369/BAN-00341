@@ -8,7 +8,7 @@
         <div class="col-xl col-sm-12">
           <div class="col-sm-12 row p-0">
             <div class="col-sm-6 form-group">
-              <label for="exampleInputEmail1">
+              <label class="label-color" for="exampleInputEmail1">
                 {{ 'mod-users.LABEL_USER_FIRSTNAME' | translate}}
               </label>
               <input type="text" class="form-control form-select-sm" [(ngModel)]="model.firstName" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.firstName" placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
@@ -17,7 +17,7 @@
               }
             </div>
             <div class="col-sm-6 form-group">
-              <label for="exampleInputEmail1">
+              <label class="label-color" for="exampleInputEmail1">
                 {{ 'mod-users.LABEL_USER_LASTNAME' | translate}}
               </label>
               <input type="text" class="form-control form-select-sm" [(ngModel)]="model.lastName" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.lastName" placeholder="{{ 'mod-users.PLACEHOLDER_USER_LASTNAME' | translate}}">
@@ -28,7 +28,7 @@
           </div>
           <div class="col-sm-12 row p-0">
             <div class="col-sm-6 form-group">
-              <label for="exampleInputEmail1">
+              <label class="label-color" for="exampleInputEmail1">
                 {{ 'mod-users.LABEL_USER_EMAIL' | translate}}
               </label>
               <input type="email" class="form-control form-select-sm" [(ngModel)]="model.email" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.email" placeholder="{{ 'mod-users.PLACEHOLDER_USER_EMAIL' | translate}}">
@@ -37,7 +37,7 @@
               }
             </div>
             <div class="col-sm-6 form-group">
-              <label for="exampleInputEmail1">
+              <label class="label-color" for="exampleInputEmail1">
                 {{ 'mod-users.LABEL_USER_PASSWORD' | translate}}
               </label>
               <div class="input-group">
@@ -58,7 +58,7 @@
           </div>
           <div class="col-sm-12 row p-0">
             <div class="col-sm-6 form-group">
-              <label for="exampleInputEmail1">
+              <label class="label-color" for="exampleInputEmail1">
                 {{ 'mod-users.LABEL_USER_STATUS' | translate}}
               </label>
               <select [(ngModel)]="optionSelect" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.selectHas" class="form-control form-select-sm custom-select">

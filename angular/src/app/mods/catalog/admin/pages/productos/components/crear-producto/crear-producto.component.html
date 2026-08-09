@@ -9,7 +9,7 @@
       </legend>
       <div class="row" *ngIf="mostrarSeccion.productSeccion" [class.animate__fadeIn]="mostrarSeccion.productSeccion" [class.animate__fadeOut]="!mostrarSeccion.productSeccion">
         <div class="col-sm-6 form-group mb-3">
-          <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
+          <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
           <input type="text" class="form-control form-select-sm" [(ngModel)]="model.nombre" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nombre" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_NAME_PRODUCT' | translate }}">
           @if(validators.nombre) {
             <span class="text-danger small">{{ 'mod-catalog.PRODUCT.PLACEHOLDER_NAME_PRODUCT' | translate }}</span>
@@ -17,7 +17,7 @@
         </div>
   
         <div class="col-sm-6 form-group mb-3">
-          <label class="form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
+          <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
           <ng-select 
             class="form-control custom-select form-select-sm"
             [(ngModel)]="model.id_marca"
@@ -42,7 +42,7 @@
         </div>
 
         <div class="col-sm-6 form-group mb-3">
-          <label>{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
+          <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
           <input type="text" class="form-control form-select-sm" [class]="(fielddBarCode) ? 'bg-light' :''" [(ngModel)]="model.codigo_barra" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.codigo_barra" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}" [disabled]="fielddBarCode">
           @if(validators.codigo_barra) {
           <div class="d-flex justify-content-between">
@@ -71,7 +71,7 @@
         </div>
 
         <div class="col-sm-6 form-group mb-3">
-          <label>{{ 'mod-catalog.PRODUCT.LABEL_BRAND_STATUS' | translate }}</label>
+          <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_STATUS' | translate }}</label>
           <select class="form-control custom-select form-select-sm" [(ngModel)]="model.estado" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.estado">
             <option [ngValue]="null">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_STATUS' | translate }}</option>
             <option [ngValue]="true">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_OPTION_ACTIVED' | translate }}</option>
@@ -90,14 +90,14 @@
       </legend>
       <div class="row" *ngIf ="mostrarSeccion.stockSeccion" [class.animate__fadeIn]="mostrarSeccion.stockSeccion" [class.animate__fadeOut]="!mostrarSeccion.stockSeccion">
         <div class="col-sm-6 form-group mb-3">
-          <label>{{ 'mod-catalog.PRODUCT.LABEL_MINIMUM_QUANTITY' | translate }}</label>
+          <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_MINIMUM_QUANTITY' | translate }}</label>
           <input type="number" min="1" class="form-control" [(ngModel)]="model.stock_minimo" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.stock_minimo" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate }}">
           @if(validators.stock_minimo) {
             <span class="text-danger small">{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate }}</span>
           }
         </div>
         <div class="col-sm-6 form-group mb-3">
-          <label>{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</label>
+          <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</label>
           <select class="form-control custom-select form-select-sm" [class.select-bloqueado]="estaBloqueado" [(ngModel)]="model.id_medida" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.id_medida">
             <option [ngValue]="0">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION' | translate }}</option>
             <option *ngFor="let medida of medidas" [ngValue]="medida.id">
@@ -125,11 +125,11 @@
         @if(model.es_perecedero) {
           <div class="row mt-3">
             <div class="col-sm-6">
-              <label class="small text-muted">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_YELLOW_ALERT' | translate }}</label>
+              <label class="small label-color">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_YELLOW_ALERT' | translate }}</label>
               <input type="number" min="1" class="form-control form-select-sm" [(ngModel)]="model.alerta_amarilla" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.error_dias">
             </div>
             <div class="col-sm-6">
-              <label class="small text-muted">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_ORANGE_ALERT' | translate }}</label>
+              <label class="small label-color">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_ORANGE_ALERT' | translate }}</label>
               <input type="number" min="1" class="form-control form-select-sm" [(ngModel)]="model.alerta_naranja" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.error_dias">
             </div>
           </div>

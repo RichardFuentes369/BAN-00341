@@ -6,7 +6,7 @@
       </legend>
       <div class="col-sm-12 row p-0">
         <div class="col-sm-12 form-group">
-          <label for="exampleInputEmail1">
+          <label class="label-color">
             {{ 'mod-merma.TYPE.LABEL_NAME_TYPE' | translate}}
           </label>
           <input type="text" class="form-control form-select-sm" [(ngModel)]="model.nombre" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nombre" placeholder="{{ 'mod-merma.TYPE.PLACEHOLDER_NAME_TYPE' | translate}}">

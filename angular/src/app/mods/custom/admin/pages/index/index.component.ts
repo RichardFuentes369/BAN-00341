@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuCustomComponent } from '../../components/menu/menu.component';
 import { TablecrudCustomComponent } from '../../components/tablecrud/tablecrud.component';
@@ -8,6 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ModalCustomComponent } from '../../components/modal/modal.component';
 import { SearchCustomComponent } from '../../components/search/search.component';
 import { InputSelectCustomComponent } from '../../components/input-select/input-select.component';
+import { VarsService } from '@service/globales/vars/vars.service';
 
 @Component({
   selector: 'app-index',
@@ -26,16 +27,20 @@ import { InputSelectCustomComponent } from '../../components/input-select/input-
   templateUrl: './index.component.html',
   styleUrl: './index.component.scss',
 })
-export class IndexComponent {
+export class IndexComponent implements OnInit {
 
   mostratTodo = false;
+
+  constructor(
+    private varsService: VarsService
+  ) { }
 
   // Estado independiente para cada componente
   vistas = {
     layoutIndex: false,
     layoutAdmin: false,
+    menu: true,
     input_select: false,
-    menu: false,
     kpi: false,
     table: false,
     grid: false,
@@ -43,6 +48,21 @@ export class IndexComponent {
     search: false,
     report: false,
   };
+
+  currentTheme: string = ''
+  custom_json_input: any = {};
+
+  async ngOnInit() {
+    this.currentTheme = await localStorage.getItem('theme') || 'light';
+    const response1 = await this.varsService.obtenerJson('custom_system') as any;
+    if (response1) {
+      const parsed = JSON.parse(response1.valor);
+      this.custom_json_input = {
+        light: parsed.light.input,
+        dark: parsed.dark.input
+      };
+    }
+  }
 
   // Método genérico para alternar cualquier sección
   toggle(seccion: keyof typeof this.vistas) {
