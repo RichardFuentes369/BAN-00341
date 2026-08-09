@@ -1,18 +1,3 @@
-/* --- (Tu sección :host se mantiene igual) --- */
-:host {
-  --layout-topbar-height-web: 5rem;
-  --layout-topbar-height-mobil: 5rem;
-  display: block;
-
-  --text-main: #1e293b;
-  --border-color: rgba(0, 0, 0, 0.05);
-
-  &[data-theme='dark'],
-  &:host-context([data-theme='dark']) {
-    --border-color: rgba(255, 255, 255, 0.05);
-  }
-}
-
 /* --- (Tus contenedores y botonería se mantienen igual) --- */
 .card-custom {
   height: 100%;
@@ -20,7 +5,7 @@
   flex-direction: column;
   border-radius: 12px;
   border: none;
-  background-color: var(--bg-row);
+  background-color: var(--grid_table_crud_custom-background_color) !important;
   overflow: visible !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -51,14 +36,14 @@
 
     h5 {
       font-size: 1.1rem;
-      color: var(--grid_table_crud-title_color);
+      color: var(--grid_table_crud_custom-title_color);
       font-weight: 700;
       margin: 0;
     }
 
     span {
       font-size: 1.1rem;
-      color: var(--grid_table_crud-text_color);
+      color: var(--grid_table_crud_custom-text_color);
       font-weight: 700;
       margin: 0;
     }
@@ -123,7 +108,7 @@
         }
 
         i {
-          color: var(--grid_table_crud-button_group_disabled) !important;
+          color: var(--grid_table_crud_custom-button_group_disabled) !important;
         }
       }
     }
@@ -163,8 +148,7 @@
   }
 
   thead {
-    background: var(--grid_table_crud-head_background) !important;
-    color: var(--grid_table_crud-head_text);
+    background: var(--grid_table_crud_custom-head_background) !important;
     border-radius: 8px !important;
   }
 
@@ -206,7 +190,7 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
 
       td {
-        color: var(--grid_table_crud-row_text_color) !important;
+        color: var(--grid_table_crud_custom-row_text_color) !important;
         padding-top: 4px !important;
         /* Ajusta este valor a tu gusto (más bajo = más delgado) */
         padding-bottom: 4px !important;
@@ -222,7 +206,7 @@
 
         td {
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); // Sombra más pronunciada en hover
-          border-color: var(--grid_table_crud-row_select) !important; // Opcional: cambia el borde al color principal
+          border-color: var(--grid_table_crud_custom-row_select) !important; // Opcional: cambia el borde al color principal
         }
       }
     }
@@ -237,42 +221,42 @@
     vertical-align: middle;
 
     // Bordes superior e inferior de la tarjeta
-    border-top: 1px solid var(--grid_table_crud-row_color-line) !important;
-    border-bottom: 1px solid var(--grid_table_crud-row_color-line) !important;
+    border-top: 1px solid var(--grid_table_crud_custom-row_color-line) !important;
+    border-bottom: 1px solid var(--grid_table_crud_custom-row_color-line) !important;
 
     border-left: none !important;
     border-right: none !important;
 
     &:first-child {
-      border-left: 1px solid var(--grid_table_crud-row_color-line) !important;
+      border-left: 1px solid var(--grid_table_crud_custom-row_color-line) !important;
       border-radius: 8px 0 0 8px !important;
     }
 
     &:last-child {
-      border-right: 1px solid var(--grid_table_crud-row_color-line) !important;
+      border-right: 1px solid var(--grid_table_crud_custom-row_color-line) !important;
       border-radius: 0 8px 8px 0 !important;
     }
   }
 
   tr.selected-row {
     // Cambiamos el fondo de toda la estructura del TR de un solo golpe
-    background-color: var(--grid_table_crud-row_select) !important;
+    background-color: var(--grid_table_crud_custom-row_select) !important;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2) !important;
 
     td {
-      color: var(--grid_table_crud-row_text_select) !important;
+      color: var(--grid_table_crud_custom-row_text_select) !important;
       font-weight: 500;
 
       // Sincronizamos los bordes perimetrales con el color de selección
-      border-top-color: var(--grid_table_crud-row_select) !important;
-      border-bottom-color: var(--grid_table_crud-row_select) !important;
+      border-top-color: var(--grid_table_crud_custom-row_select) !important;
+      border-bottom-color: var(--grid_table_crud_custom-row_select) !important;
 
       &:first-child {
-        border-left-color: var(--grid_table_crud-row_select) !important;
+        border-left-color: var(--grid_table_crud_custom-row_select) !important;
       }
 
       &:last-child {
-        border-right-color: var(--grid_table_crud-row_select) !important;
+        border-right-color: var(--grid_table_crud_custom-row_select) !important;
       }
 
       /* Ajuste de elementos hijos dentro de la tarjeta roja */
@@ -289,7 +273,7 @@
       .badge,
       .btn-actions {
         background-color: #ffffff !important;
-        color: var(--grid_table_crud-row_select) !important;
+        color: var(--grid_table_crud_custom-row_select) !important;
       }
     }
   }
@@ -381,47 +365,47 @@
 }
 
 .text-cargar-ecxel {
-  color: var(--grid_table_crud-button_cargar_excel);
+  color: var(--grid_table_crud_custom-button_cargar_excel);
 }
 
 .text-crear {
-  color: var(--grid_table_crud-button_crear);
+  color: var(--grid_table_crud_custom-button_crear);
 }
 
 .text-ver {
-  color: var(--grid_table_crud-button_ver);
+  color: var(--grid_table_crud_custom-button_ver);
 }
 
 .text-editar {
-  color: var(--grid_table_crud-button_editar);
+  color: var(--grid_table_crud_custom-button_editar);
 }
 
 .text-estado-usuario {
-  color: var(--grid_table_crud-button_estado_usuario);
+  color: var(--grid_table_crud_custom-button_estado_usuario);
 }
 
 .text-eliminar-inidividual {
-  color: var(--grid_table_crud-button_eliminar_individual);
+  color: var(--grid_table_crud_custom-button_eliminar_individual);
 }
 
 .text-eliminar-multiple {
-  color: var(--grid_table_crud-button_eliminar_multiple);
+  color: var(--grid_table_crud_custom-button_eliminar_multiple);
 }
 
 .text-asignar-permisos {
-  color: var(--grid_table_crud-button_asignar_permisos);
+  color: var(--grid_table_crud_custom-button_asignar_permisos);
 }
 
 .text-asignar-productos {
-  color: var(--grid_table_crud-button_asignar_productos);
+  color: var(--grid_table_crud_custom-button_asignar_productos);
 }
 
 .text-limpiar {
-  color: var(--grid_table_crud-button_limpiar);
+  color: var(--grid_table_crud_custom-button_limpiar);
 }
 
-.bg_grid_table_crud_custom {
-  background-color: var(--grid_table_crud-background_color) !important;
+.bg_grid_table_crud_custom_custom {
+  background-color: var(--grid_table_crud_custom-background_color) !important;
 }
 
 .title-custom {
@@ -430,7 +414,7 @@
 }
 
 .detail_table_custom {
-  background-color: var(--grid_table_crud-background_color) !important;
+  background-color: var(--grid_table_crud_custom-background_color) !important;
 }
 .bg_system {
   background-color: var(--layout-admin-main_background_color)!important;

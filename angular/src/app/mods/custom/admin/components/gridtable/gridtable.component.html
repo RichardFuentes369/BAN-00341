@@ -3,11 +3,75 @@
     <div class="container row">
       <div class="col text-center">
         <label class="fw-bold mb-3 title-custom text-uppercase">{{ theme }}</label>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Title color</label>
+          <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].title_color" (ngModelChange)="refreshData()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Background color</label>
+          <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].background_color" (ngModelChange)="refreshData()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Head background color</label>
+          <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].head_background" (ngModelChange)="refreshData()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Row text color</label>
+          <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].row_text_color" (ngModelChange)="refreshData()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Row text color selected</label>
+          <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].row_text_select" (ngModelChange)="refreshData()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Row selected</label>
+          <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].row_select" (ngModelChange)="refreshData()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Button color disabled</label>
+          <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].button_group_disabled" (ngModelChange)="refreshData()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Button color upload</label>
+          <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].button_cargar_excel" (ngModelChange)="refreshData()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Button color create</label>
+          <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].button_crear" (ngModelChange)="refreshData()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Button color see</label>
+          <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].button_ver" (ngModelChange)="refreshData()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Button color status user</label>
+          <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].button_estado_usuario" (ngModelChange)="refreshData()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Button color delete single</label>
+          <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].button_eliminar_individual" (ngModelChange)="refreshData()">
+        </div>
+        <!-- <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Button color delete many</label>
+          <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].button_eliminar_multiple" (ngModelChange)="refreshData()">
+        </div> -->
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Button color asigment permission</label>
+          <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].button_asignar_permisos" (ngModelChange)="refreshData()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Button color asigment products</label>
+          <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].button_asignar_productos" (ngModelChange)="refreshData()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Button color clear</label>
+          <input type="color" [(ngModel)]="_jsonGridTableCrudData[theme].button_limpiar" (ngModelChange)="refreshData()">
+        </div>
       </div>
     </div>
   </div>
   <div class="col-sm bg_system rounded-5">
-    <app-custom-tablecrud></app-custom-tablecrud>
-    <app-custom-gridcrud></app-custom-gridcrud>
+    <app-custom-tablecrud [theme]="theme" [json_custom]="_jsonGridTableCrudData"></app-custom-tablecrud>
+    <app-custom-gridcrud [theme]="theme" [json_custom]="_jsonGridTableCrudData"></app-custom-gridcrud>
   </div>
 </div>
