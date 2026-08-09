@@ -51,6 +51,13 @@
 
     h5 {
       font-size: 1.1rem;
+      color: var(--grid_table_crud-title_color);
+      font-weight: 700;
+      margin: 0;
+    }
+
+    span {
+      font-size: 1.1rem;
       color: var(--grid_table_crud-text_color);
       font-weight: 700;
       margin: 0;
@@ -114,9 +121,9 @@
           max-width: 0 !important;
           opacity: 0 !important;
         }
-        
+
         i {
-          color: var(--grid_table_crud-button_group_disabled) !important; 
+          color: var(--grid_table_crud-button_group_disabled) !important;
         }
       }
     }
@@ -156,7 +163,7 @@
   }
 
   thead {
-    background: var(--grid_table_crud-head_background)!important;
+    background: var(--grid_table_crud-head_background) !important;
     color: var(--grid_table_crud-head_text);
     border-radius: 8px !important;
   }
@@ -180,11 +187,11 @@
     }
 
     &:first-child {
-      border-top-left-radius: 12px; 
+      border-top-left-radius: 12px;
     }
 
     &:last-child {
-      border-top-right-radius: 12px; 
+      border-top-right-radius: 12px;
     }
   }
 
@@ -200,9 +207,12 @@
 
       td {
         color: var(--grid_table_crud-row_text_color) !important;
-        padding-top: 4px !important;    /* Ajusta este valor a tu gusto (más bajo = más delgado) */
-        padding-bottom: 4px !important; /* Ajusta este valor a tu gusto (más bajo = más delgado) */
-        vertical-align: middle;        /* Mantiene el texto perfectamente centrado verticalmente */
+        padding-top: 4px !important;
+        /* Ajusta este valor a tu gusto (más bajo = más delgado) */
+        padding-bottom: 4px !important;
+        /* Ajusta este valor a tu gusto (más bajo = más delgado) */
+        vertical-align: middle;
+        /* Mantiene el texto perfectamente centrado verticalmente */
       }
 
       // Efecto hover sutil para que toda la "tarjeta" reaccione al pasar el mouse
@@ -366,42 +376,51 @@
   }
 }
 
-.text-custom-select{
+.text-custom-select {
   color: var(--select-background_color);
 }
 
 .text-cargar-ecxel {
   color: var(--grid_table_crud-button_cargar_excel);
 }
+
 .text-crear {
   color: var(--grid_table_crud-button_crear);
 }
+
 .text-ver {
   color: var(--grid_table_crud-button_ver);
 }
+
 .text-editar {
   color: var(--grid_table_crud-button_editar);
 }
-.text-estado-usuario{
+
+.text-estado-usuario {
   color: var(--grid_table_crud-button_estado_usuario);
 }
-.text-eliminar-inidividual{
+
+.text-eliminar-inidividual {
   color: var(--grid_table_crud-button_eliminar_individual);
 }
-.text-eliminar-multiple{
+
+.text-eliminar-multiple {
   color: var(--grid_table_crud-button_eliminar_multiple);
 }
+
 .text-asignar-permisos {
   color: var(--grid_table_crud-button_asignar_permisos);
 }
-.text-asignar-productos{
+
+.text-asignar-productos {
   color: var(--grid_table_crud-button_asignar_productos);
 }
-.text-limpiar{
+
+.text-limpiar {
   color: var(--grid_table_crud-button_limpiar);
 }
 
-.bg_grid_table_crud_custom{
+.bg_grid_table_crud_custom {
   background-color: var(--grid_table_crud-background_color) !important;
 }
 

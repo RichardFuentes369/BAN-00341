@@ -1,6 +1,6 @@
 :host {
-  --layout-topbar-height: 4rem;
-  --layout-topbar-height-modal: 0rem;
+  --layout-topbar-height-web: 6.5rem;
+  --layout-topbar-height-mobil: 6.5rem;
   --text-main: #1e293b;
   --text-muted: #64748b;
   --border-color: rgba(0, 0, 0, 0.05);
@@ -17,11 +17,19 @@
 
 .sticky-header {
   position: sticky;
-  top: 4rem!important;
-  z-index: 1; 
-  background-color: var(--sticky-bg) !important;
+  top: var(--layout-topbar-height-web) !important;
+  z-index: 1;
+  background-color: var(--grid_table_crud-background_color) !important;
+  
+  @media (max-width: 768px) {
+    top: var(--layout-topbar-height-mobil) !important;
+  }
+
   width: 100%;
-  padding: 1.1rem 0; /* Ajustado para dar aire similar a la tabla */
+  // padding: 1.1rem 0;
+  // padding-top: 46px;
+  padding-bottom: 5px;
+  /* Ajustado para dar aire similar a la tabla */
 }
 
 /* BOTONES ESTILO LINK (Como en la tabla) */
@@ -40,7 +48,7 @@
   &:disabled {
     opacity: 0.35;
     cursor: default; // Cursor flecha normal para deshabilitados
-    
+
     i {
       color: var(--text-muted) !important;
     }
@@ -64,7 +72,7 @@
 .card-modern {
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  background-color: #ffffff;
+  background-color: var(--modal-head_background);
   cursor: pointer;
   transition: all 0.25s ease;
 
@@ -79,11 +87,24 @@
     border-color: var(--grid_table_crud-row_select) !important;
     background-image: none !important;
 
-    .card-body, .card-footer {
+    .card-body,
+    .card-footer {
       color: #ffffff !important;
-      h6, p, i, b { color: #ffffff !important; }
-      span { color: #000000 !important; }
-      .text-muted { color: rgba(255, 255, 255, 0.8) !important; }
+
+      h6,
+      p,
+      i,
+      b {
+        color: #ffffff !important;
+      }
+
+      span {
+        color: #000000 !important;
+      }
+
+      .text-muted {
+        color: rgba(255, 255, 255, 0.8) !important;
+      }
     }
 
     .badge {
@@ -114,28 +135,28 @@
   margin: 0;
 }
 
+.title-container {
+  h5 {
+    color: var(--grid_table_crud-title_color);
+  }
+  span {
+    font-size: 1.1rem;
+    color: var(--grid_table_crud-text_color);
+    font-weight: 700;
+    margin: 0;
+  }
+}
+
 .botoneria {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 12px;
   position: sticky !important;
-  top: var(--layout-topbar-height) !important;
   z-index: 1;
   /* Valor alto para asegurar que nada pase por encima */
   backdrop-filter: blur(8px);
   padding: 18px 25px;
-
-  .title-container {
-    margin-right: auto;
-
-    h5 {
-      font-size: 1.1rem;
-      color: var(--grid_table_crud-text_color);
-      font-weight: 700;
-      margin: 0;
-    }
-  }
 
   .actions-container {
 
@@ -194,6 +215,10 @@
           max-width: 0 !important;
           opacity: 0 !important;
         }
+        
+        i {
+          color: var(--grid_table_crud-button_group_disabled) !important; 
+        }
       }
     }
   }
@@ -231,39 +256,54 @@
 .text-cargar-ecxel {
   color: var(--grid_table_crud-button_cargar_excel);
 }
+
 .text-crear {
   color: var(--grid_table_crud-button_crear);
 }
+
 .text-ver {
   color: var(--grid_table_crud-button_ver);
 }
+
 .text-editar {
   color: var(--grid_table_crud-button_editar);
 }
-.text-estado-usuario{
+
+.text-estado-usuario {
   color: var(--grid_table_crud-button_estado_usuario);
 }
-.text-eliminar-inidividual{
+
+.text-eliminar-inidividual {
   color: var(--grid_table_crud-button_eliminar_individual);
 }
-.text-eliminar-multiple{
+
+.text-eliminar-multiple {
   color: var(--grid_table_crud-button_eliminar_multiple);
 }
+
 .text-asignar-permisos {
   color: var(--grid_table_crud-button_asignar_permisos);
 }
-.text-asignar-productos{
+
+.text-asignar-productos {
   color: var(--grid_table_crud-button_asignar_productos);
 }
-.text-limpiar{
+
+.text-limpiar {
   color: var(--grid_table_crud-button_limpiar);
 }
 
-.bg_grid_table_crud_custom{
+.bg_grid_table_crud_custom {
   background-color: var(--grid_table_crud-background_color) !important;
 }
 
-.title-custom {
-  color: var(--layout-admin-page_color_title) !important;
-  background-color: transparent;
+.color_info_page {
+  color: var(--grid_table_crud-text_color) !important;
+}
+
+.text-title {
+  color: var(--grid_table_crud-row_text_color) !important;
+}
+.text-subtitle {
+  color: var(--grid_table_crud-text_color) !important;
 }

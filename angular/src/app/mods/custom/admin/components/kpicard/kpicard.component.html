@@ -1,54 +1,42 @@
-<div class="col-sm-12 row">
-  <div class="col-sm">
-    <div class="card shadow-sm card-custom border_line_color bg_kpi_custom h-50 w-auto my-5">
-      <div class="card-body card-body-custom">
-        <div class="logo-container">
-          <img [src]="img" class="img-logo" alt="logo">
+<div class="card-preview-container col-sm-12 row">
+  <div class="col-sm-4 row">
+    <div class="container row">
+      <div class="col text-center">
+        <label class="fw-bold mb-3 title-custom text-uppercase">{{ theme }}</label>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Background color</label>
+          <input type="color" [(ngModel)]="_jsonKpiData[theme].background_color" (input)="aplicarEstilosVisuales()">
         </div>
-        <div class="divider line_color"></div>
-        <div class="text-container">
-          <span class="title-text">{{ title }}</span>
-          <span class="content-text">{{ displayValue | number:'1.0-0' }}</span>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Icon color</label>
+          <input type="color" [(ngModel)]="_jsonKpiData[theme].icon_color" (input)="aplicarEstilosVisuales()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Border Line color</label>
+          <input type="color" [(ngModel)]="_jsonKpiData[theme].border_line_color" (input)="aplicarEstilosVisuales()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Text color</label>
+          <input type="color" [(ngModel)]="_jsonKpiData[theme].text_color" (input)="aplicarEstilosVisuales()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Number color</label>
+          <input type="color" [(ngModel)]="_jsonKpiData[theme].text_number_color" (input)="aplicarEstilosVisuales()">
         </div>
       </div>
     </div>
   </div>
-  <div class="col-sm-4 row">
-    <label for="" class="text-center title-custom">
-      Colores card menu
-    </label>
-    <div class="container row">
-      <div class="col text-center">
-        <label class="fw-bold mb-3 title-custom ">Light</label>
-
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Background</span>
-          <input type="color">
+  <div class="col-sm bg_system rounded-5 p-5">
+    <div class="card shadow-sm card-custom border_line_color bg_kpi_custom h-50 w-auto my-5">
+      <div class="card-body card-body-custom">
+        <div class="logo-container">
+          <div class="img-logo colored-icon" [style.mask-image]="'url(' + img + ')'"
+            [style.-webkit-mask-image]="'url(' + img + ')'"></div>
         </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Text</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-      </div>
-
-      <div class="col text-center">
-        <label class="fw-bold mb-3 title-custom">Dark</label>
-
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Background</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Text</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
+        <div class="divider line_color"></div>
+        <div class="text-container">
+          <span class="title-text">{{ title }}</span>
+          <span class="content-text">{{ displayValue }}</span>
         </div>
       </div>
     </div>

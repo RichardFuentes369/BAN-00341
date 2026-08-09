@@ -42,8 +42,7 @@ export class IndexComponent implements OnInit {
     menu: true,
     input_select: false,
     kpi: false,
-    table: false,
-    grid: false,
+    table_grid: false,
     modal: false,
     search: false,
     report: false,
@@ -51,6 +50,8 @@ export class IndexComponent implements OnInit {
 
   currentTheme: string = ''
   custom_json_input: any = {};
+  custom_json_kpi: any = {};
+  custom_json_menu: any = {};
 
   async ngOnInit() {
     this.currentTheme = await localStorage.getItem('theme') || 'light';
@@ -61,6 +62,14 @@ export class IndexComponent implements OnInit {
         light: parsed.light.input,
         dark: parsed.dark.input
       };
+      this.custom_json_kpi = {
+        light: parsed.light.kpicard,
+        dark: parsed.dark.kpicard
+      }
+      this.custom_json_menu = {
+        light: parsed.light.card_menu,
+        dark: parsed.dark.card_menu
+      }
     }
   }
 

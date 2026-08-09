@@ -1,19 +1,33 @@
+.card-preview-container {
+  --kpicard_custom-border_line_color: "";
+  --kpicard_custom-background_color: "";
+  --kpicard_custom-icon_color: "";
+  --kpicard_custom-text_color: "";
+  --kpicard_custom-text_number_color: "";
+}
+
 /* Contenedor del componente */
 :host {
   display: block;
   height: 100%;
+  --filter: none !important;
+
+  &[data-theme='dark'],
+  &:host-context([data-theme='dark']) {
+    --filter: invert(1) brightness(100) !important;
+  }
 }
 
 .bg_kpi_custom {
-  background-color: var(--kpicard-background_color) !important;
+  background-color: var(--kpicard_custom-background_color) !important;
 }
 
 .border_line_color {
-  border-left: 0.25rem solid var(--kpicard-border_line_color) !important;
+  border-left: 0.25rem solid var(--kpicard_custom-border_line_color) !important;
 }
 
 .line_color {
-  border-left: 0.05rem solid var(--kpicard-border_line_color) !important;
+  border-left: 0.05rem solid var(--kpicard_custom-border_line_color) !important;
 }
 
 /*Card estilo*/
@@ -55,6 +69,17 @@
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.05));
 }
 
+.colored-icon {
+  background-color: var(--kpicard_custom-icon_color); /* ¡Aquí sí funciona var()! */
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  transition: background-color 0.3s ease;
+}
+
 /* Divisor vertical */
 .divider {
   width: 1px;
@@ -77,7 +102,7 @@
 /* Título (Label) */
 .title-text {
   font-weight: 600;
-  color: var(--kpicard-text_color);
+  color: var(--kpicard_custom-text_color);
   /* Color más suave para el label */
   font-size: 0.75rem;
   /* Más pequeño para dar jerarquía al número */
@@ -97,15 +122,10 @@
 .content-text {
   font-size: 1.4rem;
   /* Un poco más grande para resaltar */
-  color: var(--kpicard-text_number_color);
+  color: var(--kpicard_custom-text_number_color);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   line-height: 1;
-}
-
-.title-custom {
-  color: var(--layout-admin-page_color_title) !important;
-  background-color: transparent;
 }
 
 /* Ajustes Responsive */
@@ -118,4 +138,8 @@
   .content-text {
     font-size: 1.2rem;
   }
+}
+
+.bg_system {
+  background-color: var(--layout-admin-main_background_color)!important;
 }

@@ -30,6 +30,7 @@
   }
 }
 
+
 .sticky-header {
   position: sticky;
   top: 4rem !important;
@@ -86,9 +87,6 @@
   transition: all 0.25s ease;
 
   &:hover:not(.is-selected) {
-    // background-color: rgba(89, 139, 204, 0.04) !important;
-    background-color: var(--layout-admin-menu-color_hover);
-    border-color: rgba(123, 204, 89, 0.2) !important;
     transform: translateY(-2px);
   }
 
@@ -248,11 +246,11 @@
 }
 
 .card {
-  background-color: var(--card_menu-background) !important;
+  background-color: var(--card_menu-background_card_color) !important;
   transition: background-color 0.3s ease; // Muy importante para que sea suave
 
   &:hover {
-    background-color: var(--card_menu-hover) !important;
+    background-color: var(--card_menu-hover_card_color) !important;
     cursor: pointer;
   }
 }
@@ -263,5 +261,5 @@
 }
 
 .text-card-custom {
-  color: var(--card_menu-text) !important;
+  color: var(--card_menu-text_color) !important;
 }

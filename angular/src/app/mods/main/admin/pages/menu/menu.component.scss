@@ -246,11 +246,11 @@
 }
 
 .card {
-  background-color: var(--card_menu-background) !important;
+  background-color: var(--card_menu-background_card_color) !important;
   transition: background-color 0.3s ease; // Muy importante para que sea suave
 
   &:hover {
-    background-color: var(--card_menu-hover) !important;
+    background-color: var(--card_menu-hover_card_color) !important;
     cursor: pointer;
   }
 }
@@ -261,5 +261,5 @@
 }
 
 .text-card-custom {
-  color: var(--card_menu-text) !important;
+  color: var(--card_menu-text_color) !important;
 }

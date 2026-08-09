@@ -1,5 +1,29 @@
-<div class="col-sm-12 row">
-  <div class="col-sm">
+<div class="card-preview-container col-sm-12 row">
+  <div class="col-sm-6 row">
+    <div class="container row">
+      <div class="col text-center">
+        <label class="fw-bold mb-3 title-custom text-uppercase">{{ theme }}</label>
+
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Title color</label>
+          <input type="color" [(ngModel)]="_jsonMenutData[theme].text_color" (input)="aplicarEstilosVisuales()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Icon color</label>
+          <input type="color" [(ngModel)]="_jsonMenutData[theme].icon_color" (input)="aplicarEstilosVisuales()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Card color</label>
+          <input type="color" [(ngModel)]="_jsonMenutData[theme].background_card_color" (input)="aplicarEstilosVisuales()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Card hover color</label>
+          <input type="color" [(ngModel)]="_jsonMenutData[theme].hover_card_color" (input)="aplicarEstilosVisuales()">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm bg_system rounded-5">
     <div class="row animate__fadeIn m-0 pt-5">
       <div class="col-12 col-sm-6 mb-3 d-flex alignment-stretch pt-1 pb-1">
         <a class="item w-100 d-flex flex-column" style="text-decoration: none; color: inherit;">
@@ -7,7 +31,8 @@
             <div class="card-body text-center d-flex flex-column align-items-center justify-content-center py-4">
               <h6 class="fw-bold mb-3 text-truncate w-100 text-card-custom">{{ 'mod-main.PAGES_USERS' |
                 translate }}</h6>
-              <img src="assets/images/img_users.png" width="80px" class="colored-icon">
+              <div class="img-logo colored-icon" [style.mask-image]="'url(' + img1 + ')'"
+                [style.-webkit-mask-image]="'url(' + img1 + ')'" width="80px"></div>
             </div>
           </div>
         </a>
@@ -18,50 +43,11 @@
             <div class="card-body text-center d-flex flex-column align-items-center justify-content-center py-4">
               <h6 class="fw-bold mb-3 text-truncate w-100 text-card-custom">{{ 'mod-main.PAGES_CATALOG' |
                 translate }}</h6>
-              <img src="assets/images/img_catalog.png" width="80px" class="colored-icon">
+              <div class="img-logo colored-icon" [style.mask-image]="'url(' + img2 + ')'"
+                [style.-webkit-mask-image]="'url(' + img2 + ')'"></div>
             </div>
           </div>
         </a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4 row">
-    <label for="" class="text-center title-custom">
-      Colores card menu
-    </label>
-    <div class="container row">
-      <div class="col text-center">
-        <label class="fw-bold mb-3 title-custom">Light</label>
-
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Background</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Text</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-      </div>
-
-      <div class="col text-center">
-        <label class="fw-bold mb-3 title-custom">Dark</label>
-
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Background</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Text</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
       </div>
     </div>
   </div>

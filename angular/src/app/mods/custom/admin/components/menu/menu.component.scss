@@ -1,35 +1,9 @@
-:host {
-  --layout-topbar-height: 4rem;
-  --layout-topbar-height-modal: 0rem;
-  --botoneria-height: 72px;
-  --primary-gradient: radial-gradient(circle at center, #598bcc 16%, #224abe 100%);
-  --bg-selected: #d51c1c;
-  --bg-row: #ffffff;
-  --bg-table-container: #f8fafc;
-  --bg-text-selected: #fff;
-  --text-main: #1e293b;
-  --text-muted: #64748b;
-  --border-color: rgba(0, 0, 0, 0.05);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-  display: block;
-  --filter: none !important;
-
-  &[data-theme='dark'],
-  &:host-context([data-theme='dark']) {
-    --primary-gradient: radial-gradient(circle at center, #1a1a1a 16%, #000 100%);
-    --bg-selected: #334155;
-    --bg-row: #ffffff;
-    /* Ajustado para modo oscuro real */
-    --bg-table-container: #0f172a;
-    --bg-text-selected: #fff;
-    --text-main: #1e293b;
-    --text-muted: #94a3b8;
-    --border-color: rgba(255, 255, 255, 0.05);
-    --filter: invert(1) brightness(100) !important;
-  }
+.card-preview-container {
+  --card_menu_custom-text_color: "";
+  --card_menu_custom-icon_color: "";
+  --card_menu_custom-background_card_color: "";
+  --card_menu_custom-hover_card_color: "";
 }
-
 
 .sticky-header {
   position: sticky;
@@ -245,12 +219,23 @@
   background-color: transparent;
 }
 
+.colored-icon {
+  background-color: var(--card_menu_custom-icon_color); /* ¡Aquí sí funciona var()! */
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  transition: background-color 0.3s ease;
+}
+
 .card {
-  background-color: var(--card_menu-background) !important;
+  background-color: var(--card_menu_custom-background_card_color) !important;
   transition: background-color 0.3s ease; // Muy importante para que sea suave
 
   &:hover {
-    background-color: var(--card_menu-hover) !important;
+    background-color: var(--card_menu_custom-hover_card_color) !important;
     cursor: pointer;
   }
 }
@@ -261,5 +246,37 @@
 }
 
 .text-card-custom {
-  color: var(--card_menu-text) !important;
+  color: var(--card_menu_custom-text_color) !important;
+}
+
+.img-logo {
+  width: 80px;          /* O el tamaño que necesites */
+  height: 80px;         /* ¡Importante! Debe tener altura para visualizarse */
+  display: inline-block;
+  background-color: currentColor; /* O el color específico que desees (ej: #ff0000) */
+  
+  /* Propiedades estándar de máscara */
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+
+  /* Propiedades para compatibilidad con Webkit (Safari, Chrome antiguo) */
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.colored-icon {
+  background-color: var(--card_menu_custom-icon_color); 
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  transition: background-color 0.3s ease;
+}
+
+.bg_system {
+  background-color: var(--layout-admin-main_background_color)!important;
 }
