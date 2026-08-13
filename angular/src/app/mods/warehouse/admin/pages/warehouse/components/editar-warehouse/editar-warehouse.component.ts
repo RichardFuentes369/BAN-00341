@@ -427,7 +427,7 @@ export class EditarWarehouseComponent {
 
         Swal.fire({
           title: this.translate.instant('mod-catalog.PRODUCT.SWAL_UPDATED'),
-          text: this.translate.instant('mod-catalog.SWAL_UPDATED_RECORD'),
+          text: this.translate.instant('mod-warehouse.SWAL_UPDATED_RECORD'),
           icon: "success"
         });
       } catch (error: any) {

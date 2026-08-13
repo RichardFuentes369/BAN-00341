@@ -72,16 +72,16 @@
 
   "CARD_TOTAL_LOT_TITLE": "Total registros",
 
-  "SWAL_ARE_YOU_SURE_DELETE_WAREHOUSE": "¿Está seguro de eliminar estos registros de la bodega?",
+  "SWAL_ARE_YOU_SURE_DELETE_WAREHOUSE": "¿Está seguro de eliminar este registros de la bodega?",
   "SWAL_WARNING_REVERSE_CHANGE": "¡No podrás revertir esto!",
   "SWAL_CREATED": "BODEGA!",
-  "SWAL_CREATED_RECORD": "Creado exitosamente.",
+  "SWAL_CREATED_RECORD": "Regisrado exitosamente en la bodega.",
   "SWAL_UPDATED": "BODEGA!",
-  "SWAL_UPDATED_RECORD": "Actualizado exitosamente.",
+  "SWAL_UPDATED_RECORD": "Actualizado exitosamente en la bodega.",
   "SWAL_BUTTON_DELETE": "Eliminar",
   "SWAL_BUTTON_CANCEL": "Cancelar",
   "SWAL_DELETED": "BODEGA!",
-  "SWAL_DELETED_RECORD": "Eliminado exitosamente.",
+  "SWAL_DELETED_RECORD": "Eliminado exitosamente de la bodega.",
 
   "ERROR_QUANTITY_THAT_ALLOWED": "La cantidad comprada es inferior a la ya registrada (mermas, vendidas)"
 }

@@ -72,16 +72,16 @@
 
   "CARD_TOTAL_LOT_TITLE": "Total records",
 
-  "SWAL_ARE_YOU_SURE_DELETE_WAREHOUSE": "¿Are you sure you want to delete these warehouse records?",
-  "SWAL_WARNING_REVERSE_CHANGE": "You cannot reverse this!",
+  "SWAL_ARE_YOU_SURE_DELETE_WAREHOUSE": "Are you sure you want to delete these warehouse records?",
+  "SWAL_WARNING_REVERSE_CHANGE": "You won't be able to revert this!",
   "SWAL_CREATED": "WAREHOUSE!",
-  "SWAL_CREATED_RECORD": "Created successfully.",
+  "SWAL_CREATED_RECORD": "Successfully registered in the warehouse.",
   "SWAL_UPDATED": "WAREHOUSE!",
-  "SWAL_UPDATED_RECORD": "Updated successfully.",
+  "SWAL_UPDATED_RECORD": "Successfully updated in the warehouse.",
   "SWAL_BUTTON_DELETE": "Delete",
   "SWAL_BUTTON_CANCEL": "Cancel",
   "SWAL_DELETED": "WAREHOUSE!",
-  "SWAL_DELETED_RECORD": "Successfully deleted.",
+  "SWAL_DELETED_RECORD": "Successfully deleted from the warehouse.",
 
   "ERROR_QUANTITY_THAT_ALLOWED": "The purchased quantity is lower than the amount already recorded (shrinkage, sold)"
 }

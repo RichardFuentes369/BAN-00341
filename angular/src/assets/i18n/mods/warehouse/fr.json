@@ -71,16 +71,16 @@
 	"PLACEHOLDER_ESTADO": "Choisir l'état",
 	"CARD_TOTAL_REGISTER_TITLE": "Total des enregistrements",
 
-	"SWAL_ARE_YOU_SURE_DELETE_WAREHOUSE": "¿Êtes-vous sûr de vouloir supprimer ces enregistrements de l'entrepôt ?",
-	"SWAL_WARNING_REVERSE_CHANGE": "Cette action est irréversible!",
-	"SWAL_CREATED": "Entrepôt!",
-	"SWAL_CREATED_RECORD": "Créé avec succès.",
-	"SWAL_UPDATED": "Entrepôt!",
-	"SWAL_UPDATED_RECORD": "Mise à jour réussie.",
+	"SWAL_ARE_YOU_SURE_DELETE_WAREHOUSE": "Êtes-vous sûr de vouloir supprimer ces enregistrements de l'entrepôt ?",
+	"SWAL_WARNING_REVERSE_CHANGE": "Vous ne pourrez pas revenir en arrière !",
+	"SWAL_CREATED": "ENTREPÔT !",
+	"SWAL_CREATED_RECORD": "Enregistré avec succès dans l'entrepôt.",
+	"SWAL_UPDATED": "ENTREPÔT !",
+	"SWAL_UPDATED_RECORD": "Mis à jour avec succès dans l'entrepôt.",
 	"SWAL_BUTTON_DELETE": "Supprimer",
 	"SWAL_BUTTON_CANCEL": "Annuler",
-	"SWAL_DELETED": "Entrepôt !",
-	"SWAL_DELETED_RECORD": "Suppression réussie.",
+	"SWAL_DELETED": "ENTREPÔT !",
+	"SWAL_DELETED_RECORD": "Supprimé avec succès de l'entrepôt.",
 
 	"ERROR_QUANTITY_THAT_ALLOWED": "La quantité achetée est inférieure à celle déjà enregistrée (pertes, vendues)"
 }

@@ -431,7 +431,7 @@ export class WarehoseComponent implements OnInit, OnDestroy{
           await this.bodegaService.deleteBodega(_id)
           await this.someInput.reload()
           Swal.fire({
-            title: this.translate.instant('mod-warehouse.SWAL_DELETED'),
+            title: this.translate.instant('mod-catalog.PRODUCT.SWAL_CREATED'),
             text: this.translate.instant('mod-warehouse.SWAL_DELETED_RECORD'),
             icon: "success"
           });
@@ -496,7 +496,7 @@ export class WarehoseComponent implements OnInit, OnDestroy{
         const a = document.createElement('a');
         a.href = url;
         const extension = formato === 'excel' ? 'xlsx' : 'csv';
-        a.download = `reporte_lotes_${new Date().getTime()}.${extension}`;
+        a.download = `RPT_warehouse_${extension}_${new Date().getTime()}.${extension}`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);

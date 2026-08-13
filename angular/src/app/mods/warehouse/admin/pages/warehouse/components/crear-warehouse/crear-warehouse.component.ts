@@ -368,7 +368,7 @@ export class CrearWarehouseComponent implements OnInit {
         ocultarModalOscura();
         Swal.fire({
           title: this.translate.instant('mod-catalog.PRODUCT.SWAL_CREATED'),
-          text: this.translate.instant('mod-catalog.SWAL_CREATED_RECORD'),
+          text: this.translate.instant('mod-warehouse.SWAL_CREATED_RECORD'),
           icon: "success"
         });
       } else {

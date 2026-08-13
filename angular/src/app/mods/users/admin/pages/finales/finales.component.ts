@@ -454,7 +454,7 @@ export class FinalesComponent implements OnInit{
         const a = document.createElement('a');
         a.href = url;
         const extension = formato === 'excel' ? 'xlsx' : 'csv';
-        a.download = `reporte_lotes_${new Date().getTime()}.${extension}`;
+        a.download = `RPT_final_${new Date().getTime()}.${extension}`;
         document.body.appendChild(a); 
         a.click();
         document.body.removeChild(a);

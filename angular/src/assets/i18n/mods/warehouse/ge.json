@@ -72,16 +72,16 @@
 
   "CARD_TOTAL_REGISTER_TITLE": "Gesamtregister",
   
-  "SWAL_ARE_YOU_SURE_DELETE_WAREHOUSE": "¿Sind Sie sicher, dass Sie diese Lagerdatensätze löschen möchten?",
-  "SWAL_WARNING_REVERSE_CHANGE": "Diese Änderung kann nicht rückgängig gemacht werden!",
-  "SWAL_CREATED": "Lager!",
-  "SWAL_CREATED_RECORD": "Erfolgreich erstellt.",
-  "SWAL_UPDATED": "Lager!",
-  "SWAL_UPDATED_RECORD": "Erfolgreich aktualisiert.",
+  "SWAL_ARE_YOU_SURE_DELETE_WAREHOUSE": "Sind Sie sicher, dass Sie diese Lagerdatensätze löschen möchten?",
+  "SWAL_WARNING_REVERSE_CHANGE": "Dies kann nicht rückgängig gemacht werden!",
+  "SWAL_CREATED": "LAGER!",
+  "SWAL_CREATED_RECORD": "Erfolgreich im Lager registriert.",
+  "SWAL_UPDATED": "LAGER!",
+  "SWAL_UPDATED_RECORD": "Erfolgreich im Lager aktualisiert.",
   "SWAL_BUTTON_DELETE": "Löschen",
   "SWAL_BUTTON_CANCEL": "Abbrechen",
-  "SWAL_DELETED": "Lager!",
-  "SWAL_DELETED_RECORD": "Erfolgreich gelöscht.",
+  "SWAL_DELETED": "LAGER!",
+  "SWAL_DELETED_RECORD": "Erfolgreich aus dem Lager gelöscht.",
 
   "ERROR_QUANTITY_THAT_ALLOWED": "Die gekaufte Menge ist geringer als die bereits erfasste Menge (Schwund, verkauft)"
 }
