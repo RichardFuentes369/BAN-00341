@@ -85,6 +85,7 @@
     "CARD_TOTAL_HISTORY_TITLE": "Gesamthistorie"
   },
 
+  "WORD_REGISTER": "Verzeichnis",
   "SWAL_WARNING_REVERSE_CHANGE": "Diese Änderung kann nicht rückgängig gemacht werden!",
   "SWAL_CREATED_RECORD": "Datensatz erfolgreich erstellt.",
   "SWAL_DELETED_RECORD": "Erfolgreich gelöscht.",

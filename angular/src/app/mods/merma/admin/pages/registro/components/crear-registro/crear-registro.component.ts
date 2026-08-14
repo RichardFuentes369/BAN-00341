@@ -436,7 +436,7 @@ export class CrearRegistroComponent {
       if(response.data.status == 200){
         ocultarModalOscura()
         Swal.fire({
-          title: this.translate.instant('mod-merma.TYPE.SWAL_CREATED'),
+          title: this.translate.instant('mod-merma.WORD_REGISTER'),
           text: this.translate.instant('mod-merma.SWAL_CREATED_RECORD'),
           icon: "success"
         });

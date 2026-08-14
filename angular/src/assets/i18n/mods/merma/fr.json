@@ -85,6 +85,7 @@
     "CARD_TOTAL_HISTORY_TITLE": "Total historique"
   },
 
+  "WORD_REGISTER": "Inscription",
   "SWAL_WARNING_REVERSE_CHANGE": "Cette action est irréversible!",
   "SWAL_CREATED_RECORD": "Enregistrement créé avec succès.",
   "SWAL_DELETED_RECORD": "Supprimé avec succès.",

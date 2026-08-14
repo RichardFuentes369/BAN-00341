@@ -85,6 +85,7 @@
     "CARD_TOTAL_HISTORY_TITLE": "Historical total"
   },
   
+  "WORD_REGISTER": "Record",
   "SWAL_WARNING_REVERSE_CHANGE": "You cannot reverse this!",
   "SWAL_CREATED_RECORD": "Record successfully created.",
   "SWAL_DELETED_RECORD": "Successfully deleted.",

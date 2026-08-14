@@ -249,8 +249,8 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
   someInput!: GridcrudComponent
   async eliminarData (_id: string[]){
     const response = await this.tipoService.getDataTipo(_id[0])
-    const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
-    const name_user = (_id.length === 1) ? firstName+" "+lastName : "("+_id.length+")"
+    const { nombre } = response.data || { nombre: 'xxxxxxx' }
+    const name_user = (_id.length === 1) ? nombre : "("+_id.length+")"
     const count_users = (_id.length === 1) ? 'el' : 'los'
     const plural = (_id.length === 1) ? '' : 's'
     

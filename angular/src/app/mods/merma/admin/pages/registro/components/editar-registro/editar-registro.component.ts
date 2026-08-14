@@ -418,7 +418,7 @@ export class EditarRegistroComponent {
       if(response.status == 200){
         ocultarModalOscura()
         Swal.fire({
-          title: this.translate.instant('mod-merma.TYPE.SWAL_UPDATED'),
+          title: this.translate.instant('mod-merma.WORD_REGISTER'),
           text: this.translate.instant('mod-merma.SWAL_UPDATED_RECORD'),
           icon: "success"
         });

@@ -347,12 +347,11 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
   someInput!: TablecrudComponent
   async eliminarData(_id: string[]) {
     const response = await this.registroService.getDataRegister(_id[0])
-    const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
-    const name_user = (_id.length === 1) ? firstName + " " + lastName : "(" + _id.length + ")"
+    const name_user = '#'+response.data.id
     const count_users = (_id.length === 1) ? 'el' : 'los'
     const plural = (_id.length === 1) ? '' : 's'
 
-    this.translate.get('mod-merma.TYPE.SWAL_ARE_YOU_SURE_DELETE', { "art_the": count_users, "plural": plural, "user_name": name_user }).subscribe((translatedTitle: string) => {
+    this.translate.get('mod-merma.REGISTER.SWAL_ARE_YOU_SURE_DELETE', { "art_the": count_users, "plural": plural, "user_name": name_user }).subscribe((translatedTitle: string) => {
       Swal.fire({
         title: translatedTitle,
         text: this.translate.instant('mod-merma.SWAL_WARNING_REVERSE_CHANGE'),
@@ -366,7 +365,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
             await this.registroService.deleteRegister(_id)
             await this.someInput.reload()
             Swal.fire({
-              title: this.translate.instant('mod-merma.TYPE.SWAL_DELETED'),
+              title: this.translate.instant('mod-merma.WORD_REGISTER'),
               text: this.translate.instant('mod-merma.SWAL_DELETED_RECORD'),
               icon: "success"
             });
@@ -458,7 +457,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
         const a = document.createElement('a');
         a.href = url;
         const extension = formato === 'excel' ? 'xlsx' : 'csv';
-        a.download = `reporte_lotes_${new Date().getTime()}.${extension}`;
+        a.download = `RPT_loss_register${new Date().getTime()}.${extension}`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);

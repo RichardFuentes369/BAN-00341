@@ -467,8 +467,8 @@ export class MermasService {
     let finUnix: number;
 
     if (allParams['year']) {
-      if (allParams['year'] != 'null') {
-        if (allParams['month'] != 'null') {
+      if (allParams['year']) {
+        if (allParams['month']) {
           const fechaInicio = new Date(allParams['year'], allParams['month'] - 1, 1, 0, 0, 0);
           const fechaFin = new Date(allParams['year'], allParams['month'], 0, 23, 59, 59);
           inicioUnix = Math.floor(fechaInicio.getTime() / 1000);
@@ -663,8 +663,8 @@ export class MermasService {
     let finUnix: number;
 
     if (allParams['year']) {
-      if (allParams['year'] != 'null') {
-        if (allParams['month'] != 'null') {
+      if (allParams['year']) {
+        if (allParams['month']) {
           const fechaInicio = new Date(allParams['year'], allParams['month'] - 1, 1, 0, 0, 0);
           const fechaFin = new Date(allParams['year'], allParams['month'], 0, 23, 59, 59);
           inicioUnix = Math.floor(fechaInicio.getTime() / 1000);
@@ -675,16 +675,17 @@ export class MermasService {
           inicioUnix = Math.floor(fechaInicio.getTime() / 1000);
           finUnix = Math.floor(fechaFin.getTime() / 1000);
         }
+        // where.fecha_reporte = Between(inicioUnix, finUnix);
       } else {
         const anioActual = new Date().getFullYear();
         const fechaInicio = new Date(anioActual, 0, 1, 0, 0, 0);
         const fechaFin = new Date(anioActual, 11, 31, 23, 59, 59);
         inicioUnix = Math.floor(fechaInicio.getTime() / 1000);
         finUnix = Math.floor(fechaFin.getTime() / 1000);
+        // where.fecha_reporte = Between(inicioUnix, finUnix);
       }
       where.fecha_reporte = Between(inicioUnix, finUnix);
     }
-
     const data = await this.mermaRepository.find({
       where,
       relations: {
