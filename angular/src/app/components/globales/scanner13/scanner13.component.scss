@@ -13,12 +13,7 @@
   color: var(--input-text_color) !important;
   opacity: 1; /* Opcional: elimina la transparencia por defecto que aplica Bootstrap */
 }
+
 .label-color {
   color: var(--input-label_color) !important;
 }
-legend {
-  color: var(--modal-legend_text_color);
-}
-
-
-

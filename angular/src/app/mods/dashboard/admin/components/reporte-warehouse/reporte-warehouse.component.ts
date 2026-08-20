@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Scanner13Component } from '@component/globales/scanner13/scanner13.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-reporte-warehouse',
   standalone: true,
-  imports: [TranslateModule, FormsModule, CommonModule, NgSelectModule],
+  imports: [TranslateModule, FormsModule, CommonModule, NgSelectModule, Scanner13Component],
   templateUrl: './reporte-warehouse.component.html',
   styleUrl: './reporte-warehouse.component.scss',
 })
