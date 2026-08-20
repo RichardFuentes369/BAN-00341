@@ -10,7 +10,7 @@ import { MenuAdminComponent } from '@mod/main/admin/pages/menu/menu.component'
 import { AdminPermissionComponent } from '@component/globales/permission/admin/admin.component';
 import { BREADCRUMB_PATH_DASHBOARD, BREADCRUMB_PATH_PROFILE, BREADCRUMB_PATH_SETTINGS } from '@mod/main/const/main.const';
 import { BREADCRUMB_PATH_MENU } from '@const/app.const';
-import { AdminDashboardComponent } from '@mod/dashboard/admin/admin.component';
+import { AdminDashboardComponent } from '@mod/dashboard/admin/pages/index/index.component';
 
 
 export const AdminLayoutRoutes: Routes = [
