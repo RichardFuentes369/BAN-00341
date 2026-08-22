@@ -2,33 +2,36 @@
   <div class="mt-2 p-3 pt-0" style="position: relative;">
 
     <!-- Graficos en general -->
-    <div class="card-custom shadow pt-4 pb-4 mb-4">
+    <div class="card-custom shadow mb-3  pl-4 pr-4 pt-4 pb-4">
       Graficos del aplicativo en general
     </div>
 
+    <hr>
 
     <div class="col-sm row mb-4 gap-4">
       <div class="col-sm p-0">
         <div class="card-custom shadow mb-3  pl-4 pr-4 pt-4 pb-4">
           <!-- EAN13 -->
-          <app-globales-scanner13></app-globales-scanner13>
+          <app-globales-scanner13 (dataResultScanned)="productScanned($event)"></app-globales-scanner13>
         </div>
       </div>
       <div class="col-sm p-0">
         <div class="card-custom shadow mb-3 pl-4 pr-4 pt-4 pb-4">
           <!-- LOTE -->
-          <app-reporte-lote></app-reporte-lote>
+          <app-reporte-lote (dataResultLote)="loteTyped($event)"></app-reporte-lote>
         </div>
       </div>
     </div>
 
-    <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4">
-      <app-reporte-warehouse></app-reporte-warehouse>
-    </div>
-
-    <!-- Graficos de es lote en particular -->
-    <div class="card-custom shadow pt-4 pb-4 mb-4">
-      Graficos del lote filtrado
-    </div>
+    @if(showDetailProduct){
+      <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4">
+        <app-reporte-warehouse></app-reporte-warehouse>
+      </div>
+  
+      <!-- Graficos de es lote en particular -->
+      <div class="card-custom shadow mb-3  pl-4 pr-4 pt-4 pb-4">
+        Graficos del lote filtrado
+      </div>
+    }
   </div>
 </div>

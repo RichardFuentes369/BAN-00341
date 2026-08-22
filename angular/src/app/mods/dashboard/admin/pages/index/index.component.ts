@@ -16,4 +16,16 @@ import { FiltroLoteComponent } from '../../components/filtro/filtro.component';
 })
 export class AdminDashboardComponent {
 
+  showDetailProduct = true
+
+  productScanned(data: any){
+    console.log('imprimiendo desde el padre')
+    console.log(data)
+  }
+
+  loteTyped(data: any){
+    console.log('imprimiendo lote')
+    console.log(data)
+  }
+
 }

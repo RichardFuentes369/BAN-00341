@@ -8,7 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-reporte-warehouse',
   standalone: true,
-  imports: [TranslateModule, FormsModule, CommonModule, NgSelectModule, Scanner13Component],
+  imports: [TranslateModule, FormsModule, CommonModule, NgSelectModule],
   templateUrl: './reporte-warehouse.component.html',
   styleUrl: './reporte-warehouse.component.scss',
 })
