@@ -19,12 +19,12 @@ export class AdminDashboardComponent {
   showDetailProduct = true
 
   productScanned(data: any){
-    console.log('imprimiendo desde el padre')
+    console.log('imprimiendo desde el padre data del producto')
     console.log(data)
   }
 
   loteTyped(data: any){
-    console.log('imprimiendo lote')
+    console.log('imprimiendo desde el padre data del proveedor y lote')
     console.log(data)
   }
 
