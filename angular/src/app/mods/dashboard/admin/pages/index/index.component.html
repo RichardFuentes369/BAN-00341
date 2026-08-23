@@ -1,37 +1,67 @@
 <div class="mb-4 border-0 rounded-0">
   <div class="mt-2 p-3 pt-0" style="position: relative;">
-
-    <!-- Graficos en general -->
-    <div class="card-custom shadow mb-3  pl-4 pr-4 pt-4 pb-4">
-      Graficos del aplicativo en general
-    </div>
-
-    <hr>
-
-    <div class="col-sm row mb-4 gap-4">
-      <div class="col-sm p-0">
-        <div class="card-custom shadow mb-3  pl-4 pr-4 pt-4 pb-4">
+    <div class="row mb-4 gap-4">
+      <div class="col-sm">
+        <div class="card-custom shadow mb-3">
           <!-- EAN13 -->
-          <app-globales-scanner13 (dataResultScanned)="productScanned($event)"></app-globales-scanner13>
+          <app-globales-scanner13 (clearData)="clearData($event)"
+            (dataResultScanned)="productScanned($event)"></app-globales-scanner13>
         </div>
       </div>
-      <div class="col-sm p-0">
+      <div class="col-sm">
         <div class="card-custom shadow mb-3 pl-4 pr-4 pt-4 pb-4">
           <!-- LOTE -->
-          <app-reporte-lote (dataResultLote)="loteTyped($event)"></app-reporte-lote>
+          <app-reporte-lote #hijoFiltro [idProducto]="idProducto"
+            (dataResultLote)="loteTyped($event)"></app-reporte-lote>
         </div>
       </div>
     </div>
 
     @if(showDetailProduct){
-      <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4">
-        <app-reporte-warehouse></app-reporte-warehouse>
-      </div>
-  
-      <!-- Graficos de es lote en particular -->
-      <div class="card-custom shadow mb-3  pl-4 pr-4 pt-4 pb-4">
+    <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4">
+      <fieldset class="border p-3 rounded mb-3">
+        <legend class="float-none w-auto p-1">
+          Resultados busqueda
+          <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('resultadosBusqueda')">
+            <i [class]="mostrarSeccion.resultadosBusqueda ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+          </button>
+        </legend>
+        @if(mostrarSeccion.resultadosBusqueda){
+        <app-reporte-warehouse [datosRecibidos]="datosJson"></app-reporte-warehouse>
+        }
+      </fieldset>
+    </div>
+
+    <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4">
+      <fieldset class="border p-3 rounded mb-3">
+        <legend class="float-none w-auto p-1">
+          Informe grafico
+          <button class="btn btn-sm btn-light rounded-circle shadow-sm"
+            (click)="toogleSection('resultadosGraficosBusqueda')">
+            <i [class]="mostrarSeccion.resultadosGraficosBusqueda ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+          </button>
+        </legend>
+        @if(mostrarSeccion.resultadosGraficosBusqueda){
         Graficos del lote filtrado
-      </div>
+        }
+      </fieldset>
+    </div>
+    }
+    @else {
+    <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4">
+      <fieldset class="border p-3 rounded mb-3">
+        <legend class="float-none w-auto p-1">
+          Informe grafico
+          <button class="btn btn-sm btn-light rounded-circle shadow-sm"
+            (click)="toogleSection('resultadosGraficosBusqueda')">
+            <i [class]="mostrarSeccion.resultadosGraficosBusqueda ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+          </button>
+        </legend>
+        @if(mostrarSeccion.resultadosGraficosBusqueda){
+        Graficos en general
+        }
+      </fieldset>
+    </div>
     }
   </div>
 </div>

@@ -1,99 +1,51 @@
-<div class="col-xl col-sm-12 pl-0 pr-0 pt-3 pb-4 mb-2">
-  <div class="col-xl col-sm-12 row">
-
-    <div class="col-sm">
-      <fieldset class="border p-3 rounded">
+<div class="col-xl-12 pl-0 pr-0 pt-3 pb-4 mb-2">
+  <div class="row g-4">
+    <!-- BLOQUE DERECHO / INFERIOR: Tabla (Ocupa el 100% de la fila inferior) -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <!-- SECCIÓN PRODUCTO -->
+      <fieldset class="border p-3 rounded mb-3">
         <legend class="float-none w-auto p-1">
           {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_PRODUCT' | translate }}
           <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('productSeccion')">
             <i [class]="mostrarSeccion.productSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
           </button>
         </legend>
-        <!-- <div class="row" *ngIf="mostrarSeccion.productSeccion" [class.animate__fadeIn]="mostrarSeccion.productSeccion"
-          [class.animate__fadeOut]="!mostrarSeccion.productSeccion">
+        <div class="row" *ngIf="mostrarSeccion.productSeccion">
           <div class="col-sm-12 form-group mb-3">
-            <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }}
-              (EAN-13)</label>
-            <input type="text" class="form-control form-select-sm" [class]="(fielddBarCode) ? 'bg-light' :''"
-              [(ngModel)]="producto.codigo_barra" (ngModelChange)="onInputChange()"
-              [class.is-invalid]="validators.codigo_barra"
-              placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}"
-              [disabled]="fielddBarCode">
-            @if(validators.codigo_barra) {
-            <div class="d-flex justify-content-between">
-              <small [ngClass]="esCodigoValido ? 'text-success font-weight-bold' : 'text-danger'">
-                {{ longitudCodigo }} / 13
-              </small>
-            </div>
-            }
-            <div class="row mt-2 g-2">
-              <div class="col-4">
-                <button type="button" class="btn btn-sm btn-outline-primary w-100" (click)="ean13(1)">
-                  <i class="fa fa-barcode"></i> Escanear
-                </button>
-              </div>
-              <div class="col-4">
-                <button type="button" class="btn btn-sm btn-outline-primary w-100" (click)="ean13(2)">
-                  <i class="fa fa-pencil"></i> Manual
-                </button>
-              </div>
-              <div class="col-4">
-                <button type="button" class="btn btn-sm btn-danger w-100" (click)="ean13(3)">
-                  <i class="fa fa-trash"></i> Limpiar
-                </button>
-              </div>
-            </div>
-            @if(show_detail_product){
-            <div class="row mt-3">
+            <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
+            <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.codigo_barra" disabled
+              placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}">
+
+            <!-- Detalle del producto al escanear -->
+            <div class="row mt-3" *ngIf="show_detail_product">
               <div class="col-sm-6 form-group">
-                <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' |
-                  translate }}</label>
+                <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
                 <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.nombre" disabled>
               </div>
               <div class="col-sm-6 form-group">
-                <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' |
-                  translate }}</label>
+                <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate
+                  }}</label>
                 <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.marca" disabled>
               </div>
               <div class="col-sm form-group">
-                <label class="label-color form-label">{{
-                  'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate
-                  }}</label>
+                <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' |
+                  translate }}</label>
                 <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.unidad_medida"
                   disabled>
               </div>
             </div>
-            }
           </div>
-          @if (btn_new_product && puedoCrearProductos) {
-          <div class="d-flex flex-row-reverse">
-            <div class="p-2">
-              <button class="btn btn-sm btn-primary" (click)="goTo('admin/mod/catalog/productos', 0)">
-                {{ 'mod-catalog.PRODUCT.CREATE_TITLE' | translate }} {{
-                'mod-catalog.PRODUCT.CREATE_SUBTITLE' | translate
-                }}
-              </button>
-            </div>
-          </div>
-          }
-          @if (btn_new_product && !puedoCrearProductos) {
-          <div class="d-flex justify-content-between">
-            <small class="text-danger">
-              {{ 'mod-warehouse.MSJ_ERROR_CREATE_PRODUCTS_PERMISSION' | translate }}
-            </small>
-          </div>
-          }
-        </div> -->
+        </div>
       </fieldset>
-      <fieldset class="border p-3 rounded">
+      <!-- SECCIÓN PROVEEDOR -->
+      <fieldset class="border p-3 rounded mb-3">
         <legend class="float-none w-auto p-1">
           {{ 'mod-catalog.SUPPLIER.LEGEND_TITLE' | translate }}
           <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('providerSeccion')">
             <i [class]="mostrarSeccion.providerSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
           </button>
         </legend>
-        <!-- <div class="row" *ngIf="mostrarSeccion.providerSeccion" [class.animate__fadeIn]="mostrarSeccion.providerSeccion"
-          [class.animate__fadeOut]="!mostrarSeccion.providerSeccion">
+        <div class="row" *ngIf="mostrarSeccion.providerSeccion">
           <div class="col-sm-12 form-group mb-3">
             <label class="label-color">{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}</label>
             <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="proveedor.nit" disabled>
@@ -109,130 +61,99 @@
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
       </fieldset>
-      <fieldset class="border p-3 rounded">
+      <!-- SECCIÓN BODEGA / LOTE -->
+      <fieldset class="border p-3 rounded mb-3">
         <legend class="float-none w-auto p-1">
           {{ 'mod-warehouse.LEGEND_TITLE' | translate }}
           <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('batchSeccion')">
             <i [class]="mostrarSeccion.batchSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
           </button>
         </legend>
-        <!-- <div class="row" *ngIf="mostrarSeccion.batchSeccion" [class.animate__fadeIn]="mostrarSeccion.batchSeccion"
-          [class.animate__fadeOut]="!mostrarSeccion.batchSeccion">
+        <div class="row" *ngIf="mostrarSeccion.batchSeccion">
           <div class="col-sm-12 form-group">
-            <label class="label-color">
-              {{ 'mod-warehouse.LABEL_LOTE' | translate}}
-            </label>
-            <input type="text" class="form-control form-select-sm" [(ngModel)]="bodega.lote"
-              (ngModelChange)="onInputChange()" [class.is-invalid]="validators.lote"
+            <label class="label-color">{{ 'mod-warehouse.LABEL_LOTE' | translate}}</label>
+            <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.lote" disabled
               placeholder="{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate}}">
-            @if(validators.lote) {
-            <span class="text-danger small">{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate }}</span>
-            }
           </div>
-          @if (btn_new_batch && puedoCrearBatch) {
-          <div class="d-flex flex-row-reverse">
-            <div class="p-2">
-              <button class="btn btn-sm btn-primary" (click)="goTo('admin/mod/warehouse', 0)">
-                {{ 'mod-warehouse.CREATE_TITLE' | translate }} {{ 'mod-warehouse.LABEL_LOTE' | translate }}
-              </button>
-            </div>
-          </div>
-          }
-          @if (btn_new_batch && !puedoCrearBatch) {
-          <div class="d-flex justify-content-between">
-            <small class="text-danger">
-              {{ 'mod-warehouse.MSJ_ERROR_CREATE_PRODUCTS_PERMISSION' | translate }}
-            </small>
-          </div>
-          }
-          @if(show_detail_batch){
-          <div class="col-sm-12 form-group">
-            <label class="label-color">
-              {{ 'mod-warehouse.LABEL_FECHA_ENTRADA' | translate}}
-            </label>
-            <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.fecha_entrada" disabled>
-          </div>
-          @if(producto.es_perecedero){
-          <div class="col-sm-12 form-group">
-            <label class="label-color">
-              {{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}
-            </label>
-            <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.fecha_vencimiento"
-              disabled>
-          </div>
-          }
-          <div class="col-sm-12 form-group">
-            <div class="row">
-              <div class="col-sm-6 form-group">
-                <label class="label-color">
-                  {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}
-                </label>
-                <input type="number" min="0" class="form-control form-select-sm bg-light"
-                  [(ngModel)]="bodega.cantidad_comprada" disabled>
-                <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
-              </div>
-              <div class="col-sm-6 form-group">
-                <label class="label-color">
-                  {{ 'mod-warehouse.LABEL_CANTIDAD_VENDIDA' | translate}}
-                </label>
-                <input type="number" min="0" class="form-control form-select-sm bg-light"
-                  [(ngModel)]="bodega.cantidad_vendida" disabled>
-                <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
-              </div>
-              <div class="col-sm-6 form-group">
-                <label class="label-color">
-                  {{ 'mod-warehouse.LABEL_CANTIDAD_AFECTADA' | translate}}
-                </label>
-                <input type="number" min="0" class="form-control form-select-sm bg-light"
-                  [(ngModel)]="cantidad_afectada_por_merma" disabled>
-                <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
-              </div>
-              <div class="col-sm-6 form-group">
-                <label class="label-color">
-                  {{ 'mod-warehouse.LABEL_CANTIDAD_BODEGA' | translate}}
-                </label>
-                <input type="number" min="0" class="form-control form-select-sm bg-light"
-                  [(ngModel)]="bodega.cantidad_en_bodega" disabled>
-                <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-12 form-group">
-            <label class="label-color">
-              {{ 'mod-warehouse.LABEL_ESTADO' | translate}}
-            </label>
-            <select class="form-control custom-select form-select-sm bg-light" [(ngModel)]="bodega.estado" disabled>
-              <option value="">{{ 'mod-warehouse.SELECT_SELECT_OPTION' | translate}}</option>
-              <option value="disponible">{{ 'mod-warehouse.SELECT_AVAILABLE_OPTION' | translate}}</option>
-              <option value="vencido">{{ 'mod-warehouse.SELECT_UNAVAILABLE_OPTION' | translate}}</option>
-              <option value="agotado">{{ 'mod-warehouse.SELECT_EXPIRED_OPTION' | translate}}</option>
-            </select>
-          </div>
-          }
-        </div> -->
-      </fieldset>
-    </div>
 
-    <div class="col-sm">
-      <fieldset class="border p-3 rounded">
+          <!-- Detalle del Lote -->
+          <div class="col-sm-12 mt-3" *ngIf="show_detail_batch">
+            <div class="form-group">
+              <label class="label-color">{{ 'mod-warehouse.LABEL_FECHA_ENTRADA' | translate}}</label>
+              <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.fecha_entrada"
+                disabled>
+            </div>
+
+            <div class="form-group" *ngIf="producto.es_perecedero">
+              <label class="label-color">{{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}</label>
+              <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.fecha_vencimiento"
+                disabled>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-6 form-group">
+                  <label class="label-color">{{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}</label>
+                  <input type="number" class="form-control form-select-sm bg-light"
+                    [(ngModel)]="bodega.cantidad_comprada" disabled>
+                  <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en
+                    {{producto.unidad_medida}}</span>
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label class="label-color">{{ 'mod-warehouse.LABEL_CANTIDAD_VENDIDA' | translate}}</label>
+                  <input type="number" class="form-control form-select-sm bg-light"
+                    [(ngModel)]="bodega.cantidad_vendida" disabled>
+                  <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en
+                    {{producto.unidad_medida}}</span>
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label class="label-color">{{ 'mod-warehouse.LABEL_CANTIDAD_AFECTADA' | translate}}</label>
+                  <input type="number" class="form-control form-select-sm bg-light"
+                    [(ngModel)]="cantidad_afectada_por_merma" disabled>
+                  <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en
+                    {{producto.unidad_medida}}</span>
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label class="label-color">{{ 'mod-warehouse.LABEL_CANTIDAD_BODEGA' | translate}}</label>
+                  <input type="number" class="form-control form-select-sm bg-light"
+                    [(ngModel)]="bodega.cantidad_en_bodega" disabled>
+                  <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en
+                    {{producto.unidad_medida}}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="label-color">{{ 'mod-warehouse.LABEL_ESTADO' | translate}}</label>
+              <select class="form-control custom-select form-select-sm bg-light" [(ngModel)]="bodega.estado" disabled>
+                <option value="">{{ 'mod-warehouse.SELECT_SELECT_OPTION' | translate}}</option>
+                <option value="disponible">{{ 'mod-warehouse.SELECT_AVAILABLE_OPTION' | translate}}</option>
+                <option value="vencido">{{ 'mod-warehouse.SELECT_UNAVAILABLE_OPTION' | translate}}</option>
+                <option value="agotado">{{ 'mod-warehouse.SELECT_EXPIRED_OPTION' | translate}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <!-- Movimos el *ngIf aquí arriba para que controle todo el fieldset -->
+      <fieldset class="border p-3 rounded ">
         <legend class="float-none w-auto p-1">
           {{ 'mod-merma.REGISTER.LEGEND_TITLE' | translate }}
           <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('mermaSeccion')">
             <i [class]="mostrarSeccion.mermaSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
           </button>
         </legend>
-        <!-- <div class="row" *ngIf="mostrarSeccion.mermaSeccion" [class.animate__fadeIn]="mostrarSeccion.mermaSeccion"
-          [class.animate__fadeOut]="!mostrarSeccion.mermaSeccion">
-          @if (cargarIdioma) {
-          <div class="table-container">
+
+        <!-- Contenido que se oculta y muestra por completo -->
+        <div class="row" *ngIf="mostrarSeccion.mermaSeccion">
+          <div class="table-container col-12">
             <app-globales-tablecrud *ngIf="endPoint" [accioneson]="accioneson" [orderField]="orderField" [order]="order"
               [endPoint]="endPoint" [columnas]="columnas" [title]="titlePage">
             </app-globales-tablecrud>
           </div>
-          }
-        </div> -->
+        </div>
       </fieldset>
     </div>
 

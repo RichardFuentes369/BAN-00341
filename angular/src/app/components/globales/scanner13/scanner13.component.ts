@@ -24,6 +24,7 @@ import Swal from 'sweetalert2';
 export class Scanner13Component implements OnInit {
 
   @Output() dataResultScanned = new EventEmitter<any>();
+  @Output() clearData = new EventEmitter<any>();
 
   private validationSubject = new Subject<void>();
   isFormValid = false;
@@ -150,6 +151,8 @@ export class Scanner13Component implements OnInit {
         this.fielddBarCode = true
         this.onInputChange()
         this.producto.codigo_barra = ''
+
+        this.clearData.emit()
         break;
     }
   }
@@ -169,6 +172,8 @@ export class Scanner13Component implements OnInit {
         this.btn_new_product = false
       }
     } catch (error: any) {
+      this.producto.id = ''
+      this.dataResultScanned.emit(this.producto)
       if (this.permisos_catalogo_productos.find(obj => obj.permiso_permiso === 'crear') == undefined) {
         this.puedoCrearProductos = false
       } else {
