@@ -1,8 +1,6 @@
 <div class="col-xl-12 pl-0 pr-0 pt-3 pb-4 mb-2">
   <div class="row g-4">
-    <!-- BLOQUE DERECHO / INFERIOR: Tabla (Ocupa el 100% de la fila inferior) -->
-    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-      <!-- SECCIÓN PRODUCTO -->
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
       <fieldset class="border p-3 rounded mb-3">
         <legend class="float-none w-auto p-1">
           {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_PRODUCT' | translate }}
@@ -16,28 +14,24 @@
             <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.codigo_barra" disabled
               placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}">
 
-            <!-- Detalle del producto al escanear -->
             <div class="row mt-3" *ngIf="show_detail_product">
               <div class="col-sm-6 form-group">
                 <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
                 <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.nombre" disabled>
               </div>
               <div class="col-sm-6 form-group">
-                <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate
-                  }}</label>
+                <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
                 <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.marca" disabled>
               </div>
               <div class="col-sm form-group">
-                <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' |
-                  translate }}</label>
-                <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.unidad_medida"
-                  disabled>
+                <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</label>
+                <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.unidad_medida" disabled>
               </div>
             </div>
           </div>
         </div>
       </fieldset>
-      <!-- SECCIÓN PROVEEDOR -->
+
       <fieldset class="border p-3 rounded mb-3">
         <legend class="float-none w-auto p-1">
           {{ 'mod-catalog.SUPPLIER.LEGEND_TITLE' | translate }}
@@ -52,8 +46,7 @@
             <div class="row mt-3">
               <div class="col-sm-6 form-group">
                 <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
-                <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="proveedor.razon_social"
-                  disabled>
+                <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="proveedor.razon_social" disabled>
               </div>
               <div class="col-sm-6 form-group">
                 <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
@@ -63,7 +56,7 @@
           </div>
         </div>
       </fieldset>
-      <!-- SECCIÓN BODEGA / LOTE -->
+
       <fieldset class="border p-3 rounded mb-3">
         <legend class="float-none w-auto p-1">
           {{ 'mod-warehouse.LEGEND_TITLE' | translate }}
@@ -78,49 +71,38 @@
               placeholder="{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate}}">
           </div>
 
-          <!-- Detalle del Lote -->
           <div class="col-sm-12 mt-3" *ngIf="show_detail_batch">
             <div class="form-group">
               <label class="label-color">{{ 'mod-warehouse.LABEL_FECHA_ENTRADA' | translate}}</label>
-              <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.fecha_entrada"
-                disabled>
+              <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.fecha_entrada" disabled>
             </div>
 
             <div class="form-group" *ngIf="producto.es_perecedero">
               <label class="label-color">{{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}</label>
-              <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.fecha_vencimiento"
-                disabled>
+              <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.fecha_vencimiento" disabled>
             </div>
 
             <div class="form-group">
               <div class="row">
                 <div class="col-sm-6 form-group">
                   <label class="label-color">{{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}</label>
-                  <input type="number" class="form-control form-select-sm bg-light"
-                    [(ngModel)]="bodega.cantidad_comprada" disabled>
-                  <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en
-                    {{producto.unidad_medida}}</span>
+                  <input type="number" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.cantidad_comprada" disabled>
+                  <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
                 </div>
                 <div class="col-sm-6 form-group">
                   <label class="label-color">{{ 'mod-warehouse.LABEL_CANTIDAD_VENDIDA' | translate}}</label>
-                  <input type="number" class="form-control form-select-sm bg-light"
-                    [(ngModel)]="bodega.cantidad_vendida" disabled>
-                  <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en
-                    {{producto.unidad_medida}}</span>
+                  <input type="number" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.cantidad_vendida" disabled>
+                  <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
                 </div>
                 <div class="col-sm-6 form-group">
                   <label class="label-color">{{ 'mod-warehouse.LABEL_CANTIDAD_AFECTADA' | translate}}</label>
-                  <input type="number" class="form-control form-select-sm bg-light"
-                    [(ngModel)]="cantidad_afectada_por_merma" disabled>
-                  <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en
-                    {{producto.unidad_medida}}</span>
+                  <input type="number" class="form-control form-select-sm bg-light" [(ngModel)]="cantidad_afectada_por_merma" disabled>
+                  <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
                 </div>
                 <div class="col-sm-6 form-group">
                   <label class="label-color">{{ 'mod-warehouse.LABEL_CANTIDAD_BODEGA' | translate}}</label>
-                  <input type="number" class="form-control form-select-sm bg-light"
-                    [(ngModel)]="bodega.cantidad_en_bodega" disabled>
-                  <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en
-                    {{producto.unidad_medida}}</span>
+                  <input type="number" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.cantidad_en_bodega" disabled>
+                  <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
                 </div>
               </div>
             </div>
@@ -137,8 +119,10 @@
           </div>
         </div>
       </fieldset>
-      <!-- Movimos el *ngIf aquí arriba para que controle todo el fieldset -->
-      <fieldset class="border p-3 rounded ">
+    </div>
+
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+      <fieldset class="border p-3 rounded">
         <legend class="float-none w-auto p-1">
           {{ 'mod-merma.REGISTER.LEGEND_TITLE' | translate }}
           <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('mermaSeccion')">
@@ -146,7 +130,6 @@
           </button>
         </legend>
 
-        <!-- Contenido que se oculta y muestra por completo -->
         <div class="row" *ngIf="mostrarSeccion.mermaSeccion">
           <div class="table-container col-12">
             <app-globales-tablecrud *ngIf="endPoint" [accioneson]="accioneson" [orderField]="orderField" [order]="order"
@@ -156,6 +139,5 @@
         </div>
       </fieldset>
     </div>
-
   </div>
 </div>
