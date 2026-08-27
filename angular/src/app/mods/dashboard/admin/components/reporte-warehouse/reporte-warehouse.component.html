@@ -151,7 +151,7 @@
 
         <div class="row" *ngIf="mostrarSeccion.mermaSeccion" [class.animate__fadeIn]="mostrarSeccion.mermaSeccion"
           [class.animate__fadeOut]="!mostrarSeccion.mermaSeccion">
-          <div class="table-container col-12">
+          <div class="table-container col-12 mb-4">
             <app-globales-tablecrud *ngIf="endPoint" [accioneson]="accioneson" [orderField]="orderField" [order]="order"
               [endPoint]="endPoint" [columnas]="columnas" [title]="titlePage">
             </app-globales-tablecrud>

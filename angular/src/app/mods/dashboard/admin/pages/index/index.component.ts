@@ -3,6 +3,9 @@ import { ReporteWarehouseComponent } from '../../components/reporte-warehouse/re
 import { Scanner13Component } from '@component/globales/scanner13/scanner13.component';
 import { FiltroLoteComponent } from '../../components/filtro/filtro.component';
 import { CommonModule } from '@angular/common';
+import { BarChartComponent } from '@component/globales/chart/bar/bar.component';
+import { LineChartComponent } from '@component/globales/chart/line/line.component';
+import { PieChartComponent } from '@component/globales/chart/pie/pie.component';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -11,7 +14,11 @@ import { CommonModule } from '@angular/common';
     ReporteWarehouseComponent,
     Scanner13Component,
     FiltroLoteComponent,
-    CommonModule
+    CommonModule,
+
+    BarChartComponent,
+    LineChartComponent,
+    PieChartComponent    
   ],
   templateUrl: './index.component.html',
   styleUrl: './index.component.scss',

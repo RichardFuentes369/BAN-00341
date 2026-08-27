@@ -22,6 +22,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Plantillas
 import { AppComponent } from './app.component';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 export function createTranslateLoader(http: HttpClient) {
   const baseTranslateUrl = './assets/i18n';
@@ -88,6 +89,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     provideHttpClient(withFetch()),
+    provideCharts(withDefaultRegisterables()),
     provideClientHydration() // Si lo estás usando
   ],
   bootstrap: [AppComponent]
