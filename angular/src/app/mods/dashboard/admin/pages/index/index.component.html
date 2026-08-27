@@ -26,9 +26,9 @@
             <i [class]="mostrarSeccion.resultadosBusqueda ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
           </button>
         </legend>
-        @if(mostrarSeccion.resultadosBusqueda){
-        <app-reporte-warehouse [datosRecibidos]="datosJson"></app-reporte-warehouse>
-        }
+        <div class="row" *ngIf="mostrarSeccion.resultadosBusqueda" [class.animate__fadeIn]="mostrarSeccion.resultadosBusqueda" [class.animate__fadeOut]="!mostrarSeccion.resultadosBusqueda">
+          <app-reporte-warehouse [datosRecibidos]="datosJson"></app-reporte-warehouse>
+        </div>
       </fieldset>
     </div>
 

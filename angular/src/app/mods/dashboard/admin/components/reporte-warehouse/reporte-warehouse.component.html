@@ -8,7 +8,7 @@
             <i [class]="mostrarSeccion.productSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
           </button>
         </legend>
-        <div class="row" *ngIf="mostrarSeccion.productSeccion">
+        <div class="row" *ngIf="mostrarSeccion.productSeccion" [class.animate__fadeIn]="mostrarSeccion.productSeccion" [class.animate__fadeOut]="!mostrarSeccion.productSeccion">
           <div class="col-sm-12 form-group mb-3">
             <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
             <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.codigo_barra" disabled
@@ -39,7 +39,7 @@
             <i [class]="mostrarSeccion.providerSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
           </button>
         </legend>
-        <div class="row" *ngIf="mostrarSeccion.providerSeccion">
+        <div class="row" *ngIf="mostrarSeccion.providerSeccion" [class.animate__fadeIn]="mostrarSeccion.providerSeccion" [class.animate__fadeOut]="!mostrarSeccion.providerSeccion">
           <div class="col-sm-12 form-group mb-3">
             <label class="label-color">{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}</label>
             <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="proveedor.nit" disabled>
@@ -64,7 +64,7 @@
             <i [class]="mostrarSeccion.batchSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
           </button>
         </legend>
-        <div class="row" *ngIf="mostrarSeccion.batchSeccion">
+        <div class="row" *ngIf="mostrarSeccion.batchSeccion" [class.animate__fadeIn]="mostrarSeccion.batchSeccion" [class.animate__fadeOut]="!mostrarSeccion.batchSeccion">
           <div class="col-sm-12 form-group">
             <label class="label-color">{{ 'mod-warehouse.LABEL_LOTE' | translate}}</label>
             <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.lote" disabled
@@ -130,7 +130,7 @@
           </button>
         </legend>
 
-        <div class="row" *ngIf="mostrarSeccion.mermaSeccion">
+        <div class="row" *ngIf="mostrarSeccion.mermaSeccion" [class.animate__fadeIn]="mostrarSeccion.mermaSeccion" [class.animate__fadeOut]="!mostrarSeccion.mermaSeccion">
           <div class="table-container col-12">
             <app-globales-tablecrud *ngIf="endPoint" [accioneson]="accioneson" [orderField]="orderField" [order]="order"
               [endPoint]="endPoint" [columnas]="columnas" [title]="titlePage">
