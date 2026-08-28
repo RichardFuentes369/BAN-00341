@@ -9,13 +9,22 @@
         </div>
       </div>
       <div class="col-sm">
-        <div class="card-custom shadow mb-3 pl-4 pr-4 pt-4 pb-4">
+        <div class="card-custom shadow mb-3 pl-4 pr-4 pt-4">
           <!-- LOTE -->
           <app-reporte-lote #hijoFiltro [idProducto]="idProducto"
             (dataResultLote)="loteTyped($event)"></app-reporte-lote>
         </div>
       </div>
     </div>
+
+    <div class="row mb-4">
+      <div class="col-sm-12">
+        <div class="card-custom shadow mb-3 pl-4 pr-4 pt-4">
+          <app-reporte-rangos></app-reporte-rangos>
+        </div>
+      </div>
+    </div>
+
 
     @if(showDetailProduct){
     <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4">
@@ -69,7 +78,7 @@
               <app-globales-chart-line></app-globales-chart-line>
             </div>
           </div>
-          
+
         </div>
       </fieldset>
     </div>
@@ -110,7 +119,7 @@
               <app-globales-chart-line></app-globales-chart-line>
             </div>
           </div>
-          
+
         </div>
 
       </fieldset>

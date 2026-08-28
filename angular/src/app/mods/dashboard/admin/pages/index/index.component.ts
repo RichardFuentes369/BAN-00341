@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { BarChartComponent } from '@component/globales/chart/bar/bar.component';
 import { LineChartComponent } from '@component/globales/chart/line/line.component';
 import { PieChartComponent } from '@component/globales/chart/pie/pie.component';
+import { RangosFiltroComponent } from '../../components/rangos/rangos.component';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -14,6 +15,7 @@ import { PieChartComponent } from '@component/globales/chart/pie/pie.component';
     ReporteWarehouseComponent,
     Scanner13Component,
     FiltroLoteComponent,
+    RangosFiltroComponent,
     CommonModule,
 
     BarChartComponent,
