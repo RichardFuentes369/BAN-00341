@@ -3,10 +3,10 @@ import { ReporteWarehouseComponent } from '../../components/reporte-warehouse/re
 import { Scanner13Component } from '@component/globales/scanner13/scanner13.component';
 import { FiltroLoteComponent } from '../../components/filtro/filtro.component';
 import { CommonModule } from '@angular/common';
-import { BarChartComponent } from '@component/globales/chart/bar/bar.component';
-import { LineChartComponent } from '@component/globales/chart/line/line.component';
-import { PieChartComponent } from '@component/globales/chart/pie/pie.component';
 import { RangosFiltroComponent } from '../../components/rangos/rangos.component';
+
+import { ChartsComponent } from '@component/globales/charts/charts.component';
+import { ChartOptions, ChartType, ChartData } from 'chart.js';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -18,9 +18,7 @@ import { RangosFiltroComponent } from '../../components/rangos/rangos.component'
     RangosFiltroComponent,
     CommonModule,
 
-    BarChartComponent,
-    LineChartComponent,
-    PieChartComponent    
+    ChartsComponent,
   ],
   templateUrl: './index.component.html',
   styleUrl: './index.component.scss',
@@ -54,11 +52,13 @@ export class AdminDashboardComponent {
   }
 
   idProducto: any = null
+
   mostrarSeccion = {
     graficosGenerales: true,
     resultadosBusqueda: true,
     resultadosGraficosBusqueda: true,
   }
+
   showDetailProduct = false
 
   clearData(data: any){
@@ -114,5 +114,104 @@ export class AdminDashboardComponent {
       this.mostrarSeccion[key] = !this.mostrarSeccion[key];
     }
   }
+
+
+
+  // ==========================
+  // 1. CONFIGURACIÓN BARRAS
+  // ==========================
+  public barChartType: ChartType = 'bar';
+  public barChartOptions: ChartOptions<'bar'> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true, position: 'top' },
+      tooltip: { enabled: true }
+    },
+    scales: {
+      x: {},
+      y: { beginAtZero: true }
+    }
+  };
+  public barChartData: ChartData<'bar'> = {
+    labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+    datasets: [
+      {
+        data: [65, 59, 80, 81, 56],
+        label: 'Ventas 2026',
+        backgroundColor: '#36A2EB',
+        borderColor: '#2A82BE',
+        borderWidth: 1
+      },
+      {
+        data: [28, 48, 40, 19, 86],
+        label: 'Gastos 2026',
+        backgroundColor: '#FF6384',
+        borderColor: '#CC4F6A',
+        borderWidth: 1
+      }
+    ]
+  };
+
+  // ==========================
+  // 2. CONFIGURACIÓN LÍNEAS
+  // ==========================
+  public lineChartType: ChartType = 'line';
+  public lineChartOptions: ChartOptions<'line'> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true, position: 'top' },
+      tooltip: { enabled: true }
+    },
+    scales: {
+      x: {},
+      y: { beginAtZero: true }
+    }
+  };
+  public lineChartData: ChartData<'line'> = {
+    labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4', 'Semana 5'],
+    datasets: [
+      {
+        data: [120, 150, 180, 140, 220],
+        label: 'Tráfico Web',
+        fill: true,
+        tension: 0.4,
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: '#36A2EB',
+        pointBackgroundColor: '#36A2EB',
+      },
+      {
+        data: [80, 110, 130, 95, 170],
+        label: 'Conversiones',
+        fill: false,
+        tension: 0.4,
+        borderColor: '#FF6384',
+        pointBackgroundColor: '#FF6384',
+      }
+    ]
+  };
+
+  // ==========================
+  // 3. CONFIGURACIÓN PASTEL
+  // ==========================
+  public pieChartType: ChartType = 'pie';
+  public pieChartOptions: ChartOptions<'pie'> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    aspectRatio: 2,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { enabled: true }
+    }
+  };
+  public pieChartData: ChartData<'pie', number[], string | string[]> = {
+    labels: ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'],
+    datasets: [{
+      data: [300, 500, 100],
+      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+      hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+    }]
+  };
 
 }

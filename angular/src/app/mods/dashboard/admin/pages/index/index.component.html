@@ -57,28 +57,37 @@
           [class.animate__fadeIn]="mostrarSeccion.resultadosGraficosBusqueda"
           [class.animate__fadeOut]="!mostrarSeccion.resultadosGraficosBusqueda">
 
-          <div class="col-sm-12 row">
-            <div class="col-sm-4">
-              <app-globales-chart-pie></app-globales-chart-pie>
+          <div class="row g-4"> 
+
+            <!-- Fila 1 -->
+            <div class="col-12 col-md-4">
+              <app-globales-charts title="Gráfica de Líneas" chartType="line" [chartData]="lineChartData"
+                [chartOptions]="lineChartOptions"></app-globales-charts>
             </div>
-            <div class="col-sm-4">
-              <app-globales-chart-bar></app-globales-chart-bar>
+            <div class="col-12 col-md-4">
+              <app-globales-charts title="Gráfica de Pastel" chartType="pie" [chartData]="pieChartData"
+                [chartOptions]="pieChartOptions"></app-globales-charts>
             </div>
-            <div class="col-sm-4">
-              <app-globales-chart-line></app-globales-chart-line>
+            <div class="col-12 col-md-4">
+              <app-globales-charts title="Gráfica de Barras" chartType="bar" [chartData]="barChartData"
+                [chartOptions]="barChartOptions"></app-globales-charts>
             </div>
 
-            <div class="col-sm-4">
-              <app-globales-chart-pie></app-globales-chart-pie>
+            <!-- Fila 2 (Se acomodarán automáticamente abajo de forma simétrica) -->
+            <div class="col-12 col-md-4">
+              <app-globales-charts title="Gráfica de Líneas" chartType="line" [chartData]="lineChartData"
+                [chartOptions]="lineChartOptions"></app-globales-charts>
             </div>
-            <div class="col-sm-4">
-              <app-globales-chart-bar></app-globales-chart-bar>
+            <div class="col-12 col-md-4">
+              <app-globales-charts title="Gráfica de Pastel" chartType="pie" [chartData]="pieChartData"
+                [chartOptions]="pieChartOptions"></app-globales-charts>
             </div>
-            <div class="col-sm-4">
-              <app-globales-chart-line></app-globales-chart-line>
+            <div class="col-12 col-md-4">
+              <app-globales-charts title="Gráfica de Barras" chartType="bar" [chartData]="barChartData"
+                [chartOptions]="barChartOptions"></app-globales-charts>
             </div>
+
           </div>
-
         </div>
       </fieldset>
     </div>
@@ -98,26 +107,37 @@
           [class.animate__fadeIn]="mostrarSeccion.resultadosGraficosBusqueda"
           [class.animate__fadeOut]="!mostrarSeccion.resultadosGraficosBusqueda">
 
-          <div class="col-sm-12 row">
-            <div class="col-sm-4">
-              <app-globales-chart-pie></app-globales-chart-pie>
+
+          <div class="row g-4"> 
+
+            <!-- Fila 1 -->
+            <div class="col-12 col-md-4">
+              <app-globales-charts title="Gráfica de Líneas" chartType="line" [chartData]="lineChartData"
+                [chartOptions]="lineChartOptions"></app-globales-charts>
             </div>
-            <div class="col-sm-4">
-              <app-globales-chart-bar></app-globales-chart-bar>
+            <div class="col-12 col-md-4">
+              <app-globales-charts title="Gráfica de Pastel" chartType="pie" [chartData]="pieChartData"
+                [chartOptions]="pieChartOptions"></app-globales-charts>
             </div>
-            <div class="col-sm-4">
-              <app-globales-chart-line></app-globales-chart-line>
+            <div class="col-12 col-md-4">
+              <app-globales-charts title="Gráfica de Barras" chartType="bar" [chartData]="barChartData"
+                [chartOptions]="barChartOptions"></app-globales-charts>
             </div>
 
-            <div class="col-sm-4">
-              <app-globales-chart-pie></app-globales-chart-pie>
+            <!-- Fila 2 (Se acomodarán automáticamente abajo de forma simétrica) -->
+            <div class="col-12 col-md-4">
+              <app-globales-charts title="Gráfica de Líneas" chartType="line" [chartData]="lineChartData"
+                [chartOptions]="lineChartOptions"></app-globales-charts>
             </div>
-            <div class="col-sm-4">
-              <app-globales-chart-bar></app-globales-chart-bar>
+            <div class="col-12 col-md-4">
+              <app-globales-charts title="Gráfica de Pastel" chartType="pie" [chartData]="pieChartData"
+                [chartOptions]="pieChartOptions"></app-globales-charts>
             </div>
-            <div class="col-sm-4">
-              <app-globales-chart-line></app-globales-chart-line>
+            <div class="col-12 col-md-4">
+              <app-globales-charts title="Gráfica de Barras" chartType="bar" [chartData]="barChartData"
+                [chartOptions]="barChartOptions"></app-globales-charts>
             </div>
+
           </div>
 
         </div>
