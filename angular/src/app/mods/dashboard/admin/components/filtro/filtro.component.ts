@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BodegaService } from '@mod/warehouse/admin/pages/warehouse/service/warehouse.service';
 import { TranslateModule } from '@ngx-translate/core';
@@ -12,12 +12,12 @@ import { debounceTime, map, Subject } from 'rxjs';
   templateUrl: './filtro.component.html',
   styleUrl: './filtro.component.scss',
 })
-export class FiltroLoteComponent {
+export class FiltroLoteComponent implements OnChanges {
 
   @Input() idProducto: any;
   @Output() dataResultLote = new EventEmitter<any>();
 
-  private validationSubject = new Subject<void>();
+  protected validationSubject = new Subject<void>();
   isFormValid = false;
 
   constructor(
@@ -58,17 +58,30 @@ export class FiltroLoteComponent {
   }
 
   checkValidation(): boolean {
+    const isProductoValido = this.idProducto !== null &&
+      this.idProducto !== undefined &&
+      String(this.idProducto).trim() !== '';
 
-    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    this.validators.lote = (this.lote.length === 0)
+    this.validators.lote = (this.lote.length === 0);
 
-    const boton = document.querySelector('.btnFilterBatch') as HTMLButtonElement
-    (!this.validators.lote) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+    const isValid = !this.validators.lote && isProductoValido;
 
-    return !this.validators.lote
+    const boton = document.querySelector('.btnFilterBatch') as HTMLButtonElement;
+    if (boton) {
+      isValid ? boton.classList.remove('disabled') : boton.classList.add('disabled');
+    }
+
+    return isValid;
   }
 
-  limpiarCampo (){
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['idProducto']) {
+      this.isFormValid != this.isFormValid
+      this.validationSubject.next();
+    }
+  }
+
+  limpiarCampo() {
     this.lote = ''
   }
 
@@ -81,15 +94,15 @@ export class FiltroLoteComponent {
         this.data.proveedor.correo = response.data.id_proveedor.correo
 
         this.data.lote.id = response.data.id,
-        this.data.lote.lote = response.data.lote,
-        this.data.lote.fecha_entrada = response.data.fecha_entrada,
-        this.data.lote.fecha_vencimiento = response.data.fecha_vencimiento,
-        this.data.lote.cantidad_comprada = response.data.cantidad_comprada,
-        this.data.lote.cantidad_vendida = response.data.cantidad_vendida,
-        this.data.lote.cantidad_en_bodega = response.data.cantidad_en_bodega,
-        this.data.lote.cantidad_afectada_por_merma = response.data.mermas,
-        this.data.lote.estado = response.data.estado
-        
+          this.data.lote.lote = response.data.lote,
+          this.data.lote.fecha_entrada = response.data.fecha_entrada,
+          this.data.lote.fecha_vencimiento = response.data.fecha_vencimiento,
+          this.data.lote.cantidad_comprada = response.data.cantidad_comprada,
+          this.data.lote.cantidad_vendida = response.data.cantidad_vendida,
+          this.data.lote.cantidad_en_bodega = response.data.cantidad_en_bodega,
+          this.data.lote.cantidad_afectada_por_merma = response.data.mermas,
+          this.data.lote.estado = response.data.estado
+
         this.dataResultLote.emit(this.data)
 
         this.loteNotFound = false

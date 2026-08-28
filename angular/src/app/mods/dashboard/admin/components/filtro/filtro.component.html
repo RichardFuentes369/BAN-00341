@@ -3,7 +3,21 @@
     <label class="label-color">
       {{ 'mod-warehouse.LABEL_LOTE' | translate}}
     </label>
-    <input type="text" placeholder="SP-2536" [(ngModel)]="lote" [class.is-invalid]="validators.lote" class="form-control form-select-sm">
+    
+    <input type="text" placeholder="SP-2536" 
+           [(ngModel)]="lote" 
+           (ngModelChange)="validationSubject.next()"
+           [class.is-invalid]="validators.lote" 
+           class="form-control form-select-sm">
+
+    @if(!idProducto) {
+    <div class="d-flex justify-content-between">
+      <small class="text-danger">
+        Producto no encontrado.
+      </small>
+    </div>    
+    }
+           
     @if(validators.lote) {
     <div class="d-flex justify-content-between">
       <small [ngClass]="lote ? 'text-success font-weight-bold' : 'text-danger'">
@@ -11,16 +25,22 @@
       </small>
     </div>
     }
+
     @if(loteNotFound){
     <div class="d-flex justify-content-between">
       <small class="text-danger">
-        El lote no existe mi perro
+        El lote no encontrado
       </small>
     </div>
     }
+
     <div class="row mt-2 g-2">
       <div class="col">
-        <button type="button" class="btnFilterBatch btn btn-sm btn-outline-primary w-100" (click)="filtrarLote()">
+        <!-- Uso de [disabled] vinculado a !isFormValid -->
+        <button type="button" 
+                class="btnFilterBatch btn btn-sm btn-outline-primary w-100" 
+                [disabled]="!isFormValid"
+                (click)="filtrarLote()">
           <i class="fa fa-filter"></i> {{ 'global-search.TITTLE_COMPONENT' | translate }}
         </button>
       </div>

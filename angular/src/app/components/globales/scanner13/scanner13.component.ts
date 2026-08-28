@@ -51,6 +51,8 @@ export class Scanner13Component implements OnInit {
       if (this.esCodigoValido) {
         this.ultimoCodigoBarra = this.producto.codigo_barra
         this.buscarProducto();
+      }else{
+        this.buscarProducto();
       }
 
       const regexNIT = /^[0-9]{8,15}$/;
