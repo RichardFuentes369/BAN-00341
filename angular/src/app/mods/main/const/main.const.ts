@@ -6,6 +6,7 @@ export const ADMIN_PAGE_MENU_PERSMISSION_WAREHOUSE = 'bodega';
 export const ADMIN_PAGE_MENU_PERSMISSION_ALERTS = 'alertas';
 export const ADMIN_PAGE_MENU_PERSMISSION_CONFIGURABLE = 'variables_sistema';
 export const ADMIN_PAGE_MENU_PERSMISSION_CUSTOM = 'estilos_sistema';
+export const ADMIN_PAGE_MENU_RETURN_PERSMISSION_SALE_RETURN = 'ventas_y_devoluciones';
 
 export const LAYOUT_ADMIN_PAGE_MENU = '/admin/mod';
 export const LAYOUT_ADMIN_PAGE_USERS = '/admin/mod/users';
@@ -16,6 +17,7 @@ export const LAYOUT_ADMIN_PAGE_WAREHOUSE = '/admin/mod/warehouse';
 export const LAYOUT_ADMIN_PAGE_ALERT = '/admin/mod/alerts';
 export const LAYOUT_ADMIN_PAGE_SYSTEM = '/admin/mod/vars';
 export const LAYOUT_ADMIN_PAGE_CUSTOM = '/admin/mod/custom';
+export const LAYOUT_ADMIN_PAGE_SALE_RETURN = '/admin/mod/sale_return';
 
 // Routes
 export const BREADCRUMB_PATH_PROFILE = 'mod-main.PAGES_PROFILE';
@@ -53,3 +55,7 @@ export const BREADCRUMB_PATH_VAR = 'mod-vars.MODULE_TITLE';
 export const PATH_CUSTOM = 'custom';
 export const TITLE_PATH_CUSTOM = 'Personalización';    
 export const BREADCRUMB_PATH_CUSTOM = 'mod-custom.MODULE_TITLE';
+
+export const PATH_SALE_RETURN = 'sale_return';
+export const TITLE_PATH_SALE_RETURN = 'Ventas y devoluciones';    
+export const BREADCRUMB_PATH_SALE_RETURN = 'mod-salereturn.MODULE_TITLE';

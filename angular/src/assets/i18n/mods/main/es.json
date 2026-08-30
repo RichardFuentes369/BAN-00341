@@ -12,5 +12,6 @@
   "PAGE_STOCK": "Existencia",
   "PAGE_WAREHOUSE": "Bodega",
   "PAGE_VAR_SYSTEM": "Variables del sistema",
-  "PAGE_CUSTOM": "Personalización"
+  "PAGE_CUSTOM": "Personalización",
+  "PAGE_SALE_RETURN": "Ventas y devoluciones"
 }

@@ -12,5 +12,6 @@
   "PAGE_STOCK": "Action",
   "PAGE_WAREHOUSE": "Entrepôt", 
   "PAGE_VAR_SYSTEM": "Variables système",
-  "PAGE_CUSTOM": "Personnalisation"
+  "PAGE_CUSTOM": "Personnalisation",
+  "PAGE_SALE_RETURN": "Ventes et retours"
 }

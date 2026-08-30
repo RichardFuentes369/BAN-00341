@@ -64,6 +64,7 @@ export function createTranslateLoader(http: HttpClient) {
       { baseTranslateUrl, moduleName: 'mods/alerts', namespace: 'mod-alerts'},
       { baseTranslateUrl, moduleName: 'mods/vars', namespace: 'mod-vars'},
       { baseTranslateUrl, moduleName: 'mods/custom', namespace: 'mod-custom'},
+      { baseTranslateUrl, moduleName: 'mods/salereturn', namespace: 'mod-salereturn'},
       // fin modulos
     ]
   };

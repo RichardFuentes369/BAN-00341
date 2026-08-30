@@ -25,6 +25,9 @@
     PATH_CUSTOM,
     TITLE_PATH_CUSTOM,
     BREADCRUMB_PATH_CUSTOM,
+    PATH_SALE_RETURN,
+    TITLE_PATH_SALE_RETURN,
+    BREADCRUMB_PATH_SALE_RETURN,
   } from '@mod/main/const/main.const';
 
   export const MenuRoutes: Routes = [
@@ -112,6 +115,17 @@
       title: TITLE_PATH_CUSTOM,
       data: { breadcrumb: BREADCRUMB_PATH_CUSTOM },
       loadChildren: () => import('@mod/custom/admin/routes/index.routing').then(x=>x.CustomRoutes),
+      canActivate: [
+        adminGuard
+      ]
+    },
+
+    // Modulo SALE_RETURNS
+    {
+      path: PATH_SALE_RETURN,
+      title: TITLE_PATH_SALE_RETURN,
+      data: { breadcrumb: BREADCRUMB_PATH_SALE_RETURN },
+      loadChildren: () => import('@mod/sale_and_return/admin/routes/index.routing').then(x=>x.SaleReturnRoutes),
       canActivate: [
         adminGuard
       ]

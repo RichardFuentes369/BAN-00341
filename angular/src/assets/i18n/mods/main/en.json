@@ -12,5 +12,6 @@
   "PAGE_STOCK": "Stock",
   "PAGE_WAREHOUSE": "Warehouse",
   "PAGE_VAR_SYSTEM": "System Variables",
-  "PAGE_CUSTOM": "Customization"
+  "PAGE_CUSTOM": "Customization",
+  "PAGE_SALE_RETURN": "Sales and returns"
 }
