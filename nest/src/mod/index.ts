@@ -21,3 +21,6 @@ export { ExpirationModule } from './alerta/admin/expiration/expiration.module'
 
 export { JsonModule } from './vars/admin/json/json.module';
 export { VarModule } from './vars/admin/var/var.module';
+
+export { SalesModule } from './bodega/sales/sales.module';
+

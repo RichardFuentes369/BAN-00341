@@ -16,7 +16,8 @@ import { MermasModule } from '@module/merma/mermas/mermas.module';
     WarehouseService
   ],
   exports: [
-    WarehouseService
+    WarehouseService,
+    ...warehouseProviders
   ]
 })
 export class WarehouseModule {}

@@ -1402,7 +1402,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/product/obtener-productos?page=1&limit=10&field=id&order=asc&id_marca=1",
+											"raw": "localhost:3000/api/product/obtener-productos?page=1&limit=10&field=id&order=asc",
 											"host": [
 												"localhost"
 											],
@@ -1428,10 +1428,6 @@
 												{
 													"key": "order",
 													"value": "asc"
-												},
-												{
-													"key": "id_marca",
-													"value": "1"
 												}
 											]
 										}
@@ -3525,7 +3521,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"nombre\": \"yyy\",\n    \"valor\": \"oh ya oh ya oh ya\"\n}",
+											"raw": "{\n    \"nombre\": \"BannerBienvenida\",\n    \"valor\": \"Bienvenido al sistema de control de mermas y caducidad\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3533,7 +3529,7 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/var/editar-var-var?_id=12",
+											"raw": "localhost:3000/api/var/editar-var-var?_id=2",
 											"host": [
 												"localhost"
 											],
@@ -3546,7 +3542,7 @@
 											"query": [
 												{
 													"key": "_id",
-													"value": "12"
+													"value": "2"
 												}
 											]
 										}
@@ -3779,7 +3775,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"nombre\": \"Admin1\",\n    \"valor\": \"true\"\n}",
+											"raw": "{\n    \"nombre\": \"link_rrss\",\n    \"valor\": \"{\\\"protocolo_socket_barcode\\\":\\\"http\\\",\\\"ip_socket_barcode\\\":\\\"192.168.1.6\\\",\\\"puerto_socket_barcode\\\":\\\"3000\\\"}\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3787,7 +3783,7 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/json/editar-var-json?_id=1",
+											"raw": "localhost:3000/api/json/editar-var-json?_id=21",
 											"host": [
 												"localhost"
 											],
@@ -3800,7 +3796,7 @@
 											"query": [
 												{
 													"key": "_id",
-													"value": "1"
+													"value": "21"
 												}
 											]
 										}
@@ -3808,6 +3804,70 @@
 									"response": []
 								}
 							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "ventas y devoluciones",
+			"item": [
+				{
+					"name": "admin",
+					"item": [
+						{
+							"name": "ventas",
+							"item": [
+								{
+									"name": "nueva_venta",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nro_factura\": \"fac-0005\",\n    \"fecha_venta\": 1788122406,\n    \"detalle_factura\": [\n        {\n            \"lote\": \"opl896\",\n            \"codigo_barra\": \"1000000000002\",\n            \"cantidad\": \"45\"\n        },\n        {\n            \"lote\": \"YF253\",\n            \"codigo_barra\": \"1000000000003\",\n            \"cantidad\": \"25\"\n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/sales/crear-venta?lang=es",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"sales",
+												"crear-venta"
+											],
+											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "devoluciones",
+							"item": []
 						}
 					]
 				}

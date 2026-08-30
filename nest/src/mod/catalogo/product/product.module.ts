@@ -12,7 +12,8 @@ import { productProviders } from './entities/product.provider';
     ProductService
   ],
   exports: [
-    ProductService
+    ProductService,
+    ...productProviders
   ]
 })
 export class ProductModule {}
