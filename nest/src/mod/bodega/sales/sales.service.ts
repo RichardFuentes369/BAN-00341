@@ -65,11 +65,11 @@ export class SalesService {
     const fecha_venta_max = filterDto['fecha_venta_maximo'] ? parseInt(filterDto['fecha_venta_maximo']) : null;
 
     if (fecha_venta_min !== null && fecha_venta_max !== null) {
-      where.fecha_entrada = Between(fecha_venta_min, fecha_venta_max);
+      where.fecha_venta = Between(fecha_venta_min, fecha_venta_max);
     } else if (fecha_venta_min !== null) {
-      where.fecha_entrada = MoreThanOrEqual(fecha_venta_min);
+      where.fecha_venta = MoreThanOrEqual(fecha_venta_min);
     } else if (fecha_venta_max !== null) {
-      where.fecha_entrada = LessThanOrEqual(fecha_venta_max);
+      where.fecha_venta = LessThanOrEqual(fecha_venta_max);
     }
 
     if (filterDto.nro_factura !== undefined && filterDto.nro_factura !== '') {

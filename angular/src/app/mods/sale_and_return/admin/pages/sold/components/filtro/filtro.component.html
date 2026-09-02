@@ -1,36 +1,25 @@
 <div class="">
   <div class="col-xl col-sm-12 card pl-0 pr-0 pt-3 pb-4 scroll-card">
     <input type="text" class="d-none complementoRuta" value="">
-    <!-- <div class="col-sm-12 mb-2">
+    <div class="col-sm-12 mb-2">
       <span class="label-color" for="exampleInputEmail1">
-        {{ 'mod-users.LABEL_USER_EMAIL' | translate}}
+        {{ 'mod-salereturn.COLUMN_INVOICE' | translate}}
       </span>
-      <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.email"
-        aria-describedby="emailHelp" placeholder="{{ 'mod-users.PLACEHOLDER_USER_EMAIL' | translate}}">
+      <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.nro_factura"
+        aria-describedby="emailHelp" placeholder="{{ 'mod-warehouse.PLACEHOLDER_LOTE_F' | translate}}">
     </div>
     <div class="col-sm-12 mb-2">
       <span class="label-color" for="exampleInputEmail1">
-        {{ 'mod-users.LABEL_USER_FIRSTNAME' | translate}}
+        {{ 'mod-salereturn.COLUMN_DATE_SALE' | translate}}
       </span>
-      <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.firstName"
-        aria-describedby="emailHelp" placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
-    </div>
-    <div class="col-sm-12 mb-2">
-      <span class="label-color" for="exampleInputEmail1">
-        {{ 'mod-users.LABEL_USER_LASTNAME' | translate}}
-      </span>
-      <input type="email" class="form-control form-select-sm" id="exampleInputEmail1" [(ngModel)]="model.lastName"
-        aria-describedby="emailHelp" placeholder="{{ 'mod-users.PLACEHOLDER_USER_LASTNAME' | translate}}">
-    </div>
-    <div class="col-sm-12 mb-2">
-      <span class="label-color" for="exampleInputEmail1">
-        {{ 'mod-users.LABEL_USER_STATUS' | translate}}
-      </span>
-      <select name="" id="" class="form-control form-select-sm custom-select" [(ngModel)]="model.isActive">
-        <option value="">{{ 'mod-users.SELECT_STATUS_USER_SELECT_OPTION' | translate}}</option>
-        <option value="1">{{ 'mod-users.WORD_ACTIVED' | translate}}</option>
-        <option value="0">{{ 'mod-users.WORD_INACTIVED' | translate}}</option>
-      </select>
+      <div class="row">
+        <div class="col-sm">
+          <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_venta_minimo">
+        </div>
+        <div class="col-sm">
+          <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_venta_maximo">
+        </div>
+      </div>
     </div>
     <div class="col-sm-12">
       <span class="label-color" for="exampleInputEmail1">
@@ -40,11 +29,9 @@
         <div class="col-sm">
           <select name="" id="" class="form-control form-select-sm custom-select" [(ngModel)]="model.field">
             <option value="">{{ 'mod-users.SELECT_STATUS_USER_SELECT_OPTION' | translate}}</option>
-            <option value="id">{{ 'mod-users.COLUMN_ID' | translate}}</option>
-            <option value="email">{{ 'mod-users.COLUMN_EMAIL' | translate}}</option>
-            <option value="firstName">{{ 'mod-users.COLUMN_NAMES' | translate}}</option>
-            <option value="lastName">{{ 'mod-users.COLUMN_LASTNAME' | translate}}</option>
-            <option value="isActive">{{ 'mod-users.COLUMN_STATUS' | translate}}</option>
+            <option value="id">{{ 'mod-salereturn.COLUMN_ID' | translate}}</option>
+            <option value="nro_factura">{{ 'mod-salereturn.COLUMN_INVOICE' | translate}}</option>
+            <option value="fecha_venta">{{ 'mod-salereturn.COLUMN_DATE_SALE' | translate}}</option>
           </select>
         </div>
         <div class="col-sm">
@@ -55,7 +42,7 @@
           </select>
         </div>
       </div>
-    </div> -->
+    </div>
     <button class="d-none limpiarS" (click)="limpiar()"></button>
     <button class="d-none filtrar" (click)="filtrar()"></button>
   </div>

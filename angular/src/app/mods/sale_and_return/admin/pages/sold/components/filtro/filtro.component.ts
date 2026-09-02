@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { toTimestampp } from '@function/System';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -14,36 +15,31 @@ export class FiltroSoldComponent implements OnInit {
   complementoFiltro = ''
 
   model = {
-    email: '',
-    firstName: '',
-    lastName: '',
-    isActive: '',
+    nro_factura: '',
+    fecha_venta_minimo: '',
+    fecha_venta_maximo: '',
     field: '',
     order: ''
   }
 
   async ngOnInit() {
     this.model = {
-      email: sessionStorage.getItem('email') || '',
-      firstName: sessionStorage.getItem('firstName') || '',
-      lastName: sessionStorage.getItem('lastName') || '',
-      isActive: sessionStorage.getItem('isActive') || '',
+      nro_factura: sessionStorage.getItem('nro_factura') || '',
+      fecha_venta_minimo: sessionStorage.getItem('fecha_venta_minimo') || '',
+      fecha_venta_maximo: sessionStorage.getItem('fecha_venta_maximo') || '',
       field: sessionStorage.getItem('field') || '',
       order: sessionStorage.getItem('order') || ''
     }
 
     this.complementoFiltro = ''
-    if(this.model.email != ''){
-      this.complementoFiltro += `&email=${this.model.email}`
+    if(this.model.nro_factura != ''){
+      this.complementoFiltro += `&nro_factura=${this.model.nro_factura}`
     }
-    if(this.model.firstName != ''){
-      this.complementoFiltro += `&firstName=${this.model.firstName}`
+    if(this.model.fecha_venta_minimo != ''){
+      this.complementoFiltro += `&fecha_venta_minimo=${this.model.fecha_venta_minimo}`
     }
-    if(this.model.lastName != ''){
-      this.complementoFiltro += `&lastName=${this.model.lastName}`      
-    }
-    if(this.model.isActive != ''){
-      this.complementoFiltro += `&isActive=${this.model.isActive}`      
+    if(this.model.fecha_venta_maximo != ''){
+      this.complementoFiltro += `&fecha_venta_maximo=${this.model.fecha_venta_maximo}`      
     }
     if(this.model.field != ''){
       this.complementoFiltro += `&field=${this.model.field}`      
@@ -57,46 +53,41 @@ export class FiltroSoldComponent implements OnInit {
   limpiar(){
     $(".complementoRuta").val('')
     this.complementoFiltro = ''
-    this.model.email = ''
-    this.model.firstName = ''
-    this.model.lastName = ''
-    this.model.isActive = ''
+    this.model.nro_factura = ''
+    this.model.fecha_venta_minimo = ''
+    this.model.fecha_venta_maximo = ''
     this.model.field = ''
     this.model.order = ''
 
-    sessionStorage.removeItem('email')
-    sessionStorage.removeItem('firstName')
-    sessionStorage.removeItem('lastName')
-    sessionStorage.removeItem('isActive')
+    sessionStorage.removeItem('nro_factura')
+    sessionStorage.removeItem('fecha_venta_minimo')
+    sessionStorage.removeItem('fecha_venta_maximo')
     sessionStorage.removeItem('field')
     sessionStorage.removeItem('order')
   }
   
   filtrar(){
     this.complementoFiltro = ''
-    
-    sessionStorage.removeItem('email')
-    sessionStorage.removeItem('firstName')
-    sessionStorage.removeItem('lastName')
-    sessionStorage.removeItem('isActive')
+
+    sessionStorage.removeItem('nro_factura')
+    sessionStorage.removeItem('fecha_venta_minimo')
+    sessionStorage.removeItem('fecha_venta_maximo')
     sessionStorage.removeItem('field')
     sessionStorage.removeItem('order')
 
-    if(this.model.email != ''){
-      this.complementoFiltro += `&email=${this.model.email}`
-      sessionStorage.setItem('email', this.model.email)
+    if(this.model.nro_factura != ''){
+      this.complementoFiltro += `&nro_factura=${this.model.nro_factura}`
+      sessionStorage.setItem('nro_factura', this.model.nro_factura)
     }
-    if(this.model.firstName != ''){
-      this.complementoFiltro += `&firstName=${this.model.firstName}`
-      sessionStorage.setItem('firstName', this.model.firstName)
+    if(this.model.fecha_venta_minimo != ''){
+      let fecha_venta_minimo = toTimestampp(this.model.fecha_venta_minimo)
+      this.complementoFiltro += `&fecha_venta_minimo=${this.model.fecha_venta_minimo}`
+      sessionStorage.setItem('fecha_venta_minimo', fecha_venta_minimo.toString())
     }
-    if(this.model.lastName != ''){
-      this.complementoFiltro += `&lastName=${this.model.lastName}`      
-      sessionStorage.setItem('lastName', this.model.lastName)
-    }
-    if(this.model.isActive != ''){
-      this.complementoFiltro += `&isActive=${this.model.isActive}`      
-      sessionStorage.setItem('isActive', this.model.isActive)
+    if(this.model.fecha_venta_maximo != ''){
+      let fecha_venta_maximo = toTimestampp(this.model.fecha_venta_maximo)
+      this.complementoFiltro += `&fecha_venta_maximo=${this.model.fecha_venta_maximo}` 
+      sessionStorage.setItem('fecha_venta_minimo', fecha_venta_maximo.toString())     
     }
     if(this.model.field != ''){
       this.complementoFiltro += `&field=${this.model.field}`      
