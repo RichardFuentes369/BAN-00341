@@ -49,6 +49,8 @@ export class WarehouseService {
 
     const where: any = {};
 
+    if (filterDto.estado) where.estado = filterDto.estado;
+
     // precisos y entre
     const fecha_entrada_min = filterDto['fecha_entrada_minimo'] ? parseInt(filterDto['fecha_entrada_minimo']) : null;
     const fecha_entrada_max = filterDto['fecha_entrada_maximo'] ? parseInt(filterDto['fecha_entrada_maximo']) : null;

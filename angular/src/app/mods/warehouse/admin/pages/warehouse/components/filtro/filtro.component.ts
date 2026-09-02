@@ -31,6 +31,7 @@ export class FiltroWarehouseComponent implements OnInit {
   }
 
   model = {
+    estado: '',
     lote: '',
     id_medida: '',
     id_marca: '',
@@ -54,6 +55,7 @@ export class FiltroWarehouseComponent implements OnInit {
   async ngOnInit() {
     this.getMedida()
     this.model = {
+      estado: sessionStorage.getItem('estado') || '',
       lote: sessionStorage.getItem('lote') || '',
       id_medida: sessionStorage.getItem('id_medida') || '',
       id_marca: sessionStorage.getItem('id_marca') || '',
@@ -75,6 +77,9 @@ export class FiltroWarehouseComponent implements OnInit {
     }
 
     this.complementoFiltro = ''
+    if(this.model.estado != ''){
+      this.complementoFiltro += `&estado=${this.model.estado}`      
+    }
     if(this.model.lote != ''){
       this.complementoFiltro += `&lote=${this.model.lote}`      
     }
@@ -131,6 +136,7 @@ export class FiltroWarehouseComponent implements OnInit {
     this.complementoFiltro = ''
     this.filtro1 = ''
     this.filtro2 = ''
+    this.model.estado = '',
     this.model.lote = '',
     this.model.id_medida = '',
     this.model.id_marca = '',
@@ -150,6 +156,7 @@ export class FiltroWarehouseComponent implements OnInit {
     this.model.field = ''
     this.model.order = ''
     
+    sessionStorage.removeItem('estado'),
     sessionStorage.removeItem('lote'),
     sessionStorage.removeItem('id_medida'),
     sessionStorage.removeItem('id_marca'),
@@ -228,6 +235,7 @@ export class FiltroWarehouseComponent implements OnInit {
   filtrar(){
     this.complementoFiltro = ''
     
+    sessionStorage.removeItem('estado'),
     sessionStorage.removeItem('lote'),
     sessionStorage.removeItem('id_medida'),
     sessionStorage.removeItem('id_marca'),
@@ -246,6 +254,11 @@ export class FiltroWarehouseComponent implements OnInit {
     sessionStorage.removeItem('cantidad_afectada_maximo'),
     sessionStorage.removeItem('field')
     sessionStorage.removeItem('order')
+
+    if(this.model.estado != ''){
+      this.complementoFiltro += `&estado=${this.model.estado}`
+      sessionStorage.setItem('estado', this.model.estado)
+    } 
 
     if(this.model.lote != ''){
       this.complementoFiltro += `&lote=${this.model.lote}`

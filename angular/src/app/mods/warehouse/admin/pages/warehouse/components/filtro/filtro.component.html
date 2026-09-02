@@ -1,6 +1,23 @@
 <div class="">
   <div class="col-xl col-sm-12 card pl-0 pr-0 pt-3 pb-4 scroll-card">
     <input type="text" class="d-none complementoRuta" value="">
+
+    <div class="col-sm-12 mb-2">
+      <span class="label-color" for="exampleInputEmail1">
+        {{ 'mod-warehouse.LABEL_ESTADO' | translate}}
+      </span>
+      <div class="row">
+        <div class="col-sm">
+          <select name="" id="" class="form-control form-select-sm custom-select" [(ngModel)]="model.estado">
+            <option value="">{{ 'mod-warehouse.SELECT_SELECT_OPTION' | translate}}</option>
+            <option value="disponible">{{ 'mod-warehouse.SELECT_AVAILABLE_OPTION' | translate}}</option>
+            <option value="vencido">{{ 'mod-warehouse.SELECT_UNAVAILABLE_OPTION' | translate}}</option>
+            <option value="agotado">{{ 'mod-warehouse.SELECT_EXPIRED_OPTION' | translate}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
     <div class="col-sm-12 mb-2">
       <span class="label-color" for="exampleInputEmail1">
         {{ 'mod-warehouse.LABEL_LOTE' | translate}}
@@ -18,17 +35,10 @@
           <span class="label-color" for="exampleInputEmail1">
             {{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate}}
           </span>
-          <ng-select 
-            class="form-control custom-select form-select-sm"
-            [(ngModel)]="model.id_marca"
-            [items]="marcas"  
-            [loading]="isLoading"
-            (search)="onSearchM($event)"
-            (change)="onSelectChangeM($event)"
-            bindLabel="nombre" 
-            bindValue="id" 
-            appendTo="body">
-            
+          <ng-select class="form-control custom-select form-select-sm" [(ngModel)]="model.id_marca" [items]="marcas"
+            [loading]="isLoading" (search)="onSearchM($event)" (change)="onSelectChangeM($event)" bindLabel="nombre"
+            bindValue="id" appendTo="body">
+
             <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
               <div class="ng-option disabled">
                 No se encontró "{{searchTerm}}"
@@ -40,17 +50,10 @@
           <span class="label-color" for="exampleInputEmail1">
             {{ 'mod-catalog.PRODUCT.LABEL_PRODUCT_NAME' | translate}}
           </span>
-          <ng-select 
-            class="form-control custom-select form-select-sm"
-            [(ngModel)]="model.id_producto"
-            [items]="marcas"  
-            [loading]="isLoading"
-            (search)="onSearchP($event)"
-            (change)="onSelectChangeP($event)"
-            bindLabel="nombre" 
-            bindValue="id" 
-            appendTo="body">
-            
+          <ng-select class="form-control custom-select form-select-sm" [(ngModel)]="model.id_producto" [items]="marcas"
+            [loading]="isLoading" (search)="onSearchP($event)" (change)="onSelectChangeP($event)" bindLabel="nombre"
+            bindValue="id" appendTo="body">
+
             <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
               <div class="ng-option disabled">
                 No se encontró "{{searchTerm}}"
