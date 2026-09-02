@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 import { adminGuard } from '@guard/roles/admin/admin.guard';
 
-import { TITLE_PATH_SALE_RETURN_INDEX } from '@mod/sale_and_return/const/sale_and_return.const';
+import { BREADCRUMB_PATH_SALERETURN_RETURNS, BREADCRUMB_PATH_SALERETURN_SALES, PATH_SALERETURN_RETURNS, PATH_SALERETURN_SALES, TITLE_PATH_SALE_RETURN_INDEX, TITLE_PATH_SALERETURN_RETURNS, TITLE_PATH_SALERETURN_SALES } from '@mod/sale_and_return/const/sale_and_return.const';
 
 // componentes
 import { IndexComponent } from '@mod/sale_and_return/admin/pages/index/index.component';
@@ -14,22 +14,22 @@ export const SaleReturnRoutes: Routes = [
     data: { breadcrumb: null },
     component: IndexComponent,
   },
-//   {
-//     path: PATH_ADMIN_USERS,
-//     title: TITLE_PATH_ADMIN_USERS,
-//     data: { breadcrumb: BREADCRUMB_PATH_ADMIN_USERS },
-//     canActivate: [
-//       adminGuard
-//     ],
-//     loadChildren: () => import('./administradores.routing').then(x=>x.UsuariosAdministradoresRoutes)
-//   },
-//   {
-//     path: PATH_FINAL_USERS,
-//     title: TITLE_PATH_FINAL_USERS,
-//     data: { breadcrumb: BREADCRUMB_PATH_FINAL_USERS },
-//     canActivate: [
-//       adminGuard
-//     ],
-//     loadChildren: () => import('./finales.routing').then(x=>x.UsuariosFinalesRoutes)
-//   },
+  {
+    path: PATH_SALERETURN_SALES,
+    title: TITLE_PATH_SALERETURN_SALES,
+    data: { breadcrumb: BREADCRUMB_PATH_SALERETURN_SALES },
+    canActivate: [
+      adminGuard
+    ],
+    loadChildren: () => import('./sales.routing').then(x=>x.SalesRoutes)
+  },
+  {
+    path: PATH_SALERETURN_RETURNS,
+    title: TITLE_PATH_SALERETURN_RETURNS,
+    data: { breadcrumb: BREADCRUMB_PATH_SALERETURN_RETURNS },
+    canActivate: [
+      adminGuard
+    ],
+    loadChildren: () => import('./return.routing').then(x=>x.ReturnsRoutes)
+  },
 ];

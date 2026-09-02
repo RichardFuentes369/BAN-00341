@@ -1,3 +1,9 @@
 {
-  "MODULE_TITLE": "Sales and returns"
+  "MODULE_TITLE": "Sales and returns",
+
+  "BUTTON_SALE": "Sales",
+  "BUTTON_RETURN": "Returns",
+
+  "PAGE_TITLE_SALE": "Sales",
+  "PAGE_TITLE_RETURN": "Returns"
 }

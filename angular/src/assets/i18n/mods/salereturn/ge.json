@@ -1,3 +1,9 @@
 {
-  "MODULE_TITLE": "Verkauf und Rücksendungen"
+  "MODULE_TITLE": "Verkauf und Rücksendungen",
+
+  "BUTTON_SALE": "Verkauf",
+  "BUTTON_RETURN": "Rücksendungen",
+
+  "PAGE_TITLE_SALE": "Verkauf",
+  "PAGE_TITLE_RETURN": "Rücksendungen"
 }
