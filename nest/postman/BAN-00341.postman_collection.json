@@ -3835,7 +3835,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"nro_factura\": \"fac-0005\",\n    \"fecha_venta\": 1788122406,\n    \"detalle_factura\": [\n        {\n            \"lote\": \"opl896\",\n            \"codigo_barra\": \"1000000000002\",\n            \"cantidad\": \"45\"\n        },\n        {\n            \"lote\": \"YF253\",\n            \"codigo_barra\": \"1000000000003\",\n            \"cantidad\": \"25\"\n        }\n    ]\n}",
+											"raw": "{\n    \"nro_factura\": \"fac-0003\",\n    \"fecha_venta\": 1788122406,\n    \"detalle_factura\": [\n        {\n            \"lote\": \"SP-2536\",\n            \"codigo_barra\": \"1000000000001\",\n            \"cantidad\": \"40\"\n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3857,6 +3857,88 @@
 												{
 													"key": "lang",
 													"value": "es"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-registro-ventas",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/sales/obtener-registro-ventas?page=1&limit=10&field=id&order=asc&lang=en",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"sales",
+												"obtener-registro-ventas"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "10"
+												},
+												{
+													"key": "field",
+													"value": "id"
+												},
+												{
+													"key": "order",
+													"value": "asc"
+												},
+												{
+													"key": "lang",
+													"value": "en"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-registro-venta",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/sales/obtener-registro-venta?_id=6&lang=en",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"sales",
+												"obtener-registro-venta"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "6"
+												},
+												{
+													"key": "lang",
+													"value": "en"
 												}
 											]
 										}

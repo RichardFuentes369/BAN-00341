@@ -17,7 +17,7 @@ export const LAYOUT_ADMIN_PAGE_WAREHOUSE = '/admin/mod/warehouse';
 export const LAYOUT_ADMIN_PAGE_ALERT = '/admin/mod/alerts';
 export const LAYOUT_ADMIN_PAGE_SYSTEM = '/admin/mod/vars';
 export const LAYOUT_ADMIN_PAGE_CUSTOM = '/admin/mod/custom';
-export const LAYOUT_ADMIN_PAGE_SALE_RETURN = '/admin/mod/sale_return';
+export const LAYOUT_ADMIN_PAGE_SALE_RETURN = '/admin/mod/salereturn';
 
 // Routes
 export const BREADCRUMB_PATH_PROFILE = 'mod-main.PAGES_PROFILE';
@@ -56,6 +56,6 @@ export const PATH_CUSTOM = 'custom';
 export const TITLE_PATH_CUSTOM = 'Personalización';    
 export const BREADCRUMB_PATH_CUSTOM = 'mod-custom.MODULE_TITLE';
 
-export const PATH_SALE_RETURN = 'sale_return';
+export const PATH_SALE_RETURN = 'salereturn';
 export const TITLE_PATH_SALE_RETURN = 'Ventas y devoluciones';    
 export const BREADCRUMB_PATH_SALE_RETURN = 'mod-salereturn.MODULE_TITLE';
