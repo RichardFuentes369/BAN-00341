@@ -36,7 +36,7 @@
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true"
         aria-controls="collapseUsers">
         <i class="bg_side_icon fa fa-users" aria-hidden="true"></i>
-        <span class="bg_side_text">{{ 'mod-main.PAGES_USERS' | translate }}</span>
+        <span [class.ml-auto]="!minimizarSliderbar" class="bg_side_text">{{ 'mod-main.PAGES_USERS' | translate }}</span>
       </a>
       <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
@@ -57,7 +57,7 @@
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCatalog" aria-expanded="true"
         aria-controls="collapseCatalog">
         <i class="bg_side_icon fa fa-book" aria-hidden="true"></i>
-        <span class="bg_side_text">{{ 'mod-main.PAGES_CATALOG' | translate }}</span>
+        <span [class.ml-auto]="!minimizarSliderbar" class="bg_side_text">{{ 'mod-main.PAGES_CATALOG' | translate }}</span>
       </a>
       <div id="collapseCatalog" class="collapse" aria-labelledby="headingCatalog" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
@@ -87,7 +87,7 @@
     <li class="nav-item">
       <a class="nav-link" [routerLink]="LAYOUT_ADMIN_PAGE_WAREHOUSE">
         <i class="bg_side_icon fa fa-cubes" aria-hidden="true"></i>
-        <span class="bg_side_text">{{ 'mod-main.PAGE_WAREHOUSE' | translate }}</span>
+        <span [class.ml-auto]="!minimizarSliderbar" class="bg_side_text">{{ 'mod-main.PAGE_WAREHOUSE' | translate }}</span>
       </a>
     </li>
     }
@@ -96,11 +96,11 @@
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLoss" aria-expanded="true"
         aria-controls="collapseLoss">
-        <span class="fa-stack mx-auto">
+        <span class="fa-stack mx-auto mb-2">
           <i class="bg_side_icon fas fa-box fa-stack-2x my-2"></i>
           <i class="fas fa-bolt fa-stack-2x my-2 icon-customer"></i>
         </span>
-        <span class="mx-3 bg_side_text">{{ 'mod-main.PAGES_LOSS' | translate }}</span>
+        <span [class.ml-md-3]="!minimizarSliderbar" class="bg_side_text">{{ 'mod-main.PAGES_LOSS' | translate }}</span>
       </a>
       <div id="collapseLoss" class="collapse" aria-labelledby="headingLoss" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
@@ -120,12 +120,33 @@
     </li>
     }
 
+    @if(tienePermiso('ventas_y_devoluciones', '', 0)){
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSaleReturn" aria-expanded="true"
+        aria-controls="collapseSaleReturn">
+        <i class="bg_side_icon fa fa-book"></i>
+        <span [class.ml-md-3]="!minimizarSliderbar" class="bg_side_text">{{ 'mod-main.PAGE_SALE_RETURN' | translate }}</span>
+      </a>
+      <div id="collapseSaleReturn" class="collapse" aria-labelledby="headingLoss" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+          @if(tienePermiso('ventas_y_devoluciones', 'ventas', 1)){
+          <a class="collapse-item" [routerLink]="MOD_SALERETURN_PAGE_SALE">{{ 'mod-salereturn.BUTTON_SALE' | translate}}</a>
+          }
+          @if(tienePermiso('ventas_y_devoluciones', 'devoluciones', 1)){
+          <a class="collapse-item" [routerLink]="MOD_SALERETURN_PAGE_RETURN">{{ 'mod-salereturn.BUTTON_RETURN' | translate}}</a>
+          }
+        </div>
+      </div>
+    </li>
+    }
+
     @if(tienePermiso('alertas', '', 0)){
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAlert" aria-expanded="true"
         aria-controls="collapseAlert">
         <i class="bg_side_icon fa fa-bell" aria-hidden="true"></i>
-        <span class="bg_side_text">{{ 'mod-main.PAGES_ALERTS' | translate }}</span>
+        <span [class.ml-auto]="!minimizarSliderbar" class="bg_side_text">{{ 'mod-main.PAGES_ALERTS' | translate }}</span>
       </a>
       <div id="collapseAlert" class="collapse" aria-labelledby="headingAlert" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">

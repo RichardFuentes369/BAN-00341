@@ -13,7 +13,7 @@ import { VentaService } from './service/venta.service';
 import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import { HttpParams } from '@angular/common/http';
-import { VER_SALE_COMPONENT } from '@mod/sale_and_return/const/sale_and_return.const';
+import { FILTRO_SOLD_COMPONENT, VER_SALE_COMPONENT } from '@mod/sale_and_return/const/sale_and_return.const';
 
 @Component({
   selector: 'app-sold',
@@ -49,7 +49,7 @@ export class SoldComponent implements OnInit, OnDestroy {
   search = true
   buttonSearch = this.translate.instant('mod-users.BUTTON_SEARCH')
   iconFilter = "fa fa-filter"
-  componenteFilter = ''
+  componenteFilter = FILTRO_SOLD_COMPONENT
   // fin datos envio al filtro
 
   // inicio datos que envio al componente tabla

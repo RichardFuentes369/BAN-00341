@@ -22,3 +22,4 @@ export const MOD_SALERETURN_PAGE_SALE =  '/admin/mod/salereturn/sales/';
 export const MOD_SALERETURN_PAGE_RETURN =  '/admin/mod/salereturn/returns/';
 
 export const VER_SALE_COMPONENT =  'VerSaleComponent';
+export const FILTRO_SOLD_COMPONENT =  'FiltroSoldComponent';

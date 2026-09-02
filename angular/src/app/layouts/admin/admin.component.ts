@@ -39,6 +39,7 @@ import { VarService } from '@mod/vars/admin/pages/var/service/var.service';
 import { VarsService } from '@service/globales/vars/vars.service';
 import { NotificationComponent } from '@component/globales/notification/notification.component';
 import { FullscreenComponent } from '@component/globales/fullscreem/fullscreen.component';
+import { MOD_SALERETURN_PAGE_RETURN, MOD_SALERETURN_PAGE_SALE } from '@mod/sale_and_return/const/sale_and_return.const';
 
 @Component({
   selector: 'app-layout-admin',
@@ -83,6 +84,9 @@ export class AdminComponent implements OnInit {
   public ADMIN_PAGE_MENU_PERSMISSION_ALERTS = ADMIN_PAGE_MENU_PERSMISSION_ALERTS
   public MOD_ALERT_PAGE_EXPIRATION = MOD_ALERT_PAGE_EXPIRATION
   public MOD_ALERT_PAGE_STOCK = MOD_ALERT_PAGE_STOCK
+
+  public MOD_SALERETURN_PAGE_SALE = MOD_SALERETURN_PAGE_SALE
+  public MOD_SALERETURN_PAGE_RETURN = MOD_SALERETURN_PAGE_RETURN
 
   public ADMIN_PAGE_MENU_PERSMISSION_MODULES = ADMIN_PAGE_MENU_PERSMISSION_MODULES
   public ADMIN_PAGE_MENU_PERSMISSION_WAREHOUSE = ADMIN_PAGE_MENU_PERSMISSION_WAREHOUSE
