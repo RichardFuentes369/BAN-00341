@@ -5,5 +5,9 @@
   "BUTTON_RETURN": "Rücksendungen",
 
   "PAGE_TITLE_SALE": "Verkauf",
-  "PAGE_TITLE_RETURN": "Rücksendungen"
+  "PAGE_TITLE_RETURN": "Rücksendungen",
+
+  "COLUMN_ID": "Id",
+  "COLUMN_INVOICE": "Rechnung",
+  "COLUMN_DATE_SALE": "Verkaufsdatum"
 }

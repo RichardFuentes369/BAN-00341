@@ -5,5 +5,9 @@
   "BUTTON_RETURN": "Retours",
 
   "PAGE_TITLE_SALE": "Ventes",
-  "PAGE_TITLE_RETURN": "Retours"
+  "PAGE_TITLE_RETURN": "Retours",
+
+  "COLUMN_ID": "Id",
+  "COLUMN_INVOICE": "Facture",
+  "COLUMN_DATE_SALE": "Date de vente"
 }

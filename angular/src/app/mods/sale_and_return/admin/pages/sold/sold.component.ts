@@ -37,11 +37,11 @@ export class SoldComponent implements OnInit, OnDestroy {
   // construcator
   constructor(
     private router: Router,
-    private userService :AuthService,
+    private userService: AuthService,
     private route: ActivatedRoute,
     private mosuloService: ModulosService,
-    private permisosService :PermisosService,
-    private ventaService :VentaService,
+    private permisosService: PermisosService,
+    private ventaService: VentaService,
     private translate: TranslateService
   ) { }
 
@@ -51,73 +51,53 @@ export class SoldComponent implements OnInit, OnDestroy {
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-users.BUTTON_SEARCH')
-  iconFilter="fa fa-filter"
-  componenteFilter= ''
+  iconFilter = "fa fa-filter"
+  componenteFilter = ''
   // fin datos envio al filtro
 
   // inicio datos envio report
-  iconReport="fa fa-file-download"
-  componenteReport= ''
+  iconReport = "fa fa-file-download"
+  componenteReport = ''
   // fin datos envio repor
 
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
-  endPoint = 'admin/obtener-usuarios-administradores'
+  endPoint = 'sales/obtener-registro-ventas'
   orderField = 'id'
-  order = 'asc'
+  order = 'desc'
 
   habilitarSeleccion = true
   filters = ''
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-users.COLUMN_ID'),
+      title: this.translate.instant('mod-salereturn.COLUMN_ID'),
       data: 'id',
       visible: false,
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-users.COLUMN_EMAIL'),
-      data: 'email',
+      title: this.translate.instant('mod-salereturn.COLUMN_INVOICE'),
+      data: 'nro_factura',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-users.COLUMN_NAMES'),
-      data: 'firstName',
-      className: 'text-center align-middle'
-    },
-    {
-      title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
-      data: 'lastName',
-      className: 'text-center align-middle'
-    },    
-    {
-      title: this.translate.instant('mod-users.COLUMN_PERMISSION_COUNT'),
-      data: 'totalPermisos',
-      className: 'text-center align-middle'
-    },
-    {
-      title: this.translate.instant('mod-users.COLUMN_STATUS'),
-      data: 'isActive',
+      title: this.translate.instant('mod-salereturn.COLUMN_DATE_SALE'),
+      data: 'fecha_venta',
       className: 'text-center align-middle',
-      width: '50px',
-      render: (data: any, type: any) => {
-        if (type === 'display') {
-          const statusText = data 
-            ? this.translate.instant('mod-users.WORD_ACTIVED') 
-            : this.translate.instant('mod-users.WORD_INACTIVED');
-          
-          const dotClass = data ? 'dot-green' : 'dot-gray';
-
-          return `
-            <span class="custom-tooltip tooltip-bottom" data-title="${statusText}">
-              <span class="status-dot ${dotClass}"></span>
-            </span>
-          `;
+      render: (data: any) => {
+        if (!data) return '';
+        const date = new Date(Number(data) * 1000);
+        if (isNaN(date.getTime())) {
+          return 'Fecha inválida';
         }
-        return data;
+        return date.toLocaleDateString('es-CO', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        });
       }
     }
-  ]; 
+  ];
   permisosAcciones = this.permisos
   // fin datos que envio al componente tabla
 
@@ -170,17 +150,17 @@ export class SoldComponent implements OnInit, OnDestroy {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
-    const permiso_modulo = await this.permisosService.permisoPage(0,'ventas_y_devoluciones',userData.data.id)
-    const permiso_submodulo = await this.permisosService.permisoPage(1,'ventas',userData.data.id)
+    const permiso_modulo = await this.permisosService.permisoPage(0, 'ventas_y_devoluciones', userData.data.id)
+    const permiso_submodulo = await this.permisosService.permisoPage(127, 'ventas', userData.data.id)
 
     if (permiso_modulo.data === "" || permiso_submodulo.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     }
 
-    const permisos = await this.permisosService.permisos(userData.data.id,'ventas')
+    const permisos = await this.permisosService.permisos(userData.data.id, 'ventas')
     this.permisos = permisos.data;
     this.permisosAcciones = this.permisos;
-    
+
     // sessionStorage.removeItem('email')
     // sessionStorage.removeItem('firstName')
     // sessionStorage.removeItem('lastName')
@@ -200,9 +180,9 @@ export class SoldComponent implements OnInit, OnDestroy {
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarIdioma = false;
       timer(50).subscribe(() => {
-        this.listar(); 
+        this.listar();
         this.actualizarContadores();
-        this.cambiarTextos(); 
+        this.cambiarTextos();
         this.cargarIdioma = true;
       });
     });
@@ -215,76 +195,56 @@ export class SoldComponent implements OnInit, OnDestroy {
   }
 
   // metodos Componente
-  listar(){
+  listar() {
     this.columnas = [
       {
-        title: this.translate.instant('mod-users.COLUMN_ID'),
+        title: this.translate.instant('mod-salereturn.COLUMN_ID'),
         data: 'id',
         visible: false,
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-users.COLUMN_EMAIL'),
-        data: 'email',
+        title: this.translate.instant('mod-salereturn.COLUMN_INVOICE'),
+        data: 'nro_factura',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-users.COLUMN_NAMES'),
-        data: 'firstName',
-        className: 'text-center align-middle'
-      },
-      {
-        title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
-        data: 'lastName',
-        className: 'text-center align-middle'
-      },
-      {
-        title: this.translate.instant('mod-users.COLUMN_PERMISSION_COUNT'),
-        data: 'totalPermisos',
-        className: 'text-center align-middle'
-      },
-      {
-        title: this.translate.instant('mod-users.COLUMN_STATUS'),
-        data: 'isActive',
+        title: this.translate.instant('mod-salereturn.COLUMN_DATE_SALE'),
+        data: 'fecha_venta',
         className: 'text-center align-middle',
-        width: '50px',
-        render: (data: any, type: any) => {
-          if (type === 'display') {
-            const statusText = data 
-              ? this.translate.instant('mod-users.WORD_ACTIVED') 
-              : this.translate.instant('mod-users.WORD_INACTIVED');
-            
-            const dotClass = data ? 'dot-green' : 'dot-red';
-
-            return `
-              <span class="custom-tooltip tooltip-bottom" data-title="${statusText}">
-                <span class="status-dot ${dotClass}"></span>
-              </span>
-            `;
+        render: (data: any) => {
+          if (!data) return '';
+          const date = new Date(Number(data) * 1000);
+          if (isNaN(date.getTime())) {
+            return 'Fecha inválida';
           }
-          return data;
+          return date.toLocaleDateString('es-CO', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+          });
         }
       }
     ]
   }
 
-  cambiarTextos(){
-    this.titlePage = this.translate.instant('mod-users.TABLE_TITLE')
-    this.titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
-    this.titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
-    this.titleTotalActivedUsers = this.translate.instant('mod-users.CARD_TOTAL_ACTIVED_USERS')
-    this.titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
+  cambiarTextos() {
+    // this.titlePage = this.translate.instant('mod-users.TABLE_TITLE')
+    // this.titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
+    // this.titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
+    // this.titleTotalActivedUsers = this.translate.instant('mod-users.CARD_TOTAL_ACTIVED_USERS')
+    // this.titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
   }
 
   tienePermiso(nombre: string): boolean {
     return this.permisosAcciones?.some((permiso) => permiso.permiso_permiso === nombre);
   }
 
-  async verData (_id: string){
+  async verData(_id: string) {
     this.title = this.translate.instant('mod-users.SEE_TITLE')
     const response = await this.ventaService.getDataSold(_id)
     const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
-    this.translate.get('mod-users.SEE_SUBTITLE', { "user_name": firstName + ' ' + lastName }).subscribe((res: string) => {this.subtitle = res});
+    this.translate.get('mod-users.SEE_SUBTITLE', { "user_name": firstName + ' ' + lastName }).subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
     this.scrollable = false
     this.save = false
@@ -297,33 +257,33 @@ export class SoldComponent implements OnInit, OnDestroy {
     this.componentePrecargado = ''
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       this.router.navigate([], { queryParams: { rol: 'admin', id_user: _id } });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
   }
 
-  async filtroData(){
+  async filtroData() {
     let filtros = $('.complementoRuta').val()
     this.router.navigate([], { queryParams: { search: (filtros) ? filtros : null }, });
-    if(typeof filtros === 'string'){
+    if (typeof filtros === 'string') {
       this.filters = filtros
     }
   }
 
   someInput!: TablecrudComponent
-  async refrescarTabla (){
+  async refrescarTabla() {
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);
   }
 
-  async actualizarContadores (){
+  async actualizarContadores() {
     const data = await this.ventaService.obtenerTotale()
-    this.count_total_users = data.data.count_total_users
-    this.count_actived_users = data.data.count_actived_users
-    this.count_suspend_users = data.data.count_suspend_users
-    this.count_permissions_assigment = data.data.count_permissions_assigment
+    // this.count_total_users = data.data.count_total_users
+    // this.count_actived_users = data.data.count_actived_users
+    // this.count_suspend_users = data.data.count_suspend_users
+    // this.count_permissions_assigment = data.data.count_permissions_assigment
   }
 }
