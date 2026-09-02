@@ -1,4 +1,4 @@
-{
+         {
   "light": {
     "layout": {
       "scroll": {
@@ -33,7 +33,6 @@
         "dropdawn_text_color": "#4F4D4D",
         "dropdawn_background": "#FFFFFF",
         "dropdown_hover_background": "#E8E3E3",
-
         "side_color_background": "#0b4a75",
         "side_color_icon_text": "rgba(255, 255, 255, 0.4)",
         "side_color_hover_icon_text": "#0b4a75",
@@ -42,9 +41,7 @@
         "side_dropdawn_text_color": "#4F4D4D",
         "side_dropdawn_background": "#FFFFFF",
         "side_dropdown_hover_background": "#E8E3E3",
-        
         "page_color_title": "#000000",
-
         "footer_color_background": "#575555",
         "footer_color_text": "#FFFFFF"
       }
@@ -72,7 +69,7 @@
       "row_text_select": "#FFFFFF",
       "row_select": "#AB0505",
       "button_group_disabled": "#BEBFC2",
-      "button_cargar_excel": "#10B981", 
+      "button_cargar_excel": "#10B981",
       "button_crear": "#059669",
       "button_ver": "#0A18F5",
       "button_editar": "#3B82F6",
@@ -124,7 +121,6 @@
       "head_background_color": "#0A18F5"
     }
   },
-  
   "dark": {
     "layout": {
       "scroll": {
@@ -159,7 +155,6 @@
         "dropdawn_text_color": "#FFFFFF",
         "dropdawn_background": "#000000",
         "dropdown_hover_background": "#8A8686",
-        
         "side_color_background": "#000000",
         "side_color_icon_text": "rgba(255, 255, 255, 0.4)",
         "side_color_hover_icon_text": "#0b4a75",
@@ -168,9 +163,7 @@
         "side_dropdawn_text_color": "#FFFFFF",
         "side_dropdawn_background": "#302F2F",
         "side_dropdown_hover_background": "#8A8686",
-        
         "page_color_title": "#FFFFFF",
-
         "footer_color_background": "#0F0F0F",
         "footer_color_text": "#FFFFFF"
       }
@@ -198,7 +191,7 @@
       "row_text_select": "#FFFFFF",
       "row_select": "#1e3a8a",
       "button_group_disabled": "#BEBFC2",
-      "button_cargar_excel": "#065F46", 
+      "button_cargar_excel": "#065F46",
       "button_crear": "#047857",
       "button_ver": "#4338CA",
       "button_editar": "#2563EB",
@@ -251,3 +244,4 @@
     }
   }
 }
+            

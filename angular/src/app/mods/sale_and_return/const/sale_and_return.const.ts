@@ -20,3 +20,5 @@ export const BREADCRUMB_PATH_SALERETURN_RETURNS = 'mod-salereturn.PAGE_TITLE_RET
 
 export const MOD_SALERETURN_PAGE_SALE =  '/admin/mod/salereturn/sales/';
 export const MOD_SALERETURN_PAGE_RETURN =  '/admin/mod/salereturn/returns/';
+
+export const VER_SALE_COMPONENT =  'VerSaleComponent';

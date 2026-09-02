@@ -1,0 +1,225 @@
+/* --- Variables Host --- */
+:host {
+  --layout-topbar-height-web: 5rem;
+  --layout-topbar-height-mobil: 5rem;
+  display: block;
+
+  --text-main: #1e293b;
+  --border-color: rgba(0, 0, 0, 0.05);
+
+  &[data-theme='dark'],
+  &:host-context([data-theme='dark']) {
+    --border-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* --- Contenedor Principal de Ventas --- */
+.sale-container {
+  padding: 20px;
+  margin: 0 auto;
+  font-family: inherit;
+
+  .sale-card {
+    background-color: var(--grid_table_crud-background_color) !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    .sale-header {
+      background-color: var(--grid_table_crud-head_background);
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+
+      .invoice-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        h2 {
+          margin: 0;
+          font-size: 1.25rem;
+          color: var(--grid_table_crud-head_text_color)!important;
+
+          strong {
+            color: var(--grid_table_crud-head_text_color)!important;
+          }
+        }
+
+        .id-badge {
+          background-color: var(--border-color);
+          color: var(--grid_table_crud-head_text_color)!important;
+          padding: 4px 8px;
+          border-radius: 6px;
+          font-size: 0.85rem;
+          font-weight: 600;
+        }
+      }
+
+      .invoice-date {
+        font-size: 0.9rem;
+        color: var(--grid_table_crud-text_color) !important;
+
+        .label {
+          color: var(--grid_table_crud-head_text_color)!important;
+        }
+
+        .date-value {
+          font-weight: 500;
+          color: var(--grid_table_crud-head_text_color)!important;
+          margin-left: 4px;
+        }
+      }
+    }
+
+    .sale-body {
+      padding: 24px;
+
+      h3 {
+        margin-top: 0;
+        margin-bottom: 16px;
+        font-size: 1rem;
+        color: var(--grid_table_crud-title_color) !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .table-wrapper {
+        overflow-x: auto;
+      }
+
+      .modern-table {
+        width: 100% !important;
+        border-collapse: separate !important;
+        border-spacing: 0 12px !important;
+        background-color: transparent !important;
+        text-align: left;
+
+        thead {
+          background: var(--grid_table_crud-head_background) !important;
+          color: var(--grid_table_crud-head_text_color)!important;
+          border-radius: 8px !important;
+        }
+
+        th {
+          background: transparent !important;
+          color: var(--grid_table_crud-head_text) !important;
+          font-weight: 600;
+          text-align: center;
+          white-space: nowrap;
+          padding: 12px 16px !important;
+          border: none !important;
+          box-shadow: none !important;
+          font-size: 0.85rem;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+
+          &:first-child {
+            border-top-left-radius: 12px;
+          }
+
+          &:last-child {
+            border-top-right-radius: 12px;
+          }
+        }
+
+        tbody {
+          border-collapse: separate;
+          border-spacing: 0 12px;
+          background-color: transparent !important;
+
+          tr {
+            background-color: transparent !important;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+            td {
+              color: var(--grid_table_crud-row_text_color) !important;
+              padding-top: 4px !important;
+              padding-bottom: 4px !important;
+              vertical-align: middle;
+            }
+
+            &:hover {
+              cursor: pointer;
+              transform: translateY(-2px);
+
+              td {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                border-color: var(--grid_table_crud-row_select) !important;
+              }
+            }
+          }
+        }
+
+        td {
+          background-color: transparent !important;
+          color: var(--grid_table_crud-row_text_color) !important;
+          font-size: 0.9rem;
+          padding: 12px 16px !important;
+          vertical-align: middle;
+
+          border-top: 1px solid var(--grid_table_crud-row_color-line) !important;
+          border-bottom: 1px solid var(--grid_table_crud-row_color-line) !important;
+          border-left: none !important;
+          border-right: none !important;
+
+          &:first-child {
+            border-left: 1px solid var(--grid_table_crud-row_color-line) !important;
+            border-radius: 8px 0 0 8px !important;
+          }
+
+          &:last-child {
+            border-right: 1px solid var(--grid_table_crud-row_color-line) !important;
+            border-radius: 0 8px 8px 0 !important;
+          }
+
+          .lote-tag {
+            background-color: color-mix(in srgb, var(--grid_table_crud-row_select) 15%, transparent);
+            color: var(--grid_table_crud-row_text_select);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.85rem;
+          }
+
+          .barcode {
+            background-color: var(--input-background_color);
+            padding: 4px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: var(--input-text_color);
+            border: 1px solid var(--input-border_color);
+          }
+
+          .qty-badge {
+            background-color: color-mix(in srgb, var(--grid_table_crud-row_select) 20%, transparent);
+            color: var(--grid_table_crud-row_select);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.85rem;
+          }
+        }
+
+        .text-center {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+/* Clases de apoyo global y fondos */
+.bg_grid_table_crud_custom {
+  background-color: var(--grid_table_crud-background_color) !important;
+}
+
+.detail_table_custom {
+  background-color: var(--grid_table_crud-background_color) !important;
+}

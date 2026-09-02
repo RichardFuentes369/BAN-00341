@@ -1,1 +1,51 @@
-<p>ver-sale works!</p>
+<div class="sale-container">
+  @for (item of venta; track item.id; let i = $index) {
+    <div class="sale-card">
+      
+      <!-- Cabecera de la Factura -->
+      <div class="sale-header">
+        <div class="invoice-title">
+          <span class="id-badge">#{{ item.id }}</span>
+          <h2>Factura: <strong>{{ item.nro_factura }}</strong></h2>
+        </div>
+        <div class="invoice-date">
+          <span class="label">Fecha:</span> 
+          <span class="date-value">{{ item.fecha_venta * 1000 | date: 'dd/MM/yyyy' }}</span>
+        </div>
+      </div>
+
+      <!-- Cuerpo / Detalle de Productos -->
+      <div class="sale-body">
+        <h3>Productos en esta venta</h3>
+        
+        <div class="table-wrapper">
+          <table class="modern-table">
+            <thead>
+              <tr>
+                <th class="text-center">Lote</th>
+                <th class="text-center">Código de Barra</th>
+                <th class="text-center">Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (detail of item.detalle_factura; track detail.codigo_barra; let j = $index) {
+                <tr>
+                  <td class="text-center">
+                    <span >{{ detail.lote }}</span>
+                  </td>
+                  <td class="text-center">
+                    <code class="barcode">{{ detail.codigo_barra }}</code>
+                  </td>
+                  <td class="text-center">
+                    <span >{{ detail.cantidad }}</span>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  }
+</div>

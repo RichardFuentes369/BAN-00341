@@ -52,6 +52,7 @@ import { ReporteVencimientoComponent } from './alerts/admin/pages/vencimiento/co
 import { ReporteStockComponent } from './alerts/admin/pages/stock/components/reporte/reporte.component';
 import { ReporteRegistroComponent } from './merma/admin/pages/registro/components/reporte/reporte.component';
 import { VerAlertaVComponent } from './alerts/admin/pages/vencimiento/components/ver-alerta/ver-alerta.component';
+import { VerSaleComponent } from './sale_and_return/admin/pages/sold/components/ver-sale/ver-sale.component';
 
 export class ListaComponentes {
 
@@ -288,6 +289,12 @@ export class ListaComponentes {
       name: 'ReporteStockComponent',
       componente: ReporteStockComponent
     },  
+
+    // salereturn
+    {
+      name: 'VerSaleComponent',
+      componente: VerSaleComponent
+    }
   ];
 
   obtenerComponentePorNombre(nombre: string) {

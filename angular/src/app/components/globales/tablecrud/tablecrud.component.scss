@@ -176,7 +176,7 @@
 
   th {
     background: transparent !important;
-    color: #ffffff !important;
+    color: var(--grid_table_crud-head_text_color)!important;
     font-weight: 600;
     text-align: center;
     white-space: nowrap;

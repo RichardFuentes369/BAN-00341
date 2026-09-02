@@ -9,5 +9,8 @@
 
   "COLUMN_ID": "Id",
   "COLUMN_INVOICE": "Invoice",
-  "COLUMN_DATE_SALE": "Sale date"
+  "COLUMN_DATE_SALE": "Sale date",
+
+  "SEE_TITLE": "View",
+  "SEE_SUBTITLE": "{{nro_invoice}}"
 }
