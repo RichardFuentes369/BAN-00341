@@ -103,6 +103,8 @@ BEGIN
         LEFT JOIN mod_catalogo_proveedores mcprov ON mb.id_proveedor = mcprov.id
         WHERE mb.cantidad_en_bodega > 1 
         AND mb.fecha_vencimiento IS NOT NULL
+        AND mb.estado = 'disponible'
+        
         -- Filtros de texto (Soportan NULL o '')
         AND (p_lote IS NULL OR p_lote = '' OR mb.lote LIKE CONCAT('%', p_lote, '%'))
         AND (p_codigo_barra IS NULL OR p_codigo_barra = '' OR mcprod.codigo_barra LIKE CONCAT('%', p_codigo_barra, '%'))
