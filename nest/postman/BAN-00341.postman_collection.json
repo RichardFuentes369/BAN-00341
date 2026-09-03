@@ -3835,7 +3835,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"nro_factura\": \"fac-0003\",\n    \"fecha_venta\": 1788122406,\n    \"detalle_factura\": [\n        {\n            \"lote\": \"SP-2536\",\n            \"codigo_barra\": \"1000000000001\",\n            \"cantidad\": \"40\"\n        }\n    ]\n}",
+											"raw": "{\n    \"nro_factura\": \"fac-0004\",\n    \"fecha_venta\": 1788379521,\n    \"detalle_factura\": [\n        {\n            \"lote\": \"YF253\",\n            \"codigo_barra\": \"1000000000003\",\n            \"cantidad\": \"70\"\n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
