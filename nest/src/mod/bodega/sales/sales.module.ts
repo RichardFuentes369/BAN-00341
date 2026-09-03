@@ -10,7 +10,7 @@ import { ProductModule } from '@module/catalogo/product/product.module';
   imports: [
     GlobalModule,
     WarehouseModule,
-    ProductModule
+    ProductModule,
   ],
   controllers: [SalesController],
   providers: [
