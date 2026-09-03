@@ -136,7 +136,7 @@
         }
         <div class="col-sm-12 form-group">
           <div class="row">
-            <div class="col-sm-12 form-group">
+            <div class="col-sm-6 form-group">
               <label class="label-color" for="exampleInputEmail1">
                 {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}
               </label>
@@ -151,7 +151,29 @@
                 <span class="text-danger small">{{ 'mod-warehouse.ERROR_QUANTITY_THAT_ALLOWED' | translate }}</span>
               }
             </div>
-          </div>
+
+            <div class="col-sm-6 form-group">
+              <label class="label-color">
+                {{ 'mod-warehouse.LABEL_CANTIDAD_VENDIDA' | translate}}
+              </label>
+              <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="model.cantidad_vendida" disabled>
+              <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label class="label-color">
+                {{ 'mod-warehouse.LABEL_CANTIDAD_AFECTADA' | translate}}
+              </label>
+              <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="cantidad_afectada_por_merma" disabled>
+              <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label class="label-color">
+                {{ 'mod-warehouse.LABEL_CANTIDAD_BODEGA' | translate}}
+              </label>
+              <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="model.cantidad_en_bodega" disabled>
+              <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en {{producto.unidad_medida}}</span>
+            </div>
+            </div>
         </div>
         <div class="col-sm-12 form-group">
           <label class="label-color" for="exampleInputEmail1">

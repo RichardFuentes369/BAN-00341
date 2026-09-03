@@ -83,5 +83,6 @@
   "SWAL_DELETED": "LAGER!",
   "SWAL_DELETED_RECORD": "Erfolgreich aus dem Lager gelöscht.",
 
-  "ERROR_QUANTITY_THAT_ALLOWED": "Die gekaufte Menge ist geringer als die bereits erfasste Menge (Schwund, verkauft)"
+  "ERROR_QUANTITY_THAT_ALLOWED": "Die gekaufte Menge ist geringer als die bereits erfasste Menge (Schwund, verkauft)",
+  "ERROR_ROW_EXIST": "<div class=\"label-color text-center mb-2\">Diese Charge wurde bereits vor Tagen im Lager registriert. <br><br></div><div class=\"label-color\">Wenn Sie neue Ware mit denselben Daten haben, laden wir Sie ein, diesen Datensatz zu aktualisieren (indem Sie die neue Menge zur bestehenden hinzufügen). <br><br><span class=\"text-danger\">Wichtig: Wenn sich das Produkt im Status <u>\"Ausverkauft\"</u> befindet, müssen Sie es auf den Status <u>\"Verfügbar\"</u> setzen.</span></div>"
 }

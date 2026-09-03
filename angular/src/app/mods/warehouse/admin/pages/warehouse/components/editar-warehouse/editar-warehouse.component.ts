@@ -229,9 +229,9 @@ export class EditarWarehouseComponent {
 
     await this.buscarProducto()
     await this.buscarProveedor()
-
-    this.model.id_producto = ''
-    this.model.id_proveedor = ''
+    
+    this.model.id_producto = this.loteReal.data.id_producto.id
+    this.model.id_proveedor = this.loteReal.data.id_proveedor.id
     this.producto.codigo_barra = this.loteReal.data.id_producto.codigo_barra
     this.model.lote = this.loteReal.data.lote
     this.model.fecha_entrada = this.formatoFecha(this.loteReal.data.fecha_entrada)
@@ -267,6 +267,7 @@ export class EditarWarehouseComponent {
   }
 
   checkValidation(): boolean {
+    console.log(this.model)
     let respuesta = false
     const regexBarCode = /^[0-9]{13}$/;
     const regexNIT = /^[0-9]{8,15}$/;
@@ -320,6 +321,8 @@ export class EditarWarehouseComponent {
 
     const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
 
+    console.log(this.validators)
+
     if (this.producto.es_perecedero == '1') {
       (!this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.fecha_vencimiento && !this.validators.cantidad_comprada && !this.validators.estado && !this.validators.fecha_vencimiento && !this.validators.menor_a_merma_mas_vendida) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
       respuesta = !this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.fecha_vencimiento && !this.validators.cantidad_comprada && !this.validators.estado && !this.validators.fecha_vencimiento && !this.validators.menor_a_merma_mas_vendida
@@ -329,8 +332,6 @@ export class EditarWarehouseComponent {
       (!this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado && !this.validators.menor_a_merma_mas_vendida) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
       respuesta = !this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado && !this.validators.menor_a_merma_mas_vendida
     }
-
-    console.log(respuesta)
 
     return respuesta
   }

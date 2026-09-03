@@ -193,6 +193,8 @@
         </div>
       </fieldset>
     }
+
+    <div *ngIf="errorWarehouse" [innerHTML]="'mod-warehouse.ERROR_ROW_EXIST' | translate"></div>
   </div>
 
   <div class="col-sm-12">

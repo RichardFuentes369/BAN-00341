@@ -14,6 +14,8 @@
   opacity: 1; /* Opcional: elimina la transparencia por defecto que aplica Bootstrap */
 }
 
-.label-color {
-  color: var(--input-label_color) !important;
+:host ::ng-deep {
+  .label-color {
+    color: var(--input-label_color) !important;
+  }
 }

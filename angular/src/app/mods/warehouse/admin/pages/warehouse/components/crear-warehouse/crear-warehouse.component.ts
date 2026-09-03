@@ -63,6 +63,10 @@ export class CrearWarehouseComponent implements OnInit {
         this.buscarProveedor();
       }
 
+      if (this.producto.codigo_barra != '' && this.model.lote != '') {
+        this.validarRegistro()
+      }
+
       this.checkValidation();
     });
   }
@@ -170,28 +174,28 @@ export class CrearWarehouseComponent implements OnInit {
       this.form_new_provider = false
       this.form_new_batch = false
       this.show_detail_product = false
-      if(this.proveedor.nit != ''){
+      if (this.proveedor.nit != '') {
         this.show_detail_provider = false
-      }else{
+      } else {
         this.show_detail_provider = false
       }
     }
 
-    if(this.validators.nit) {
-      if(this.proveedor.nit != ''){
+    if (this.validators.nit) {
+      if (this.proveedor.nit != '') {
         this.show_detail_provider = false
-      }else{
+      } else {
         this.show_detail_provider = false
       }
     }
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
-    
+
     if (this.producto.es_perecedero == '0') {
       (!this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
       respuesta = !this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.cantidad_comprada && !this.validators.estado
     }
-    
+
     if (this.producto.es_perecedero == '1') {
       (!this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.fecha_vencimiento && !this.validators.cantidad_comprada && !this.validators.estado) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
       respuesta = !this.validators.id_producto && !this.validators.id_proveedor && !this.validators.lote && !this.validators.fecha_entrada && !this.validators.fecha_vencimiento && !this.validators.cantidad_comprada && !this.validators.estado
@@ -210,6 +214,8 @@ export class CrearWarehouseComponent implements OnInit {
   get longitudCodigo(): number {
     return (this.producto?.codigo_barra || '').toString().length;
   }
+
+  errorWarehouse = false
 
   form_new_product = true
   btn_new_product = false
@@ -320,7 +326,7 @@ export class CrearWarehouseComponent implements OnInit {
         if (this.model.id_proveedor != '') {
           this.btn_new_provider = false
         }
-        
+
         this.form_new_provider = true
         this.show_detail_provider = true
         this.form_new_batch = true
@@ -361,6 +367,53 @@ export class CrearWarehouseComponent implements OnInit {
     }
   }
 
+  async validarRegistro() {
+    try {
+      const consultarExistenciaRegistro = await this.bodegaService.getDataLoteAndProduct(this.model.lote, this.model.id_producto)
+      if (consultarExistenciaRegistro.status == 200) {
+        this.form_new_product = false
+        this.form_new_provider = false
+        this.form_new_batch = false
+        this.errorWarehouse = true
+      }
+    } catch (error: any) {
+      this.errorWarehouse = false
+    }
+  }
+
+  async registrarNuevamente() {
+    this.errorWarehouse = false
+    this.form_new_product = true
+    this.form_new_provider = false
+    this.form_new_batch = false
+
+    this.ultimoCodigoBarra = ''
+    this.ultimoNit = ''
+    this.producto = {
+      codigo_barra: '',
+      nombre: '',
+      marca: '',
+      unidad_medida: '',
+      es_perecedero: ''
+    }
+
+    this.proveedor = {
+      nit: '',
+      razon_social: '',
+      correo: ''
+    }
+
+    this.model = {
+      id_producto: '',
+      id_proveedor: '',
+      lote: '',
+      fecha_entrada: '',
+      fecha_vencimiento: '',
+      cantidad_comprada: '',
+      estado: ''
+    }
+  }
+
   async crearLote() {
     if (this.isFormValid) {
       const response = await this.bodegaService.createBatch(this.model)
@@ -381,7 +434,7 @@ export class CrearWarehouseComponent implements OnInit {
     }
   }
 
-  async ean13(option: number){
+  async ean13(option: number) {
     switch (option) {
       case 1:
         this.fielddBarCode = true
@@ -405,7 +458,7 @@ export class CrearWarehouseComponent implements OnInit {
     batchSeccion: true,
   }
 
-  toogleSection(sectionActive: string){
+  toogleSection(sectionActive: string) {
     if (sectionActive in this.mostrarSeccion) {
       const key = sectionActive as keyof typeof this.mostrarSeccion;
       this.mostrarSeccion[key] = !this.mostrarSeccion[key];

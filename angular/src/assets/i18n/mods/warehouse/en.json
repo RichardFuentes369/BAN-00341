@@ -83,5 +83,6 @@
   "SWAL_DELETED": "WAREHOUSE!",
   "SWAL_DELETED_RECORD": "Successfully deleted from the warehouse.",
 
-  "ERROR_QUANTITY_THAT_ALLOWED": "The purchased quantity is lower than the amount already recorded (shrinkage, sold)"
+  "ERROR_QUANTITY_THAT_ALLOWED": "The purchased quantity is lower than the amount already recorded (shrinkage, sold)",
+  "ERROR_ROW_EXIST": "<div class=\"label-color text-center mb-2\">This batch was already registered days ago in the warehouse. <br><br></div><div class=\"label-color\">If you have new merchandise with these same details, we invite you to update said record (by adding the new quantity to the existing one). <br><br><span class=\"text-danger\">Important: If the product is in an <u>\"Out of stock\"</u> status, you must change it to an <u>\"Available\"</u> status.</span></div>"
 }

@@ -82,5 +82,6 @@
 	"SWAL_DELETED": "ENTREPÔT !",
 	"SWAL_DELETED_RECORD": "Supprimé avec succès de l'entrepôt.",
 
-	"ERROR_QUANTITY_THAT_ALLOWED": "La quantité achetée est inférieure à celle déjà enregistrée (pertes, vendues)"
+	"ERROR_QUANTITY_THAT_ALLOWED": "La quantité achetée est inférieure à celle déjà enregistrée (pertes, vendues)",
+	"ERROR_ROW_EXIST": "<div class=\"label-color text-center mb-2\">Ce lot a déjà été enregistré il y a quelques jours dans l'entrepôt. <br><br></div><div class=\"label-color\">Si vous avez de nouvelles marchandises avec ces mêmes données, nous vous invitons à mettre à jour cet enregistrement (en ajoutant la nouvelle quantité à celle existante). <br><br><span class=\"text-danger\">Important : Si le produit est en état <u>\"Épuisé\"</u>, vous devez le passer à un état <u>\"Disponible\"</u>.</span></div>"
 }

@@ -83,5 +83,6 @@
   "SWAL_DELETED": "BODEGA!",
   "SWAL_DELETED_RECORD": "Eliminado exitosamente de la bodega.",
 
-  "ERROR_QUANTITY_THAT_ALLOWED": "La cantidad comprada es inferior a la ya registrada (mermas, vendidas)"
+  "ERROR_QUANTITY_THAT_ALLOWED": "La cantidad comprada es inferior a la ya registrada (mermas, vendidas)",
+  "ERROR_ROW_EXIST": "<div class=\"label-color text-center mb-2\">Este lote ya fue registrado días atrás en la bodega. <br><br></div><div class=\"label-color\">Si tiene nueva mercancía con estos mismos datos, lo(a) invitamos a actualizar dicho registro (sumándole la nueva cantidad a la ya existente). <br><br><span class=\"text-danger\">Importante: Si el producto está en estado <u>\"Agotado\"</u>, deberá pasarlo a un estado <u>\"Disponible\"</u>.</span></div>"
 }
