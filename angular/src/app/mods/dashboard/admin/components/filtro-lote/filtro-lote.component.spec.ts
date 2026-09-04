@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FiltroComponent } from './filtro.component';
+import { FiltroLoteComponent } from './filtro-lote.component';
 
-describe('FiltroComponent', () => {
-  let component: FiltroComponent;
-  let fixture: ComponentFixture<FiltroComponent>;
+describe('FiltroLoteComponent', () => {
+  let component: FiltroLoteComponent;
+  let fixture: ComponentFixture<FiltroLoteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FiltroComponent]
+      declarations: [FiltroLoteComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FiltroComponent);
+    fixture = TestBed.createComponent(FiltroLoteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

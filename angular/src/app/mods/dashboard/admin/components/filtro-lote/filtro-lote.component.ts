@@ -9,8 +9,8 @@ import { debounceTime, map, Subject } from 'rxjs';
   selector: 'app-reporte-lote',
   standalone: true,
   imports: [TranslateModule, FormsModule, CommonModule],
-  templateUrl: './filtro.component.html',
-  styleUrl: './filtro.component.scss',
+  templateUrl: './filtro-lote.component.html',
+  styleUrl: './filtro-lote.component.scss',
 })
 export class FiltroLoteComponent implements OnChanges {
 

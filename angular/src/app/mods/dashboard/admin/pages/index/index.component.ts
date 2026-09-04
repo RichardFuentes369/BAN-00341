@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ReporteWarehouseComponent } from '../../components/reporte-warehouse/reporte-warehouse.component';
 import { Scanner13Component } from '@component/globales/scanner13/scanner13.component';
-import { FiltroLoteComponent } from '../../components/filtro/filtro.component';
+import { FiltroLoteComponent } from '../../components/filtro-lote/filtro-lote.component';
 import { CommonModule } from '@angular/common';
 import { RangosFiltroComponent } from '../../components/rangos/rangos.component';
 import { TranslateModule } from '@ngx-translate/core';
