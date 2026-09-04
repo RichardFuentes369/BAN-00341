@@ -6,29 +6,25 @@
           <!-- EAN13 -->
           <app-globales-scanner13 (clearData)="clearData($event)"
             (dataResultScanned)="productScanned($event)"></app-globales-scanner13>
-        </div>
-      </div>
-      <div class="col-sm-12">
-        <div class="card-custom shadow mb-3">
+
           <app-toogle-batch (tieneLoteChange)="showInputBatch($event)"></app-toogle-batch>
-        </div>
-      </div>
-      @if(showRequestBartch){
-      <div class="col-sm-12">
-        <div class="card-custom shadow mb-3 pl-4 pr-4 pt-4">
-          <app-reporte-lote #hijoFiltro [idProducto]="idProducto"
-            (dataResultLote)="loteTyped($event)"></app-reporte-lote>
-        </div>
-      </div>
-      }
 
+          @if(showRequestBartch){
+          <div class="pl-4 pr-4">
+            <app-reporte-lote #hijoFiltro [idProducto]="idProducto"
+              (dataResultLote)="loteTyped($event)"></app-reporte-lote>
+          </div>
+          }
 
-      <div class="col-sm-12">
-        <div class="card-custom shadow p-5">
-          <button type="button" class="btnFilterBatch btn btn-sm btn-outline-primary w-100" [disabled]="!isFormValid"
-            (click)="filtrarLote()">
-            <i class="fa fa-filter"></i> {{ 'global-search.TITTLE_COMPONENT' | translate }}
-          </button>
+          <div class="pl-4 pr-4 pb-4" [class.pt-4]="!showRequestBartch">
+            <div class="col-sm-12">
+              <button type="button" class="btnFilterBatch btn btn-sm btn-outline-primary w-100" [disabled]="!isFormValid"
+                (click)="filtrarLote()">
+                <i class="fa fa-filter"></i> {{ 'global-search.TITTLE_COMPONENT' | translate }}
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
