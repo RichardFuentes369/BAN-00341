@@ -1,10 +1,11 @@
 <div class="container mt-4">
   <div class="text-center align-items-center">
     <h5 class="mb-0">Incluir lote</h5>
-    
+
     <div class="custom-control custom-switch">
-      <input type="checkbox" class="custom-control-input" id="switch1">
-      <label class="custom-control-label" for="switch1"></label>
+      <input type="checkbox" class="custom-control-input" id="switchLote" [checked]="tiene_lote"
+        (change)="cambiarLote($event.target.checked)">
+      <label class="custom-control-label" for="switchLote"></label>
     </div>
   </div>
 </div>

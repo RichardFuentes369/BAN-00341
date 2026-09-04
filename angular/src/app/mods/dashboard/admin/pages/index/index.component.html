@@ -10,14 +10,25 @@
       </div>
       <div class="col-sm-12">
         <div class="card-custom shadow mb-3">
-          <app-toogle-batch></app-toogle-batch>
+          <app-toogle-batch (tieneLoteChange)="showInputBatch($event)"></app-toogle-batch>
         </div>
       </div>
+      @if(showRequestBartch){
       <div class="col-sm-12">
         <div class="card-custom shadow mb-3 pl-4 pr-4 pt-4">
-          <!-- LOTE -->
           <app-reporte-lote #hijoFiltro [idProducto]="idProducto"
             (dataResultLote)="loteTyped($event)"></app-reporte-lote>
+        </div>
+      </div>
+      }
+
+
+      <div class="col-sm-12">
+        <div class="card-custom shadow p-5">
+          <button type="button" class="btnFilterBatch btn btn-sm btn-outline-primary w-100" [disabled]="!isFormValid"
+            (click)="filtrarLote()">
+            <i class="fa fa-filter"></i> {{ 'global-search.TITTLE_COMPONENT' | translate }}
+          </button>
         </div>
       </div>
     </div>

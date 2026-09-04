@@ -33,17 +33,5 @@
       </small>
     </div>
     }
-
-    <div class="row mt-2 g-2">
-      <div class="col">
-        <!-- Uso de [disabled] vinculado a !isFormValid -->
-        <button type="button" 
-                class="btnFilterBatch btn btn-sm btn-outline-primary w-100" 
-                [disabled]="!isFormValid"
-                (click)="filtrarLote()">
-          <i class="fa fa-filter"></i> {{ 'global-search.TITTLE_COMPONENT' | translate }}
-        </button>
-      </div>
-    </div>
   </div>
 </div>

@@ -4,6 +4,7 @@ import { Scanner13Component } from '@component/globales/scanner13/scanner13.comp
 import { FiltroLoteComponent } from '../../components/filtro/filtro.component';
 import { CommonModule } from '@angular/common';
 import { RangosFiltroComponent } from '../../components/rangos/rangos.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ChartsComponent } from '@component/globales/charts/charts.component';
 import { ChartOptions, ChartType, ChartData } from 'chart.js';
@@ -13,6 +14,7 @@ import { ToogleBatchComponent } from '../../components/toogle-batch/toogle-batch
   selector: 'app-dashboard-admin',
   standalone: true,
   imports: [
+    TranslateModule,
     ReporteWarehouseComponent,
     Scanner13Component,
     FiltroLoteComponent,
@@ -61,7 +63,13 @@ export class AdminDashboardComponent {
     resultadosGraficosBusqueda: true,
   }
 
+  isFormValid = false
+  showRequestBartch = false
   showDetailProduct = false
+
+  showInputBatch(tiene_lote: boolean){
+    this.showRequestBartch = tiene_lote
+  }
 
   clearData(data: any){
     this.showDetailProduct = false
@@ -115,6 +123,34 @@ export class AdminDashboardComponent {
       const key = sectionActive as keyof typeof this.mostrarSeccion;
       this.mostrarSeccion[key] = !this.mostrarSeccion[key];
     }
+  }
+
+  async filtrarLote() {
+    // try {
+    //   const response = await this.bodegaService.getDataLoteAndProduct(this.lote, this.idProducto);
+    //   if (response.status === 200) {
+    //     this.data.proveedor.nit = response.data.id_proveedor.nit
+    //     this.data.proveedor.razon_social = response.data.id_proveedor.razon_social
+    //     this.data.proveedor.correo = response.data.id_proveedor.correo
+
+    //     this.data.lote.id = response.data.id,
+    //       this.data.lote.lote = response.data.lote,
+    //       this.data.lote.fecha_entrada = response.data.fecha_entrada,
+    //       this.data.lote.fecha_vencimiento = response.data.fecha_vencimiento,
+    //       this.data.lote.cantidad_comprada = response.data.cantidad_comprada,
+    //       this.data.lote.cantidad_vendida = response.data.cantidad_vendida,
+    //       this.data.lote.cantidad_en_bodega = response.data.cantidad_en_bodega,
+    //       this.data.lote.cantidad_afectada_por_merma = response.data.mermas,
+    //       this.data.lote.estado = response.data.estado
+
+    //     this.dataResultLote.emit(this.data)
+
+    //     this.loteNotFound = false
+    //   }
+    // } catch (error: any) {
+    //   this.dataResultLote.emit()
+    //   this.loteNotFound = true
+    // }
   }
 
 
