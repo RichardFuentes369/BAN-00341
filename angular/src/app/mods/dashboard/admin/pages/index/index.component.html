@@ -1,14 +1,19 @@
 <div class="mb-4 border-0 rounded-0">
   <div class="mt-2 p-3 pt-0" style="position: relative;">
     <div class="row mb-4 gap-4">
-      <div class="col-sm">
+      <div class="col-sm-12">
         <div class="card-custom shadow mb-3">
           <!-- EAN13 -->
           <app-globales-scanner13 (clearData)="clearData($event)"
             (dataResultScanned)="productScanned($event)"></app-globales-scanner13>
         </div>
       </div>
-      <div class="col-sm">
+      <div class="col-sm-12">
+        <div class="card-custom shadow mb-3">
+          <app-toogle-batch></app-toogle-batch>
+        </div>
+      </div>
+      <div class="col-sm-12">
         <div class="card-custom shadow mb-3 pl-4 pr-4 pt-4">
           <!-- LOTE -->
           <app-reporte-lote #hijoFiltro [idProducto]="idProducto"
@@ -16,15 +21,6 @@
         </div>
       </div>
     </div>
-
-    <div class="row mb-4">
-      <div class="col-sm-12">
-        <div class="card-custom shadow mb-3 pl-4 pr-4 pt-4">
-          <app-reporte-rangos></app-reporte-rangos>
-        </div>
-      </div>
-    </div>
-
 
     @if(showDetailProduct){
     <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4">
@@ -43,56 +39,15 @@
       </fieldset>
     </div>
 
-    <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4">
-      <fieldset class="border p-3 rounded mb-3">
-        <legend class="float-none w-auto p-1">
-          Informe grafico
-          <button class="btn btn-sm btn-light rounded-circle shadow-sm"
-            (click)="toogleSection('resultadosGraficosBusqueda')">
-            <i [class]="mostrarSeccion.resultadosGraficosBusqueda ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
-          </button>
-        </legend>
-
-        <div class="row" *ngIf="mostrarSeccion.resultadosGraficosBusqueda"
-          [class.animate__fadeIn]="mostrarSeccion.resultadosGraficosBusqueda"
-          [class.animate__fadeOut]="!mostrarSeccion.resultadosGraficosBusqueda">
-
-          <div class="row g-4"> 
-
-            <!-- Fila 1 -->
-            <div class="col-12 col-md-4">
-              <app-globales-charts title="Gráfica de Líneas" chartType="line" [chartData]="lineChartData"
-                [chartOptions]="lineChartOptions"></app-globales-charts>
-            </div>
-            <div class="col-12 col-md-4">
-              <app-globales-charts title="Gráfica de Pastel" chartType="pie" [chartData]="pieChartData"
-                [chartOptions]="pieChartOptions"></app-globales-charts>
-            </div>
-            <div class="col-12 col-md-4">
-              <app-globales-charts title="Gráfica de Barras" chartType="bar" [chartData]="barChartData"
-                [chartOptions]="barChartOptions"></app-globales-charts>
-            </div>
-
-            <!-- Fila 2 (Se acomodarán automáticamente abajo de forma simétrica) -->
-            <div class="col-12 col-md-4">
-              <app-globales-charts title="Gráfica de Líneas" chartType="line" [chartData]="lineChartData"
-                [chartOptions]="lineChartOptions"></app-globales-charts>
-            </div>
-            <div class="col-12 col-md-4">
-              <app-globales-charts title="Gráfica de Pastel" chartType="pie" [chartData]="pieChartData"
-                [chartOptions]="pieChartOptions"></app-globales-charts>
-            </div>
-            <div class="col-12 col-md-4">
-              <app-globales-charts title="Gráfica de Barras" chartType="bar" [chartData]="barChartData"
-                [chartOptions]="barChartOptions"></app-globales-charts>
-            </div>
-
-          </div>
+    <div class="row mb-4">
+      <div class="col-sm-12">
+        <div class="card-custom shadow mb-3 pl-4 pr-4 pt-4">
+          <app-reporte-rangos></app-reporte-rangos>
         </div>
-      </fieldset>
+      </div>
     </div>
     }
-    @else {
+
     <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4">
       <fieldset class="border p-3 rounded mb-3">
         <legend class="float-none w-auto p-1">
@@ -108,7 +63,7 @@
           [class.animate__fadeOut]="!mostrarSeccion.resultadosGraficosBusqueda">
 
 
-          <div class="row g-4"> 
+          <div class="row g-4">
 
             <!-- Fila 1 -->
             <div class="col-12 col-md-4">
@@ -144,6 +99,5 @@
 
       </fieldset>
     </div>
-    }
   </div>
 </div>

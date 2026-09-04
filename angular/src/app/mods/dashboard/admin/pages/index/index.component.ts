@@ -7,6 +7,7 @@ import { RangosFiltroComponent } from '../../components/rangos/rangos.component'
 
 import { ChartsComponent } from '@component/globales/charts/charts.component';
 import { ChartOptions, ChartType, ChartData } from 'chart.js';
+import { ToogleBatchComponent } from '../../components/toogle-batch/toogle-batch.component';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -15,6 +16,7 @@ import { ChartOptions, ChartType, ChartData } from 'chart.js';
     ReporteWarehouseComponent,
     Scanner13Component,
     FiltroLoteComponent,
+    ToogleBatchComponent,
     RangosFiltroComponent,
     CommonModule,
 
@@ -114,7 +116,6 @@ export class AdminDashboardComponent {
       this.mostrarSeccion[key] = !this.mostrarSeccion[key];
     }
   }
-
 
 
   // ==========================
