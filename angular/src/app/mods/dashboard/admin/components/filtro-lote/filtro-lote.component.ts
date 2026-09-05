@@ -66,10 +66,7 @@ export class FiltroLoteComponent implements OnChanges {
 
     const isValid = !this.validators.lote && isProductoValido;
 
-    const boton = document.querySelector('.btnFilterBatch') as HTMLButtonElement;
-    if (boton) {
-      isValid ? boton.classList.remove('disabled') : boton.classList.add('disabled');
-    }
+    this.dataResultLote.emit(this.lote)
 
     return isValid;
   }

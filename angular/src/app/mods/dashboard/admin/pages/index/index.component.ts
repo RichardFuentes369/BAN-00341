@@ -54,8 +54,8 @@ export class AdminDashboardComponent {
       lote: null
     }
   }
-
   idProducto: any = null
+  showDetailProduct = false
 
   mostrarSeccion = {
     graficosGenerales: true,
@@ -63,33 +63,38 @@ export class AdminDashboardComponent {
     resultadosGraficosBusqueda: true,
   }
 
-  isFormValid = false
-  showRequestBartch = false
-  showDetailProduct = false
-
-  showInputBatch(tiene_lote: boolean){
-    this.showRequestBartch = tiene_lote
-  }
-
-  clearData(data: any){
+  clearData(data: any) {
     this.showDetailProduct = false
-    if(this.hijoComponente){
+    if (this.hijoComponente) {
       this.hijoComponente.limpiarCampo()
     }
   }
 
+  isFormValid = true
   productScanned(data: any) {
     this.idProducto = (data && data.id) ? data.id : null
 
-    if (data) {
+    if (data.id) {
       this.datosJson.producto.codigo_barra = data.codigo_barra || null;
       this.datosJson.producto.nombre = data.nombre || null;
       this.datosJson.producto.marca = data.marca || null;
       this.datosJson.producto.unidad_medida = data.unidad_medida || null;
+
+      this.validarBotonFiltro()
+    } else {
+      this.validarBotonFiltro()
     }
+
+  }
+
+  showRequestBatch = false
+  showInputBatch(tiene_lote: boolean) {
+    this.showRequestBatch = tiene_lote
+    this.validarBotonFiltro()
   }
 
   loteTyped(data: any) {
+    this.validarBotonFiltro()
     if (data !== undefined && data !== null) {
       this.showDetailProduct = true;
 
@@ -111,8 +116,6 @@ export class AdminDashboardComponent {
         this.datosJson.lote.id = data.lote.id || null;
       }
 
-      console.log(this.datosJson)
-
     } else {
       this.showDetailProduct = false
     }
@@ -125,7 +128,13 @@ export class AdminDashboardComponent {
     }
   }
 
+  validarBotonFiltro() {
+    console.log('aqui estoy')
+    // this.isFormValid = (this.showRequestBatch == false) ? true : false
+  }
+
   async filtrarLote() {
+    console.log('cambiar logicamente el metodo')
     // try {
     //   const response = await this.bodegaService.getDataLoteAndProduct(this.lote, this.idProducto);
     //   if (response.status === 200) {

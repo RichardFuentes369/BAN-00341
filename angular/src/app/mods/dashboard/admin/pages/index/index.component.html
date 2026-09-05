@@ -9,16 +9,16 @@
 
           <app-toogle-batch (tieneLoteChange)="showInputBatch($event)"></app-toogle-batch>
 
-          @if(showRequestBartch){
+          @if(showRequestBatch){
           <div class="pl-4 pr-4">
             <app-reporte-lote #hijoFiltro [idProducto]="idProducto"
               (dataResultLote)="loteTyped($event)"></app-reporte-lote>
           </div>
           }
 
-          <div class="pl-4 pr-4 pb-4" [class.pt-4]="!showRequestBartch">
+          <div class="pl-4 pr-4 pb-4" [class.pt-4]="!showRequestBatch">
             <div class="col-sm-12">
-              <button type="button" class="btnFilterBatch btn btn-sm btn-outline-primary w-100" [disabled]="!isFormValid"
+              <button type="button" class="btnFilterBatch btn btn-sm btn-outline-primary w-100" [disabled]="isFormValid"
                 (click)="filtrarLote()">
                 <i class="fa fa-filter"></i> {{ 'global-search.TITTLE_COMPONENT' | translate }}
               </button>
