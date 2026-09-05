@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BodegaService } from '@mod/warehouse/admin/pages/warehouse/service/warehouse.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { debounceTime, map, Subject } from 'rxjs';
 
@@ -21,7 +20,6 @@ export class FiltroLoteComponent implements OnChanges {
   isFormValid = false;
 
   constructor(
-    private bodegaService: BodegaService
   ) {
     this.validationSubject.pipe(
       debounceTime(300),
@@ -81,8 +79,5 @@ export class FiltroLoteComponent implements OnChanges {
   limpiarCampo() {
     this.lote = ''
   }
-
-
-
 
 }

@@ -18,7 +18,7 @@
 
           <div class="pl-4 pr-4 pb-4" [class.pt-4]="!showRequestBatch">
             <div class="col-sm-12">
-              <button type="button" class="btnFilterBatch btn btn-sm btn-outline-primary w-100" [disabled]="isFormValid"
+              <button type="button" class="btnFilterBatch btn btn-sm btn-primary w-100" [disabled]="isFormValid"
                 (click)="filtrarLote()">
                 <i class="fa fa-filter"></i> {{ 'global-search.TITTLE_COMPONENT' | translate }}
               </button>
@@ -45,6 +45,7 @@
         </div>
       </fieldset>
     </div>
+    }
 
     <div class="row mb-4">
       <div class="col-sm-12">
@@ -53,7 +54,6 @@
         </div>
       </div>
     </div>
-    }
 
     <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4">
       <fieldset class="border p-3 rounded mb-3">

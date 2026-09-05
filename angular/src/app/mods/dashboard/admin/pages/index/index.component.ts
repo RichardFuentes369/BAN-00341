@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ChartsComponent } from '@component/globales/charts/charts.component';
 import { ChartOptions, ChartType, ChartData } from 'chart.js';
 import { ToogleBatchComponent } from '../../components/toogle-batch/toogle-batch.component';
+import { BodegaService } from '@mod/warehouse/admin/pages/warehouse/service/warehouse.service';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -28,6 +29,11 @@ import { ToogleBatchComponent } from '../../components/toogle-batch/toogle-batch
   styleUrl: './index.component.scss',
 })
 export class AdminDashboardComponent {
+
+  constructor(
+    private bodegaService: BodegaService
+  ) {
+  }
 
   @ViewChild('hijoFiltro') hijoComponente!: FiltroLoteComponent;
 
@@ -51,10 +57,13 @@ export class AdminDashboardComponent {
       estado: null,
       fecha_entrada: null,
       fecha_vencimiento: null,
-      lote: null
+      lote: null,
+      id: null
     }
   }
+
   idProducto: any = null
+  loteDigitado: any = ''
   showDetailProduct = false
 
   mostrarSeccion = {
@@ -94,30 +103,33 @@ export class AdminDashboardComponent {
   }
 
   loteTyped(data: any) {
+    this.loteDigitado = data
     this.validarBotonFiltro()
-    if (data !== undefined && data !== null) {
-      this.showDetailProduct = true;
+  }
 
-      if (data.proveedor) {
-        this.datosJson.proveedor.nit = data.proveedor.nit || null;
-        this.datosJson.proveedor.correo = data.proveedor.correo || null;
-        this.datosJson.proveedor.razon_social = data.proveedor.razon_social || null;
-      }
+  validarBotonFiltro() {
+    // no tiene producto
+    if (this.idProducto == null) {
+      console.log('caso 1')
+      this.isFormValid = true
+    }
 
-      if (data.lote) {
-        this.datosJson.lote.cantidad_afectada_por_merma = data.lote.cantidad_afectada_por_merma || null;
-        this.datosJson.lote.cantidad_comprada = data.lote.cantidad_comprada || null;
-        this.datosJson.lote.cantidad_en_bodega = data.lote.cantidad_en_bodega || null;
-        this.datosJson.lote.cantidad_vendida = data.lote.cantidad_vendida || null;
-        this.datosJson.lote.estado = data.lote.estado || null;
-        this.datosJson.lote.fecha_entrada = data.lote.fecha_entrada || null;
-        this.datosJson.lote.fecha_vencimiento = data.lote.fecha_vencimiento || null;
-        this.datosJson.lote.lote = data.lote.lote || null;
-        this.datosJson.lote.id = data.lote.id || null;
-      }
+    // tiene producto y no tiene lote
+    if (this.showRequestBatch == false && this.idProducto != null && this.loteDigitado == '') {
+      console.log('caso 2')
+      this.isFormValid = false
+    }
 
-    } else {
-      this.showDetailProduct = false
+    // tiene producto y tiene lote y esta digitado
+    if (this.showRequestBatch == true && this.idProducto != null && this.loteDigitado != '') {
+      console.log('caso 3')
+      this.isFormValid = false
+    }
+
+    // tiene producto y tiene lote y no esta digitado
+    if (this.showRequestBatch == true && this.idProducto != null && this.loteDigitado == '') {
+      console.log('caso 4')
+      this.isFormValid = true
     }
   }
 
@@ -128,39 +140,55 @@ export class AdminDashboardComponent {
     }
   }
 
-  validarBotonFiltro() {
-    console.log('aqui estoy')
-    // this.isFormValid = (this.showRequestBatch == false) ? true : false
-  }
-
   async filtrarLote() {
-    console.log('cambiar logicamente el metodo')
-    // try {
-    //   const response = await this.bodegaService.getDataLoteAndProduct(this.lote, this.idProducto);
-    //   if (response.status === 200) {
-    //     this.data.proveedor.nit = response.data.id_proveedor.nit
-    //     this.data.proveedor.razon_social = response.data.id_proveedor.razon_social
-    //     this.data.proveedor.correo = response.data.id_proveedor.correo
+    try {
+      const response = await this.bodegaService.getDataLoteAndProduct(this.loteDigitado, this.idProducto);
+      if (response.status === 200) {
+        this.datosJson.proveedor.nit = response.data.id_proveedor.nit
+        this.datosJson.proveedor.razon_social = response.data.id_proveedor.razon_social
+        this.datosJson.proveedor.correo = response.data.id_proveedor.correo
 
-    //     this.data.lote.id = response.data.id,
-    //       this.data.lote.lote = response.data.lote,
-    //       this.data.lote.fecha_entrada = response.data.fecha_entrada,
-    //       this.data.lote.fecha_vencimiento = response.data.fecha_vencimiento,
-    //       this.data.lote.cantidad_comprada = response.data.cantidad_comprada,
-    //       this.data.lote.cantidad_vendida = response.data.cantidad_vendida,
-    //       this.data.lote.cantidad_en_bodega = response.data.cantidad_en_bodega,
-    //       this.data.lote.cantidad_afectada_por_merma = response.data.mermas,
-    //       this.data.lote.estado = response.data.estado
+        this.datosJson.lote.id = response.data.id
+        this.datosJson.lote.lote = response.data.lote
+        this.datosJson.lote.fecha_entrada = response.data.fecha_entrada
+        this.datosJson.lote.fecha_vencimiento = response.data.fecha_vencimiento
+        this.datosJson.lote.cantidad_comprada = response.data.cantidad_comprada
+        this.datosJson.lote.cantidad_vendida = response.data.cantidad_vendida
+        this.datosJson.lote.cantidad_en_bodega = response.data.cantidad_en_bodega
+        this.datosJson.lote.cantidad_afectada_por_merma = response.data.mermas
+        this.datosJson.lote.estado = response.data.estado
 
-    //     this.dataResultLote.emit(this.data)
+        this.datosJson.producto.codigo_barra = response.data.id_producto.codigo_barra
+        this.datosJson.producto.nombre = response.data.id_producto.nombre
+        this.datosJson.producto.marca = response.data.id_producto.marca.nombre
+        this.datosJson.producto.unidad_medida = response.data.id_producto.medida.nombre
 
-    //     this.loteNotFound = false
-    //   }
-    // } catch (error: any) {
-    //   this.dataResultLote.emit()
-    //   this.loteNotFound = true
-    // }
+        this.showDetailProduct = true
+      }
+    } catch (error: any) {
+      this.showDetailProduct = false
+    }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   // ==========================
