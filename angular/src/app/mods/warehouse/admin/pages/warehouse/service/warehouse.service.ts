@@ -133,7 +133,7 @@ export class BodegaService {
       }
     })
   }
-
+  
   async getDataLoteAndProduct(lote: string, idProducto: string){
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = `batch/obtener-registro-lote-producto?lote=${lote}&id_producto=${idProducto}`

@@ -136,7 +136,12 @@ export class ReporteWarehouseComponent implements OnChanges {
       }
 
       // 4. Cargar la tabla de mermas
-      this.endPoint = `registro-mermas/obtener-registro-mermas?id_lote=${this.datosRecibidos.lote.id}`
+      if(this.datosRecibidos.lote.show){
+        this.endPoint = `registro-mermas/obtener-registro-mermas?id_lote=${this.datosRecibidos.lote.id}`
+      }else{
+        this.endPoint = ''
+      }
+
     }
   }
 

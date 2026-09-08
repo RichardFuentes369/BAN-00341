@@ -1,5 +1,6 @@
 <div class="col-xl-12 pl-0 pr-0 pt-3 pb-4 mb-2">
   <div class="row g-4">
+    @if(producto.show){
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
       <fieldset class="border p-3 rounded mb-3">
         <legend class="float-none w-auto p-1">
@@ -36,7 +37,9 @@
         </div>
       </fieldset>
     </div>
+    }
 
+    @if(proveedor.show){
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
       <fieldset class="border p-3 rounded mb-3">
         <legend class="float-none w-auto p-1">
@@ -65,7 +68,9 @@
         </div>
       </fieldset>
     </div>
+    }
 
+    @if(bodega.show){
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
       <fieldset class="border p-3 rounded mb-3">
         <legend class="float-none w-auto p-1">
@@ -141,7 +146,9 @@
         </div>
       </fieldset>
     </div>
+    }
 
+    @if(bodega.show){
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
       <fieldset class="border p-3 rounded">
         <legend class="float-none w-auto p-1">
@@ -161,5 +168,6 @@
         </div>
       </fieldset>
     </div>
+    }
   </div>
 </div>

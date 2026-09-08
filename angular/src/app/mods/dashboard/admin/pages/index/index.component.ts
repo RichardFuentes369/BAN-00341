@@ -10,6 +10,7 @@ import { ChartsComponent } from '@component/globales/charts/charts.component';
 import { ChartOptions, ChartType, ChartData } from 'chart.js';
 import { ToogleBatchComponent } from '../../components/toogle-batch/toogle-batch.component';
 import { BodegaService } from '@mod/warehouse/admin/pages/warehouse/service/warehouse.service';
+import { ProductosService } from '@mod/catalog/admin/pages/productos/service/productos.service';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -31,7 +32,8 @@ import { BodegaService } from '@mod/warehouse/admin/pages/warehouse/service/ware
 export class AdminDashboardComponent {
 
   constructor(
-    private bodegaService: BodegaService
+    private bodegaService: BodegaService,
+    private productosService: ProductosService
   ) {
   }
 
@@ -39,17 +41,20 @@ export class AdminDashboardComponent {
 
   datosJson: any = {
     producto: {
+      show: false,
       codigo_barra: null,
       nombre: null,
       marca: null,
       unidad_medida: null
     },
     proveedor: {
+      show: false,
       nit: null,
       correo: null,
       razon_social: null
     },
     lote: {
+      show: false,
       cantidad_afectada_por_merma: null,
       cantidad_comprada: null,
       cantidad_en_bodega: null,
@@ -140,33 +145,74 @@ export class AdminDashboardComponent {
     }
   }
 
-  async filtrarLote() {
-    try {
-      const response = await this.bodegaService.getDataLoteAndProduct(this.loteDigitado, this.idProducto);
-      if (response.status === 200) {
-        this.datosJson.proveedor.nit = response.data.id_proveedor.nit
-        this.datosJson.proveedor.razon_social = response.data.id_proveedor.razon_social
-        this.datosJson.proveedor.correo = response.data.id_proveedor.correo
+async filtrarLote() {
+    // CASO 1: Solo Producto (Limpiamos proveedor y lote explícitamente)
+    if (this.idProducto && this.loteDigitado == '') {
+      try {
+        const response = await this.productosService.getDataProduct(this.idProducto);
+        if (response.status === 200) {
+          // Resetear proveedor y lote para que el hijo detecte el cambio de estado
+          this.datosJson.proveedor = { show: false, nit: null, correo: null, razon_social: null };
+          this.datosJson.lote = { show: false, cantidad_afectada_por_merma: null, cantidad_comprada: null, cantidad_en_bodega: null, cantidad_vendida: null, estado: null, fecha_entrada: null, fecha_vencimiento: null, lote: null, id: null };
 
-        this.datosJson.lote.id = response.data.id
-        this.datosJson.lote.lote = response.data.lote
-        this.datosJson.lote.fecha_entrada = response.data.fecha_entrada
-        this.datosJson.lote.fecha_vencimiento = response.data.fecha_vencimiento
-        this.datosJson.lote.cantidad_comprada = response.data.cantidad_comprada
-        this.datosJson.lote.cantidad_vendida = response.data.cantidad_vendida
-        this.datosJson.lote.cantidad_en_bodega = response.data.cantidad_en_bodega
-        this.datosJson.lote.cantidad_afectada_por_merma = response.data.mermas
-        this.datosJson.lote.estado = response.data.estado
+          // Asignar producto
+          this.datosJson.producto = {
+            show: true,
+            codigo_barra: response.data.codigo_barra,
+            nombre: response.data.nombre,
+            marca: response.data.marca.nombre,
+            unidad_medida: response.data.medida.nombre
+          };
 
-        this.datosJson.producto.codigo_barra = response.data.id_producto.codigo_barra
-        this.datosJson.producto.nombre = response.data.id_producto.nombre
-        this.datosJson.producto.marca = response.data.id_producto.marca.nombre
-        this.datosJson.producto.unidad_medida = response.data.id_producto.medida.nombre
-
-        this.showDetailProduct = true
+          // Forzar la creación de un nuevo objeto para disparar ngOnChanges por referencia
+          this.datosJson = { ...this.datosJson };
+          this.showDetailProduct = true;
+        }
+      } catch (error: any) {
+        this.showDetailProduct = false;
       }
-    } catch (error: any) {
-      this.showDetailProduct = false
+    }
+
+    // CASO 2: Producto + Lote
+    if (this.idProducto && this.loteDigitado) {
+      try {
+        const response = await this.bodegaService.getDataLoteAndProduct(this.loteDigitado, this.idProducto);
+        if (response.status === 200) {
+          this.datosJson.proveedor = {
+            show: true,
+            nit: response.data.id_proveedor.nit,
+            razon_social: response.data.id_proveedor.razon_social,
+            correo: response.data.id_proveedor.correo
+          };
+
+          this.datosJson.lote = {
+            show: true,
+            id: response.data.id,
+            lote: response.data.lote,
+            fecha_entrada: response.data.fecha_entrada,
+            fecha_vencimiento: response.data.fecha_vencimiento,
+            cantidad_comprada: response.data.cantidad_comprada,
+            cantidad_vendida: response.data.cantidad_vendida,
+            cantidad_en_bodega: response.data.cantidad_en_bodega,
+            cantidad_afectada_por_merma: response.data.mermas,
+            estado: response.data.estado
+          };
+
+          this.datosJson.producto = {
+            show: true,
+            codigo_barra: response.data.id_producto.codigo_barra,
+            nombre: response.data.id_producto.nombre,
+            marca: response.data.id_producto.marca.nombre,
+            unidad_medida: response.data.id_producto.medida.nombre
+          };
+
+          // Forzar la creación de un nuevo objeto para disparar ngOnChanges por referencia
+          this.datosJson = { ...this.datosJson };
+          this.showDetailProduct = true;
+        }
+      } catch (error: any) {
+        this.showDetailProduct = false;
+      }
     }
   }
 
