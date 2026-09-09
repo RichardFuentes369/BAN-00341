@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -98,10 +98,10 @@ export class ReporteWarehouseComponent implements OnChanges {
     cantidad_comprada: 0,
     cantidad_vendida: 0,
     cantidad_en_bodega: 0,
-    estado: ''
+    cantidad_afectada_por_merma: 0,
+    estado: '',
   };
 
-  cantidad_afectada_por_merma: number = 0;
 
   mostrarSeccion = {
     productSeccion: true,
@@ -110,6 +110,8 @@ export class ReporteWarehouseComponent implements OnChanges {
     registerSeccion: true,
     mermaSeccion: true
   };
+
+  @ViewChild(TablecrudComponent) tableComponent!: TablecrudComponent;
 
   // Detecta cuando el padre actualiza el JSON con los datos escaneados o del lote
   ngOnChanges(changes: SimpleChanges) {
@@ -129,19 +131,26 @@ export class ReporteWarehouseComponent implements OnChanges {
 
       // 3. Mapear Lote / Bodega si viene con datos
       if (this.datosRecibidos.lote) {
-        this.bodega = { ...this.datosRecibidos.lote };
-        this.cantidad_afectada_por_merma = this.datosRecibidos.lote.cantidad_afectada_por_merma || 0;
+        this.bodega.show = this.datosRecibidos.lote.show
+        this.bodega.lote = this.datosRecibidos.lote.lote
+        this.bodega.fecha_entrada = this.formatoFecha(this.datosRecibidos.lote.fecha_entrada)
+        this.bodega.fecha_vencimiento = this.formatoFecha(this.datosRecibidos.lote.fecha_vencimiento)
+        this.bodega.cantidad_comprada = this.datosRecibidos.lote.cantidad_comprada
+        this.bodega.cantidad_vendida = this.datosRecibidos.lote.cantidad_vendida
+        this.bodega.cantidad_en_bodega = this.datosRecibidos.lote.cantidad_en_bodega
+        this.bodega.cantidad_afectada_por_merma = this.datosRecibidos.lote.cantidad_afectada_por_merma
+        this.bodega.estado = this.datosRecibidos.lote.estado
         // Si hay lote, mostramos el detalle del lote
         this.show_detail_batch = !!this.bodega.lote;
       }
 
       // 4. Cargar la tabla de mermas
-      if(this.datosRecibidos.lote.show){
+      if (this.datosRecibidos.lote.show) {
         this.endPoint = `registro-mermas/obtener-registro-mermas?id_lote=${this.datosRecibidos.lote.id}`
-      }else{
+        this.tableComponent?.reload();
+      } else {
         this.endPoint = ''
       }
-
     }
   }
 
@@ -150,5 +159,14 @@ export class ReporteWarehouseComponent implements OnChanges {
       const key = sectionActive as keyof typeof this.mostrarSeccion;
       this.mostrarSeccion[key] = !this.mostrarSeccion[key];
     }
+  }
+
+  formatoFecha(fecha: number) {
+    const date = new Date(Number(fecha) * 1000);
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+
+    return `${yyyy}-${mm}-${dd}`
   }
 }

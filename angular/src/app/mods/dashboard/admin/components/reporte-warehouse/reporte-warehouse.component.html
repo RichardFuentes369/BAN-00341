@@ -119,7 +119,7 @@
                 <div class="col-sm-6 form-group">
                   <label class="label-color">{{ 'mod-warehouse.LABEL_CANTIDAD_AFECTADA' | translate}}</label>
                   <input type="number" class="form-control form-select-sm bg-light"
-                    [(ngModel)]="cantidad_afectada_por_merma" disabled>
+                    [(ngModel)]="bodega.cantidad_afectada_por_merma" disabled>
                   <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100">en
                     {{producto.unidad_medida}}</span>
                 </div>
@@ -146,9 +146,7 @@
         </div>
       </fieldset>
     </div>
-    }
 
-    @if(bodega.show){
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
       <fieldset class="border p-3 rounded">
         <legend class="float-none w-auto p-1">
