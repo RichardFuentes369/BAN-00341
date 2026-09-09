@@ -10,12 +10,8 @@ CTRL + SHIFT + V
 ### Funcionalidades
 
 	1. Checkear todos los editar (hay bugs) [Algunos campos actualizan, otros no] [Los select dependientes]
-	2. Hacer enpoint para marcar un producto como vendido o devolución (validar como) (*)
+	2. Hacer enpoint para marcar las devolución (validar como) (*)
 	3. Graficos (*)
-
-### Ajustes
-
-	1. Arreglar index
 	
 ### Tener en cuenta diseño
 	layout admin
