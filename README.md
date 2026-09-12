@@ -2,18 +2,15 @@ CTRL + SHIFT + V
 
 ## PENDIENTE 
 
-### Bodega
-
-- habilitar el cargue por csv
-
 ## PENDIENTE (II PARTE)
 ### Funcionalidades
 
-	1. Checkear todos los editar (hay bugs) [Algunos campos actualizan, otros no] [Los select dependientes]
-	2. Hacer enpoint para marcar las devolución (validar como) (*)
-	3. Graficos (*)
-	
-### Tener en cuenta diseño
+	1. Traducciónes modulos globales EAN13
+	2. DASHBOARD: Graficos (*), traducciones
+	3. Hacer enpoint para marcar las devolución (validar como) 
+	4. Cambio de estado de bodega automaticos (merma, ventas, devoluciones)
+		
+### Personalización
 	layout admin
 		barra lateral
 		barra horizontal
@@ -34,19 +31,7 @@ CTRL + SHIFT + V
 	notfound
 	nopermission
 
-## Entregables
-
-	1. Hacer manuales
-		- hacer manual para usar tunnel de cloudflare
-		- hacer manuales de usuario
-		- hacer manual de instalación del backend, frontend y base de datos
-
-	2. Otros entregables
-		- hacer investigacion de porque no se pudo usar una api de ean13
-		- casos de uso
-		- mer
-		- diagrama de clases
-		- diagrama de secuencia
+### ¿Que pasa si el backend esta en servidor? => con el endpoint de front y back
 
 ## Manejo sistema
 
