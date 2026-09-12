@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ReporteWarehouseComponent } from '../../components/reporte-warehouse/reporte-warehouse.component';
 import { Scanner13Component } from '@component/globales/scanner13/scanner13.component';
 import { FiltroLoteComponent } from '../../components/filtro-lote/filtro-lote.component';
@@ -29,12 +29,28 @@ import { ProductosService } from '@mod/catalog/admin/pages/productos/service/pro
   templateUrl: './index.component.html',
   styleUrl: './index.component.scss',
 })
-export class AdminDashboardComponent {
+export class AdminDashboardComponent implements OnInit {
 
   constructor(
     private bodegaService: BodegaService,
     private productosService: ProductosService
   ) {
+  }
+
+  isSmallScreen: boolean = false;
+  showRequestBatch: boolean = false;
+
+  ngOnInit() {
+    this.checkScreenSize();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenSize();
+  }
+
+  checkScreenSize() {
+    this.isSmallScreen = window.innerWidth < 1024;
   }
 
   @ViewChild('hijoFiltro') hijoComponente!: FiltroLoteComponent;
@@ -101,7 +117,6 @@ export class AdminDashboardComponent {
 
   }
 
-  showRequestBatch = false
   showInputBatch(tiene_lote: boolean) {
     this.showRequestBatch = tiene_lote
     this.validarBotonFiltro()
@@ -145,7 +160,7 @@ export class AdminDashboardComponent {
     }
   }
 
-async filtrarLote() {
+  async filtrarLote() {
     // CASO 1: Solo Producto (Limpiamos proveedor y lote explícitamente)
     if (this.idProducto && this.loteDigitado == '') {
       try {

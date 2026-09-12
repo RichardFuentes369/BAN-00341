@@ -50,4 +50,21 @@ legend {
 
 
 
+/* Comportamiento normal por defecto (celulares y tablets) */
+.sticky-sidebar {
+  position: relative;
+}
 
+/* Comportamiento por defecto para pantallas menores a 1080px (se quedan estáticas) */
+.sticky-sidebar {
+  position: relative;
+}
+
+/* Efecto sticky al hacer scroll solo en pantallas mayores a 1080px */
+@media (min-width: 1024px) {
+  .sticky-sidebar {
+    position: sticky;
+    top: 8rem; /* Distancia respecto al borde superior de la pantalla al hacer scroll */
+    z-index: 0;
+  }
+}
