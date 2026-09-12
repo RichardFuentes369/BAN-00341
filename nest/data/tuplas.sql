@@ -14,15 +14,20 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping data for table BAN_00341.mod_bodega: ~5 rows (approximately)
+-- Dumping data for table BAN_00341.mod_bodega: ~10 rows (approximately)
 INSERT INTO `mod_bodega` (`id`, `lote`, `fecha_entrada`, `fecha_vencimiento`, `cantidad_comprada`, `cantidad_vendida`, `cantidad_en_bodega`, `estado`, `id_producto`, `id_proveedor`) VALUES
-	(32, 'LMA-57963', 1775451600, 1785301199, 100, 0, 100, 'disponible', 1, 2),
-	(33, 'CA-857', 1772341200, 1777870799, 100, 0, 100, 'disponible', 4, 2),
-	(34, 'YF253', 1783314000, 1793249999, 78, 0, 78, 'disponible', 3, 2),
-	(35, 'opl896', 1783400400, NULL, 258, 0, 258, 'disponible', 2, 1),
-	(36, 'SP-2536', 1776229200, 17999, 895, 0, 887, 'disponible', 1, 4);
+	(32, 'LMA-57963', 1775451600, 1785301199, 100, 32, 68, 'vencido', 1, 2),
+	(33, 'CA-857', 1772341200, 1777870799, 100, 4, 96, 'vencido', 4, 2),
+	(34, 'YF253', 1783314000, 1793249999, 78, 74, 0, 'agotado', 3, 2),
+	(35, 'opl896', 1783400400, NULL, 258, 4, 252, 'disponible', 2, 1),
+	(36, 'SP-2536', 1776229200, 17999, 895, 2, 763, 'vencido', 1, 4),
+	(41, 'laq-25963', 1788238800, 1797829199, 75, 74, 1, 'disponible', 1, 2),
+	(42, 'yf6398', 1788325200, 1827723599, 35, 0, 35, 'disponible', 3, 2),
+	(43, 'pudcho9633', 1788325200, 1816145999, 39, 0, 39, 'disponible', 6, 4),
+	(44, 'poi-885', 1788325200, 1797137999, 35, 34, 1, 'disponible', 1, 4),
+	(46, 'l485-69', 1788325200, 1795064399, 140, 18, 2, 'disponible', 1, 4);
 
--- Dumping data for table BAN_00341.mod_catalogo_marcas: ~8 rows (approximately)
+-- Dumping data for table BAN_00341.mod_catalogo_marcas: ~83 rows (approximately)
 INSERT INTO `mod_catalogo_marcas` (`id`, `nombre`) VALUES
 	(1, 'Alqueria'),
 	(2, 'Elite'),
@@ -33,7 +38,7 @@ INSERT INTO `mod_catalogo_marcas` (`id`, `nombre`) VALUES
 	(14, 'Noel'),
 	(3, 'Purina');
 
--- Dumping data for table BAN_00341.mod_catalogo_medida: ~37 rows (approximately)
+-- Dumping data for table BAN_00341.mod_catalogo_medida: ~6 rows (approximately)
 INSERT INTO `mod_catalogo_medida` (`id`, `nombre`) VALUES
 	(4, 'Gramos'),
 	(3, 'Kilogramos'),
@@ -63,14 +68,17 @@ INSERT INTO `mod_catalogo_proveedores` (`id`, `razon_social`, `direccion`, `corr
 	(1, 'Proveedor 1', 'calle 32 a # 52 - 35', 'proveedor1@gmail.com', '3504284145', '1', '1000241005'),
 	(2, 'Proveedor 2', 'calle 3 # 23 - 75', 'proveedor2@gmail.com', '3168955632', '1', '1000241001'),
 	(3, 'Proveedor 3', 'calle 125 # 32 - 15', 'proveedor3@gmail.com', '3162547852', '1', '1000241002'),
-	(4, 'Proveedor 4', 'calle 206 # 55 - 95', 'proveedor4@gmail.com', '3504289963', '1', '1000241004');
+	(4, 'Proveedor 4', 'calle 206 # 55 - 04', 'proveedor4@gmail.com', '3504289904', '1', '1000241004');
 
--- Dumping data for table BAN_00341.mod_merma_mermas: ~2 rows (approximately)
+-- Dumping data for table BAN_00341.mod_merma_mermas: ~5 rows (approximately)
 INSERT INTO `mod_merma_mermas` (`id`, `cantidad`, `fecha_reporte`, `observacion`, `id_tipo_merma`, `id_lote`, `valor_perdido`) VALUES
-	(52, 5, 1784696400, 'adasd', 2, 36, 5255),
-	(53, 3, 1784523600, 'adasd', 9, 36, 8500);
+	(54, 2, 1770008400, 'adasds', 3, 35, 2500),
+	(59, 97, 1787720400, 'no se salvo ninguna', 8, 36, 250000),
+	(60, 33, 1786597200, 'No se salvo ninguna', 6, 36, 256000),
+	(61, 4, 1788325200, 'ninguna', 5, 34, 25000),
+	(62, 120, 1788325200, 'no se pudo', 3, 46, 253333);
 
--- Dumping data for table BAN_00341.mod_merma_tipos: ~10 rows (approximately)
+-- Dumping data for table BAN_00341.mod_merma_tipos: ~11 rows (approximately)
 INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
 	(1, 'Consumo Interno'),
 	(2, 'Daño Físico / Rotura'),
@@ -83,7 +91,7 @@ INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
 	(9, 'Robo o Extravío'),
 	(10, 'Vencimiento');
 
--- Dumping data for table BAN_00341.mod_permisos_modulo: ~89 rows (approximately)
+-- Dumping data for table BAN_00341.mod_permisos_modulo: ~93 rows (approximately)
 INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`, `tiene_permisos`, `descripcion`, `modulo_padre_id`) VALUES
 	(1, 'Usuarios', 'usuarios', 1, 0, 'Modulo usuarios', NULL),
 	(2, 'Administradores', 'administradores', 0, 1, 'Permiso administradores, modulo usuarios', 1),
@@ -147,7 +155,7 @@ INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`
 	(82, 'Editar', 'editar', 0, 0, 'Permiso editar, submodulo marcas, modulo catalogo', 79),
 	(83, 'Eliminar (individual)', 'eliminar_individual', 0, 0, 'Permiso eliminar_individual, submodulo marcas, modulo catalogo', 79),
 	(84, 'Eliminar (multiple)', 'eliminar_multiple', 0, 0, 'Permiso eliminar_multiple, submodulo marcas, modulo catalogo', 79),
-	(85, 'asignar_productos', 'asignar_productos', 0, 0, 'Permiso asignar_productos, submodulo marcas, modulo catalogo', 79),
+	(85, 'Asignar productos', 'asignar_productos', 1, 0, 'Permiso asignar_productos, submodulo marcas, modulo catalogo', 79),
 	(86, 'Unidad de medida', 'unidad_de_medida', 0, 1, 'Permiso unidad_de_medida, modulo catalogo', 22),
 	(87, 'Ver', 'ver', 0, 0, 'Permiso ver, submodulo unidad_de_medida, modulo catalogo', 86),
 	(88, 'Crear', 'crear', 0, 0, 'Permiso crear, submodulo unidad_de_medida, modulo catalogo', 86),
@@ -172,10 +180,14 @@ INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`
 	(113, 'Personalizacion', 'estilos_sistema', 0, 0, 'Modulo general para el estilos del sistema', NULL),
 	(114, 'Historico merma', 'historico_merma', 0, 1, 'Permiso historico_merma, modulo merma', 44),
 	(115, 'Ver', 'ver', 0, 0, 'Permiso ver, submodulo historico_merma, modulo merma', 114),
-	(120, 'Ver', 'ver', 0, 0, 'Permiso ver, submodulo caducidad, modulo alertas', 92),
-	(121, 'Ver', 'ver', 0, 0, 'Permiso ver, submodulo stock, modulo alertas', 94);
+	(120, 'Ver (perezoso)', 'ver_lazy', 1, 0, 'Permiso ver_lazy, submodulo caducidad, modulo alertas', 92),
+	(123, 'Asignar productos', 'asignar_productos', 0, 1, 'Permiso asignar_productos, submodulo unidad de medida, modulo catalogo', 86),
+	(127, 'Ventas y devoluciones', 'ventas_y_devoluciones', 1, 0, 'Modulo ventas y devoluciones', NULL),
+	(128, 'Ventas', 'ventas', 0, 1, 'Permiso ventas, modulo ventas y devoluciones', 127),
+	(129, 'Devoluciones', 'devoluciones', 0, 1, 'Permiso devoluciones, modulo ventas y devoluciones', 127),
+	(130, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo ventas, modulo ventas y devoluciones', 128);
 
--- Dumping data for table BAN_00341.mod_permisos_modulo_asignacion: ~121 rows (approximately)
+-- Dumping data for table BAN_00341.mod_permisos_modulo_asignacion: ~124 rows (approximately)
 INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descripcion`, `id_modulo`, `modulo_padre_id`, `user_id`) VALUES
 	(241, 'Estado (usuario)', 'estado_usuario', 'Permiso estado usuario, submodulo administradores, modulo usuarios', 8, 2, 1),
 	(242, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar individual, submodulo administradores, modulo usuarios', 6, 2, 1),
@@ -207,12 +219,9 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(431, 'Crear', 'crear', 'Permiso crear, submodulo marcas, modulo catalogo', 81, 79, 1),
 	(432, 'Editar', 'editar', 'Permiso editar, submodulo marcas, modulo catalogo', 82, 79, 1),
 	(433, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo marcas, modulo catalogo', 83, 79, 1),
-	(434, 'Descargar (Reporte permisos)', 'descarga_reporte_permisos', 'Permiso descarga_reporte_permisos usuario, submodulo administradores, modulo usuarios', 75, 2, 1),
 	(441, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo proveedores, modulo catalogo', 36, 26, 1),
-	(466, 'asignar_productos', 'asignar_productos', 'Permiso asignar_productos, submodulo marcas, modulo catalogo', 85, 79, 1),
 	(468, 'Ver', 'ver', 'Permiso ver, submodulo productos, modulo catalogo', 39, 38, 1),
 	(470, 'Editar', 'editar', 'Permiso editar, submodulo productos, modulo catalogo', 41, 38, 1),
-	(471, 'Cargar (excel)', 'cargar_excel', 'Permiso cargar_excel, submodulo productos, modulo catalogo', 63, 38, 1),
 	(472, 'Eliminar (multiple)', 'eliminar_multiple', 'Permiso eliminar_multiple, submodulo productos, modulo catalogo', 43, 38, 1),
 	(474, 'Ver', 'ver', 'Permiso ver, submodulo unidad_de_medida, modulo catalogo', 87, 86, 1),
 	(475, 'Crear', 'crear', 'Permiso crear, submodulo unidad_de_medida, modulo catalogo', 88, 86, 1),
@@ -230,20 +239,7 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(576, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo json, modulo variables del sistema', 111, 102, 1),
 	(579, 'Estado (usuario)', 'estado_usuario', 'Permiso estado usuario, submodulo finales, modulo usuarios', 16, 10, 1),
 	(623, 'Stock', 'alerta_stock', 'Aquí se mostrara a cerca de los productos que están en su stock o por debajo de el.', 94, 91, 1),
-	(625, 'JSON', 'system_json', 'Permiso json, modulo configurable', 102, 95, 1),
-	(626, 'VAR', 'system_var', 'Permiso var, modulo configurable', 101, 95, 1),
-	(646, 'Finales', 'finales', 'Permiso finales, modulo usuarios', 10, 1, 1),
-	(652, 'Marcas', 'marcas', 'Permiso marcas, modulo catalogo', 79, 22, 1),
-	(653, 'Unidad de medida', 'unidad_de_medida', 'Permiso unidad_de_medida, modulo catalogo', 86, 22, 1),
 	(656, 'Administradores', 'administradores', 'Permiso administradores, modulo usuarios', 2, 1, 1),
-	(660, 'Historico merma', 'historico_merma', 'Permiso historico_merma, modulo merma', 114, 44, 1),
-	(661, 'Registro merma', 'registro_merma', 'Permiso registro_merma, modulo merma', 46, 44, 1),
-	(662, 'Tipos merma', 'tipo_merma', 'Permiso tipo_merma, modulo merma', 45, 44, 1),
-	(667, 'Usuarios', 'usuarios', 'Modulo usuarios', 1, NULL, 1),
-	(668, 'Modulos', 'modulos', 'Modulo modulos', 17, NULL, 1),
-	(670, 'Merma', 'merma', 'Modulo merma', 44, NULL, 1),
-	(673, 'Variables del sistema', 'variables_sistema', 'Modulo configurables', 95, NULL, 1),
-	(674, 'Personalizacion', 'estilos_sistema', 'Modulo general para el estilos del sistema', 113, NULL, 1),
 	(682, 'Catalogo', 'catalogo', 'Modulo catalogo', 22, NULL, 2),
 	(683, 'Proveedores', 'proveedores', 'Permiso proveedores, modulo catalogo', 26, 22, 2),
 	(684, 'Ver', 'ver', 'Permiso ver, submodulo proveedores, modulo catalogo', 33, 26, 2),
@@ -260,7 +256,7 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(695, 'Crear', 'crear', 'Permiso crear, submodulo marcas, modulo catalogo', 81, 79, 2),
 	(696, 'Ver', 'ver', 'Permiso ver, submodulo marcas, modulo catalogo', 80, 79, 2),
 	(697, 'Marcas', 'marcas', 'Permiso marcas, modulo catalogo', 79, 22, 2),
-	(698, 'asignar_productos', 'asignar_productos', 'Permiso asignar_productos, submodulo marcas, modulo catalogo', 85, 79, 2),
+	(698, 'Asignar productos', 'asignar_productos', 'Permiso asignar_productos, submodulo marcas, modulo catalogo', 85, 79, 2),
 	(699, 'Unidad de medida', 'unidad_de_medida', 'Permiso unidad_de_medida, modulo catalogo', 86, 22, 2),
 	(700, 'Ver', 'ver', 'Permiso ver, submodulo unidad_de_medida, modulo catalogo', 87, 86, 2),
 	(701, 'Crear', 'crear', 'Permiso crear, submodulo unidad_de_medida, modulo catalogo', 88, 86, 2),
@@ -284,27 +280,57 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(719, 'Crear', 'crear', 'crear', 66, 64, 2),
 	(720, 'Editar', 'editar', 'editar', 67, 64, 2),
 	(721, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo json, modulo variables del sistema', 68, 64, 2),
-	(722, 'Alertas', 'alertas', 'Modulo alertas', 91, NULL, 2),
 	(723, 'Caducidad', 'alerta_caducidad', 'Aquí se mostrara la información de los lotes de los productos activos, con el detalle de (dias a vencer o ya vencidos)', 92, 91, 2),
 	(724, 'Stock', 'alerta_stock', 'Aquí se mostrara a cerca de los productos que están en su stock o por debajo de el.', 94, 91, 2),
-	(725, 'Proveedores', 'proveedores', 'Permiso proveedores, modulo catalogo', 26, 22, 1),
-	(727, 'Ver', 'ver', 'Permiso ver, submodulo stock, modulo alertas', 121, 94, 1),
 	(728, 'Caducidad', 'alerta_caducidad', 'Aquí se mostrara la información de los lotes de los productos activos, con el detalle de (dias a vencer o ya vencidos)', 92, 91, 1),
-	(729, 'Ver', 'ver', 'Permiso ver, submodulo caducidad, modulo alertas', 120, 92, 1),
-	(730, 'Alertas', 'alertas', 'Modulo alertas', 91, NULL, 1),
 	(735, 'Ver', 'ver', 'Permiso ver, submodulo historico_merma, modulo merma', 115, 114, 1),
-	(746, 'Catalogo', 'catalogo', 'Modulo catalogo', 22, NULL, 1),
-	(750, 'Bodega', 'bodega', 'Modulo bodega', 64, NULL, 1),
 	(752, 'Crear', 'crear', 'Permiso crear, submodulo productos, modulo catalogo', 40, 38, 1),
-	(753, 'Productos', 'productos', 'Permiso productos, modulo catalogo', 38, 22, 1),
-	(754, 'Crear', 'crear', 'crear', 66, 64, 1);
+	(754, 'Crear', 'crear', 'crear', 66, 64, 1),
+	(760, 'Asignar productos', 'asignar_productos', 'Permiso asignar_productos, submodulo marcas, modulo catalogo', 85, 79, 1),
+	(761, 'Asignar productos', 'asignar_productos', 'Permiso asignar_productos, submodulo unidad de medida, modulo catalogo', 123, 86, 1),
+	(762, 'Alertas', 'alertas', 'Modulo alertas', 91, NULL, 2),
+	(763, 'Finales', 'finales', 'Permiso finales, modulo usuarios', 10, 1, 1),
+	(791, 'Proveedores', 'proveedores', 'Permiso proveedores, modulo catalogo', 26, 22, 1),
+	(792, 'Marcas', 'marcas', 'Permiso marcas, modulo catalogo', 79, 22, 1),
+	(793, 'Unidad de medida', 'unidad_de_medida', 'Permiso unidad_de_medida, modulo catalogo', 86, 22, 1),
+	(799, 'Ver (perezoso)', 'ver_lazy', 'Permiso ver_lazy, submodulo caducidad, modulo alertas', 120, 92, 1),
+	(817, 'Historico merma', 'historico_merma', 'Permiso historico_merma, modulo merma', 114, 44, 1),
+	(818, 'Tipos merma', 'tipo_merma', 'Permiso tipo_merma, modulo merma', 45, 44, 1),
+	(819, 'Registro merma', 'registro_merma', 'Permiso registro_merma, modulo merma', 46, 44, 1),
+	(835, 'Descargar (Reporte permisos)', 'descarga_reporte_permisos', 'Permiso descarga_reporte_permisos usuario, submodulo administradores, modulo usuarios', 75, 2, 1),
+	(843, 'JSON', 'system_json', 'Permiso json, modulo configurable', 102, 95, 1),
+	(844, 'VAR', 'system_var', 'Permiso var, modulo configurable', 101, 95, 1),
+	(875, 'Ventas y devoluciones', 'ventas_y_devoluciones', 'Modulo ventas y devoluciones', 127, NULL, 1),
+	(877, 'Ver', 'ver', 'Permiso ver, submodulo ventas, modulo ventas y devoluciones', 130, 128, 1),
+	(888, 'Devoluciones', 'devoluciones', 'Permiso devoluciones, modulo ventas y devoluciones', 129, 127, 1),
+	(889, 'Personalizacion', 'estilos_sistema', 'Modulo general para el estilos del sistema', 113, NULL, 1),
+	(890, 'Ventas', 'ventas', 'Permiso ventas, modulo ventas y devoluciones', 128, 127, 1),
+	(891, 'Variables del sistema', 'variables_sistema', 'Modulo configurables', 95, NULL, 1),
+	(892, 'Alertas', 'alertas', 'Modulo alertas', 91, NULL, 1),
+	(893, 'Bodega', 'bodega', 'Modulo bodega', 64, NULL, 1),
+	(894, 'Merma', 'merma', 'Modulo merma', 44, NULL, 1),
+	(895, 'Catalogo', 'catalogo', 'Modulo catalogo', 22, NULL, 1),
+	(896, 'Modulos', 'modulos', 'Modulo modulos', 17, NULL, 1),
+	(897, 'Usuarios', 'usuarios', 'Modulo usuarios', 1, NULL, 1),
+	(898, 'Productos', 'productos', 'Permiso productos, modulo catalogo', 38, 22, 1);
+
+-- Dumping data for table BAN_00341.mod_registro_ventas: ~7 rows (approximately)
+INSERT INTO `mod_registro_ventas` (`id`, `detalle_factura`, `fecha_venta`, `nro_factura`) VALUES
+	(6, '[{"lote":"LMA-57963","codigo_barra":"1000000000001","cantidad":"20"}]', 1788122406, 'fac-0001'),
+	(7, '[{"lote":"LMA-57963","codigo_barra":"1000000000001","cantidad":"10"}]', 1788122406, 'fac-0002'),
+	(9, '[{"lote":"SP-2536","codigo_barra":"1000000000001","cantidad":"2"},{"lote":"opl896","codigo_barra":"1000000000002","cantidad":"4"},{"lote":"YF253","codigo_barra":"1000000000003","cantidad":"4"},{"lote":"CA-857","codigo_barra":"1000000000004","cantidad":"4"},{"lote":"LMA-57963","codigo_barra":"1000000000001","cantidad":"2"}]', 1788122406, 'fac-0003'),
+	(10, '[{"lote":"YF253","codigo_barra":"1000000000003","cantidad":"70"}]', 1788379521, 'fac-0004'),
+	(11, '[{"lote":"poi-885","codigo_barra":"1000000000001","cantidad":"15"},{"lote":"l485-69","codigo_barra":"1000000000001","cantidad":"2"},{"lote":"laq-25963","codigo_barra":"1000000000001","cantidad":"70"}]', 1788379521, 'fac-0005'),
+	(12, '[{"lote":"l485-69","codigo_barra":"1000000000001","cantidad":"2"},{"lote":"poi-885","codigo_barra":"1000000000001","cantidad":"1"},{"lote":"laq-25963","codigo_barra":"1000000000001","cantidad":"1"}]', 1788379521, 'fac-0006'),
+	(13, '[{"lote":"l485-69","codigo_barra":"1000000000001","cantidad":"1"},{"lote":"poi-885","codigo_barra":"1000000000001","cantidad":"1"},{"lote":"laq-25963","codigo_barra":"1000000000001","cantidad":"1"}]', 1788379521, 'fac-0007'),
+	(14, '[{"lote":"l485-69","codigo_barra":"1000000000001","cantidad":"10"},{"lote":"poi-885","codigo_barra":"1000000000001","cantidad":"1"},{"lote":"laq-25963","codigo_barra":"1000000000001","cantidad":"2"}]', 1788379521, 'fac-0007');
 
 -- Dumping data for table BAN_00341.mod_usuarios_admin: ~104 rows (approximately)
 INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'Javier Ricardo', 'Baron Fuentes', 'admin1@correo.com', 'Qwerty9601', 1),
 	(2, 'Oscar Eduardo', 'Villamizar Bautista', 'admin2@correo.com', 'Qwerty9601', 1),
-	(3, 'Oscar Mauricio', 'Parra Correa', 'admin3@correo.com', 'Qwerty9601', 0),
-	(113, 'Oscar Mauricio', 'Parra Correa', 'admin4@correo.com', 'Qwerty9601', 0),
+	(3, 'Oscar Mauricio', 'Parra Correa', 'admin3@correo.com', 'Qwerty96012', 0),
+	(113, 'Mauricio Andres', 'Correa Serrano', 'admin4@correo.com', 'Qwerty9601', 0),
 	(114, 'Carlos Alberto', 'Gomez Ruiz', 'carlos.gomez1@correo.com', 'Pass1234!', 1),
 	(115, 'Maria Fernanda', 'Lopez Perez', 'maria.lopez2@correo.com', 'SecurePass99', 1),
 	(116, 'Juan David', 'Rodriguez Silva', 'juan.rodriguez3@correo.com', 'Key2026#', 0),
@@ -404,7 +430,7 @@ INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `passw
 	(210, 'Emilia', 'Cordoba Espinoza', 'emilia.cordoba97@correo.com', 'Welcome222', 1),
 	(211, 'Vicente', 'Espinoza Solano', 'vicente.espinoza98@correo.com', 'SecurePass3', 0),
 	(212, 'Amelia', 'Solano Ibarra', 'amelia.solano99@correo.com', 'Pass6666##', 1),
-	(213, 'Mateo', 'Ibarra Figueroa', 'mateo.ibarra100@correo.com', 'TestAdmin2', 1);
+	(214, 'asdas', 'asdasd', 'adasd@asdasd.com', 'asdasdasd', 1);
 
 -- Dumping data for table BAN_00341.mod_usuarios_user: ~3 rows (approximately)
 INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
@@ -416,12 +442,12 @@ INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `passwo
 INSERT INTO `mod_vars_json` (`id`, `nombre`, `valor`) VALUES
 	(2, 'socket_barcode', '"{\\"protocolo_socket_barcode\\":\\"http\\",\\"ip_socket_barcode\\":\\"192.168.1.6\\",\\"puerto_socket_barcode\\":\\"3000\\"}"'),
 	(21, 'link_rrss', '"{\\"whatsapp_link\\": \\"https://www.facebook.com/\\",\\"facebook_link\\": \\"https://www.facebook.com/\\",\\"email_link\\": \\"https://www.facebook.com/\\",\\"linkedin_link\\": \\"https://www.facebook.com/\\",\\"webpage_link\\": \\"https://www.facebook.com/\\"}"'),
-	(24, 'custom_system', '"{\\n  \\"light\\": {\\n    \\"layout\\": {\\n      \\"scroll\\": {\\n        \\"color\\": \\"#A19C9D\\",\\n        \\"background_color\\": \\"transparent\\"\\n      },\\n      \\"breadcrumbs\\": {\\n        \\"link-disabled\\": \\"#B6F2C0\\",\\n        \\"link-active\\": \\"#FFFFFF\\",\\n        \\"link-hover\\": \\"#EDE4E4\\",\\n        \\"separator\\": \\"#E8E3E3\\",\\n        \\"bg_color_breadcrumb\\": \\"#000000\\"\\n      },\\n      \\"index\\": {\\n        \\"header_color_background\\": \\"#0b4a75\\",\\n        \\"back_color_background\\": \\"#EDEDED\\",\\n        \\"back_color_title\\": \\"#000000\\",\\n        \\"back_color_p\\": \\"#878382\\",\\n        \\"background_color_card_menu\\": \\"#FAF5F5\\",\\n        \\"backg_color_textcard\\": \\"#000000\\",\\n        \\"logo_color_icon_text\\": \\"#000000\\",\\n        \\"logo_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"logo_color_hover_amount\\": 20,\\n        \\"footer_text_background\\": \\"#FFFFFF\\",\\n        \\"footer_color_background\\": \\"#878383\\"\\n      },\\n      \\"admin\\": {\\n        \\"header_color_background\\": \\"#069E21\\",\\n        \\"main_background_color\\": \\"#EDEDED\\",\\n        \\"heder_color_icons\\": \\"#FFFFFF\\",\\n        \\"heder_nickname_color\\": \\"#FFFFFF\\",\\n        \\"dropdawn_text_color\\": \\"#4F4D4D\\",\\n        \\"dropdawn_background\\": \\"#FFFFFF\\",\\n        \\"dropdown_hover_background\\": \\"#E8E3E3\\",\\n\\n        \\"side_color_background\\": \\"#0b4a75\\",\\n        \\"side_color_icon_text\\": \\"rgba(255, 255, 255, 0.4)\\",\\n        \\"side_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"side_color_hover_amount\\": 20,\\n        \\"side_line_color_separator\\": \\"#FFFFFF\\",\\n        \\"side_dropdawn_text_color\\": \\"#4F4D4D\\",\\n        \\"side_dropdawn_background\\": \\"#FFFFFF\\",\\n        \\"side_dropdown_hover_background\\": \\"#E8E3E3\\",\\n        \\n        \\"page_color_title\\": \\"#000000\\",\\n\\n        \\"footer_color_background\\": \\"#575555\\",\\n        \\"footer_color_text\\": \\"#FFFFFF\\"\\n      }\\n    },\\n    \\"kpicard\\": {\\n      \\"border_line_color\\": \\"#0A18F5\\",\\n      \\"background_color\\": \\"#FFFFFF\\",\\n      \\"text_color\\": \\"#948F8F\\",\\n      \\"text_number_color\\": \\"#000000\\"\\n    },\\n    \\"card_menu\\": {\\n      \\"text\\": \\"#000000\\",\\n      \\"hover\\": \\"#CFCACA\\",\\n      \\"background\\": \\"#FFFFFF\\"\\n    },\\n    \\"grid_table_crud\\": {\\n      \\"title_color\\": \\"#3B3939\\",\\n      \\"text_color\\": \\"#948F8F\\",\\n      \\"background_color\\": \\"#FFFFFF\\",\\n      \\"head_text\\": \\"#FFFFFF\\",\\n      \\"head_background\\": \\"#0A18F5\\",\\n      \\"row_text_color\\": \\"#000000\\",\\n      \\"row_text_select\\": \\"#FFFFFF\\",\\n      \\"row_select\\": \\"#AB0505\\",\\n      \\"button_group_disabled\\": \\"#BEBFC2\\",\\n      \\"button_cargar_excel\\": \\"#10B981\\", \\n      \\"button_crear\\": \\"#059669\\",\\n      \\"button_ver\\": \\"#0A18F5\\",\\n      \\"button_editar\\": \\"#3B82F6\\",\\n      \\"button_estado_usuario\\": \\"#F59E0B\\",\\n      \\"button_eliminar_individual\\": \\"#EF4444\\",\\n      \\"button_eliminar_multiple\\": \\"#B91C1C\\",\\n      \\"button_asignar_permisos\\": \\"#E8E417\\",\\n      \\"button_asignar_productos\\": \\"#6D28D9\\",\\n      \\"button_limpiar\\": \\"#6B7280\\"\\n    },\\n    \\"input\\": {\\n      \\"text_color_placeholder\\": \\"#B6C2B4\\",\\n      \\"background_color\\": \\"#FFFFFF\\",\\n      \\"text_color\\": \\"#000000\\",\\n      \\"border_color\\": \\"#4cd523\\"\\n    },\\n    \\"modal\\": {\\n      \\"fieldset_line_color\\": \\"#0b4a75\\",\\n      \\"legend_text_color\\": \\"#0b4a75\\",\\n      \\"label_text_color\\": \\"#000000\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#0b4a75\\",\\n      \\"back_color_background\\": \\"#F7F2F2\\",\\n      \\"body_text_color\\": \\"#948F8F\\",\\n      \\"body_background_color\\": \\"#FFFFFF\\",\\n      \\"button_cancel_background_color\\": \\"#8A8484\\",\\n      \\"button_cancel_text_color\\": \\"#FFFFFF\\",\\n      \\"button_save_background_color\\": \\"#059669\\",\\n      \\"button_save_text_color\\": \\"#FFFFFF\\",\\n      \\"button_update_background_color\\": \\"#3B82F6\\",\\n      \\"button_update_text_color\\": \\"#FFFFFF\\",\\n      \\"footer_text_color\\": \\"#948F8F\\",\\n      \\"footer_background_color\\": \\"#EDEDED\\"\\n    },\\n    \\"search\\": {\\n      \\"button_background_color\\": \\"#0A18F5\\",\\n      \\"body_color_text\\": \\"#000000\\",\\n      \\"back_color_background\\": \\"#EDEDED\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#0A18F5\\"\\n    },\\n    \\"report\\": {\\n      \\"button_background_color\\": \\"#469443\\",\\n      \\"back_color_background\\": \\"#EDEDED\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#0A18F5\\"\\n    }\\n  },\\n  \\n  \\"dark\\": {\\n    \\"layout\\": {\\n      \\"scroll\\": {\\n        \\"color\\": \\"#D4CFD0\\",\\n        \\"background_color\\": \\"transparent\\"\\n      },\\n      \\"breadcrumbs\\": {\\n        \\"link-disabled\\": \\"#B6F2C0\\",\\n        \\"link-active\\": \\"#FFFFFF\\",\\n        \\"link-hover\\": \\"#EDE4E4\\",\\n        \\"separator\\": \\"#E8E3E3\\",\\n        \\"bg_color_breadcrumb\\": \\"#141414\\"\\n      },\\n      \\"index\\": {\\n        \\"header_color_background\\": \\"#000000\\",\\n        \\"back_color_background\\": \\"#0A0A0A\\",\\n        \\"backg_color_textcard\\": \\"#000000\\",\\n        \\"back_color_title\\": \\"#FFFFFF\\",\\n        \\"back_color_p\\": \\"#FFFFFF\\",\\n        \\"logo_color_icon_text\\": \\"#000000\\",\\n        \\"logo_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"logo_color_hover_amount\\": 20,\\n        \\"background_color_card_menu\\": \\"#EDEDED\\",\\n        \\"footer_text_background\\": \\"#FFFFFF\\",\\n        \\"footer_color_background\\": \\"#878383\\"\\n      },\\n      \\"admin\\": {\\n        \\"header_color_background\\": \\"#069E21\\",\\n        \\"main_background_color\\": \\"#0A0A0A\\",\\n        \\"heder_color_icons\\": \\"#DEDEDE\\",\\n        \\"heder_nickname_color\\": \\"#FFFFFF\\",\\n        \\"dropdawn_text_color\\": \\"#FFFFFF\\",\\n        \\"dropdawn_background\\": \\"#000000\\",\\n        \\"dropdown_hover_background\\": \\"#8A8686\\",\\n        \\n        \\"side_color_background\\": \\"#000000\\",\\n        \\"side_color_icon_text\\": \\"rgba(255, 255, 255, 0.4)\\",\\n        \\"side_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"side_color_hover_amount\\": 20,\\n        \\"side_line_color_separator\\": \\"#FFFFFF\\",\\n        \\"side_dropdawn_text_color\\": \\"#FFFFFF\\",\\n        \\"side_dropdawn_background\\": \\"#302F2F\\",\\n        \\"side_dropdown_hover_background\\": \\"#8A8686\\",\\n        \\n        \\"page_color_title\\": \\"#FFFFFF\\",\\n\\n        \\"footer_color_background\\": \\"#0F0F0F\\",\\n        \\"footer_color_text\\": \\"#FFFFFF\\"\\n      }\\n    },\\n    \\"kpicard\\": {\\n      \\"border_line_color\\": \\"#157D00\\",\\n      \\"background_color\\": \\"#2B2A2A\\",\\n      \\"text_color\\": \\"#FFFFFF\\",\\n      \\"text_number_color\\": \\"#FFFFFF\\"\\n    },\\n    \\"card_menu\\": {\\n      \\"text\\": \\"#FFFFFF\\",\\n      \\"hover\\": \\"#CFCACA\\",\\n      \\"background\\": \\"#474747\\"\\n    },\\n    \\"grid_table_crud\\": {\\n      \\"title_color\\": \\"#FFFFFF\\",\\n      \\"text_color\\": \\"#FFFFFF\\",\\n      \\"background_color\\": \\"#2B2A2A\\",\\n      \\"head_text\\": \\"#FFFFFF\\",\\n      \\"head_background\\": \\"#111827\\",\\n      \\"row_text_color\\": \\"#FFFFFF\\",\\n      \\"row_text_select\\": \\"#FFFFFF\\",\\n      \\"row_select\\": \\"#1e3a8a\\",\\n      \\"button_group_disabled\\": \\"#BEBFC2\\",\\n      \\"button_cargar_excel\\": \\"#065F46\\", \\n      \\"button_crear\\": \\"#047857\\",\\n      \\"button_ver\\": \\"#4338CA\\",\\n      \\"button_editar\\": \\"#2563EB\\",\\n      \\"button_estado_usuario\\": \\"#D97706\\",\\n      \\"button_eliminar_individual\\": \\"#DC2626\\",\\n      \\"button_eliminar_multiple\\": \\"#991B1B\\",\\n      \\"button_asignar_permisos\\": \\"#CA8A04\\",\\n      \\"button_asignar_productos\\": \\"#7C3AED\\",\\n      \\"button_limpiar\\": \\"#4B5563\\"\\n    },\\n    \\"input\\": {\\n      \\"text_color_placeholder\\": \\"#9E9E95\\",\\n      \\"background_color\\": \\"#000000\\",\\n      \\"text_color\\": \\"#ffffff\\",\\n      \\"border_color\\": \\"#4cd523\\"\\n    },\\n    \\"modal\\": {\\n      \\"fieldset_line_color\\": \\"#0b4a75\\",\\n      \\"legend_text_color\\": \\"#FFFFFF\\",\\n      \\"label_text_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#242323\\",\\n      \\"back_color_background\\": \\"#2B2A2A\\",\\n      \\"body_text_color\\": \\"#948F8F\\",\\n      \\"body_background_color\\": \\"#FFFFFF\\",\\n      \\"button_cancel_background_color\\": \\"#8A8484\\",\\n      \\"button_cancel_text_color\\": \\"#FFFFFF\\",\\n      \\"button_save_background_color\\": \\"#047857\\",\\n      \\"button_save_text_color\\": \\"#FFFFFF\\",\\n      \\"button_update_background_color\\": \\"#2563EB\\",\\n      \\"button_update_text_color\\": \\"#FFFFFF\\",\\n      \\"footer_text_color\\": \\"#948F8F\\",\\n      \\"footer_background_color\\": \\"#242323\\"\\n    },\\n    \\"search\\": {\\n      \\"button_background_color\\": \\"#0A18F5\\",\\n      \\"body_color_text\\": \\"#FFFFFF\\",\\n      \\"back_color_background\\": \\"#1F1E1E\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#111827\\"\\n    },\\n    \\"report\\": {\\n      \\"button_background_color\\": \\"#469443\\",\\n      \\"back_color_background\\": \\"#948F8F\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#111827\\"\\n    }\\n  }\\n}\\n"');
+	(24, 'custom_system', '"         {\\n  \\"light\\": {\\n    \\"layout\\": {\\n      \\"scroll\\": {\\n        \\"color\\": \\"#A19C9D\\",\\n        \\"background_color\\": \\"transparent\\"\\n      },\\n      \\"breadcrumbs\\": {\\n        \\"link-disabled\\": \\"#B6F2C0\\",\\n        \\"link-active\\": \\"#FFFFFF\\",\\n        \\"link-hover\\": \\"#EDE4E4\\",\\n        \\"separator\\": \\"#E8E3E3\\",\\n        \\"bg_color_breadcrumb\\": \\"#000000\\"\\n      },\\n      \\"index\\": {\\n        \\"header_color_background\\": \\"#0b4a75\\",\\n        \\"back_color_background\\": \\"#EDEDED\\",\\n        \\"back_color_title\\": \\"#000000\\",\\n        \\"back_color_p\\": \\"#878382\\",\\n        \\"background_color_card_menu\\": \\"#FAF5F5\\",\\n        \\"backg_color_textcard\\": \\"#000000\\",\\n        \\"logo_color_icon_text\\": \\"#000000\\",\\n        \\"logo_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"logo_color_hover_amount\\": 20,\\n        \\"footer_text_background\\": \\"#FFFFFF\\",\\n        \\"footer_color_background\\": \\"#878383\\"\\n      },\\n      \\"admin\\": {\\n        \\"header_color_background\\": \\"#069E21\\",\\n        \\"main_background_color\\": \\"#EDEDED\\",\\n        \\"heder_color_icons\\": \\"#FFFFFF\\",\\n        \\"heder_nickname_color\\": \\"#FFFFFF\\",\\n        \\"dropdawn_text_color\\": \\"#4F4D4D\\",\\n        \\"dropdawn_background\\": \\"#FFFFFF\\",\\n        \\"dropdown_hover_background\\": \\"#E8E3E3\\",\\n        \\"side_color_background\\": \\"#0b4a75\\",\\n        \\"side_color_icon_text\\": \\"rgba(255, 255, 255, 0.4)\\",\\n        \\"side_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"side_color_hover_amount\\": 20,\\n        \\"side_line_color_separator\\": \\"#FFFFFF\\",\\n        \\"side_dropdawn_text_color\\": \\"#4F4D4D\\",\\n        \\"side_dropdawn_background\\": \\"#FFFFFF\\",\\n        \\"side_dropdown_hover_background\\": \\"#E8E3E3\\",\\n        \\"page_color_title\\": \\"#000000\\",\\n        \\"footer_color_background\\": \\"#575555\\",\\n        \\"footer_color_text\\": \\"#FFFFFF\\"\\n      }\\n    },\\n    \\"kpicard\\": {\\n      \\"icon_color\\": \\"#000000\\",\\n      \\"border_line_color\\": \\"#0A18F5\\",\\n      \\"background_color\\": \\"#FFFFFF\\",\\n      \\"text_color\\": \\"#948F8F\\",\\n      \\"text_number_color\\": \\"#000000\\"\\n    },\\n    \\"card_menu\\": {\\n      \\"text_color\\": \\"#000000\\",\\n      \\"icon_color\\": \\"#000000\\",\\n      \\"hover_card_color\\": \\"#CFCACA\\",\\n      \\"background_card_color\\": \\"#FFFFFF\\"\\n    },\\n    \\"grid_table_crud\\": {\\n      \\"title_color\\": \\"#3B3939\\",\\n      \\"text_color\\": \\"#948F8F\\",\\n      \\"background_color\\": \\"#FFFFFF\\",\\n      \\"head_background\\": \\"#0A18F5\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"row_text_color\\": \\"#000000\\",\\n      \\"row_text_select\\": \\"#FFFFFF\\",\\n      \\"row_select\\": \\"#AB0505\\",\\n      \\"button_group_disabled\\": \\"#BEBFC2\\",\\n      \\"button_cargar_excel\\": \\"#10B981\\",\\n      \\"button_crear\\": \\"#059669\\",\\n      \\"button_ver\\": \\"#0A18F5\\",\\n      \\"button_editar\\": \\"#3B82F6\\",\\n      \\"button_estado_usuario\\": \\"#F59E0B\\",\\n      \\"button_eliminar_individual\\": \\"#EF4444\\",\\n      \\"button_eliminar_multiple\\": \\"#B91C1C\\",\\n      \\"button_asignar_permisos\\": \\"#E8E417\\",\\n      \\"button_asignar_productos\\": \\"#6D28D9\\",\\n      \\"button_limpiar\\": \\"#6B7280\\"\\n    },\\n    \\"input\\": {\\n      \\"label_color\\": \\"#000000\\",\\n      \\"text_color_placeholder\\": \\"#B6C2B4\\",\\n      \\"background_color\\": \\"#FFFFFF\\",\\n      \\"text_color\\": \\"#000000\\",\\n      \\"border_color\\": \\"#4cd523\\"\\n    },\\n    \\"modal\\": {\\n      \\"fieldset_line_color\\": \\"#0b4a75\\",\\n      \\"legend_text_color\\": \\"#0b4a75\\",\\n      \\"label_text_color\\": \\"#000000\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#0b4a75\\",\\n      \\"back_color_background\\": \\"#F7F2F2\\",\\n      \\"body_text_color\\": \\"#948F8F\\",\\n      \\"body_background_color\\": \\"#FFFFFF\\",\\n      \\"button_cancel_background_color\\": \\"#8A8484\\",\\n      \\"button_cancel_text_color\\": \\"#FFFFFF\\",\\n      \\"button_save_background_color\\": \\"#059669\\",\\n      \\"button_save_text_color\\": \\"#FFFFFF\\",\\n      \\"button_update_background_color\\": \\"#3B82F6\\",\\n      \\"button_update_text_color\\": \\"#FFFFFF\\",\\n      \\"footer_text_color\\": \\"#948F8F\\",\\n      \\"footer_background_color\\": \\"#EDEDED\\"\\n    },\\n    \\"search\\": {\\n      \\"button_background_color\\": \\"#0A18F5\\",\\n      \\"body_color_text\\": \\"#000000\\",\\n      \\"back_color_background\\": \\"#EDEDED\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#0A18F5\\"\\n    },\\n    \\"report\\": {\\n      \\"button_background_color\\": \\"#469443\\",\\n      \\"back_color_background\\": \\"#EDEDED\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#0A18F5\\"\\n    }\\n  },\\n  \\"dark\\": {\\n    \\"layout\\": {\\n      \\"scroll\\": {\\n        \\"color\\": \\"#D4CFD0\\",\\n        \\"background_color\\": \\"transparent\\"\\n      },\\n      \\"breadcrumbs\\": {\\n        \\"link-disabled\\": \\"#B6F2C0\\",\\n        \\"link-active\\": \\"#FFFFFF\\",\\n        \\"link-hover\\": \\"#EDE4E4\\",\\n        \\"separator\\": \\"#E8E3E3\\",\\n        \\"bg_color_breadcrumb\\": \\"#141414\\"\\n      },\\n      \\"index\\": {\\n        \\"header_color_background\\": \\"#000000\\",\\n        \\"back_color_background\\": \\"#0A0A0A\\",\\n        \\"backg_color_textcard\\": \\"#000000\\",\\n        \\"back_color_title\\": \\"#FFFFFF\\",\\n        \\"back_color_p\\": \\"#FFFFFF\\",\\n        \\"logo_color_icon_text\\": \\"#000000\\",\\n        \\"logo_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"logo_color_hover_amount\\": 20,\\n        \\"background_color_card_menu\\": \\"#EDEDED\\",\\n        \\"footer_text_background\\": \\"#FFFFFF\\",\\n        \\"footer_color_background\\": \\"#878383\\"\\n      },\\n      \\"admin\\": {\\n        \\"header_color_background\\": \\"#069E21\\",\\n        \\"main_background_color\\": \\"#0A0A0A\\",\\n        \\"heder_color_icons\\": \\"#DEDEDE\\",\\n        \\"heder_nickname_color\\": \\"#FFFFFF\\",\\n        \\"dropdawn_text_color\\": \\"#FFFFFF\\",\\n        \\"dropdawn_background\\": \\"#000000\\",\\n        \\"dropdown_hover_background\\": \\"#8A8686\\",\\n        \\"side_color_background\\": \\"#000000\\",\\n        \\"side_color_icon_text\\": \\"rgba(255, 255, 255, 0.4)\\",\\n        \\"side_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"side_color_hover_amount\\": 20,\\n        \\"side_line_color_separator\\": \\"#FFFFFF\\",\\n        \\"side_dropdawn_text_color\\": \\"#FFFFFF\\",\\n        \\"side_dropdawn_background\\": \\"#302F2F\\",\\n        \\"side_dropdown_hover_background\\": \\"#8A8686\\",\\n        \\"page_color_title\\": \\"#FFFFFF\\",\\n        \\"footer_color_background\\": \\"#0F0F0F\\",\\n        \\"footer_color_text\\": \\"#FFFFFF\\"\\n      }\\n    },\\n    \\"kpicard\\": {\\n      \\"icon_color\\": \\"#FFFFFF\\",\\n      \\"border_line_color\\": \\"#157D00\\",\\n      \\"background_color\\": \\"#2B2A2A\\",\\n      \\"text_color\\": \\"#FFFFFF\\",\\n      \\"text_number_color\\": \\"#FFFFFF\\"\\n    },\\n    \\"card_menu\\": {\\n      \\"text_color\\": \\"#FFFFFF\\",\\n      \\"icon_color\\": \\"#FFFFFF\\",\\n      \\"hover_card_color\\": \\"#716f6f\\",\\n      \\"background_card_color\\": \\"#474747\\"\\n    },\\n    \\"grid_table_crud\\": {\\n      \\"title_color\\": \\"#FFFFFF\\",\\n      \\"text_color\\": \\"#FFFFFF\\",\\n      \\"background_color\\": \\"#2B2A2A\\",\\n      \\"head_background\\": \\"#111827\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"row_text_color\\": \\"#FFFFFF\\",\\n      \\"row_text_select\\": \\"#FFFFFF\\",\\n      \\"row_select\\": \\"#1e3a8a\\",\\n      \\"button_group_disabled\\": \\"#BEBFC2\\",\\n      \\"button_cargar_excel\\": \\"#065F46\\",\\n      \\"button_crear\\": \\"#047857\\",\\n      \\"button_ver\\": \\"#4338CA\\",\\n      \\"button_editar\\": \\"#2563EB\\",\\n      \\"button_estado_usuario\\": \\"#D97706\\",\\n      \\"button_eliminar_individual\\": \\"#DC2626\\",\\n      \\"button_eliminar_multiple\\": \\"#991B1B\\",\\n      \\"button_asignar_permisos\\": \\"#CA8A04\\",\\n      \\"button_asignar_productos\\": \\"#7C3AED\\",\\n      \\"button_limpiar\\": \\"#4B5563\\"\\n    },\\n    \\"input\\": {\\n      \\"label_color\\": \\"#FFFFFF\\",\\n      \\"text_color_placeholder\\": \\"#9E9E95\\",\\n      \\"background_color\\": \\"#000000\\",\\n      \\"text_color\\": \\"#ffffff\\",\\n      \\"border_color\\": \\"#4cd523\\"\\n    },\\n    \\"modal\\": {\\n      \\"fieldset_line_color\\": \\"#0b4a75\\",\\n      \\"legend_text_color\\": \\"#FFFFFF\\",\\n      \\"label_text_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#242323\\",\\n      \\"back_color_background\\": \\"#2B2A2A\\",\\n      \\"body_text_color\\": \\"#948F8F\\",\\n      \\"body_background_color\\": \\"#FFFFFF\\",\\n      \\"button_cancel_background_color\\": \\"#8A8484\\",\\n      \\"button_cancel_text_color\\": \\"#FFFFFF\\",\\n      \\"button_save_background_color\\": \\"#047857\\",\\n      \\"button_save_text_color\\": \\"#FFFFFF\\",\\n      \\"button_update_background_color\\": \\"#2563EB\\",\\n      \\"button_update_text_color\\": \\"#FFFFFF\\",\\n      \\"footer_text_color\\": \\"#948F8F\\",\\n      \\"footer_background_color\\": \\"#242323\\"\\n    },\\n    \\"search\\": {\\n      \\"button_background_color\\": \\"#0A18F5\\",\\n      \\"body_color_text\\": \\"#FFFFFF\\",\\n      \\"back_color_background\\": \\"#1F1E1E\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#111827\\"\\n    },\\n    \\"report\\": {\\n      \\"button_background_color\\": \\"#469443\\",\\n      \\"back_color_background\\": \\"#948F8F\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#111827\\"\\n    }\\n  }\\n}\\n            "');
 
 -- Dumping data for table BAN_00341.mod_vars_var: ~2 rows (approximately)
 INSERT INTO `mod_vars_var` (`id`, `nombre`, `valor`) VALUES
 	(1, 'AppName', 'Mermas <br> Smart'),
-	(2, 'BannerBienvenida', 'Bienvenido al sistema de control de mermas y caducidad');
+	(2, 'BannerBienvenida', 'Bienvenido al sistema de control de mermas y caducidad implementado en la universitaria');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
