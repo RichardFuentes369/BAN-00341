@@ -1,28 +1,4 @@
-<div class="col-sm-12 row">
-  <div class="col-sm my-5">
-    <div class="modal modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
-      <div class="modal-content">
-        <div class="modal-header pt-1 pb-1 pl-3 pr-3">
-          <div class="col-sm-12 row text-center m-0">
-            <h5 class="modal-title" id="staticBackdropLabel">Titulo</h5>
-            <span class="modal-title">Subtitulo</span>
-          </div>
-          <button type="button" class="close ml-md-n5" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <app-crear-usuarios></app-crear-usuarios>
-        </div>
-        <div class="modal-footer pt-2 pb-2 pr-3">
-          <button type="button" class="btn btn-sm closeModalButton btnCancel mx-2">Cancel</button>
-          <button type="button" class="btn btn-sm btnSave mx-2">Guardar</button>
-          <button type="button" class="btn btn-sm btnUpdate mx-2">Editar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
+<div class="card-preview-container col-sm-12 row">
   <div class="col-sm-4 row">
     <label for="" class="text-center title-custom">
       Colores tablecrud
@@ -61,6 +37,34 @@
           <input type="color">
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="col-sm bg_system rounded-5 p-4 d-flex justify-content-center align-items-center">
+    <div class="card w-100 border-0 shadow-sm" style="max-width: 800px; border-radius: 0.5rem; overflow: hidden;">
+
+      <!-- Cabecera -->
+      <div class="card-header text-center bg-primary text-white pt-2 pb-2 position-relative">
+        <h5 class="modal-title m-0" id="staticBackdropLabel">Titulo</h5>
+        <span class="modal-title d-block">Subtitulo</span>
+        <button type="button" class="close position-absolute"
+          style="right: 15px; top: 10px; background: none; border: 0; color: white;" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <!-- Cuerpo -->
+      <div class="card-body bg-light">
+        <app-crear-dummie></app-crear-dummie>
+      </div>
+
+      <!-- Pie de página -->
+      <div class="card-footer bg-light pt-2 pb-2 d-flex justify-content-end">
+        <button type="button" class="btn btn-sm closeModalButton btnCancel mx-2">Cancel</button>
+        <button type="button" class="btn btn-sm btnSave mx-2">Guardar</button>
+        <button type="button" class="btn btn-sm btnUpdate mx-2">Editar</button>
+      </div>
+
     </div>
   </div>
 </div>

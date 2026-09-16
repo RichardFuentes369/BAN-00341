@@ -40,8 +40,8 @@ export class IndexComponent implements OnInit {
     menu: false,
     input_select: false,
     kpi: false,
-    table_grid: true,
-    modal: false,
+    table_grid: false,
+    modal: true,
     search: false,
     report: false,
   };

@@ -49,22 +49,19 @@ legend {
 }
 
 
-
-/* Comportamiento normal por defecto (celulares y tablets) */
-.sticky-sidebar {
-  position: relative;
+/* 1. Para móviles y tablets (menores a 1024px): Se queda quieto en el flujo normal */
+@media (max-width: 1199px) {
+  .sticky-sidebar {
+    position: relative;
+    z-index: 1;
+  }
 }
 
-/* Comportamiento por defecto para pantallas menores a 1080px (se quedan estáticas) */
-.sticky-sidebar {
-  position: relative;
-}
-
-/* Efecto sticky al hacer scroll solo en pantallas mayores a 1080px */
-@media (min-width: 1024px) {
+/* 2. Para computadores y pantallas grandes (1024px en adelante): Se arrastra / pega al hacer scroll */
+@media (min-width: 1199.1px) {
   .sticky-sidebar {
     position: sticky;
-    top: 8rem; /* Distancia respecto al borde superior de la pantalla al hacer scroll */
-    z-index: 0;
+    top: 14%!important; /* Distancia desde arriba cuando empieza a flotar */
+    z-index: 1;
   }
 }

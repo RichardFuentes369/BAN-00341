@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { CrearUsuariosComponent } from '@mod/users/admin/components/crear-usuarios/crear-usuarios.component';
+import { CrearDummieComponent } from './components/crear-dummie/crear-dummie.component';
 
 @Component({
   selector: 'app-custom-modal',
   standalone: true,
   imports: [
-    CrearUsuariosComponent
+    CrearDummieComponent
   ],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss',
