@@ -42,7 +42,9 @@ CTRL + SHIFT + V
 
 	eas build -p android --profile preview  (en la nube de expo)
 	eas build -p android --profile preview --local (en mi local)
-	ssh -p 443 -R0:localhost:3000 a.pinggy.io (abro el tunnel)
+
+	ssh -p 443 -R0:localhost:3000 a.pinggy.io (abro el tunnel pinggy)
+	cloudflared tunnel --url http://localhost:3000 (abro el tunnel cloudflared)
 
 
 	// generar ejecutable
