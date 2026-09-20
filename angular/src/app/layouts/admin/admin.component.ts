@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router'
+import { NavigationEnd, Router, RouterModule } from '@angular/router'
 import { TranslateModule, TranslateService } from '@ngx-translate/core'
 
 import { BreadcrumbsComponent } from '@component/globales/breadcrumb/breadcrumb.component';
@@ -40,6 +40,7 @@ import { VarsService } from '@service/globales/vars/vars.service';
 import { NotificationComponent } from '@component/globales/notification/notification.component';
 import { FullscreenComponent } from '@component/globales/fullscreem/fullscreen.component';
 import { MOD_SALERETURN_PAGE_RETURN, MOD_SALERETURN_PAGE_SALE } from '@mod/sale_and_return/const/sale_and_return.const';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-layout-admin',
@@ -104,8 +105,8 @@ export class AdminComponent implements OnInit {
     private principalService: PrincipalService,
     private translate: TranslateService,
     private settingsService: SettingsService,
-    private permisosService :PermisosService,
-    private varService :VarService,
+    private permisosService: PermisosService,
+    private varService: VarService,
     private varsService: VarsService
   ) { }
 
@@ -121,6 +122,13 @@ export class AdminComponent implements OnInit {
   isDarkMode: string = ''
 
   async ngOnInit() {
+
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.closeSidebarOnMobile();
+    });
+
     this.ejecutarInitReal()
     this.settingsService.refreshAction$.subscribe(() => {
       this.ejecutarInitReal()
@@ -130,12 +138,11 @@ export class AdminComponent implements OnInit {
     if (response1?.data?.valor) {
       this.nameApp = response1.data.valor;
     }
-    
+
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH)
     const response = await this.permisosService.listaPermisos(userData.data.id)
     this.menu = response.data
   }
-
   async ejecutarInitReal() {
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH)
     const response = await this.principalService.getDataUser(userData.data.id)
@@ -165,8 +172,44 @@ export class AdminComponent implements OnInit {
     this.router.navigate([LAYOUT_ADMIN_PAGE_LOGOUT]);
   }
 
+  closeSidebarOnMobile(): void {
+    if (window.innerWidth <= 768) {
+      const sidebar = document.getElementById('accordionSidebar');
+      if (sidebar && !sidebar.classList.contains('toggled')) {
+        sidebar.classList.add('toggled');
+      }
+
+      const openCollapses = document.querySelectorAll('#accordionSidebar .collapse.show');
+      openCollapses.forEach(el => el.classList.remove('show'));
+      this.minimizarSliderbar = true
+    }
+  }
+
   mostrarMenuLateral() {
     this.minimizarSliderbar = !this.minimizarSliderbar
+
+    if(this.minimizarSliderbar){
+      this.cerrarTodosLosSubmenus();
+    }
+  }
+
+  private cerrarTodosLosSubmenus(): void {
+    const sidebar = document.getElementById('accordionSidebar');
+    if (!sidebar) return;
+
+    const openCollapses = sidebar.querySelectorAll('.collapse.show');
+    openCollapses.forEach((el: Element) => {
+      el.classList.remove('show');
+
+      const targetId = el.getAttribute('id');
+      if (targetId) {
+        const trigger = sidebar.querySelector(`[data-target="#${targetId}"]`);
+        if (trigger) {
+          trigger.classList.add('collapsed');
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
   }
 
   tienePermiso(modulo: string, submodulo?: string, jerarquia: number = 0): boolean {
