@@ -7,7 +7,7 @@
 
     <!-- LOGO & BRAND AREA -->
     <a class="nav-link d-flex align-items-center justify-content-center flex-column flex-md-row"
-      [routerLink]="LAYOUT_PAGE_DASHBOARD">
+      routerLinkActive="active" [routerLink]="LAYOUT_PAGE_DASHBOARD">
       <div class="bg-white rounded-5" style="position: relative; z-index: 1;">
         <img src="assets/images/img_logo.png" alt="" width="50">
       </div>
@@ -24,7 +24,7 @@
 
     <!-- MENU INICIAL -->
     <li class="nav-item">
-      <a class="nav-link" [routerLink]="LAYOUT_ADMIN_PAGE_MENU">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="LAYOUT_ADMIN_PAGE_MENU">
         <i class="bg_side_icon fa fa-th" aria-hidden="true"></i>
         <span class="bg_side_text">{{ 'mod-main.PAGES_MENU' | translate }}</span>
       </a>
@@ -49,10 +49,10 @@
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
         <div class="bg-white py-2 collapse-inner my-0 rounded">
           @if(tienePermiso('usuarios', 'administradores', 1)){
-          <a class="collapse-item" [routerLink]="MOD_USER_PAGE_ADMIN">{{ 'mod-users.BUTTON_ADMIN' | translate }}</a>
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_USER_PAGE_ADMIN">{{ 'mod-users.BUTTON_ADMIN' | translate }}</a>
           }
           @if(tienePermiso('usuarios', 'finales', 1)){
-          <a class="collapse-item" [routerLink]="MOD_USER_PAGE_FINAL">{{ 'mod-users.BUTTON_FINAL' | translate }}</a>
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_USER_PAGE_FINAL">{{ 'mod-users.BUTTON_FINAL' | translate }}</a>
           }
         </div>
       </div>
@@ -73,19 +73,19 @@
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
         <div class="bg-white py-2 collapse-inner my-0 rounded">
           @if(tienePermiso('catalogo', 'proveedores', 1)){
-          <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_SUPPLIER">{{ 'mod-catalog.BUTTON_SUPPLIER' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_CATEGORY_PAGE_SUPPLIER">{{ 'mod-catalog.BUTTON_SUPPLIER' |
             translate}}</a>
           }
           @if(tienePermiso('catalogo', 'productos', 1)){
-          <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_PRODUCT">{{ 'mod-catalog.BUTTON_PRODUCT' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_CATEGORY_PAGE_PRODUCT">{{ 'mod-catalog.BUTTON_PRODUCT' |
             translate}}</a>
           }
           @if(tienePermiso('catalogo', 'marcas', 1)){
-          <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_BRAND">{{ 'mod-catalog.BUTTON_BRAND' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_CATEGORY_PAGE_BRAND">{{ 'mod-catalog.BUTTON_BRAND' |
             translate}}</a>
           }
           @if(tienePermiso('catalogo', 'unidad_de_medida', 1)){
-          <a class="collapse-item" [routerLink]="MOD_CATEGORY_PAGE_EXTENT">{{ 'mod-catalog.BUTTON_EXTENT' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_CATEGORY_PAGE_EXTENT">{{ 'mod-catalog.BUTTON_EXTENT' |
             translate}}</a>
           }
         </div>
@@ -106,7 +106,7 @@
       <div id="collapseWarehouse" class="collapse" aria-labelledby="headingWarehouse"
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
         <div class="bg-white py-2 collapse-inner my-0 rounded">
-          <a class="collapse-item" [routerLink]="LAYOUT_ADMIN_PAGE_WAREHOUSE">{{ 'mod-main.PAGE_WAREHOUSE' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="LAYOUT_ADMIN_PAGE_WAREHOUSE">{{ 'mod-main.PAGE_WAREHOUSE' |
             translate}}</a>
         </div>
       </div>
@@ -129,13 +129,13 @@
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
         <div class="bg-white py-2 collapse-inner my-0 rounded">
           @if(tienePermiso('merma', 'tipo_merma', 1)){
-          <a class="collapse-item" [routerLink]="MOD_MERMA_PAGE_TIPOS">{{ 'mod-merma.BUTTON_TYPE' | translate}}</a>
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_MERMA_PAGE_TIPOS">{{ 'mod-merma.BUTTON_TYPE' | translate}}</a>
           }
           @if(tienePermiso('merma', 'registro_merma', 1)){
-          <a class="collapse-item" [routerLink]="MOD_MERMA_PAGE_REGISTRO">{{ 'mod-merma.BUTTON_RECORD' | translate}}</a>
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_MERMA_PAGE_REGISTRO">{{ 'mod-merma.BUTTON_RECORD' | translate}}</a>
           }
           @if(tienePermiso('merma', 'historico_merma', 1)){
-          <a class="collapse-item" [routerLink]="MOD_MERMA_PAGE_HISTORICO">{{ 'mod-merma.BUTTON_HISTORY' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_MERMA_PAGE_HISTORICO">{{ 'mod-merma.BUTTON_HISTORY' |
             translate}}</a>
           }
         </div>
@@ -156,11 +156,11 @@
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
         <div class="bg-white py-2 collapse-inner my-0 rounded">
           @if(tienePermiso('ventas_y_devoluciones', 'ventas', 1)){
-          <a class="collapse-item" [routerLink]="MOD_SALERETURN_PAGE_SALE">{{ 'mod-salereturn.BUTTON_SALE' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_SALERETURN_PAGE_SALE">{{ 'mod-salereturn.BUTTON_SALE' |
             translate}}</a>
           }
           @if(tienePermiso('ventas_y_devoluciones', 'devoluciones', 1)){
-          <a class="collapse-item" [routerLink]="MOD_SALERETURN_PAGE_RETURN">{{ 'mod-salereturn.BUTTON_RETURN' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_SALERETURN_PAGE_RETURN">{{ 'mod-salereturn.BUTTON_RETURN' |
             translate}}</a>
           }
         </div>
@@ -182,11 +182,11 @@
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
         <div class="bg-white py-2 collapse-inner my-0 rounded">
           @if(tienePermiso('alertas', 'alerta_caducidad', 1)){
-          <a class="collapse-item" [routerLink]="MOD_ALERT_PAGE_EXPIRATION">{{ 'mod-alerts.BUTTON_EXPIRATION' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_ALERT_PAGE_EXPIRATION">{{ 'mod-alerts.BUTTON_EXPIRATION' |
             translate }}</a>
           }
           @if(tienePermiso('alertas', 'alerta_stock', 1)){
-          <a class="collapse-item" [routerLink]="MOD_ALERT_PAGE_STOCK">{{ 'mod-alerts.BUTTON_STOCK' | translate }}</a>
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_ALERT_PAGE_STOCK">{{ 'mod-alerts.BUTTON_STOCK' | translate }}</a>
           }
         </div>
       </div>
@@ -296,7 +296,7 @@
       <!-- NAVBAR SUPERIOR STICKY -->
       @if (tipoNavegacion === 'navbar') {
       <nav class="top-horizontal-navbar bg-background-side-custom sticky-top shadow-sm">
-        <ul class="nav nav-pills align-items-center px-3 py-1 flex-nowrap ">
+        <ul class="nav nav-pills align-items-center px-3 py-1 justify-content-center">
 
           <li class="nav-item">
             <a class="nav-link bg_side_text d-flex align-items-center gap-2 px-3 py-2"
