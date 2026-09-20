@@ -42,6 +42,25 @@
       </div>
 
       <div class="col-xl-8 col-12">
+        @if(showDetailProduct){
+        <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4 h-auto">
+          <fieldset class="border p-3 rounded mb-3">
+            <legend class="float-none w-auto p-1">
+              Resultados busqueda
+              <button class="btn btn-sm btn-light rounded-circle shadow-sm"
+                (click)="toogleSection('resultadosBusqueda')">
+                <i [class]="mostrarSeccion.resultadosBusqueda ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+              </button>
+            </legend>
+            <div class="row" *ngIf="mostrarSeccion.resultadosBusqueda"
+              [class.animate__fadeIn]="mostrarSeccion.resultadosBusqueda"
+              [class.animate__fadeOut]="!mostrarSeccion.resultadosBusqueda">
+              <app-reporte-warehouse [datosRecibidos]="datosJson"></app-reporte-warehouse>
+            </div>
+          </fieldset>
+        </div>
+        }
+
         <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4 h-auto">
           <fieldset class="border p-3 rounded mb-3">
             <legend class="float-none w-auto p-1">
@@ -91,25 +110,6 @@
 
           </fieldset>
         </div>
-
-        @if(showDetailProduct){
-        <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4 h-auto">
-          <fieldset class="border p-3 rounded mb-3">
-            <legend class="float-none w-auto p-1">
-              Resultados busqueda
-              <button class="btn btn-sm btn-light rounded-circle shadow-sm"
-                (click)="toogleSection('resultadosBusqueda')">
-                <i [class]="mostrarSeccion.resultadosBusqueda ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
-              </button>
-            </legend>
-            <div class="row" *ngIf="mostrarSeccion.resultadosBusqueda"
-              [class.animate__fadeIn]="mostrarSeccion.resultadosBusqueda"
-              [class.animate__fadeOut]="!mostrarSeccion.resultadosBusqueda">
-              <app-reporte-warehouse [datosRecibidos]="datosJson"></app-reporte-warehouse>
-            </div>
-          </fieldset>
-        </div>
-        }
       </div>
     </div>
 
