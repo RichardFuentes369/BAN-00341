@@ -71,6 +71,12 @@
   height: 100vh;
   overflow: hidden;
   position: relative;
+
+  &.layout-navbar-mode {
+    #accordionSidebar {
+      display: none !important;
+    }
+  }
 }
 
 #content-wrapper {
@@ -101,8 +107,96 @@
   padding: 1rem 0;
 }
 
+/* Selector para cambiar el modo de navegación en la Topbar */
+.nav-mode-selector {
+  .btn {
+    border-color: rgba(255, 255, 255, 0.3);
+    opacity: 0.7;
+    transition: all 0.2s ease;
+
+    &:hover,
+    &.active {
+      opacity: 1;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+  }
+}
+
 /* ==========================================================================
-   3. SIDEBAR (#accordionSidebar)
+   3. NAVBAR SUPERIOR STICKY (Navegación horizontal justo encima del breadcrumb)
+   ========================================================================== */
+.top-horizontal-navbar {
+  position: sticky;
+  top: 4rem; // Permanece debajo del header principal (height: 4rem)
+  z-index: 1020;
+  border-bottom: 1px solid var(--layout-admin-side_line_color_separator, rgba(255, 255, 255, 0.1));
+
+  .nav-pills {
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      height: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+    }
+  }
+
+  .nav-link {
+    white-space: nowrap;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ESTADO ACTIVO PARA PESTAÑAS DENTRO DEL NAVBAR */
+    &.active,
+    &.active-dropdown {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+      font-weight: 600;
+
+      i, span {
+        color: #000000 !important;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    margin-top: 0.25rem;
+    border-radius: 0.5rem;
+    background-color: var(--layout-admin-side_dropdawn_background, #ffffff);
+
+    .dropdown-item {
+      color: var(--layout-admin-side_dropdawn_text_color, #333333);
+      font-size: 0.875rem;
+      padding: 0.5rem 1.25rem;
+
+      &:hover {
+        background-color: var(--layout-admin-side_dropdown_hover_background, rgba(0, 0, 0, 0.05));
+      }
+
+      /* ITEM ACTIVO DENTRO DEL SUBMENÚ DROPDOWN */
+      &.active {
+        background-color: var(--layout-admin-header_color_background, #00a650) !important;
+        color: #ffffff !important;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+   4. SIDEBAR (#accordionSidebar)
    ========================================================================== */
 #accordionSidebar {
   height: 100vh;
@@ -111,7 +205,6 @@
   display: flex;
   flex-direction: column;
 
-  /* Header interno / área de marca */
   .sidebar-brand {
     height: 4rem;
     display: flex;
@@ -127,9 +220,6 @@
     }
   }
 
-  /* -----------------------------------------------------------------------
-     ESTADO DESKTOP (> 768px)
-     ----------------------------------------------------------------------- */
   @media (min-width: 769px) {
     transition: width 0.3s ease-in-out;
 
@@ -171,7 +261,6 @@
       }
     }
 
-    /* Estado Colapsado en Escritorio */
     &.toggled {
       width: 5rem !important;
       overflow: visible !important;
@@ -267,9 +356,6 @@
     }
   }
 
-  /* -----------------------------------------------------------------------
-     ESTADO MÓVIL / TABLET (<= 768px) - DESLIZAMIENTO SUAVE DE ENTRADA Y SALIDA
-     ----------------------------------------------------------------------- */
   @media (max-width: 768px) {
     position: fixed !important;
     top: 0;
@@ -288,22 +374,14 @@
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch;
 
-    /* Transición continua del transform para entrada Y salida */
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
     will-change: transform;
 
-    /* -------------------------------------------------------------------
-       1. ESTADO OCULTO EN MÓVIL (.toggled) -> DESLIZA HACIA LA IZQUIERDA
-       ------------------------------------------------------------------- */
     &.toggled {
       transform: translateX(-100%) !important;
       pointer-events: none !important;
-      /* Se quita 'visibility: hidden' para no cortar la animación de salida */
     }
 
-    /* -------------------------------------------------------------------
-       2. ESTADO DESPLEGADO EN MÓVIL (:not(.toggled)) -> DESLIZA AL CENTRO
-       ------------------------------------------------------------------- */
     &:not(.toggled) {
       transform: translateX(0) !important;
       pointer-events: auto !important;
@@ -345,9 +423,6 @@
           }
         }
 
-        /* -----------------------------------------------------------------
-           SUBMENÚ DESPLEGABLE HACIA ABAJO
-           ----------------------------------------------------------------- */
         .collapse,
         .collapsing {
           position: static !important;
@@ -392,27 +467,27 @@
 }
 
 /* ==========================================================================
-   4. REGLAS RESPONSIVE (MEDIA QUERIES)
-   ========================================================================== */
-
-/* En Dispositivos Móviles (< 992px) */
-@media (max-width: 991.98px) {
-  /* SE ELIMINÓ: #accordionSidebar.toggled { display: none !important; } 
-     Para permitir que la animación CSS con transform funcione sin interrupciones */
-
-  .hide-on-mobile {
-    display: none !important;
-  }
-}
-
-/* ==========================================================================
-   5. MENÚS DROPDOWN Y ELEMENTOS GLOBALES
+   5. BREADCRUMBS Y OTROS COMPONENTES
    ========================================================================== */
 .topbar-secondary-sticky {
   position: sticky;
-  top: 4rem;
-  z-index: 1000;
+  // Si está activo el navbar, la barra de breadcrumb se fija justo debajo de este (4rem topbar + 2.8rem navbar)
+  #wrapper.layout-navbar-mode & {
+    top: 6.8rem;
+  }
+  // En modo sidebar se mantiene pegada a la topbar principal
+  #wrapper:not(.layout-navbar-mode) & {
+    top: 4rem;
+  }
+
+  z-index: 1010;
   padding: 0.25rem;
+}
+
+@media (max-width: 991.98px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
 }
 
 .dropdown-menu {
@@ -439,7 +514,6 @@
   }
 }
 
-/* Overrides para modales de Bootstrap */
 ::ng-deep {
   .modal {
     z-index: 2000 !important;
@@ -452,174 +526,5 @@
   .modal-open {
     overflow: hidden !important;
     padding-right: 0 !important;
-  }
-}
-
-/* ==========================================================================
-   6. MARCA DE AGUA ANIMADA (CARRITO)
-   ========================================================================== */
-.watermark-cart {
-  position: fixed;
-  bottom: 3rem;
-  right: 30px;
-  opacity: 0.15;
-  pointer-events: none;
-  z-index: -1;
-  transform: rotate(-3deg);
-
-  .cart-basket {
-    width: 118px;
-    height: 50px;
-    border: 4px solid #333;
-    border-radius: 5px 5px 20px 20px;
-    border-top: none;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 5px;
-    padding-bottom: 5px;
-
-    background-image:
-      linear-gradient(#333 1px, transparent 1px),
-      linear-gradient(90deg, #333 1px, transparent 1px);
-    background-size: 20px 20px;
-
-    .item {
-      border: 2px solid #333;
-      background: #eee;
-      z-index: 1;
-    }
-
-    .box {
-      width: 25px;
-      height: 25px;
-    }
-
-    .large {
-      width: 35px;
-      height: 40px;
-    }
-
-    .circle {
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-    }
-
-    .banana {
-      width: 25px;
-      height: 15px;
-      background: #f7dc6f;
-      border-radius: 0 100% 0 100%;
-      transform: rotate(-20deg);
-    }
-
-    .tomato {
-      width: 25px;
-      height: 22px;
-      background: #e74c3c;
-      border-radius: 50% 50% 45% 45%;
-
-      &::before {
-        content: '';
-        position: absolute;
-        top: -4px;
-        left: 8px;
-        width: 8px;
-        height: 4px;
-        background: #27ae60;
-        border-radius: 50%;
-      }
-    }
-
-    .appliance {
-      width: 20px;
-      height: 30px;
-      background: #d5d8dc;
-      border-radius: 2px 2px 8px 8px;
-      border: 2px solid #333;
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: 5px;
-        left: 5px;
-        width: 10px;
-        height: 8px;
-        background: #fff;
-      }
-    }
-  }
-
-  .cart-handle {
-    width: 30px;
-    height: 8px;
-    background: #333;
-    position: absolute;
-    top: -9px;
-    left: -25px;
-    border-radius: 4px;
-    transform: rotate(25deg);
-  }
-
-  .cart-wheel-frame {
-    width: 100px;
-    height: 8px;
-    background: #333;
-    margin: -5px auto 0;
-    border-radius: 4px;
-  }
-
-  .cart-wheels {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 15px;
-    margin-top: 2px;
-
-    .wheel {
-      width: 22px;
-      height: 22px;
-      border: 4px solid #333;
-      border-radius: 50%;
-      background: #fff;
-      animation: rotateWheel 1s linear infinite;
-    }
-  }
-
-  .road {
-    width: 150px;
-    height: 6px;
-    background: #333;
-    margin-top: 10px;
-    margin-left: -15px;
-    position: relative;
-
-    background-image: repeating-linear-gradient(50deg,
-        #333,
-        #333 10px,
-        #fff 10px,
-        #fff 20px);
-    animation: moveRoad 1s linear infinite;
-  }
-}
-
-@keyframes moveRoad {
-  from {
-    background-position: 0 0;
-  }
-
-  to {
-    background-position: -20px 0;
-  }
-}
-
-@keyframes bounce {
-  from {
-    transform: rotate(-3deg) translateY(0);
-  }
-
-  to {
-    transform: rotate(-3deg) translateY(-3px);
   }
 }

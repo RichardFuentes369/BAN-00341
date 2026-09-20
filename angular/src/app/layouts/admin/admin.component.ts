@@ -1,18 +1,17 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { NavigationEnd, Router, RouterModule } from '@angular/router'
-import { TranslateModule, TranslateService } from '@ngx-translate/core'
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
+import { filter } from 'rxjs';
 
 import { BreadcrumbsComponent } from '@component/globales/breadcrumb/breadcrumb.component';
 import { IdiomaComponent } from '@component/globales/idioma/idioma.component';
-import { CommonModule } from '@angular/common';
-
-import { STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINAL } from '@const/app.const'
-import { NAME_PAGE, LAYOUT_ADMIN_PAGE_LOGOUT, LAYOUT_PAGE_PROFILE, LAYOUT_PAGE_SETTINGS, LAYOUT_PAGE_DASHBOARD } from '@layout/const/layouts.const'
-import { LAYOUT_ADMIN_PAGE_MOD } from '@layout/const/layouts.const'
 import { ColormodeComponent } from '@component/globales/colormode/colormode.component';
-import { AuthService } from '@guard/service/auth.service';
-import { PrincipalService } from '@mod/users/admin/pages/principal/service/principal.service';
-import { SettingsService } from '@mod/me/admin/pages/settings/service/settings.service';
+import { NotificationComponent } from '@component/globales/notification/notification.component';
+import { FullscreenComponent } from '@component/globales/fullscreem/fullscreen.component';
+
+import { STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINAL } from '@const/app.const';
+import { NAME_PAGE, LAYOUT_ADMIN_PAGE_LOGOUT, LAYOUT_PAGE_PROFILE, LAYOUT_PAGE_SETTINGS, LAYOUT_PAGE_DASHBOARD, LAYOUT_ADMIN_PAGE_MOD } from '@layout/const/layouts.const';
 
 import {
   ADMIN_PAGE_MENU_PERSMISSION_USERS,
@@ -33,14 +32,14 @@ import { MOD_USER_PAGE_ADMIN, MOD_USER_PAGE_FINAL } from '@mod/users/const/users
 import { MOD_CATEGORY_PAGE_BRAND, MOD_CATEGORY_PAGE_EXTENT, MOD_CATEGORY_PAGE_PRODUCT, MOD_CATEGORY_PAGE_SUPPLIER } from '@mod/catalog/const/catalog.const';
 import { MOD_MERMA_PAGE_HISTORICO, MOD_MERMA_PAGE_REGISTRO, MOD_MERMA_PAGE_TIPOS } from '@mod/merma/const/loss.conts';
 import { MOD_ALERT_PAGE_EXPIRATION, MOD_ALERT_PAGE_STOCK } from '@mod/alerts/const/alerts.const';
+import { MOD_SALERETURN_PAGE_RETURN, MOD_SALERETURN_PAGE_SALE } from '@mod/sale_and_return/const/sale_and_return.const';
+
+import { AuthService } from '@guard/service/auth.service';
+import { PrincipalService } from '@mod/users/admin/pages/principal/service/principal.service';
+import { SettingsService } from '@mod/me/admin/pages/settings/service/settings.service';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
-import Swal from 'sweetalert2';
 import { VarService } from '@mod/vars/admin/pages/var/service/var.service';
 import { VarsService } from '@service/globales/vars/vars.service';
-import { NotificationComponent } from '@component/globales/notification/notification.component';
-import { FullscreenComponent } from '@component/globales/fullscreem/fullscreen.component';
-import { MOD_SALERETURN_PAGE_RETURN, MOD_SALERETURN_PAGE_SALE } from '@mod/sale_and_return/const/sale_and_return.const';
-import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-layout-admin',
@@ -67,37 +66,49 @@ export class AdminComponent implements OnInit {
   public LAYOUT_ADMIN_PAGE_MOD = LAYOUT_ADMIN_PAGE_MOD;
   public CURRENT_YEAR = new Date().getFullYear();
 
-  public ADMIN_PAGE_MENU_PERSMISSION_USERS = ADMIN_PAGE_MENU_PERSMISSION_USERS
-  public MOD_USER_PAGE_ADMIN = MOD_USER_PAGE_ADMIN
-  public MOD_USER_PAGE_FINAL = MOD_USER_PAGE_FINAL
+  public ADMIN_PAGE_MENU_PERSMISSION_USERS = ADMIN_PAGE_MENU_PERSMISSION_USERS;
+  public MOD_USER_PAGE_ADMIN = MOD_USER_PAGE_ADMIN;
+  public MOD_USER_PAGE_FINAL = MOD_USER_PAGE_FINAL;
 
-  public ADMIN_PAGE_MENU_PERSMISSION_CATALOG = ADMIN_PAGE_MENU_PERSMISSION_CATALOG
-  public MOD_CATEGORY_PAGE_PRODUCT = MOD_CATEGORY_PAGE_PRODUCT
-  public MOD_CATEGORY_PAGE_SUPPLIER = MOD_CATEGORY_PAGE_SUPPLIER
-  public MOD_CATEGORY_PAGE_BRAND = MOD_CATEGORY_PAGE_BRAND
-  public MOD_CATEGORY_PAGE_EXTENT = MOD_CATEGORY_PAGE_EXTENT
+  public ADMIN_PAGE_MENU_PERSMISSION_CATALOG = ADMIN_PAGE_MENU_PERSMISSION_CATALOG;
+  public MOD_CATEGORY_PAGE_PRODUCT = MOD_CATEGORY_PAGE_PRODUCT;
+  public MOD_CATEGORY_PAGE_SUPPLIER = MOD_CATEGORY_PAGE_SUPPLIER;
+  public MOD_CATEGORY_PAGE_BRAND = MOD_CATEGORY_PAGE_BRAND;
+  public MOD_CATEGORY_PAGE_EXTENT = MOD_CATEGORY_PAGE_EXTENT;
 
-  public ADMIN_PAGE_MENU_PERSMISSION_LOSS = ADMIN_PAGE_MENU_PERSMISSION_LOSS
-  public MOD_MERMA_PAGE_TIPOS = MOD_MERMA_PAGE_TIPOS
-  public MOD_MERMA_PAGE_REGISTRO = MOD_MERMA_PAGE_REGISTRO
-  public MOD_MERMA_PAGE_HISTORICO = MOD_MERMA_PAGE_HISTORICO
+  public ADMIN_PAGE_MENU_PERSMISSION_LOSS = ADMIN_PAGE_MENU_PERSMISSION_LOSS;
+  public MOD_MERMA_PAGE_TIPOS = MOD_MERMA_PAGE_TIPOS;
+  public MOD_MERMA_PAGE_REGISTRO = MOD_MERMA_PAGE_REGISTRO;
+  public MOD_MERMA_PAGE_HISTORICO = MOD_MERMA_PAGE_HISTORICO;
 
-  public ADMIN_PAGE_MENU_PERSMISSION_ALERTS = ADMIN_PAGE_MENU_PERSMISSION_ALERTS
-  public MOD_ALERT_PAGE_EXPIRATION = MOD_ALERT_PAGE_EXPIRATION
-  public MOD_ALERT_PAGE_STOCK = MOD_ALERT_PAGE_STOCK
+  public ADMIN_PAGE_MENU_PERSMISSION_ALERTS = ADMIN_PAGE_MENU_PERSMISSION_ALERTS;
+  public MOD_ALERT_PAGE_EXPIRATION = MOD_ALERT_PAGE_EXPIRATION;
+  public MOD_ALERT_PAGE_STOCK = MOD_ALERT_PAGE_STOCK;
 
-  public MOD_SALERETURN_PAGE_SALE = MOD_SALERETURN_PAGE_SALE
-  public MOD_SALERETURN_PAGE_RETURN = MOD_SALERETURN_PAGE_RETURN
+  public MOD_SALERETURN_PAGE_SALE = MOD_SALERETURN_PAGE_SALE;
+  public MOD_SALERETURN_PAGE_RETURN = MOD_SALERETURN_PAGE_RETURN;
 
-  public ADMIN_PAGE_MENU_PERSMISSION_MODULES = ADMIN_PAGE_MENU_PERSMISSION_MODULES
-  public ADMIN_PAGE_MENU_PERSMISSION_WAREHOUSE = ADMIN_PAGE_MENU_PERSMISSION_WAREHOUSE
-  public LAYOUT_ADMIN_PAGE_MENU = LAYOUT_ADMIN_PAGE_MENU
-  public LAYOUT_ADMIN_PAGE_USERS = LAYOUT_ADMIN_PAGE_USERS
-  public LAYOUT_ADMIN_PAGE_MODULES = LAYOUT_ADMIN_PAGE_MODULES
-  public LAYOUT_ADMIN_PAGE_WAREHOUSE = LAYOUT_ADMIN_PAGE_WAREHOUSE
-  public LAYOUT_ADMIN_PAGE_LOSS = LAYOUT_ADMIN_PAGE_LOSS
-  public LAYOUT_ADMIN_PAGE_CATALOG = LAYOUT_ADMIN_PAGE_CATALOG
-  public LAYOUT_ADMIN_PAGE_ALERT = LAYOUT_ADMIN_PAGE_ALERT
+  public ADMIN_PAGE_MENU_PERSMISSION_MODULES = ADMIN_PAGE_MENU_PERSMISSION_MODULES;
+  public ADMIN_PAGE_MENU_PERSMISSION_WAREHOUSE = ADMIN_PAGE_MENU_PERSMISSION_WAREHOUSE;
+  public LAYOUT_ADMIN_PAGE_MENU = LAYOUT_ADMIN_PAGE_MENU;
+  public LAYOUT_ADMIN_PAGE_USERS = LAYOUT_ADMIN_PAGE_USERS;
+  public LAYOUT_ADMIN_PAGE_MODULES = LAYOUT_ADMIN_PAGE_MODULES;
+  public LAYOUT_ADMIN_PAGE_WAREHOUSE = LAYOUT_ADMIN_PAGE_WAREHOUSE;
+  public LAYOUT_ADMIN_PAGE_LOSS = LAYOUT_ADMIN_PAGE_LOSS;
+  public LAYOUT_ADMIN_PAGE_CATALOG = LAYOUT_ADMIN_PAGE_CATALOG;
+  public LAYOUT_ADMIN_PAGE_ALERT = LAYOUT_ADMIN_PAGE_ALERT;
+
+  public tipoNavegacion: 'sidebar' | 'navbar' = 'sidebar';
+
+  minimizarSliderbar: boolean = true;
+  nombreModulo: string = '';
+
+  nameApp: string = '';
+  firstName: string = '';
+  lastName: string = '';
+
+  menu: any[] = [];
+  isDarkMode: string = '';
 
   constructor(
     private router: Router,
@@ -110,28 +121,16 @@ export class AdminComponent implements OnInit {
     private varsService: VarsService
   ) { }
 
-  minimizarSliderbar: boolean = true;
-  nombreModulo: string = '';
-
-  nameApp: string = ''
-  firstName: string = ''
-  lastName: string = ''
-
-  menu: any[] = []
-
-  isDarkMode: string = ''
-
   async ngOnInit() {
-
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
       this.closeSidebarOnMobile();
     });
 
-    this.ejecutarInitReal()
+    this.ejecutarInitReal();
     this.settingsService.refreshAction$.subscribe(() => {
-      this.ejecutarInitReal()
+      this.ejecutarInitReal();
     });
 
     const response1 = await this.varsService.obtenerVar('AppName') as any;
@@ -139,16 +138,23 @@ export class AdminComponent implements OnInit {
       this.nameApp = response1.data.valor;
     }
 
-    const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH)
-    const response = await this.permisosService.listaPermisos(userData.data.id)
-    this.menu = response.data
+    const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
+    const response = await this.permisosService.listaPermisos(userData.data.id);
+    this.menu = response.data;
   }
+
   async ejecutarInitReal() {
-    const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH)
-    const response = await this.principalService.getDataUser(userData.data.id)
-    const { firstName, lastName } = response.data
-    this.firstName = firstName
-    this.lastName = lastName
+    const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
+    const response = await this.principalService.getDataUser(userData.data.id);
+    const { firstName, lastName } = response.data;
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  // Alterna entre la navegación Lateral (Sidebar) y Superior (Navbar)
+  cambiarTipoNavegacion(tipo: 'sidebar' | 'navbar'): void {
+    this.tipoNavegacion = tipo;
+    this.cerrarTodosLosSubmenus();
   }
 
   upperFirst(texto: string) {
@@ -163,12 +169,12 @@ export class AdminComponent implements OnInit {
   }
 
   idiomaCambiar(valor: string) {
-    this.translate.use(valor)
+    this.translate.use(valor);
   }
 
   cerrarSession() {
-    localStorage.removeItem(STORAGE_KEY_TOKEN_ADMIN)
-    localStorage.removeItem(STORAGE_KEY_TOKEN_FINAL)
+    localStorage.removeItem(STORAGE_KEY_TOKEN_ADMIN);
+    localStorage.removeItem(STORAGE_KEY_TOKEN_FINAL);
     this.router.navigate([LAYOUT_ADMIN_PAGE_LOGOUT]);
   }
 
@@ -179,31 +185,30 @@ export class AdminComponent implements OnInit {
         sidebar.classList.add('toggled');
       }
 
-      const openCollapses = document.querySelectorAll('#accordionSidebar .collapse.show');
-      openCollapses.forEach(el => el.classList.remove('show'));
-      this.minimizarSliderbar = true
+      this.cerrarTodosLosSubmenus();
+      this.minimizarSliderbar = true;
     }
   }
 
   mostrarMenuLateral() {
-    this.minimizarSliderbar = !this.minimizarSliderbar
+    this.minimizarSliderbar = !this.minimizarSliderbar;
 
-    if(this.minimizarSliderbar){
+    if (this.minimizarSliderbar) {
       this.cerrarTodosLosSubmenus();
     }
   }
 
   private cerrarTodosLosSubmenus(): void {
-    const sidebar = document.getElementById('accordionSidebar');
-    if (!sidebar) return;
+    const container = document.getElementById('wrapper');
+    if (!container) return;
 
-    const openCollapses = sidebar.querySelectorAll('.collapse.show');
+    const openCollapses = container.querySelectorAll('.collapse.show');
     openCollapses.forEach((el: Element) => {
       el.classList.remove('show');
 
       const targetId = el.getAttribute('id');
       if (targetId) {
-        const trigger = sidebar.querySelector(`[data-target="#${targetId}"]`);
+        const trigger = container.querySelector(`[data-target="#${targetId}"]`);
         if (trigger) {
           trigger.classList.add('collapsed');
           trigger.setAttribute('aria-expanded', 'false');
@@ -212,21 +217,23 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  isRouteActive(routePath: string | any[]): boolean {
+    if (!routePath) return false;
+    const path = Array.isArray(routePath) ? routePath.join('/') : routePath;
+    return this.router.url.includes(path);
+  }
+
   tienePermiso(modulo: string, submodulo?: string, jerarquia: number = 0): boolean {
-    // Buscamos el objeto del módulo padre
     const moduloPadre = this.menu.find(p => p.mpm_permiso === modulo);
 
-    // Si no existe el módulo, no tiene permisos
     if (!moduloPadre || moduloPadre.asignado !== 1) {
       return false;
     }
 
-    // Si la jerarquía es 0, ya validamos el padre arriba
     if (jerarquia === 0) {
       return true;
     }
 
-    // Si la jerarquía es 1, validamos el hijo
     return moduloPadre.children?.some(
       (hijo: any) => hijo.mpm_permiso === submodulo && hijo.asignado === 1
     ) ?? false;

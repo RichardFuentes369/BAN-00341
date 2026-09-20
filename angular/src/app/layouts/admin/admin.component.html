@@ -1,4 +1,7 @@
-<div id="wrapper">
+<div id="wrapper" [class.layout-navbar-mode]="tipoNavegacion === 'navbar'">
+
+  <!-- SIDEBAR LATERAL (Solo se muestra si tipoNavegacion === 'sidebar') -->
+  @if (tipoNavegacion === 'sidebar') {
   <ul class="navbar-nav bg-background-side-custom sidebar sidebar-dark accordion" [class.toggled]="minimizarSliderbar"
     id="accordionSidebar">
 
@@ -198,33 +201,66 @@
     </div>
 
   </ul>
+  }
 
   <div id="content-wrapper" class="d-flex flex-column">
     <div id="content-scroll-area">
+
+      <!-- TOPBAR SUPERIOR HEADER -->
       <nav
-        class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar static-top sticky-top pl-2 pr-2  h-custom">
+        class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar static-top sticky-top pl-2 pr-2 h-custom">
         <ul class="navbar-nav mr-auto d-flex align-items-center w-100">
+
+          @if (tipoNavegacion === 'sidebar') {
           <i class="mx-4 icon_menu_bar fa fa-bars my-auto color_icons" style="cursor: pointer;"
             (click)="mostrarMenuLateral()"></i>
+          } @else {
+          <!-- Brand Logo en modo Navbar Superior -->
+          <a class="navbar-brand d-flex align-items-center mr-3 py-0" [routerLink]="LAYOUT_PAGE_DASHBOARD">
+            <img src="assets/images/img_logo.png" alt="" width="35" class="rounded-circle bg-white p-1">
+            <span class="text-white font-weight-bold ml-2 d-none d-sm-inline-block small" [innerHTML]="nameApp"></span>
+          </a>
+          }
+
           <div class="ml-auto d-flex align-items-center">
+
+            <!-- SELECTOR DE NAVEGACIÓN (Sidebar vs Navbar) -->
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item dropdown no-arrow my-auto text-center list-unstyled">
+              <div class="btn-group btn-group-sm nav-mode-selector" role="group">
+                <button type="button" class="btn btn-outline-light btn-sm" [class.active]="tipoNavegacion === 'sidebar'"
+                  (click)="cambiarTipoNavegacion('sidebar')" title="Menú Lateral">
+                  <i class="fa fa-columns"></i>
+                </button>
+                <button type="button" class="btn btn-outline-light btn-sm" [class.active]="tipoNavegacion === 'navbar'"
+                  (click)="cambiarTipoNavegacion('navbar')" title="Menú Superior">
+                  <i class="fa fa-bars"></i>
+                </button>
+              </div>
+            </li>
+
             <div class="topbar-divider d-none d-sm-block"></div>
             <li class="nav-item dropdown no-arrow my-auto text-center list-unstyled">
               <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
             </li>
+
             <div class="topbar-divider d-none d-sm-block"></div>
             <li class="nav-item dropdown no-arrow my-auto text-center list-unstyled">
               <app-globales-colormode></app-globales-colormode>
             </li>
+
             @if(tienePermiso('alertas', '', 0)){
             <div class="topbar-divider d-none d-sm-block"></div>
             <li class="nav-item dropdown no-arrow my-auto text-center list-unstyled">
               <app-globales-notification></app-globales-notification>
             </li>
             }
+
             <div class="topbar-divider d-none d-sm-block hide-on-mobile"></div>
             <li class="nav-item dropdown no-arrow my-auto text-center list-unstyled">
               <app-globales-fullscreem></app-globales-fullscreem>
             </li>
+
             <div class="topbar-divider d-none d-sm-block"></div>
             <li class="nav-item dropdown no-arrow my-auto text-center list-unstyled">
               <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown"
@@ -239,11 +275,11 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item dropdawn_color_text" [routerLink]="LAYOUT_PAGE_PROFILE">
-                  <i class=" fas fa-user fa-sm fa-fw mr-2 dropdawn_color_text"></i>
+                  <i class="fas fa-user fa-sm fa-fw mr-2 dropdawn_color_text"></i>
                   {{ 'layout-admin.DRADROPDOW_MENU_PROFILE' | translate}}
                 </a>
                 <a class="dropdown-item dropdawn_color_text" [routerLink]="LAYOUT_PAGE_SETTINGS">
-                  <i class=" fas fa-cogs fa-sm fa-fw mr-2 dropdawn_color_text"></i>
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 dropdawn_color_text"></i>
                   {{ 'layout-admin.DRADROPDOW_MENU_SETTING' | translate}}
                 </a>
                 <div class="dropdown-divider"></div>
@@ -257,32 +293,167 @@
         </ul>
       </nav>
 
+      <!-- NAVBAR SUPERIOR STICKY -->
+      @if (tipoNavegacion === 'navbar') {
+      <nav class="top-horizontal-navbar bg-background-side-custom sticky-top shadow-sm">
+        <ul class="nav nav-pills align-items-center px-3 py-1 flex-nowrap ">
+
+          <li class="nav-item">
+            <a class="nav-link bg_side_text d-flex align-items-center gap-2 px-3 py-2"
+              [routerLink]="LAYOUT_ADMIN_PAGE_MENU" routerLinkActive="active">
+              <i class="fa fa-th" aria-hidden="true"></i>
+            </a>
+          </li>
+
+          <!-- MODULO USUARIOS -->
+          @if(tienePermiso('usuarios', '', 0)){
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle bg_side_text d-flex align-items-center gap-2 px-3 py-2"
+              data-toggle="dropdown" role="button" aria-expanded="false"
+              [class.active-dropdown]="isRouteActive(MOD_USER_PAGE_ADMIN) || isRouteActive(MOD_USER_PAGE_FINAL)">
+              <i class="fa fa-users" aria-hidden="true"></i>
+              <span>{{ 'mod-main.PAGES_USERS' | translate }}</span>
+            </a>
+            <div class="dropdown-menu shadow border-0">
+              @if(tienePermiso('usuarios', 'administradores', 1)){
+              <a class="dropdown-item" [routerLink]="MOD_USER_PAGE_ADMIN" routerLinkActive="active">{{
+                'mod-users.BUTTON_ADMIN' | translate }}</a>
+              }
+              @if(tienePermiso('usuarios', 'finales', 1)){
+              <a class="dropdown-item" [routerLink]="MOD_USER_PAGE_FINAL" routerLinkActive="active">{{
+                'mod-users.BUTTON_FINAL' | translate }}</a>
+              }
+            </div>
+          </li>
+          }
+
+          <!-- MODULO CATALOGO -->
+          @if(tienePermiso('catalogo', '', 0)){
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle bg_side_text d-flex align-items-center gap-2 px-3 py-2"
+              data-toggle="dropdown" role="button" aria-expanded="false"
+              [class.active-dropdown]="isRouteActive(MOD_CATEGORY_PAGE_SUPPLIER) || isRouteActive(MOD_CATEGORY_PAGE_PRODUCT) || isRouteActive(MOD_CATEGORY_PAGE_BRAND) || isRouteActive(MOD_CATEGORY_PAGE_EXTENT)">
+              <i class="fa fa-book" aria-hidden="true"></i>
+              <span>{{ 'mod-main.PAGES_CATALOG' | translate }}</span>
+            </a>
+            <div class="dropdown-menu shadow border-0">
+              @if(tienePermiso('catalogo', 'proveedores', 1)){
+              <a class="dropdown-item" [routerLink]="MOD_CATEGORY_PAGE_SUPPLIER" routerLinkActive="active">{{
+                'mod-catalog.BUTTON_SUPPLIER' | translate}}</a>
+              }
+              @if(tienePermiso('catalogo', 'productos', 1)){
+              <a class="dropdown-item" [routerLink]="MOD_CATEGORY_PAGE_PRODUCT" routerLinkActive="active">{{
+                'mod-catalog.BUTTON_PRODUCT' | translate}}</a>
+              }
+              @if(tienePermiso('catalogo', 'marcas', 1)){
+              <a class="dropdown-item" [routerLink]="MOD_CATEGORY_PAGE_BRAND" routerLinkActive="active">{{
+                'mod-catalog.BUTTON_BRAND' | translate}}</a>
+              }
+              @if(tienePermiso('catalogo', 'unidad_de_medida', 1)){
+              <a class="dropdown-item" [routerLink]="MOD_CATEGORY_PAGE_EXTENT" routerLinkActive="active">{{
+                'mod-catalog.BUTTON_EXTENT' | translate}}</a>
+              }
+            </div>
+          </li>
+          }
+
+          <!-- BODEGA -->
+          @if(tienePermiso('bodega', '', 0)){
+          <li class="nav-item">
+            <a class="nav-link bg_side_text d-flex align-items-center gap-2 px-3 py-2"
+              [routerLink]="LAYOUT_ADMIN_PAGE_WAREHOUSE" routerLinkActive="active">
+              <i class="fa fa-cubes" aria-hidden="true"></i>
+              <span>{{ 'mod-main.PAGE_WAREHOUSE' | translate }}</span>
+            </a>
+          </li>
+          }
+
+          <!-- MODULO MERMA -->
+          @if(tienePermiso('merma', '', 0)){
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle bg_side_text d-flex align-items-center gap-2 px-3 py-2"
+              data-toggle="dropdown" role="button" aria-expanded="false"
+              [class.active-dropdown]="isRouteActive(MOD_MERMA_PAGE_TIPOS) || isRouteActive(MOD_MERMA_PAGE_REGISTRO) || isRouteActive(MOD_MERMA_PAGE_HISTORICO)">
+              <i class="fas fa-box" aria-hidden="true"></i>
+              <span>{{ 'mod-main.PAGES_LOSS' | translate }}</span>
+            </a>
+            <div class="dropdown-menu shadow border-0">
+              @if(tienePermiso('merma', 'tipo_merma', 1)){
+              <a class="dropdown-item" [routerLink]="MOD_MERMA_PAGE_TIPOS" routerLinkActive="active">{{
+                'mod-merma.BUTTON_TYPE' | translate}}</a>
+              }
+              @if(tienePermiso('merma', 'registro_merma', 1)){
+              <a class="dropdown-item" [routerLink]="MOD_MERMA_PAGE_REGISTRO" routerLinkActive="active">{{
+                'mod-merma.BUTTON_RECORD' | translate}}</a>
+              }
+              @if(tienePermiso('merma', 'historico_merma', 1)){
+              <a class="dropdown-item" [routerLink]="MOD_MERMA_PAGE_HISTORICO" routerLinkActive="active">{{
+                'mod-merma.BUTTON_HISTORY' | translate}}</a>
+              }
+            </div>
+          </li>
+          }
+
+          <!-- MODULO VENTAS Y DEVOLUCIONES -->
+          @if(tienePermiso('ventas_y_devoluciones', '', 0)){
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle bg_side_text d-flex align-items-center gap-2 px-3 py-2"
+              data-toggle="dropdown" role="button" aria-expanded="false"
+              [class.active-dropdown]="isRouteActive(MOD_SALERETURN_PAGE_SALE) || isRouteActive(MOD_SALERETURN_PAGE_RETURN)">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              <span>{{ 'mod-main.PAGE_SALE' | translate }}</span>
+            </a>
+            <div class="dropdown-menu shadow border-0">
+              @if(tienePermiso('ventas_y_devoluciones', 'ventas', 1)){
+              <a class="dropdown-item" [routerLink]="MOD_SALERETURN_PAGE_SALE" routerLinkActive="active">{{
+                'mod-salereturn.BUTTON_SALE' | translate}}</a>
+              }
+              @if(tienePermiso('ventas_y_devoluciones', 'devoluciones', 1)){
+              <a class="dropdown-item" [routerLink]="MOD_SALERETURN_PAGE_RETURN" routerLinkActive="active">{{
+                'mod-salereturn.BUTTON_RETURN' | translate}}</a>
+              }
+            </div>
+          </li>
+          }
+
+          <!-- MODULO ALERTAS -->
+          @if(tienePermiso('alertas', '', 0)){
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle bg_side_text d-flex align-items-center gap-2 px-3 py-2"
+              data-toggle="dropdown" role="button" aria-expanded="false"
+              [class.active-dropdown]="isRouteActive(MOD_ALERT_PAGE_EXPIRATION) || isRouteActive(MOD_ALERT_PAGE_STOCK)">
+              <i class="fa fa-bell" aria-hidden="true"></i>
+              <span>{{ 'mod-main.PAGES_ALERTS' | translate }}</span>
+            </a>
+            <div class="dropdown-menu shadow border-0">
+              @if(tienePermiso('alertas', 'alerta_caducidad', 1)){
+              <a class="dropdown-item" [routerLink]="MOD_ALERT_PAGE_EXPIRATION" routerLinkActive="active">{{
+                'mod-alerts.BUTTON_EXPIRATION' | translate }}</a>
+              }
+              @if(tienePermiso('alertas', 'alerta_stock', 1)){
+              <a class="dropdown-item" [routerLink]="MOD_ALERT_PAGE_STOCK" routerLinkActive="active">{{
+                'mod-alerts.BUTTON_STOCK' | translate }}</a>
+              }
+            </div>
+          </li>
+          }
+
+        </ul>
+      </nav>
+      }
+
+      <!-- BREADCRUMBS -->
       <div class="topbar-secondary-sticky custom-breadcrum pl-4 pr-4 d-flex align-items-center">
         <span class="d-flex align-items-center my-n2 ml-2 mr-2" style="cursor: pointer;">
           <app-globales-breadcrumbs></app-globales-breadcrumbs>
         </span>
       </div>
 
+      <!-- CONTENIDO PRINCIPAL -->
       <div id="content" class="container-fluid">
         <div class="p-1 mt-4">
           <router-outlet></router-outlet>
         </div>
-
-        <!-- <div class="watermark-cart">
-          <div class="cart-handle"></div>
-          <div class="cart-basket">
-            <div class="item appliance"></div>
-            <div class="item circle"></div>
-            <div class="item banana"></div>
-            <div class="item tomato"></div>
-          </div>
-          <div class="cart-wheel-frame"></div>
-          <div class="cart-wheels">
-            <div class="wheel"></div>
-            <div class="wheel"></div>
-          </div>
-          <div class="road"></div>
-        </div> -->
       </div>
 
       <footer class="sticky-footer bg-gradient-footer-custom shadow-lg mt-auto">
