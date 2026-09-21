@@ -215,8 +215,7 @@
 
       <!-- TOPBAR SUPERIOR HEADER -->
       <nav
-        class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar sticky-top pl-2 pr-2 h-custom main-header-nav"
-        [class.ml-3]="tipoNavegacion === 'sidebar'" [class.mr-3]="tipoNavegacion === 'sidebar'">
+        class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar sticky-top pl-2 pr-2 h-custom main-header-nav">
         <div class="d-flex align-items-center justify-content-between w-100">
 
           <!-- LADO IZQUIERDO: Botón Sidebar o Brand Logo -->
@@ -459,8 +458,6 @@
 
       <!-- BREADCRUMBS -->
       <div class="topbar-secondary-sticky custom-breadcrum pl-4 pr-4 d-flex align-items-center"
-        [class.ml-3]="tipoNavegacion === 'sidebar'" [class.mr-3]="tipoNavegacion === 'sidebar'"
-        [class.border-custom-breadcrumb]="tipoNavegacion === 'sidebar'"
         [style.top]="tipoNavegacion === 'navbar' ? 'calc(4rem + ' + navBarHeight + 'px)' : '4rem'">
         <span class="d-flex align-items-center my-n2 ml-2 mr-2" style="cursor: pointer;">
           <app-globales-breadcrumbs></app-globales-breadcrumbs>

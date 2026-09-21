@@ -626,7 +626,11 @@
   }
 }
 
-.border-custom-breadcrumb {
+.border-custom-top-breadcrumb {
+  border-top-right-radius: 1rem !important;
+  border-top-left-radius: 1rem !important;
+}
+.border-custom-bottom-breadcrumb {
   border-bottom-right-radius: 1rem !important;
   border-bottom-left-radius: 1rem !important;
 }
