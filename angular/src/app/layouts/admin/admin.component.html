@@ -325,12 +325,11 @@
       <!-- NAVBAR SUPERIOR STICKY -->
       @if (tipoNavegacion === 'navbar') {
       <nav #navBarAzul class="top-horizontal-navbar bg-background-side-custom sticky-top shadow-sm">
-        <ul class="nav nav-pills align-items-center px-3 justify-content-center">
+        <ul class="nav nav-pills align-items-center px-3 justify-content-center my-2">
 
           <li class="nav-item">
-            <a class="nav-link bg_side_text d-flex align-items-center gap-2 px-3 py-2"
-              data-toggle="dropdown" role="button" aria-expanded="false"
-              [routerLink]="LAYOUT_ADMIN_PAGE_MENU"
+            <a class="nav-link bg_side_text d-flex align-items-center gap-2 px-3 py-2" data-toggle="dropdown"
+              role="button" aria-expanded="false" [routerLink]="LAYOUT_ADMIN_PAGE_MENU"
               [class.active-dropdown]="isRouteActive(LAYOUT_ADMIN_PAGE_MENU, true)">
               <i class="fa fa-th" aria-hidden="true"></i>
               <span>{{ 'mod-main.PAGES_MENU' | translate }}</span>
@@ -475,7 +474,7 @@
       }
 
       <!-- BREADCRUMBS -->
-      <div class="topbar-secondary-sticky custom-breadcrum pl-4 pr-4 d-flex align-items-center"
+      <div class="topbar-secondary-sticky custom-breadcrum pl-4 pr-4 d-flex align-items-center" 
         [style.top]="tipoNavegacion === 'navbar' ? 'calc(4rem + ' + navBarHeight + 'px)' : '4rem'">
         <span class="d-flex align-items-center my-n2 ml-2 mr-2" style="cursor: pointer;">
           <app-globales-breadcrumbs></app-globales-breadcrumbs>
@@ -483,8 +482,10 @@
       </div>
 
       <!-- CONTENIDO PRINCIPAL -->
-      <div id="content" class="container-fluid">
-        <div class="p-1 mt-4">
+      <!-- Inyectamos la variable --offset-botoneria para que las tablas hijas la lean -->
+      <div id="content" class="container-fluid" 
+        [style.--offset-botoneria]="tipoNavegacion === 'navbar' ? 'calc(4rem + ' + navBarHeight + 'px + 1.8rem)' : 'calc(4rem + 1rem)'">
+        <div class="p-1 mt-2">
           <router-outlet></router-outlet>
         </div>
       </div>

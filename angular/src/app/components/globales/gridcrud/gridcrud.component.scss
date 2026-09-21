@@ -21,8 +21,8 @@
   z-index: 1;
   background-color: var(--grid_table_crud-background_color) !important;
   
+  top: calc( var(--offset-botoneria) + 1rem) !important;
   @media (max-width: 768px) {
-    top: var(--layout-topbar-height-mobil) !important;
   }
 
   width: 100%;
