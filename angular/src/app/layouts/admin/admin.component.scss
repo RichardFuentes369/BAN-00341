@@ -71,12 +71,6 @@
   height: 100vh;
   overflow: hidden;
   position: relative;
-
-  &.layout-navbar-mode {
-    #accordionSidebar {
-      display: none !important;
-    }
-  }
 }
 
 #content-wrapper {
@@ -136,6 +130,27 @@
   position: sticky;
   top: 4rem;
   z-index: 1030 !important;
+
+  /* Animación de entrada/salida del navbar superior */
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 10rem;
+  overflow: visible;
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  will-change: opacity, transform, max-height;
+
+  &.navigation-navbar-hidden {
+    opacity: 0;
+    transform: translateY(-1.5rem);
+    max-height: 0 !important;
+    pointer-events: none;
+    /* Se remueve "overflow: hidden !important" dinámico que cortaba la animación */
+  }
 
   .nav-pills {
     scrollbar-width: thin;
@@ -215,6 +230,34 @@
   display: flex;
   flex-direction: column;
 
+  /*
+   * El sidebar permanece en el DOM para poder animar su aparición
+   * y desaparición al cambiar entre Sidebar y Navbar.
+   */
+  width: 14rem;
+  opacity: 1;
+  transform: translateX(0);
+  overflow: visible;
+
+  transition:
+    width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease,
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  will-change: width, opacity, transform;
+
+  &.navigation-sidebar-hidden {
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    opacity: 0;
+    transform: translateX(-2rem);
+    overflow: hidden !important;
+    pointer-events: none;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
   .sidebar-brand {
     height: 4rem;
     display: flex;
@@ -231,7 +274,10 @@
   }
 
   @media (min-width: 769px) {
-    transition: width 0.3s ease-in-out;
+    transition:
+      width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.25s ease,
+      transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 
     .nav-item {
       .nav-link {
@@ -386,12 +432,21 @@
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
     will-change: transform;
 
+    &.navigation-sidebar-hidden {
+      width: 100vw !important;
+      max-width: 100vw !important;
+      min-width: 100vw !important;
+      transform: translateX(-100%) !important;
+      opacity: 0;
+      pointer-events: none !important;
+    }
+
     &.toggled {
       transform: translateX(-100%) !important;
       pointer-events: none !important;
     }
 
-    &:not(.toggled) {
+    &:not(.toggled):not(.navigation-sidebar-hidden) {
       transform: translateX(0) !important;
       pointer-events: auto !important;
       padding-bottom: 3rem;
@@ -512,6 +567,60 @@
   &:hover {
     background-color: var(--layout-admin-side_dropdown_hover_background) !important;
     color: var(--layout-admin-side_dropdawn_text_color) !important;
+  }
+}
+
+.logo-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  /* Transición compartida para la animación de entrada y salida */
+  .menu-toggle-btn,
+  .navbar-brand-logo {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+    visibility: visible;
+    transition: 
+      opacity 0.35s ease-in-out,
+      transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      visibility 0.35s ease-in-out;
+    will-change: opacity, transform, visibility;
+  }
+
+  /* Animación interna específica del logo y texto */
+  .navbar-brand-logo {
+    .logo-img-wrapper,
+    .logo-container {
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+    }
+
+    /* ESTADO DESAPARECER (SALIDA) */
+    &.is-hidden {
+      position: absolute; /* Evita que ocupe espacio mientras sale */
+      left: 0;
+      opacity: 0;
+      transform: scale(0.85) translateX(-15px);
+      visibility: hidden;
+      pointer-events: none;
+
+      .logo-container {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+    }
+  }
+
+  /* ESTADO DESAPARECER DEL BOTÓN HAMBURGUESA */
+  .menu-toggle-btn {
+    &.is-hidden {
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      transform: scale(0.6) rotate(-90deg);
+      visibility: hidden;
+      pointer-events: none;
+    }
   }
 }
 

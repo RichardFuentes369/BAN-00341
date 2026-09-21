@@ -206,11 +206,39 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Alterna entre la navegación Lateral (Sidebar) y Superior (Navbar)
   cambiarTipoNavegacion(tipo: 'sidebar' | 'navbar'): void {
-    this.tipoNavegacion = tipo;
-    if (tipo === 'sidebar') {
-      this.navBarHeight = 0;
+    // Evitamos ejecutar la transición si ya estamos en el modo seleccionado.
+    if (this.tipoNavegacion === tipo) {
+      return;
     }
+
+    this.tipoNavegacion = tipo;
+
+    // Cerramos cualquier submenu antes de iniciar la transición.
     this.cerrarTodosLosSubmenus();
+
+    if (tipo === 'sidebar') {
+      // El breadcrumb ya no depende de la altura del navbar superior.
+      this.navBarHeight = 0;
+      return;
+    }
+
+    // El navbar permanece en el DOM y se anima mediante CSS.
+    // Esperamos dos frames para que el navegador haya aplicado
+    // la nueva clase antes de leer su altura real.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const element = this._navBarAzulElement?.nativeElement as HTMLElement | undefined;
+
+        if (element) {
+          const newHeight = element.offsetHeight;
+
+          if (this.navBarHeight !== newHeight) {
+            this.navBarHeight = newHeight;
+            this.cdRef.markForCheck();
+          }
+        }
+      });
+    });
   }
 
   upperFirst(texto: string) {

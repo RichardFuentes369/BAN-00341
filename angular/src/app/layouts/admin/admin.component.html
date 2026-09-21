@@ -1,9 +1,8 @@
 <div id="wrapper" [class.layout-navbar-mode]="tipoNavegacion === 'navbar'">
 
-  <!-- SIDEBAR LATERAL (Solo se muestra si tipoNavegacion === 'sidebar') -->
-  @if (tipoNavegacion === 'sidebar') {
+  <!-- SIDEBAR LATERAL -->
   <ul class="navbar-nav bg-background-side-custom sidebar sidebar-dark accordion" [class.toggled]="minimizarSliderbar"
-    id="accordionSidebar">
+    [class.navigation-sidebar-hidden]="tipoNavegacion !== 'sidebar'" id="accordionSidebar">
 
     <!-- LOGO & BRAND AREA -->
     <a class="nav-link d-flex align-items-center justify-content-center flex-column flex-md-row"
@@ -215,7 +214,6 @@
     </div>
 
   </ul>
-  }
 
   <div id="content-wrapper" class="d-flex flex-column">
     <div id="content-scroll-area">
@@ -226,15 +224,17 @@
         <div class="d-flex align-items-center justify-content-between w-100">
 
           <!-- LADO IZQUIERDO: Botón Sidebar o Brand Logo -->
-          <div class="d-flex align-items-center">
-            @if (tipoNavegacion === 'sidebar') {
-            <i class="mx-4 icon_menu_bar fa fa-bars my-auto color_icons" style="cursor: pointer;"
+          <div class="d-flex align-items-center logo-wrapper">
+            <!-- Botón de Hamburguesa para Sidebar -->
+            <i class="mx-4 icon_menu_bar fa fa-bars my-auto color_icons menu-toggle-btn"
+              [class.is-hidden]="tipoNavegacion !== 'sidebar'" style="cursor: pointer;"
               (click)="mostrarMenuLateral()"></i>
-            } @else {
+
             <!-- Brand Logo en modo Navbar Superior -->
-            <a class="nav-link d-flex align-items-center justify-content-center flex-md-row p-0"
-              routerLinkActive="active" [routerLink]="LAYOUT_PAGE_DASHBOARD">
-              <div class="bg-white rounded-5" style="position: relative; z-index: 1;">
+            <a class="nav-link d-flex align-items-center justify-content-center flex-md-row p-0 navbar-brand-logo"
+              [class.is-hidden]="tipoNavegacion === 'sidebar'" routerLinkActive="active"
+              [routerLink]="LAYOUT_PAGE_DASHBOARD">
+              <div class="bg-white rounded-5 logo-img-wrapper" style="position: relative; z-index: 1;">
                 <img src="assets/images/img_logo.png" alt="Logo" width="50">
               </div>
 
@@ -246,7 +246,6 @@
                 </span>
               </div>
             </a>
-            }
           </div>
 
           <!-- LADO DERECHO: Menú de Opciones y Usuario -->
@@ -323,8 +322,8 @@
       </nav>
 
       <!-- NAVBAR SUPERIOR STICKY -->
-      @if (tipoNavegacion === 'navbar') {
-      <nav #navBarAzul class="top-horizontal-navbar bg-background-side-custom sticky-top shadow-sm">
+      <nav #navBarAzul class="top-horizontal-navbar bg-background-side-custom sticky-top shadow-sm"
+        [class.navigation-navbar-hidden]="tipoNavegacion !== 'navbar'">
         <ul class="nav nav-pills align-items-center px-3 justify-content-center my-2">
 
           <li class="nav-item">
@@ -471,10 +470,9 @@
 
         </ul>
       </nav>
-      }
 
       <!-- BREADCRUMBS -->
-      <div class="topbar-secondary-sticky custom-breadcrum pl-4 pr-4 d-flex align-items-center" 
+      <div class="topbar-secondary-sticky custom-breadcrum pl-4 pr-4 d-flex align-items-center"
         [style.top]="tipoNavegacion === 'navbar' ? 'calc(4rem + ' + navBarHeight + 'px)' : '4rem'">
         <span class="d-flex align-items-center my-n2 ml-2 mr-2" style="cursor: pointer;">
           <app-globales-breadcrumbs></app-globales-breadcrumbs>
@@ -483,7 +481,7 @@
 
       <!-- CONTENIDO PRINCIPAL -->
       <!-- Inyectamos la variable --offset-botoneria para que las tablas hijas la lean -->
-      <div id="content" class="container-fluid" 
+      <div id="content" class="container-fluid"
         [style.--offset-botoneria]="tipoNavegacion === 'navbar' ? 'calc(4rem + ' + navBarHeight + 'px + 1.8rem)' : 'calc(4rem + 1rem)'">
         <div class="p-1 mt-2">
           <router-outlet></router-outlet>
