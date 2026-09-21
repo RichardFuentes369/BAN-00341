@@ -24,7 +24,7 @@ export const PATH_ADMIN_MONTH = 'month';
 export const TITLE_PATH_ADMIN_MONTH = 'Mes';
 export const BREADCRUMB_PATH_ADMIN_MONTH = 'mod-merma.PAGE_MONTHS_TITLE';
 
-export const MOD_MERMA_PAGE_TIPOS =  '/admin/mod/merma/tipos/';
+export const MOD_MERMA_PAGE_TIPOS =  '/admin/mod/merma/tipos';
 export const MOD_MERMA_PAGE_REGISTRO =  '/admin/mod/merma/registro';
 export const MOD_MERMA_PAGE_HISTORICO =  '/admin/mod/merma/historico';
 export const MOD_MERMA_PAGE_HISTORICO_YEAR =  '/admin/mod/merma/historico/year';

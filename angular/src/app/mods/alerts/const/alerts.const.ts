@@ -9,8 +9,8 @@ export const PATH_ADMIN_STOCK = 'stock';
 export const TITLE_PATH_ADMIN_STOCK = 'Stock';
 export const BREADCRUMB_PATH_ADMIN_STOCK = 'mod-alerts.PAGE_STOCK_TITLE';
 
-export const MOD_ALERT_PAGE_EXPIRATION =  '/admin/mod/alerts/expiration/';
-export const MOD_ALERT_PAGE_STOCK =  '/admin/mod/alerts/stock/';
+export const MOD_ALERT_PAGE_EXPIRATION =  '/admin/mod/alerts/expiration';
+export const MOD_ALERT_PAGE_STOCK =  '/admin/mod/alerts/stock';
 
 export const FILTRO_ALERTS_S_COMPONENT = 'FiltroAlertsSStockComponent';
 export const FILTRO_ALERTS_V_COMPONENT = 'FiltroAlertsVComponent';

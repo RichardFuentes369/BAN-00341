@@ -18,8 +18,8 @@ export const PATH_SALERETURN_RETURNS = 'returns';
 export const TITLE_PATH_SALERETURN_RETURNS = 'Devoluciones';
 export const BREADCRUMB_PATH_SALERETURN_RETURNS = 'mod-salereturn.PAGE_TITLE_RETURN';
 
-export const MOD_SALERETURN_PAGE_SALE =  '/admin/mod/salereturn/sales/';
-export const MOD_SALERETURN_PAGE_RETURN =  '/admin/mod/salereturn/returns/';
+export const MOD_SALERETURN_PAGE_SALE =  '/admin/mod/salereturn/sales';
+export const MOD_SALERETURN_PAGE_RETURN =  '/admin/mod/salereturn/returns';
 
 export const VER_SALE_COMPONENT =  'VerSaleComponent';
 export const FILTRO_SOLD_COMPONENT =  'FiltroSoldComponent';

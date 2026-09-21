@@ -273,10 +273,19 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  isRouteActive(routePath: string | any[]): boolean {
+  isRouteActive(routePath: string | any[], exact: boolean = false): boolean {
     if (!routePath) return false;
-    const path = Array.isArray(routePath) ? routePath.join('/') : routePath;
-    return this.router.url.includes(path);
+
+    const urlTree = Array.isArray(routePath)
+      ? this.router.createUrlTree(routePath)
+      : this.router.createUrlTree([routePath]);
+
+    return this.router.isActive(urlTree, {
+      paths: exact ? 'exact' : 'subset',
+      queryParams: 'ignored',
+      fragment: 'ignored',
+      matrixParams: 'ignored'
+    });
   }
 
   tienePermiso(modulo: string, submodulo?: string, jerarquia: number = 0): boolean {

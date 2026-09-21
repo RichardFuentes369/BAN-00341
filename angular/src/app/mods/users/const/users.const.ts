@@ -22,9 +22,9 @@ export const PATH_ASSIGN_ADMIN_USERS = 'asignar-administrador';
 export const TITLE_PATH_ASSIGN_ADMIN_USERS = 'Asignar usuario administrador';
 export const BREADCRUMB_PATH_ASSIGN_ADMIN_USERS = 'mod-users.ASSIGMENT_ADMIN_TITLE_BREADCRUMB';
 
-export const MOD_USER_PAGE_ADMIN_ASSIGMENT =  '/admin/mod/users/administradores/asignar-administrador/';
-export const MOD_USER_PAGE_ADMIN =  '/admin/mod/users/administradores/';
-export const MOD_USER_PAGE_FINAL =  '/admin/mod/users/finales/';
+export const MOD_USER_PAGE_ADMIN_ASSIGMENT =  '/admin/mod/users/administradores/asignar-administrador';
+export const MOD_USER_PAGE_ADMIN =  '/admin/mod/users/administradores';
+export const MOD_USER_PAGE_FINAL =  '/admin/mod/users/finales';
 
 export const CREAR_USUARIO_COMPONENT = 'CrearUsuariosComponent';
 export const VER_PERMISOS_COMPONENT = 'VerPermisosComponent';
