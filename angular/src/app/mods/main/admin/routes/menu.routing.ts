@@ -125,7 +125,7 @@
       path: PATH_SALE_RETURN,
       title: TITLE_PATH_SALE_RETURN,
       data: { breadcrumb: BREADCRUMB_PATH_SALE_RETURN },
-      loadChildren: () => import('@mod/sale_and_return/admin/routes/index.routing').then(x=>x.SaleReturnRoutes),
+      loadChildren: () => import('@mod/sale_and_return/admin/routes/sale.routing').then(x=>x.SaleReturnRoutes),
       canActivate: [
         adminGuard
       ]

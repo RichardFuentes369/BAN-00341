@@ -321,7 +321,7 @@
       width: 7rem !important;
       overflow: visible !important;
 
-      .logo-container{
+      .logo-container {
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
@@ -581,7 +581,7 @@
     opacity: 1;
     transform: scale(1) translateX(0);
     visibility: visible;
-    transition: 
+    transition:
       opacity 0.35s ease-in-out,
       transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
       visibility 0.35s ease-in-out;
@@ -590,6 +590,7 @@
 
   /* Animación interna específica del logo y texto */
   .navbar-brand-logo {
+
     .logo-img-wrapper,
     .logo-container {
       transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
@@ -597,7 +598,8 @@
 
     /* ESTADO DESAPARECER (SALIDA) */
     &.is-hidden {
-      position: absolute; /* Evita que ocupe espacio mientras sale */
+      position: absolute;
+      /* Evita que ocupe espacio mientras sale */
       left: 0;
       opacity: 0;
       transform: scale(0.85) translateX(-15px);
@@ -622,6 +624,11 @@
       pointer-events: none;
     }
   }
+}
+
+.border-custom-breadcrumb {
+  border-bottom-right-radius: 1rem !important;
+  border-bottom-left-radius: 1rem !important;
 }
 
 ::ng-deep {

@@ -169,11 +169,6 @@
             'mod-salereturn.BUTTON_SALE' |
             translate}}</a>
           }
-          @if(tienePermiso('ventas_y_devoluciones', 'devoluciones', 1)){
-          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_SALERETURN_PAGE_RETURN">{{
-            'mod-salereturn.BUTTON_RETURN' |
-            translate}}</a>
-          }
         </div>
       </div>
     </li>
@@ -220,7 +215,8 @@
 
       <!-- TOPBAR SUPERIOR HEADER -->
       <nav
-        class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar sticky-top pl-2 pr-2 h-custom main-header-nav">
+        class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar sticky-top pl-2 pr-2 h-custom main-header-nav"
+        [class.ml-3]="tipoNavegacion === 'sidebar'" [class.mr-3]="tipoNavegacion === 'sidebar'">
         <div class="d-flex align-items-center justify-content-between w-100">
 
           <!-- LADO IZQUIERDO: Botón Sidebar o Brand Logo -->
@@ -323,7 +319,8 @@
 
       <!-- NAVBAR SUPERIOR STICKY -->
       <nav #navBarAzul class="top-horizontal-navbar bg-background-side-custom sticky-top shadow-sm"
-        [class.navigation-navbar-hidden]="tipoNavegacion !== 'navbar'">
+        [class.navigation-navbar-hidden]="tipoNavegacion !== 'navbar'" [class.ml-3]="tipoNavegacion === 'sidebar'"
+        [class.mr-3]="tipoNavegacion === 'sidebar'">
         <ul class="nav nav-pills align-items-center px-3 justify-content-center my-2">
 
           <li class="nav-item">
@@ -426,23 +423,12 @@
 
           <!-- MODULO VENTAS Y DEVOLUCIONES -->
           @if(tienePermiso('ventas_y_devoluciones', '', 0)){
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle bg_side_text d-flex align-items-center gap-2 px-3 py-2"
-              data-toggle="dropdown" role="button" aria-expanded="false"
-              [class.active-dropdown]="isRouteActive(MOD_SALERETURN_PAGE_SALE) || isRouteActive(MOD_SALERETURN_PAGE_RETURN)">
+          <li class="nav-item">
+            <a class="nav-link bg_side_text d-flex align-items-center gap-2 px-3 py-2"
+              [routerLink]="MOD_SALERETURN_PAGE_SALE" routerLinkActive="active">
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-              <span>{{ 'mod-main.PAGE_SALE' | translate }}</span>
+              <span>{{ 'mod-salereturn.BUTTON_SALE' | translate }}</span>
             </a>
-            <div class="dropdown-menu shadow border-0">
-              @if(tienePermiso('ventas_y_devoluciones', 'ventas', 1)){
-              <a class="dropdown-item" [routerLink]="MOD_SALERETURN_PAGE_SALE" routerLinkActive="active">{{
-                'mod-salereturn.BUTTON_SALE' | translate}}</a>
-              }
-              @if(tienePermiso('ventas_y_devoluciones', 'devoluciones', 1)){
-              <a class="dropdown-item" [routerLink]="MOD_SALERETURN_PAGE_RETURN" routerLinkActive="active">{{
-                'mod-salereturn.BUTTON_RETURN' | translate}}</a>
-              }
-            </div>
           </li>
           }
 
@@ -473,6 +459,8 @@
 
       <!-- BREADCRUMBS -->
       <div class="topbar-secondary-sticky custom-breadcrum pl-4 pr-4 d-flex align-items-center"
+        [class.ml-3]="tipoNavegacion === 'sidebar'" [class.mr-3]="tipoNavegacion === 'sidebar'"
+        [class.border-custom-breadcrumb]="tipoNavegacion === 'sidebar'"
         [style.top]="tipoNavegacion === 'navbar' ? 'calc(4rem + ' + navBarHeight + 'px)' : '4rem'">
         <span class="d-flex align-items-center my-n2 ml-2 mr-2" style="cursor: pointer;">
           <app-globales-breadcrumbs></app-globales-breadcrumbs>
@@ -482,7 +470,7 @@
       <!-- CONTENIDO PRINCIPAL -->
       <!-- Inyectamos la variable --offset-botoneria para que las tablas hijas la lean -->
       <div id="content" class="container-fluid"
-        [style.--offset-botoneria]="tipoNavegacion === 'navbar' ? 'calc(4rem + ' + navBarHeight + 'px + 1.8rem)' : 'calc(4rem + 1rem)'">
+        [style.--offset-botoneria]="tipoNavegacion === 'navbar' ? 'calc(4rem + ' + navBarHeight + 'px)' : 'calc(4rem + ' + navBarHeight + 'px)'">
         <div class="p-1 mt-2">
           <router-outlet></router-outlet>
         </div>

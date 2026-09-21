@@ -32,7 +32,7 @@ import { MOD_USER_PAGE_ADMIN, MOD_USER_PAGE_FINAL } from '@mod/users/const/users
 import { MOD_CATEGORY_PAGE_BRAND, MOD_CATEGORY_PAGE_EXTENT, MOD_CATEGORY_PAGE_PRODUCT, MOD_CATEGORY_PAGE_SUPPLIER } from '@mod/catalog/const/catalog.const';
 import { MOD_MERMA_PAGE_HISTORICO, MOD_MERMA_PAGE_REGISTRO, MOD_MERMA_PAGE_TIPOS } from '@mod/merma/const/loss.conts';
 import { MOD_ALERT_PAGE_EXPIRATION, MOD_ALERT_PAGE_STOCK } from '@mod/alerts/const/alerts.const';
-import { MOD_SALERETURN_PAGE_RETURN, MOD_SALERETURN_PAGE_SALE } from '@mod/sale_and_return/const/sale_and_return.const';
+import { MOD_SALERETURN_PAGE_SALE } from '@mod/sale_and_return/const/sale_and_return.const';
 
 import { AuthService } from '@guard/service/auth.service';
 import { PrincipalService } from '@mod/users/admin/pages/principal/service/principal.service';
@@ -86,7 +86,6 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
   public MOD_ALERT_PAGE_STOCK = MOD_ALERT_PAGE_STOCK;
 
   public MOD_SALERETURN_PAGE_SALE = MOD_SALERETURN_PAGE_SALE;
-  public MOD_SALERETURN_PAGE_RETURN = MOD_SALERETURN_PAGE_RETURN;
 
   public ADMIN_PAGE_MENU_PERSMISSION_MODULES = ADMIN_PAGE_MENU_PERSMISSION_MODULES;
   public ADMIN_PAGE_MENU_PERSMISSION_WAREHOUSE = ADMIN_PAGE_MENU_PERSMISSION_WAREHOUSE;

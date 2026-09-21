@@ -17,19 +17,13 @@
 
 .sticky-header {
   position: sticky;
-  top: var(--layout-topbar-height-web) !important;
-  z-index: 1;
+  z-index: 10;
   background-color: var(--grid_table_crud-background_color) !important;
-  
-  top: calc( var(--offset-botoneria) + 1rem) !important;
-  @media (max-width: 768px) {
-  }
-
   width: 100%;
-  // padding: 1.1rem 0;
-  // padding-top: 46px;
   padding-bottom: 5px;
-  /* Ajustado para dar aire similar a la tabla */
+
+  /* Valor únicamente para pantallas de PC */
+  top: calc(var(--offset-botoneria) + 2.5rem) !important;
 }
 
 /* BOTONES ESTILO LINK (Como en la tabla) */
