@@ -123,14 +123,19 @@
   }
 }
 
+.main-header-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1040;
+}
+
 /* ==========================================================================
    3. NAVBAR SUPERIOR STICKY (Navegación horizontal justo encima del breadcrumb)
    ========================================================================== */
 .top-horizontal-navbar {
   position: sticky;
-  top: 4rem; // Permanece debajo del header principal (height: 4rem)
-  z-index: 1020;
-  border-bottom: 1px solid var(--layout-admin-side_line_color_separator, rgba(255, 255, 255, 0.1));
+  top: 4rem;
+  z-index: 1030 !important;
 
   .nav-pills {
     scrollbar-width: thin;
@@ -142,6 +147,10 @@
     &::-webkit-scrollbar-thumb {
       background-color: rgba(255, 255, 255, 0.2);
       border-radius: 3px;
+    }
+
+    .dropdown-menu {
+      z-index: 1050 !important;
     }
   }
 
@@ -165,7 +174,8 @@
       color: #000000 !important;
       font-weight: 600;
 
-      i, span {
+      i,
+      span {
         color: #000000 !important;
       }
     }
@@ -265,8 +275,7 @@
       width: 5rem !important;
       overflow: visible !important;
 
-      .logo-container,
-      .sidebar-heading {
+      .logo-container{
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
@@ -471,17 +480,9 @@
    ========================================================================== */
 .topbar-secondary-sticky {
   position: sticky;
-  // Si está activo el navbar, la barra de breadcrumb se fija justo debajo de este (4rem topbar + 2.8rem navbar)
-  #wrapper.layout-navbar-mode & {
-    top: 6.8rem;
-  }
-  // En modo sidebar se mantiene pegada a la topbar principal
-  #wrapper:not(.layout-navbar-mode) & {
-    top: 4rem;
-  }
-
-  z-index: 1010;
+  z-index: 1020;
   padding: 0.25rem;
+  top: 4rem;
 }
 
 @media (max-width: 991.98px) {

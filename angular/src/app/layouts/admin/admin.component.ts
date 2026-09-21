@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
@@ -57,7 +57,7 @@ import { VarsService } from '@service/globales/vars/vars.service';
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public NAME_PAGE = NAME_PAGE;
   public LAYOUT_PAGE_DASHBOARD = LAYOUT_PAGE_DASHBOARD;
@@ -98,7 +98,22 @@ export class AdminComponent implements OnInit {
   public LAYOUT_ADMIN_PAGE_CATALOG = LAYOUT_ADMIN_PAGE_CATALOG;
   public LAYOUT_ADMIN_PAGE_ALERT = LAYOUT_ADMIN_PAGE_ALERT;
 
-  public tipoNavegacion: 'sidebar' | 'navbar' = 'sidebar';
+  public tipoNavegacion: 'sidebar' | 'navbar' = 'navbar';
+  public navBarHeight: number = 0;
+  private _navBarAzulElement?: ElementRef;
+
+
+  @ViewChild('navBarAzul') set navBarAzul(element: ElementRef | undefined) {
+    this._navBarAzulElement = element;
+    if (element) {
+      this.iniciarObservador(element.nativeElement);
+    } else {
+      this.destruirObservador();
+      this.navBarHeight = 0;
+    }
+  }
+
+  private resizeObserver?: ResizeObserver;
 
   minimizarSliderbar: boolean = true;
   nombreModulo: string = '';
@@ -118,8 +133,46 @@ export class AdminComponent implements OnInit {
     private settingsService: SettingsService,
     private permisosService: PermisosService,
     private varService: VarService,
-    private varsService: VarsService
+    private varsService: VarsService,
+    private cdRef: ChangeDetectorRef
   ) { }
+
+  ngAfterViewInit() {
+  }
+
+  iniciarObservador(element: HTMLElement) {
+    this.destruirObservador();
+
+    if (typeof ResizeObserver !== 'undefined') {
+      this.resizeObserver = new ResizeObserver(entries => {
+        for (const entry of entries) {
+          // Usamos la medida nativa entregada por ResizeObserver
+          const newHeight = entry.borderBoxSize?.[0]?.blockSize ?? entry.target.clientHeight;
+
+          // Evitamos errores de Change Detection ejecutando la actualización en el siguiente tick
+          queueMicrotask(() => {
+            if (this.navBarHeight !== newHeight) {
+              this.navBarHeight = newHeight;
+              this.cdRef.markForCheck(); // Notifica a Angular del cambio de forma segura
+            }
+          });
+        }
+      });
+
+      this.resizeObserver.observe(element);
+    }
+  }
+
+  destruirObservador() {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver = undefined;
+    }
+  }
+
+  ngOnDestroy() {
+    this.destruirObservador();
+  }
 
   async ngOnInit() {
     this.router.events.pipe(
@@ -154,6 +207,9 @@ export class AdminComponent implements OnInit {
   // Alterna entre la navegación Lateral (Sidebar) y Superior (Navbar)
   cambiarTipoNavegacion(tipo: 'sidebar' | 'navbar'): void {
     this.tipoNavegacion = tipo;
+    if (tipo === 'sidebar') {
+      this.navBarHeight = 0;
+    }
     this.cerrarTodosLosSubmenus();
   }
 

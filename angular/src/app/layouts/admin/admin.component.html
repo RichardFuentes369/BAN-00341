@@ -32,7 +32,7 @@
 
     <hr class="sidebar-divider bg-line-separator-customer">
 
-    <div class="sidebar-heading">
+    <div class="sidebar-heading text-center">
       {{ 'layout-admin.WORD_MODULES' | translate}}
     </div>
 
@@ -49,10 +49,12 @@
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
         <div class="bg-white py-2 collapse-inner my-0 rounded">
           @if(tienePermiso('usuarios', 'administradores', 1)){
-          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_USER_PAGE_ADMIN">{{ 'mod-users.BUTTON_ADMIN' | translate }}</a>
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_USER_PAGE_ADMIN">{{
+            'mod-users.BUTTON_ADMIN' | translate }}</a>
           }
           @if(tienePermiso('usuarios', 'finales', 1)){
-          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_USER_PAGE_FINAL">{{ 'mod-users.BUTTON_FINAL' | translate }}</a>
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_USER_PAGE_FINAL">{{
+            'mod-users.BUTTON_FINAL' | translate }}</a>
           }
         </div>
       </div>
@@ -73,19 +75,23 @@
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
         <div class="bg-white py-2 collapse-inner my-0 rounded">
           @if(tienePermiso('catalogo', 'proveedores', 1)){
-          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_CATEGORY_PAGE_SUPPLIER">{{ 'mod-catalog.BUTTON_SUPPLIER' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_CATEGORY_PAGE_SUPPLIER">{{
+            'mod-catalog.BUTTON_SUPPLIER' |
             translate}}</a>
           }
           @if(tienePermiso('catalogo', 'productos', 1)){
-          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_CATEGORY_PAGE_PRODUCT">{{ 'mod-catalog.BUTTON_PRODUCT' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_CATEGORY_PAGE_PRODUCT">{{
+            'mod-catalog.BUTTON_PRODUCT' |
             translate}}</a>
           }
           @if(tienePermiso('catalogo', 'marcas', 1)){
-          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_CATEGORY_PAGE_BRAND">{{ 'mod-catalog.BUTTON_BRAND' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_CATEGORY_PAGE_BRAND">{{
+            'mod-catalog.BUTTON_BRAND' |
             translate}}</a>
           }
           @if(tienePermiso('catalogo', 'unidad_de_medida', 1)){
-          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_CATEGORY_PAGE_EXTENT">{{ 'mod-catalog.BUTTON_EXTENT' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_CATEGORY_PAGE_EXTENT">{{
+            'mod-catalog.BUTTON_EXTENT' |
             translate}}</a>
           }
         </div>
@@ -106,7 +112,8 @@
       <div id="collapseWarehouse" class="collapse" aria-labelledby="headingWarehouse"
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
         <div class="bg-white py-2 collapse-inner my-0 rounded">
-          <a class="collapse-item" routerLinkActive="active" [routerLink]="LAYOUT_ADMIN_PAGE_WAREHOUSE">{{ 'mod-main.PAGE_WAREHOUSE' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="LAYOUT_ADMIN_PAGE_WAREHOUSE">{{
+            'mod-main.PAGE_WAREHOUSE' |
             translate}}</a>
         </div>
       </div>
@@ -129,13 +136,16 @@
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
         <div class="bg-white py-2 collapse-inner my-0 rounded">
           @if(tienePermiso('merma', 'tipo_merma', 1)){
-          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_MERMA_PAGE_TIPOS">{{ 'mod-merma.BUTTON_TYPE' | translate}}</a>
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_MERMA_PAGE_TIPOS">{{
+            'mod-merma.BUTTON_TYPE' | translate}}</a>
           }
           @if(tienePermiso('merma', 'registro_merma', 1)){
-          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_MERMA_PAGE_REGISTRO">{{ 'mod-merma.BUTTON_RECORD' | translate}}</a>
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_MERMA_PAGE_REGISTRO">{{
+            'mod-merma.BUTTON_RECORD' | translate}}</a>
           }
           @if(tienePermiso('merma', 'historico_merma', 1)){
-          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_MERMA_PAGE_HISTORICO">{{ 'mod-merma.BUTTON_HISTORY' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_MERMA_PAGE_HISTORICO">{{
+            'mod-merma.BUTTON_HISTORY' |
             translate}}</a>
           }
         </div>
@@ -156,11 +166,13 @@
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
         <div class="bg-white py-2 collapse-inner my-0 rounded">
           @if(tienePermiso('ventas_y_devoluciones', 'ventas', 1)){
-          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_SALERETURN_PAGE_SALE">{{ 'mod-salereturn.BUTTON_SALE' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_SALERETURN_PAGE_SALE">{{
+            'mod-salereturn.BUTTON_SALE' |
             translate}}</a>
           }
           @if(tienePermiso('ventas_y_devoluciones', 'devoluciones', 1)){
-          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_SALERETURN_PAGE_RETURN">{{ 'mod-salereturn.BUTTON_RETURN' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_SALERETURN_PAGE_RETURN">{{
+            'mod-salereturn.BUTTON_RETURN' |
             translate}}</a>
           }
         </div>
@@ -182,11 +194,13 @@
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
         <div class="bg-white py-2 collapse-inner my-0 rounded">
           @if(tienePermiso('alertas', 'alerta_caducidad', 1)){
-          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_ALERT_PAGE_EXPIRATION">{{ 'mod-alerts.BUTTON_EXPIRATION' |
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_ALERT_PAGE_EXPIRATION">{{
+            'mod-alerts.BUTTON_EXPIRATION' |
             translate }}</a>
           }
           @if(tienePermiso('alertas', 'alerta_stock', 1)){
-          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_ALERT_PAGE_STOCK">{{ 'mod-alerts.BUTTON_STOCK' | translate }}</a>
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_ALERT_PAGE_STOCK">{{
+            'mod-alerts.BUTTON_STOCK' | translate }}</a>
           }
         </div>
       </div>
@@ -208,25 +222,39 @@
 
       <!-- TOPBAR SUPERIOR HEADER -->
       <nav
-        class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar static-top sticky-top pl-2 pr-2 h-custom">
-        <ul class="navbar-nav mr-auto d-flex align-items-center w-100">
+        class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar sticky-top pl-2 pr-2 h-custom main-header-nav">
+        <div class="d-flex align-items-center justify-content-between w-100">
 
-          @if (tipoNavegacion === 'sidebar') {
-          <i class="mx-4 icon_menu_bar fa fa-bars my-auto color_icons" style="cursor: pointer;"
-            (click)="mostrarMenuLateral()"></i>
-          } @else {
-          <!-- Brand Logo en modo Navbar Superior -->
-          <a class="navbar-brand d-flex align-items-center mr-3 py-0" [routerLink]="LAYOUT_PAGE_DASHBOARD">
-            <img src="assets/images/img_logo.png" alt="" width="35" class="rounded-circle bg-white p-1">
-            <span class="text-white font-weight-bold ml-2 d-none d-sm-inline-block small" [innerHTML]="nameApp"></span>
-          </a>
-          }
+          <!-- LADO IZQUIERDO: Botón Sidebar o Brand Logo -->
+          <div class="d-flex align-items-center">
+            @if (tipoNavegacion === 'sidebar') {
+            <i class="mx-4 icon_menu_bar fa fa-bars my-auto color_icons" style="cursor: pointer;"
+              (click)="mostrarMenuLateral()"></i>
+            } @else {
+            <!-- Brand Logo en modo Navbar Superior -->
+            <a class="nav-link d-flex align-items-center justify-content-center flex-md-row p-0"
+              routerLinkActive="active" [routerLink]="LAYOUT_PAGE_DASHBOARD">
+              <div class="bg-white rounded-5" style="position: relative; z-index: 1;">
+                <img src="assets/images/img_logo.png" alt="Logo" width="50">
+              </div>
 
-          <div class="ml-auto d-flex align-items-center">
+              <div
+                class="logo-container bg-white d-inline-block mt-md-0 ml-md-n3 mr-md-3 ml-sm-n3 ml-n3 rounded-bottom rounded-top"
+                style="position: relative; z-index: 0;">
+                <span class="text-dark titleApp font-weight-bold pl-2 ml-2 mr-2 mt-1 mb-1 text-center"
+                  style="line-height: 0.9; display: block;" [innerHTML]="nameApp">
+                </span>
+              </div>
+            </a>
+            }
+          </div>
+
+          <!-- LADO DERECHO: Menú de Opciones y Usuario -->
+          <ul class="navbar-nav ml-auto d-flex align-items-center flex-row mb-0 list-unstyled">
 
             <!-- SELECTOR DE NAVEGACIÓN (Sidebar vs Navbar) -->
             <div class="topbar-divider d-none d-sm-block"></div>
-            <li class="nav-item dropdown no-arrow my-auto text-center list-unstyled">
+            <li class="nav-item dropdown no-arrow my-auto text-center">
               <div class="btn-group btn-group-sm nav-mode-selector" role="group">
                 <button type="button" class="btn btn-outline-light btn-sm" [class.active]="tipoNavegacion === 'sidebar'"
                   (click)="cambiarTipoNavegacion('sidebar')" title="Menú Lateral">
@@ -240,32 +268,32 @@
             </li>
 
             <div class="topbar-divider d-none d-sm-block"></div>
-            <li class="nav-item dropdown no-arrow my-auto text-center list-unstyled">
+            <li class="nav-item dropdown no-arrow my-auto text-center">
               <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
             </li>
 
             <div class="topbar-divider d-none d-sm-block"></div>
-            <li class="nav-item dropdown no-arrow my-auto text-center list-unstyled">
+            <li class="nav-item dropdown no-arrow my-auto text-center">
               <app-globales-colormode></app-globales-colormode>
             </li>
 
             @if(tienePermiso('alertas', '', 0)){
             <div class="topbar-divider d-none d-sm-block"></div>
-            <li class="nav-item dropdown no-arrow my-auto text-center list-unstyled">
+            <li class="nav-item dropdown no-arrow my-auto text-center">
               <app-globales-notification></app-globales-notification>
             </li>
             }
 
             <div class="topbar-divider d-none d-sm-block hide-on-mobile"></div>
-            <li class="nav-item dropdown no-arrow my-auto text-center list-unstyled">
+            <li class="nav-item dropdown no-arrow my-auto text-center">
               <app-globales-fullscreem></app-globales-fullscreem>
             </li>
 
             <div class="topbar-divider d-none d-sm-block"></div>
-            <li class="nav-item dropdown no-arrow my-auto text-center list-unstyled">
+            <li class="nav-item dropdown no-arrow my-auto text-center">
               <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
-                <img class="img-profile rounded-circle" src="../../../assets/images/undraw_profile.svg">
+                <img class="img-profile rounded-circle" src="../../../assets/images/undraw_profile.svg" alt="Profile">
                 <span class="ml-3 mr-2 d-none d-lg-inline small text_nickname text-left"
                   style="display: inline-block; vertical-align: middle;">
                   {{firstName}} <br>
@@ -289,19 +317,21 @@
                 </a>
               </div>
             </li>
-          </div>
-        </ul>
+
+          </ul>
+        </div>
       </nav>
 
       <!-- NAVBAR SUPERIOR STICKY -->
       @if (tipoNavegacion === 'navbar') {
-      <nav class="top-horizontal-navbar bg-background-side-custom sticky-top shadow-sm">
-        <ul class="nav nav-pills align-items-center px-3 py-1 justify-content-center">
+      <nav #navBarAzul class="top-horizontal-navbar bg-background-side-custom sticky-top shadow-sm">
+        <ul class="nav nav-pills align-items-center px-3 justify-content-center">
 
           <li class="nav-item">
             <a class="nav-link bg_side_text d-flex align-items-center gap-2 px-3 py-2"
-              [routerLink]="LAYOUT_ADMIN_PAGE_MENU" routerLinkActive="active">
+              [routerLink]="LAYOUT_ADMIN_PAGE_MENU">
               <i class="fa fa-th" aria-hidden="true"></i>
+              <span>{{ 'mod-main.PAGES_MENU' | translate }}</span>
             </a>
           </li>
 
@@ -443,7 +473,8 @@
       }
 
       <!-- BREADCRUMBS -->
-      <div class="topbar-secondary-sticky custom-breadcrum pl-4 pr-4 d-flex align-items-center">
+      <div class="topbar-secondary-sticky custom-breadcrum pl-4 pr-4 d-flex align-items-center"
+        [style.top]="tipoNavegacion === 'navbar' ? 'calc(4rem + ' + navBarHeight + 'px)' : '4rem'">
         <span class="d-flex align-items-center my-n2 ml-2 mr-2" style="cursor: pointer;">
           <app-globales-breadcrumbs></app-globales-breadcrumbs>
         </span>
