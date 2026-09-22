@@ -125,8 +125,7 @@
       <a class="nav-link collapsed" style="cursor: pointer;" [attr.data-toggle]="minimizarSliderbar ? null : 'collapse'"
         data-target="#collapseLoss" aria-expanded="false" aria-controls="collapseLoss">
         <span class="fa-stack bg_side_icon">
-          <i class="fas fa-box fa-stack-1x"></i>
-          <i class="fas fa-bolt fa-stack-1x icon-customer"></i>
+          <i class="fas fa-box" aria-hidden="true"></i>
         </span>
         <span class="bg_side_text">{{ 'mod-main.PAGES_LOSS' | translate }}</span>
       </a>
@@ -215,7 +214,9 @@
 
       <!-- TOPBAR SUPERIOR HEADER -->
       <nav
-        class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar sticky-top pl-2 pr-2 h-custom main-header-nav">
+        class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar sticky-top pl-2 pr-2 h-custom main-header-nav"
+        [class.rounded-top-4]="tipoNavegacion === 'navbar'" [class.mt-4]="tipoNavegacion === 'navbar'"
+        [class.ml-4]="tipoNavegacion === 'navbar'" [class.mr-4]="tipoNavegacion === 'navbar'">
         <div class="d-flex align-items-center justify-content-between w-100">
 
           <!-- LADO IZQUIERDO: Botón Sidebar o Brand Logo -->
@@ -252,11 +253,11 @@
               <div class="btn-group btn-group-sm nav-mode-selector" role="group">
                 <button type="button" class="btn btn-outline-light btn-sm" [class.active]="tipoNavegacion === 'sidebar'"
                   (click)="cambiarTipoNavegacion('sidebar')" title="Menú Lateral">
-                  <i class="fa fa-columns"></i>
+                  <i class="fa fa-columns icon_menu_bar color_icons"></i>
                 </button>
                 <button type="button" class="btn btn-outline-light btn-sm" [class.active]="tipoNavegacion === 'navbar'"
                   (click)="cambiarTipoNavegacion('navbar')" title="Menú Superior">
-                  <i class="fa fa-bars"></i>
+                  <i class="fa fa-bars icon_menu_bar color_icons"></i>
                 </button>
               </div>
             </li>
@@ -318,8 +319,8 @@
 
       <!-- NAVBAR SUPERIOR STICKY -->
       <nav #navBarAzul class="top-horizontal-navbar bg-background-side-custom sticky-top shadow-sm"
-        [class.navigation-navbar-hidden]="tipoNavegacion !== 'navbar'" [class.ml-3]="tipoNavegacion === 'sidebar'"
-        [class.mr-3]="tipoNavegacion === 'sidebar'">
+        [class.navigation-navbar-hidden]="tipoNavegacion !== 'navbar'" [class.ml-4]="tipoNavegacion === 'navbar'"
+        [class.mr-4]="tipoNavegacion === 'navbar'">
         <ul class="nav nav-pills align-items-center px-3 justify-content-center my-2">
 
           <li class="nav-item">
@@ -457,8 +458,9 @@
       </nav>
 
       <!-- BREADCRUMBS -->
-      <div class="topbar-secondary-sticky custom-breadcrum pl-4 pr-4 d-flex align-items-center"
-        [style.top]="tipoNavegacion === 'navbar' ? 'calc(4rem + ' + navBarHeight + 'px)' : '4rem'">
+      <div class="topbar-secondary-sticky custom-breadcrum pl-4 pr-4 d-flex align-items-center border-custom-color"
+        [style.top]="tipoNavegacion === 'navbar' ? 'calc(4rem + ' + navBarHeight + 'px)' : '4rem'"
+        [class.ml-4]="tipoNavegacion === 'navbar'" [class.mr-4]="tipoNavegacion === 'navbar'">
         <span class="d-flex align-items-center my-n2 ml-2 mr-2" style="cursor: pointer;">
           <app-globales-breadcrumbs></app-globales-breadcrumbs>
         </span>
@@ -468,7 +470,7 @@
       <!-- Inyectamos la variable --offset-botoneria para que las tablas hijas la lean -->
       <div id="content" class="container-fluid"
         [style.--offset-botoneria]="tipoNavegacion === 'navbar' ? 'calc(4rem + ' + navBarHeight + 'px)' : 'calc(4rem + ' + navBarHeight + 'px)'">
-        <div class="p-1 mt-2">
+        <div class="p-1 mt-4">
           <router-outlet></router-outlet>
         </div>
       </div>

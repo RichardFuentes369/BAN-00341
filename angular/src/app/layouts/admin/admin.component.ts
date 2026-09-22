@@ -97,7 +97,7 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
   public LAYOUT_ADMIN_PAGE_CATALOG = LAYOUT_ADMIN_PAGE_CATALOG;
   public LAYOUT_ADMIN_PAGE_ALERT = LAYOUT_ADMIN_PAGE_ALERT;
 
-  public tipoNavegacion: 'sidebar' | 'navbar' = 'navbar';
+  public tipoNavegacion: 'sidebar' | 'navbar' = 'sidebar';
   public navBarHeight: number = 0;
   private _navBarAzulElement?: ElementRef;
 

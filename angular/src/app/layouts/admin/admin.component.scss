@@ -51,7 +51,7 @@
   }
 
   .text_nickname {
-    color: var(--layout-admin-heder_nickname_color) !important;
+    color: var(--layout-admin-heder_color_icons) !important;
   }
 
   .color_icons {
@@ -60,6 +60,10 @@
 
   .dropdawn_color_text {
     color: var(--layout-admin-dropdawn_text_color) !important;
+  }
+  
+  .border-custom-color {
+    border-bottom: 0.25rem solid var(--layout-admin-header_color_line) !important;
   }
 }
 
