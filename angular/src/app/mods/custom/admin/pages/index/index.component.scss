@@ -1,3 +1,11 @@
+:host {
+  --filter: none !important;
+  &[data-theme='dark'],
+  &:host-context([data-theme='dark']) {
+    --filter: invert(1) brightness(100) !important;
+  }
+}
+
 .title_card:hover {
     cursor: pointer
 }
@@ -16,4 +24,9 @@
 }
 .card-body {
   background-color: var(--layout-admin-back_color_background) !important;
+}
+
+.colored-icon {
+  filter: var(--filter);
+  transition: filter 0.3s ease; /* Transición suave al cambiar de tema */
 }

@@ -1,3 +1,11 @@
+:host {
+  --filter: none !important;
+  &[data-theme='dark'],
+  &:host-context([data-theme='dark']) {
+    --filter: invert(1) brightness(100) !important;
+  }
+}
+
 .filter-wrapper {
   position: sticky; 
   float: right;     
@@ -35,4 +43,9 @@
 .title-custom {
   color: var(--layout-admin-page_color_title) !important;
   background-color: transparent;
+}
+
+.colored-icon {
+  filter: var(--filter);
+  transition: filter 0.3s ease; /* Transición suave al cambiar de tema */
 }
