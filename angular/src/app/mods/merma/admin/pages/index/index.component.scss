@@ -263,3 +263,8 @@
 .text-card-custom {
   color: var(--card_menu-text_color) !important;
 }
+
+.colored-icon {
+  filter: var(--filter);
+  transition: filter 0.3s ease; /* Transición suave al cambiar de tema */
+}

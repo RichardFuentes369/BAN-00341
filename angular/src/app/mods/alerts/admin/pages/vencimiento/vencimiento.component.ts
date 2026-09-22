@@ -153,7 +153,7 @@ export class VencimientoComponent implements OnInit {
   cargarIdioma = true;
 
   // inicio datos envio card information
-  img_user_actived = "assets/images/img_expiration.png"
+  img_statistics = "assets/images/img_estadistica.png"
   titleTotalSuppliers = this.translate.instant('mod-warehouse.CARD_TOTAL_LOT_TITLE')
   count_total_vencimiento = 0
   // fin datos envio card information

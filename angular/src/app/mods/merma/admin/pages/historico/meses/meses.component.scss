@@ -1,3 +1,10 @@
+:host {
+  &[data-theme='dark'],
+  &:host-context([data-theme='dark']) {
+    --filter: invert(1) brightness(100) !important;
+  }
+}
+
 .filter-wrapper {
   position: sticky; 
   float: right;     
@@ -35,4 +42,19 @@
 .title-custom {
   color: var(--layout-admin-page_color_title) !important;
   background-color: transparent;
+}
+
+.card {
+  background-color: var(--card_menu-background_card_color) !important;
+  transition: background-color 0.3s ease; // Muy importante para que sea suave
+
+  &:hover {
+    background-color: var(--card_menu-hover_card_color) !important;
+    cursor: pointer;
+  }
+}
+
+.colored-icon {
+  filter: var(--filter);
+  transition: filter 0.3s ease; /* Transición suave al cambiar de tema */
 }

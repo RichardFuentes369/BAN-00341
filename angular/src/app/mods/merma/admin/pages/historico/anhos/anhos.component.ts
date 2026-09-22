@@ -70,7 +70,7 @@ export class AnhosMermaComponent implements OnInit, OnDestroy {
   // inicio datos envio card information
   wordItem = ''
   mostrarTotal = false
-  img_user_actived = "assets/images/img_history.png"
+  img_statistics = "assets/images/img_estadistica.png"
   titlePage = this.translate.instant('mod-merma.TABLE_TITLE')
   titleTotalSuppliers = this.translate.instant('mod-warehouse.CARD_TOTAL_LOT_TITLE')
   count_total_years = 0

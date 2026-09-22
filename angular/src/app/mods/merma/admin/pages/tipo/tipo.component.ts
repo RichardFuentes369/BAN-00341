@@ -91,7 +91,7 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
   // fin datos envio al modal
 
   // inicio datos envio card information
-  img = "assets/images/img_product.png"
+  img_statistics = "assets/images/img_estadistica.png"
   titlePage = this.translate.instant('mod-merma.TABLE_TITLE')
   titleTotalSuppliers = this.translate.instant('mod-warehouse.CARD_TOTAL_LOT_TITLE')
   count_total_type_merma = 0

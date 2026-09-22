@@ -214,9 +214,7 @@
 
       <!-- TOPBAR SUPERIOR HEADER -->
       <nav
-        class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar sticky-top pl-2 pr-2 h-custom main-header-nav"
-        [class.rounded-top-4]="tipoNavegacion === 'navbar'" [class.mt-4]="tipoNavegacion === 'navbar'"
-        [class.ml-4]="tipoNavegacion === 'navbar'" [class.mr-4]="tipoNavegacion === 'navbar'">
+        class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar sticky-top pl-2 pr-2 h-custom main-header-nav">
         <div class="d-flex align-items-center justify-content-between w-100">
 
           <!-- LADO IZQUIERDO: Botón Sidebar o Brand Logo -->
@@ -319,8 +317,7 @@
 
       <!-- NAVBAR SUPERIOR STICKY -->
       <nav #navBarAzul class="top-horizontal-navbar bg-background-side-custom sticky-top shadow-sm"
-        [class.navigation-navbar-hidden]="tipoNavegacion !== 'navbar'" [class.ml-4]="tipoNavegacion === 'navbar'"
-        [class.mr-4]="tipoNavegacion === 'navbar'">
+        [class.navigation-navbar-hidden]="tipoNavegacion !== 'navbar'">
         <ul class="nav nav-pills align-items-center px-3 justify-content-center my-2">
 
           <li class="nav-item">
@@ -459,8 +456,7 @@
 
       <!-- BREADCRUMBS -->
       <div class="topbar-secondary-sticky custom-breadcrum pl-4 pr-4 d-flex align-items-center border-custom-color"
-        [style.top]="tipoNavegacion === 'navbar' ? 'calc(4rem + ' + navBarHeight + 'px)' : '4rem'"
-        [class.ml-4]="tipoNavegacion === 'navbar'" [class.mr-4]="tipoNavegacion === 'navbar'">
+        [style.top]="tipoNavegacion === 'navbar' ? 'calc(4rem + ' + navBarHeight + 'px)' : '4rem'">
         <span class="d-flex align-items-center my-n2 ml-2 mr-2" style="cursor: pointer;">
           <app-globales-breadcrumbs></app-globales-breadcrumbs>
         </span>

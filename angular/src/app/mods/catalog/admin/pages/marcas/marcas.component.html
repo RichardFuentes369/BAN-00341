@@ -1,7 +1,9 @@
 <div class="mb-4 border-0 rounded-0">
   <div class="d-flex justify-content-between align-items-center px-3 pb-2">
     <h4 class="fw-bold text-bold title-custom d-flex align-items-center gap-2 mb-0">
-      <img src="assets/images/img_brands.png" width="40px" class="colored-icon">
+      <div class="card rounded-5 p-1">
+        <img src="assets/images/img_brands.png" width="40px" class="colored-icon p-2">
+      </div>
       <span>{{ 'mod-catalog.PAGE_BRAND_TITLE' | translate }}</span>
     </h4>
 
@@ -18,7 +20,7 @@
     [class.animate__fadeOut]="!mostrarCards || !cargarIdioma">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-2 mb-3 align-items-stretch">
       @for (card of [
-      { img: img_user_actived, title: titleTotalSuppliers, count: count_total_brands }
+      { img: img_statistics, title: titleTotalSuppliers, count: count_total_brands }
       ]; track $index) {
       <div class="col d-flex">
         <app-globales-kpicard class="w-100 h-100" [img]="card.img" [title]="card.title" [content]="card.count">

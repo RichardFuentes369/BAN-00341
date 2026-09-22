@@ -99,7 +99,7 @@ export class StockComponent implements OnInit {
   cargarIdioma = true;
 
   // inicio datos envio card information
-  img_user_actived = "assets/images/img_alert_warehouse.png"
+  img_statistics = "assets/images/img_estadistica.png"
   titleTotalSuppliers = this.translate.instant('mod-warehouse.CARD_TOTAL_LOT_TITLE')
   count_total_stock = 0
   // fin datos envio card information

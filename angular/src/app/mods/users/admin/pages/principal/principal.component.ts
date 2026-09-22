@@ -146,9 +146,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   // fin datos envio al modal
 
   // inicio datos envio card information
-  img_user_actived = "assets/images/img_actived.png"
-  img_user_with_permission = "assets/images/img_permission.png"
-  img_user_inactived = "assets/images/img_inactived.png"
+  img_statistics = "assets/images/img_estadistica.png"
   titlePage = this.translate.instant('mod-users.TABLE_TITLE')
   titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
   titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
