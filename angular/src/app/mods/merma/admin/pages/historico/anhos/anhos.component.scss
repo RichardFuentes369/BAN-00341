@@ -44,14 +44,9 @@
   background-color: transparent;
 }
 
-.card {
-  background-color: var(--card_menu-background_card_color) !important;
+.card_icon {
+  background-color: var(--grid_table_crud-background_color) !important;
   transition: background-color 0.3s ease; // Muy importante para que sea suave
-
-  &:hover {
-    background-color: var(--card_menu-hover_card_color) !important;
-    cursor: pointer;
-  }
 }
 
 .colored-icon {

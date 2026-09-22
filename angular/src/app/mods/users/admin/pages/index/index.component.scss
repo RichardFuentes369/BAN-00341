@@ -253,6 +253,11 @@
   }
 }
 
+.card_icon {
+  background-color: var(--grid_table_crud-background_color) !important;
+  transition: background-color 0.3s ease; // Muy importante para que sea suave
+}
+
 .colored-icon {
   filter: var(--filter);
   transition: filter 0.3s ease; /* Transición suave al cambiar de tema */
