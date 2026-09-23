@@ -214,8 +214,9 @@
 
       <!-- TOPBAR SUPERIOR HEADER -->
       <nav
-        class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar sticky-top pl-2 pr-2 h-custom main-header-nav">
-        <div class="d-flex align-items-center justify-content-between w-100">
+        class="navbar navbar-expand navbar-light bg-gradient-header-custom topbar sticky-top pl-2 pr-2 h-custom main-header-nav"
+        >
+        <div class="d-flex align-items-center justify-content-between w-100" [class.container]="tipoNavegacion === 'navbar'">
 
           <!-- LADO IZQUIERDO: Botón Sidebar o Brand Logo -->
           <div class="d-flex align-items-center logo-wrapper">
@@ -457,16 +458,18 @@
       <!-- BREADCRUMBS -->
       <div class="topbar-secondary-sticky custom-breadcrum pl-4 pr-4 d-flex align-items-center border-custom-color"
         [style.top]="tipoNavegacion === 'navbar' ? 'calc(4rem + ' + navBarHeight + 'px)' : '4rem'">
-        <span class="d-flex align-items-center my-n2 ml-2 mr-2" style="cursor: pointer;">
-          <app-globales-breadcrumbs></app-globales-breadcrumbs>
-        </span>
+        <div [class.container]="tipoNavegacion === 'navbar'">
+          <span class="d-flex align-items-center my-n2 ml-2 mr-2" style="cursor: pointer;">
+            <app-globales-breadcrumbs></app-globales-breadcrumbs>
+          </span>
+        </div>
       </div>
 
       <!-- CONTENIDO PRINCIPAL -->
       <!-- Inyectamos la variable --offset-botoneria para que las tablas hijas la lean -->
       <div id="content" class="container-fluid"
         [style.--offset-botoneria]="tipoNavegacion === 'navbar' ? 'calc(4rem + ' + navBarHeight + 'px)' : 'calc(4rem + ' + navBarHeight + 'px)'">
-        <div class="p-1 mt-4">
+        <div class="p-1 mt-3" [class.container]="tipoNavegacion === 'navbar'">
           <router-outlet></router-outlet>
         </div>
       </div>

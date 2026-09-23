@@ -135,59 +135,25 @@
   top: 4rem;
   z-index: 1030 !important;
 
-  /* Forzar capa de aceleración por hardware */
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  isolation: isolate;
-
-  /* Definición del fondo */
-  background-color: var(--layout-admin-side_color_background) !important;
-
-  /* PASO 1: Transición rápida e inmediata del FONDO y contenedor */
+  /* Animación de entrada/salida del navbar superior */
   opacity: 1;
   transform: translateY(0);
   max-height: 10rem;
   overflow: visible;
 
   transition:
-    opacity 0.25s ease-out,
-    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    max-height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity 0.35s ease,
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 
   will-change: opacity, transform, max-height;
 
-  /* PASO 2: Transición con DELAY para el TEXTO y CONTENIDO INTERNO */
-  .nav-pills .nav-link,
-  .nav-pills span,
-  .nav-pills i {
-    opacity: 1;
-    transform: translateY(0);
-    /* El delay de 0.2s hace que las letras esperen a que el fondo se despliegue */
-    transition:
-      opacity 0.25s ease-out 0.2s,
-      transform 0.25s ease-out 0.2s,
-      background-color 0.2s ease,
-      color 0.2s ease;
-    will-change: opacity, transform;
-  }
-
-  /* ESTADO OCULTO / SALIDA */
   &.navigation-navbar-hidden {
     opacity: 0;
     transform: translateY(-1.5rem);
     max-height: 0 !important;
     pointer-events: none;
-
-    /* Al ocultar, las letras desaparecen INMEDIATAMENTE sin delay */
-    .nav-pills .nav-link,
-    .nav-pills span,
-    .nav-pills i {
-      opacity: 0;
-      transform: translateY(-5px);
-      transition:
-        opacity 0.1s ease-in,
-        transform 0.1s ease-in;
-    }
+    /* Se remueve "overflow: hidden !important" dinámico que cortaba la animación */
   }
 
   .nav-pills {
@@ -213,6 +179,7 @@
     cursor: pointer;
     font-size: 0.9rem;
     font-weight: 500;
+    transition: all 0.2s ease-in-out;
 
     &:hover,
     &:focus {
