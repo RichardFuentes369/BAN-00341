@@ -26,14 +26,14 @@
         "footer_color_background": "#878383"
       },
       "admin": {
-        "header_color_background": "#069E21",
+        "header_color_background": "#0b4a75",
         "header_color_line": "#E06767",
         "main_background_color": "#EDEDED",
-        "heder_color_icons": "#FFFFFF",
+        "heder_color_icons": "#C8CCCF",
         "dropdawn_text_color": "#4F4D4D",
         "dropdawn_background": "#FFFFFF",
         "dropdown_hover_background": "#E8E3E3",
-        "side_color_background": "#0b4a75",
+        "side_color_background": "#000000",
         "side_color_icon_text": "rgba(255, 255, 255, 0.4)",
         "side_color_hover_icon_text": "#0b4a75",
         "side_color_hover_amount": 20,
@@ -48,7 +48,7 @@
     },
     "kpicard": {
       "icon_color": "#000000",
-      "border_line_color": "#0A18F5",
+      "border_line_color": "#0a18f5",
       "background_color": "#FFFFFF",
       "text_color": "#948F8F",
       "text_number_color": "#000000"
@@ -63,11 +63,11 @@
       "title_color": "#3B3939",
       "text_color": "#948F8F",
       "background_color": "#FFFFFF",
-      "head_background": "#0A18F5",
+      "head_background": "#0a18f5",
       "head_text_color": "#FFFFFF",
       "row_text_color": "#000000",
       "row_text_select": "#FFFFFF",
-      "row_select": "#AB0505",
+      "row_select": "#B9BDAE",
       "button_group_disabled": "#BEBFC2",
       "button_cargar_excel": "#10B981",
       "button_crear": "#059669",
@@ -85,7 +85,7 @@
       "text_color_placeholder": "#B6C2B4",
       "background_color": "#FFFFFF",
       "text_color": "#000000",
-      "border_color": "#4cd523"
+      "border_color": "#0a18f5"
     },
     "modal": {
       "fieldset_line_color": "#0b4a75",
