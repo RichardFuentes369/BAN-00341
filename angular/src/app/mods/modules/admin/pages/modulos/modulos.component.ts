@@ -41,6 +41,8 @@ export class ModulosComponent implements OnInit {
   private langSub: Subscription | undefined;
   permisos: any[] = []
 
+  imgModules = 'assets/images/img_modules.png'
+
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);

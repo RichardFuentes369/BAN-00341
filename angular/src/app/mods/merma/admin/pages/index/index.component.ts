@@ -31,6 +31,11 @@ export class IndexComponent implements OnInit{
 
   menu: any[] = []
 
+  imgBroken = 'assets/images/img_averiado.png'
+  imgProduct = 'assets/images/img_product.png'
+  imgSupplier = 'assets/images/img_supplier.png'
+  imgHistory = 'assets/images/img_history.png'
+
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH)

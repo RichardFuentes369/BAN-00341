@@ -1,8 +1,9 @@
 <div class="mb-4 border-0 rounded-0">
   <div class="d-flex justify-content-between align-items-center px-3 pb-2">
     <h4 class="fw-bold text-bold title-custom d-flex align-items-center gap-2 mb-0">
-      <div class="card_icon rounded-5 p-1">
-        <img src="assets/images/img_alert.png" width="40px" class="colored-icon p-2">
+      <div class="card_icon rounded-5 p-2 shadow-lg">
+        <div class="img-logo small colored-icon" [style.mask-image]="'url(' + imgAlert + ')'"
+          [style.-webkit-mask-image]="'url(' + imgAlert + ')'"></div>
       </div>
       <span>{{ 'mod-alerts.MODULE_TITLE' | translate }}</span>
     </h4>
@@ -18,7 +19,8 @@
           <div class="card-body text-center d-flex flex-column align-items-center justify-content-center py-4">
             <h6 class="fw-bold mb-3 text-truncate w-100 text-card-custom">{{ 'mod-alerts.BUTTON_EXPIRATION' | translate
               }}</h6>
-            <img src="assets/images/img_expiration.png" width="80px" class="colored-icon">
+            <div class="img-logo colored-icon" [style.mask-image]="'url(' + imgExpiration + ')'"
+              [style.-webkit-mask-image]="'url(' + imgExpiration + ')'"></div>
           </div>
         </div>
       </a>
@@ -32,7 +34,8 @@
           <div class="card-body text-center d-flex flex-column align-items-center justify-content-center py-4">
             <h6 class="fw-bold mb-3 text-truncate w-100 text-card-custom">{{ 'mod-alerts.BUTTON_STOCK' | translate }}
             </h6>
-            <img src="assets/images/img_alert_warehouse.png" width="80px" class="colored-icon">
+            <div class="img-logo colored-icon" [style.mask-image]="'url(' + imgWarehouse + ')'"
+              [style.-webkit-mask-image]="'url(' + imgWarehouse + ')'"></div>
           </div>
         </div>
       </a>

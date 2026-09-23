@@ -2,8 +2,9 @@
 
   <div class="d-flex justify-content-between align-items-center pb-2">
     <h4 class="fw-bold text-bold title-custom d-flex align-items-center gap-2 mb-0">
-      <div class="card_icon rounded-5 p-1">
-        <img src="assets/images/img_custom.png" width="40px" class="colored-icon p-2">
+      <div class="card_icon rounded-5 p-2 shadow-lg">
+        <div class="img-logo small colored-icon" [style.mask-image]="'url(' + imgCustom + ')'"
+          [style.-webkit-mask-image]="'url(' + imgCustom + ')'"></div>
       </div>
       <span [innerHTML]="'mod-custom.MODULE_TITLE' | translate"></span>
     </h4>

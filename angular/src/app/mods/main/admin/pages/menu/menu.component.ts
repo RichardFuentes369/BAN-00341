@@ -67,6 +67,16 @@ export class MenuAdminComponent implements OnInit {
 
   menu: any[] = []
 
+  imgUsers = 'assets/images/img_users.png'
+  imgCatalog = 'assets/images/img_catalog.png'
+  imgWarehouse = 'assets/images/img_warehouse.png'
+  imgLoss = 'assets/images/img_averiado.png'
+  imgSale = 'assets/images/img_sale_return.png'
+  imgAlert = 'assets/images/img_alert.png'
+  imgCustom = 'assets/images/img_custom.png'
+  imgVars = 'assets/images/img_vars.png'
+  imgModules = 'assets/images/img_modules.png'
+
   async ngOnInit() {
 
     for (const key in localStorage) {

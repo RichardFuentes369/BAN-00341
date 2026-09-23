@@ -6,10 +6,10 @@
         "background_color": "transparent"
       },
       "breadcrumbs": {
-        "link-disabled": "#FFFFFF",
+        "link-disabled": "#D5E7F2",
         "link-active": "#FFFFFF",
         "link-hover": "#FFFFFF",
-        "separator": "#DEDCDC",
+        "separator": "#D5E7F2",
         "bg_color_breadcrumb": "#000000"
       },
       "index": {
@@ -52,6 +52,12 @@
       "background_color": "#FFFFFF",
       "text_color": "#948F8F",
       "text_number_color": "#000000"
+    },
+    "title_page": {
+      "background_card_color": "#FFFFFF",
+      "icon_color": "#000000",
+      "text_color": "#000000",
+      "line_color": "#000000"
     },
     "card_menu": {
       "text_color": "#000000",
@@ -131,7 +137,7 @@
         "link-disabled": "#B6F2C0",
         "link-active": "#FFFFFF",
         "link-hover": "#EDE4E4",
-        "separator": "#E8E3E3",
+        "separator": "#B6F2C0",
         "bg_color_breadcrumb": "#000000"
       },
       "index": {
@@ -174,6 +180,12 @@
       "background_color": "#2B2A2A",
       "text_color": "#FFFFFF",
       "text_number_color": "#FFFFFF"
+    },
+    "title_page": {
+      "background_card_color": "#2b2a2a",
+      "icon_color": "#FFFFFF",
+      "text_color": "#FFFFFF",
+      "line_color": "#FFFFFF"
     },
     "card_menu": {
       "text_color": "#FFFFFF",

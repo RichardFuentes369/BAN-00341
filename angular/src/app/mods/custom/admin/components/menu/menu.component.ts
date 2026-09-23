@@ -12,8 +12,6 @@ import { TranslateModule } from '@ngx-translate/core';
 export class MenuCustomComponent implements OnInit, OnDestroy {
 
   @Input() theme: string = ''
-  img1 = 'assets/images/img_users.png'
-  img2 = 'assets/images/img_catalog.png'
 
   private themeListener!: (event: any) => void;
 

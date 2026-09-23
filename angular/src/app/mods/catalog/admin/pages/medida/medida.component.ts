@@ -46,6 +46,8 @@ export class MedidaComponent implements OnInit, OnDestroy {
   private langSub: Subscription | undefined;
   permisos: any[] = []
 
+  imgExtend = 'assets/images/img_extent.png'
+
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-catalog.BUTTON_SEARCH')

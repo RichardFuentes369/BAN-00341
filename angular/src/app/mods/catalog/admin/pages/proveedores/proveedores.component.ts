@@ -46,6 +46,8 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   private langSub: Subscription | undefined;
   permisos: any[] = []
 
+  imgSupplier = 'assets/images/img_supplier.png'
+
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-catalog.BUTTON_SEARCH')

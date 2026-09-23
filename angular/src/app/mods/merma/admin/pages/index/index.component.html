@@ -1,8 +1,9 @@
 <div class="rounded-0 rounded-0">
   <div class="d-flex justify-content-between align-items-center px-3 pb-2">
     <h4 class="fw-bold text-bold title-custom d-flex align-items-center gap-2 mb-0">
-      <div class="card_icon rounded-5 p-1">
-        <img src="assets/images/img_averiado.png" width="40px" class="colored-icon p-1">
+      <div class="card_icon rounded-5 p-2 shadow-lg">
+        <div class="img-logo small colored-icon" [style.mask-image]="'url(' + imgBroken + ')'"
+          [style.-webkit-mask-image]="'url(' + imgBroken + ')'"></div>
       </div>
       <span>{{ 'mod-merma.MODULE_TITLE' | translate }}</span>
     </h4>
@@ -17,7 +18,8 @@
         <div class="card card-modern h-100 w-100 shadow-sm pointer m-0">
           <div class="card-body text-center d-flex flex-column align-items-center justify-content-center py-4">
             <h6 class="fw-bold mb-3 text-truncate w-100 text-card-custom">{{ 'mod-merma.BUTTON_TYPE' | translate}}</h6>
-            <img src="assets/images/img_product.png" width="80px" class="colored-icon">
+            <div class="img-logo colored-icon" [style.mask-image]="'url(' + imgProduct + ')'"
+              [style.-webkit-mask-image]="'url(' + imgProduct + ')'"></div>
           </div>
         </div>
       </a>
@@ -30,8 +32,10 @@
         <div class="card card-modern h-100 w-100 shadow-sm pointer m-0">
           <div class="card-body text-center d-flex flex-column align-items-center justify-content-center py-4">
             <h6 class="fw-bold mb-3 text-truncate w-100 text-card-custom">{{ 'mod-merma.BUTTON_RECORD' | translate}}
-              <br> ({{CURRENT_YEAR}})</h6>
-            <img src="assets/images/img_supplier.png" width="80px" class="colored-icon">
+              <br> ({{CURRENT_YEAR}})
+            </h6>
+            <div class="img-logo colored-icon" [style.mask-image]="'url(' + imgSupplier + ')'"
+              [style.-webkit-mask-image]="'url(' + imgSupplier + ')'"></div>
           </div>
         </div>
       </a>
@@ -45,7 +49,8 @@
           <div class="card-body text-center d-flex flex-column align-items-center justify-content-center py-4">
             <h6 class="fw-bold mb-3 text-truncate w-100 text-card-custom">{{ 'mod-merma.BUTTON_HISTORY' | translate}}
             </h6>
-            <img src="assets/images/img_history.png" width="80px" class="colored-icon">
+            <div class="img-logo colored-icon" [style.mask-image]="'url(' + imgHistory + ')'"
+              [style.-webkit-mask-image]="'url(' + imgHistory + ')'"></div>
           </div>
         </div>
       </a>

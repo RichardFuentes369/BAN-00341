@@ -45,6 +45,8 @@ export class SoldComponent implements OnInit, OnDestroy {
   private langSub: Subscription | undefined;
   permisos: any[] = []
 
+  imgSale = 'assets/images/img_sale_return.png'
+
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-users.BUTTON_SEARCH')

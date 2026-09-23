@@ -43,6 +43,7 @@ export class PermisosComponent implements OnInit {
   private langSub: Subscription | undefined;
   permisos: any[] = []
   moduloPadre: any = 0
+  imgModules = 'assets/images/img_modules.png'
 
   moduloReal = ''
 

@@ -39,6 +39,8 @@ export class MesesMermaComponent implements OnInit, OnDestroy {
   private langSub: Subscription | undefined;
   permisos: any[] = []
 
+  imgHistory = 'assets/images/img_history.png'
+
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-merma.BUTTON_SEARCH')

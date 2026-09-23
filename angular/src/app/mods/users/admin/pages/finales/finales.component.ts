@@ -49,6 +49,8 @@ export class FinalesComponent implements OnInit{
   private langSub: Subscription | undefined;
   permisos: any[] = []
 
+  imgUser = 'assets/images/img_actived.png'
+
   // inicio datos envio al filtro  
   search = true
   buttonSearch = this.translate.instant('mod-users.BUTTON_SEARCH')

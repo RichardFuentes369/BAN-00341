@@ -1,7 +1,11 @@
 <div class="mb-4 border-0 rounded-0">
   <div class="d-flex justify-content-between align-items-center px-3 pb-2">
-    <h4 class="m-0 fw-bold text-bold title-custom">
-      {{ 'mod-vars.PAGE_TITLE_VAR' | translate }}
+    <h4 class="fw-bold text-bold title-custom d-flex align-items-center gap-2 mb-0">
+      <div class="card_icon rounded-5 p-2 shadow-lg">
+        <div class="img-logo small colored-icon" [style.mask-image]="'url(' + imgVar + ')'"
+          [style.-webkit-mask-image]="'url(' + imgVar + ')'"></div>
+      </div>
+      <span>{{ 'mod-vars.PAGE_TITLE_VAR' | translate }}</span>
     </h4>
     <span class="custom-tooltip tooltip-left"
       [attr.data-title]="mostrarCards ? ('global-card.WORD_HIDE' | translate) : ('global-card.WORD_SHOW' | translate)">
@@ -38,10 +42,9 @@
     @if (cargarIdioma) {
     <div class="table-container">
       <app-globales-tablecrud [campoFiltro]="showcampoFiltro" [endPoint]="endPoint" [columnas]="columnas"
-        [habilitarSeleccion]="habilitarSeleccion" [permisosAcciones]="permisos" [filters]="filters" 
-        [orderField]="orderField" [order]="order" [title]="titlePage"
-        (verItem)="verData($event)" (crearNuevoItem)="crearData($event)" (editarItem)="editarData($event)"
-        (eliminarItem)="eliminarData($event)">
+        [habilitarSeleccion]="habilitarSeleccion" [permisosAcciones]="permisos" [filters]="filters"
+        [orderField]="orderField" [order]="order" [title]="titlePage" (verItem)="verData($event)"
+        (crearNuevoItem)="crearData($event)" (editarItem)="editarData($event)" (eliminarItem)="eliminarData($event)">
       </app-globales-tablecrud>
     </div>
     } @else {

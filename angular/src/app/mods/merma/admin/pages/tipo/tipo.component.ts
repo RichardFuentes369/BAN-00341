@@ -42,6 +42,8 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
   private langSub: Subscription | undefined;
   permisos: any[] = []
 
+  imgProduct = 'assets/images/img_product.png'
+
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-merma.BUTTON_SEARCH')

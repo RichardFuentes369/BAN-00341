@@ -41,6 +41,7 @@ export class SubmodulosComponent implements OnInit {
 
   private langSub: Subscription | undefined;
   permisos: any[] = []
+  imgModules = 'assets/images/img_modules.png'
   moduloPadre: any = 0
 
   async ngOnInit() {

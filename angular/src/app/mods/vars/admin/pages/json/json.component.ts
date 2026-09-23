@@ -42,6 +42,8 @@ export class JsonComponent implements OnInit, OnDestroy {
   private langSub: Subscription | undefined;
   permisos: any[] = []
 
+  imgVarJson = 'assets/images/img_json.png'
+
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-users.BUTTON_SEARCH')

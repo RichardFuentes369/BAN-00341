@@ -1,8 +1,9 @@
 <div class="mb-4 border-0 rounded-0">
   <div class="d-flex justify-content-between align-items-center px-3 pb-2">
     <h4 class="fw-bold text-bold title-custom d-flex align-items-center gap-2 mb-0">
-      <div class="card_icon rounded-5 p-1">
-        <img src="assets/images/img_sale_return.png" width="40px" class="colored-icon">
+      <div class="card_icon rounded-5 p-2 shadow-lg">
+        <div class="img-logo small colored-icon" [style.mask-image]="'url(' + imgSale + ')'"
+          [style.-webkit-mask-image]="'url(' + imgSale + ')'"></div>
       </div>
       <span>{{ 'mod-salereturn.PAGE_TITLE_SALE' | translate }}</span>
     </h4>

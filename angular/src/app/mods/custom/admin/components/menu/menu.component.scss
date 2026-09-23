@@ -1,3 +1,12 @@
+:host {
+  --filter: none !important;
+
+  &[data-theme='dark'],
+  &:host-context([data-theme='dark']) {
+    --filter: invert(1) brightness(100) !important;
+  }
+}
+
 .card-preview-container {
   --card_menu_custom-text_color: "";
   --card_menu_custom-icon_color: "";
@@ -220,7 +229,12 @@
 }
 
 .colored-icon {
-  background-color: var(--card_menu_custom-icon_color); /* ¡Aquí sí funciona var()! */
+  filter: var(--filter);
+  transition: filter 0.3s ease; /* Transición suave al cambiar de tema */
+}
+
+.colored-icon {
+  color: var(--card_menu_custom-icon_color); /* ¡Aquí sí funciona var()! */
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
@@ -229,6 +243,7 @@
   mask-position: center;
   transition: background-color 0.3s ease;
 }
+
 
 .card {
   background-color: var(--card_menu_custom-background_card_color) !important;
@@ -267,15 +282,10 @@
 }
 
 .colored-icon {
-  background-color: var(--card_menu_custom-icon_color); 
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  transition: background-color 0.3s ease;
+  filter: var(--card_menu_custom-icon_color);
+  transition: filter 0.3s ease; /* Transición suave al cambiar de tema */
 }
+
 
 .bg_system {
   background-color: var(--layout-admin-main_background_color)!important;

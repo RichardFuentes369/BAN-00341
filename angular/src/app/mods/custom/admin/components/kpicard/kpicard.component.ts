@@ -12,7 +12,7 @@ export class KpicardCustomComponent implements OnInit, OnDestroy {
 
   title = 'Titulo contador'
   displayValue = 200
-  img = 'assets/images/img_actived.png'
+  img = 'assets/images/img_estadistica.png'
 
   @Input() theme: string = ''
 

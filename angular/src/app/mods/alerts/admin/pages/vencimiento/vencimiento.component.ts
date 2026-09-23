@@ -47,6 +47,8 @@ export class VencimientoComponent implements OnInit {
   private langSub: Subscription | undefined;
   permisos: any[] = []
 
+  imgExpiration = 'assets/images/img_expiration.png'
+
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-users.BUTTON_SEARCH')

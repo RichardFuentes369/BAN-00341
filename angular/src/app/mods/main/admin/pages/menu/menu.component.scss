@@ -241,7 +241,12 @@
 }
 
 .title-custom {
-  color: var(--layout-admin-page_color_title) !important;
+  color: var(--title_page-text_color) !important;
+  background-color: transparent;
+}
+
+.line-title-custom {
+  color: var(--title_page-line_color) !important;
   background-color: transparent;
 }
 
@@ -255,9 +260,24 @@
   }
 }
 
+.img-logo {
+  width: 100%;
+  height: 80px;
+  /* Altura fija para consistencia visual */
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.05));
+}
+
+
 .colored-icon {
-  filter: var(--filter);
-  transition: filter 0.3s ease; /* Transición suave al cambiar de tema */
+  background-color: var(--card_menu-icon_color); /* ¡Aquí sí funciona var()! */
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  transition: background-color 0.3s ease;
 }
 
 .text-card-custom {

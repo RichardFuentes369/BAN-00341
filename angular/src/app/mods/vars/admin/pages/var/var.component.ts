@@ -42,6 +42,8 @@ export class VarComponent implements OnInit, OnDestroy {
   private langSub: Subscription | undefined;
   permisos: any[] = []
 
+  imgVar = 'assets/images/img_var.png'
+
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-vars.BUTTON_SEARCH')

@@ -1,6 +1,10 @@
 <div class="mb-4 border-0 rounded-0">
   <div class="d-flex justify-content-between align-items-center px-3 pb-2">
-    <h4 class="m-0 fw-bold text-bold title-custom">
+    <h4 class="fw-bold text-bold title-custom d-flex align-items-center gap-2 mb-0">
+      <div class="card_icon rounded-5 p-2 shadow-lg">
+        <div class="img-logo small colored-icon" [style.mask-image]="'url(' + imgVarJson + ')'"
+          [style.-webkit-mask-image]="'url(' + imgVarJson + ')'"></div>
+      </div>
       {{ 'mod-vars.PAGE_TITLE_JSON' | translate }}
     </h4>
     <span class="custom-tooltip tooltip-left"

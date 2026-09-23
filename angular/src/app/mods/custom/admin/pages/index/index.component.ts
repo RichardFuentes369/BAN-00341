@@ -28,6 +28,7 @@ import { GridtableCustomComponent } from '../../components/gridtable/gridtable.c
 export class IndexComponent implements OnInit {
 
   mostratTodo = false;
+  imgCustom = 'assets/images/img_custom.png'
 
   constructor(
     private varsService: VarsService
@@ -41,7 +42,7 @@ export class IndexComponent implements OnInit {
     input_select: false,
     kpi: false,
     table_grid: false,
-    modal: true,
+    modal: false,
     search: false,
     report: false,
   };

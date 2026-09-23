@@ -48,6 +48,8 @@ export class WarehoseComponent implements OnInit, OnDestroy{
   private langSub: Subscription | undefined;
   permisos: any[] = []
 
+  imgWarehouse = 'assets/images/img_warehouse.png'
+
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-warehouse.BUTTON_SEARCH')

@@ -14,7 +14,8 @@
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
           <label class="title-custom">Card color</label>
-          <input type="color" [(ngModel)]="_jsonMenutData[theme].background_card_color" (input)="aplicarEstilosVisuales()">
+          <input type="color" [(ngModel)]="_jsonMenutData[theme].background_card_color"
+            (input)="aplicarEstilosVisuales()">
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
           <label class="title-custom">Card hover color</label>
@@ -31,8 +32,7 @@
             <div class="card-body text-center d-flex flex-column align-items-center justify-content-center py-4">
               <h6 class="fw-bold mb-3 text-truncate w-100 text-card-custom">{{ 'mod-main.PAGES_USERS' |
                 translate }}</h6>
-              <div class="img-logo colored-icon" [style.mask-image]="'url(' + img1 + ')'"
-                [style.-webkit-mask-image]="'url(' + img1 + ')'" width="80px"></div>
+              <img src="assets/images/img_users.png" width="80px" class="colored-icon">
             </div>
           </div>
         </a>
@@ -43,8 +43,7 @@
             <div class="card-body text-center d-flex flex-column align-items-center justify-content-center py-4">
               <h6 class="fw-bold mb-3 text-truncate w-100 text-card-custom">{{ 'mod-main.PAGES_CATALOG' |
                 translate }}</h6>
-              <div class="img-logo colored-icon" [style.mask-image]="'url(' + img2 + ')'"
-                [style.-webkit-mask-image]="'url(' + img2 + ')'"></div>
+              <img src="assets/images/img_catalog.png" width="80px" class="colored-icon">
             </div>
           </div>
         </a>

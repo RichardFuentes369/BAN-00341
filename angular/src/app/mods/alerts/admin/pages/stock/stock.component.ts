@@ -45,6 +45,8 @@ export class StockComponent implements OnInit {
   private langSub: Subscription | undefined;
   permisos: any[] = []
 
+  imgAlertWarehouse = 'assets/images/img_alert_warehouse.png'
+
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-users.BUTTON_SEARCH')

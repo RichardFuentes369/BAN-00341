@@ -57,6 +57,8 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   private langSub: Subscription | undefined;
   permisos: any[] = []
 
+  imgAdmin = 'assets/images/img_admin.png'
+
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-users.BUTTON_SEARCH')
