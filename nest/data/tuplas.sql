@@ -14,7 +14,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping data for table BAN_00341.mod_bodega: ~10 rows (approximately)
+-- Dumping data for table BAN_00341.mod_bodega: ~11 rows (approximately)
 INSERT INTO `mod_bodega` (`id`, `lote`, `fecha_entrada`, `fecha_vencimiento`, `cantidad_comprada`, `cantidad_vendida`, `cantidad_en_bodega`, `estado`, `id_producto`, `id_proveedor`) VALUES
 	(32, 'LMA-57963', 1775451600, 1785301199, 100, 32, 68, 'vencido', 1, 2),
 	(33, 'CA-857', 1772341200, 1777870799, 100, 4, 96, 'vencido', 4, 2),
@@ -25,18 +25,37 @@ INSERT INTO `mod_bodega` (`id`, `lote`, `fecha_entrada`, `fecha_vencimiento`, `c
 	(42, 'yf6398', 1788325200, 1827723599, 35, 0, 35, 'disponible', 3, 2),
 	(43, 'pudcho9633', 1788325200, 1816145999, 39, 0, 39, 'disponible', 6, 4),
 	(44, 'poi-885', 1788325200, 1797137999, 35, 34, 1, 'disponible', 1, 4),
-	(46, 'l485-69', 1788325200, 1795064399, 140, 18, 2, 'disponible', 1, 4);
+	(46, 'l485-69', 1788325200, 1795064399, 140, 18, 2, 'disponible', 1, 4),
+	(47, '456', 1789794000, 1789966799, 10, 0, 10, 'disponible', 60, 1);
 
--- Dumping data for table BAN_00341.mod_catalogo_marcas: ~83 rows (approximately)
+-- Dumping data for table BAN_00341.mod_catalogo_marcas: ~26 rows (approximately)
 INSERT INTO `mod_catalogo_marcas` (`id`, `nombre`) VALUES
+	(135, 'a'),
 	(1, 'Alqueria'),
+	(146, 'b'),
+	(148, 'c'),
+	(137, 'd'),
 	(2, 'Elite'),
+	(138, 'f'),
 	(13, 'Festivales'),
+	(139, 'g'),
+	(140, 'h'),
+	(141, 'j'),
+	(142, 'k'),
+	(143, 'l'),
+	(119, 'Latti'),
+	(144, 'm'),
 	(5, 'Matadero central'),
+	(145, 'n'),
 	(4, 'Nescafe'),
 	(12, 'Nestle'),
 	(14, 'Noel'),
-	(3, 'Purina');
+	(3, 'Purina'),
+	(151, 'qe'),
+	(150, 'qw'),
+	(136, 's'),
+	(147, 'v'),
+	(149, 'x');
 
 -- Dumping data for table BAN_00341.mod_catalogo_medida: ~6 rows (approximately)
 INSERT INTO `mod_catalogo_medida` (`id`, `nombre`) VALUES
@@ -46,7 +65,7 @@ INSERT INTO `mod_catalogo_medida` (`id`, `nombre`) VALUES
 	(5, 'Mililitros'),
 	(1, 'Unidades');
 
--- Dumping data for table BAN_00341.mod_catalogo_productos: ~14 rows (approximately)
+-- Dumping data for table BAN_00341.mod_catalogo_productos: ~15 rows (approximately)
 INSERT INTO `mod_catalogo_productos` (`id`, `nombre`, `stock_minimo`, `es_perecedero`, `alerta_amarilla`, `alerta_naranja`, `estado`, `codigo_barra`, `id_marca`, `id_medida`) VALUES
 	(1, 'Leche megalitro x 1100 ml', 10, 1, 19, 15, 1, '1000000000001', 1, 1),
 	(2, 'Papel higienico DUO', 25, 0, NULL, NULL, 1, '1000000000002', 2, 1),
@@ -61,7 +80,8 @@ INSERT INTO `mod_catalogo_productos` (`id`, `nombre`, `stock_minimo`, `es_perece
 	(11, 'Carne de cerdo (pierna)', 1000, 1, 19, 15, 1, '1000000000011', 5, 4),
 	(52, 'Milo', 25, 1, 15, 20, 1, '7702024110187', 12, 1),
 	(53, 'Gallets * 6 (Sabor a Limon)', 10, 1, 25, 8, 1, '7702025151981', 13, 1),
-	(54, 'Saltinas (taco)', 10, 1, 15, 10, 1, '7702025150748', 14, 1);
+	(54, 'Saltinas (taco)', 10, 1, 15, 10, 1, '7702025150748', 14, 1),
+	(60, 'Leche Entera', 10, 1, 10, 5, 1, '7700304163984', 119, 2);
 
 -- Dumping data for table BAN_00341.mod_catalogo_proveedores: ~4 rows (approximately)
 INSERT INTO `mod_catalogo_proveedores` (`id`, `razon_social`, `direccion`, `correo`, `telefono`, `dv`, `nit`) VALUES
@@ -187,10 +207,9 @@ INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`
 	(129, 'Devoluciones', 'devoluciones', 0, 1, 'Permiso devoluciones, modulo ventas y devoluciones', 127),
 	(130, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo ventas, modulo ventas y devoluciones', 128);
 
--- Dumping data for table BAN_00341.mod_permisos_modulo_asignacion: ~124 rows (approximately)
+-- Dumping data for table BAN_00341.mod_permisos_modulo_asignacion: ~123 rows (approximately)
 INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descripcion`, `id_modulo`, `modulo_padre_id`, `user_id`) VALUES
 	(241, 'Estado (usuario)', 'estado_usuario', 'Permiso estado usuario, submodulo administradores, modulo usuarios', 8, 2, 1),
-	(242, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar individual, submodulo administradores, modulo usuarios', 6, 2, 1),
 	(243, 'Editar', 'editar', 'Permiso editar, submodulo administradores, modulo usuarios', 5, 2, 1),
 	(244, 'Crear', 'crear', 'Permiso crear, submodulo administradores, modulo usuarios', 4, 2, 1),
 	(245, 'Ver', 'ver', 'Permiso ver, submodulo administradores, modulo usuarios', 3, 2, 1),
@@ -218,11 +237,9 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(430, 'Ver', 'ver', 'Permiso ver, submodulo marcas, modulo catalogo', 80, 79, 1),
 	(431, 'Crear', 'crear', 'Permiso crear, submodulo marcas, modulo catalogo', 81, 79, 1),
 	(432, 'Editar', 'editar', 'Permiso editar, submodulo marcas, modulo catalogo', 82, 79, 1),
-	(433, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo marcas, modulo catalogo', 83, 79, 1),
 	(441, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo proveedores, modulo catalogo', 36, 26, 1),
 	(468, 'Ver', 'ver', 'Permiso ver, submodulo productos, modulo catalogo', 39, 38, 1),
 	(470, 'Editar', 'editar', 'Permiso editar, submodulo productos, modulo catalogo', 41, 38, 1),
-	(472, 'Eliminar (multiple)', 'eliminar_multiple', 'Permiso eliminar_multiple, submodulo productos, modulo catalogo', 43, 38, 1),
 	(474, 'Ver', 'ver', 'Permiso ver, submodulo unidad_de_medida, modulo catalogo', 87, 86, 1),
 	(475, 'Crear', 'crear', 'Permiso crear, submodulo unidad_de_medida, modulo catalogo', 88, 86, 1),
 	(476, 'Editar', 'editar', 'Permiso editar, submodulo unidad_de_medida, modulo catalogo', 89, 86, 1),
@@ -300,19 +317,21 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(835, 'Descargar (Reporte permisos)', 'descarga_reporte_permisos', 'Permiso descarga_reporte_permisos usuario, submodulo administradores, modulo usuarios', 75, 2, 1),
 	(843, 'JSON', 'system_json', 'Permiso json, modulo configurable', 102, 95, 1),
 	(844, 'VAR', 'system_var', 'Permiso var, modulo configurable', 101, 95, 1),
-	(875, 'Ventas y devoluciones', 'ventas_y_devoluciones', 'Modulo ventas y devoluciones', 127, NULL, 1),
 	(877, 'Ver', 'ver', 'Permiso ver, submodulo ventas, modulo ventas y devoluciones', 130, 128, 1),
-	(888, 'Devoluciones', 'devoluciones', 'Permiso devoluciones, modulo ventas y devoluciones', 129, 127, 1),
-	(889, 'Personalizacion', 'estilos_sistema', 'Modulo general para el estilos del sistema', 113, NULL, 1),
 	(890, 'Ventas', 'ventas', 'Permiso ventas, modulo ventas y devoluciones', 128, 127, 1),
-	(891, 'Variables del sistema', 'variables_sistema', 'Modulo configurables', 95, NULL, 1),
-	(892, 'Alertas', 'alertas', 'Modulo alertas', 91, NULL, 1),
-	(893, 'Bodega', 'bodega', 'Modulo bodega', 64, NULL, 1),
-	(894, 'Merma', 'merma', 'Modulo merma', 44, NULL, 1),
-	(895, 'Catalogo', 'catalogo', 'Modulo catalogo', 22, NULL, 1),
 	(896, 'Modulos', 'modulos', 'Modulo modulos', 17, NULL, 1),
 	(897, 'Usuarios', 'usuarios', 'Modulo usuarios', 1, NULL, 1),
-	(898, 'Productos', 'productos', 'Permiso productos, modulo catalogo', 38, 22, 1);
+	(898, 'Productos', 'productos', 'Permiso productos, modulo catalogo', 38, 22, 1),
+	(900, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar individual, submodulo administradores, modulo usuarios', 6, 2, 1),
+	(902, 'Variables del sistema', 'variables_sistema', 'Modulo configurables', 95, NULL, 1),
+	(903, 'Personalizacion', 'estilos_sistema', 'Modulo general para el estilos del sistema', 113, NULL, 1),
+	(906, 'Alertas', 'alertas', 'Modulo alertas', 91, NULL, 1),
+	(907, 'Ventas y devoluciones', 'ventas_y_devoluciones', 'Modulo ventas y devoluciones', 127, NULL, 1),
+	(908, 'Eliminar (multiple)', 'eliminar_multiple', 'Permiso eliminar_multiple, submodulo marcas, modulo catalogo', 84, 79, 1),
+	(909, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo productos, modulo catalogo', 42, 38, 1),
+	(910, 'Catalogo', 'catalogo', 'Modulo catalogo', 22, NULL, 1),
+	(911, 'Merma', 'merma', 'Modulo merma', 44, NULL, 1),
+	(912, 'Bodega', 'bodega', 'Modulo bodega', 64, NULL, 1);
 
 -- Dumping data for table BAN_00341.mod_registro_ventas: ~7 rows (approximately)
 INSERT INTO `mod_registro_ventas` (`id`, `detalle_factura`, `fecha_venta`, `nro_factura`) VALUES
@@ -325,112 +344,43 @@ INSERT INTO `mod_registro_ventas` (`id`, `detalle_factura`, `fecha_venta`, `nro_
 	(13, '[{"lote":"l485-69","codigo_barra":"1000000000001","cantidad":"1"},{"lote":"poi-885","codigo_barra":"1000000000001","cantidad":"1"},{"lote":"laq-25963","codigo_barra":"1000000000001","cantidad":"1"}]', 1788379521, 'fac-0007'),
 	(14, '[{"lote":"l485-69","codigo_barra":"1000000000001","cantidad":"10"},{"lote":"poi-885","codigo_barra":"1000000000001","cantidad":"1"},{"lote":"laq-25963","codigo_barra":"1000000000001","cantidad":"2"}]', 1788379521, 'fac-0007');
 
--- Dumping data for table BAN_00341.mod_usuarios_admin: ~104 rows (approximately)
+-- Dumping data for table BAN_00341.mod_usuarios_admin: ~35 rows (approximately)
 INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'Javier Ricardo', 'Baron Fuentes', 'admin1@correo.com', 'Qwerty9601', 1),
 	(2, 'Oscar Eduardo', 'Villamizar Bautista', 'admin2@correo.com', 'Qwerty9601', 1),
 	(3, 'Oscar Mauricio', 'Parra Correa', 'admin3@correo.com', 'Qwerty96012', 0),
 	(113, 'Mauricio Andres', 'Correa Serrano', 'admin4@correo.com', 'Qwerty9601', 0),
-	(114, 'Carlos Alberto', 'Gomez Ruiz', 'carlos.gomez1@correo.com', 'Pass1234!', 1),
-	(115, 'Maria Fernanda', 'Lopez Perez', 'maria.lopez2@correo.com', 'SecurePass99', 1),
-	(116, 'Juan David', 'Rodriguez Silva', 'juan.rodriguez3@correo.com', 'Key2026#', 0),
-	(117, 'Ana Sofia', 'Martinez Gomez', 'ana.martinez4@correo.com', 'Password77', 1),
-	(118, 'Luis Fernando', 'Perez Torres', 'luis.perez5@correo.com', 'Admin2026*', 1),
-	(119, 'Laura Marcela', 'Sanchez Diaz', 'laura.sanchez6@correo.com', 'Test12345', 0),
-	(120, 'Jorge Andres', 'Ramirez Castro', 'jorge.ramirez7@correo.com', 'Welcome88', 1),
-	(121, 'Diana Patricia', 'Torres Vargas', 'diana.torres8@correo.com', 'Secret999', 0),
-	(122, 'Andres Felipe', 'Diaz Morales', 'andres.diaz9@correo.com', 'Abcd1234ef', 1),
-	(123, 'Valentina', 'Gomez Rojas', 'valentina.gomez10@correo.com', 'Qwerty567', 1),
-	(124, 'Mateo', 'Gutierrez Silva', 'mateo.gutierrez11@correo.com', 'Password123', 0),
-	(125, 'Camila', 'Alvarez Castro', 'camila.alvarez12@correo.com', 'LetMeIn1!', 1),
-	(126, 'Santiago', 'Romero Ortiz', 'santiago.romero13@correo.com', 'Admin#2026', 1),
-	(127, 'Lucia', 'Herrera Molina', 'lucia.herrera14@correo.com', 'P@ssw0rd20', 0),
-	(128, 'Alejandro', 'Medina Castro', 'alejandro.medina15@correo.com', 'SecretKey1', 1),
-	(129, 'Daniela', 'Castro Vargas', 'daniela.castro16@correo.com', 'UserPass99', 1),
-	(130, 'Sebastian', 'Ortega Silva', 'sebastian.ortega17@correo.com', 'MasterKey7', 0),
-	(131, 'Valeria', 'Jimenez Ruiz', 'valeria.jimenez18@correo.com', 'Access1234', 1),
-	(132, 'Nicolas', 'Morales Cruz', 'nicolas.morales19@correo.com', 'SafePass45', 1),
-	(133, 'Gabriela', 'Navarro Rios', 'gabriela.navarro20@correo.com', 'Qwerty888!', 0),
-	(134, 'Felipe', 'Rojas Mendez', 'felipe.rojas21@correo.com', 'Passw0rd!', 1),
-	(135, 'Isabella', 'Silva Paredes', 'isabella.silva22@correo.com', 'Welcome123', 1),
-	(136, 'Esteban', 'Pacheco Soto', 'esteban.pacheco23@correo.com', 'Secure2026#', 0),
-	(137, 'Mariana', 'Vargas Cardenas', 'mariana.vargas24@correo.com', 'Admin9988', 1),
-	(138, 'Julian', 'Mendoza Vega', 'julian.mendoza25@correo.com', 'Keypass456', 1),
-	(139, 'Paula', 'Castillo Leon', 'paula.castillo26@correo.com', 'TestPass12', 0),
-	(140, 'Manuel', 'Rios Campos', 'manuel.rios27@correo.com', 'User2026##', 1),
-	(141, 'Sara', 'Flores Mejia', 'sara.flores28@correo.com', 'Password00', 1),
-	(142, 'David', 'Cruz Fuentes', 'david.cruz29@correo.com', 'Qwerty0000', 0),
-	(143, 'Natalia', 'Acosta Benitez', 'natalia.acosta30@correo.com', 'Login1234!', 1),
-	(144, 'Gabriel', 'Salazar Duarte', 'gabriel.salazar31@correo.com', 'System999', 1),
-	(145, 'Jimena', 'Rivas Molina', 'jimena.rivas32@correo.com', 'Access0001', 0),
-	(146, 'Emilio', 'Bravo Parra', 'emilio.bravo33@correo.com', 'Master1234', 1),
-	(147, 'Elena', 'Peralta Guerrero', 'elena.peralta34@correo.com', 'SecureKey88', 1),
-	(148, 'Samuel', 'Escobar Medina', 'samuel.escobar35@correo.com', 'Pass9999##', 0),
-	(149, 'Adriana', 'Mercado Luna', 'adriana.mercado36@correo.com', 'Welcome4321', 1),
-	(150, 'Vicente', 'Padilla Cordoba', 'vicente.padilla37@correo.com', 'Admin7777!', 1),
-	(151, 'Regina', 'Cabrera Solano', 'regina.cabrera38@correo.com', 'Test2026##', 0),
-	(152, 'Bruno', 'Soto Espinoza', 'bruno.soto39@correo.com', 'Secret1234', 1),
-	(153, 'Martina', 'Valenzuela Cardenas', 'martina.valenzuela40@correo.com', 'Qwerty1122', 1),
-	(154, 'Joaquin', 'Sandoval Figueroa', 'joaquin.sandoval41@correo.com', 'UserKey999', 0),
-	(155, 'Antonia', 'Figueroa Cardenas', 'antonia.figueroa42@correo.com', 'Password888', 1),
-	(156, 'Dante', 'Fuentes Ibarra', 'dante.fuentes43@correo.com', 'Pass123456', 1),
-	(157, 'Catalina', 'Molina Benitez', 'catalina.molina44@correo.com', 'Access7890', 0),
-	(158, 'Alonso', 'Cardenas Rios', 'alonso.cardenas45@correo.com', 'Admin1234!', 1),
-	(159, 'Renata', 'Serrano Peralta', 'renata.serrano46@correo.com', 'Welcome555', 1),
-	(160, 'Maximiliano', 'Guerrero Lara', 'maximiliano.guerrero47@correo.com', 'SecurePass0', 0),
-	(161, 'Blanca', 'Medina Mejia', 'blanca.medina48@correo.com', 'Key9999***', 1),
-	(162, 'Agustin', 'Rios Benitez', 'agustin.rios49@correo.com', 'TestKey123', 1),
-	(163, 'Victoria', 'Ponce Navarro', 'victoria.ponce50@correo.com', 'Qwerty7777', 0),
-	(164, 'Leonardo', 'Gallegos Campos', 'leonardo.gallegos51@correo.com', 'Pass0000##', 1),
-	(165, 'Clara', 'Miranda Salgado', 'clara.miranda52@correo.com', 'UserAdmin1', 1),
-	(166, 'Luciano', 'Zuniga Cardenas', 'luciano.zuniga53@correo.com', 'SecretPass5', 0),
-	(167, 'Florencia', 'Paredes Cardenas', 'florencia.paredes54@correo.com', 'Access9999', 1),
-	(168, 'Tomas', 'Campos Valenzuela', 'tomas.campos55@correo.com', 'MasterPass1', 1),
-	(169, 'Emilia', 'Salgado Lara', 'emilia.salgado56@correo.com', 'Admin5678!', 0),
-	(170, 'Vicente', 'Lara Benitez', 'vicente.lara57@correo.com', 'Welcome789', 1),
-	(171, 'Julieta', 'Mejia Cordoba', 'julieta.mejia58@correo.com', 'Secure1234#', 1),
-	(172, 'Thiago', 'Cordoba Espinoza', 'thiago.cordoba59@correo.com', 'Pass3333***', 0),
-	(173, 'Amalia', 'Espinoza Solano', 'amalia.espinoza60@correo.com', 'TestAdmin9', 1),
-	(174, 'Iker', 'Solano Ibarra', 'iker.solano61@correo.com', 'KeyAdmin20', 1),
-	(175, 'Francesca', 'Ibarra Figueroa', 'francesca.ibarra62@correo.com', 'Qwerty3333', 0),
-	(176, 'Benicio', 'Figueroa Benitez', 'benicio.figueroa63@correo.com', 'UserPass44', 1),
-	(177, 'Rafaela', 'Benitez Cardenas', 'rafaela.benitez64@correo.com', 'Password55', 1),
-	(178, 'Ignacio', 'Cardenas Rios', 'ignacio.cardenas65@correo.com', 'Access1111!', 0),
-	(179, 'Agustina', 'Rios Peralta', 'agustina.rios66@correo.com', 'Admin8888##', 1),
-	(180, 'Bautista', 'Peralta Guerrero', 'bautista.peralta67@correo.com', 'Welcome202', 1),
-	(181, 'Trinidad', 'Guerrero Medina', 'trinidad.guerrero68@correo.com', 'SecureKey1', 0),
-	(182, 'Santino', 'Medina Mejia', 'santino.medina69@correo.com', 'Pass7777***', 1),
-	(183, 'Julieta', 'Mejia Campos', 'julieta.mejia70@correo.com', 'TestKey999', 1),
-	(184, 'Damaso', 'Campos Salgado', 'damaso.campos71@correo.com', 'Qwerty1212', 0),
-	(185, 'Catalina', 'Salgado Zuniga', 'catalina.salgado72@correo.com', 'UserKey123', 1),
-	(186, 'Felipe', 'Zuniga Paredes', 'felipe.zuniga73@correo.com', 'Secret9988!', 1),
-	(187, 'Isidora', 'Paredes Campos', 'isidora.paredes74@correo.com', 'Access4321#', 0),
-	(188, 'Gael', 'Campos Valenzuela', 'gael.campos75@correo.com', 'Master2026#', 1),
-	(189, 'Magdalena', 'Valenzuela Lara', 'magdalena.valenzuela76@correo.com', 'Admin0000!', 1),
-	(190, 'Luciano', 'Lara Cordoba', 'luciano.lara77@correo.com', 'Welcome111', 0),
-	(191, 'Emilia', 'Cordoba Espinoza', 'emilia.cordoba78@correo.com', 'SecurePass2', 1),
-	(192, 'Vicente', 'Espinoza Solano', 'vicente.espinoza79@correo.com', 'Pass5555##', 1),
-	(193, 'Amelia', 'Solano Ibarra', 'amelia.solano80@correo.com', 'TestAdmin1', 0),
-	(194, 'Iker', 'Ibarra Figueroa', 'iker.ibarra81@correo.com', 'KeyAdmin30', 1),
-	(195, 'Francesca', 'Figueroa Benitez', 'francesca.figueroa82@correo.com', 'Qwerty4444', 1),
-	(196, 'Benicio', 'Benitez Cardenas', 'benicio.benitez83@correo.com', 'UserPass55', 0),
-	(197, 'Rafaela', 'Cardenas Rios', 'rafaela.cardenas84@correo.com', 'Password66', 1),
-	(198, 'Ignacio', 'Rios Peralta', 'ignacio.rios85@correo.com', 'Access2222!', 1),
-	(199, 'Agustina', 'Peralta Guerrero', 'agustina.peralta86@correo.com', 'Admin9999##', 0),
-	(200, 'Bautista', 'Guerrero Medina', 'bautista.guerrero87@correo.com', 'Welcome303', 1),
-	(201, 'Trinidad', 'Medina Mejia', 'trinidad.medina88@correo.com', 'SecureKey2', 1),
-	(202, 'Santino', 'Mejia Campos', 'santino.mejia89@correo.com', 'Pass8888***', 0),
-	(203, 'Damaso', 'Campos Salgado', 'damaso.campos90@correo.com', 'TestKey888', 1),
-	(204, 'Catalina', 'Salgado Zuniga', 'catalina.salgado91@correo.com', 'Qwerty5555', 1),
-	(205, 'Felipe', 'Zuniga Paredes', 'felipe.zuniga92@correo.com', 'UserKey456', 0),
-	(206, 'Isidora', 'Paredes Campos', 'isidora.paredes93@correo.com', 'Secret7766!', 1),
-	(207, 'Gael', 'Campos Valenzuela', 'gael.campos94@correo.com', 'Access8765#', 1),
-	(208, 'Magdalena', 'Valenzuela Lara', 'magdalena.valenzuela95@correo.com', 'Master2025#', 0),
-	(209, 'Luciano', 'Lara Cordoba', 'luciano.lara96@correo.com', 'Admin1111!', 1),
-	(210, 'Emilia', 'Cordoba Espinoza', 'emilia.cordoba97@correo.com', 'Welcome222', 1),
-	(211, 'Vicente', 'Espinoza Solano', 'vicente.espinoza98@correo.com', 'SecurePass3', 0),
-	(212, 'Amelia', 'Solano Ibarra', 'amelia.solano99@correo.com', 'Pass6666##', 1),
-	(214, 'asdas', 'asdasd', 'adasd@asdasd.com', 'asdasdasd', 1);
+	(216, 'Admin5', 'Admin5', 'admin5@gmail.com', 'Qwerty9601', 1),
+	(217, 'Admin6', 'Admin6', 'admin6@gmail.com', 'Qwerty9601', 1),
+	(218, 'Admin7', 'Admin7', 'admin7@gmail.com', 'Qwerty9601', 1),
+	(219, 'Admin8', 'Admin8', 'admin8@gmail.com', 'Qwerty9601', 1),
+	(220, 'Admin9', 'Admin9', 'admin9@gmail.com', 'Qwerty9601', 1),
+	(221, 'Admin10', 'Admin10', 'admin10@gmail.com', 'Qwerty9601', 1),
+	(222, 'Admin11', 'Admin11', 'admin11@gmail.com', 'Qwerty9601', 1),
+	(223, 'Admin12', 'Admin12', 'admin12@gmail.com', 'Qwerty9601', 1),
+	(224, 'Admin13', 'Admin13', 'admin13@gmail.com', 'Qwerty9601', 1),
+	(225, 'Admin14', 'Admin14', 'admin14@gmail.com', 'Qwerty9601', 1),
+	(226, 'Admin15', 'Admin15', 'admin15@gmail.com', 'Qwerty9601', 1),
+	(227, 'Admin16', 'Admin16', 'admin16@gmail.com', 'Qwerty9601', 1),
+	(228, 'Admin17', 'Admin17', 'admin17@gmail.com', 'Qwerty9601', 1),
+	(229, 'Admin18', 'Admin18', 'admin18@gmail.com', 'Qwerty9601', 1),
+	(230, 'Admin19', 'Admin19', 'admin19@gmail.com', 'Qwerty9601', 1),
+	(231, 'Admin20', 'Admin20', 'admin20@gmail.com', 'Qwerty9601', 1),
+	(232, 'Admin21', 'Admin21', 'admin21@gmail.com', 'Qwerty9601', 1),
+	(233, 'Admin22', 'Admin22', 'admin22@gmail.com', 'Qwerty9601', 1),
+	(234, 'Admin23', 'Admin23', 'admin23@gmail.com', 'Qwerty9601', 1),
+	(235, 'Admin24', 'Admin24', 'admin24@gmail.com', 'Qwerty9601', 1),
+	(236, 'Admin25', 'Admin25', 'admin25@gmail.com', 'Qwerty9601', 1),
+	(237, 'Admin26', 'Admin26', 'admin26@gmail.com', 'Qwerty9601', 1),
+	(238, 'Admin27', 'Admin27', 'admin27@gmail.com', 'Qwerty9601', 1),
+	(239, 'Admin28', 'Admin28', 'admin28@gmail.com', 'Qwerty9601', 1),
+	(240, 'Admin29', 'Admin29', 'admin29@gmail.com', 'Qwerty9601', 1),
+	(241, 'Admin30', 'Admin30', 'admin30@gmail.com', 'Qwerty9601', 1),
+	(242, 'Admin31', 'Admin31', 'admin31@gmail.com', 'Qwerty9601', 1),
+	(243, 'Admin32', 'Admin32', 'admin32@gmail.com', 'Qwerty9601', 1),
+	(244, 'Admin33', 'Admin33', 'admin33@gmail.com', 'Qwerty9601', 1),
+	(245, 'Admin34', 'Admin34', 'admin34@gmail.com', 'Qwerty9601', 1),
+	(246, 'Admin35', 'Admin35', 'admin35@gmail.com', 'Qwerty9601', 1);
 
 -- Dumping data for table BAN_00341.mod_usuarios_user: ~3 rows (approximately)
 INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
@@ -442,7 +392,7 @@ INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `passwo
 INSERT INTO `mod_vars_json` (`id`, `nombre`, `valor`) VALUES
 	(2, 'socket_barcode', '"{\\"protocolo_socket_barcode\\":\\"http\\",\\"ip_socket_barcode\\":\\"192.168.1.6\\",\\"puerto_socket_barcode\\":\\"3000\\"}"'),
 	(21, 'link_rrss', '"{\\"whatsapp_link\\": \\"https://www.facebook.com/\\",\\"facebook_link\\": \\"https://www.facebook.com/\\",\\"email_link\\": \\"https://www.facebook.com/\\",\\"linkedin_link\\": \\"https://www.facebook.com/\\",\\"webpage_link\\": \\"https://www.facebook.com/\\"}"'),
-	(24, 'custom_system', '"         {\\n  \\"light\\": {\\n    \\"layout\\": {\\n      \\"scroll\\": {\\n        \\"color\\": \\"#A19C9D\\",\\n        \\"background_color\\": \\"transparent\\"\\n      },\\n      \\"breadcrumbs\\": {\\n        \\"link-disabled\\": \\"#B6F2C0\\",\\n        \\"link-active\\": \\"#FFFFFF\\",\\n        \\"link-hover\\": \\"#EDE4E4\\",\\n        \\"separator\\": \\"#E8E3E3\\",\\n        \\"bg_color_breadcrumb\\": \\"#000000\\"\\n      },\\n      \\"index\\": {\\n        \\"header_color_background\\": \\"#0b4a75\\",\\n        \\"back_color_background\\": \\"#EDEDED\\",\\n        \\"back_color_title\\": \\"#000000\\",\\n        \\"back_color_p\\": \\"#878382\\",\\n        \\"background_color_card_menu\\": \\"#FAF5F5\\",\\n        \\"backg_color_textcard\\": \\"#000000\\",\\n        \\"logo_color_icon_text\\": \\"#000000\\",\\n        \\"logo_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"logo_color_hover_amount\\": 20,\\n        \\"footer_text_background\\": \\"#FFFFFF\\",\\n        \\"footer_color_background\\": \\"#878383\\"\\n      },\\n      \\"admin\\": {\\n        \\"header_color_background\\": \\"#069E21\\",\\n        \\"main_background_color\\": \\"#EDEDED\\",\\n        \\"heder_color_icons\\": \\"#FFFFFF\\",\\n        \\"heder_nickname_color\\": \\"#FFFFFF\\",\\n        \\"dropdawn_text_color\\": \\"#4F4D4D\\",\\n        \\"dropdawn_background\\": \\"#FFFFFF\\",\\n        \\"dropdown_hover_background\\": \\"#E8E3E3\\",\\n        \\"side_color_background\\": \\"#0b4a75\\",\\n        \\"side_color_icon_text\\": \\"rgba(255, 255, 255, 0.4)\\",\\n        \\"side_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"side_color_hover_amount\\": 20,\\n        \\"side_line_color_separator\\": \\"#FFFFFF\\",\\n        \\"side_dropdawn_text_color\\": \\"#4F4D4D\\",\\n        \\"side_dropdawn_background\\": \\"#FFFFFF\\",\\n        \\"side_dropdown_hover_background\\": \\"#E8E3E3\\",\\n        \\"page_color_title\\": \\"#000000\\",\\n        \\"footer_color_background\\": \\"#575555\\",\\n        \\"footer_color_text\\": \\"#FFFFFF\\"\\n      }\\n    },\\n    \\"kpicard\\": {\\n      \\"icon_color\\": \\"#000000\\",\\n      \\"border_line_color\\": \\"#0A18F5\\",\\n      \\"background_color\\": \\"#FFFFFF\\",\\n      \\"text_color\\": \\"#948F8F\\",\\n      \\"text_number_color\\": \\"#000000\\"\\n    },\\n    \\"card_menu\\": {\\n      \\"text_color\\": \\"#000000\\",\\n      \\"icon_color\\": \\"#000000\\",\\n      \\"hover_card_color\\": \\"#CFCACA\\",\\n      \\"background_card_color\\": \\"#FFFFFF\\"\\n    },\\n    \\"grid_table_crud\\": {\\n      \\"title_color\\": \\"#3B3939\\",\\n      \\"text_color\\": \\"#948F8F\\",\\n      \\"background_color\\": \\"#FFFFFF\\",\\n      \\"head_background\\": \\"#0A18F5\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"row_text_color\\": \\"#000000\\",\\n      \\"row_text_select\\": \\"#FFFFFF\\",\\n      \\"row_select\\": \\"#AB0505\\",\\n      \\"button_group_disabled\\": \\"#BEBFC2\\",\\n      \\"button_cargar_excel\\": \\"#10B981\\",\\n      \\"button_crear\\": \\"#059669\\",\\n      \\"button_ver\\": \\"#0A18F5\\",\\n      \\"button_editar\\": \\"#3B82F6\\",\\n      \\"button_estado_usuario\\": \\"#F59E0B\\",\\n      \\"button_eliminar_individual\\": \\"#EF4444\\",\\n      \\"button_eliminar_multiple\\": \\"#B91C1C\\",\\n      \\"button_asignar_permisos\\": \\"#E8E417\\",\\n      \\"button_asignar_productos\\": \\"#6D28D9\\",\\n      \\"button_limpiar\\": \\"#6B7280\\"\\n    },\\n    \\"input\\": {\\n      \\"label_color\\": \\"#000000\\",\\n      \\"text_color_placeholder\\": \\"#B6C2B4\\",\\n      \\"background_color\\": \\"#FFFFFF\\",\\n      \\"text_color\\": \\"#000000\\",\\n      \\"border_color\\": \\"#4cd523\\"\\n    },\\n    \\"modal\\": {\\n      \\"fieldset_line_color\\": \\"#0b4a75\\",\\n      \\"legend_text_color\\": \\"#0b4a75\\",\\n      \\"label_text_color\\": \\"#000000\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#0b4a75\\",\\n      \\"back_color_background\\": \\"#F7F2F2\\",\\n      \\"body_text_color\\": \\"#948F8F\\",\\n      \\"body_background_color\\": \\"#FFFFFF\\",\\n      \\"button_cancel_background_color\\": \\"#8A8484\\",\\n      \\"button_cancel_text_color\\": \\"#FFFFFF\\",\\n      \\"button_save_background_color\\": \\"#059669\\",\\n      \\"button_save_text_color\\": \\"#FFFFFF\\",\\n      \\"button_update_background_color\\": \\"#3B82F6\\",\\n      \\"button_update_text_color\\": \\"#FFFFFF\\",\\n      \\"footer_text_color\\": \\"#948F8F\\",\\n      \\"footer_background_color\\": \\"#EDEDED\\"\\n    },\\n    \\"search\\": {\\n      \\"button_background_color\\": \\"#0A18F5\\",\\n      \\"body_color_text\\": \\"#000000\\",\\n      \\"back_color_background\\": \\"#EDEDED\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#0A18F5\\"\\n    },\\n    \\"report\\": {\\n      \\"button_background_color\\": \\"#469443\\",\\n      \\"back_color_background\\": \\"#EDEDED\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#0A18F5\\"\\n    }\\n  },\\n  \\"dark\\": {\\n    \\"layout\\": {\\n      \\"scroll\\": {\\n        \\"color\\": \\"#D4CFD0\\",\\n        \\"background_color\\": \\"transparent\\"\\n      },\\n      \\"breadcrumbs\\": {\\n        \\"link-disabled\\": \\"#B6F2C0\\",\\n        \\"link-active\\": \\"#FFFFFF\\",\\n        \\"link-hover\\": \\"#EDE4E4\\",\\n        \\"separator\\": \\"#E8E3E3\\",\\n        \\"bg_color_breadcrumb\\": \\"#141414\\"\\n      },\\n      \\"index\\": {\\n        \\"header_color_background\\": \\"#000000\\",\\n        \\"back_color_background\\": \\"#0A0A0A\\",\\n        \\"backg_color_textcard\\": \\"#000000\\",\\n        \\"back_color_title\\": \\"#FFFFFF\\",\\n        \\"back_color_p\\": \\"#FFFFFF\\",\\n        \\"logo_color_icon_text\\": \\"#000000\\",\\n        \\"logo_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"logo_color_hover_amount\\": 20,\\n        \\"background_color_card_menu\\": \\"#EDEDED\\",\\n        \\"footer_text_background\\": \\"#FFFFFF\\",\\n        \\"footer_color_background\\": \\"#878383\\"\\n      },\\n      \\"admin\\": {\\n        \\"header_color_background\\": \\"#069E21\\",\\n        \\"main_background_color\\": \\"#0A0A0A\\",\\n        \\"heder_color_icons\\": \\"#DEDEDE\\",\\n        \\"heder_nickname_color\\": \\"#FFFFFF\\",\\n        \\"dropdawn_text_color\\": \\"#FFFFFF\\",\\n        \\"dropdawn_background\\": \\"#000000\\",\\n        \\"dropdown_hover_background\\": \\"#8A8686\\",\\n        \\"side_color_background\\": \\"#000000\\",\\n        \\"side_color_icon_text\\": \\"rgba(255, 255, 255, 0.4)\\",\\n        \\"side_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"side_color_hover_amount\\": 20,\\n        \\"side_line_color_separator\\": \\"#FFFFFF\\",\\n        \\"side_dropdawn_text_color\\": \\"#FFFFFF\\",\\n        \\"side_dropdawn_background\\": \\"#302F2F\\",\\n        \\"side_dropdown_hover_background\\": \\"#8A8686\\",\\n        \\"page_color_title\\": \\"#FFFFFF\\",\\n        \\"footer_color_background\\": \\"#0F0F0F\\",\\n        \\"footer_color_text\\": \\"#FFFFFF\\"\\n      }\\n    },\\n    \\"kpicard\\": {\\n      \\"icon_color\\": \\"#FFFFFF\\",\\n      \\"border_line_color\\": \\"#157D00\\",\\n      \\"background_color\\": \\"#2B2A2A\\",\\n      \\"text_color\\": \\"#FFFFFF\\",\\n      \\"text_number_color\\": \\"#FFFFFF\\"\\n    },\\n    \\"card_menu\\": {\\n      \\"text_color\\": \\"#FFFFFF\\",\\n      \\"icon_color\\": \\"#FFFFFF\\",\\n      \\"hover_card_color\\": \\"#716f6f\\",\\n      \\"background_card_color\\": \\"#474747\\"\\n    },\\n    \\"grid_table_crud\\": {\\n      \\"title_color\\": \\"#FFFFFF\\",\\n      \\"text_color\\": \\"#FFFFFF\\",\\n      \\"background_color\\": \\"#2B2A2A\\",\\n      \\"head_background\\": \\"#111827\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"row_text_color\\": \\"#FFFFFF\\",\\n      \\"row_text_select\\": \\"#FFFFFF\\",\\n      \\"row_select\\": \\"#1e3a8a\\",\\n      \\"button_group_disabled\\": \\"#BEBFC2\\",\\n      \\"button_cargar_excel\\": \\"#065F46\\",\\n      \\"button_crear\\": \\"#047857\\",\\n      \\"button_ver\\": \\"#4338CA\\",\\n      \\"button_editar\\": \\"#2563EB\\",\\n      \\"button_estado_usuario\\": \\"#D97706\\",\\n      \\"button_eliminar_individual\\": \\"#DC2626\\",\\n      \\"button_eliminar_multiple\\": \\"#991B1B\\",\\n      \\"button_asignar_permisos\\": \\"#CA8A04\\",\\n      \\"button_asignar_productos\\": \\"#7C3AED\\",\\n      \\"button_limpiar\\": \\"#4B5563\\"\\n    },\\n    \\"input\\": {\\n      \\"label_color\\": \\"#FFFFFF\\",\\n      \\"text_color_placeholder\\": \\"#9E9E95\\",\\n      \\"background_color\\": \\"#000000\\",\\n      \\"text_color\\": \\"#ffffff\\",\\n      \\"border_color\\": \\"#4cd523\\"\\n    },\\n    \\"modal\\": {\\n      \\"fieldset_line_color\\": \\"#0b4a75\\",\\n      \\"legend_text_color\\": \\"#FFFFFF\\",\\n      \\"label_text_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#242323\\",\\n      \\"back_color_background\\": \\"#2B2A2A\\",\\n      \\"body_text_color\\": \\"#948F8F\\",\\n      \\"body_background_color\\": \\"#FFFFFF\\",\\n      \\"button_cancel_background_color\\": \\"#8A8484\\",\\n      \\"button_cancel_text_color\\": \\"#FFFFFF\\",\\n      \\"button_save_background_color\\": \\"#047857\\",\\n      \\"button_save_text_color\\": \\"#FFFFFF\\",\\n      \\"button_update_background_color\\": \\"#2563EB\\",\\n      \\"button_update_text_color\\": \\"#FFFFFF\\",\\n      \\"footer_text_color\\": \\"#948F8F\\",\\n      \\"footer_background_color\\": \\"#242323\\"\\n    },\\n    \\"search\\": {\\n      \\"button_background_color\\": \\"#0A18F5\\",\\n      \\"body_color_text\\": \\"#FFFFFF\\",\\n      \\"back_color_background\\": \\"#1F1E1E\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#111827\\"\\n    },\\n    \\"report\\": {\\n      \\"button_background_color\\": \\"#469443\\",\\n      \\"back_color_background\\": \\"#948F8F\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#111827\\"\\n    }\\n  }\\n}\\n            "');
+	(24, 'custom_system', '"{\\n  \\"light\\": {\\n    \\"layout\\": {\\n      \\"scroll\\": {\\n        \\"color\\": \\"#A19C9D\\",\\n        \\"background_color\\": \\"transparent\\"\\n      },\\n      \\"breadcrumbs\\": {\\n        \\"link-disabled\\": \\"#D5E7F2\\",\\n        \\"link-active\\": \\"#FFFFFF\\",\\n        \\"link-hover\\": \\"#FFFFFF\\",\\n        \\"separator\\": \\"#D5E7F2\\",\\n        \\"bg_color_breadcrumb\\": \\"#000000\\"\\n      },\\n      \\"index\\": {\\n        \\"header_color_background\\": \\"#0b4a75\\",\\n        \\"back_color_background\\": \\"#EDEDED\\",\\n        \\"back_color_title\\": \\"#000000\\",\\n        \\"back_color_p\\": \\"#878382\\",\\n        \\"background_color_card_menu\\": \\"#FAF5F5\\",\\n        \\"backg_color_textcard\\": \\"#000000\\",\\n        \\"logo_color_icon_text\\": \\"#000000\\",\\n        \\"logo_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"logo_color_hover_amount\\": 20,\\n        \\"footer_text_background\\": \\"#FFFFFF\\",\\n        \\"footer_color_background\\": \\"#878383\\"\\n      },\\n      \\"admin\\": {\\n        \\"header_color_background\\": \\"#0b4a75\\",\\n        \\"header_color_line\\": \\"#E06767\\",\\n        \\"main_background_color\\": \\"#EDEDED\\",\\n        \\"heder_color_icons\\": \\"#C8CCCF\\",\\n        \\"dropdawn_text_color\\": \\"#4F4D4D\\",\\n        \\"dropdawn_background\\": \\"#FFFFFF\\",\\n        \\"dropdown_hover_background\\": \\"#E8E3E3\\",\\n        \\"side_color_background\\": \\"#000000\\",\\n        \\"side_color_icon_text\\": \\"rgba(255, 255, 255, 0.4)\\",\\n        \\"side_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"side_color_hover_amount\\": 20,\\n        \\"side_line_color_separator\\": \\"#FFFFFF\\",\\n        \\"side_dropdawn_text_color\\": \\"#4F4D4D\\",\\n        \\"side_dropdawn_background\\": \\"#FFFFFF\\",\\n        \\"side_dropdown_hover_background\\": \\"#E8E3E3\\",\\n        \\"page_color_title\\": \\"#000000\\",\\n        \\"footer_color_background\\": \\"#575555\\",\\n        \\"footer_color_text\\": \\"#FFFFFF\\"\\n      }\\n    },\\n    \\"kpicard\\": {\\n      \\"icon_color\\": \\"#000000\\",\\n      \\"border_line_color\\": \\"#0a18f5\\",\\n      \\"background_color\\": \\"#FFFFFF\\",\\n      \\"text_color\\": \\"#948F8F\\",\\n      \\"text_number_color\\": \\"#000000\\"\\n    },\\n    \\"title_page\\": {\\n      \\"background_card_color\\": \\"#FFFFFF\\",\\n      \\"icon_color\\": \\"#000000\\",\\n      \\"text_color\\": \\"#000000\\",\\n      \\"line_color\\": \\"#000000\\"\\n    },\\n    \\"card_menu\\": {\\n      \\"text_color\\": \\"#000000\\",\\n      \\"icon_color\\": \\"#000000\\",\\n      \\"hover_card_color\\": \\"#CFCACA\\",\\n      \\"background_card_color\\": \\"#FFFFFF\\"\\n    },\\n    \\"grid_table_crud\\": {\\n      \\"title_color\\": \\"#3B3939\\",\\n      \\"text_color\\": \\"#948F8F\\",\\n      \\"background_color\\": \\"#FFFFFF\\",\\n      \\"head_background\\": \\"#0a18f5\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"row_text_color\\": \\"#000000\\",\\n      \\"row_text_select\\": \\"#FFFFFF\\",\\n      \\"row_select\\": \\"#B9BDAE\\",\\n      \\"button_group_disabled\\": \\"#BEBFC2\\",\\n      \\"button_cargar_excel\\": \\"#10B981\\",\\n      \\"button_crear\\": \\"#059669\\",\\n      \\"button_ver\\": \\"#0A18F5\\",\\n      \\"button_editar\\": \\"#3B82F6\\",\\n      \\"button_estado_usuario\\": \\"#F59E0B\\",\\n      \\"button_eliminar_individual\\": \\"#EF4444\\",\\n      \\"button_eliminar_multiple\\": \\"#B91C1C\\",\\n      \\"button_asignar_permisos\\": \\"#E8E417\\",\\n      \\"button_asignar_productos\\": \\"#6D28D9\\",\\n      \\"button_limpiar\\": \\"#6B7280\\"\\n    },\\n    \\"input\\": {\\n      \\"label_color\\": \\"#000000\\",\\n      \\"text_color_placeholder\\": \\"#B6C2B4\\",\\n      \\"background_color\\": \\"#FFFFFF\\",\\n      \\"text_color\\": \\"#000000\\",\\n      \\"border_color\\": \\"#0a18f5\\"\\n    },\\n    \\"modal\\": {\\n      \\"fieldset_line_color\\": \\"#0b4a75\\",\\n      \\"legend_text_color\\": \\"#0b4a75\\",\\n      \\"label_text_color\\": \\"#000000\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#0b4a75\\",\\n      \\"back_color_background\\": \\"#F7F2F2\\",\\n      \\"body_text_color\\": \\"#948F8F\\",\\n      \\"body_background_color\\": \\"#FFFFFF\\",\\n      \\"button_cancel_background_color\\": \\"#8A8484\\",\\n      \\"button_cancel_text_color\\": \\"#FFFFFF\\",\\n      \\"button_save_background_color\\": \\"#059669\\",\\n      \\"button_save_text_color\\": \\"#FFFFFF\\",\\n      \\"button_update_background_color\\": \\"#3B82F6\\",\\n      \\"button_update_text_color\\": \\"#FFFFFF\\",\\n      \\"footer_text_color\\": \\"#948F8F\\",\\n      \\"footer_background_color\\": \\"#EDEDED\\"\\n    },\\n    \\"search\\": {\\n      \\"button_background_color\\": \\"#0A18F5\\",\\n      \\"body_color_text\\": \\"#000000\\",\\n      \\"back_color_background\\": \\"#EDEDED\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#0A18F5\\"\\n    },\\n    \\"report\\": {\\n      \\"button_background_color\\": \\"#469443\\",\\n      \\"back_color_background\\": \\"#EDEDED\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#0A18F5\\"\\n    }\\n  },\\n  \\"dark\\": {\\n    \\"layout\\": {\\n      \\"scroll\\": {\\n        \\"color\\": \\"#D4CFD0\\",\\n        \\"background_color\\": \\"transparent\\"\\n      },\\n      \\"breadcrumbs\\": {\\n        \\"link-disabled\\": \\"#B6F2C0\\",\\n        \\"link-active\\": \\"#FFFFFF\\",\\n        \\"link-hover\\": \\"#EDE4E4\\",\\n        \\"separator\\": \\"#B6F2C0\\",\\n        \\"bg_color_breadcrumb\\": \\"#000000\\"\\n      },\\n      \\"index\\": {\\n        \\"header_color_background\\": \\"#000000\\",\\n        \\"back_color_background\\": \\"#0A0A0A\\",\\n        \\"backg_color_textcard\\": \\"#000000\\",\\n        \\"back_color_title\\": \\"#FFFFFF\\",\\n        \\"back_color_p\\": \\"#FFFFFF\\",\\n        \\"logo_color_icon_text\\": \\"#000000\\",\\n        \\"logo_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"logo_color_hover_amount\\": 20,\\n        \\"background_color_card_menu\\": \\"#EDEDED\\",\\n        \\"footer_text_background\\": \\"#FFFFFF\\",\\n        \\"footer_color_background\\": \\"#878383\\"\\n      },\\n      \\"admin\\": {\\n        \\"header_color_background\\": \\"#069E21\\",\\n        \\"header_color_line\\": \\"#FFFFFF\\",\\n        \\"main_background_color\\": \\"#0A0A0A\\",\\n        \\"heder_color_icons\\": \\"#DEDEDE\\",\\n        \\"dropdawn_text_color\\": \\"#FFFFFF\\",\\n        \\"dropdawn_background\\": \\"#000000\\",\\n        \\"dropdown_hover_background\\": \\"#8A8686\\",\\n        \\"side_color_background\\": \\"#000000\\",\\n        \\"side_color_icon_text\\": \\"rgba(255, 255, 255, 0.4)\\",\\n        \\"side_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"side_color_hover_amount\\": 20,\\n        \\"side_line_color_separator\\": \\"#FFFFFF\\",\\n        \\"side_dropdawn_text_color\\": \\"#FFFFFF\\",\\n        \\"side_dropdawn_background\\": \\"#302F2F\\",\\n        \\"side_dropdown_hover_background\\": \\"#8A8686\\",\\n        \\"page_color_title\\": \\"#FFFFFF\\",\\n        \\"footer_color_background\\": \\"#0F0F0F\\",\\n        \\"footer_color_text\\": \\"#FFFFFF\\"\\n      }\\n    },\\n    \\"kpicard\\": {\\n      \\"icon_color\\": \\"#FFFFFF\\",\\n      \\"border_line_color\\": \\"#157D00\\",\\n      \\"background_color\\": \\"#2B2A2A\\",\\n      \\"text_color\\": \\"#FFFFFF\\",\\n      \\"text_number_color\\": \\"#FFFFFF\\"\\n    },\\n    \\"title_page\\": {\\n      \\"background_card_color\\": \\"#2b2a2a\\",\\n      \\"icon_color\\": \\"#FFFFFF\\",\\n      \\"text_color\\": \\"#FFFFFF\\",\\n      \\"line_color\\": \\"#FFFFFF\\"\\n    },\\n    \\"card_menu\\": {\\n      \\"text_color\\": \\"#FFFFFF\\",\\n      \\"icon_color\\": \\"#FFFFFF\\",\\n      \\"hover_card_color\\": \\"#716f6f\\",\\n      \\"background_card_color\\": \\"#474747\\"\\n    },\\n    \\"grid_table_crud\\": {\\n      \\"title_color\\": \\"#FFFFFF\\",\\n      \\"text_color\\": \\"#FFFFFF\\",\\n      \\"background_color\\": \\"#2B2A2A\\",\\n      \\"head_background\\": \\"#111827\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"row_text_color\\": \\"#FFFFFF\\",\\n      \\"row_text_select\\": \\"#FFFFFF\\",\\n      \\"row_select\\": \\"#1e3a8a\\",\\n      \\"button_group_disabled\\": \\"#BEBFC2\\",\\n      \\"button_cargar_excel\\": \\"#065F46\\",\\n      \\"button_crear\\": \\"#047857\\",\\n      \\"button_ver\\": \\"#4338CA\\",\\n      \\"button_editar\\": \\"#2563EB\\",\\n      \\"button_estado_usuario\\": \\"#D97706\\",\\n      \\"button_eliminar_individual\\": \\"#DC2626\\",\\n      \\"button_eliminar_multiple\\": \\"#991B1B\\",\\n      \\"button_asignar_permisos\\": \\"#CA8A04\\",\\n      \\"button_asignar_productos\\": \\"#7C3AED\\",\\n      \\"button_limpiar\\": \\"#4B5563\\"\\n    },\\n    \\"input\\": {\\n      \\"label_color\\": \\"#FFFFFF\\",\\n      \\"text_color_placeholder\\": \\"#9E9E95\\",\\n      \\"background_color\\": \\"#000000\\",\\n      \\"text_color\\": \\"#ffffff\\",\\n      \\"border_color\\": \\"#4cd523\\"\\n    },\\n    \\"modal\\": {\\n      \\"fieldset_line_color\\": \\"#0b4a75\\",\\n      \\"legend_text_color\\": \\"#FFFFFF\\",\\n      \\"label_text_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#242323\\",\\n      \\"back_color_background\\": \\"#2B2A2A\\",\\n      \\"body_text_color\\": \\"#948F8F\\",\\n      \\"body_background_color\\": \\"#FFFFFF\\",\\n      \\"button_cancel_background_color\\": \\"#8A8484\\",\\n      \\"button_cancel_text_color\\": \\"#FFFFFF\\",\\n      \\"button_save_background_color\\": \\"#047857\\",\\n      \\"button_save_text_color\\": \\"#FFFFFF\\",\\n      \\"button_update_background_color\\": \\"#2563EB\\",\\n      \\"button_update_text_color\\": \\"#FFFFFF\\",\\n      \\"footer_text_color\\": \\"#948F8F\\",\\n      \\"footer_background_color\\": \\"#242323\\"\\n    },\\n    \\"search\\": {\\n      \\"button_background_color\\": \\"#0A18F5\\",\\n      \\"body_color_text\\": \\"#FFFFFF\\",\\n      \\"back_color_background\\": \\"#1F1E1E\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#111827\\"\\n    },\\n    \\"report\\": {\\n      \\"button_background_color\\": \\"#469443\\",\\n      \\"back_color_background\\": \\"#948F8F\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#111827\\"\\n    }\\n  }\\n}"');
 
 -- Dumping data for table BAN_00341.mod_vars_var: ~2 rows (approximately)
 INSERT INTO `mod_vars_var` (`id`, `nombre`, `valor`) VALUES
