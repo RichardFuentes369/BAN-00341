@@ -4,16 +4,17 @@ import { Router } from '@angular/router'
 import { swalert } from '@function/System'
 import { LoginServiceService } from './service/login-service.service'
 
-
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { LoadingComponent } from '../loading/loading.component';
 import { STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINAL } from '@const/app.const';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-globales-login',
   standalone: true,
   imports: [
+    CommonModule,
     FormsModule,
     TranslateModule,
     LoadingComponent

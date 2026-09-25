@@ -1,14 +1,170 @@
-.card-custom {
-  height: 100%;
+.login-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 100px);
+  padding: 20px;
+  width: 100%;
+}
+
+.card-custom {
+  width: 100%;
+  max-width: 440px;
+  border-radius: 20px !important;
   border: none;
   background-color: var(--modal-back_color_background) !important;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  /* Efecto de brillo sutil en la esquina superior */
+  .card-glow-effect {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(var(--layout-index-backg_color_textcard-rgb, 0, 123, 255), 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
 }
 
-.title-custom {
-  color: var(--modal-label_text_color) !important;
+.login-card-body {
+  padding: 40px 30px;
+
+  .login-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: rgba(var(--layout-index-backg_color_textcard-rgb, 0, 123, 255), 0.08);
+    color: var(--layout-index-backg_color_textcard) !important;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--layout-index-backg_color_textcard);
+      border-radius: 50%;
+    }
+  }
+
+  .title-custom {
+    color: var(--modal-label_text_color) !important;
+    background-color: transparent;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+
+  .login-subtitle {
+    color: var(--modal-label_text_color);
+    opacity: 0.7;
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }
+}
+
+/* Campos de formulario estilizados */
+.form-control-user {
+  border-radius: 10px !important;
+  padding: 14px 18px !important;
+  font-size: 0.95rem;
+  border: 1px solid rgba(128, 128, 128, 0.2);
   background-color: transparent;
+  color: inherit;
+
+  &:focus {
+    border-color: var(--layout-index-backg_color_textcard);
+    box-shadow: 0 0 0 3px rgba(var(--layout-index-backg_color_textcard-rgb, 0, 123, 255), 0.15);
+  }
+}
+
+/* Grupo de contraseña y botón del ojo optimizado */
+.password-group {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+
+  .password-input {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-right: none !important;
+  }
+
+  .toggle-password-wrapper {
+    background-color: transparent;
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-left: none;
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+    padding: 0 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    i {
+      font-size: 1rem;
+      color: var(--modal-label_text_color);
+      opacity: 0.6;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    &:hover {
+      background-color: rgba(128, 128, 128, 0.05);
+      
+      i {
+        opacity: 1;
+        color: var(--layout-index-backg_color_textcard);
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+/* Botón principal de ingreso */
+.submit-btn {
+  background-color: var(--layout-index-backg_color_textcard) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 12px !important;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    opacity: 0.92;
+  }
+}
+
+.divider-custom {
+  border-top: 1px solid rgba(128, 128, 128, 0.15);
+}
+
+.link-custom {
+  color: var(--layout-index-backg_color_textcard) !important;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+}
+
+.remember-me {
+  user-select: none;
 }

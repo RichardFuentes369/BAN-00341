@@ -61,7 +61,7 @@
   .dropdawn_color_text {
     color: var(--layout-admin-dropdawn_text_color) !important;
   }
-  
+
   .border-custom-color {
     border-bottom: 0.25rem solid var(--layout-admin-header_color_line) !important;
   }
@@ -182,20 +182,28 @@
     transition: all 0.2s ease-in-out;
 
     &:hover,
-    &:focus {
-      background-color: rgba(255, 255, 255, 0.1);
+    &:focus,
+    &:active,
+    &.dropdown-toggle:focus {
+      background-color: transparent !important;
+      color: var(--layout-admin-side_color_icon_text) !important;
+      box-shadow: none !important;
+
+      i,
+      span {
+        color: var(--layout-admin-side_color_icon_text) !important;
+      }
     }
 
-    /* ESTADO ACTIVO PARA PESTAÑAS DENTRO DEL NAVBAR */
     &.active,
     &.active-dropdown {
-      background-color: #ffffff !important;
-      color: #000000 !important;
+      background-color: transparent !important;
+      color: var(--layout-admin-side_color_icon_text) !important;
       font-weight: 600;
 
       i,
       span {
-        color: #000000 !important;
+        color: var(--layout-admin-side_color_icon_text) !important;
       }
     }
   }
@@ -219,6 +227,49 @@
         background-color: var(--layout-admin-header_color_background, #00a650) !important;
         color: #ffffff !important;
         font-weight: 600;
+      }
+    }
+  }
+
+.nav-item {
+    /* Dibuja la línea lateral izquierda cuando el item o sus hijos están activos */
+    &.active {
+      > .nav-link {
+        position: relative; // Solo afecta al enlace activo para contener la línea sin romper Bootstrap
+        
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 4px;
+          background-color: var(--layout-admin-header_color_background) !important;
+          z-index: 2;
+        }
+      }
+    }
+
+    /* Neutraliza el fondo azul por defecto de Bootstrap en los dropdowns principales */
+    &.dropdown {
+      > .nav-link.dropdown-toggle {
+        background-color: transparent !important;
+        box-shadow: none !important;
+
+        &:hover,
+        &:focus,
+        &:active,
+        &.show,
+        &[aria-expanded="true"] {
+          background-color: transparent !important;
+          color: var(--layout-admin-side_color_icon_text) !important;
+          box-shadow: none !important;
+          outline: none !important;
+
+          i, span {
+            color: var(--layout-admin-side_color_icon_text) !important;
+          }
+        }
       }
     }
   }
@@ -554,10 +605,21 @@
   background-color: var(--layout-admin-dropdawn_background) !important;
 
   .dropdown-item {
+    color: var(--layout-admin-side_dropdawn_text_color) !important;
+
     &:hover {
-      background-color: var(--layout-admin-dropdown_hover_background) !important;
-      color: var(--layout-admin-dropdawn_text_color) !important;
+      background-color: var(--layout-admin-side_dropdown_hover_background) !important;
+      color: var(--layout-admin-side_dropdawn_text_color) !important;
     }
+  }
+}
+
+.collapse-item {
+  color: var(--layout-admin-side_dropdawn_text_color) !important;
+
+  &:hover {
+    background-color: var(--layout-admin-side_dropdown_hover_background) !important;
+    color: var(--layout-admin-side_dropdawn_text_color) !important;
   }
 }
 
@@ -630,10 +692,40 @@
   }
 }
 
+
+.nav-item {
+  >.nav-link {
+    font-weight: 600;
+    position: relative;
+  }
+}
+
+.nav-item.active {
+  >.nav-link {
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background-color: var(--layout-admin-header_color_background) !important;
+    }
+  }
+}
+
+/* El submódulo/ruta actual también queda resaltado. */
+.collapse-item.active {
+  background-color: var(--layout-admin-header_color_background, #00a650) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
 .border-custom-top-breadcrumb {
   border-top-right-radius: 1rem !important;
   border-top-left-radius: 1rem !important;
 }
+
 .border-custom-bottom-breadcrumb {
   border-bottom-right-radius: 1rem !important;
   border-bottom-left-radius: 1rem !important;

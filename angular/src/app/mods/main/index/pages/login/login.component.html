@@ -1,13 +1,22 @@
-<div class="flex-container">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-xl-6 col-lg-6 col-md-9">
-        <div class="o-hidden border-0 shadow-lg">
-          <div class="card-body p-0">
-            <app-globales-login></app-globales-login>
-          </div>
-        </div>
+<div class="login-split-container">
+  <!-- Columna Izquierda: Identidad y Presentación -->
+  <div class="login-brand-side">
+    <div class="brand-content">
+      <img src="assets/images/logo-blanco.png" alt="Mermas Smart" width="120" class="mb-4">
+      <h2>Control Inteligente de Inventarios</h2>
+      <p>Optimiza la trazabilidad, reduce pérdidas y mantén el control total de tus productos en tiempo real.</p>
+      
+      <div class="brand-features">
+        <div class="feature-item"><i class="fas fa-shield-alt"></i> Máxima seguridad</div>
+        <div class="feature-item"><i class="fas fa-chart-line"></i> Reportes en vivo</div>
       </div>
+    </div>
+  </div>
+
+  <!-- Columna Derecha: Tu Tarjeta de Login Actual -->
+  <div class="login-form-side">
+    <div class="card shadow card-custom">
+    <app-globales-login></app-globales-login>
     </div>
   </div>
 </div>

@@ -1,13 +1,91 @@
-.flex-container {
+.login-split-container {
   display: flex;
-  justify-content: center; /* Centrado horizontal */
-  align-items: center;     /* Centrado vertical */
-  min-height: 70vh;       /* Ocupa el 100% de la altura de la pantalla */
+  min-height: calc(85vh - 120px);
   width: 100%;
+  max-width: 1200px; /* Limita el ancho máximo para que no se estire de más en pantallas gigantes */
+  margin: 20px auto;  /* Centra todo el contenedor en la pantalla */
+  background-color: var(--modal-back_color_background);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+
+  /* Lado izquierdo con identidad */
+  .login-brand-side {
+    flex: 1;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    text-align: center;
+
+    .brand-content {
+      max-width: 450px;
+
+      img {
+        max-width: 140px;
+        height: auto;
+      }
+
+      h2 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 15px;
+        letter-spacing: -0.5px;
+      }
+
+      p {
+        opacity: 0.8;
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+
+      .brand-features {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        font-size: 0.9rem;
+        opacity: 0.9;
+
+        .feature-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          i { color: var(--layout-index-backg_color_textcard); }
+        }
+      }
+    }
+  }
+
+  /* Lado derecho con el formulario */
+  .login-form-side {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: transparent;
+
+    /* Limpiamos la tarjeta contenedora para que no duplique fondos ni sombras */
+    .card-custom {
+      background: transparent !important;
+      box-shadow: none !important;
+      border: none !important;
+      max-width: 420px;
+      width: 100%;
+    }
+  }
 }
 
-.card {
-  /* Opcional: define un ancho máximo para que no se estire demasiado */
-  max-width: 800px;
-  width: 100%;
+/* Ocultar el lado izquierdo en pantallas pequeñas (móviles) */
+@media (max-width: 992px) {
+  .login-split-container {
+    box-shadow: none;
+    margin: 0;
+    .login-brand-side {
+      display: none;
+    }
+  }
 }

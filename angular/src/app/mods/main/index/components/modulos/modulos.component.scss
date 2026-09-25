@@ -1,59 +1,147 @@
-
-
 .card-custom {
   height: 100%;
+  min-height: 550px;
   display: flex;
   flex-direction: column;
-  border-radius: 12px;
+  border-radius: 20px;
   border: none;
-  background-color: var(--modal-back_color_background) !important;
+  background: var(--modal-back_color_background) !important;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-.title-custom {
-  color: var(--modal-label_text_color) !important;
-  background-color: transparent;
-}
-
-.seccion {
-  padding: 80px 20px;
+.seccion-presentacion {
+  padding: 60px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  h2 { font-size: 2.5rem; margin-bottom: 40px; }
+  width: 100%;
 }
 
-.modulos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+.hero-content {
+  text-align: center;
+  max-width: 700px;
+  padding: 0 20px;
+  margin-bottom: 40px;
+
+  .badge-bienvenida {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(var(--layout-index-backg_color_textcard-rgb, 0, 123, 255), 0.1);
+    color: var(--layout-index-backg_color_textcard) !important;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .title-custom {
+    color: var(--modal-label_text_color) !important;
+    font-size: 2.3rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+
+  .subtitle-custom {
+    color: var(--modal-label_text_color);
+    opacity: 0.75;
+    font-size: 1rem;
+    margin: 0;
+  }
+}
+
+/* ==========================================
+   ESTRUCTURA DEL CARRUSEL HORIZONTAL
+   ========================================== */
+.modulos-carousel-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 20px 0;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+
+  /* Al poner el mouse sobre el carrusel completo, se pausa el desplazamiento */
+  &:hover .modulos-track {
+    animation-play-state: paused;
+  }
+}
+
+.modulos-track {
+  display: flex;
   gap: 25px;
-  width: 90%;
-  max-width: 1000px;
+  width: max-content;
+  /* Animación continua horizontal: ajusta los segundos (ej. 30s) para hacerlo más rápido o lento */
+  animation: scrollHorizontal 30s linear infinite;
 }
 
-.title-card {
-  color: var(--layout-index-backg_color_textcard) !important;
+@keyframes scrollHorizontal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Se desplaza exactamente la mitad (el ancho de los elementos originales antes de duplicar) */
+    transform: translateX(calc(-50% - 12.5px));
+  }
 }
 
-
-
+/* ==========================================
+   ESTILOS DE CADA TARJETA DE MÓDULO
+   ========================================== */
 .modulo-card {
   background: var(--layout-index-background_color_card_menu) !important;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
-  transition: transform 0.3s ease;
+  justify-content: center;
+  gap: 12px;
+  width: 210px;
+  min-height: 180px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
-  overflow: hidden; 
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
-  h3 { margin: 0; font-size: 1.1rem; }
+  .card-icon-wrapper {
+    background: rgba(0, 0, 0, 0.03);
+    padding: 15px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
 
+  .title-card {
+    color: var(--layout-index-backg_color_textcard) !important;
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    
+    .card-icon-wrapper {
+      transform: scale(1.1);
+    }
+
+    .overlay-menu {
+      top: 0;
+      .carousel span { 
+        animation-play-state: running; 
+      }
+    }
+  }
+
+  /* Menú desplegable interno con fundido de textos */
   .overlay-menu {
     position: absolute;
     top: -100%;
@@ -67,6 +155,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(5px);
 
     .carousel {
       width: 100%;
@@ -80,12 +169,13 @@
         position: absolute;
         text-align: center;
         opacity: 0;
-        /* Duración total de 12s para que cada uno dure 3s */
         animation: fadeText calc(var(--total) * 3s) infinite ease-in-out;
         animation-fill-mode: backwards;
         width: 100%;
         padding: 0 10px;
         font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--layout-index-backg_color_textcard);
         will-change: opacity, transform;
       }
 
@@ -97,28 +187,22 @@
     }
   }
 
-  /* Efecto Hover */
-  &:hover .overlay-menu {
-    top: 0;
-    .carousel span { animation-play-state: running; }
-  }
-
   .carousel span:only-child {
     animation: none !important;
     opacity: 1 !important;
     transform: translateY(0) !important;
   }
 
-  /* Pausar cuando no hay hover */
-  .carousel span { animation-play-state: paused; }
+  .carousel span { 
+    animation-play-state: paused; 
+  }
 }
 
-/* Animación universal que funciona para cualquier número de elementos */
+/* Animación de fundido interno de los textos */
 @keyframes fadeText {
-  0%   { opacity: 0; transform: translateY(10px); } /* Inicio */
-  5%   { opacity: 1; transform: translateY(0); }    /* Entrada rápida */
-  20%  { opacity: 1; transform: translateY(0); }    /* Estático */
-  25%  { opacity: 0; transform: translateY(-10px); }/* Salida rápida */
-  100% { opacity: 0; transform: translateY(-10px); }/* Espera invisible */
+  0%   { opacity: 0; transform: translateY(8px); }
+  5%   { opacity: 1; transform: translateY(0); }
+  20%  { opacity: 1; transform: translateY(0); }
+  25%  { opacity: 0; transform: translateY(-8px); }
+  100% { opacity: 0; transform: translateY(-8px); }
 }
-

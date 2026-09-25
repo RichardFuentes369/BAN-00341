@@ -27,6 +27,7 @@ import {
   LAYOUT_ADMIN_PAGE_MENU,
   ADMIN_PAGE_MENU_PERSMISSION_ALERTS,
   LAYOUT_ADMIN_PAGE_ALERT,
+  LAYOUT_ADMIN_PAGE_SALE_RETURN,
 } from '@mod/main/const/main.const';
 import { MOD_USER_PAGE_ADMIN, MOD_USER_PAGE_FINAL } from '@mod/users/const/users.const';
 import { MOD_CATEGORY_PAGE_BRAND, MOD_CATEGORY_PAGE_EXTENT, MOD_CATEGORY_PAGE_PRODUCT, MOD_CATEGORY_PAGE_SUPPLIER } from '@mod/catalog/const/catalog.const';
@@ -96,6 +97,7 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
   public LAYOUT_ADMIN_PAGE_LOSS = LAYOUT_ADMIN_PAGE_LOSS;
   public LAYOUT_ADMIN_PAGE_CATALOG = LAYOUT_ADMIN_PAGE_CATALOG;
   public LAYOUT_ADMIN_PAGE_ALERT = LAYOUT_ADMIN_PAGE_ALERT;
+  public LAYOUT_ADMIN_PAGE_SALE_RETURN = LAYOUT_ADMIN_PAGE_SALE_RETURN;
 
   public tipoNavegacion: 'sidebar' | 'navbar' = 'sidebar';
   public navBarHeight: number = 0;
@@ -300,20 +302,28 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  isRouteActive(routePath: string | any[], exact: boolean = false): boolean {
-    if (!routePath) return false;
-
-    const urlTree = Array.isArray(routePath)
-      ? this.router.createUrlTree(routePath)
-      : this.router.createUrlTree([routePath]);
-
-    return this.router.isActive(urlTree, {
-      paths: exact ? 'exact' : 'subset',
-      queryParams: 'ignored',
-      fragment: 'ignored',
-      matrixParams: 'ignored'
-    });
+isRouteActive(routePath: string | any[], exact: boolean = false): boolean {
+  // Si la ruta está vacía o no existe, retornamos falso inmediatamente para que no se ilumine por error
+  if (!routePath || routePath === '' || (Array.isArray(routePath) && routePath.length === 0)) {
+    return false;
   }
+
+  const urlTree = Array.isArray(routePath)
+    ? this.router.createUrlTree(routePath)
+    : this.router.parseUrl(routePath);
+
+  // Evitamos evaluar rutas raíz vacías
+  if (urlTree.toString() === '/' && exact) {
+    return this.router.url === '/';
+  }
+
+  return this.router.isActive(urlTree, {
+    paths: exact ? 'exact' : 'subset',
+    queryParams: 'ignored',
+    fragment: 'ignored',
+    matrixParams: 'ignored'
+  });
+}
 
   tienePermiso(modulo: string, submodulo?: string, jerarquia: number = 0): boolean {
     const moduloPadre = this.menu.find(p => p.mpm_permiso === modulo);

@@ -1,59 +1,144 @@
 <div class="card shadow card-custom">
-  <section class="seccion">
-    <h2 class="title-custom">Explora nuestros módulos</h2>
-    <div class="modulos-grid">
-      <div class="modulo-card">
-        <img src="assets/images/img_users.png" alt="Usuarios" width="60">
-        <h3 class="title-card">Usuarios</h3>
-        <div class="overlay-menu">
-          <div class="carousel" style="--total: 3;">
-            <span class="">Configuración de usuarios</span>
-            <span class="">Gestión de permisos</span>
-            <span class="">Auditoría</span>
+  <section class="seccion-presentacion">
+    <div class="hero-content">
+      <span class="badge-bienvenida">Panel de Control Principal</span>
+      <h2 class="title-custom">Explora nuestros módulos</h2>
+      <p class="subtitle-custom">Selecciona o visualiza las herramientas disponibles para la gestión integral de tu sistema.</p>
+    </div>
+
+    <!-- Contenedor del Carrusel de Tarjetas -->
+    <div class="modulos-carousel-container">
+      <div class="modulos-track">
+        
+        <!-- Módulo 1: Usuarios -->
+        <div class="modulo-card">
+          <div class="card-icon-wrapper">
+            <img src="assets/images/img_users.png" alt="Usuarios" width="50">
+          </div>
+          <h3 class="title-card">Usuarios</h3>
+          <div class="overlay-menu">
+            <div class="carousel" style="--total: 3;">
+              <span>Configuración de usuarios</span>
+              <span>Gestión de permisos</span>
+              <span>Auditoría</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="modulo-card">
-        <img src="assets/images/img_catalog.png" alt="Catálogo" width="60">
-        <h3 class="title-card">Catálogo</h3>
-        <div class="overlay-menu">
-          <div class="carousel" style="--total: 4;">
-            <span class="">Registro de proveedores</span>
-            <span class="">Registro de unidad de medida</span>
-            <span class="">Registro de marcas</span>
-            <span class="">Registro de productos</span>
+
+        <!-- Módulo 2: Catálogo -->
+        <div class="modulo-card">
+          <div class="card-icon-wrapper">
+            <img src="assets/images/img_catalog.png" alt="Catálogo" width="50">
+          </div>
+          <h3 class="title-card">Catálogo</h3>
+          <div class="overlay-menu">
+            <div class="carousel" style="--total: 4;">
+              <span>Registro de proveedores</span>
+              <span>Registro de unidad de medida</span>
+              <span>Registro de marcas</span>
+              <span>Registro de productos</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="modulo-card">
-        <img src="assets/images/img_warehouse.png" alt="Bodega" width="60">
-        <h3 class="title-card">Bodega</h3>
-        <div class="overlay-menu">
-          <div class="carousel" style="--total: 1;">
-            <span class="">Gestor de bodega</span>
+
+        <!-- Módulo 3: Bodega -->
+        <div class="modulo-card">
+          <div class="card-icon-wrapper">
+            <img src="assets/images/img_warehouse.png" alt="Bodega" width="50">
+          </div>
+          <h3 class="title-card">Bodega</h3>
+          <div class="overlay-menu">
+            <div class="carousel" style="--total: 1;">
+              <span>Gestor de bodega</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="modulo-card">
-        <img src="assets/images/img_averiado.png" alt="Merma" width="60">
-        <h3 class="title-card">Merma</h3>
-        <div class="overlay-menu">
-          <div class="carousel" style="--total: 3;">
-            <span class="">Registro de tipo de perdidas</span>
-            <span class="">Registro de perdidas</span>
-            <span class="">Registro historico de perdidas</span>
+
+        <!-- Módulo 4: Merma -->
+        <div class="modulo-card">
+          <div class="card-icon-wrapper">
+            <img src="assets/images/img_averiado.png" alt="Merma" width="50">
+          </div>
+          <h3 class="title-card">Merma</h3>
+          <div class="overlay-menu">
+            <div class="carousel" style="--total: 3;">
+              <span>Registro de tipo de perdidas</span>
+              <span>Registro de perdidas</span>
+              <span>Registro historico de perdidas</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="modulo-card">
-        <img src="assets/images/img_alert.png" alt="Alertas" width="60">
-        <h3 class="title-card">Alertas</h3>
-        <div class="overlay-menu">
-          <div class="carousel" style="--total: 2;">
-            <span class="">Vencimiento</span>
-            <span class="">Stock</span>
+
+        <!-- Módulo 5: Ventas -->
+        <div class="modulo-card">
+          <div class="card-icon-wrapper">
+            <img src="assets/images/img_sale_return.png" alt="Ventas" width="50">
+          </div>
+          <h3 class="title-card">Ventas</h3>
+          <div class="overlay-menu">
+            <div class="carousel" style="--total: 1;">
+              <span>Registro de ventas</span>
+            </div>
           </div>
         </div>
+
+        <!-- Módulo 6: Alertas -->
+        <div class="modulo-card">
+          <div class="card-icon-wrapper">
+            <img src="assets/images/img_alert.png" alt="Alertas" width="50">
+          </div>
+          <h3 class="title-card">Alertas</h3>
+          <div class="overlay-menu">
+            <div class="carousel" style="--total: 2;">
+              <span>Vencimiento</span>
+              <span>Stock</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DUPLICAMOS LOS MÓDULOS AQUÍ ABAJO PARA LOGRAR EL EFECTO DE BUCLE INFINITO CONTINUO -->
+        <!-- Módulo 1 duplicado -->
+        <div class="modulo-card">
+          <div class="card-icon-wrapper">
+            <img src="assets/images/img_users.png" alt="Usuarios" width="50">
+          </div>
+          <h3 class="title-card">Usuarios</h3>
+          <div class="overlay-menu">
+            <div class="carousel" style="--total: 3;">
+              <span>Configuración de usuarios</span>
+              <span>Gestión de permisos</span>
+              <span>Auditoría</span>
+            </div>
+          </div>
+        </div>
+        <!-- Módulo 2 duplicado -->
+        <div class="modulo-card">
+          <div class="card-icon-wrapper">
+            <img src="assets/images/img_catalog.png" alt="Catálogo" width="50">
+          </div>
+          <h3 class="title-card">Catálogo</h3>
+          <div class="overlay-menu">
+            <div class="carousel" style="--total: 4;">
+              <span>Registro de proveedores</span>
+              <span>Registro de unidad de medida</span>
+              <span>Registro de marcas</span>
+              <span>Registro de productos</span>
+            </div>
+          </div>
+        </div>
+        <!-- Módulo 3 duplicado -->
+        <div class="modulo-card">
+          <div class="card-icon-wrapper">
+            <img src="assets/images/img_warehouse.png" alt="Bodega" width="50">
+          </div>
+          <h3 class="title-card">Bodega</h3>
+          <div class="overlay-menu">
+            <div class="carousel" style="--total: 1;">
+              <span>Gestor de bodega</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>

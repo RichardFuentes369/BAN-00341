@@ -1,33 +1,42 @@
-<div class="flex-container">
-  <div class="card shadow card-custom align-items-center justify-contend-center">
-    <div class="p-4">
-      <div class="text-center">
-        <h1 class="h4 text-gray-900 mb-4 title-custom">
-          {{ 'global-login.TITLE_WELCOME' | translate}} {{ this.isLoginAdmin ? 'admin' : '' }}
+  <div class="card shadow card-custom">
+    <div class="card-glow-effect"></div>
+    <div class="login-card-body">
+      
+      <!-- Encabezado con bienvenida ejecutiva -->
+      <div class="text-center mb-4">
+        <div class="login-badge">
+          <span class="badge-dot"></span> Acceso al Sistema
+        </div>
+        <h1 class="h4 text-gray-900 title-custom font-weight-bold">
+          {{ 'global-login.TITLE_WELCOME' | translate}} {{ this.isLoginAdmin ? 'Admin' : '' }}
         </h1>
+        <p class="login-subtitle">Ingresa tus credenciales para continuar</p>
       </div>
+
+      <!-- Formulario -->
       <form class="user">
-        <div class="form-group">
+        <div class="form-group mb-3">
           <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp"
             placeholder="{{ 'global-login.PLACEHOLDER_EMAIL' | translate}}" [(ngModel)]="model.email"
             name="model.email">
         </div>
-        <div class="form-group">
-          <div class="input-group">
-            <input [(type)]="typefield" class="form-control form-control-user" id="exampleInputPassword"
+
+        <div class="form-group mb-3">
+          <div class="input-group password-group">
+            <input [type]="typefield" class="form-control form-control-user password-input" id="exampleInputPassword"
               placeholder="{{ 'global-login.PLACEHOLDER_PASSWORD' | translate}}" [(ngModel)]="model.password"
               name="model.password">
-            <!-- <div class="input-group-prepend"> -->
-              <div class="input-group-text rounded-end-5">
-                <input type="checkbox" aria-label="Checkbox for following text input" (click)="showPassword()"
-                  title="mostrar contraseña">
-              </div>
-            <!-- </div> -->
+            
+            <!-- Botón del ojo moderno y limpio -->
+            <div class="input-group-text toggle-password-wrapper" (click)="showPassword()" title="Mostrar/Ocultar contraseña">
+              <i class="fas" [ngClass]="typefield === 'text' ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </div>
           </div>
         </div>
+
         @if (this.isLoginAdmin === false) {
-        <div class="form-group">
-          <div class="custom-control custom-checkbox small">
+        <div class="form-group mb-4">
+          <div class="custom-control custom-checkbox small remember-me">
             <input type="checkbox" class="custom-control-input" id="customCheck">
             <label class="custom-control-label title-custom" for="customCheck">
               {{ 'global-login.LABEL_REMEMBER' | translate}}
@@ -37,36 +46,31 @@
         }
 
         @if(isPending){
-        <app-globales-loading></app-globales-loading>
+          <div class="text-center my-3">
+            <app-globales-loading></app-globales-loading>
+          </div>
         }
         @else {
-        @if (this.isLoginAdmin === true) {
-        <a class="btn btn-primary btn-user btn-block" (click)="ingresar()">
-          {{ 'global-login.TEXT_LOGIN' | translate}}
-        </a>
-        }
-        @if (this.isLoginAdmin === false) {
-        <a class="btn btn-primary btn-user btn-block" (click)="ingresar()">
-          {{ 'global-login.TEXT_LOGIN' | translate}}
-        </a>
-        }
+          <button type="button" class="btn btn-primary btn-user btn-block submit-btn" (click)="ingresar()">
+            {{ 'global-login.TEXT_LOGIN' | translate}}
+          </button>
         }
       </form>
-      <hr class="title-custom ">
-      @if (this.isLoginAdmin === false) {
-      <div class="text-center">
-        <a class="small">
+
+      <hr class="divider-custom my-4">
+
+      <!-- @if (this.isLoginAdmin === false) {
+      <div class="text-center mb-2">
+        <a class="small link-custom">
           {{ 'global-login.TEXT_FORGOT_PASSWORD' | translate}}
         </a>
       </div>
-      }
-      @if (this.isLoginAdmin === false) {
       <div class="text-center">
-        <a class="small">
+        <a class="small link-custom">
           {{ 'global-login.TEXT_CREATE_ACCOUNT' | translate}}
         </a>
       </div>
-      }
+      } -->
+
     </div>
   </div>
-</div>
