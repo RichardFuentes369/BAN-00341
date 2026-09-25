@@ -5,31 +5,11 @@ CTRL + SHIFT + V
 ## PENDIENTE (II PARTE)
 ### Funcionalidades
 
-	1. Traducciónes modulos globales EAN13
-	2. DASHBOARD: Graficos (*), traducciones
-	3. Hacer enpoint para marcar las devolución (validar como) 
-	4. Cambio de estado de bodega automaticos (merma, ventas, devoluciones)
-		
-### Personalización
-	layout admin
-		barra lateral
-		barra horizontal
-               breadcrumbs
-               iconos
-		fondo
-		footer
-    search
-    report
-    modal
-    input
-    card
-		
-	layout index
-		banner
-		header
-		
-	notfound
-	nopermission
+	1. DASHBOARD: Graficos (*), traducciones
+	2. Personalización
+	3. Traducciónes modulos globales EAN13, Index, Login ...
+	4. Hacer enpoint para marcar las devolución (validar como) (esto no va)
+	5. Cambio de estado de bodega automaticos (merma, ventas, devoluciones) (esto no va)
 
 ### ¿Que pasa si el backend esta en servidor? => con el endpoint de front y back
 
