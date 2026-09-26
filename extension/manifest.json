@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "EAN Scanner Extension",
+  "version": "1.0",
+  "permissions": ["storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "externally_connectable": {
+    "matches": [
+      "http://localhost:4200/*"
+    ]
+  },
+  "description": "Muestra la IP local del equipo.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "key": "UEdfVVRTX0JBTjAwMzQx"
+}

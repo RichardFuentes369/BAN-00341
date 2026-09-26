@@ -1,19 +1,18 @@
 <div class="row">
-
   <div class="col-sm-12 mb-2">
     <div class="row">
       <span class="label-color text-center mb-4" for="exampleInputEmail1">
-        Fecha de reporte
+        {{ 'mod-merma.LABEL_REPORT' | translate }}
       </span>
       <div class="col-sm">
         <span class="label-color text-center mb-4" for="exampleInputEmail1">
-          Desde
+          {{ 'mod-merma.WORD_FROM' | translate }}
         </span>
         <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_inicio">
       </div>
       <div class="col-sm">
         <span class="label-color text-center mb-4" for="exampleInputEmail1">
-          Hasta
+          {{ 'mod-merma.WORD_UNTIL' | translate }}
         </span>
         <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_fin">
       </div>
@@ -21,13 +20,13 @@
   </div>
   <div class="col-sm-12 mt-2 text-center">
     <span class="label-color text-center mb-4" for="exampleInputEmail1">
-      Grafíco
+      {{ 'mod-merma.WORD_GRAPHIC' | translate }}
     </span>
     <select name="" id="" class="form-control">
-      <option value="">Seleccione</option>
-      <option value="">en dias</option>
-      <option value="">en meses</option>
-      <option value="">en años</option>
+      <option value="">{{ 'mod-merma.WORD_SELECT' | translate }}</option>
+      <option value="">{{ 'mod-merma.WORD_IN_DAYS' | translate }}</option>
+      <option value="">{{ 'mod-merma.WORD_IN_MONTHS' | translate }}</option>
+      <option value="">{{ 'mod-merma.WORD_IN_YEARS' | translate }}</option>
     </select>
   </div>
   <div class="col-sm-12 mt-2 text-center">

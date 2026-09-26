@@ -85,11 +85,20 @@
     "CARD_TOTAL_HISTORY_TITLE": "Gesamthistorie"
   },
 
+  "LABEL_REPORT": "Bericht",
+  "WORD_GRAPHIC": "Grafisch",
+  "WORD_FROM": "Von",
+  "WORD_UNTIL": "Bis",
   "WORD_REGISTER": "Verzeichnis",
   "SWAL_WARNING_REVERSE_CHANGE": "Diese Änderung kann nicht rückgängig gemacht werden!",
   "SWAL_CREATED_RECORD": "Datensatz erfolgreich erstellt.",
   "SWAL_DELETED_RECORD": "Erfolgreich gelöscht.",
   "SWAL_UPDATED_RECORD": "Erfolgreich aktualisiert.",
+
+  "WORD_SELECT": "Auswählen",
+  "WORD_IN_DAYS": "In Tagen",
+  "WORD_IN_MONTHS": "In Monaten",
+  "WORD_IN_YEARS": "In Jahren",
 
   "SWAL_BUTTON_DELETE": "Löschen",
   "SWAL_BUTTON_CANCEL": "Abbrechen"

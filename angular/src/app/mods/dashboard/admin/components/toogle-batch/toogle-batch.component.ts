@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-toogle-batch',
   standalone: true,
+  imports: [TranslateModule],
   templateUrl: './toogle-batch.component.html',
   styleUrl: './toogle-batch.component.scss',
 })

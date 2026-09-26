@@ -43,7 +43,9 @@ export function createTranslateLoader(http: HttpClient) {
       { baseTranslateUrl, moduleName: 'components/globales/dropzone', namespace: 'global-dropzone' },
       { baseTranslateUrl, moduleName: 'components/globales/permission', namespace: 'global-permission' },
       { baseTranslateUrl, moduleName: 'components/globales/colormode', namespace: 'global-colormode' },
+      { baseTranslateUrl, moduleName: 'components/globales/breadcrumb', namespace: 'global-breadcrumb' },
       { baseTranslateUrl, moduleName: 'components/globales/gridcrud', namespace: 'global-gridcrud' },
+      { baseTranslateUrl, moduleName: 'components/globales/scanner', namespace: 'global-scanner' },
       // fin globales
 
       // inicio layout
@@ -53,6 +55,7 @@ export function createTranslateLoader(http: HttpClient) {
       // fin layout
 
       // inicio modulos
+      { baseTranslateUrl, moduleName: 'mods/dashboard', namespace: 'mod-dashboard'},
       { baseTranslateUrl, moduleName: 'mods/main', namespace: 'mod-main'},
       { baseTranslateUrl, moduleName: 'mods/me', namespace: 'mod-me'},
       { baseTranslateUrl, moduleName: 'mods/users', namespace: 'mod-users'},

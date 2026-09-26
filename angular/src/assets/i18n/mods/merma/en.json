@@ -85,11 +85,20 @@
     "CARD_TOTAL_HISTORY_TITLE": "Historical total"
   },
   
+  "LABEL_REPORT": "Report",
+  "WORD_GRAPHIC": "Graphic",  
+  "WORD_FROM": "From",
+  "WORD_UNTIL": "Until",
   "WORD_REGISTER": "Record",
   "SWAL_WARNING_REVERSE_CHANGE": "You cannot reverse this!",
   "SWAL_CREATED_RECORD": "Record successfully created.",
   "SWAL_DELETED_RECORD": "Successfully deleted.",
   "SWAL_UPDATED_RECORD": "Record successfully updated.",
+
+  "WORD_SELECT": "Select",
+  "WORD_IN_DAYS": "In days",
+  "WORD_IN_MONTHS": "In months",
+  "WORD_IN_YEARS": "In years",
 
   "SWAL_BUTTON_DELETE": "Delete",
   "SWAL_BUTTON_CANCEL": "Cancel"

@@ -19,20 +19,20 @@
             </small>
           </div>
           }
-          <div class="row mt-2 g-2"> 
+          <div class="row mt-2 g-2">
             <div class="col-4">
               <button type="button" class="btn btn-sm btn-outline-primary w-100" (click)="ean13(1)">
-                <i class="fa fa-barcode"></i> Escanear
+                <i class="fa fa-barcode"></i> {{ 'global-scanner.BTN_SCANNER' | translate}}
               </button>
             </div>
             <div class="col-4">
               <button type="button" class="btn btn-sm btn-outline-primary w-100" (click)="ean13(2)">
-                <i class="fa fa-pencil"></i> Manual
+                <i class="fa fa-pencil"></i> {{ 'global-scanner.BTN_MANUAL' | translate}}
               </button>
-            </div>  
+            </div>
             <div class="col-4">
               <button type="button" class="btn btn-sm btn-danger w-100" (click)="ean13(3)">
-                <i class="fa fa-trash"></i> Limpiar
+                <i class="fa fa-trash"></i> {{ 'global-scanner.BTN_CLEAR' | translate}}
               </button>
             </div>
           </div>

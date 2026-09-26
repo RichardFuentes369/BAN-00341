@@ -85,11 +85,20 @@
     "CARD_TOTAL_HISTORY_TITLE": "Total historique"
   },
 
+  "LABEL_REPORT": "Rapport",
+  "WORD_GRAPHIC": "Graphique",
+  "WORD_FROM": "De",
+  "WORD_UNTIL": "Jusqu'à",
   "WORD_REGISTER": "Inscription",
   "SWAL_WARNING_REVERSE_CHANGE": "Cette action est irréversible!",
   "SWAL_CREATED_RECORD": "Enregistrement créé avec succès.",
   "SWAL_DELETED_RECORD": "Supprimé avec succès.",
   "SWAL_UPDATED_RECORD": "Mis à jour avec succès.",
+
+  "WORD_SELECT": "Sélectionner",
+  "WORD_IN_DAYS": "En jours",
+  "WORD_IN_MONTHS": "En mois",
+  "WORD_IN_YEARS": "En ans",
 
   "SWAL_BUTTON_DELETE": "Supprimer",
   "SWAL_BUTTON_CANCEL": "Annuler"

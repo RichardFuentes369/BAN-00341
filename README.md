@@ -5,9 +5,10 @@ CTRL + SHIFT + V
 ## PENDIENTE (II PARTE)
 ### Funcionalidades
 
-	1. DASHBOARD: Graficos (*), traducciones
+	1. DASHBOARD: Graficos
 	2. Personalización
-	3. Traducciónes modulos globales EAN13, Index, Login ...
+	3. Traducciónes modulos globales Login ...
+
 	4. Hacer enpoint para marcar las devolución (validar como) (esto no va)
 	5. Cambio de estado de bodega automaticos (merma, ventas, devoluciones) (esto no va)
 

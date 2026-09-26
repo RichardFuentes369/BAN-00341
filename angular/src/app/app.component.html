@@ -1,1 +1,25 @@
-<router-outlet></router-outlet>
+<!-- Banner de advertencia si no está instalada -->
+<div *ngIf="!isExtensionInstalled" style="padding: 20px; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 8px; font-family: sans-serif;">
+  <h2 style="margin-top: 0; color: #856404;">⚠️ Se requiere la extensión de EAN Scanner</h2>
+  <p>No hemos podido detectar la extensión en tu navegador. Por favor, asegúrate de tenerla instalada y habilitada.</p>
+  
+  <div style="background: #fff; padding: 10px; border: 1px dashed #ccc; border-radius: 4px; display: inline-block; margin-bottom: 15px;">
+    <span>Copia y pega esto en tu barra de direcciones: </span>
+    <strong style="user-select: all; background: #e9ecef; padding: 2px 6px; border-radius: 4px;">chrome://extensions/</strong>
+  </div>
+
+  <div style="display: flex; gap: 10px; align-items: center;">
+    <a href="https://chrome.google.com/webstore" target="_blank" style="background: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">
+      Ir a Chrome Web Store
+    </a>
+    
+    <button (click)="checkExtension()" style="padding: 10px 20px; background: #6c757d; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+      Volver a comprobar
+    </button>
+  </div>
+</div>
+
+<!-- Contenido normal de tu aplicación Angular -->
+<div *ngIf="isExtensionInstalled">
+  <router-outlet></router-outlet>
+</div>
