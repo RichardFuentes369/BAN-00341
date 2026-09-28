@@ -1,0 +1,39 @@
+<div class="card-preview-container col-sm-12 row">
+  <div class="col-sm-4 row">
+    <div class="container row">
+      <div class="col text-center">
+        <label class="fw-bold mb-3 title-custom text-uppercase">{{ theme }}</label>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Background card color</label>
+          <input type="color" [(ngModel)]="_jsonTitlePageData[theme].background_card_color" (input)="aplicarEstilosVisuales()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Icon color</label>
+          <input type="color" [(ngModel)]="_jsonTitlePageData[theme].icon_color" (input)="aplicarEstilosVisuales()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Text color</label>
+          <input type="color" [(ngModel)]="_jsonTitlePageData[theme].text_color" (input)="aplicarEstilosVisuales()">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <label class="title-custom">Line color</label>
+          <input type="color" [(ngModel)]="_jsonTitlePageData[theme].line_color" (input)="aplicarEstilosVisuales()">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm bg_system rounded-5 p-5">
+    <div class="my-5">
+      <div class="d-flex justify-content-between align-items-center px-3 pb-2  w-auto">
+        <h4 class="fw-bold text-bold title-custom d-flex align-items-center gap-2 mb-0">
+          <div class="card_icon rounded-5 p-2 shadow-lg">
+            <div class="img-logo small colored-icon" [style.mask-image]="'url(' + imgAdmin + ')'"
+              [style.-webkit-mask-image]="'url(' + imgAdmin + ')'"></div>
+          </div>
+          <span>{{ 'mod-users.PAGE_ADMIN_TITLE' | translate }}</span>
+        </h4>
+      </div>
+      <hr class="mt-0 ml-3 mr-3 line-title-custom">
+    </div>
+  </div>
+</div>

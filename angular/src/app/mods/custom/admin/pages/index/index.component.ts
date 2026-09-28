@@ -4,10 +4,10 @@ import { MenuCustomComponent } from '../../components/menu/menu.component';
 import { KpicardCustomComponent } from '../../components/kpicard/kpicard.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { ModalCustomComponent } from '../../components/modal/modal.component';
-import { SearchCustomComponent } from '../../components/search/search.component';
 import { InputSelectCustomComponent } from '../../components/input-select/input-select.component';
 import { VarsService } from '@service/globales/vars/vars.service';
 import { GridtableCustomComponent } from '../../components/gridtable/gridtable.component';
+import { TitlePageCustomComponent } from '../../components/title-page/title-page.component';
 
 @Component({
   selector: 'app-index',
@@ -20,7 +20,7 @@ import { GridtableCustomComponent } from '../../components/gridtable/gridtable.c
     KpicardCustomComponent,
     GridtableCustomComponent,
     ModalCustomComponent,
-    SearchCustomComponent
+    TitlePageCustomComponent
   ],
   templateUrl: './index.component.html',
   styleUrl: './index.component.scss',
@@ -38,8 +38,10 @@ export class IndexComponent implements OnInit {
   vistas = {
     layoutIndex: false,
     layoutAdmin: false,
+
     menu: false,
     input_select: false,
+    title_page: false,
     kpi: false,
     table_grid: false,
     modal: false,
@@ -52,6 +54,8 @@ export class IndexComponent implements OnInit {
   custom_json_kpi: any = {};
   custom_json_menu: any = {};
   custom_json_grid_table: any = {};
+  custom_json_title_page: any = {};
+  custom_json_modal: any = {};
 
   async ngOnInit() {
     this.currentTheme = await localStorage.getItem('theme') || 'light';
@@ -73,6 +77,14 @@ export class IndexComponent implements OnInit {
       this.custom_json_grid_table = {
         light: parsed.light.grid_table_crud,
         dark: parsed.dark.grid_table_crud 
+      },
+      this.custom_json_title_page = {
+        light: parsed.light.title_page,
+        dark: parsed.dark.title_page 
+      },
+      this.custom_json_modal = {
+        light: parsed.light.modal,
+        dark: parsed.dark.modal 
       }
     }
   }

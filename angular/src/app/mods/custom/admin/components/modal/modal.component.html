@@ -1,144 +1,72 @@
 <div class="card-preview-container col-sm-12 row">
   <div class="col-sm-4 row">
-    <label for="" class="text-center title-custom">
-      Colores tablecrud
-    </label>
     <div class="container row">
       <div class="col text-center">
         <label class="fw-bold mb-3 title-custom">Light</label>
 
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Background</span>
-          <input type="color">
+          <span class="title-custom">Fieldset line  color</span>
+          <input type="color" [(ngModel)]="_jsonModalData[theme].fieldset_line_color" (input)="aplicarEstilosVisuales()">
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Text</span>
-          <input type="color">
+          <span class="title-custom">Legend text color</span>
+          <input type="color" [(ngModel)]="_jsonModalData[theme].legend_text_color" (input)="aplicarEstilosVisuales()">
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
+          <span class="title-custom">Label text color</span>
+          <input type="color" [(ngModel)]="_jsonModalData[theme].label_text_color" (input)="aplicarEstilosVisuales()">
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
+          <span class="title-custom">Head text color</span>
+          <input type="color" [(ngModel)]="_jsonModalData[theme].head_text_color" (input)="aplicarEstilosVisuales()">
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
+          <span class="title-custom">Head background color</span>
+          <input type="color" [(ngModel)]="_jsonModalData[theme].head_background_color" (input)="aplicarEstilosVisuales()">
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
+          <span class="title-custom">Back color background</span>
+          <input type="color" [(ngModel)]="_jsonModalData[theme].back_color_background" (input)="aplicarEstilosVisuales()">
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
+          <span class="title-custom">Body text color</span>
+          <input type="color" [(ngModel)]="_jsonModalData[theme].body_text_color" (input)="aplicarEstilosVisuales()">
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
+          <span class="title-custom">body background color</span>
+          <input type="color" [(ngModel)]="_jsonModalData[theme].body_background_color" (input)="aplicarEstilosVisuales()">
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
+          <span class="title-custom">Button cancel background color</span>
+          <input type="color" [(ngModel)]="_jsonModalData[theme].button_cancel_background_color" (input)="aplicarEstilosVisuales()">
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
+          <span class="title-custom">Button cancel text color</span>
+          <input type="color" [(ngModel)]="_jsonModalData[theme].button_cancel_text_color" (input)="aplicarEstilosVisuales()">
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
+          <span class="title-custom">Button save background color</span>
+          <input type="color" [(ngModel)]="_jsonModalData[theme].button_save_background_color" (input)="aplicarEstilosVisuales()">
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
+          <span class="title-custom">Button save text color</span>
+          <input type="color" [(ngModel)]="_jsonModalData[theme].button_save_text_color" (input)="aplicarEstilosVisuales()">
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
+          <span class="title-custom">Button update background color</span>
+          <input type="color" [(ngModel)]="_jsonModalData[theme].button_update_background_color" (input)="aplicarEstilosVisuales()">
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
+          <span class="title-custom">Button update text color</span>
+          <input type="color" [(ngModel)]="_jsonModalData[theme].button_update_text_color" (input)="aplicarEstilosVisuales()">
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
+          <span class="title-custom">Footer text color</span>
+          <input type="color" [(ngModel)]="_jsonModalData[theme].footer_text_color" (input)="aplicarEstilosVisuales()">
         </div>
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-      </div>
-
-      <div class="col text-center">
-        <label class="fw-bold mb-3 title-custom">Dark</label>
-
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Background</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Text</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="title-custom">Hover</span>
-          <input type="color">
+          <span class="title-custom">Footer background color</span>
+          <input type="color" [(ngModel)]="_jsonModalData[theme].footer_background_color" (input)="aplicarEstilosVisuales()">
         </div>
       </div>
     </div>

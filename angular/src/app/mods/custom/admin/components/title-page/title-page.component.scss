@@ -1,0 +1,41 @@
+:host {
+  &[data-theme='dark'],
+  &:host-context([data-theme='dark']) {
+    --filter: invert(1) brightness(100) !important;
+  }
+}
+
+.title-custom {
+  color: var(--title_page_custom-text_color) !important;
+  background-color: transparent;
+}
+
+.line-title-custom {
+  color: var(--title_page_custom-line_color) !important;
+  background-color: transparent;
+}
+
+.card_icon {
+  background-color: var(--title_page_custom-background_card_color) !important;
+  transition: background-color 0.3s ease; // Muy importante para que sea suave
+}
+
+.img-logo.small {
+  width: 24px;
+  height: 24px;
+  background-color: var(--title_page_custom-icon_color); 
+}
+
+.colored-icon {
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  transition: background-color 0.3s ease;
+}
+
+.bg_system {
+  background-color: var(--layout-admin-main_background_color)!important;
+}

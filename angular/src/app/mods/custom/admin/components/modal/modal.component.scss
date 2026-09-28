@@ -26,33 +26,33 @@
   }
 
   .modal-header {
-    background: var(--modal-head_background_color) !important;
+    background: var(--modal_custom-head_background_color) !important;
     border-bottom: none;
   }
 
   .modal-title {
-    color: var(--modal-head_text_color) !important;
+    color: var(--modal_custom-head_text_color) !important;
   }
 
   .modal-body {
-    background-color: var(--modal-back_color_background) !important;
+    background-color: var(--modal_custom-back_color_background) !important;
   }
 
   .modal-footer {
-    color: var(--modal-footer_text_color) !important;
-    background-color: var(--modal-footer_background_color) !important;
+    color: var(--modal_custom-footer_text_color) !important;
+    background-color: var(--modal_custom-footer_background_color) !important;
   }
 
   fieldset {
-    color: var(--modal-fieldset_line_color);
+    color: var(--modal_custom-fieldset_line_color);
   }
 
   legend {
-    color: var(--modal-legend_text_color);
+    color: var(--modal_custom-legend_text_color);
   }
 
   label {
-    color: var(--modal-label_text_color);
+    color: var(--modal_custom-label_text_color);
   }
 
   .modal-header .close {
@@ -65,18 +65,18 @@
   }
 
   .btnCancel {
-    color: var(--modal-button_cancel_text_color);
-    background-color: var(--modal-button_cancel_background_color);
+    color: var(--modal_custom-button_cancel_text_color);
+    background-color: var(--modal_custom-button_cancel_background_color);
   }
 
   .btnSave {
-    color: var(--modal-button_save_text_color);
-    background-color: var(--modal-button_save_background_color);
+    color: var(--modal_custom-button_save_text_color);
+    background-color: var(--modal_custom-button_save_background_color);
   }
 
   .btnUpdate {
-    color: var(--modal-button_update_text_color);
-    background-color: var(--modal-button_update_background_color);
+    color: var(--modal_custom-button_update_text_color);
+    background-color: var(--modal_custom-button_update_background_color);
   }
 
   .btnCancel,

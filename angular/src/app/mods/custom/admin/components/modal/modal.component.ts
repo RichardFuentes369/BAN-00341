@@ -1,13 +1,15 @@
 import { Component, ElementRef, EventEmitter, Input, Output, Renderer2 } from '@angular/core';
 import { CrearDummieComponent } from './components/crear-dummie/crear-dummie.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-custom-modal',
   standalone: true,
   imports: [
     TranslateModule,
-    CrearDummieComponent
+    CrearDummieComponent,
+    FormsModule
   ],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss',
@@ -44,7 +46,7 @@ export class ModalCustomComponent {
   }
 
   @Input()
-  set json_kpi(value: any) {
+  set json_modal(value: any) {
     if (value) {
       this._jsonModalData = {
         light: {
@@ -90,7 +92,7 @@ export class ModalCustomComponent {
     }
   }
 
-  get json_kpi(): any {
+  get json_modal(): any {
     return this._jsonModalData;
   }
 
@@ -102,11 +104,22 @@ export class ModalCustomComponent {
 
       if (container) {
         const estilosCss = `
-          --kpicard_custom-background_color: ${temaActual.background_color};
-          --kpicard_custom-icon_color: ${temaActual.icon_color};
-          --kpicard_custom-border_line_color: ${temaActual.border_line_color};
-          --kpicard_custom-text_color: ${temaActual.text_color};
-          --kpicard_custom-text_number_color: ${temaActual.text_number_color};
+          --modal_custom-fieldset_line_color: ${temaActual.fieldset_line_color};
+          --modal_custom-legend_text_color: ${temaActual.legend_text_color};
+          --modal_custom-label_text_color: ${temaActual.label_text_color};
+          --modal_custom-head_text_color: ${temaActual.head_text_color};
+          --modal_custom-head_background_color: ${temaActual.head_background_color};
+          --modal_custom-back_color_background: ${temaActual.back_color_background};
+          --modal_custom-body_text_color: ${temaActual.body_text_color};
+          --modal_custom-body_background_color: ${temaActual.body_background_color};
+          --modal_custom-button_cancel_background_color: ${temaActual.button_cancel_background_color};
+          --modal_custom-button_cancel_text_color: ${temaActual.button_cancel_text_color};
+          --modal_custom-button_save_background_color: ${temaActual.button_save_background_color};
+          --modal_custom-button_save_text_color: ${temaActual.button_save_text_color};
+          --modal_custom-button_update_background_color: ${temaActual.button_update_background_color};
+          --modal_custom-button_update_text_color: ${temaActual.button_update_text_color};
+          --modal_custom-footer_text_color: ${temaActual.footer_text_color};
+          --modal_custom-footer_background_color: ${temaActual.footer_background_color};
         `;
         this.renderer.setProperty(container, 'style', estilosCss);
       }

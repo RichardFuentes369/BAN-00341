@@ -67,3 +67,9 @@
   color: var(--grid_table_crud-row_text_color) !important;
   background-color: var(--grid_table_crud-background_color) !important;
 }
+
+
+.line-title-custom {
+  color: var(--title_page-line_color) !important;
+  background-color: transparent;
+}

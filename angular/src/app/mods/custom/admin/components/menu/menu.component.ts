@@ -21,6 +21,9 @@ export class MenuCustomComponent implements OnInit, OnDestroy {
 
   constructor(private renderer: Renderer2, private elRef: ElementRef) { }
 
+  imgUsers = 'assets/images/img_users.png'
+  imgCatalog = 'assets/images/img_catalog.png'
+
   ngOnInit() {
     this.aplicarEstilosVisuales();
 
