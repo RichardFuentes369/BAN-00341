@@ -56,8 +56,6 @@ export class ModalCustomComponent {
           head_text_color: value.light.head_text_color || value.light || '#000000',
           head_background_color: value.light.head_background_color || value.light || '#000000',
           back_color_background: value.light.back_color_background || value.light || '#000000',
-          body_text_color: value.light.body_text_color || value.light || '#000000',
-          body_background_color: value.light.body_background_color || value.light || '#000000',
           button_cancel_background_color: value.light.button_cancel_background_color || value.light || '#000000',
           button_cancel_text_color: value.light.button_cancel_text_color || value.light || '#000000',
           button_save_background_color: value.light.button_save_background_color || value.light || '#000000',
@@ -74,8 +72,6 @@ export class ModalCustomComponent {
           head_text_color: value.light.head_text_color || value.light || '#000000',
           head_background_color: value.light.head_background_color || value.light || '#000000',
           back_color_background: value.light.back_color_background || value.light || '#000000',
-          body_text_color: value.light.body_text_color || value.light || '#000000',
-          body_background_color: value.light.body_background_color || value.light || '#000000',
           button_cancel_background_color: value.light.button_cancel_background_color || value.light || '#000000',
           button_cancel_text_color: value.light.button_cancel_text_color || value.light || '#000000',
           button_save_background_color: value.light.button_save_background_color || value.light || '#000000',
@@ -110,8 +106,6 @@ export class ModalCustomComponent {
           --modal_custom-head_text_color: ${temaActual.head_text_color};
           --modal_custom-head_background_color: ${temaActual.head_background_color};
           --modal_custom-back_color_background: ${temaActual.back_color_background};
-          --modal_custom-body_text_color: ${temaActual.body_text_color};
-          --modal_custom-body_background_color: ${temaActual.body_background_color};
           --modal_custom-button_cancel_background_color: ${temaActual.button_cancel_background_color};
           --modal_custom-button_cancel_text_color: ${temaActual.button_cancel_text_color};
           --modal_custom-button_save_background_color: ${temaActual.button_save_background_color};
