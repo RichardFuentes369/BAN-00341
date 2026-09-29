@@ -2,12 +2,13 @@
   display: flex;
   min-height: calc(85vh - 120px);
   width: 100%;
-  max-width: 1200px; /* Limita el ancho máximo para que no se estire de más en pantallas gigantes */
-  margin: 20px auto;  /* Centra todo el contenedor en la pantalla */
-  background-color: var(--modal-back_color_background);
+  max-width: 1200px;
+  margin: 20px auto;
+  background-color: var(--modal-back_color_background, #ffffff);
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 
   /* Lado izquierdo con identidad */
   .login-brand-side {
@@ -33,10 +34,11 @@
         font-weight: 800;
         margin-bottom: 15px;
         letter-spacing: -0.5px;
+        color: #ffffff;
       }
 
       p {
-        opacity: 0.8;
+        color: #94a3b8;
         font-size: 1rem;
         line-height: 1.6;
         margin-bottom: 30px;
@@ -47,45 +49,46 @@
         justify-content: center;
         gap: 25px;
         font-size: 0.9rem;
-        opacity: 0.9;
 
         .feature-item {
           display: flex;
           align-items: center;
           gap: 8px;
-          i { color: var(--layout-index-backg_color_textcard); }
+          color: #cbd5e1;
+          i { 
+            color: #38bdf8;
+          }
         }
       }
     }
   }
 
-  /* Lado derecho con el formulario */
+  /* Lado derecho que hospeda el formulario */
   .login-form-side {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 40px;
-    background-color: transparent;
-
-    /* Limpiamos la tarjeta contenedora para que no duplique fondos ni sombras */
-    .card-custom {
-      background: transparent !important;
-      box-shadow: none !important;
-      border: none !important;
-      max-width: 420px;
-      width: 100%;
-    }
+    background-color: transparent; 
   }
 }
 
-/* Ocultar el lado izquierdo en pantallas pequeñas (móviles) */
+/* Ocultar el lado izquierdo en pantallas medianas y pequeñas */
 @media (max-width: 992px) {
   .login-split-container {
     box-shadow: none;
-    margin: 0;
+    margin: 10px;
+    max-width: 100%;
+    
     .login-brand-side {
       display: none;
+    }
+    
+    .login-form-side {
+      width: 100%;
+      padding: 20px;
+      background-color: var(--modal-back_color_background, #ffffff);
     }
   }
 }

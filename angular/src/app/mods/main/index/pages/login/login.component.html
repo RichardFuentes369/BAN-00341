@@ -2,21 +2,19 @@
   <!-- Columna Izquierda: Identidad y Presentación -->
   <div class="login-brand-side">
     <div class="brand-content">
-      <img src="assets/images/logo-blanco.png" alt="Mermas Smart" width="120" class="mb-4">
-      <h2>Control Inteligente de Inventarios</h2>
-      <p>Optimiza la trazabilidad, reduce pérdidas y mantén el control total de tus productos en tiempo real.</p>
+      <img src="assets/images/img_logo.png" alt="Logo" width="120" class="mb-4">
+      <h2>{{ 'mod-home.MESSAGE_TITLE_PAGE_LOGIN' | translate}}</h2>
+      <p>{{ 'mod-home.MESSAGE_PAGE_LOGIN' | translate}}</p>
       
       <div class="brand-features">
-        <div class="feature-item"><i class="fas fa-shield-alt"></i> Máxima seguridad</div>
-        <div class="feature-item"><i class="fas fa-chart-line"></i> Reportes en vivo</div>
+        <div class="feature-item"><i class="fas fa-shield-alt"></i> {{ 'mod-home.WORD_SECURITY' | translate}}</div>
+        <div class="feature-item"><i class="fas fa-chart-line"></i> {{ 'mod-home.WORD_REPORT' | translate}}</div>
       </div>
     </div>
   </div>
 
-  <!-- Columna Derecha: Tu Tarjeta de Login Actual -->
+  <!-- Columna Derecha: Contenedor directo del formulario hijo -->
   <div class="login-form-side">
-    <div class="card shadow card-custom">
-    <app-globales-login></app-globales-login>
-    </div>
+    <app-globales-login class="w-100 d-flex justify-content-center"></app-globales-login>
   </div>
 </div>

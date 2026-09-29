@@ -5,5 +5,7 @@
   "LABEL_REMEMBER": "Merken",
   "TEXT_LOGIN": "Anmelden",
   "TEXT_FORGOT_PASSWORD": "Passwort vergessen!",
-  "TEXT_CREATE_ACCOUNT": "Konto erstellen!"
+  "TEXT_CREATE_ACCOUNT": "Konto erstellen!",
+  "ACCESS_TEXT": "Systemzugang",
+  "MESSAGE_INPUT_CREDENTIALS": "Geben Sie Ihre Anmeldedaten ein, um fortzufahren"
 }

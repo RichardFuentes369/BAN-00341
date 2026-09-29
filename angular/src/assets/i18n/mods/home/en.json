@@ -1,0 +1,20 @@
+{
+  "MESSAGE_TITLE_PAGE_LOGIN": "Smart Inventory Control",
+  "MESSAGE_PAGE_LOGIN": "Optimize traceability, reduce losses, and maintain total control of your products in real time.",
+  "WORD_SECURITY": "Maximum security",
+  "WORD_REPORT": "Live reports",
+  "SECTION_APP": {
+    "TARGET": "Official Control Module",
+    "TITLE": "Waste Management System",
+    "SUBTITLE": "An all-in-one solution for traceability, control, and loss reduction in your inventory. Optimize every process with real-time data."
+  },
+  "SECTION_MODULES": {
+    "TARGET": "Main Control Panel",
+    "TITLE": "Explore our modules",
+    "SUBTITLE": "Select or view the available tools for the comprehensive management of your system."
+  },
+  "SECTION_CONTACTS": {
+    "TARGET": "Contact us",
+    "SUBTITLE": ""
+  }
+}

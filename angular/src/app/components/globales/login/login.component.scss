@@ -9,13 +9,13 @@
 
 .card-custom {
   width: 100%;
-  max-width: 440px;
-  border-radius: 20px !important;
+  max-width: 420px;
+  border-radius: 0 !important; /* Quitamos bordes redondeados internos para que no choquen con el contenedor general */
   border: none;
-  background-color: var(--modal-back_color_background) !important;
+  background-color: transparent !important; /* Hereda el fondo limpio del panel derecho */
   overflow: hidden;
   position: relative;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: none !important; /* Eliminamos la segunda sombra redundante */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   /* Efecto de brillo sutil en la esquina superior */
@@ -32,7 +32,7 @@
 }
 
 .login-card-body {
-  padding: 40px 30px;
+  padding: 10px 20px;
 
   .login-badge {
     display: inline-flex;

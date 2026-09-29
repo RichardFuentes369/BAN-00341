@@ -5,12 +5,12 @@
       <!-- Encabezado con bienvenida ejecutiva -->
       <div class="text-center mb-4">
         <div class="login-badge">
-          <span class="badge-dot"></span> Acceso al Sistema
+          <span class="badge-dot"></span>{{ 'global-login.ACCESS_TEXT' | translate}}
         </div>
         <h1 class="h4 text-gray-900 title-custom font-weight-bold">
           {{ 'global-login.TITLE_WELCOME' | translate}} {{ this.isLoginAdmin ? 'Admin' : '' }}
         </h1>
-        <p class="login-subtitle">Ingresa tus credenciales para continuar</p>
+        <p class="login-subtitle">{{ 'global-login.MESSAGE_INPUT_CREDENTIALS' | translate}}</p>
       </div>
 
       <!-- Formulario -->
@@ -58,19 +58,5 @@
       </form>
 
       <hr class="divider-custom my-4">
-
-      <!-- @if (this.isLoginAdmin === false) {
-      <div class="text-center mb-2">
-        <a class="small link-custom">
-          {{ 'global-login.TEXT_FORGOT_PASSWORD' | translate}}
-        </a>
-      </div>
-      <div class="text-center">
-        <a class="small link-custom">
-          {{ 'global-login.TEXT_CREATE_ACCOUNT' | translate}}
-        </a>
-      </div>
-      } -->
-
     </div>
   </div>

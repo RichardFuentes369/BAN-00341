@@ -1,0 +1,20 @@
+{
+  "MESSAGE_TITLE_PAGE_LOGIN": "Control Inteligente de Inventarios",
+  "MESSAGE_PAGE_LOGIN": "Optimiza la trazabilidad, reduce pérdidas y mantén el control total de tus productos en tiempo real.",
+  "WORD_SECURITY": "Máxima seguridad",
+  "WORD_REPORT": "Reportes en vivo",
+  "SECTION_APP": {
+    "TARGET": "Módulo Oficial de Control",
+    "TITLE": "Sistema de Gestión de Mermas",
+    "SUBTITLE": "Una solución integral para la trazabilidad, control y reducción de pérdidas en tu inventario. Optimiza cada proceso con datos en tiempo real."
+  },
+  "SECTION_MODULES": {
+    "TARGET": "Panel de Control Principal",
+    "TITLE": "Explora nuestros módulos",
+    "SUBTITLE": "Selecciona o visualiza las herramientas disponibles para la gestión integral de tu sistema."
+  },
+  "SECTION_CONTACTS": {
+    "TARGET": "Contactanos",
+    "SUBTITLE": ""
+  }
+}

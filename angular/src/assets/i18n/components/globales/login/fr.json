@@ -5,5 +5,7 @@
   "LABEL_REMEMBER": "Se souvenir",
   "TEXT_LOGIN": "Se connecter",
   "TEXT_FORGOT_PASSWORD": "Mot de passe oublié !",
-  "TEXT_CREATE_ACCOUNT": "Créer un compte !"
+  "TEXT_CREATE_ACCOUNT": "Créer un compte !",
+  "ACCESS_TEXT": "Accès au Système",
+  "MESSAGE_INPUT_CREDENTIALS": "Entrez vos identifiants pour continuer"
 }

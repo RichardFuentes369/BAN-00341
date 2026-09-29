@@ -1,0 +1,20 @@
+{
+  "MESSAGE_TITLE_PAGE_LOGIN": "Intelligente Bestandsverwaltung",
+  "MESSAGE_PAGE_LOGIN": "Optimieren Sie die Rückverfolgbarkeit, reduzieren Sie Verluste und behalten Sie die vollständige Kontrolle über Ihre Produkte in Echtzeit.",
+  "WORD_SECURITY": "Maximale Sicherheit",
+  "WORD_REPORT": "Live-Berichte",
+  "SECTION_APP": {
+    "TARGET": "Offizielles Kontrollmodul",
+    "TITLE": "Schadens- und Verlustmanagementsystem",
+    "SUBTITLE": "Eine Komplettlösung für Rückverfolgbarkeit, Kontrolle und Verlustreduzierung in Ihrem Inventar. Optimieren Sie jeden Prozess mit Echtzeitdaten."
+  },
+  "SECTION_MODULES": {
+    "TARGET": "Hauptbedienfeld",
+    "TITLE": "Entdecken Sie unsere Module",
+    "SUBTITLE": "Wählen oder betrachten Sie die verfügbaren Tools für die umfassende Verwaltung Ihres Systems."
+  },
+  "SECTION_CONTACTS": {
+    "TARGET": "Kontaktieren Sie uns",
+    "SUBTITLE": ""
+  }
+}
