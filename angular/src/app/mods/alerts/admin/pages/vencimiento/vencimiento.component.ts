@@ -67,7 +67,7 @@ export class VencimientoComponent implements OnInit {
   endPoint = `alert-expiration/reporte-stock-vencimiento?`
   orderField = 'dias_restantes'
   order = 'asc'
-  
+
   habilitarSeleccion = true
   filters = ''
   columnas: any[] = [
@@ -86,6 +86,12 @@ export class VencimientoComponent implements OnInit {
     {
       title: this.translate.instant('mod-catalog.PRODUCT.WORD_PRODUCT'),
       data: 'nombre_producto',
+      visible: true,
+      className: 'text-center align-middle'
+    },
+    {
+      title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA'),
+      data: 'cantidad_en_bodega',
       visible: true,
       className: 'text-center align-middle'
     },
@@ -233,6 +239,12 @@ export class VencimientoComponent implements OnInit {
         className: 'text-center align-middle'
       },
       {
+        title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA'),
+        data: 'cantidad_en_bodega',
+        visible: true,
+        className: 'text-center align-middle'
+      },
+      {
         title: this.translate.instant('mod-warehouse.WORD_DAYS_REMAINING'),
         data: 'dias_restantes',
         visible: true,
@@ -288,9 +300,9 @@ export class VencimientoComponent implements OnInit {
   someInput!: TablecrudComponent
 
   async verDataLazy(filaSeleccionada: string) {
-      
+
     sessionStorage.setItem('rowSelectedLazy', JSON.stringify(filaSeleccionada))
-    
+
     this.title = this.translate.instant('mod-alerts.SEE_TITLE')
     this.translate.get('mod-alerts.SEE_SUBTITLE').subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
@@ -319,7 +331,7 @@ export class VencimientoComponent implements OnInit {
     }
   }
 
-  async refrescarTabla (){
+  async refrescarTabla() {
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);
