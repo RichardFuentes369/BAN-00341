@@ -121,6 +121,7 @@ export class WarehouseService {
       };
     }
     if (filterDto.id_producto) where.id_producto = { id: parseInt(filterDto.id_producto) };
+    if (filterDto.codigo_barra) where.id_producto = { codigo_barra: parseInt(filterDto.codigo_barra) };
     if (filterDto.id_proveedor) where.id_proveedor = filterDto.id_proveedor;
     if (filterDto.lote) where.lote = Like(`%${filterDto.lote}%`);
 

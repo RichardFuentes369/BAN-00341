@@ -33,6 +33,7 @@ export class FiltroWarehouseComponent implements OnInit {
   model = {
     estado: '',
     lote: '',
+    codigo_barra: '',
     id_medida: '',
     id_marca: '',
     id_producto: '',
@@ -57,6 +58,7 @@ export class FiltroWarehouseComponent implements OnInit {
     this.model = {
       estado: sessionStorage.getItem('estado') || '',
       lote: sessionStorage.getItem('lote') || '',
+      codigo_barra: sessionStorage.getItem('codigo_barra') || '',
       id_medida: sessionStorage.getItem('id_medida') || '',
       id_marca: sessionStorage.getItem('id_marca') || '',
       id_producto: sessionStorage.getItem('id_producto') || '',
@@ -82,6 +84,9 @@ export class FiltroWarehouseComponent implements OnInit {
     }
     if(this.model.lote != ''){
       this.complementoFiltro += `&lote=${this.model.lote}`      
+    }    
+    if(this.model.codigo_barra != ''){
+      this.complementoFiltro += `&codigo_barra=${this.model.codigo_barra}`      
     }
     if(this.model.id_medida != ''){
       this.complementoFiltro += `&id_medida=${this.model.id_medida}`      
@@ -138,6 +143,7 @@ export class FiltroWarehouseComponent implements OnInit {
     this.filtro2 = ''
     this.model.estado = '',
     this.model.lote = '',
+    this.model.codigo_barra = '',
     this.model.id_medida = '',
     this.model.id_marca = '',
     this.model.id_producto = '',
@@ -158,6 +164,7 @@ export class FiltroWarehouseComponent implements OnInit {
     
     sessionStorage.removeItem('estado'),
     sessionStorage.removeItem('lote'),
+    sessionStorage.removeItem('codigo_barra'),
     sessionStorage.removeItem('id_medida'),
     sessionStorage.removeItem('id_marca'),
     sessionStorage.removeItem('id_producto'),
@@ -237,6 +244,7 @@ export class FiltroWarehouseComponent implements OnInit {
     
     sessionStorage.removeItem('estado'),
     sessionStorage.removeItem('lote'),
+    sessionStorage.removeItem('codigo_barra'),
     sessionStorage.removeItem('id_medida'),
     sessionStorage.removeItem('id_marca'),
     sessionStorage.removeItem('id_producto'),
@@ -263,6 +271,11 @@ export class FiltroWarehouseComponent implements OnInit {
     if(this.model.lote != ''){
       this.complementoFiltro += `&lote=${this.model.lote}`
       sessionStorage.setItem('lote', this.model.lote)
+    }    
+    
+    if(this.model.codigo_barra != ''){
+      this.complementoFiltro += `&codigo_barra=${this.model.codigo_barra}`
+      sessionStorage.setItem('codigo_barra', this.model.codigo_barra)
     } 
 
     if(this.model.id_medida != ''){

@@ -33,18 +33,18 @@ import { HttpParams } from '@angular/common/http';
   templateUrl: './warehouse.component.html',
   styleUrl: './warehouse.component.scss',
 })
-export class WarehoseComponent implements OnInit, OnDestroy{
+export class WarehoseComponent implements OnInit, OnDestroy {
 
   // construcator
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private userService :AuthService,
-    private permisosService :PermisosService,
-    private bodegaService :BodegaService,
+    private userService: AuthService,
+    private permisosService: PermisosService,
+    private bodegaService: BodegaService,
     private translate: TranslateService
   ) { }
-    
+
   private langSub: Subscription | undefined;
   permisos: any[] = []
 
@@ -53,10 +53,10 @@ export class WarehoseComponent implements OnInit, OnDestroy{
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-warehouse.BUTTON_SEARCH')
-  iconFilter="fa fa-filter"
-  componenteFilter=FILTRO_WAREHOUSE_COMPONENT
+  iconFilter = "fa fa-filter"
+  componenteFilter = FILTRO_WAREHOUSE_COMPONENT
   // fin datos envio al filtro
-  
+
   // inicio datos envio report
   iconReport = "fa fa-file-download"
   componenteReport = REPORT_WAREHOUSE_COMPONENT
@@ -78,13 +78,18 @@ export class WarehoseComponent implements OnInit, OnDestroy{
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
-      data: 'id_producto.marca.nombre',
+      title: this.translate.instant('mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT'),
+      data: 'id_producto.codigo_barra',
       className: 'text-center align-middle'
     },
     {
       title: this.translate.instant('mod-warehouse.COLUMN_BATCH'),
       data: 'lote',
+      className: 'text-center align-middle'
+    },
+    {
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
+      data: 'id_producto.marca.nombre',
       className: 'text-center align-middle'
     },
     {
@@ -103,11 +108,11 @@ export class WarehoseComponent implements OnInit, OnDestroy{
       className: 'text-center align-middle',
       render: (data: any) => {
         if (!data) return '';
-        const date = new Date(Number(data) * 1000); 
+        const date = new Date(Number(data) * 1000);
         if (isNaN(date.getTime())) {
           return 'Fecha inválida';
         }
-        return date.toLocaleDateString('es-CO', { 
+        return date.toLocaleDateString('es-CO', {
           day: '2-digit',
           month: '2-digit',
           year: 'numeric'
@@ -120,11 +125,11 @@ export class WarehoseComponent implements OnInit, OnDestroy{
       className: 'text-center align-middle',
       render: (data: any) => {
         if (!data) return '';
-        const date = new Date(Number(data) * 1000); 
+        const date = new Date(Number(data) * 1000);
         if (isNaN(date.getTime())) {
           return 'Fecha inválida';
         }
-        return date.toLocaleDateString('es-CO', { 
+        return date.toLocaleDateString('es-CO', {
           day: '2-digit',
           month: '2-digit',
           year: 'numeric'
@@ -201,18 +206,18 @@ export class WarehoseComponent implements OnInit, OnDestroy{
     }
   }
 
-    // metodos Init, Destroy
+  // metodos Init, Destroy
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
-    const permiso_modulo = await this.permisosService.permisoPage(0,'bodega',userData.data.id)
+    const permiso_modulo = await this.permisosService.permisoPage(0, 'bodega', userData.data.id)
 
     if (permiso_modulo.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     }
 
-    const permisos = await this.permisosService.permisos(userData.data.id,'bodega')
+    const permisos = await this.permisosService.permisos(userData.data.id, 'bodega')
     this.permisos = permisos.data;
     this.permisosAcciones = this.permisos;
     // sessionStorage.removeItem('nit')
@@ -225,8 +230,8 @@ export class WarehoseComponent implements OnInit, OnDestroy{
       this.cargarIdioma = false;
       timer(200).subscribe(() => {
         this.actualizarContadores()
-        this.listar(); 
-        this.cambiarTextos(); 
+        this.listar();
+        this.cambiarTextos();
         this.cargarIdioma = true;
       });
     });
@@ -238,7 +243,7 @@ export class WarehoseComponent implements OnInit, OnDestroy{
     }
   }
 
-  listar(){
+  listar() {
     this.columnas = [
       {
         title: this.translate.instant('mod-warehouse.COLUMN_ID'),
@@ -247,13 +252,18 @@ export class WarehoseComponent implements OnInit, OnDestroy{
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
-        data: 'id_producto.marca.nombre',
+        title: this.translate.instant('mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT'),
+        data: 'id_producto.codigo_barra',
         className: 'text-center align-middle'
       },
       {
         title: this.translate.instant('mod-warehouse.COLUMN_BATCH'),
         data: 'lote',
+        className: 'text-center align-middle'
+      },
+      {
+        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
+        data: 'id_producto.marca.nombre',
         className: 'text-center align-middle'
       },
       {
@@ -272,11 +282,11 @@ export class WarehoseComponent implements OnInit, OnDestroy{
         className: 'text-center align-middle',
         render: (data: any) => {
           if (!data) return '';
-          const date = new Date(Number(data) * 1000); 
+          const date = new Date(Number(data) * 1000);
           if (isNaN(date.getTime())) {
             return 'Fecha inválida';
           }
-          return date.toLocaleDateString('es-CO', { 
+          return date.toLocaleDateString('es-CO', {
             day: '2-digit',
             month: '2-digit',
             year: 'numeric'
@@ -288,12 +298,12 @@ export class WarehoseComponent implements OnInit, OnDestroy{
         data: 'fecha_vencimiento',
         className: 'text-center align-middle',
         render: (data: any) => {
-        if (!data) return '';
-          const date = new Date(Number(data) * 1000); 
+          if (!data) return '';
+          const date = new Date(Number(data) * 1000);
           if (isNaN(date.getTime())) {
             return 'Fecha inválida';
           }
-          return date.toLocaleDateString('es-CO', { 
+          return date.toLocaleDateString('es-CO', {
             day: '2-digit',
             month: '2-digit',
             year: 'numeric'
@@ -330,11 +340,11 @@ export class WarehoseComponent implements OnInit, OnDestroy{
         data: 'estado',
         className: 'text-center align-middle'
       },
-    ];  
+    ];
   }
 
   // metodos Componente
-  cambiarTextos(){
+  cambiarTextos() {
     this.titlePage = this.translate.instant('mod-warehouse.TABLE_TITLE')
     this.titleTotalLot = this.translate.instant('mod-warehouse.CARD_TOTAL_LOT_TITLE')
   }
@@ -343,7 +353,7 @@ export class WarehoseComponent implements OnInit, OnDestroy{
     return this.permisosAcciones?.some((permiso) => permiso.permiso_permiso === nombre);
   }
 
-  crearData (_id: string){
+  crearData(_id: string) {
     this.tamano = "xl"
     this.scrollable = true
     this.title = this.translate.instant('mod-warehouse.CREATE_TITLE')
@@ -358,17 +368,17 @@ export class WarehoseComponent implements OnInit, OnDestroy{
     this.componentePrecargado = CREAR_WAREHOUSE_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
   }
 
-  async verData (_id: string){
+  async verData(_id: string) {
     this.title = this.translate.instant('mod-warehouse.SEE_TITLE')
     const response = await this.bodegaService.getDataLote(_id)
     const { lote } = response.data || { nombre: 'xxxxxxx' }
-    this.translate.get('mod-warehouse.SEE_SUBTITLE', { "batch_code": lote }).subscribe((res: string) => {this.subtitle = res});
+    this.translate.get('mod-warehouse.SEE_SUBTITLE', { "batch_code": lote }).subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
     this.scrollable = true
     this.save = false
@@ -381,7 +391,7 @@ export class WarehoseComponent implements OnInit, OnDestroy{
     this.componentePrecargado = VER_WAREHOUSE_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       this.router.navigate([], {
         queryParams: { id_lote: _id },
       });
@@ -390,11 +400,11 @@ export class WarehoseComponent implements OnInit, OnDestroy{
     }
   }
 
-  async editarData (_id: string){
+  async editarData(_id: string) {
     this.title = this.translate.instant('mod-warehouse.EDIT_TITLE')
     const response = await this.bodegaService.getDataLote(_id)
     const { lote } = response.data || { nombre: 'xxxxxxx' }
-    this.translate.get('mod-warehouse.EDIT_SUBTITLE', { "batch_code": lote }).subscribe((res: string) => {this.subtitle = res});
+    this.translate.get('mod-warehouse.EDIT_SUBTITLE', { "batch_code": lote }).subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
     this.scrollable = true
     this.save = false
@@ -406,7 +416,7 @@ export class WarehoseComponent implements OnInit, OnDestroy{
     this.componentePrecargado = EDITAR_WAREHOUSE_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       this.router.navigate([], {
         queryParams: { id_lote: _id },
       });
@@ -442,21 +452,21 @@ export class WarehoseComponent implements OnInit, OnDestroy{
     });
   }
 
-  async filtroData(){
+  async filtroData() {
     let filtros = await $('.complementoRuta').val();
     this.router.navigate([], { queryParams: { search: (filtros) ? filtros : null }, });
-    if(typeof filtros === 'string'){
+    if (typeof filtros === 'string') {
       this.filters = filtros
     }
   }
 
-  async refrescarTabla (){
+  async refrescarTabla() {
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);
   }
 
-  async actualizarContadores (){
+  async actualizarContadores() {
     const data = await this.bodegaService.obtenerTotale()
     this.count_total_products = data.data.count_total_products
   }

@@ -70,13 +70,13 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
 
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH'),
-      data: 'id_lote.lote',
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+      data: 'id_lote.id_producto.codigo_barra',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
-      data: 'id_lote.id_producto.codigo_barra',
+      title: this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH'),
+      data: 'id_lote.lote',
       className: 'text-center align-middle'
     },
     {
@@ -215,13 +215,13 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
   listar() {
     this.columnas = [
       {
-        title: this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH'),
-        data: 'id_lote.lote',
+        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+        data: 'id_lote.id_producto.codigo_barra',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
-        data: 'id_lote.id_producto.codigo_barra',
+        title: this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH'),
+        data: 'id_lote.lote',
         className: 'text-center align-middle'
       },
       {

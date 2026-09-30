@@ -101,6 +101,10 @@ export class FilterWarehouseDto {
 
     @IsOptional()
     @IsString()
+    codigo_barra?: string; 
+
+    @IsOptional()
+    @IsString()
     lang?: string;  
     
 }
