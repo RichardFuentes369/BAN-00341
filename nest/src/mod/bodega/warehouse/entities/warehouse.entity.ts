@@ -2,7 +2,7 @@
 import { Producto } from '@module/catalogo/product/entities/product.entity';
 import { Proveedor } from '@module/catalogo/supplier/entities/supplier.entity';
 import { Merma } from '@module/merma/mermas/entities/merma.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn, OneToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn, OneToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { EstadoLote } from '../enums/EstadoLote';
 
 @Entity('mod_bodega')
@@ -23,8 +23,8 @@ export class Bodega {
   cantidad_comprada;
 
   @Column({ type: 'int', nullable: false, default: 0 })
-  cantidad_vendida;  
-  
+  cantidad_vendida;
+
   @Column({ type: 'int', nullable: false, default: 0 })
   cantidad_en_bodega;
 
@@ -33,14 +33,14 @@ export class Bodega {
 
   // Relation
   @ManyToOne(() => Producto, (producto) => producto.id, {
-    onDelete: 'RESTRICT', 
+    onDelete: 'RESTRICT',
     nullable: false
   })
   @JoinColumn({ name: 'id_producto' })
   id_producto: Producto;
 
   @ManyToOne(() => Proveedor, (proveedor) => proveedor.id, {
-    onDelete: 'RESTRICT', 
+    onDelete: 'RESTRICT',
     nullable: false
   })
   @JoinColumn({ name: 'id_proveedor' })
