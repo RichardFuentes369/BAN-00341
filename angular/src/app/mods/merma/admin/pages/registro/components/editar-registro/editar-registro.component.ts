@@ -242,7 +242,7 @@ export class EditarRegistroComponent {
             // console.log('actualizo la merma con la cantidad: '+ nuevaCantidadM)
             // console.log('actualizo la nueva cantidad_bodega: '+ viejaCantidadM)
           }
-          if(inventarioActual < nuevaCantidadM){
+          if((inventarioActual + viejaCantidadM) < nuevaCantidadM){
             this.validators.cantidad_mayor = true
             // console.log('error: cantidad superior a la cantidad registrada en bodega')
           }

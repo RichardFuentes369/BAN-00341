@@ -336,12 +336,9 @@ export class WarehouseService {
           exists.cantidad_en_bodega = exists.cantidad_en_bodega - (createMermaDto.cantidad - merma.cantidad)
         }
 
-
         if (merma) {
           merma.cantidad = createMermaDto.cantidad
         }
-
-
 
         await this.mermaRepository.save(merma);
 
