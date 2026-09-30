@@ -208,21 +208,17 @@ export class EditarRegistroComponent {
     }
 
     if(this.validators.cantidad){
-      // console.log('aqui estoy')
-      // console.log('***********************')
-      // console.log('new: '+this.model.cantidad)
-      // console.log('old: '+this.cantidad_old)
 
       if(parseInt(this.model.cantidad) != parseInt(this.cantidad_old)){
         const totalBodega = parseInt(this.bodega.cantidad_comprada); //A
-        const inventarioActual = parseInt(this.bodega.cantidad_en_bodega); //A
-        const cantidadAnteriorM = parseInt(this.cantidad_old); // B
-        const viejaCantidadM = parseInt(this.cantidad_old); // D
+        const inventarioActual = parseInt(this.bodega.cantidad_en_bodega); //B
+        
+        const cantidadAnteriorM = parseInt(this.cantidad_old); // C
+        const viejaCantidadM = parseInt(this.cantidad_old); // C
         const nuevaCantidadM = parseInt(this.model.cantidad); // D
-        const totalMermas = parseInt(this.cantidad_afectada_por_merma); // R
-        const totalVentas = parseInt(this.bodega.cantidad_vendida); // T
-        const stockTotal = totalMermas + inventarioActual + totalVentas; // P
-        // console.log('cantidad comprada:' + stockTotal)
+        const totalMermas = parseInt(this.cantidad_afectada_por_merma); // E
+        const totalVentas = parseInt(this.bodega.cantidad_vendida); // F
+        const stockTotal = totalMermas + inventarioActual + totalVentas; // G
   
         if(nuevaCantidadM>cantidadAnteriorM){
           if(inventarioActual>nuevaCantidadM){
@@ -263,6 +259,7 @@ export class EditarRegistroComponent {
             // console.log('error: no cuenta con inventario suficiente para actualizar')
           }
         }
+
       }else{
         this.validators.cantidad = false
         this.validators.cantidad_mayor = false
