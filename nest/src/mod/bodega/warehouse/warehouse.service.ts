@@ -243,30 +243,13 @@ export class WarehouseService {
     });
   }
 
-  async remove(lang: string, ids: number[], userId: number) {
-
-    try {
-      await this.mermaRepository.delete({ id_lote: In(ids) });
-      await this.batchRepository.delete({ id: In(ids) });
-      return {
-        'title': this.i18n.t('categoria.MSJ_CATEGORY_TITTLE', { lang }),
-        'message': this.i18n.t('categoria.MSN_PERMISO_REMOVIDO_OK', { lang }),
-        'status': 200,
-      };
-    } catch (error) {
-      console.log(error)
-    }
-
-  }
-
   async updateQuantities(
     createMermaDto: CreateMermaDto,
     option: number,
     id_merma?: number | null
   ) {
 
-
-    // crear regitro
+    // crear regitro ( no tocar)
     if (option == 1) {
       const exists = await this.batchRepository.findOne({ where: { id: createMermaDto.id_lote } });
 
@@ -305,8 +288,6 @@ export class WarehouseService {
         };
       }
     }
-
-
   }
 
   async deleteQuantities(ids) {
@@ -335,6 +316,21 @@ export class WarehouseService {
     }
   }
 
+  async remove(lang: string, ids: number[], userId: number) {
+
+    try {
+      await this.mermaRepository.delete({ id_lote: In(ids) });
+      await this.batchRepository.delete({ id: In(ids) });
+      return {
+        'title': this.i18n.t('categoria.MSJ_CATEGORY_TITTLE', { lang }),
+        'message': this.i18n.t('categoria.MSN_PERMISO_REMOVIDO_OK', { lang }),
+        'status': 200,
+      };
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
 
   async contadoresLote(
     lang: string

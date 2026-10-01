@@ -221,14 +221,14 @@ export class EditarRegistroComponent {
         const stockTotal = totalMermas + inventarioActual + totalVentas; // G
   
         if(nuevaCantidadM>cantidadAnteriorM){
-          if(inventarioActual>nuevaCantidadM){
+          if((inventarioActual + viejaCantidadM)>nuevaCantidadM){
             this.validators.cantidad = false
             this.validators.cantidad_mayor = false
             const nuevaCantidadBodega = (inventarioActual + cantidadAnteriorM) - nuevaCantidadM
             // console.log('actualizo la merma con la cantidad: '+ nuevaCantidadM)
             // console.log('actualizo la nueva cantidad_bodega: '+nuevaCantidadBodega)
           }
-          if(nuevaCantidadM>inventarioActual){
+          if(nuevaCantidadM>(inventarioActual + viejaCantidadM)){
             if((nuevaCantidadM-viejaCantidadM) === inventarioActual){
               this.validators.cantidad = false
               this.validators.cantidad_mayor = false
@@ -236,15 +236,14 @@ export class EditarRegistroComponent {
               // console.log('actualizo la nueva cantidad_bodega: '+ 0)
             }
           }
-          if(inventarioActual == nuevaCantidadM){
+          if((inventarioActual + viejaCantidadM) == nuevaCantidadM){
             this.validators.cantidad = false
             this.validators.cantidad_mayor = false
             // console.log('actualizo la merma con la cantidad: '+ nuevaCantidadM)
             // console.log('actualizo la nueva cantidad_bodega: '+ viejaCantidadM)
           }
-          if((inventarioActual + viejaCantidadM) < nuevaCantidadM){
+          if(nuevaCantidadM > (inventarioActual + viejaCantidadM)){
             this.validators.cantidad_mayor = true
-            // console.log('error: cantidad superior a la cantidad registrada en bodega')
           }
         }
         if(nuevaCantidadM<cantidadAnteriorM){

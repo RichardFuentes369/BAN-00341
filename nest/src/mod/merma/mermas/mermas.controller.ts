@@ -62,11 +62,18 @@ export class MermasController {
     @Body() mermaData: UpdateMermaDto,
     @GetUser('id') userId: number
   ) {
-    return this.warehouseService.updateQuantities(
+    return this.mermasService.update(
+      lang,
       mermaData,
-      2,
       +_id,
+      userId
     );
+
+    // return this.warehouseService.updateQuantities(
+    //   mermaData,
+    //   2,
+    //   +_id,
+    // );
   }
 
   @UseGuards(AdminGuard)

@@ -13,7 +13,7 @@
           <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
           <input type="text" class="form-control form-select-sm" [(ngModel)]="producto.codigo_barra"
             (ngModelChange)="onInputChange()" [class.is-invalid]="validators.codigo_barra"
-            placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}">
+            placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}" disabled>
           @if(validators.codigo_barra) {
           <div class="d-flex justify-content-between">
             <small [ngClass]="esCodigoValido ? 'text-success font-weight-bold' : 'text-danger'">
@@ -79,7 +79,7 @@
           </label>
           <input type="text" class="form-control form-select-sm" [(ngModel)]="bodega.lote"
             (ngModelChange)="onInputChange()" [class.is-invalid]="validators.lote"
-            placeholder="{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate}}">
+            placeholder="{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate}}" disabled>
           @if(validators.lote) {
           <span class="text-danger small">{{ 'mod-warehouse.PLACEHOLDER_LOTE' | translate }}</span>
           }

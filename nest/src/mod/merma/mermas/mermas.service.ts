@@ -7,11 +7,15 @@ import { I18nService } from 'nestjs-i18n';
 import { FilterRegistroMermaDto } from './dto/filter-merma.dto';
 import { WarehouseService } from '@module/bodega/warehouse/warehouse.service';
 import * as ExcelJS from 'exceljs';
+import { Bodega } from '@module/bodega/warehouse/entities/warehouse.entity';
 
 @Injectable()
 export class MermasService {
 
   constructor(
+    @Inject('WAREHOUSE_REPOSITORY')
+    private batchRepository: Repository<Bodega>,
+
     @Inject('MERMA_REPOSITORY')
     private mermaRepository: Repository<Merma>,
 
@@ -180,7 +184,7 @@ export class MermasService {
         finUnix = Math.floor(fechaFin.getTime() / 1000);
       }
       where.fecha_reporte = Between(inicioUnix, finUnix);
-    }else{
+    } else {
       if (fecha_reporte_min !== null && fecha_reporte_max !== null) {
         where.fecha_reporte = Between(fecha_reporte_min, fecha_reporte_max);
       } else if (fecha_reporte_min !== null) {
@@ -310,6 +314,53 @@ export class MermasService {
     } catch (error) {
       return {
         'title': error.response?.error || 'Error',
+        'message': error.response?.message || error.message,
+        'status': 404,
+      };
+    }
+  }
+
+  async update(
+    lang: string,
+    updateMermaDto: UpdateMermaDto,
+    idMerma: number,
+    userId: number
+  ) {
+    try {
+      const exists = await this.batchRepository.findOne({ where: { id: updateMermaDto.id_lote } });
+      const merma = await this.mermaRepository.findOne({ where: { id: idMerma } });
+
+      if (exists && updateMermaDto.cantidad < merma.cantidad) {
+        exists.cantidad_en_bodega = exists.cantidad_en_bodega + (merma.cantidad - updateMermaDto.cantidad)
+      }
+      if (exists && updateMermaDto.cantidad > merma.cantidad) {
+        exists.cantidad_en_bodega = exists.cantidad_en_bodega - (updateMermaDto.cantidad - merma.cantidad)
+      }
+
+      if (merma) {
+        merma.cantidad = updateMermaDto.cantidad
+      }
+
+
+      const existsM = await this.mermaRepository.findOne({ where: { id: idMerma } });
+
+      if (existsM && existsM.id != idMerma) throw new NotFoundException(
+        this.i18n.t('categoria.MSJ_ERROR_BRAND_EXISTE', { lang })
+      );
+
+      const property = await this.mermaRepository.findOne({
+        where: { id: idMerma }
+      });
+
+      await this.mermaRepository.save({
+        ...property,
+        ...updateMermaDto
+      });
+
+      return await this.batchRepository.save(exists);
+    } catch (error) {
+      return {
+        'title': 'Error',
         'message': error.response?.message || error.message,
         'status': 404,
       };
