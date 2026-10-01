@@ -10,13 +10,16 @@ CTRL + SHIFT + V
 	3. contadores
 		http://localhost:4200/admin/mod/catalog/unidad_de_medida/productos?id_extent=4
 		http://localhost:4200/admin/mod/catalog/productos
-	
 		http://localhost:4200/admin/mod/custom
+	4. En registro de perdida (http://localhost:4200/admin/mod/merma/registro?anho=2026)
+		Hay un error gravisimo.
+		Si cambio el lote y no el producto, debo actualizar el registro perdida y en la bodega el lote viejo y el corregido
+		Si cambio producto y mismo lote, debo actualizar el registro perdida y en la bodega el lote viejo y el corregido
+		Si actualizo solo merma con cantidad y sin cantidad debo validar que si actualice
+	5. Manual web: Agregar la instalacion del plugin en chrome
 
-	4. Hacer enpoint para marcar las devolución (validar como) (esto no va)
-	5. Cambio de estado de bodega automaticos (merma, ventas, devoluciones) (esto no va)
-
-### ¿Que pasa si el backend esta en servidor? => con el endpoint de front y back
+	5. Hacer enpoint para marcar las devolución (validar como) (esto no va)
+	6. Cambio de estado de bodega automaticos (merma, ventas, devoluciones) (esto no va)
 
 ## Manejo sistema
 
