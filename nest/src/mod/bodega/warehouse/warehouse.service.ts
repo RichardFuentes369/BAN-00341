@@ -259,52 +259,6 @@ export class WarehouseService {
 
   }
 
-
-  async contadoresLote(
-    lang: string
-  ) {
-    const cont1 = await this.batchRepository.count()
-
-    const data = {
-      "count_total_products": cont1,
-    }
-
-    return data
-  }
-
-  async findOneLoteProduct(
-    lang: string,
-    filterWarehouseProductDTO: FilterWarehouseProductDTO
-  ) {
-
-    const bodega = await this.batchRepository.findOne({
-      where: {
-        lote: filterWarehouseProductDTO.lote,
-        id_producto: { id: filterWarehouseProductDTO.id_producto }
-      },
-      relations: {
-        id_producto: {
-          medida: true,
-          marca: true
-        },
-        id_proveedor: true,
-        mermas: true,
-      }
-    })
-
-    if (!bodega) {
-      throw new NotFoundException(
-        this.i18n.t('batch.MSJ_BATCH_NO_ENCONTRADA', { lang })
-      );
-    }
-
-    return {
-      ...bodega,
-      mermas: bodega.mermas ? bodega.mermas.reduce((total, m) => total + m.cantidad, 0) : 0
-    };
-
-  }
-
   async updateQuantities(
     createMermaDto: CreateMermaDto,
     option: number,
@@ -379,6 +333,52 @@ export class WarehouseService {
       }
       await this.batchRepository.save(exists);
     }
+  }
+
+
+  async contadoresLote(
+    lang: string
+  ) {
+    const cont1 = await this.batchRepository.count()
+
+    const data = {
+      "count_total_products": cont1,
+    }
+
+    return data
+  }
+
+  async findOneLoteProduct(
+    lang: string,
+    filterWarehouseProductDTO: FilterWarehouseProductDTO
+  ) {
+
+    const bodega = await this.batchRepository.findOne({
+      where: {
+        lote: filterWarehouseProductDTO.lote,
+        id_producto: { id: filterWarehouseProductDTO.id_producto }
+      },
+      relations: {
+        id_producto: {
+          medida: true,
+          marca: true
+        },
+        id_proveedor: true,
+        mermas: true,
+      }
+    })
+
+    if (!bodega) {
+      throw new NotFoundException(
+        this.i18n.t('batch.MSJ_BATCH_NO_ENCONTRADA', { lang })
+      );
+    }
+
+    return {
+      ...bodega,
+      mermas: bodega.mermas ? bodega.mermas.reduce((total, m) => total + m.cantidad, 0) : 0
+    };
+
   }
 
   // reporte pendiente permisos

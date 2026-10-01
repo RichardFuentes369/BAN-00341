@@ -11,10 +11,10 @@ import { AppService } from './app.service';
 import { GlobalModule } from './global/global.module';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { 
-  AuthadminModule, 
+import {
+  AuthadminModule,
   AdminUserModule,
-  UserModule, 
+  UserModule,
   AuthuserModule,
   AsignacionModule,
   ModulosModule,
@@ -29,7 +29,9 @@ import {
   SotckModule,
   ExpirationModule,
   VarModule,
-  JsonModule
+  JsonModule,
+  MermaModule,
+  BodegaModule
 } from './mod/index'
 import { AppGateway } from './app.gateway';
 
@@ -45,12 +47,12 @@ import { AppGateway } from './app.gateway';
         watch: true,
       },
       resolvers: [
-        new QueryResolver(['lang']), 
+        new QueryResolver(['lang']),
       ],
       typesOutputPath: path.join(__dirname, '../src/generated/i18n.generated.ts'),
     }),
 
-    GlobalModule, 
+    GlobalModule,
     AuthadminModule,
     AdminUserModule,
     UserModule,
@@ -69,6 +71,8 @@ import { AppGateway } from './app.gateway';
     ExpirationModule,
     VarModule,
     JsonModule,
+    MermaModule,
+    BodegaModule
   ],
   controllers: [AppController],
   providers: [
@@ -78,7 +82,7 @@ import { AppGateway } from './app.gateway';
 })
 export class AppModule {
 
-  constructor(){
+  constructor() {
     // console.log(__dirname, '/i18n/es')
     // console.log(process.env)
   }

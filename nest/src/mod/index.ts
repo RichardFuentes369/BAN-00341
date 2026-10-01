@@ -24,3 +24,6 @@ export { VarModule } from './vars/admin/var/var.module';
 
 export { SalesModule } from './bodega/sales/sales.module';
 
+export { MermaModule } from './auditoria/merma/merma.module';
+export { BodegaModule } from './auditoria/bodega/bodega.module';
+
