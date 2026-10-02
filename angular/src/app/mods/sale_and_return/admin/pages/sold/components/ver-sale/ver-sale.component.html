@@ -5,39 +5,51 @@
       <!-- Cabecera de la Factura -->
       <div class="sale-header">
         <div class="invoice-title">
-          <span class="id-badge">#{{ item.id }}</span>
-          <h2>Factura: <strong>{{ item.nro_factura }}</strong></h2>
+          <span class="id-badge"><i class="fa fa-hashtag me-1"></i>{{ item.id }}</span>
+          <h2>
+            <i class="fa fa-file-invoice text-primary me-2"></i>
+            Factura: <strong>{{ item.nro_factura }}</strong>
+          </h2>
         </div>
         <div class="invoice-date">
-          <span class="label">Fecha:</span> 
+          <span class="label"><i class="fa fa-calendar-alt me-1"></i>Fecha:</span> 
           <span class="date-value">{{ item.fecha_venta * 1000 | date: 'dd/MM/yyyy' }}</span>
         </div>
       </div>
 
       <!-- Cuerpo / Detalle de Productos -->
       <div class="sale-body">
-        <h3>Productos en esta venta</h3>
+        <h3>
+          <i class="fa fa-shopping-basket me-2 text-secondary"></i>
+          Productos en esta venta
+        </h3>
         
         <div class="table-wrapper">
           <table class="modern-table">
             <thead>
               <tr>
-                <th class="text-center">Lote</th>
-                <th class="text-center">Código de Barra</th>
-                <th class="text-center">Cantidad</th>
+                <th class="text-center">
+                  <i class="fa fa-layer-group me-1"></i>Lote
+                </th>
+                <th class="text-center">
+                  <i class="fa fa-barcode me-1"></i>Código de Barra
+                </th>
+                <th class="text-center">
+                  <i class="fa fa-cubes me-1"></i>Cantidad
+                </th>
               </tr>
             </thead>
             <tbody>
               @for (detail of item.detalle_factura; track detail.codigo_barra; let j = $index) {
                 <tr>
                   <td class="text-center">
-                    <span >{{ detail.lote }}</span>
+                    <span><i class="fa fa-box me-1 text-muted"></i>{{ detail.lote }}</span>
                   </td>
                   <td class="text-center">
-                    <code class="barcode">{{ detail.codigo_barra }}</code>
+                    <code class="barcode"><i class="fa fa-qrcode me-1"></i>{{ detail.codigo_barra }}</code>
                   </td>
                   <td class="text-center">
-                    <span >{{ detail.cantidad }}</span>
+                    <span><i class="fa fa-sort-numeric-up me-1 text-muted"></i>{{ detail.cantidad }}</span>
                   </td>
                 </tr>
               }

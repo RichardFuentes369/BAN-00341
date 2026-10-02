@@ -2,23 +2,27 @@
   <div class="col-xl col-sm-12">
     <fieldset class="border p-3 rounded">
       <legend class="float-none w-auto p-1">
-        {{ 'mod-merma.TYPE.LEGEND_TITLE' | translate }}
+        <i class="fas fa-tags me-1"></i> {{ 'mod-merma.TYPE.LEGEND_TITLE' | translate }}
       </legend>
       <div class="col-sm-12 row p-0">
         <div class="col-sm-12 form-group">
           <label class="label-color">
-            {{ 'mod-merma.TYPE.LABEL_NAME_TYPE' | translate}}
+            <i class="fas fa-pen me-1"></i> {{ 'mod-merma.TYPE.LABEL_NAME_TYPE' | translate}}
           </label>
-          <input type="text" class="form-control form-select-sm" [(ngModel)]="model.nombre" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nombre" placeholder="{{ 'mod-merma.TYPE.PLACEHOLDER_NAME_TYPE' | translate}}">
+          <div class="input-group input-group-sm">
+            <input type="text" class="form-control form-select-sm" [(ngModel)]="model.nombre" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nombre" placeholder="{{ 'mod-merma.TYPE.PLACEHOLDER_NAME_TYPE' | translate}}">
+          </div>
           @if(validators.nombre) {
-            <span class="text-danger small">{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}</span>
+            <span class="text-danger small mt-1 d-block">
+              <i class="fas fa-exclamation-circle me-1"></i>{{ 'mod-catalog.CATEGORY.PLACEHOLDER_NAME_CATEGORY' | translate }}
+            </span>
           }
         </div>
       </div>
-      <div class="col-sm-12 row p-0">
+      <div class="col-sm-12 row p-0 mt-3">
         <div class="col-sm-12">
           <button class="btn btn-sm btn-primary btnAction d-none" (click)="crearTipo()">
-            {{ 'mod-catalog.BUTTON_USER_CREATE' | translate}}
+            <i class="fas fa-plus me-1"></i> {{ 'mod-catalog.BUTTON_USER_CREATE' | translate}}
           </button>
         </div>
       </div>

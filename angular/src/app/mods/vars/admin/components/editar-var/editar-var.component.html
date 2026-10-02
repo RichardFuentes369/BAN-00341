@@ -1,51 +1,63 @@
 <div class="">
 
   @for (item of varJson; track item; let i = $index) {
-  <div class="col-xl-12 col-sm-12">
+  <div class="col-xl-12 col-sm-12 mb-3">
     <fieldset class="border p-3 rounded">
-      <legend class="float-none w-auto p-1">
+      <legend class="float-none w-auto p-1 fw-bold">
+        <i class="fas fa-sliders-h me-2 text-primary"></i>
         {{ 'mod-vars.LEGEND_TITLE_VAR' | translate }}
       </legend>
       <div class="col-xl col-sm-12">
+        
+        <!-- Campo Nombre -->
         <div class="col-sm-12 row p-0">
-          <label class="label-color">
+          <label class="label-color mb-1">
+            <i class="fas fa-tag me-1"></i>
             {{ 'mod-vars.LABEL_VAR_NAME' | translate}}
           </label>
-          <input type="text" class="form-control form-select-sm" [(ngModel)]="model.nombre"
-            (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nombre">
-          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          <div class="input-group input-group-sm p-0">
+            <input type="text" class="form-control" [(ngModel)]="model.nombre"
+              (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nombre">
+          </div>
         </div>
+
+        <!-- Campo Valor -->
         <div class="col-sm-12 row p-0 mt-4">
-          <label class="label-color">
+          <label class="label-color mb-1">
+            <i class="fas fa-database me-1"></i>
             {{ 'mod-vars.LABEL_VAR_VALUE' | translate}}
           </label>
 
           @if(tipoVariable == 'var'){
-          <input type="text" class="form-control form-select-sm" [(ngModel)]="model.valor"
-            (ngModelChange)="onInputChange()" [class.is-invalid]="validators.valor">
-          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            <div class="input-group input-group-sm p-0">
+              <input type="text" class="form-control" [(ngModel)]="model.valor"
+                (ngModelChange)="onInputChange()" [class.is-invalid]="validators.valor">
+            </div>
           }
           @else{
-            <textarea 
-              class="form-control" 
-              [(ngModel)]="model.valor" 
-              name="valor"
-              (ngModelChange)="onInputChange()" 
-              [class.is-invalid]="validators.valor"
-              rows="5">
-            </textarea>
-          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            <div class="input-group p-0">
+              <textarea 
+                class="form-control" 
+                [(ngModel)]="model.valor" 
+                name="valor"
+                (ngModelChange)="onInputChange()" 
+                [class.is-invalid]="validators.valor"
+                rows="5">
+              </textarea>
+            </div>
           }
 
-
-          <div class="col-sm-12 row p-0">
-            <div class="col-sm-12">
+          <!-- Botón de Acción -->
+          <div class="col-sm-12 row p-0 mt-3">
+            <div class="col-sm-12 ps-0">
               <button class="btn btn-sm btn-primary btnAction d-none" (click)="actualizarData()">
+                <i class="fas fa-edit me-1"></i>
                 {{ 'mod-users.BUTTON_USER_EDIT' | translate}}
               </button>
             </div>
           </div>
         </div>
+
       </div>
     </fieldset>
   </div>

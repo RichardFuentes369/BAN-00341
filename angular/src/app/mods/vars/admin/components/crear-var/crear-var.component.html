@@ -1,52 +1,78 @@
 <div class="">
   <div class="col-xl-12 col-sm-12">
     <fieldset class="border p-3 rounded">
-      <legend class="float-none w-auto p-1">
+      <legend class="float-none w-auto p-1 fw-bold">
+        <i class="fas fa-sliders-h me-2 text-primary"></i>
         {{ 'mod-vars.LEGEND_TITLE_VAR' | translate }}
       </legend>
       <div class="col-xl col-sm-12">
+        
+        <!-- Campo: Nombre de la Variable -->
         <div class="col-sm-12 row p-0">
-          <label class="label-color">
+          <label class="label-color mb-1">
+            <i class="fas fa-tag me-1"></i>
             {{ 'mod-vars.LABEL_VAR_NAME' | translate}}
           </label>
-          <input type="text" class="form-control form-select-sm" [(ngModel)]="model.nombre"
-            (ngModelChange)="onInputChange()" [class.is-invalid]="validators.name"
-            placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
+          <div class="input-group input-group-sm p-0">
+            <input type="text" class="form-control" [(ngModel)]="model.nombre"
+              (ngModelChange)="onInputChange()" [class.is-invalid]="validators.name"
+              placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
+          </div>
           @if(validators.name) {
-          <span class="text-danger small">{{ 'mod-users.ERROR_USER_FIRSTNAME' | translate }}</span>
+          <span class="text-danger small mt-1 ps-0">
+            <i class="fas fa-exclamation-circle me-1"></i>
+            {{ 'mod-users.ERROR_USER_FIRSTNAME' | translate }}
+          </span>
           }
         </div>
+
+        <!-- Campo: Valor de la Variable -->
         <div class="col-sm-12 row p-0 mt-4">
-          <label class="label-color">
+          <label class="label-color mb-1">
+            <i class="fas fa-database me-1"></i>
             {{ 'mod-vars.LABEL_VAR_VALUE' | translate}}
           </label>
 
           @if(tipoVariable == 'var'){
-          <input type="text" class="form-control form-select-sm" [(ngModel)]="model.valor"
-            (ngModelChange)="onInputChange()" [class.is-invalid]="validators.value"
-            placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
+            <div class="input-group input-group-sm p-0">
+              <input type="text" class="form-control" [(ngModel)]="model.valor"
+                (ngModelChange)="onInputChange()" [class.is-invalid]="validators.value"
+                placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
+            </div>
             @if(validators.value) {
-            <span class="text-danger small">{{ 'mod-users.ERROR_USER_FIRSTNAME' | translate }}</span>
+            <span class="text-danger small mt-1 ps-0">
+              <i class="fas fa-exclamation-circle me-1"></i>
+              {{ 'mod-users.ERROR_USER_FIRSTNAME' | translate }}
+            </span>
             }
           }
           @else{
-          <textarea class="form-control form-select-sm" [(ngModel)]="model.valor"
-            (ngModelChange)="onInputChange()" 
-            [class.is-invalid]="validators.value"
-            placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
-          </textarea>
+            <div class="input-group input-group-sm p-0">
+              <textarea class="form-control" [(ngModel)]="model.valor"
+                (ngModelChange)="onInputChange()" 
+                [class.is-invalid]="validators.value"
+                placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
+              </textarea>
+            </div>
             @if(validators.value) {
-            <span class="text-danger small">{{ 'mod-users.ERROR_USER_FIRSTNAME' | translate }}</span>
+            <span class="text-danger small mt-1 ps-0">
+              <i class="fas fa-exclamation-circle me-1"></i>
+              {{ 'mod-users.ERROR_USER_FIRSTNAME' | translate }}
+            </span>
             }
           }
         </div>
-        <div class="col-sm-12 row p-0">
-          <div class="col-sm-12">
+
+        <!-- Botón de Acción -->
+        <div class="col-sm-12 row p-0 mt-3">
+          <div class="col-sm-12 ps-0">
             <button class="btn btn-sm btn-primary btnAction d-none" (click)="crearVariable()">
+              <i class="fas fa-plus-circle me-1"></i>
               {{ 'mod-users.BUTTON_USER_CREATE' | translate}}
             </button>
           </div>
         </div>
+
       </div>
     </fieldset>
   </div>

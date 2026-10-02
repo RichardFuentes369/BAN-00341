@@ -2,11 +2,11 @@
   <div class="col-xl col-sm-12">
     <fieldset class="border p-3 rounded">
       <legend class="float-none w-auto p-1">
-        {{ 'mod-catalog.SUPPLIER.LEGEND_TITLE' | translate }}
+        <i class="fas fa-truck me-1"></i>{{ 'mod-catalog.SUPPLIER.LEGEND_TITLE' | translate }}
       </legend>
       <div class="col-sm-12 form-group">
         <label class="label-color" for="exampleInputEmail1">
-          {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NAME' | translate}}
+          <i class="fas fa-building me-1"></i>{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NAME' | translate}}
         </label>
         <input type="text" class="form-control form-select-sm" [(ngModel)]="model.razon_social" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.razon_social" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NAME' | translate}}">
         @if(validators.razon_social) {
@@ -17,7 +17,7 @@
         <div class="row">
           <div class="col-sm-6">
             <label class="label-color" for="exampleInputEmail1">
-              {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}
+              <i class="fas fa-id-card me-1"></i>{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}
             </label>
             <input type="text" class="form-control form-select-sm" [(ngModel)]="model.nit" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nit" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate}}">
             @if(validators.nit) {
@@ -26,7 +26,7 @@
           </div>
           <div class="col-sm-6">
             <label class="label-color" for="exampleInputEmail1">
-              {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_DV' | translate}}
+              <i class="fas fa-hashtag me-1"></i>{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_DV' | translate}}
             </label>
             <input type="text" class="form-control form-select-sm" [(ngModel)]="model.dv" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.dv" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_DV' | translate}}">
             @if(validators.nit) {
@@ -37,7 +37,7 @@
       </div>
       <div class="col-sm-12 form-group">
         <label class="label-color" for="exampleInputEmail1">
-          {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_ADDRESS' | translate}}
+          <i class="fas fa-map-marker-alt me-1"></i>{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_ADDRESS' | translate}}
         </label>
         <input type="text" class="form-control form-select-sm" [(ngModel)]="model.direccion" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.direccion" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_ADDRESS' | translate}}">
         @if(validators.direccion) {
@@ -46,7 +46,7 @@
       </div>
       <div class="col-sm-12 form-group">
         <label class="label-color" for="exampleInputEmail1">
-          {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_EMAIL' | translate}}
+          <i class="fas fa-envelope me-1"></i>{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_EMAIL' | translate}}
         </label>
         <input type="text" class="form-control form-select-sm" [(ngModel)]="model.correo" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.correo" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_EMAIL' | translate}}">
         @if(validators.correo) {
@@ -55,7 +55,7 @@
       </div>
       <div class="col-sm-12 form-group">
         <label class="label-color" for="exampleInputEmail1">
-          {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_PHONE' | translate}}
+          <i class="fas fa-phone me-1"></i>{{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_PHONE' | translate}}
         </label>
         <input type="text" class="form-control form-select-sm" [(ngModel)]="model.telefono" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.telefono" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_PHONE' | translate}}">
         @if(validators.telefono) {
@@ -65,7 +65,7 @@
       <div class="col-sm-12 row p-0">
         <div class="col-sm-12">
           <button class="btn btn-sm btn-primary btnAction d-none" (click)="crearProveedor()">
-            {{ 'mod-catalog.BUTTON_USER_CREATE' | translate}}
+            <i class="fas fa-plus-circle me-1"></i>{{ 'mod-catalog.BUTTON_USER_CREATE' | translate}}
           </button>
         </div>
       </div>

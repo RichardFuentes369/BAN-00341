@@ -2,13 +2,13 @@
   <div class="col-xl-12 col-sm-12">
     <fieldset class="border p-3 rounded">
       <legend class="float-none w-auto p-1">
-        {{ 'mod-users.LEGEND_TITLE_USER' | translate }}
+        <i class="fas fa-id-card me-1"></i> {{ 'mod-users.LEGEND_TITLE_USER' | translate }}
       </legend>
       <div class="col-xl col-sm-12">
         <div class="col-sm-12 row p-0">
           <div class="col-sm-6 form-group">
             <label class="label-color" for="exampleInputEmail1">
-              {{ 'mod-users.LABEL_USER_FIRSTNAME' | translate}}
+              <i class="fas fa-user me-1"></i>{{ 'mod-users.LABEL_USER_FIRSTNAME' | translate}}
             </label>
             <input type="text" class="form-control form-select-sm box-input" [(ngModel)]="model.firstName" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.firstName" placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
             @if(validators.firstName) {
@@ -17,7 +17,7 @@
           </div>
           <div class="col-sm-6 form-group">
             <label class="label-color" for="exampleInputEmail1">
-              {{ 'mod-users.LABEL_USER_LASTNAME' | translate}}
+              <i class="fas fa-user me-1"></i>{{ 'mod-users.LABEL_USER_LASTNAME' | translate}}
             </label>
             <input type="text" class="form-control form-select-sm" [(ngModel)]="model.lastName" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.lastName" placeholder="{{ 'mod-users.PLACEHOLDER_USER_LASTNAME' | translate}}">
             @if(validators.lastName) {
@@ -28,7 +28,7 @@
         <div class="col-sm-12 row p-0">
           <div class="col-sm-6 form-group">
             <label class="label-color" for="exampleInputEmail1">
-              {{ 'mod-users.LABEL_USER_EMAIL' | translate}}
+              <i class="fas fa-envelope me-1"></i>{{ 'mod-users.LABEL_USER_EMAIL' | translate}}
             </label>
             <input type="email" class="form-control form-select-sm" [(ngModel)]="model.email" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.email" placeholder="{{ 'mod-users.PLACEHOLDER_USER_EMAIL' | translate}}">
             @if(validators.email) {
@@ -37,7 +37,7 @@
           </div>
           <div class="col-sm-6 form-group">
             <label class="label-color" for="exampleInputEmail1">
-              {{ 'mod-users.LABEL_USER_PASSWORD' | translate}}
+              <i class="fas fa-lock me-1"></i>{{ 'mod-users.LABEL_USER_PASSWORD' | translate}}
             </label>
             <div class="input-group">
               <input
@@ -52,6 +52,7 @@
               <div class="input-group-prepend">
                 <div class="input-group-text">
                   <input type="checkbox" aria-label="Checkbox for following text input" (click)="showPassword()" title="mostrar contraseña">
+                  <i class="fas fa-eye ms-1"></i>
                 </div>
               </div>
             </div>
@@ -63,7 +64,7 @@
         <div class="col-sm-12 row p-0">
           <div class="col-sm-6 form-group">
             <label class="label-color" for="exampleInputEmail1">
-              {{ 'mod-users.LABEL_USER_STATUS' | translate}}
+              <i class="fas fa-toggle-on me-1"></i>{{ 'mod-users.LABEL_USER_STATUS' | translate}}
             </label>
             <select [(ngModel)]="optionSelect" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.selectHas" class="form-control form-select-sm custom-select">
               <option [value]="0">
@@ -86,7 +87,7 @@
         <div class="col-sm-12 row p-0">
           <div class="col-sm-12">
             <button class="btn btn-sm btn-primary btnAction d-none" (click)="crearUsuario()">
-              {{ 'mod-users.BUTTON_USER_CREATE' | translate}}
+              <i class="fas fa-user-plus me-1"></i>{{ 'mod-users.BUTTON_USER_CREATE' | translate}}
             </button>
           </div>
         </div>

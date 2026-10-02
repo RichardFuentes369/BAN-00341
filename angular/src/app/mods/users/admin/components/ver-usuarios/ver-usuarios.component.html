@@ -1,23 +1,23 @@
 <div class="">
   
-  @for (item of user; track item; let  i = $index) {
+  @for (item of user; track item; let i = $index) {
     <div class="col-xl-12 col-sm-12">
       <fieldset class="border p-3 rounded">
         <legend class="float-none w-auto p-1">
-          {{ 'mod-users.LEGEND_TITLE_USER' | translate }}
+          <i class="fas fa-id-card me-1"></i>{{ 'mod-users.LEGEND_TITLE_USER' | translate }}
         </legend>
         <div class="col-xl col-sm-12">
           <div class="col-sm-12 row p-0">
             <div class="col-sm-6 form-group">
               <label class="label-color" for="exampleInputEmail1">
-                {{ 'mod-users.LABEL_USER_FIRSTNAME' | translate}}
+                <i class="fas fa-user me-1"></i>{{ 'mod-users.LABEL_USER_FIRSTNAME' | translate}}
               </label>
               <input type="text" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.firstName}}" readonly>
               <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
             </div>
             <div class="col-sm-6 form-group">
               <label class="label-color" for="exampleInputEmail1">
-                {{ 'mod-users.LABEL_USER_LASTNAME' | translate}}
+                <i class="fas fa-user me-1"></i>{{ 'mod-users.LABEL_USER_LASTNAME' | translate}}
               </label>
               <input type="text" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.lastName}}" readonly>
               <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
@@ -26,14 +26,14 @@
           <div class="col-sm-12 row p-0">
             <div class="col-sm-6 form-group">
               <label class="label-color" for="exampleInputEmail1">
-                {{ 'mod-users.LABEL_USER_EMAIL' | translate}}
+                <i class="fas fa-envelope me-1"></i>{{ 'mod-users.LABEL_USER_EMAIL' | translate}}
               </label>
               <input type="text" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.email}}" readonly>
               <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
             </div>
             <div class="col-sm-6 form-group">
               <label class="label-color" for="exampleInputEmail1">
-                {{ 'mod-users.LABEL_USER_PASSWORD' | translate}}
+                <i class="fas fa-lock me-1"></i>{{ 'mod-users.LABEL_USER_PASSWORD' | translate}}
               </label>
               <input type="password" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.password}}" readonly>
               <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
@@ -42,7 +42,7 @@
           <div class="col-sm-12 row p-0">
             <div class="col-sm-6 form-group">
               <label class="label-color" for="exampleInputEmail1">
-                {{ 'mod-users.LABEL_USER_STATUS' | translate}}
+                <i class="fas fa-toggle-on me-1"></i>{{ 'mod-users.LABEL_USER_STATUS' | translate}}
               </label>
               <select [disabled]="true" class="form-control form-select-sm">
                 <option [selected]="item.isActive == true" [value]="1">
@@ -62,6 +62,3 @@
   }
 
 </div>
-
-
-

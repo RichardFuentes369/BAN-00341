@@ -1,16 +1,20 @@
 <div class="container-fluid p-0">
   <div class="col-xl col-sm-12">
+    <!-- SECCIÓN: PRODUCTO -->
     <fieldset class="border p-3 rounded">
       <legend class="float-none w-auto p-1">
-        {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_PRODUCT' | translate }}
+        <i class="fa fa-box me-1"></i> {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_PRODUCT' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('productSeccion')">
           <i [class]="mostrarSeccion.productSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
         </button>
       </legend>
       <div class="row" *ngIf="mostrarSeccion.productSeccion" [class.animate__fadeIn]="mostrarSeccion.productSeccion"
         [class.animate__fadeOut]="!mostrarSeccion.productSeccion">
+        
         <div class="col-sm-6 form-group mb-3">
-          <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}</label>
+          <label class="label-color form-label">
+            <i class="fa fa-tag me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}
+          </label>
           <input type="text" class="form-control form-select-sm" [(ngModel)]="model.nombre"
             (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nombre"
             placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_NAME_PRODUCT' | translate }}">
@@ -20,14 +24,16 @@
         </div>
 
         <div class="col-sm-6 form-group mb-3">
-          <label class="label-color form-label">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}</label>
+          <label class="label-color form-label">
+            <i class="fa fa-copyright me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}
+          </label>
           <ng-select class="form-control custom-select form-select-sm" [(ngModel)]="model.id_marca" [items]="marcas"
             [loading]="isLoading" (search)="onSearch($event)" (change)="onSelectChange($event)" bindLabel="nombre"
             bindValue="id" appendTo="body" [readonly]="isReadonly">
 
             <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
               <div class="ng-option disabled">
-                No se encontró "{{searchTerm}}"
+                <i class="fa fa-exclamation-circle me-1"></i> No se encontró "{{searchTerm}}"
               </div>
             </ng-template>
           </ng-select>
@@ -37,7 +43,9 @@
         </div>
 
         <div class="col-sm-6 form-group mb-3">
-          <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)</label>
+          <label class="label-color">
+            <i class="fa fa-barcode me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)
+          </label>
           <input type="text" class="form-control form-select-sm" [class]="(fielddBarCode) ? 'bg-light' :''"
             [(ngModel)]="model.codigo_barra" (ngModelChange)="onInputChange()"
             [class.is-invalid]="validators.codigo_barra"
@@ -53,24 +61,26 @@
           <div class="row mt-2 g-2">
             <div class="col-4">
               <button type="button" class="btn btn-sm btn-outline-primary w-100" (click)="ean13(1)">
-                <i class="fa fa-barcode"></i> {{ 'global-scanner.BTN_SCANNER' | translate}}
+                <i class="fa fa-barcode me-1"></i> {{ 'global-scanner.BTN_SCANNER' | translate}}
               </button>
             </div>
             <div class="col-4">
               <button type="button" class="btn btn-sm btn-outline-primary w-100" (click)="ean13(2)">
-                <i class="fa fa-pencil"></i> {{ 'global-scanner.BTN_MANUAL' | translate}}
+                <i class="fa fa-pencil me-1"></i> {{ 'global-scanner.BTN_MANUAL' | translate}}
               </button>
             </div>
             <div class="col-4">
               <button type="button" class="btn btn-sm btn-danger w-100" (click)="ean13(3)">
-                <i class="fa fa-trash"></i> {{ 'global-scanner.BTN_CLEAR' | translate}}
+                <i class="fa fa-trash me-1"></i> {{ 'global-scanner.BTN_CLEAR' | translate}}
               </button>
             </div>
           </div>
         </div>
 
         <div class="col-sm-6 form-group mb-3">
-          <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_STATUS' | translate }}</label>
+          <label class="label-color">
+            <i class="fa fa-toggle-on me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_BRAND_STATUS' | translate }}
+          </label>
           <select class="form-control custom-select form-select-sm" [(ngModel)]="model.estado"
             (ngModelChange)="onInputChange()" [class.is-invalid]="validators.estado">
             <option [ngValue]="null">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_STATUS' | translate }}</option>
@@ -81,9 +91,10 @@
       </div>
     </fieldset>
 
+    <!-- SECCIÓN: STOCK -->
     <fieldset class="border p-3 rounded">
       <legend class="float-none w-auto p-1">
-        {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_STOCK' | translate }}
+        <i class="fa fa-cubes me-1"></i> {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_STOCK' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('stockSeccion')">
           <i [class]="mostrarSeccion.stockSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
         </button>
@@ -91,7 +102,9 @@
       <div class="row" *ngIf="mostrarSeccion.stockSeccion" [class.animate__fadeIn]="mostrarSeccion.stockSeccion"
         [class.animate__fadeOut]="!mostrarSeccion.stockSeccion">
         <div class="col-sm-6 form-group mb-3">
-          <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_MINIMUM_QUANTITY' | translate }}</label>
+          <label class="label-color">
+            <i class="fa fa-layer-group me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_MINIMUM_QUANTITY' | translate }}
+          </label>
           <input type="number" min="1" class="form-control" [(ngModel)]="model.stock_minimo"
             (ngModelChange)="onInputChange()" [class.is-invalid]="validators.stock_minimo"
             placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_STOCK_PRODUCT' | translate }}">
@@ -100,7 +113,9 @@
           }
         </div>
         <div class="col-sm-6 form-group mb-3">
-          <label class="label-color">{{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</label>
+          <label class="label-color">
+            <i class="fa fa-ruler-combined me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}
+          </label>
           <select class="form-control custom-select form-select-sm" [class.select-bloqueado]="estaBloqueado"
             [(ngModel)]="model.id_medida" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.id_medida">
             <option [ngValue]="0">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION' | translate }}
@@ -117,9 +132,10 @@
       </div>
     </fieldset>
 
+    <!-- SECCIÓN: PERECEDERO -->
     <fieldset class="border p-3 rounded">
       <legend class="float-none w-auto p-1">
-        {{ 'mod-catalog.PRODUCT.LABEL_CHECK_PERISHABLE' | translate }}
+        <i class="fa fa-calendar-times me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_CHECK_PERISHABLE' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('esPerecedero')">
           <i [class]="mostrarSeccion.esPerecedero ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
         </button>
@@ -133,12 +149,16 @@
         @if(model.es_perecedero) {
         <div class="row mt-3">
           <div class="col-sm-6">
-            <label class="small label-color">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_YELLOW_ALERT' | translate }}</label>
+            <label class="small label-color">
+              <i class="fa fa-exclamation-triangle text-warning me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_BRAND_YELLOW_ALERT' | translate }}
+            </label>
             <input type="number" min="1" class="form-control form-select-sm" [(ngModel)]="model.alerta_amarilla"
               (ngModelChange)="onInputChange()" [class.is-invalid]="validators.error_dias">
           </div>
           <div class="col-sm-6">
-            <label class="small label-color">{{ 'mod-catalog.PRODUCT.LABEL_BRAND_ORANGE_ALERT' | translate }}</label>
+            <label class="small label-color">
+              <i class="fa fa-exclamation-circle text-danger me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_BRAND_ORANGE_ALERT' | translate }}
+            </label>
             <input type="number" min="1" class="form-control form-select-sm" [(ngModel)]="model.alerta_naranja"
               (ngModelChange)="onInputChange()" [class.is-invalid]="validators.error_dias">
           </div>
@@ -153,9 +173,10 @@
       </div>
     </fieldset>
 
+    <!-- BOTÓN DE ACCIÓN -->
     <div class="col-sm-12">
       <button class="btn btn-primary btnAction w-100 d-none" (click)="crearProducto()">
-        {{ 'mod-catalog.BUTTON_USER_CREATE' | translate }}
+        <i class="fa fa-plus-circle me-1"></i> {{ 'mod-catalog.BUTTON_USER_CREATE' | translate }}
       </button>
     </div>
   </div>

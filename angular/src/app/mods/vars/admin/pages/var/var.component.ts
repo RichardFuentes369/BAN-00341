@@ -61,22 +61,22 @@ export class VarComponent implements OnInit, OnDestroy {
   filters = ''
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-vars.COLUMN_ID'),
+      title: `<i class="fas fa-hashtag me-1"></i>${this.translate.instant('mod-vars.COLUMN_ID')}`,
       data: 'id',
       className: 'text-center align-middle',
       visible: false,
     },
     {
-      title: this.translate.instant('mod-vars.COLUMN_NAME'),
+      title: `<i class="fas fa-tag me-1"></i>${this.translate.instant('mod-vars.COLUMN_NAME')}`,
       data: 'nombre',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-vars.COLUMN_VALUE'),
+      title: `<i class="fas fa-sliders-h me-1"></i>${this.translate.instant('mod-vars.COLUMN_VALUE')}`,
       data: 'valor',
       className: 'text-center align-middle'
     },
-  ];
+  ]
   permisosAcciones = this.permisos
   // fin datos que envio al componente tabla
 
@@ -158,18 +158,18 @@ export class VarComponent implements OnInit, OnDestroy {
   listar() {
     this.columnas = [
       {
-        title: this.translate.instant('mod-vars.COLUMN_ID'),
+        title: `<i class="fas fa-hashtag me-1"></i>${this.translate.instant('mod-vars.COLUMN_ID')}`,
         data: 'id',
         className: 'text-center align-middle',
         visible: false,
       },
       {
-        title: this.translate.instant('mod-vars.COLUMN_NAME'),
+        title: `<i class="fas fa-tag me-1"></i>${this.translate.instant('mod-vars.COLUMN_NAME')}`,
         data: 'nombre',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-vars.COLUMN_VALUE'),
+        title: `<i class="fas fa-sliders-h me-1"></i>${this.translate.instant('mod-vars.COLUMN_VALUE')}`,
         data: 'valor',
         className: 'text-center align-middle'
       },

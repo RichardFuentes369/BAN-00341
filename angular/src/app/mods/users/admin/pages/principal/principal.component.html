@@ -75,7 +75,7 @@
 
   <!-- Inició reporte permisos -->
   @if(tienePermiso('descarga_reporte_permisos')){
-  <div class="p-3 pt-0" style="position: relative;">
+  <div class="pl-3 pr-3 pt-0" style="position: relative;">
     @if (cargarIdioma) {
     <app-reporte-permisos (verItem)="verPermisos($event)"></app-reporte-permisos>
     }

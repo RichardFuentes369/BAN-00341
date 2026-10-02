@@ -1,38 +1,50 @@
 <div class="">
 
   @for (item of varJson; track item; let i = $index) {
-  <div class="col-xl-12 col-sm-12">
+  <div class="col-xl-12 col-sm-12 mb-3">
     <fieldset class="border p-3 rounded">
-      <legend class="float-none w-auto p-1">
+      <legend class="float-none w-auto p-1 fw-bold">
+        <i class="fas fa-sliders-h me-2 text-primary"></i>
         {{ 'mod-vars.LEGEND_TITLE_VAR' | translate }}
       </legend>
       <div class="col-xl col-sm-12">
+        
+        <!-- Campo: Nombre (Solo Lectura) -->
         <div class="col-sm-12 row p-0">
-          <label class="label-color">
+          <label class="label-color mb-1">
+            <i class="fas fa-tag me-1"></i>
             {{ 'mod-vars.LABEL_VAR_NAME' | translate}}
           </label>
-          <input type="text" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp"
-            value="{{item.nombre}}" readonly>
-          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          <div class="input-group input-group-sm p-0">
+            <input type="text" class="form-control bg-light" id="exampleInputEmail1" aria-describedby="emailHelp"
+              value="{{item.nombre}}" readonly>
+          </div>
         </div>
+
+        <!-- Campo: Valor (Solo Lectura / JSON) -->
         <div class="col-sm-12 row p-0 mt-4">
-          <label class="label-color">
+          <label class="label-color mb-1">
+            <i class="fas fa-database me-1"></i>
             {{ 'mod-vars.LABEL_VAR_VALUE' | translate}}
           </label>
 
           @if(tipoVariable == 'var'){
-            <input type="text" class="form-control form-select-sm" id="exampleInputEmail1" aria-describedby="emailHelp"
-              value="{{item.valor}}" readonly>
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            <div class="input-group input-group-sm p-0">
+              <input type="text" class="form-control bg-light" id="exampleInputEmail1" aria-describedby="emailHelp"
+                value="{{item.valor}}" readonly>
+            </div>
           }
           @else{
-            <pre class="code-input-style">
-              {{ parseJson(item.valor) | json }}
-            </pre>
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            <div class="position-relative p-0">
+              <div class="d-flex align-items-center mb-1 text-muted small">
+                <span>JSON</span>
+              </div>
+              <pre class="code-input-style m-0">
+                {{ parseJson(item.valor) | json }}
+              </pre>
+            </div>
           }
 
-          
         </div>
       </div>
     </fieldset>

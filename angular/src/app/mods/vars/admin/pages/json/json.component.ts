@@ -61,13 +61,13 @@ export class JsonComponent implements OnInit, OnDestroy {
   filters = ''
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-vars.COLUMN_ID'),
+      title: `<i class="fas fa-hashtag me-1"></i>${this.translate.instant('mod-vars.COLUMN_ID')}`,
       data: 'id',
       className: 'text-center align-middle',
       visible: false,
     },
     {
-      title: this.translate.instant('mod-vars.COLUMN_NAME'),
+      title: `<i class="fas fa-tag me-1"></i>${this.translate.instant('mod-vars.COLUMN_NAME')}`,
       data: 'nombre',
       className: 'text-center align-middle'
     },
@@ -153,13 +153,13 @@ export class JsonComponent implements OnInit, OnDestroy {
   listar() {
     this.columnas = [
       {
-        title: this.translate.instant('mod-vars.COLUMN_ID'),
+        title: `<i class="fas fa-hashtag me-1"></i>${this.translate.instant('mod-vars.COLUMN_ID')}`,
         data: 'id',
         className: 'text-center align-middle',
         visible: false,
       },
       {
-        title: this.translate.instant('mod-vars.COLUMN_NAME'),
+        title: `<i class="fas fa-tag me-1"></i>${this.translate.instant('mod-vars.COLUMN_NAME')}`,
         data: 'nombre',
         className: 'text-center align-middle'
       },
