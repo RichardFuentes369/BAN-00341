@@ -47,7 +47,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
   permisos: any[] = []
 
   imgSupplier = 'assets/images/img_supplier.png'
-  
+
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-merma.BUTTON_SEARCH')
@@ -70,27 +70,27 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
 
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+      title: `<i class="fas fa-barcode me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE')}`,
       data: 'id_lote.id_producto.codigo_barra',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH'),
+      title: `<i class="fas fa-boxes me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH')}`,
       data: 'id_lote.lote',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME'),
+      title: `<i class="fas fa-box-open me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME')}`,
       data: 'id_lote.id_producto.nombre',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_TYPE'),
+      title: `<i class="fas fa-tags me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_TYPE')}`,
       data: 'id_tipo_merma.nombre',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE'),
+      title: `<i class="fas fa-calendar-alt me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE')}`,
       data: 'fecha_reporte',
       className: 'text-center align-middle',
       render: (data: any) => {
@@ -107,17 +107,17 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
       }
     },
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_AMOUNT'),
+      title: `<i class="fas fa-sort-numeric-up me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_AMOUNT')}`,
       data: 'cantidad',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_LOST_VALUE'),
+      title: `<i class="fas fa-dollar-sign me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_LOST_VALUE')}`,
       data: 'valor_perdido',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_OBSERVATION'),
+      title: `<i class="fas fa-comment-alt me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_OBSERVATION')}`,
       data: 'observacion',
       className: 'text-center align-middle'
     },
@@ -215,27 +215,27 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
   listar() {
     this.columnas = [
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+        title: `<i class="fas fa-barcode me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE')}`,
         data: 'id_lote.id_producto.codigo_barra',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH'),
+        title: `<i class="fas fa-boxes me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH')}`,
         data: 'id_lote.lote',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME'),
+        title: `<i class="fas fa-box-open me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME')}`,
         data: 'id_lote.id_producto.nombre',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-merma.REGISTER.COLUMN_TYPE'),
+        title: `<i class="fas fa-tags me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_TYPE')}`,
         data: 'id_tipo_merma.nombre',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE'),
+        title: `<i class="fas fa-calendar-alt me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE')}`,
         data: 'fecha_reporte',
         className: 'text-center align-middle',
         render: (data: any) => {
@@ -252,17 +252,17 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
         }
       },
       {
-        title: this.translate.instant('mod-merma.REGISTER.COLUMN_AMOUNT'),
+        title: `<i class="fas fa-sort-numeric-up me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_AMOUNT')}`,
         data: 'cantidad',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-merma.REGISTER.COLUMN_LOST_VALUE'),
+        title: `<i class="fas fa-dollar-sign me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_LOST_VALUE')}`,
         data: 'valor_perdido',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-merma.REGISTER.COLUMN_OBSERVATION'),
+        title: `<i class="fas fa-comment-alt me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_OBSERVATION')}`,
         data: 'observacion',
         className: 'text-center align-middle'
       },
@@ -349,7 +349,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
   someInput!: TablecrudComponent
   async eliminarData(_id: string[]) {
     const response = await this.registroService.getDataRegister(_id[0])
-    const name_user = '#'+response.data.id
+    const name_user = '#' + response.data.id
     const count_users = (_id.length === 1) ? 'el' : 'los'
     const plural = (_id.length === 1) ? '' : 's'
 
@@ -380,8 +380,8 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
   async filtroData() {
     let filtros = await $('.complementoRuta').val();
     const queryParams: any = {
-      anho: this.anhoActual || null,  
-      month: this.mesActual || null, 
+      anho: this.anhoActual || null,
+      month: this.mesActual || null,
       search: (filtros) ? filtros : null,
     };
 
@@ -391,12 +391,12 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
       queryParamsHandling: '',
       replaceUrl: true
     });
-    
+
     if (typeof filtros === 'string') {
       this.filters = filtros
     }
   }
-  
+
   async refrescarTabla() {
     setTimeout(async () => {
       await this.someInput.reload()

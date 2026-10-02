@@ -2,9 +2,13 @@
   "UNKNOW_MODULE_TITLE": "Unknown",
 
   "PAGE_SUPPLIER_TITLE": "Suppliers",
+  "PAGE_SUPPLIER_SUBTITLE": "Manage system suppliers",
   "PAGE_PRODUCT_TITLE": "Products",
+  "PAGE_PRODUCT_SUBTITLE": "Manage system products",
   "PAGE_BRAND_TITLE": "Brands",
+  "PAGE_BRAND_SUBTITLE": "Manage system brands",
   "PAGE_EXTENT_TITLE": "Unit of measurement",
+  "PAGE_EXTENT_SUBTITLE": "Manage system units of measurement",
 
   "MODULE_TITLE": "Catalog",
   "TABLE_TITLE": "Records",

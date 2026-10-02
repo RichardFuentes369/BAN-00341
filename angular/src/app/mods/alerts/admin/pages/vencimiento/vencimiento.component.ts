@@ -72,31 +72,31 @@ export class VencimientoComponent implements OnInit {
   filters = ''
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-warehouse.COLUMN_BATCH'),
+      title: `<i class="fas fa-boxes me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_BATCH')}`,
       data: 'lote',
       visible: true,
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+      title: `<i class="fas fa-barcode me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE')}`,
       data: 'codigo_barra',
       visible: true,
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.WORD_PRODUCT'),
+      title: `<i class="fas fa-box-open me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.WORD_PRODUCT')}`,
       data: 'nombre_producto',
       visible: true,
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA'),
+      title: `<i class="fas fa-warehouse me-1"></i>${this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA')}`,
       data: 'cantidad_en_bodega',
       visible: true,
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-warehouse.WORD_DAYS_REMAINING'),
+      title: `<i class="fas fa-hourglass-half me-1"></i>${this.translate.instant('mod-warehouse.WORD_DAYS_REMAINING')}`,
       data: 'dias_restantes',
       visible: true,
       className: 'text-center align-middle',
@@ -106,34 +106,34 @@ export class VencimientoComponent implements OnInit {
       }
     },
     {
-      title: this.translate.instant('mod-warehouse.LABEL_ESTADO'),
+      title: `<i class="fas fa-exclamation-circle me-1"></i>${this.translate.instant('mod-warehouse.LABEL_ESTADO')}`,
       data: 'estado_alerta',
       visible: true,
       className: 'text-center align-middle'
     },
     // {
-    //   title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_COMPRADA'),
+    //   title: `<i class="fas fa-shopping-cart me-1"></i>${this.translate.instant('mod-warehouse.LABEL_CANTIDAD_COMPRADA')}`,
     //   data: 'cantidad_comprada',
     //   className: 'text-center align-middle'
     // },
     // {
-    //   title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_VENDIDA'),
+    //   title: `<i class="fas fa-chart-line me-1"></i>${this.translate.instant('mod-warehouse.LABEL_CANTIDAD_VENDIDA')}`,
     //   data: 'cantidad_vendida',
     //   className: 'text-center align-middle'
     // },
     // {
-    //   title: this.translate.instant('mod-warehouse.LABEL_ESTADO'),
+    //   title: `<i class="fas fa-info-circle me-1"></i>${this.translate.instant('mod-warehouse.LABEL_ESTADO')}`,
     //   data: 'estado',
     //   className: 'text-center align-middle'
     // },
     // {
-    //   title: this.translate.instant('mod-catalog.SUPPLIER.WORD_SUPPLIER'),
+    //   title: `<i class="fas fa-truck me-1"></i>${this.translate.instant('mod-catalog.SUPPLIER.WORD_SUPPLIER')}`,
     //   data: 'nombre_proveedor',
     //   visible: true,
     //   className: 'text-center align-middle'
     // },
     // {
-    //   title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA'),
+    //   title: `<i class="fas fa-warehouse me-1"></i>${this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA')}`,
     //   data: 'cantidad_en_bodega',
     //   className: 'text-center align-middle'
     // },
@@ -221,31 +221,31 @@ export class VencimientoComponent implements OnInit {
   listar() {
     this.columnas = [
       {
-        title: this.translate.instant('mod-warehouse.COLUMN_BATCH'),
+        title: `<i class="fas fa-boxes me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_BATCH')}`,
         data: 'lote',
         visible: true,
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+        title: `<i class="fas fa-barcode me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE')}`,
         data: 'codigo_barra',
         visible: true,
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.WORD_PRODUCT'),
+        title: `<i class="fas fa-box-open me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.WORD_PRODUCT')}`,
         data: 'nombre_producto',
         visible: true,
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA'),
+        title: `<i class="fas fa-warehouse me-1"></i>${this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA')}`,
         data: 'cantidad_en_bodega',
         visible: true,
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-warehouse.WORD_DAYS_REMAINING'),
+        title: `<i class="fas fa-hourglass-half me-1"></i>${this.translate.instant('mod-warehouse.WORD_DAYS_REMAINING')}`,
         data: 'dias_restantes',
         visible: true,
         className: 'text-center align-middle',
@@ -255,34 +255,34 @@ export class VencimientoComponent implements OnInit {
         }
       },
       {
-        title: this.translate.instant('mod-warehouse.LABEL_ESTADO'),
+        title: `<i class="fas fa-exclamation-circle me-1"></i>${this.translate.instant('mod-warehouse.LABEL_ESTADO')}`,
         data: 'estado_alerta',
         visible: true,
         className: 'text-center align-middle'
       },
       // {
-      //   title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_COMPRADA'),
+      //   title: `<i class="fas fa-shopping-cart me-1"></i>${this.translate.instant('mod-warehouse.LABEL_CANTIDAD_COMPRADA')}`,
       //   data: 'cantidad_comprada',
       //   className: 'text-center align-middle'
       // },
       // {
-      //   title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_VENDIDA'),
+      //   title: `<i class="fas fa-chart-line me-1"></i>${this.translate.instant('mod-warehouse.LABEL_CANTIDAD_VENDIDA')}`,
       //   data: 'cantidad_vendida',
       //   className: 'text-center align-middle'
       // },
       // {
-      //   title: this.translate.instant('mod-warehouse.LABEL_ESTADO'),
+      //   title: `<i class="fas fa-info-circle me-1"></i>${this.translate.instant('mod-warehouse.LABEL_ESTADO')}`,
       //   data: 'estado',
       //   className: 'text-center align-middle'
       // },
       // {
-      //   title: this.translate.instant('mod-catalog.SUPPLIER.WORD_SUPPLIER'),
+      //   title: `<i class="fas fa-truck me-1"></i>${this.translate.instant('mod-catalog.SUPPLIER.WORD_SUPPLIER')}`,
       //   data: 'nombre_proveedor',
       //   visible: true,
       //   className: 'text-center align-middle'
       // },
       // {
-      //   title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA'),
+      //   title: `<i class="fas fa-warehouse me-1"></i>${this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA')}`,
       //   data: 'cantidad_en_bodega',
       //   className: 'text-center align-middle'
       // },

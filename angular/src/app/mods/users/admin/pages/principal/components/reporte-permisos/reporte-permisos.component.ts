@@ -25,6 +25,8 @@ export class ReportePermisosComponent implements OnInit{
 
   private readonly _moduloService = inject(ModulosService);
 
+  imgRows: string = 'assets/images/img_report_user_permission.png'
+
   // inicio datos envio al modal
   tamano = ""
   scrollable = false

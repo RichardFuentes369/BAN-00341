@@ -2,7 +2,9 @@
   "UNKNOW_MODULE_TITLE": "Unbekannt",
 
   "PAGE_ADMIN_TITLE": "Administratoren",
+  "PAGE_ADMIN_SUBTITLE": "Verwalten Sie die Systemadministratoren und deren Berechtigungen",
   "PAGE_FINAL_TITLE": "Abschlussprüfung",
+  "PAGE_FINAL_SUBTITLE": "Verwalten Sie die Systembenutzer",
 
   "MODULE_TITLE": "Benutzer",
 
@@ -67,8 +69,8 @@
   
   "TABLE_TITLE": "Datensätze",
 
-  "REPORT_PERMISSION_TITLE": "Bericht",
-  "REPORT_PERMISSION_SUBTITLE": "über Berechtigungen",
+  "REPORT_PERMISSION_TITLE": "Berechtigungsbericht",
+  "REPORT_PERMISSION_SUBTITLE": "Generiert den Bericht für die gewünschten Berechtigungen",
 
   "BUTTON_UPDATE_INFO": "Aktualisieren",
   "BUTTON_USER_CREATE": "Benutzer erstellen",

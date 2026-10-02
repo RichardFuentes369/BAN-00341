@@ -31,15 +31,15 @@ import { HttpParams } from '@angular/common/http';
   templateUrl: './proveedores.component.html',
   styleUrl: './proveedores.component.scss',
 })
-export class ProveedoresComponent implements OnInit, OnDestroy{
+export class ProveedoresComponent implements OnInit, OnDestroy {
 
   // construcator
   constructor(
     private router: Router,
-    private userService :AuthService,
+    private userService: AuthService,
     private route: ActivatedRoute,
-    private permisosService :PermisosService,
-    private proveedoresService :ProveedoresService,
+    private permisosService: PermisosService,
+    private proveedoresService: ProveedoresService,
     private translate: TranslateService
   ) { }
 
@@ -51,13 +51,13 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-catalog.BUTTON_SEARCH')
-  iconFilter="fa fa-filter"
-  componenteFilter=FILTRO_PROVEEDOR_COMPONENT
+  iconFilter = "fa fa-filter"
+  componenteFilter = FILTRO_PROVEEDOR_COMPONENT
   // fin datos envio al filtro
 
   // inicio datos envio report
-  iconReport="fa fa-file-download"
-  componenteReport=REPORT_PROVEEDOR_COMPONENT
+  iconReport = "fa fa-file-download"
+  componenteReport = REPORT_PROVEEDOR_COMPONENT
   // fin datos envio repor
 
   // inicio datos que envio al componente tabla
@@ -69,36 +69,36 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   filters = ''
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_ID'),
+      title: `<i class="fa-solid fa-key me-1"></i>${this.translate.instant('mod-catalog.SUPPLIER.COLUMN_ID')}`,
       data: 'id',
       visible: false,
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NIT'),
+      title: `<i class="fa-solid fa-id-card me-1"></i>${this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NIT')}`,
       data: 'nitCompleto',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NAME'),
+      title: `<i class="fa-solid fa-building me-1"></i>${this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NAME')}`,
       data: 'razon_social',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_ADDRESS'),
+      title: `<i class="fa-solid fa-location-dot me-1"></i>${this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_ADDRESS')}`,
       data: 'direccion',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_PHONE'),
+      title: `<i class="fa-solid fa-phone me-1"></i>${this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_PHONE')}`,
       data: 'telefono',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_EMAIL'),
+      title: `<i class="fa-solid fa-envelope me-1"></i>${this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_EMAIL')}`,
       data: 'correo',
       className: 'text-center align-middle'
-    },
+    }
   ];
   permisosAcciones = this.permisos
   // fin datos que envio al componente tabla
@@ -144,14 +144,14 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
-    const permiso_modulo = await this.permisosService.permisoPage(0,'catalogo',userData.data.id)
-    const permiso_submodulo = await this.permisosService.permisoPage(22,'proveedores',userData.data.id)
+    const permiso_modulo = await this.permisosService.permisoPage(0, 'catalogo', userData.data.id)
+    const permiso_submodulo = await this.permisosService.permisoPage(22, 'proveedores', userData.data.id)
 
     if (permiso_modulo.data === "" || permiso_submodulo.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     }
 
-    const permisos = await this.permisosService.permisos(userData.data.id,'proveedores')
+    const permisos = await this.permisosService.permisos(userData.data.id, 'proveedores')
     this.permisos = permisos.data
     sessionStorage.removeItem('nit')
     sessionStorage.removeItem('razon_social')
@@ -163,8 +163,8 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
       this.cargarIdioma = false;
       timer(200).subscribe(() => {
         // this.actualizarContadores()
-        this.listar(); 
-        this.cambiarTextos(); 
+        this.listar();
+        this.cambiarTextos();
         this.cargarIdioma = true;
       });
     });
@@ -177,48 +177,48 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
   }
 
   // metodos Componente
-  listar(){
+  listar() {
     this.columnas = [
       {
-        title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_ID'),
+        title: `<i class="fa-solid fa-key me-1"></i>${this.translate.instant('mod-catalog.SUPPLIER.COLUMN_ID')}`,
         data: 'id',
         visible: false,
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NIT'),
+        title: `<i class="fa-solid fa-id-card me-1"></i>${this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NIT')}`,
         data: 'nitCompleto',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NAME'),
+        title: `<i class="fa-solid fa-building me-1"></i>${this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_NAME')}`,
         data: 'razon_social',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_PHONE'),
+        title: `<i class="fa-solid fa-location-dot me-1"></i>${this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_ADDRESS')}`,
         data: 'direccion',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_EMAIL'),
+        title: `<i class="fa-solid fa-phone me-1"></i>${this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_PHONE')}`,
         data: 'telefono',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_ADDRESS'),
+        title: `<i class="fa-solid fa-envelope me-1"></i>${this.translate.instant('mod-catalog.SUPPLIER.COLUMN_BUSINESS_EMAIL')}`,
         data: 'correo',
         className: 'text-center align-middle'
-      },
-    ];  
+      }
+    ];
   }
 
-  cambiarTextos(){
+  cambiarTextos() {
     this.titlePage = this.translate.instant('mod-catalog.TABLE_TITLE')
     this.titleTotalSuppliers = this.translate.instant('mod-catalog.SUPPLIER.CARD_TOTAL_SUPPLIERS_TITLE')
   }
-  
-  crearData (_id: string){
+
+  crearData(_id: string) {
     this.tamano = "xl"
     this.scrollable = false
     this.title = this.translate.instant('mod-catalog.SUPPLIER.CREATE_TITLE')
@@ -233,17 +233,17 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     this.componentePrecargado = CREAR_PROVEEDOR_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
   }
 
-  async verData (_id: string){
+  async verData(_id: string) {
     this.title = this.translate.instant('mod-catalog.SUPPLIER.SEE_TITLE')
     const response = await this.proveedoresService.getDataProvider(_id)
     const { razon_social } = response.data || { razon_social: 'xxxxxxx' }
-    this.translate.get('mod-catalog.SUPPLIER.EDIT_SUBTITLE', { "supplier_name": razon_social }).subscribe((res: string) => {this.subtitle = res});
+    this.translate.get('mod-catalog.SUPPLIER.EDIT_SUBTITLE', { "supplier_name": razon_social }).subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
     this.scrollable = false
     this.save = false
@@ -256,7 +256,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     this.componentePrecargado = VER_PROVEEDOR_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       this.router.navigate([], {
         queryParams: { id_supplier: _id },
       });
@@ -269,11 +269,11 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     this.count_total_suppliers = parseInt(_rowsCount)
   }
 
-  async editarData (_id: string){
+  async editarData(_id: string) {
     this.title = this.translate.instant('mod-catalog.SUPPLIER.EDIT_TITLE')
     const response = await this.proveedoresService.getDataProvider(_id)
     const { razon_social } = response.data || { razon_social: 'xxxxxxx' }
-    this.translate.get('mod-catalog.SUPPLIER.EDIT_SUBTITLE', { "supplier_name": razon_social }).subscribe((res: string) => {this.subtitle = res});
+    this.translate.get('mod-catalog.SUPPLIER.EDIT_SUBTITLE', { "supplier_name": razon_social }).subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
     this.scrollable = false
     this.save = false
@@ -282,10 +282,10 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     this.buttonEdit = this.translate.instant('mod-catalog.BUTTON_UPDATE_')
     this.cancel = true
     this.buttonCancel = this.translate.instant('mod-catalog.BUTTON_CANCEL')
-    this.componentePrecargado = EDITAR_PROVEEDOR_COMPONENT  
+    this.componentePrecargado = EDITAR_PROVEEDOR_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       this.router.navigate([], {
         queryParams: { id_supplier: _id },
       });
@@ -296,14 +296,14 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
 
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
-  async eliminarData (_id: string[]){
+  async eliminarData(_id: string[]) {
     const response = await this.proveedoresService.getDataProvider(_id[0])
     const { razon_social } = response.data || { razon_social: 'xxxxxxx' }
-    const name_user = (_id.length === 1) ? razon_social : "("+_id.length+")"
+    const name_user = (_id.length === 1) ? razon_social : "(" + _id.length + ")"
     const count_users = (_id.length === 1) ? 'el' : 'los'
     const plural = (_id.length === 1) ? '' : 's'
-    
-    this.translate.get('mod-catalog.SUPPLIER.SWAL_ARE_YOU_SURE_DELETE',{ "art_the": count_users, "plural": plural, "user_name": name_user}).subscribe((translatedTitle: string) => {
+
+    this.translate.get('mod-catalog.SUPPLIER.SWAL_ARE_YOU_SURE_DELETE', { "art_the": count_users, "plural": plural, "user_name": name_user }).subscribe((translatedTitle: string) => {
       Swal.fire({
         title: translatedTitle,
         text: this.translate.instant('mod-catalog.SWAL_WARNING_REVERSE_CHANGE'),
@@ -327,15 +327,15 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
     });
   }
 
-  async filtroData(){
+  async filtroData() {
     let filtros = await $('.complementoRuta').val();
     this.router.navigate([], { queryParams: { search: (filtros) ? filtros : null }, });
-    if(typeof filtros === 'string'){
+    if (typeof filtros === 'string') {
       this.filters = filtros
     }
   }
 
-  async refrescarTabla (){
+  async refrescarTabla() {
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);
@@ -384,7 +384,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy{
         a.href = url;
         const extension = formato === 'excel' ? 'xlsx' : 'csv';
         a.download = `RPT_provider_${new Date().getTime()}.${extension}`;
-        document.body.appendChild(a); 
+        document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         window.URL.revokeObjectURL(url);

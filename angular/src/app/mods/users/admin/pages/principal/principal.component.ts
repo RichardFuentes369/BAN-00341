@@ -41,16 +41,16 @@ import { CommonModule } from '@angular/common';
   templateUrl: './principal.component.html',
   styleUrl: './principal.component.scss'
 })
-export class PrincipalComponent implements OnInit, OnDestroy{
+export class PrincipalComponent implements OnInit, OnDestroy {
 
   // construcator
   constructor(
     private router: Router,
-    private userService :AuthService,
+    private userService: AuthService,
     private route: ActivatedRoute,
     private mosuloService: ModulosService,
-    private permisosService :PermisosService,
-    private principalService :PrincipalService,
+    private permisosService: PermisosService,
+    private principalService: PrincipalService,
     private translate: TranslateService
   ) { }
 
@@ -62,13 +62,13 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-users.BUTTON_SEARCH')
-  iconFilter="fa fa-filter"
-  componenteFilter=FILTRO_USUARIO_COMPONENT
+  iconFilter = "fa fa-filter"
+  componenteFilter = FILTRO_USUARIO_COMPONENT
   // fin datos envio al filtro
 
   // inicio datos envio report
-  iconReport="fa fa-file-download"
-  componenteReport=REPORT_USUARIO_COMPONENT
+  iconReport = "fa fa-file-download"
+  componenteReport = REPORT_USUARIO_COMPONENT
   // fin datos envio repor
 
   // inicio datos que envio al componente tabla
@@ -81,54 +81,55 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   filters = ''
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-users.COLUMN_ID'),
+      title: `<i class="fa-solid fa-key me-1"></i>${this.translate.instant('mod-users.COLUMN_ID')}`,
       data: 'id',
       visible: false,
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-users.COLUMN_EMAIL'),
+      title: `<i class="fa-solid fa-envelope me-1"></i>${this.translate.instant('mod-users.COLUMN_EMAIL')}`,
       data: 'email',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-users.COLUMN_NAMES'),
+      title: `<i class="fa-solid fa-user me-1"></i>${this.translate.instant('mod-users.COLUMN_NAMES')}`,
       data: 'firstName',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
+      title: `<i class="fa-solid fa-user-tag me-1"></i>${this.translate.instant('mod-users.COLUMN_LASTNAME')}`,
       data: 'lastName',
       className: 'text-center align-middle'
-    },    
+    },
     {
-      title: this.translate.instant('mod-users.COLUMN_PERMISSION_COUNT'),
+      title: `<i class="fa-solid fa-shield-halved me-1"></i>${this.translate.instant('mod-users.COLUMN_PERMISSION_COUNT')}`,
       data: 'totalPermisos',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-users.COLUMN_STATUS'),
+      title: `<i class="fa-solid fa-toggle-on me-1"></i>${this.translate.instant('mod-users.COLUMN_STATUS')}`,
       data: 'isActive',
       className: 'text-center align-middle',
-      width: '50px',
+      width: '120px',
       render: (data: any, type: any) => {
         if (type === 'display') {
-          const statusText = data 
-            ? this.translate.instant('mod-users.WORD_ACTIVED') 
+          const statusText = data
+            ? this.translate.instant('mod-users.WORD_ACTIVED')
             : this.translate.instant('mod-users.WORD_INACTIVED');
-          
-          const dotClass = data ? 'dot-green' : 'dot-gray';
+
+          const statusClass = data ? 'badge-status-active' : 'badge-status-inactive';
 
           return `
-            <span class="custom-tooltip tooltip-bottom" data-title="${statusText}">
-              <span class="status-dot ${dotClass}"></span>
-            </span>
-          `;
+      <div class="d-inline-flex align-items-center justify-content-center gap-2 px-3 py-1 rounded-pill ${statusClass}">
+        <span class="status-dot"></span>
+        <span class="status-text">${statusText}</span>
+      </div>
+      `;
         }
         return data;
       }
     }
-  ]; 
+  ];
   permisosAcciones = this.permisos
   // fin datos que envio al componente tabla
 
@@ -180,17 +181,17 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
-    const permiso_modulo = await this.permisosService.permisoPage(0,'usuarios',userData.data.id)
-    const permiso_submodulo = await this.permisosService.permisoPage(1,'administradores',userData.data.id)
+    const permiso_modulo = await this.permisosService.permisoPage(0, 'usuarios', userData.data.id)
+    const permiso_submodulo = await this.permisosService.permisoPage(1, 'administradores', userData.data.id)
 
     if (permiso_modulo.data === "" || permiso_submodulo.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     }
 
-    const permisos = await this.permisosService.permisos(userData.data.id,'administradores')
+    const permisos = await this.permisosService.permisos(userData.data.id, 'administradores')
     this.permisos = permisos.data;
     this.permisosAcciones = this.permisos;
-    
+
     sessionStorage.removeItem('email')
     sessionStorage.removeItem('firstName')
     sessionStorage.removeItem('lastName')
@@ -210,9 +211,9 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     this.langSub = this.translate.onLangChange.subscribe(() => {
       this.cargarIdioma = false;
       timer(50).subscribe(() => {
-        this.listar(); 
+        this.listar();
         this.actualizarContadores();
-        this.cambiarTextos(); 
+        this.cambiarTextos();
         this.cargarIdioma = true;
       });
     });
@@ -225,60 +226,61 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   }
 
   // metodos Componente
-  listar(){
+  listar() {
     this.columnas = [
       {
-        title: this.translate.instant('mod-users.COLUMN_ID'),
+        title: `<i class="fa-solid fa-key me-1"></i>${this.translate.instant('mod-users.COLUMN_ID')}`,
         data: 'id',
         visible: false,
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-users.COLUMN_EMAIL'),
+        title: `<i class="fa-solid fa-envelope me-1"></i>${this.translate.instant('mod-users.COLUMN_EMAIL')}`,
         data: 'email',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-users.COLUMN_NAMES'),
+        title: `<i class="fa-solid fa-user me-1"></i>${this.translate.instant('mod-users.COLUMN_NAMES')}`,
         data: 'firstName',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
+        title: `<i class="fa-solid fa-user-tag me-1"></i>${this.translate.instant('mod-users.COLUMN_LASTNAME')}`,
         data: 'lastName',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-users.COLUMN_PERMISSION_COUNT'),
+        title: `<i class="fa-solid fa-shield-halved me-1"></i>${this.translate.instant('mod-users.COLUMN_PERMISSION_COUNT')}`,
         data: 'totalPermisos',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-users.COLUMN_STATUS'),
+        title: `<i class="fa-solid fa-toggle-on me-1"></i>${this.translate.instant('mod-users.COLUMN_STATUS')}`,
         data: 'isActive',
         className: 'text-center align-middle',
-        width: '50px',
+        width: '120px',
         render: (data: any, type: any) => {
           if (type === 'display') {
-            const statusText = data 
-              ? this.translate.instant('mod-users.WORD_ACTIVED') 
+            const statusText = data
+              ? this.translate.instant('mod-users.WORD_ACTIVED')
               : this.translate.instant('mod-users.WORD_INACTIVED');
-            
-            const dotClass = data ? 'dot-green' : 'dot-red';
+
+            const statusClass = data ? 'badge-status-active' : 'badge-status-inactive';
 
             return `
-              <span class="custom-tooltip tooltip-bottom" data-title="${statusText}">
-                <span class="status-dot ${dotClass}"></span>
-              </span>
-            `;
+      <div class="d-inline-flex align-items-center justify-content-center gap-2 px-3 py-1 rounded-pill ${statusClass}">
+        <span class="status-dot"></span>
+        <span class="status-text">${statusText}</span>
+      </div>
+      `;
           }
           return data;
         }
       }
-    ]
+    ];
   }
 
-  cambiarTextos(){
+  cambiarTextos() {
     this.titlePage = this.translate.instant('mod-users.TABLE_TITLE')
     this.titleTotalUsers = this.translate.instant('mod-users.CARD_TOTAL_ADMIN_TITLE')
     this.titleTotalPermission = this.translate.instant('mod-users.CARD_TOTAL_PERMISSIONS_TITLE')
@@ -290,7 +292,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     return this.permisosAcciones?.some((permiso) => permiso.permiso_permiso === nombre);
   }
 
-  crearData (_id: string){
+  crearData(_id: string) {
     localStorage.setItem(STORAGE_KEY_PROFILE, STORAGE_KEY_PROFILE_ADMIN)
     this.tamano = "xl"
     this.scrollable = false
@@ -306,7 +308,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     this.componentePrecargado = CREAR_USUARIO_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
 
@@ -314,11 +316,11 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     }
   }
 
-  async verData (_id: string){
+  async verData(_id: string) {
     this.title = this.translate.instant('mod-users.SEE_TITLE')
     const response = await this.principalService.getDataUser(_id)
     const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
-    this.translate.get('mod-users.SEE_SUBTITLE', { "user_name": firstName + ' ' + lastName }).subscribe((res: string) => {this.subtitle = res});
+    this.translate.get('mod-users.SEE_SUBTITLE', { "user_name": firstName + ' ' + lastName }).subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
     this.scrollable = false
     this.save = false
@@ -331,18 +333,18 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     this.componentePrecargado = VER_USUARIO_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       this.router.navigate([], { queryParams: { rol: 'admin', id_user: _id } });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
   }
 
-  async editarData (_id: string){
+  async editarData(_id: string) {
     localStorage.setItem(STORAGE_KEY_PROFILE, STORAGE_KEY_PROFILE_ADMIN)
     const response = await this.principalService.getDataUser(_id)
     const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
-    this.translate.get('mod-users.EDIT_SUBTITLE', { "user_name": firstName + ' ' + lastName }).subscribe((res: string) => {this.subtitle = res});
+    this.translate.get('mod-users.EDIT_SUBTITLE', { "user_name": firstName + ' ' + lastName }).subscribe((res: string) => { this.subtitle = res });
     this.title = this.translate.instant('mod-users.EDIT_TITLE')
     this.tamano = "xl"
     this.scrollable = false
@@ -355,7 +357,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     this.componentePrecargado = EDITAR_USUARIO_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       this.router.navigate([], {
         queryParams: { rol: 'admin', id_user: _id },
       });
@@ -366,14 +368,14 @@ export class PrincipalComponent implements OnInit, OnDestroy{
 
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
-  async eliminarData (_id: string[]){
+  async eliminarData(_id: string[]) {
     const response = await this.principalService.getDataUser(_id[0])
     const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
-    const name_user = (_id.length === 1) ? firstName+" "+lastName : "("+_id.length+")"
+    const name_user = (_id.length === 1) ? firstName + " " + lastName : "(" + _id.length + ")"
     const count_users = (_id.length === 1) ? 'el' : 'los'
     const plural = (_id.length === 1) ? '' : 's'
-    
-    this.translate.get('mod-users.SWAL_ARE_YOU_SURE_DELETE_USER',{ "art_the": count_users, "plural": plural, "user_name": name_user}).subscribe((translatedTitle: string) => {
+
+    this.translate.get('mod-users.SWAL_ARE_YOU_SURE_DELETE_USER', { "art_the": count_users, "plural": plural, "user_name": name_user }).subscribe((translatedTitle: string) => {
       Swal.fire({
         title: translatedTitle,
         text: this.translate.instant('mod-users.SWAL_WARNING_REVERSE_CHANGE'),
@@ -393,46 +395,46 @@ export class PrincipalComponent implements OnInit, OnDestroy{
             });
             await this.actualizarContadores()
           }
-       }
+        }
       });
     });
   }
-  
-  activarData (_id: string[]){
+
+  activarData(_id: string[]) {
     let opcionesSelect = {
       1: this.translate.instant('mod-users.WORD_ACTIVED'),
       0: this.translate.instant('mod-users.WORD_INACTIVED'),
     };
 
     Swal.fire({
-        title: this.translate.instant('mod-users.LABEL_USER_STATUS'),
-        input: 'select',
-        inputOptions: opcionesSelect,
-        inputPlaceholder: this.translate.instant('mod-users.SELECT_STATUS_USER_SELECT_OPTION'),
-        showCancelButton: true,
-        inputValidator: (value) => {
-            return new Promise((resolve) => {
-                if (value === '') {
-                    resolve(this.translate.instant('mod-users.SWAL_WORD_ONE_OPTION_SELECTION'));
-                } else {
-                    resolve();
-                }
-            });
-        }
+      title: this.translate.instant('mod-users.LABEL_USER_STATUS'),
+      input: 'select',
+      inputOptions: opcionesSelect,
+      inputPlaceholder: this.translate.instant('mod-users.SELECT_STATUS_USER_SELECT_OPTION'),
+      showCancelButton: true,
+      inputValidator: (value) => {
+        return new Promise((resolve) => {
+          if (value === '') {
+            resolve(this.translate.instant('mod-users.SWAL_WORD_ONE_OPTION_SELECTION'));
+          } else {
+            resolve();
+          }
+        });
+      }
     }).then(async (result) => {
-        if (result.isConfirmed) {
-          await this.principalService.updateStatusUser(_id, result.value)
-          await this.someInput.reload()
-          Swal.fire({
-            title: this.translate.instant('mod-users.SWAL_UPDATED'),
-            text: this.translate.instant('mod-users.SWAL_UPDATED_RECORD'),
-            icon: "success"
-          });
-        }
+      if (result.isConfirmed) {
+        await this.principalService.updateStatusUser(_id, result.value)
+        await this.someInput.reload()
+        Swal.fire({
+          title: this.translate.instant('mod-users.SWAL_UPDATED'),
+          text: this.translate.instant('mod-users.SWAL_UPDATED_RECORD'),
+          icon: "success"
+        });
+      }
     });
   }
 
-  asignarData (data: { id: string, ctrlKey: boolean }){
+  asignarData(data: { id: string, ctrlKey: boolean }) {
     const url = `${MOD_USER_PAGE_ADMIN_ASSIGMENT}?id_user=${data.id}`;
     if (data.ctrlKey) {
       window.open(url, '_blank');
@@ -441,21 +443,21 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     }
   }
 
-  async filtroData(){
+  async filtroData() {
     let filtros = $('.complementoRuta').val()
     this.router.navigate([], { queryParams: { search: (filtros) ? filtros : null }, });
-    if(typeof filtros === 'string'){
+    if (typeof filtros === 'string') {
       this.filters = filtros
     }
   }
 
-  async refrescarTabla (){
+  async refrescarTabla() {
     setTimeout(async () => {
       await this.someInput.reload()
     }, 100);
   }
 
-  async actualizarContadores (){
+  async actualizarContadores() {
     const data = await this.principalService.obtenerTotale()
     this.count_total_users = data.data.count_total_users
     this.count_actived_users = data.data.count_actived_users
@@ -463,22 +465,22 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     this.count_permissions_assigment = data.data.count_permissions_assigment
   }
 
-  async verPermisos (filtrosHijo?: any){
-    
+  async verPermisos(filtrosHijo?: any) {
+
     const queryParams: any = {}
-    
+
     if (filtrosHijo) {
       if (filtrosHijo.modulo && filtrosHijo.modulo != 0) queryParams.modulo = (await this.mosuloService.getNameById(+filtrosHijo.modulo)).data[0].nombre
-      if (filtrosHijo.submodulo  && filtrosHijo.submodulo != 0) queryParams.submodulo = (await this.mosuloService.getNameById(+filtrosHijo.submodulo)).data[0].nombre
+      if (filtrosHijo.submodulo && filtrosHijo.submodulo != 0) queryParams.submodulo = (await this.mosuloService.getNameById(+filtrosHijo.submodulo)).data[0].nombre
       if (filtrosHijo.permiso && filtrosHijo.permiso != 0) queryParams.permiso = (await this.mosuloService.getNameById(+filtrosHijo.permiso)).data[0].nombre
     }
 
-    this.router.navigate([], { 
+    this.router.navigate([], {
       queryParams: queryParams,
       queryParamsHandling: 'merge'
     });
 
-    this.translate.get('mod-users.SEE_PERMISSIONS_TITLE').subscribe((res: string) => {this.title = res});
+    this.translate.get('mod-users.SEE_PERMISSIONS_TITLE').subscribe((res: string) => { this.title = res });
     this.subtitle = ''
     this.tamano = "xl"
     this.scrollable = true
@@ -492,7 +494,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     this.componentePrecargado = VER_PERMISOS_COMPONENT
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
-    if(idButton){
+    if (idButton) {
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
@@ -536,7 +538,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
         a.href = url;
         const extension = formato === 'excel' ? 'xlsx' : 'csv';
         a.download = `RPT_admin_${new Date().getTime()}.${extension}`;
-        document.body.appendChild(a); 
+        document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         window.URL.revokeObjectURL(url);

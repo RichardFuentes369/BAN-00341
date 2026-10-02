@@ -2,7 +2,9 @@
   "UNKNOW_MODULE_TITLE": "Unknown", 
 
   "PAGE_ADMIN_TITLE": "Administrators", 
+  "PAGE_ADMIN_SUBTITLE": "Manage system administrators and their permissions",
   "PAGE_FINAL_TITLE": "Finals", 
+  "PAGE_FINAL_SUBTITLE": "Manage system users",
   
   "MODULE_TITLE": "Users", 
 
@@ -66,8 +68,8 @@
   "ERROR_USER_STATUS": "You must select an item",
   "TABLE_TITLE": "Records",
 
-  "REPORT_PERMISSION_TITLE": "Report",
-  "REPORT_PERMISSION_SUBTITLE": "of permissions",
+  "REPORT_PERMISSION_TITLE": "Permissions report",
+  "REPORT_PERMISSION_SUBTITLE": "Generates the report for the desired permissions",
   
   "BUTTON_UPDATE_INFO": "Update",
   "BUTTON_USER_CREATE": "Create user",

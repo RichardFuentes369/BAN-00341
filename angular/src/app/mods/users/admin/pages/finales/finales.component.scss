@@ -3,6 +3,47 @@
   &:host-context([data-theme='dark']) {
     --filter: invert(1) brightness(100) !important;
   }
+
+  // Penetración de estilos para HTML inyectado dinámicamente por DataTables
+  ::ng-deep {
+    /* --- Badges de Estado (Óvalo) --- */
+    .badge-status-active {
+      background-color: #e6f4ea !important;
+      color: #137333 !important;
+      border: 1px solid #ceead6 !important;
+
+      .status-dot {
+        background-color: #1e8e3e !important;
+      }
+    }
+
+    .badge-status-inactive {
+      background-color: #f1f3f4 !important;
+      color: #5f6368 !important;
+      border: 1px solid #dadce0 !important;
+
+      .status-dot {
+        background-color: #80868b !important;
+      }
+    }
+
+    /* Punto indicador dentro del badge */
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: inline-block;
+    }
+
+    /* Texto del estado */
+    .status-text {
+      font-size: 0.78rem;
+      font-weight: 600;
+      line-height: 1;
+      white-space: nowrap;
+    }
+  }
 }
 
 .filter-wrapper {
@@ -11,7 +52,7 @@
   right: 1.2rem;     
   top: 15rem;     
   
-  margin-top: 10rem!important;
+  margin-top: 10rem !important;
   z-index: 110;  
   
   display: flex;
@@ -43,6 +84,11 @@
   background-color: transparent;
 }
 
+.subtitle-custom {
+  color: var(--subtitle_page-text_color) !important;
+  background-color: transparent;
+}
+
 .line-title-custom {
   color: var(--title_page-line_color) !important;
   background-color: transparent;
@@ -50,13 +96,12 @@
 
 .card_icon {
   background-color: var(--title_page-background_card_color) !important;
-  transition: background-color 0.3s ease; // Muy importante para que sea suave
+  transition: background-color 0.3s ease;
 }
 
 .img-logo {
   width: 100%;
   height: 80px;
-  /* Altura fija para consistencia visual */
   object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.05));
   background-color: var(--card_menu-icon_color); 

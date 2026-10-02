@@ -1,14 +1,24 @@
 <div class="mb-4 border-0 rounded-0">
-  <div class="d-flex justify-content-between align-items-center px-3 pb-2">
-    <h4 class="fw-bold text-bold title-custom d-flex align-items-center gap-2 mb-0">
-      <div class="card_icon rounded-5 p-2 shadow-lg">
-        <div class="img-logo small colored-icon" [style.mask-image]="'url(' + imgAdmin + ')'"
-          [style.-webkit-mask-image]="'url(' + imgAdmin + ')'"></div>
+  <div class="d-flex align-items-center gap-2 pl-3 pr-3">
+    <!-- Ícono representativo -->
+    <div class="card_icon rounded-5 p-2 shadow-lg flex-shrink-0">
+      <div class="img-logo small colored-icon" [style.mask-image]="'url(' + imgAdmin + ')'"
+        [style.-webkit-mask-image]="'url(' + imgAdmin + ')'">
       </div>
-      <span>{{ 'mod-users.PAGE_ADMIN_TITLE' | translate }}</span>
-    </h4>
+    </div>
 
-    <span class="custom-tooltip tooltip-left"
+    <!-- Contenedor del Título y Subtítulo -->
+    <div class="d-flex flex-column">
+      <h4 class="fw-bold title-custom mb-0 lh-sm">
+        {{ 'mod-users.PAGE_ADMIN_TITLE' | translate }}
+      </h4>
+      <p class="subtitle-custom small mb-0 fw-normal">
+        {{ 'mod-users.PAGE_ADMIN_SUBTITLE' | translate }}
+      </p>
+    </div>
+
+    <!-- Botón movido al final con ms-auto -->
+    <span class="custom-tooltip tooltip-left ms-auto"
       [attr.data-title]="mostrarCards ? ('global-card.WORD_HIDE' | translate) : ('global-card.WORD_SHOW' | translate)">
       <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toggleCards()">
         <i [class]="mostrarCards ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>

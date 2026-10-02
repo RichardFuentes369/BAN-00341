@@ -71,63 +71,64 @@ export class ProductosComponent implements OnInit, OnDestroy {
   order = 'asc'
   idBrand = this.route.snapshot.queryParams?.['id_brand'];
   idExtent = this.route.snapshot.queryParams?.['id_extent'];
-  complementoEndPoint = (this.idBrand) ? `&id_marca=${this.idBrand}` : (this.idExtent) ? `&id_medida=${this.idExtent}`: '';
+  complementoEndPoint = (this.idBrand) ? `&id_marca=${this.idBrand}` : (this.idExtent) ? `&id_medida=${this.idExtent}` : '';
   habilitarSeleccion = true
   filters = ''
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_ID'),
+      title: `<i class="fa-solid fa-key me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_ID')}`,
       data: 'id',
       className: 'text-center align-middle',
       visible: false,
     },
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
+      title: `<i class="fa-solid fa-copyright me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND')}`,
       data: 'marca.nombre',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME'),
+      title: `<i class="fa-solid fa-box me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME')}`,
       data: 'nombre',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+      title: `<i class="fa-solid fa-barcode me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE')}`,
       data: 'codigo_barra',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_STOCK'),
+      title: `<i class="fa-solid fa-cubes me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_STOCK')}`,
       data: 'stock_minimo',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_STATUS'),
+      title: `<i class="fa-solid fa-toggle-on me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_STATUS')}`,
       data: 'estado',
       className: 'text-center align-middle',
-      width: '50px',
+      width: '110px',
       render: (data: any, type: any) => {
         if (type === 'display') {
           const statusText = data
             ? this.translate.instant('mod-users.WORD_ACTIVED')
             : this.translate.instant('mod-users.WORD_INACTIVED');
 
-          const dotClass = data ? 'dot-green' : 'dot-gray';
+          const statusClass = data ? 'badge-status-active' : 'badge-status-inactive';
 
           return `
-            <span class="custom-tooltip tooltip-bottom" data-title="${statusText}">
-              <span class="status-dot ${dotClass}"></span>
-            </span>
-          `;
+          <div class="d-inline-flex align-items-center justify-content-center gap-2 px-3 py-1 rounded-pill ${statusClass}">
+            <span class="status-dot"></span>
+            <span class="status-text">${statusText}</span>
+          </div>
+        `;
         }
         return data;
       }
     },
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_UNIT_OF_MEASUREMENT'),
+      title: `<i class="fa-solid fa-ruler-combined me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_UNIT_OF_MEASUREMENT')}`,
       data: 'medida.nombre',
       className: 'text-center align-middle'
-    },
+    }
   ];
   permisosAcciones = this.permisos
   // fin datos que envio al componente tabla
@@ -230,58 +231,59 @@ export class ProductosComponent implements OnInit, OnDestroy {
   listar() {
     this.columnas = [
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_ID'),
+        title: `<i class="fa-solid fa-key me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_ID')}`,
         data: 'id',
         className: 'text-center align-middle',
         visible: false,
       },
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
+        title: `<i class="fa-solid fa-copyright me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND')}`,
         data: 'marca.nombre',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME'),
+        title: `<i class="fa-solid fa-box me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_NAME')}`,
         data: 'nombre',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+        title: `<i class="fa-solid fa-barcode me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE')}`,
         data: 'codigo_barra',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_STOCK'),
+        title: `<i class="fa-solid fa-cubes me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_STOCK')}`,
         data: 'stock_minimo',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_STATUS'),
+        title: `<i class="fa-solid fa-toggle-on me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_STATUS')}`,
         data: 'estado',
         className: 'text-center align-middle',
-        width: '50px',
+        width: '110px',
         render: (data: any, type: any) => {
           if (type === 'display') {
             const statusText = data
               ? this.translate.instant('mod-users.WORD_ACTIVED')
               : this.translate.instant('mod-users.WORD_INACTIVED');
 
-            const dotClass = data ? 'dot-green' : 'dot-gray';
+            const statusClass = data ? 'badge-status-active' : 'badge-status-inactive';
 
             return `
-                <span class="custom-tooltip tooltip-bottom" data-title="${statusText}">
-                  <span class="status-dot ${dotClass}"></span>
-                </span>
-              `;
+          <div class="d-inline-flex align-items-center justify-content-center gap-2 px-3 py-1 rounded-pill ${statusClass}">
+            <span class="status-dot"></span>
+            <span class="status-text">${statusText}</span>
+          </div>
+        `;
           }
           return data;
         }
       },
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_UNIT_OF_MEASUREMENT'),
+        title: `<i class="fa-solid fa-ruler-combined me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_UNIT_OF_MEASUREMENT')}`,
         data: 'medida.nombre',
         className: 'text-center align-middle'
-      },
+      }
     ]
   }
 
@@ -423,8 +425,8 @@ export class ProductosComponent implements OnInit, OnDestroy {
   async filtroData() {
     let filtros = await $('.complementoRuta').val();
     const queryParams: any = {
-      id_brand: this.idBrand || null,  
-      id_extent: this.idExtent || null,  
+      id_brand: this.idBrand || null,
+      id_extent: this.idExtent || null,
       search: (filtros) ? filtros : null,
     };
 
@@ -440,13 +442,13 @@ export class ProductosComponent implements OnInit, OnDestroy {
     }
   }
 
-  async estadoOriginal(){
+  async estadoOriginal() {
     const queryParams: any = {
-      id_brand: this.idBrand || null,  
-      id_extent: this.idExtent || null, 
+      id_brand: this.idBrand || null,
+      id_extent: this.idExtent || null,
       search: null,
     };
-  
+
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: queryParams,

@@ -72,38 +72,38 @@ export class WarehoseComponent implements OnInit, OnDestroy {
   filters = ''
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-warehouse.COLUMN_ID'),
+      title: `<i class="fas fa-hashtag me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_ID')}`,
       data: 'id',
       visible: false,
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT'),
+      title: `<i class="fas fa-barcode me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT')}`,
       data: 'id_producto.codigo_barra',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-warehouse.COLUMN_BATCH'),
+      title: `<i class="fas fa-boxes me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_BATCH')}`,
       data: 'lote',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
+      title: `<i class="fas fa-copyright me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND')}`,
       data: 'id_producto.marca.nombre',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-warehouse.COLUMN_PRODUCT'),
+      title: `<i class="fas fa-box-open me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_PRODUCT')}`,
       data: 'id_producto.nombre',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-warehouse.COLUMN_SUPPLIER'),
+      title: `<i class="fas fa-truck me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_SUPPLIER')}`,
       data: 'id_proveedor.razon_social',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-warehouse.COLUMN_REPORT_DATE'),
+      title: `<i class="fas fa-calendar-alt me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_REPORT_DATE')}`,
       data: 'fecha_entrada',
       className: 'text-center align-middle',
       render: (data: any) => {
@@ -120,7 +120,7 @@ export class WarehoseComponent implements OnInit, OnDestroy {
       }
     },
     {
-      title: this.translate.instant('mod-warehouse.COLUMN_EXPIRATION_DATE'),
+      title: `<i class="fas fa-calendar-times me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_EXPIRATION_DATE')}`,
       data: 'fecha_vencimiento',
       className: 'text-center align-middle',
       render: (data: any) => {
@@ -137,32 +137,32 @@ export class WarehoseComponent implements OnInit, OnDestroy {
       }
     },
     {
-      title: this.translate.instant('mod-warehouse.COLUMN_PURCHASED'),
+      title: `<i class="fas fa-shopping-cart me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_PURCHASED')}`,
       data: 'cantidad_comprada',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-warehouse.COLUMN_SOLD'),
+      title: `<i class="fas fa-chart-line me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_SOLD')}`,
       data: 'cantidad_vendida',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-warehouse.COLUMN_SHRINKAGE'),
+      title: `<i class="fas fa-exclamation-triangle me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_SHRINKAGE')}`,
       data: 'mermas',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-warehouse.COLUMN_IN_STOCK'),
+      title: `<i class="fas fa-warehouse me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_IN_STOCK')}`,
       data: 'cantidad_en_bodega',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-warehouse.COLUMN_UNIT_OF_MEASUREMENT'),
+      title: `<i class="fas fa-ruler me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_UNIT_OF_MEASUREMENT')}`,
       data: 'id_producto.medida.nombre',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-warehouse.COLUMN_STATUS'),
+      title: `<i class="fas fa-info-circle me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_STATUS')}`,
       data: 'estado',
       className: 'text-center align-middle'
     },
@@ -246,38 +246,38 @@ export class WarehoseComponent implements OnInit, OnDestroy {
   listar() {
     this.columnas = [
       {
-        title: this.translate.instant('mod-warehouse.COLUMN_ID'),
+        title: `<i class="fas fa-hashtag me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_ID')}`,
         data: 'id',
         visible: false,
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT'),
+        title: `<i class="fas fa-barcode me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT')}`,
         data: 'id_producto.codigo_barra',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-warehouse.COLUMN_BATCH'),
+        title: `<i class="fas fa-boxes me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_BATCH')}`,
         data: 'lote',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND'),
+        title: `<i class="fas fa-copyright me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND')}`,
         data: 'id_producto.marca.nombre',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-warehouse.COLUMN_PRODUCT'),
+        title: `<i class="fas fa-box-open me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_PRODUCT')}`,
         data: 'id_producto.nombre',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-warehouse.COLUMN_SUPPLIER'),
+        title: `<i class="fas fa-truck me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_SUPPLIER')}`,
         data: 'id_proveedor.razon_social',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-warehouse.COLUMN_REPORT_DATE'),
+        title: `<i class="fas fa-calendar-alt me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_REPORT_DATE')}`,
         data: 'fecha_entrada',
         className: 'text-center align-middle',
         render: (data: any) => {
@@ -294,7 +294,7 @@ export class WarehoseComponent implements OnInit, OnDestroy {
         }
       },
       {
-        title: this.translate.instant('mod-warehouse.COLUMN_EXPIRATION_DATE'),
+        title: `<i class="fas fa-calendar-times me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_EXPIRATION_DATE')}`,
         data: 'fecha_vencimiento',
         className: 'text-center align-middle',
         render: (data: any) => {
@@ -311,32 +311,32 @@ export class WarehoseComponent implements OnInit, OnDestroy {
         }
       },
       {
-        title: this.translate.instant('mod-warehouse.COLUMN_PURCHASED'),
+        title: `<i class="fas fa-shopping-cart me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_PURCHASED')}`,
         data: 'cantidad_comprada',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-warehouse.COLUMN_SOLD'),
+        title: `<i class="fas fa-chart-line me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_SOLD')}`,
         data: 'cantidad_vendida',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-warehouse.COLUMN_SHRINKAGE'),
+        title: `<i class="fas fa-exclamation-triangle me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_SHRINKAGE')}`,
         data: 'mermas',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-warehouse.COLUMN_IN_STOCK'),
+        title: `<i class="fas fa-warehouse me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_IN_STOCK')}`,
         data: 'cantidad_en_bodega',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-warehouse.COLUMN_UNIT_OF_MEASUREMENT'),
+        title: `<i class="fas fa-ruler me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_UNIT_OF_MEASUREMENT')}`,
         data: 'id_producto.medida.nombre',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-warehouse.COLUMN_STATUS'),
+        title: `<i class="fas fa-info-circle me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_STATUS')}`,
         data: 'estado',
         className: 'text-center align-middle'
       },

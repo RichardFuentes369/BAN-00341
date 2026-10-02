@@ -2,10 +2,15 @@
   "UNKNOW_MODULE_TITLE": "Módulo Desconocido",
 
   "PAGE_TYPE_TITLE": "Tipo de pérdida",
+  "PAGE_TYPE_SUBTITLE": "Gestión de tipos de pérdida",
   "PAGE_RECORD_TITLE": "Registros de pérdida",
+  "PAGE_RECORD_SUBTITLE": "Gestión de registros de pérdida",
   "PAGE_HISTORY_TITLE": "Registro histórico",
-  "PAGE_YEAS_TITLE": "Registro año",
-  "PAGE_MONTHS_TITLE": "Registro mes",
+  "PAGE_HISTORY_SUBTITLE": "Gestión del historial de pérdidas",
+  "PAGE_YEAS_TITLE": "Registro por año",
+  "PAGE_YEAS_SUBTITLE": "Gestión de registros por año",
+  "PAGE_MONTHS_TITLE": "Registro por mes",
+  "PAGE_MONTHS_SUBTITLE": "Gestión de registros por mes",
 
   "MODULE_TITLE": "Merma",
   "TABLE_TITLE": "Registros",

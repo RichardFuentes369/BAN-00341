@@ -2,6 +2,9 @@
   "UNKNOW_MODULE_TITLE": "Unbekanntes Modul",
 
   "MODULE_TITLE": "Lager",
+  "PAGE_WAREHOUSE_TITLE": "Lagerhaus",
+  "PAGE_WAREHOUSE_SUBTITLE": "Verwalten Sie Ihren Lagerbestand",
+
   "TABLE_TITLE": "Datensätze",
 
   "MSJ_ERROR_CREATE_PRODUCTS_PERMISSION": "Bitte wenden Sie sich an den Administrator, um neue Produkte zu erstellen. Ihr Benutzerkonto verfügt nicht über die erforderlichen Berechtigungen, um diese Aktion auszuführen.",

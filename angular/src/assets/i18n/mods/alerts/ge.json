@@ -1,8 +1,10 @@
 {
   "UNKNOW_MODULE_TITLE": "Unbekannt",
 
-  "PAGE_EXPIRATION_TITLE": "Ablauf",
-  "PAGE_STOCK_TITLE": "Lager",
+  "PAGE_EXPIRATION_TITLE": "Ablaufdatum",
+  "PAGE_EXPIRATION_SUBTITLE": "Hinweis: Frühwarnung zum Ablaufdatum",
+  "PAGE_STOCK_TITLE": "Lagerhaus",
+  "PAGE_STOCK_SUBTITLE": "Hinweis: Frühwarnung zur Bestandskapazität",
   
   "MODULE_TITLE": "Warnmeldungen",
 

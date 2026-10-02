@@ -2,7 +2,9 @@
   "UNKNOW_MODULE_TITLE": "Unknown",
 
   "PAGE_EXPIRATION_TITLE": "Expiration",
-  "PAGE_STOCK_TITLE": "Stock",
+  "PAGE_EXPIRATION_SUBTITLE": "Notice: Early expiration alert",
+  "PAGE_STOCK_TITLE": "Warehouse",
+  "PAGE_STOCK_SUBTITLE": "Notice: Early stock limit alert", 
 
   "MODULE_TITLE": "Alerts",
 

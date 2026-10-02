@@ -2,9 +2,13 @@
   "UNKNOW_MODULE_TITLE": "Inconnu",
 
   "PAGE_SUPPLIER_TITLE": "Fournisseurs",
+  "PAGE_SUPPLIER_SUBTITLE": "Gérer les fournisseurs du système",
   "PAGE_PRODUCT_TITLE": "Produits",
+  "PAGE_PRODUCT_SUBTITLE": "Gérer les produits du système",
   "PAGE_BRAND_TITLE": "Marques",
+  "PAGE_BRAND_SUBTITLE": "Gérer les marques du système",
   "PAGE_EXTENT_TITLE": "Unité de mesure",
+  "PAGE_EXTENT_SUBTITLE": "Gérer les unités de mesure du système",
 
   "MODULE_TITLE": "Catalogue",
   "TABLE_TITLE": "Registres",

@@ -2,6 +2,9 @@
 	"UNKNOW_MODULE_TITLE": "Module inconnu",
 
 	"MODULE_TITLE": "Entrepôt",
+	"PAGE_WAREHOUSE_TITLE": "Entrepôt",
+  	"PAGE_WAREHOUSE_SUBTITLE": "Gérez l'inventaire de votre entrepôt",
+
 	"TABLE_TITLE": "Registres",
 
   	"MSJ_ERROR_CREATE_PRODUCTS_PERMISSION": "Veuillez contacter l'administrateur pour créer de nouveaux produits ; votre compte utilisateur ne dispose pas des autorisations nécessaires pour effectuer cette action.",

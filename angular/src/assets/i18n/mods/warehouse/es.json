@@ -2,7 +2,11 @@
   "UNKNOW_MODULE_TITLE": "Módulo desconocido",
 
   "MODULE_TITLE": "Bodega",
+  "PAGE_WAREHOUSE_TITLE": "Bodega",
+  "PAGE_WAREHOUSE_SUBTITLE": "Gestiona el inventario de tu bodega",
+  
   "TABLE_TITLE": "Registros",
+
 
   "MSJ_ERROR_CREATE_PRODUCTS_PERMISSION": "Contacte con el administrador para poder crear nuevos productos; su usuario no tiene permisos para realizar dicha acción.",
   "MSJ_ERROR_PRODUCT_INACTIVE": "Este producto se encuentra inactivo",

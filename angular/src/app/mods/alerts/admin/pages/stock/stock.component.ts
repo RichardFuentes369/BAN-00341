@@ -50,8 +50,8 @@ export class StockComponent implements OnInit {
   // inicio datos envio al filtro
   search = true
   buttonSearch = this.translate.instant('mod-users.BUTTON_SEARCH')
-  iconFilter="fa fa-filter"
-  componenteFilter=FILTRO_ALERTS_S_COMPONENT
+  iconFilter = "fa fa-filter"
+  componenteFilter = FILTRO_ALERTS_S_COMPONENT
   // fin datos envio al filtro
 
   // inicio datos envio report
@@ -66,29 +66,29 @@ export class StockComponent implements OnInit {
   filters = ''
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+      title: `<i class="fas fa-barcode me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE')}`,
       data: 'codigo_barra',
       visible: true,
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-warehouse.COLUMN_PRODUCT'),
+      title: `<i class="fas fa-box-open me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_PRODUCT')}`,
       data: 'nombre',
       visible: true,
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_STOCK') + ' <br> (' + this.translate.instant('mod-catalog.PRODUCT.LABEL_MINIMUM_QUANTITY') + ')',
+      title: `<i class="fas fa-sort-amount-down-alt me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_STOCK')} <br> (${this.translate.instant('mod-catalog.PRODUCT.LABEL_MINIMUM_QUANTITY')})`,
       data: 'stock_minimo',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA'),
+      title: `<i class="fas fa-warehouse me-1"></i>${this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA')}`,
       data: 'total_productos_disponibles',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-catalog.PRODUCT.WORD_COMMENT'),
+      title: `<i class="fas fa-comment-alt me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.WORD_COMMENT')}`,
       data: 'aviso_stock',
       className: 'text-center align-middle',
     }
@@ -161,29 +161,29 @@ export class StockComponent implements OnInit {
   listar() {
     this.columnas = [
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+        title: `<i class="fas fa-barcode me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE')}`,
         data: 'codigo_barra',
         visible: true,
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-warehouse.COLUMN_PRODUCT'),
+        title: `<i class="fas fa-box-open me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_PRODUCT')}`,
         data: 'nombre',
         visible: true,
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_STOCK') + ' <br> (' + this.translate.instant('mod-catalog.PRODUCT.LABEL_MINIMUM_QUANTITY') + ')',
+        title: `<i class="fas fa-sort-amount-down-alt me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_STOCK')} <br> (${this.translate.instant('mod-catalog.PRODUCT.LABEL_MINIMUM_QUANTITY')})`,
         data: 'stock_minimo',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA'),
+        title: `<i class="fas fa-warehouse me-1"></i>${this.translate.instant('mod-warehouse.LABEL_CANTIDAD_BODEGA')}`,
         data: 'total_productos_disponibles',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-catalog.PRODUCT.WORD_COMMENT'),
+        title: `<i class="fas fa-comment-alt me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.WORD_COMMENT')}`,
         data: 'aviso_stock',
         className: 'text-center align-middle',
       }
@@ -198,10 +198,10 @@ export class StockComponent implements OnInit {
     // this.titleTotalSuspendedUsers = this.translate.instant('mod-users.CARD_TOTAL_SUSPENDED_USERS')
   }
 
-  async filtroData(){
+  async filtroData() {
     let filtros = $('.complementoRuta').val()
     this.router.navigate([], { queryParams: { search: (filtros) ? filtros : null }, });
-    if(typeof filtros === 'string'){
+    if (typeof filtros === 'string') {
       this.filters = filtros
     }
   }

@@ -2,7 +2,9 @@
   "UNKNOW_MODULE_TITLE": "Inconnu",
   
   "PAGE_EXPIRATION_TITLE": "Expiration",
-  "PAGE_STOCK_TITLE": "Stock",
+  "PAGE_EXPIRATION_SUBTITLE": "Avis : Alerte précoce d'expiration",
+  "PAGE_STOCK_TITLE": "Entrepôt",
+  "PAGE_STOCK_SUBTITLE": "Avis : Alerte précoce de limite de stock",
   
   "MODULE_TITLE": "Alertes",
 

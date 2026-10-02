@@ -2,10 +2,15 @@
   "UNKNOW_MODULE_TITLE": "Unknown Module",
 
   "PAGE_TYPE_TITLE": "Loss Type",
+  "PAGE_TYPE_SUBTITLE": "Loss type management",
   "PAGE_RECORD_TITLE": "Loss Records",
-  "PAGE_YEAS_TITLE": "Yearly record",
-  "PAGE_MONTHS_TITLE": "Monthly record",
-  "PAGE_HISTORY_TITLE": "Historical record",
+  "PAGE_RECORD_SUBTITLE": "Loss record management",
+  "PAGE_HISTORY_TITLE": "Historical Record",
+  "PAGE_HISTORY_SUBTITLE": "Loss history management",
+  "PAGE_YEAS_TITLE": "Yearly Record",
+  "PAGE_YEAS_SUBTITLE": "Yearly record management",
+  "PAGE_MONTHS_TITLE": "Monthly Record",
+  "PAGE_MONTHS_SUBTITLE": "Monthly record management",    
 
   "MODULE_TITLE": "Shrink",
   "TABLE_TITLE": "Records",

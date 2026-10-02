@@ -1,16 +1,31 @@
 <div class="card shadow card-custom">
   <div class="px-4">
     <div class="title-container mx-1 mt-3 mb-2 mb-md-0">
-      <h5 class="m-0 fw-bold">
-        {{ 'mod-users.REPORT_PERMISSION_TITLE' | translate }}
-      </h5>
+      <div class="d-flex align-items-center gap-2 pr-3">
+        <!-- Ícono representativo -->
+        <div class="card_icon rounded-5 p-2 shadow-lg flex-shrink-0">
+          <div class="img-logo small colored-icon" [style.mask-image]="'url(' + imgRows + ')'"
+            [style.-webkit-mask-image]="'url(' + imgRows + ')'">
+          </div>
+        </div>
+
+        <!-- Contenedor del Título y Subtítulo -->
+        <div class="d-flex flex-column">
+          <h5 class="fw-bold title-custom mb-0 lh-sm">
+            {{ 'mod-users.REPORT_PERMISSION_TITLE' | translate }}
+          </h5>
+          <p class="subtitle-custom small mb-0 fw-normal">
+            {{ 'mod-users.REPORT_PERMISSION_SUBTITLE' | translate }}
+          </p>
+        </div>
+      </div>
     </div>
 
-    <div class="col-sm-12 row mt-2 ml-0 p-0">
+    <div class="col-sm-12 row mt-4 ml-0 p-0">
       <!-- Módulo -->
       <div class="col-sm-4"
         [class]="(model.modulo != ModuloModulos && model.modulo != ModuloBodega) ? 'col-sm-4' : 'col-sm-6'">
-        <label>{{ 'mod-modules.MODULE_TITLE' | translate }}</label>
+        <label class="h6 title-custom">{{ 'mod-modules.MODULE_TITLE' | translate }}</label>
         <select [(ngModel)]="model.modulo" (ngModelChange)="cambioModulo($event)"
           class="form-control form-select-sm my-2 custom-select" [disabled]="loading1">
           @if (loading1) {
@@ -32,9 +47,9 @@
       <div class="col-sm-4"
         [class]="(model.modulo != ModuloModulos && model.modulo != ModuloBodega) ? 'col-sm-4' : 'col-sm-6'">
         @if (model.modulo != ModuloModulos && model.modulo != ModuloBodega) {
-        <label>{{ 'mod-modules.SUBMODULE_TITLE' | translate }}</label>
+        <label class="h6 title-custom">{{ 'mod-modules.SUBMODULE_TITLE' | translate }}</label>
         } @else {
-        <label>{{ 'mod-modules.LABEL_HAS_PERMISSION' | translate }}</label>
+        <label class="h6 title-custom">{{ 'mod-modules.LABEL_HAS_PERMISSION' | translate }}</label>
         }
         <select [(ngModel)]="model.submodulo" (ngModelChange)="cambioSubmodulo($event)"
           class="form-control form-select-sm my-2 custom-select" [disabled]="loading2 || selectSubModulos.length === 0">
@@ -52,7 +67,7 @@
       <!-- Permiso (Solo si aplica) -->
       @if (model.modulo != ModuloModulos && model.modulo != ModuloBodega) {
       <div class="col-sm-4">
-        <label>{{ 'mod-modules.LABEL_HAS_PERMISSION' | translate }}</label>
+        <label class="h6 title-custom">{{ 'mod-modules.LABEL_HAS_PERMISSION' | translate }}</label>
         <select [(ngModel)]="model.permiso" class="form-control form-select-sm my-2 custom-select"
           [disabled]="loading3 || selectPermisos.length === 0">
           @if (loading3) {

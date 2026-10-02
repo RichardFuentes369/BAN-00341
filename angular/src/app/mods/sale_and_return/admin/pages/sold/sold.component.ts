@@ -64,18 +64,18 @@ export class SoldComponent implements OnInit, OnDestroy {
   filters = ''
   columnas: any[] = [
     {
-      title: this.translate.instant('mod-salereturn.COLUMN_ID'),
+      title: `<i class="fas fa-hashtag me-1"></i>${this.translate.instant('mod-salereturn.COLUMN_ID')}`,
       data: 'id',
       visible: false,
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-salereturn.COLUMN_INVOICE'),
+      title: `<i class="fas fa-file-invoice me-1"></i>${this.translate.instant('mod-salereturn.COLUMN_INVOICE')}`,
       data: 'nro_factura',
       className: 'text-center align-middle'
     },
     {
-      title: this.translate.instant('mod-salereturn.COLUMN_DATE_SALE'),
+      title: `<i class="fas fa-calendar-alt me-1"></i>${this.translate.instant('mod-salereturn.COLUMN_DATE_SALE')}`,
       data: 'fecha_venta',
       className: 'text-center align-middle',
       render: (data: any) => {
@@ -164,18 +164,18 @@ export class SoldComponent implements OnInit, OnDestroy {
   listar() {
     this.columnas = [
       {
-        title: this.translate.instant('mod-salereturn.COLUMN_ID'),
+        title: `<i class="fas fa-hashtag me-1"></i>${this.translate.instant('mod-salereturn.COLUMN_ID')}`,
         data: 'id',
         visible: false,
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-salereturn.COLUMN_INVOICE'),
+        title: `<i class="fas fa-file-invoice me-1"></i>${this.translate.instant('mod-salereturn.COLUMN_INVOICE')}`,
         data: 'nro_factura',
         className: 'text-center align-middle'
       },
       {
-        title: this.translate.instant('mod-salereturn.COLUMN_DATE_SALE'),
+        title: `<i class="fas fa-calendar-alt me-1"></i>${this.translate.instant('mod-salereturn.COLUMN_DATE_SALE')}`,
         data: 'fecha_venta',
         className: 'text-center align-middle',
         render: (data: any) => {

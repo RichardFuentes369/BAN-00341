@@ -2,7 +2,9 @@
   "UNKNOW_MODULE_TITLE": "Desconocido",
 
   "PAGE_EXPIRATION_TITLE": "Vencimiento", 
+  "PAGE_EXPIRATION_SUBTITLE": "Aviso: Alerta temprana de vencimiento", 
   "PAGE_STOCK_TITLE": "Bodega", 
+  "PAGE_STOCK_SUBTITLE": "Aviso: Alerta temprana de limite", 
 
   "MODULE_TITLE": "Alertas",
 

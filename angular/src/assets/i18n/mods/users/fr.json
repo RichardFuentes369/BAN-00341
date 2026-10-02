@@ -2,7 +2,9 @@
   "UNKNOW_MODULE_TITLE": "Inconnu",
 
   "PAGE_ADMIN_TITLE": "Administrateurs",
+  "PAGE_ADMIN_SUBTITLE": "Gérer les administrateurs du système et leurs autorisations",
   "PAGE_FINAL_TITLE": "Finals",
+  "PAGE_FINAL_SUBTITLE": "Gérer les utilisateurs du système",
 
   "MODULE_TITLE": "Utilisateurs",
 
@@ -66,8 +68,8 @@
   "ERROR_USER_STATUS": "Vous devez sélectionner un élément",
   "TABLE_TITLE": "Registres",
 
-  "REPORT_PERMISSION_TITLE": "Rapport",
-  "REPORT_PERMISSION_SUBTITLE": "d'autorisations",
+  "REPORT_PERMISSION_TITLE": "Rapport d'autorisations",
+  "REPORT_PERMISSION_SUBTITLE": "Génère le rapport des autorisations souhaitées",
 
   "BUTTON_UPDATE_INFO": "Mettre à jour",
   "BUTTON_USER_CREATE": "Créer un utilisateur",

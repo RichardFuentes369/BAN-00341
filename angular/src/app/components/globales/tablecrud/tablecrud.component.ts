@@ -24,6 +24,9 @@ let haySeleccionados: any[] = [];
   styleUrl: './tablecrud.component.scss',
 })
 export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
+
+  imgRows: string = 'assets/images/img_list.png'
+
   @Input() title: string = '';
   @Input() accioneson: boolean = true;
   @Input() campoFiltro: boolean = false;

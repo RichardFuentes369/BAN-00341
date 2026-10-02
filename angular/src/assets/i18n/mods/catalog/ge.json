@@ -2,9 +2,13 @@
   "UNKNOW_MODULE_TITLE": "Unbekannt",
 
   "PAGE_SUPPLIER_TITLE": "Lieferanten",
+  "PAGE_SUPPLIER_SUBTITLE": "Verwalten Sie die Lieferanten des Systems",
   "PAGE_PRODUCT_TITLE": "Produkte",
+  "PAGE_PRODUCT_SUBTITLE": "Verwalten Sie die Produkte des Systems",
   "PAGE_BRAND_TITLE": "Marken",
-  "PAGE_EXTENT_TITLE": "Maßeinheit",
+  "PAGE_BRAND_SUBTITLE": "Verwalten Sie die Marken des Systems",
+  "PAGE_EXTENT_TITLE": "Masseinheit",
+  "PAGE_EXTENT_SUBTITLE": "Verwalten Sie die Masseinheiten des Systems",
 
   "MODULE_TITLE": "Katalog",
   "TABLE_TITLE": "Datensätze",

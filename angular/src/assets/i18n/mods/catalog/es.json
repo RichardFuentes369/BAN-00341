@@ -2,9 +2,13 @@
   "UNKNOW_MODULE_TITLE": "Desconocido",
 
   "PAGE_SUPPLIER_TITLE": "Proveedores",
+  "PAGE_SUPPLIER_SUBTITLE": "Gestiona los proveedores del sistema",
   "PAGE_PRODUCT_TITLE": "Productos",
+  "PAGE_PRODUCT_SUBTITLE": "Gestiona los productos del sistema",
   "PAGE_BRAND_TITLE": "Marcas",
+  "PAGE_BRAND_SUBTITLE": "Gestiona las marcas del sistema",
   "PAGE_EXTENT_TITLE": "Unidad de medida",
+  "PAGE_EXTENT_SUBTITLE": "Gestiona las unidades de medida del sistema",
 
   "MODULE_TITLE": "Catálogo",
   "TABLE_TITLE": "Registros",
