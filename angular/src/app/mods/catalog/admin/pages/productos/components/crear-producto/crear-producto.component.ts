@@ -28,7 +28,8 @@ export class CrearProductoComponent implements OnInit {
   marcas: any[] = [];
   medidas: any[] = [];
   isLoading: boolean = false
-  filtro: string = ''
+  filtroB: string = ''
+  filtroM: string = ''
   isReadonly: boolean = false
   fielddBarCode: boolean = true
   estaBloqueado: boolean = false
@@ -50,6 +51,7 @@ export class CrearProductoComponent implements OnInit {
     codigo_barra: false,
     nombre: false,
     marca: false,
+    medida: false,
     stock_minimo: false,
     id_medida: false,
     es_perecedero: false,
@@ -78,22 +80,22 @@ export class CrearProductoComponent implements OnInit {
     if (!this.route.snapshot.queryParams?.['id_brand']) {
       this.isReadonly = false
       this.getMarcas();
-      this.getMedida()
+      this.getMedidas()
     } else {
       this.isReadonly = true
       this.getMarca()
-      this.getMedida()
+      this.getMedidas()
     }
 
     if (!this.route.snapshot.queryParams?.['id_extent']) {
       this.estaBloqueado = false
       this.getMarcas();
-      this.getMedida()
+      this.getMedidas()
     } else {
       this.estaBloqueado = true
       this.model.id_medida = +this.route.snapshot.queryParams?.['id_extent']
       this.getMarca()
-      this.getMedida()
+      this.getMedidas()
     }
 
     this.scanService.listenForScans().subscribe(data => {
@@ -111,6 +113,7 @@ export class CrearProductoComponent implements OnInit {
     const regexBarCode = /^[0-9]{13}$/;
     this.validators.nombre = (this.model.nombre.trim().length === 0)
     this.validators.marca = (this.model.id_marca == null)
+    this.validators.medida = (this.model.id_medida == null)
     this.validators.codigo_barra = (this.model.codigo_barra === null || !regexBarCode.test((this.model.codigo_barra as any).toString()))
     this.validators.stock_minimo = (this.model.stock_minimo <= 0);
     this.validators.id_medida = (this.model.id_medida === 0);
@@ -129,28 +132,30 @@ export class CrearProductoComponent implements OnInit {
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
 
-    if(this.model.es_perecedero){
+    if (this.model.es_perecedero) {
       (
-        !this.validators.nombre && 
-        !this.validators.marca && 
-        !this.validators.codigo_barra && 
-        !this.validators.stock_minimo && 
-        !this.validators.id_medida && 
-        !this.validators.estado && 
-        !this.validators.error_dias && 
+        !this.validators.nombre &&
+        !this.validators.marca &&
+        !this.validators.medida &&
+        !this.validators.codigo_barra &&
+        !this.validators.stock_minimo &&
+        !this.validators.id_medida &&
+        !this.validators.estado &&
+        !this.validators.error_dias &&
         !this.validators.error_dias_nulos
       ) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
-      return !this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.id_medida && !this.validators.estado && !this.validators.error_dias && !this.validators.error_dias_nulos
-    }else{
+      return !this.validators.nombre && !this.validators.marca && !this.validators.medida && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.id_medida && !this.validators.estado && !this.validators.error_dias && !this.validators.error_dias_nulos
+    } else {
       (
-        !this.validators.nombre && 
-        !this.validators.marca && 
-        !this.validators.codigo_barra && 
-        !this.validators.stock_minimo && 
-        !this.validators.id_medida && 
+        !this.validators.nombre &&
+        !this.validators.marca &&
+        !this.validators.medida &&
+        !this.validators.codigo_barra &&
+        !this.validators.stock_minimo &&
+        !this.validators.id_medida &&
         !this.validators.estado
       ) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
-      return !this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.id_medida && !this.validators.estado
+      return !this.validators.nombre && !this.validators.marca && !this.validators.medida && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.id_medida && !this.validators.estado
     }
   }
 
@@ -175,14 +180,24 @@ export class CrearProductoComponent implements OnInit {
     }
   }
 
-  onSearch(event: any) {
+  onSearchB(event: any) {
     const term = event.term;
     if (term && term.length >= 3) {
-      this.filtro = term
+      this.filtroB = term
       this.isLoading = true;
       this.getMarcas();
     }
   }
+
+  onSearchM(event: any) {
+    const term = event.term;
+    if (term && term.length >= 3) {
+      this.filtroM = term
+      this.isLoading = true;
+      this.getMedidas();
+    }
+  }
+
 
   get esCodigoValido(): boolean {
     const codigo = (this.model?.codigo_barra || '').toString();
@@ -196,20 +211,48 @@ export class CrearProductoComponent implements OnInit {
   async getMarcas() {
     this.isLoading = true;
     try {
-      const marcasList = await this.productosService.getDataBrandSearch(this.filtro)
+      const marcasList = await this.productosService.getDataBrandSearch(this.filtroM)
       this.marcas = [...marcasList.data];
     } finally {
       this.isLoading = false;
     }
   }
 
-  async getMedida() {
+  async getMedidas() {
     this.isLoading = true;
     try {
-      const medidaList = await this.medidaService.getDataList()
-      this.medidas = medidaList.data[0].result;
+      const medidasList = await this.productosService.getDataExtendSearch(this.filtroM)
+      this.medidas = [...medidasList.data];
     } finally {
       this.isLoading = false;
+    }
+  }
+
+  // async getMedida() {
+  //   this.isLoading = true;
+  //   try {
+  //     const medidaList = await this.medidaService.getDataList()
+  //     this.medidas = medidaList.data[0].result;
+  //   } finally {
+  //     this.isLoading = false;
+  //   }
+  // }  
+
+  async getMedida() {
+    if (!this.route.snapshot.queryParams?.['id_medida']) return;
+
+    try {
+      const response = await this.productosService.getDataExtent(this.route.snapshot.queryParams?.['id_medida']);
+      const medidas = response.data;
+
+      const exists = this.medidas.find(m => m.id === medidas.id);
+      if (!exists) {
+        this.medidas = [...this.medidas, medidas];
+      }
+
+      this.model.id_medida = medidas.id;
+    } catch (error) {
+      console.error("Error al cargar la marca inicial", error);
     }
   }
 
@@ -231,8 +274,13 @@ export class CrearProductoComponent implements OnInit {
     }
   }
 
-  onSelectChange(item: any) {
+  onSelectChangeBrand(item: any) {
     this.model.id_marca = (item != undefined) ? item.id : null
+    this.checkValidation()
+  }
+
+  onSelectChangeMedida(item: any) {
+    this.model.id_medida = (item != undefined) ? item.id : null
     this.checkValidation()
   }
 

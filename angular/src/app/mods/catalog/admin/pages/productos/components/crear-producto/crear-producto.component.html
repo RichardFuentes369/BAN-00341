@@ -10,7 +10,7 @@
       </legend>
       <div class="row" *ngIf="mostrarSeccion.productSeccion" [class.animate__fadeIn]="mostrarSeccion.productSeccion"
         [class.animate__fadeOut]="!mostrarSeccion.productSeccion">
-        
+
         <div class="col-sm-6 form-group mb-3">
           <label class="label-color form-label">
             <i class="fa fa-tag me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_NAME_PRODUCT' | translate }}
@@ -28,7 +28,7 @@
             <i class="fa fa-copyright me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate }}
           </label>
           <ng-select class="form-control custom-select form-select-sm" [(ngModel)]="model.id_marca" [items]="marcas"
-            [loading]="isLoading" (search)="onSearch($event)" (change)="onSelectChange($event)" bindLabel="nombre"
+            [loading]="isLoading" (search)="onSearchB($event)" (change)="onSelectChangeBrand($event)" bindLabel="nombre"
             bindValue="id" appendTo="body" [readonly]="isReadonly">
 
             <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
@@ -114,17 +114,28 @@
         </div>
         <div class="col-sm-6 form-group mb-3">
           <label class="label-color">
-            <i class="fa fa-ruler-combined me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}
+            <i class="fa fa-ruler-combined me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' |
+            translate }}
           </label>
-          <select class="form-control custom-select form-select-sm" [class.select-bloqueado]="estaBloqueado"
+          <!-- <select class="form-control custom-select form-select-sm" [class.select-bloqueado]="estaBloqueado"
             [(ngModel)]="model.id_medida" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.id_medida">
             <option [ngValue]="0">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION' | translate }}
             </option>
             <option *ngFor="let medida of medidas" [ngValue]="medida.id">
               {{ medida.nombre }}
             </option>
-          </select>
-          @if(validators.id_medida) {
+          </select> -->
+          <ng-select class="form-control custom-select form-select-sm" [class.select-bloqueado]="estaBloqueado" [(ngModel)]="model.id_medida" [items]="medidas"
+            [loading]="isLoading" (search)="onSearchM($event)" (change)="onSelectChangeMedida($event)" bindLabel="nombre"
+            bindValue="id" appendTo="body">
+
+            <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+              <div class="ng-option disabled">
+                <i class="fa fa-exclamation-circle me-1"></i> No se encontró "{{searchTerm}}"
+              </div>
+            </ng-template>
+          </ng-select>
+          @if(validators.medida) {
           <span class="text-danger small">{{ 'mod-catalog.PRODUCT.PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT' | translate
             }}</span>
           }
@@ -150,14 +161,16 @@
         <div class="row mt-3">
           <div class="col-sm-6">
             <label class="small label-color">
-              <i class="fa fa-exclamation-triangle text-warning me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_BRAND_YELLOW_ALERT' | translate }}
+              <i class="fa fa-exclamation-triangle text-warning me-1"></i> {{
+              'mod-catalog.PRODUCT.LABEL_BRAND_YELLOW_ALERT' | translate }}
             </label>
             <input type="number" min="1" class="form-control form-select-sm" [(ngModel)]="model.alerta_amarilla"
               (ngModelChange)="onInputChange()" [class.is-invalid]="validators.error_dias">
           </div>
           <div class="col-sm-6">
             <label class="small label-color">
-              <i class="fa fa-exclamation-circle text-danger me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_BRAND_ORANGE_ALERT' | translate }}
+              <i class="fa fa-exclamation-circle text-danger me-1"></i> {{
+              'mod-catalog.PRODUCT.LABEL_BRAND_ORANGE_ALERT' | translate }}
             </label>
             <input type="number" min="1" class="form-control form-select-sm" [(ngModel)]="model.alerta_naranja"
               (ngModelChange)="onInputChange()" [class.is-invalid]="validators.error_dias">

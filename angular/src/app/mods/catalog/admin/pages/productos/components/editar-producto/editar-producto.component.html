@@ -29,8 +29,8 @@
             [(ngModel)]="model.id_marca"
             [items]="marcas"  
             [loading]="isLoading"
-            (search)="onSearch($event)"
-            (change)="onSelectChange($event, item)"
+            (search)="onSearchB($event)"
+            (change)="onSelectChangeBrand($event, item)"
             bindLabel="nombre" 
             bindValue="id" 
             appendTo="body" 
@@ -96,12 +96,24 @@
           <label class="label-color">
             <i class="fa fa-ruler-combined me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}
           </label>
-          <select class="form-control form-select-sm" [class.select-bloqueado]="estaBloqueado" [(ngModel)]="model.id_medida" (ngModelChange)="onInputChange(item)" [class.is-invalid]="validators.unidad_medida">
-            <option [ngValue]="0">{{ 'mod-catalog.PRODUCT.SELECT_UNIT_OF_MEASUREMENT_SELECT_OPTION' | translate }}</option>
-            <option *ngFor="let medida of medidas" [ngValue]="medida.id">
-              {{ medida.nombre }}
-            </option>
-          </select>
+          <ng-select 
+            class="form-control custom-select form-select-sm"
+            [(ngModel)]="model.id_medida"
+            [items]="medidas"  
+            [loading]="isLoading"
+            (search)="onSearchM($event)"
+            (change)="onSelectChangeMedida($event, item)"
+            bindLabel="nombre" 
+            bindValue="id" 
+            appendTo="body" 
+            [readonly]="isReadonly">
+            
+            <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+              <div class="ng-option disabled">
+                <i class="fa fa-exclamation-circle me-1"></i> No se encontró "{{searchTerm}}"
+              </div>
+            </ng-template>
+          </ng-select>
           @if(validators.unidad_medida) {
             <span class="text-danger small">{{ 'mod-catalog.PRODUCT.PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}</span>
           }

@@ -33,6 +33,12 @@ export class ExtentController {
     );
   }
 
+  @Get('unidad-medida-disponibles')
+  async getBrandsList(@Query('search') search: string) {
+    return await this.extentService.listaUnidadMedida(search);
+  }
+
+
   @UseGuards(AdminGuard)
   @Get('obtener-unidad-de-medida')
   findOne(

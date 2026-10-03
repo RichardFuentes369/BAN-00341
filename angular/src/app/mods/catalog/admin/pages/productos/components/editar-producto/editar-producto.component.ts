@@ -27,10 +27,10 @@ interface ProctoInteface {
     id: number,
     nombre: string
   },
-  id_marca: number, 
+  id_marca: number,
   stock_minimo: number,
   unidad_medida: string,
-  alerta_amarilla: number, 
+  alerta_amarilla: number,
   alerta_naranja: number
 }
 
@@ -48,8 +48,9 @@ export class EditarProductoComponent implements OnInit {
   marcas: any[] = [];
   medidas: any[] = [];
   isLoading: boolean = false
-  filtro: string = ''
-  isReadonly:boolean = false
+  filtroB: string = ''
+  filtroM: string = ''
+  isReadonly: boolean = false
   estaBloqueado: boolean = false
 
   constructor(
@@ -67,17 +68,17 @@ export class EditarProductoComponent implements OnInit {
       this.isFormValid = isValid;
     });
   }
-  
+
   model = {
     es_perecedero: false,
     estado: false,
     codigo_barra: '',
     nombre: '',
-    id_marca: 0, 
-    id_medida: 0, 
+    id_marca: 0,
+    id_medida: 0,
     stock_minimo: 1,
     unidad_medida: '',
-    alerta_amarilla: 1, 
+    alerta_amarilla: 1,
     alerta_naranja: 1
   };
 
@@ -98,81 +99,138 @@ export class EditarProductoComponent implements OnInit {
 
   async ngOnInit() {
 
-    if(!this.route.snapshot.queryParams?.['id_brand']){
+    if (!this.route.snapshot.queryParams?.['id_brand']) {
       this.isReadonly = false
       this.getMarcas();
-      this.getMedida()
-    }else{
+      this.getMedidas()
+    } else {
       this.isReadonly = true
-      this.getMarca()
-      this.getMedida()
-    }    
-    
-    if(!this.route.snapshot.queryParams?.['id_extent']){
+      this.getMarcas()
+      this.getMedidas()
+    }
+
+    if (!this.route.snapshot.queryParams?.['id_extent']) {
       this.estaBloqueado = false
       this.getMarcas();
-      this.getMedida()
-    }else{
+      this.getMedidas()
+    } else {
       this.estaBloqueado = true
       this.model.id_medida = +this.route.snapshot.queryParams?.['id_extent']
-      this.getMarca()
-      this.getMedida()
+      this.getMarcas()
+      this.getMedidas()
     }
-    
+
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const idParam = this.route.snapshot.queryParams?.['id_product'];
-    
+
     if (idParam) {
-        const res = await this.productosService.getDataProduct(idParam);
-        const prodData = res.data;
+      const res = await this.productosService.getDataProduct(idParam);
+      const prodData = res.data;
 
-        if (prodData.marca) {
-          this.marcas = [prodData.marca]; 
-          prodData.id_marca = prodData.marca.id; 
-        }
+      if (prodData.marca) {
+        this.marcas = [prodData.marca];
+        prodData.id_marca = prodData.marca.id;
+      }
 
-        this.producto = [prodData];
+      this.producto = [prodData];
 
-        this.model.id_marca = this.producto[0].marca.id
-        this.model.id_medida = this.producto[0].medida.id
-        this.model.es_perecedero = this.producto[0].es_perecedero,
+      this.model.id_marca = this.producto[0].marca.id
+      this.model.id_medida = this.producto[0].medida.id
+      this.model.es_perecedero = this.producto[0].es_perecedero,
         this.model.estado = this.producto[0].estado,
         this.model.codigo_barra = this.producto[0].codigo_barra,
         this.model.nombre = this.producto[0].nombre,
         this.model.stock_minimo = this.producto[0].stock_minimo,
         this.model.unidad_medida = this.producto[0].unidad_medida,
-        this.model.alerta_amarilla = this.producto[0].alerta_amarilla, 
+        this.model.alerta_amarilla = this.producto[0].alerta_amarilla,
         this.model.alerta_naranja = this.producto[0].alerta_naranja
 
-        this.checkValidation();
+      this.checkValidation();
     }
   }
 
 
-  onSelectChange(event: any, item: any) {
+  onSelectChangeBrand(event: any, item: any) {
     item.id_marca = event ? event.id : null;
-    item.marca = event ? event : null; 
-    
-    this.onInputChange(item); 
+    item.marca = event ? event : null;
+
+    this.onInputChange(item);
     this.checkValidation()
   }
 
-  onSearch(event: any) {
+  onSelectChangeMedida(event: any, item: any) {
+    item.id_medida = event ? event.id : null;
+    item.medida = event ? event : null;
+
+    this.onInputChange(item);
+    this.checkValidation()
+  }
+
+  onSearchB(event: any) {
     const term = event.term;
     if (term && term.length >= 1) {
-      this.filtro = term;
+      this.filtroB = term;
       this.getMarcas();
+    }
+  }
+
+  onSearchM(event: any) {
+    const term = event.term;
+    if (term && term.length >= 1) {
+      this.filtroM = term;
+      this.getMedidas();
     }
   }
 
   async getMarcas() {
     this.isLoading = true;
     try {
-      const marcasList = await this.productosService.getDataBrandSearch(this.filtro);
+      const marcasList = await this.productosService.getDataBrandSearch(this.filtroB);
       const actual = this.producto[0]?.marca;
-      this.marcas = actual 
+      this.marcas = actual
         ? [actual, ...marcasList.data.filter((m: any) => m.id !== actual.id)]
         : [...marcasList.data];
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  // async getMedida() {
+  //   this.isLoading = true;
+  //   try {
+  //     const medidaList = await this.medidaService.getDataList()
+  //     this.medidas = medidaList.data[0].result;
+  //   } finally {
+  //     this.isLoading = false;
+  //   }
+  // }  
+
+  async getMedida() {
+    if (!this.route.snapshot.queryParams?.['id_medida']) return;
+
+    try {
+      const response = await this.productosService.getDataExtent(this.route.snapshot.queryParams?.['id_medida']);
+      const medidas = response.data;
+
+      const exists = this.medidas.find(m => m.id === medidas.id);
+      if (!exists) {
+        this.medidas = [...this.medidas, medidas];
+      }
+
+      this.model.id_medida = medidas.id;
+    } catch (error) {
+      console.error("Error al cargar la marca inicial", error);
+    }
+  }
+
+  async getMedidas() {
+    this.isLoading = true;
+    try {
+      const medidasList = await this.medidaService.getDataExtendSearch(this.filtroM);
+      const actual = this.producto[0]?.medida;
+      this.medidas = actual
+        ? [actual, ...medidasList.data.filter((m: any) => m.id !== actual.id)]
+        : [...medidasList.data];
     } finally {
       this.isLoading = false;
     }
@@ -187,29 +245,19 @@ export class EditarProductoComponent implements OnInit {
     return (this.model?.codigo_barra || '').toString().length;
   }
 
-  async getMedida() {
-    this.isLoading = true;
-    try {
-      const medidaList = await this.medidaService.getDataList()
-      this.medidas = medidaList.data[0].result;
-    } finally {
-      this.isLoading = false;
-    }
-  }
-
   async getMarca() {
     if (!this.route.snapshot.queryParams?.['id_brand']) return;
 
     try {
       const response = await this.productosService.getDataBrand(this.route.snapshot.queryParams?.['id_brand']);
-      const marca = response.data; 
+      const marca = response.data;
 
       const exists = this.marcas.find(m => m.id === marca.id);
       if (!exists) {
-        this.marcas = [...this.marcas, marca]; 
+        this.marcas = [...this.marcas, marca];
       }
-      
-      this.model.id_marca = marca.id; 
+
+      this.model.id_marca = marca.id;
     } catch (error) {
       console.error("Error al cargar la marca inicial", error);
     }
@@ -225,13 +273,13 @@ export class EditarProductoComponent implements OnInit {
     this.validators.marca = (this.model.id_marca == null)
     this.validators.codigo_barra = (this.model.codigo_barra === null || !regexBarCode.test((this.model.codigo_barra as any).toString()))
     this.validators.stock_minimo = (this.model.stock_minimo <= 0);
-    this.validators.unidad_medida = (this.model.unidad_medida === '');
+    this.validators.unidad_medida = (this.model.id_medida == null);
     this.validators.estado = (this.model.estado === null);
 
-    if(this.model.es_perecedero){
+    if (this.model.es_perecedero) {
       this.validators.error_dias = (
-        this.model.alerta_amarilla <= this.model.alerta_naranja || 
-        this.model.alerta_amarilla === null || 
+        this.model.alerta_amarilla <= this.model.alerta_naranja ||
+        this.model.alerta_amarilla === null ||
         this.model.alerta_naranja === null
       );
       this.validators.error_dias_nulos = (this.model.alerta_naranja === 0 || this.model.alerta_amarilla === 0);
@@ -240,25 +288,25 @@ export class EditarProductoComponent implements OnInit {
 
     const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
 
-        if(this.model.es_perecedero){
+    if (this.model.es_perecedero) {
       (
-        !this.validators.nombre && 
-        !this.validators.marca && 
-        !this.validators.codigo_barra && 
-        !this.validators.stock_minimo && 
-        !this.validators.unidad_medida && 
-        !this.validators.estado && 
-        !this.validators.error_dias && 
+        !this.validators.nombre &&
+        !this.validators.marca &&
+        !this.validators.codigo_barra &&
+        !this.validators.stock_minimo &&
+        !this.validators.unidad_medida &&
+        !this.validators.estado &&
+        !this.validators.error_dias &&
         !this.validators.error_dias_nulos
       ) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
       return !this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.unidad_medida && !this.validators.estado && !this.validators.error_dias && !this.validators.error_dias_nulos
-    }else{
+    } else {
       (
-        !this.validators.nombre && 
-        !this.validators.marca && 
-        !this.validators.codigo_barra && 
-        !this.validators.stock_minimo && 
-        !this.validators.unidad_medida && 
+        !this.validators.nombre &&
+        !this.validators.marca &&
+        !this.validators.codigo_barra &&
+        !this.validators.stock_minimo &&
+        !this.validators.unidad_medida &&
         !this.validators.estado
       ) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
       return !this.validators.nombre && !this.validators.marca && !this.validators.codigo_barra && !this.validators.stock_minimo && !this.validators.unidad_medida && !this.validators.estado
@@ -270,7 +318,7 @@ export class EditarProductoComponent implements OnInit {
       try {
         await this.productosService.updateProduct(this.model, this.route.snapshot.queryParams?.['id_product']);
         ocultarModalOscura();
-        
+
         Swal.fire({
           title: this.translate.instant('mod-catalog.PRODUCT.SWAL_UPDATED'),
           text: this.translate.instant('mod-catalog.SWAL_UPDATED_RECORD'),
@@ -289,7 +337,7 @@ export class EditarProductoComponent implements OnInit {
     esPerecedero: true,
   }
 
-  toogleSection(sectionActive: string){
+  toogleSection(sectionActive: string) {
     if (sectionActive in this.mostrarSeccion) {
       const key = sectionActive as keyof typeof this.mostrarSeccion;
       this.mostrarSeccion[key] = !this.mostrarSeccion[key];

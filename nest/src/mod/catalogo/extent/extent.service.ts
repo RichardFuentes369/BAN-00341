@@ -171,6 +171,13 @@ export class ExtentService {
 
   }
 
+  async listaUnidadMedida(search: string) {
+    return await this.extentRepository.find({
+      where: { nombre: Like(`%${search}%`) },
+      take: 20
+    });
+  }
+
   async contadoresExtent(
     lang: string
   ) {
