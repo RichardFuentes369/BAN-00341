@@ -143,7 +143,7 @@ export class FinalService {
   async obtenerTotale(){
 
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = 'user/obtener-contadores-usuarios-administradores/'
+    let complemento = 'user/obtener-contadores-usuarios-finales/'
     let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 

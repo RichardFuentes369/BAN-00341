@@ -103,7 +103,7 @@ export class UserController {
   }
 
   // contadores
-  @Get('obtener-contadores-usuarios-administradores')
+  @Get('obtener-contadores-usuarios-finales')
   async contadores(
     @Query('lang') lang:string,
   ) {

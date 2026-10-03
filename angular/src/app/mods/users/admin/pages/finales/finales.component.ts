@@ -350,6 +350,7 @@ export class FinalesComponent implements OnInit {
         if (result.isConfirmed) {
           if (result.isConfirmed) {
             await this.finalService.deleteUser(_id)
+            await this.actualizarContadores()
             await this.someInput.reload()
             Swal.fire({
               title: this.translate.instant('mod-users.SWAL_DELETED'),
@@ -386,6 +387,7 @@ export class FinalesComponent implements OnInit {
     }).then(async (result) => {
       if (result.isConfirmed) {
         await this.finalService.updateStatusUser(_id, result.value)
+        await this.actualizarContadores()
         await this.someInput.reload()
         Swal.fire({
           title: this.translate.instant('mod-users.SWAL_UPDATED'),

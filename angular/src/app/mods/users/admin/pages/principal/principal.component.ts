@@ -311,8 +311,6 @@ export class PrincipalComponent implements OnInit, OnDestroy {
     if (idButton) {
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
-
-      this.actualizarContadores()
     }
   }
 
@@ -387,6 +385,7 @@ export class PrincipalComponent implements OnInit, OnDestroy {
         if (result.isConfirmed) {
           if (result.isConfirmed) {
             await this.principalService.deleteUser(_id)
+            await this.actualizarContadores()
             await this.someInput.reload()
             Swal.fire({
               title: this.translate.instant('mod-users.SWAL_DELETED'),
@@ -424,6 +423,7 @@ export class PrincipalComponent implements OnInit, OnDestroy {
     }).then(async (result) => {
       if (result.isConfirmed) {
         await this.principalService.updateStatusUser(_id, result.value)
+        await this.actualizarContadores()
         await this.someInput.reload()
         Swal.fire({
           title: this.translate.instant('mod-users.SWAL_UPDATED'),

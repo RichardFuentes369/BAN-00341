@@ -77,6 +77,6 @@
   <app-globales-modal-boostrap [tamano]="tamano" [scrollable]="scrollable" [title]="title" [subtitle]="subtitle"
     [save]="save" [buttonSave]="buttonSave" [edit]="edit" [buttonEdit]="buttonEdit" [cancel]="cancel"
     [buttonCancel]="buttonCancel" [componentePrecargado]="componentePrecargado" [cierreModal]="cierreModal"
-    (actualizarTabla)="refrescarTabla()">
+    (actualizarTabla)="refrescarTabla(); actualizarContadores()">
   </app-globales-modal-boostrap>
 </div>
