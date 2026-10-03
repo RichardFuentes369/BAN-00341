@@ -31,6 +31,8 @@ export class FiltroProductComponent {
     estado: '',
     es_perecedero: '',
     id_medida: '',
+    marca_obj: null as any,
+    medida_obj: null as any,
     field: '',
     order: ''
   }
@@ -52,6 +54,8 @@ export class FiltroProductComponent {
       es_perecedero: sessionStorage.getItem('es_perecedero') || '',
       estado: sessionStorage.getItem('estado') || '',
       id_medida: sessionStorage.getItem('id_medida') || '',
+      marca_obj: { id: sessionStorage.getItem('id_marca'), nombre: sessionStorage.getItem('nombre_marca') },
+      medida_obj: { id: sessionStorage.getItem('id_marca'), nombre: sessionStorage.getItem('nombre_medida') },
       field: sessionStorage.getItem('field') || '',
       order: sessionStorage.getItem('order') || ''
     }
@@ -62,7 +66,7 @@ export class FiltroProductComponent {
       this.complementoFiltro += `&nombre=${this.model.nombre}`
     }
     if(this.model.id_marca != ''){
-      this.complementoFiltro += `&id_marca=${this.model.id_marca}}`
+      this.complementoFiltro += `&id_marca=${this.model.id_marca}`
     }    
     if(this.model.codigo_barra != ''){
       this.complementoFiltro += `&codigo_barra=${this.model.codigo_barra}`
@@ -89,20 +93,6 @@ export class FiltroProductComponent {
       this.complementoFiltro += `&order=${this.model.order}`      
     }
 
-    // --- BUSCAR AUTOMÁTICAMENTE SI EXISTE REGISTRO GUARDADO ---
-    if (this.model.id_marca) {
-      // Si tienes un término guardado en 'filtro' úsalo, sino usa la propia id_marca
-      const terminoBusqueda = this.filtro || this.model.id_marca;
-      console.log(terminoBusqueda)
-      // await this.cargarMarcaInicial(terminoBusqueda);
-    }
-    
-    if (this.model.id_medida) {
-      const terminoBusquedaMedida = this.filtro || this.model.id_medida;
-      console.log(terminoBusquedaMedida)
-      // await this.cargarMedidaInicial(terminoBusquedaMedida);
-    }
-
     $(".complementoRuta").val(this.complementoFiltro)
   }
 
@@ -114,7 +104,18 @@ export class FiltroProductComponent {
       this.getMarcas();
     }
   }
-
+  onClearB(){
+    this.model.id_marca = ''
+    sessionStorage.removeItem('id_marca')
+    sessionStorage.removeItem('nombre_marca')
+  }
+  
+  onClearM(){
+    this.model.id_medida = ''
+    sessionStorage.removeItem('id_medida')
+    sessionStorage.removeItem('nombre_medida')
+  }
+  
   onSearchM(event: any) {
     const term = event.term;
     if (term && term.length >= 3) {
@@ -125,10 +126,12 @@ export class FiltroProductComponent {
   }
 
   onSelectChangeB(item: any) {
+    sessionStorage.setItem('nombre_marca', item.nombre)
     this.model.id_marca = (item != undefined) ? item.id : null
   }
 
   onSelectChangeM(item: any) {
+    sessionStorage.setItem('nombre_medida', item.nombre)
     this.model.id_medida = (item != undefined) ? item.id : null
   }
   
@@ -148,12 +151,14 @@ export class FiltroProductComponent {
     this.model.order = ''
 
     sessionStorage.removeItem('nombre')
+    sessionStorage.removeItem('nombre_marca')
     sessionStorage.removeItem('id_marca')
     sessionStorage.removeItem('codigo_barra')
     sessionStorage.removeItem('stock_minimo')
     sessionStorage.removeItem('stock_maximo')
     sessionStorage.removeItem('estado')
     sessionStorage.removeItem('es_perecedero')
+    sessionStorage.removeItem('nombre_medida')
     sessionStorage.removeItem('id_medida')
     sessionStorage.removeItem('field')
     sessionStorage.removeItem('order')
