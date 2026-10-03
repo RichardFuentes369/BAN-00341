@@ -199,7 +199,7 @@ export class ProductosService {
     });
   }
 
-  async obtenerTotale(){
+  async obtenerTotale(idBrand: string, idExtend: string){
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'product/obtener-contadores-productos/'
     let urlCopleta = environment.apiUrl+complemento
@@ -213,6 +213,8 @@ export class ProductosService {
       method: 'get',
       url: urlCopleta,
       params: {
+        idBrand: idBrand,
+        idExtend: idExtend,
         lang: lang,
       }
     })

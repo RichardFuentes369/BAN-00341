@@ -272,11 +272,26 @@ export class ProductService {
   }
 
   async contadoresProductos(
+    idBrand: string,
+    idExtend: string,
     lang: string
   ) {
-    const cont1 = await this.productRepository.count()
-    const cont2 = await this.productRepository.count({ where: { estado: true } })
-    const cont3 = await this.productRepository.count({ where: { estado: false } })
+
+    const baseWhere: Record<string, any> = {};
+
+    if (idBrand != null) {
+      baseWhere.id_marca = +idBrand;
+    }
+
+    if (idExtend != null) {
+      baseWhere.id_medida = +idExtend;
+    }
+
+    const [cont1, cont2, cont3] = await Promise.all([
+      this.productRepository.count(),
+      this.productRepository.count({ where: { ...baseWhere, estado: true } }),
+      this.productRepository.count({ where: { ...baseWhere, estado: false } }),
+    ]);
 
     const data = {
       "count_total_products": cont1,

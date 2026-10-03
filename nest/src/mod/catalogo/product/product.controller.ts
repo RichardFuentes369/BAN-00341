@@ -98,9 +98,11 @@ export class ProductController {
   // contadores
   @Get('obtener-contadores-productos')
   async contadores(
+    @Query('idBrand') idBrand: string,
+    @Query('idExtend') idExtend: string,
     @Query('lang') lang: string,
   ) {
-    return this.productService.contadoresProductos(lang);
+    return this.productService.contadoresProductos(idBrand, idExtend, lang);
   }
 
   @Get('productos-disponibles')

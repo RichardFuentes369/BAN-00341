@@ -7,11 +7,7 @@ CTRL + SHIFT + V
 
 	1. DASHBOARD: Graficos
 	2. Personalización
-	3. contadores
-		http://localhost:4200/admin/mod/catalog/unidad_de_medida/productos?id_extent=4
-		http://localhost:4200/admin/mod/catalog/productos
-		http://localhost:4200/admin/mod/custom
-	5. Manual web: Agregar la instalacion del plugin en chrome
+	3. Manual web: Agregar la instalacion del plugin en chrome
 
 ### Futuras mejoras
 
