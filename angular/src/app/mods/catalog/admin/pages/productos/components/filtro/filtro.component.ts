@@ -104,6 +104,7 @@ export class FiltroProductComponent {
       this.getMarcas();
     }
   }
+
   onClearB(){
     this.model.id_marca = ''
     sessionStorage.removeItem('id_marca')
@@ -139,6 +140,8 @@ export class FiltroProductComponent {
     $(".complementoRuta").val('')
     this.complementoFiltro = ''
     this.filtro = ''
+    this.model.marca_obj = null
+    this.model.medida_obj = null
     this.model.nombre = ''
     this.model.id_marca = ''
     this.model.codigo_barra = ''
