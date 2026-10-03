@@ -154,21 +154,40 @@ export class ExtentService {
 
   async remove(lang: string, ids: number[], userId: number) {
     try {
+      const medidas = await this.extentRepository.find({
+        where: { id: In(ids) },
+        relations: { productos: true },
+      });
+
+      const resultado = medidas.map(med => ({
+        ...med,
+        total_productos: med.productos.length
+      }));
+
+      const tieneHijos = medidas.some(cat => cat.productos.length > 0);
+
+      if (tieneHijos) {
+        return {
+          title: this.i18n.t('categoria.MSJ_MEDIDA_TITTLE', { lang }),
+          message: this.i18n.t('categoria.MSJ_ERROR_MEIDA_TIENE_PRODUCTOS_HIJOS', { lang }),
+          status: 404,
+        };
+      }
+
       this.extentRepository.delete({ id: In(ids) })
 
       return {
-        'title': this.i18n.t('categoria.MSJ_CATEGORY_TITTLE', { lang }),
+        'title': this.i18n.t('categoria.MSJ_MEDIDA_TITTLE', { lang }),
         'message': this.i18n.t('categoria.MSN_PERMISO_REMOVIDO_OK', { lang }),
         'status': 200,
       };
     } catch (error) {
       return {
-        'title': this.i18n.t('categoria.MSJ_MARCA_TITTLE', { lang }),
-        'message': this.i18n.t('categoria.MSJ_ERROR_MARCA_TIENE_PRODUCTOS_HIJOS', { lang }),
+        'title': this.i18n.t('categoria.MSJ_MEDIDA_TITTLE', { lang }),
+        'message': this.i18n.t('categoria.MSJ_ERROR_MEIDA_TIENE_PRODUCTOS_HIJOS', { lang }),
         'status': 404,
       }
     }
-
   }
 
   async listaUnidadMedida(search: string) {

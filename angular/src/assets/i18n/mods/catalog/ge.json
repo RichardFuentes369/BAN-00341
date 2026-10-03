@@ -184,9 +184,9 @@
 
     "PLACEHOLDER_EXTENT_NAME": "Maßeinheit eingeben",
 
-    "SWAL_CREATED": "¡MAẞEINHEIT ERSTELLT!",
-    "SWAL_UPDATED": "¡MAẞEINHEIT AKTUALISIERT!",
-    "SWAL_DELETED": "¡MAẞEINHEIT GELÖSCHT!",
+    "SWAL_CREATED": "¡MAẞEINHEIT!",
+    "SWAL_UPDATED": "¡MAẞEINHEIT!",
+    "SWAL_DELETED": "¡MAẞEINHEIT!",
     "SWAL_ARE_YOU_SURE_UPDATE": "Sind Sie sicher, dass Sie die Maßeinheit {{extent_name}} aktualisieren möchten?",
     "SWAL_ARE_YOU_SURE_DELETE": "Sind Sie sicher, dass Sie {{art_the}} Maßeinheit{{plural}} {{extent_name}} löschen möchten?",
     

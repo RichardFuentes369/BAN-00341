@@ -184,9 +184,9 @@
 
     "PLACEHOLDER_EXTENT_NAME": "Ingrese una medida",
 
-    "SWAL_CREATED": "¡MEDIDA CREADA!",
-    "SWAL_UPDATED": "¡MEDIDA ACTUALIZADA!",
-    "SWAL_DELETED": "¡MEDIDA ELIMINADA!",
+    "SWAL_CREATED": "¡MEDIDA!",
+    "SWAL_UPDATED": "¡MEDIDA!",
+    "SWAL_DELETED": "¡MEDIDA!",
     "SWAL_ARE_YOU_SURE_UPDATE": "¿Está seguro de actualizar la medida {{extent_name}}?",
     "SWAL_ARE_YOU_SURE_DELETE": "¿Está seguro de eliminar {{art_the}} medida{{plural}} {{extent_name}}?",
     
