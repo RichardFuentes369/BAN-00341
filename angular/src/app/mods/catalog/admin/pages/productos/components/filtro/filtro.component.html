@@ -12,7 +12,7 @@
     </div>
 
     <!-- Marca (ng-select) -->
-    <div class="col-sm-12 mb-2">
+    <div class="col-sm-12 mb-2" *ngIf="!hasBrandInUrl">
       <span class="label-color">
         {{ 'mod-catalog.PRODUCT.LABEL_BRAND_PRODUCT' | translate}}
       </span>
@@ -87,7 +87,7 @@
     </div>
 
     <!-- Medida (ng-select) -->
-    <div class="col-sm-12 mb-2">
+    <div class="col-sm-12 mb-2" *ngIf="!hasExtendInUrl">
       <span class="label-color">
         {{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate}}
       </span>

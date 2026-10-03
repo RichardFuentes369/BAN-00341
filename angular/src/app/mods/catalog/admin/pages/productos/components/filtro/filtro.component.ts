@@ -5,6 +5,7 @@ import { MedidaService } from '../../../medida/service/medida.service';
 import { CommonModule } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ProductosService } from '../../service/productos.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-producto-filtro',
@@ -21,6 +22,8 @@ export class FiltroProductComponent {
   isLoading: boolean = false
   isReadonly:boolean = false
   filtro: string = ''
+  hasBrandInUrl: boolean = false;
+  hasExtendInUrl: boolean = false;
 
   model = {
     nombre: '',
@@ -40,11 +43,19 @@ export class FiltroProductComponent {
   constructor(
     private medidaService: MedidaService,
     private productosService: ProductosService,
+    private route: ActivatedRoute
   ){
 
   }
 
   async ngOnInit() {
+
+    const idBrandQuery = this.route.snapshot.queryParamMap.get('id_brand');
+    this.hasBrandInUrl = !!idBrandQuery;
+
+    const idExtendQuery = this.route.snapshot.queryParamMap.get('id_extent');
+    this.hasExtendInUrl = !!idExtendQuery;
+
     this.model = {
       nombre: sessionStorage.getItem('nombre') || '',
       id_marca: sessionStorage.getItem('id_marca') || '',
