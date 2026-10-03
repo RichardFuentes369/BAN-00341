@@ -67,7 +67,7 @@ export class CrearMedidaComponent {
     return !this.validators.nombre
   }
 
-  async crearMarca(){
+  async crearMedida(){
     if(this.isFormValid){
       let endPoint = this.medidaService
 

@@ -4,6 +4,7 @@
   "MSN_CATEGORY_REMOVIDO_OK": "eliminada exitosamente",
 
   "MSJ_ERROR_BRAND_EXISTE": "La marca ya existe.",
+  "MSJ_ERROR_EXTEND_EXISTE": "La unidad de medida ya existe.",
   "MSJ_ERROR_CATEGORY_EXISTE": "La categoria ya existe.",
   "MSJ_ERROR_CATEGORY_BAR_CODE_EXISTE": "El codigo de barras ya esta asignado a otro producto.",
   "MSJ_ERROR_PRODUCT_EXISTE": "El producto ya existe.",

@@ -114,7 +114,7 @@ export class ExtentService {
     try {
       const exists = await this.extentRepository.findOne({ where: { nombre: extentDto.nombre } });
       if (exists) throw new NotFoundException(
-        this.i18n.t('categoria.MSJ_ERROR_BRAND_EXISTE', { lang })
+        this.i18n.t('categoria.MSJ_ERROR_EXTEND_EXISTE', { lang })
       );
 
       await this.extentRepository.save(extentDto);
