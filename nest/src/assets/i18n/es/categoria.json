@@ -12,8 +12,8 @@
   
   
   "MSJ_MARCA_TITTLE": "Marca",
-  "MSJ_ERROR_MARCA_TIENE_PRODUCTOS_HIJOS": "No se puede tomar ninguna medida, esta marca contiene productos.",
+  "MSJ_ERROR_MARCA_TIENE_PRODUCTOS_HIJOS": "No se puede eliminar ninguna marca, esta marca contiene productos.",
 
   "MSJ_MEDIDA_TITTLE": "Medida",
-  "MSJ_ERROR_MEIDA_TIENE_PRODUCTOS_HIJOS": "No se puede tomar ninguna medida, esta medida contiene productos."
+  "MSJ_ERROR_MEIDA_TIENE_PRODUCTOS_HIJOS": "No se puede eliminar ninguna medida, esta medida contiene productos."
 }

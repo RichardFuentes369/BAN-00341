@@ -11,8 +11,8 @@
   "MSJ_ERROR_PRODUCT_NOT_EXISTS": "The product not exists.",
   
   "MSJ_MARCA_TITTLE": "Brand",
-  "MSJ_ERROR_MARCA_TIENE_PRODUCTOS_HIJOS": "No action can be taken, this brand contains products.",
+  "MSJ_ERROR_MARCA_TIENE_PRODUCTOS_HIJOS": "No action can be delete, this brand contains products.",
 
   "MSJ_MEDIDA_TITTLE": "Measurement",
-  "MSJ_ERROR_MEIDA_TIENE_PRODUCTOS_HIJOS": "No measurement can be taken; this measurement contains child products."
+  "MSJ_ERROR_MEIDA_TIENE_PRODUCTOS_HIJOS": "No measurement can be delete; this measurement contains child products."
 }
