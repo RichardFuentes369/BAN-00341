@@ -65,6 +65,9 @@ export class ProductService {
     if (filterDto['id_marca']) {
       where.id_marca = filterDto['id_marca'];
     }
+    if (filterDto['id_medida']) {
+      where.id_medida = filterDto['id_medida'];
+    }
     if (filterDto['es_perecedero'] != undefined) {
       where.es_perecedero = (filterDto['es_perecedero'] === 1) ? 1 : 0;
     }

@@ -43,8 +43,6 @@ export class FiltroProductComponent {
   }
 
   async ngOnInit() {
-    this.getMedida()
-
     this.model = {
       nombre: sessionStorage.getItem('nombre') || '',
       id_marca: sessionStorage.getItem('id_marca') || '',
@@ -90,10 +88,25 @@ export class FiltroProductComponent {
     if(this.model.order != ''){
       this.complementoFiltro += `&order=${this.model.order}`      
     }
+
+    // --- BUSCAR AUTOMÁTICAMENTE SI EXISTE REGISTRO GUARDADO ---
+    if (this.model.id_marca) {
+      // Si tienes un término guardado en 'filtro' úsalo, sino usa la propia id_marca
+      const terminoBusqueda = this.filtro || this.model.id_marca;
+      console.log(terminoBusqueda)
+      // await this.cargarMarcaInicial(terminoBusqueda);
+    }
+    
+    if (this.model.id_medida) {
+      const terminoBusquedaMedida = this.filtro || this.model.id_medida;
+      console.log(terminoBusquedaMedida)
+      // await this.cargarMedidaInicial(terminoBusquedaMedida);
+    }
+
     $(".complementoRuta").val(this.complementoFiltro)
   }
 
-  onSearch(event: any) {
+  onSearchB(event: any) {
     const term = event.term;
     if (term && term.length >= 3) {
       this.filtro = term
@@ -102,8 +115,21 @@ export class FiltroProductComponent {
     }
   }
 
-  onSelectChange(item: any) {
+  onSearchM(event: any) {
+    const term = event.term;
+    if (term && term.length >= 3) {
+      this.filtro = term
+      this.isLoading = true;
+      this.getMedidas();
+    }
+  }
+
+  onSelectChangeB(item: any) {
     this.model.id_marca = (item != undefined) ? item.id : null
+  }
+
+  onSelectChangeM(item: any) {
+    this.model.id_medida = (item != undefined) ? item.id : null
   }
   
   limpiar(){
@@ -153,8 +179,10 @@ export class FiltroProductComponent {
       sessionStorage.setItem('nombre', this.model.nombre)
     }
     if(this.model.id_marca != ''){
-      this.complementoFiltro += `&id_marca=${this.model.id_marca}`
-      sessionStorage.setItem('id_marca', this.model.id_marca)
+      if(this.model.id_marca != null){
+        this.complementoFiltro += `&id_marca=${this.model.id_marca}`
+        sessionStorage.setItem('id_marca', this.model.id_marca)
+      }
     }
     if(this.model.codigo_barra != ''){
       this.complementoFiltro += `&codigo_barra=${this.model.codigo_barra}`
@@ -177,8 +205,10 @@ export class FiltroProductComponent {
       sessionStorage.setItem('es_perecedero', this.model.es_perecedero)
     }
     if(this.model.id_medida != ''){
-      this.complementoFiltro += `&id_medida=${this.model.id_medida}`
-      sessionStorage.setItem('id_medida', this.model.id_medida)
+      if(this.model.id_medida != null){
+        this.complementoFiltro += `&id_medida=${this.model.id_medida}`
+        sessionStorage.setItem('id_medida', this.model.id_medida)
+      }
     }
     if(this.model.field != ''){
       this.complementoFiltro += `&field=${this.model.field}`      
@@ -201,14 +231,13 @@ export class FiltroProductComponent {
     }
   }  
 
-  async getMedida() {
+  async getMedidas() {
     this.isLoading = true;
     try {
-      const medidaList = await this.medidaService.getDataList()
-      this.medidas = medidaList.data[0].result;
+      const medidaList = await this.medidaService.getDataExtendSearch(this.filtro)
+      this.medidas = [...medidaList.data];
     } finally {
       this.isLoading = false;
     }
   }
-
 }
