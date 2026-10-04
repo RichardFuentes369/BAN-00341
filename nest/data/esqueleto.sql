@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `mod_catalogo_proveedores` (
   `nit` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_20124d60355ae6fbf4410be1f5` (`nit`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `mod_merma_mermas` (
   KEY `FK_c43c67defe5b3af684b4065015b` (`id_lote`),
   CONSTRAINT `FK_c43c67defe5b3af684b4065015b` FOREIGN KEY (`id_lote`) REFERENCES `mod_bodega` (`id`) ON UPDATE NO ACTION,
   CONSTRAINT `FK_f936b059227146a8e5f1ffaec0a` FOREIGN KEY (`id_tipo_merma`) REFERENCES `mod_merma_tipos` (`id`) ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `mod_merma_tipos` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_d4131d037acc1ff2cb862fe550` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 

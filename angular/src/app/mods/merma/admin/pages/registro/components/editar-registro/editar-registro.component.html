@@ -139,6 +139,50 @@
         </div>
         }
         <div class="col-sm-12 form-group">
+          <div class="row">
+            <div class="col-sm-6 form-group">
+              <label class="label-color">
+                <i class="fa fa-cart-plus me-1"></i>
+                {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}
+              </label>
+              <input type="number" min="0" class="form-control form-select-sm bg-light"
+                [(ngModel)]="bodega.cantidad_comprada" disabled>
+              <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i
+                  class="fa fa-ruler-combined me-1"></i>en {{producto.unidad_medida}}</span>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label class="label-color">
+                <i class="fa fa-shopping-bag me-1"></i>
+                {{ 'mod-warehouse.LABEL_CANTIDAD_VENDIDA' | translate}}
+              </label>
+              <input type="number" min="0" class="form-control form-select-sm bg-light"
+                [(ngModel)]="bodega.cantidad_vendida" disabled>
+              <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i
+                  class="fa fa-ruler-combined me-1"></i>en {{producto.unidad_medida}}</span>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label class="label-color">
+                <i class="fa fa-minus-circle me-1"></i>
+                {{ 'mod-warehouse.LABEL_CANTIDAD_AFECTADA' | translate}}
+              </label>
+              <input type="number" min="0" class="form-control form-select-sm bg-light"
+                [(ngModel)]="cantidad_afectada_por_merma" disabled>
+              <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i
+                  class="fa fa-ruler-combined me-1"></i>en {{producto.unidad_medida}}</span>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label class="label-color">
+                <i class="fa fa-cubes me-1"></i>
+                {{ 'mod-warehouse.LABEL_CANTIDAD_BODEGA' | translate}}
+              </label>
+              <input type="number" min="0" class="form-control form-select-sm bg-light"
+                [(ngModel)]="bodega.cantidad_en_bodega" disabled>
+              <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i
+                  class="fa fa-ruler-combined me-1"></i>en {{producto.unidad_medida}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 form-group">
           <label class="label-color">
             <i class="fa fa-info-circle me-1"></i>
             {{ 'mod-warehouse.LABEL_ESTADO' | translate}}

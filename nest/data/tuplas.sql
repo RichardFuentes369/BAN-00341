@@ -29,7 +29,7 @@ INSERT INTO `mod_bodega` (`id`, `lote`, `fecha_entrada`, `fecha_vencimiento`, `c
 	(7, '1791072535', 1790917200, 1792731599, 12, 0, 12, 'disponible', 33, 26),
 	(8, '1791072535', 1791867600, 1791435599, 12, 6, 6, 'disponible', 38, 30),
 	(9, '1791073497', 1715576400, 1792299599, 25, 6, 19, 'disponible', 39, 30),
-	(10, '1791073497', 1791176400, 1819342799, 89, 47, 37, 'disponible', 45, 30),
+	(10, '1791073497', 1791176400, 1819342799, 89, 47, 34, 'disponible', 45, 30),
 	(11, '1791073497', 1773118800, 1793336399, 39, 0, 32, 'disponible', 56, 30);
 
 -- Dumping data for table BAN_00341.mod_catalogo_marcas: ~17 rows (approximately)
@@ -157,8 +157,8 @@ INSERT INTO `mod_catalogo_proveedores` (`id`, `razon_social`, `direccion`, `corr
 	(6, 'Distribuidora Rayo S.A.S.', 'Carrera 17 # 18 - 42, San Francisco, Bucaramanga', 'ventas@distribuidorarayo.com', '607 634 3030', '9', '804012390'),
 	(7, 'Prodalca S.A.S.', 'Carrera 15 # 12 - 50, San Francisco, Bucaramanga', 'contacto@prodalca.com', '607 635 4040', '3', '900120450'),
 	(8, 'Discomar S.A.S. (Distribuidora Comercial de Aseo y Abarrotes)', 'Calle 18 # 15 - 20, San Francisco, Bucaramanga', 'ventas@discomar.com.co', '607 671 8080', '2', '900345610'),
-	(9, 'Distribuidora El Nilo S.A.S.', 'Carrera 16 # 15 - 30, San Francisco, Bucaramanga', 'elnilo.bucaramanga@gmail.com', '607 644 3087', '3', '900281556'),
-	(10, 'Mayorista De Viveres El Bodegón S.A.S.', 'Central de Abastos Bodega 2 Local 15, Bucaramanga', 'elbodegon.cenabastos@gmail.com', '607 637 1010', '6', '900512800'),
+	(9, 'Distribuidora El Nilo S.A.S.', 'Carrera 16 # 15 - 30, San Francisco, Bucaramanga', 'elnilo.bucaramanga@gmail.com', '3166400006', '3', '900281556'),
+	(10, 'Mayorista De Viveres El Bodegón S.A.S.', 'Central de Abastos Bodega 2 Local 15, Bucaramanga', 'elbodegon.cenabastos@gmail.com', '3214515845', '6', '900512800'),
 	(11, 'Granero y Distribuidora La 15', 'Carrera 15 # 16 - 12, San Francisco, Bucaramanga', 'distribuidorala15@gmail.com', '607 634 2210', '7', '900611234'),
 	(12, 'Distribuidora Dulces Santander S.A.S.', 'Calle 16 # 17 - 35, San Francisco, Bucaramanga', 'dulcessantander@gmail.com', '607 635 0808', '1', '900812345'),
 	(13, 'Distribuidora J.O. S.A.S.', 'Carrera 17 # 15 - 48, San Francisco, Bucaramanga', 'distribuidorajo@gmail.com', '607 634 9090', '4', '900745810'),
@@ -178,14 +178,15 @@ INSERT INTO `mod_catalogo_proveedores` (`id`, `razon_social`, `direccion`, `corr
 	(27, 'Distribuidora Rancho Y Licores Bucaramanga', 'Carrera 15 # 28 - 14, Centro, Bucaramanga', 'ranchoylicoresbga@gmail.com', '607 630 2525', '1', '900334455'),
 	(28, 'Distribuidora De Granos Y Granero Central S.A.S.', 'Central de Abastos Bodega 2 Local 40, Bucaramanga', 'granerocentralbga@gmail.com', '607 637 6060', '0', '900556677'),
 	(29, 'Distribuidora De Galletas Y Confitería La Palma', 'Calle 14 # 17 - 25, San Francisco, Bucaramanga', 'confiterialapalma@gmail.com', '607 635 8080', '3', '900778899'),
-	(30, 'Distribuidora Mayorista El Manantial S.A.S.', 'Carrera 16 # 12 - 30, San Francisco, Bucaramanga', 'elmanantialmayorista@gmail.com', '607 634 9900', '7', '900990011');
+	(30, 'Distribuidora Mayorista El Manantial S.A.S.', 'Carrera 16 # 12 - 30, San Francisco, Bucaramanga', 'elmanantialmayorista@gmail.com', '607 634 9900', '7', '900990011'),
+	(34, 'hlehjoejoijod', 'calle falsa 12323', 'dasdasd@asdasd.com', '350-428-4093', '5', '155515151');
 
 -- Dumping data for table BAN_00341.mod_merma_mermas: ~4 rows (approximately)
 INSERT INTO `mod_merma_mermas` (`id`, `cantidad`, `fecha_reporte`, `observacion`, `id_tipo_merma`, `id_lote`, `valor_perdido`) VALUES
 	(1, 2, 1791003600, 'Se valido el producto y se encontraron hongos', 4, 11, 2850),
 	(2, 5, 1791003600, 'Un descuido y se lo robaron', 1, 11, 35000),
 	(4, 3, 1791003600, 'Se dañaron', 8, 10, 2500),
-	(5, 2, 1791003600, 'Entro un desgraciado', 1, 10, 3250);
+	(5, 5, 1791003600, 'Entro un desgraciado', 1, 10, 8250);
 
 -- Dumping data for table BAN_00341.mod_merma_tipos: ~8 rows (approximately)
 INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
