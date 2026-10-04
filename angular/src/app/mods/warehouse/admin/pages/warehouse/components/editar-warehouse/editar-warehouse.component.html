@@ -3,7 +3,7 @@
     <!-- SECCIÓN PRODUCTO -->
     <fieldset class="border p-3 rounded">
       <legend class="float-none w-auto p-1">
-        <i class="fa fa-box me-1 text-primary"></i>
+        <i class="fas fa-box-open me-1"></i>
         {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_PRODUCT' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm ms-1" (click)="toogleSection('productSeccion')">
           <i [class]="mostrarSeccion.productSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
@@ -16,7 +16,6 @@
             {{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)
           </label>
           <div class="input-group input-group-sm">
-            <span class="input-group-text"><i class="fa fa-barcode"></i></span>
             <input type="text" class="form-control" [(ngModel)]="producto.codigo_barra" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.codigo_barra" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}">
           </div>
           @if(validators.codigo_barra) {
@@ -77,7 +76,7 @@
     <!-- SECCIÓN PROVEEDOR -->
     <fieldset class="border p-3 rounded mt-3">
       <legend class="float-none w-auto p-1">
-        <i class="fa fa-truck me-1 text-primary"></i>
+        <i class="fa fa-truck me-1"></i>
         {{ 'mod-catalog.SUPPLIER.LEGEND_TITLE' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm ms-1" (click)="toogleSection('providerSeccion')">
           <i [class]="mostrarSeccion.providerSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
@@ -90,7 +89,6 @@
             {{ 'mod-catalog.SUPPLIER.LABEL_BUSINESS_NIT' | translate}}
           </label>
           <div class="input-group input-group-sm">
-            <span class="input-group-text"><i class="fa fa-id-card"></i></span>
             <input type="text" class="form-control" [(ngModel)]="proveedor.nit" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nit" placeholder="{{ 'mod-catalog.SUPPLIER.PLACEHOLDER_BUSINESS_NIT' | translate }}">
           </div>
           @if(show_detail_provider){
@@ -136,7 +134,7 @@
     <!-- SECCIÓN BODEGA Y LOTE -->
     <fieldset class="border p-3 rounded mt-3">
       <legend class="float-none w-auto p-1">
-        <i class="fa fa-warehouse me-1 text-primary"></i>
+        <i class="fa fa-warehouse me-1"></i>
         {{ 'mod-warehouse.LEGEND_TITLE' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm ms-1" (click)="toogleSection('batchSeccion')">
           <i [class]="mostrarSeccion.batchSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
@@ -166,7 +164,7 @@
         @if(producto.es_perecedero){
         <div class="col-sm-12 form-group mb-3">
           <label class="label-color" for="exampleInputEmail1">
-            <i class="fa fa-calendar-times me-1"></i>
+            <i class="fa fa-calendar-times me-1 text-danger"></i>
             {{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}
           </label>
           <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_vencimiento" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.fecha_vencimiento">
@@ -183,9 +181,8 @@
                 {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}
               </label>
               <input type="number" min="0" class="form-control form-select-sm" [(ngModel)]="model.cantidad_comprada" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.cantidad_comprada">
-              <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100 mt-1 d-inline-block">
-                <i class="fa fa-balance-scale me-1"></i>en {{producto.unidad_medida}}
-              </span>
+              <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i
+                  class="fa fa-ruler-combined me-1"></i>en {{producto.unidad_medida}}</span>
               @if(validators.cantidad_comprada) {
                 <br>
                 <span class="text-danger small"><i class="fa fa-exclamation-circle me-1"></i>{{ 'mod-warehouse.PLACEHOLDER_CANTIDAD_COMPRADA' | translate }}</span>
@@ -202,9 +199,8 @@
                 {{ 'mod-warehouse.LABEL_CANTIDAD_VENDIDA' | translate}}
               </label>
               <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="model.cantidad_vendida" disabled>
-              <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100 mt-1 d-inline-block">
-                <i class="fa fa-balance-scale me-1"></i>en {{producto.unidad_medida}}
-              </span>
+              <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i
+                  class="fa fa-ruler-combined me-1"></i>en {{producto.unidad_medida}}</span>
             </div>
             <div class="col-sm-6 form-group mt-2">
               <label class="label-color">
@@ -212,19 +208,17 @@
                 {{ 'mod-warehouse.LABEL_CANTIDAD_AFECTADA' | translate}}
               </label>
               <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="cantidad_afectada_por_merma" disabled>
-              <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100 mt-1 d-inline-block">
-                <i class="fa fa-balance-scale me-1"></i>en {{producto.unidad_medida}}
-              </span>
+              <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i
+                  class="fa fa-ruler-combined me-1"></i>en {{producto.unidad_medida}}</span>
             </div>
             <div class="col-sm-6 form-group mt-2">
               <label class="label-color">
-                <i class="fa fa-boxes me-1"></i>
+                <i class="fas fa-warehouse me-1"></i>
                 {{ 'mod-warehouse.LABEL_CANTIDAD_BODEGA' | translate}}
               </label>
               <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="model.cantidad_en_bodega" disabled>
-              <span class="bg-gradient-success rounded-3 pl-1 pr-1 text-gray-100 mt-1 d-inline-block">
-                <i class="fa fa-balance-scale me-1"></i>en {{producto.unidad_medida}}
-              </span>
+              <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i
+                  class="fa fa-ruler-combined me-1"></i>en {{producto.unidad_medida}}</span>
             </div>
           </div>
         </div>
@@ -249,7 +243,7 @@
     <!-- SECCIÓN MERMA -->
     <fieldset class="border p-3 rounded mt-3">
       <legend class="float-none w-auto p-1">
-        <i class="fa fa-trash-alt me-1 text-primary"></i>
+        <i class="fa fa-trash-alt me-1"></i>
         {{ 'mod-merma.REGISTER.LEGEND_TITLE' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm ms-1" (click)="toogleSection('mermaSeccion')">
           <i [class]="mostrarSeccion.mermaSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>

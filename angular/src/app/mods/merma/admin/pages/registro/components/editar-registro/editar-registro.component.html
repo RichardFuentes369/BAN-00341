@@ -2,7 +2,7 @@
   <div class="col-xl col-sm-12">
     <fieldset class="border p-3 rounded">
       <legend class="float-none w-auto p-1">
-        <i class="fa fa-box text-primary me-1"></i>
+        <i class="fa fa-box-open me-1"></i>
         {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_PRODUCT' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm ms-2" (click)="toogleSection('productSeccion')">
           <i [class]="mostrarSeccion.productSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
@@ -45,7 +45,7 @@
             </div>
             <div class="col-sm form-group">
               <label class="form-label label-color">
-                <i class="fa fa-ruler me-1"></i>
+                <i class="fa fa-ruler-combined me-1"></i>
                 {{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}
               </label>
               <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.unidad_medida"
@@ -79,7 +79,7 @@
 
     <fieldset class="border p-3 rounded mt-3">
       <legend class="float-none w-auto p-1">
-        <i class="fa fa-warehouse text-primary me-1"></i>
+        <i class="fa fa-warehouse me-1"></i>
         {{ 'mod-warehouse.LEGEND_TITLE' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm ms-2" (click)="toogleSection('batchSeccion')">
           <i [class]="mostrarSeccion.batchSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
@@ -131,7 +131,7 @@
         @if(producto.es_perecedero){
         <div class="col-sm-12 form-group">
           <label class="label-color">
-            <i class="fa fa-calendar-times me-1"></i>
+            <i class="fa fa-calendar-times me-1 text-danger"></i>
             {{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}
           </label>
           <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.fecha_vencimiento"
@@ -157,7 +157,7 @@
 
     <fieldset class="border p-3 rounded mt-3">
       <legend class="float-none w-auto p-1">
-        <i class="fa fa-dumpster text-primary me-1"></i>
+        <i class="fa fa-dumpster me-1"></i>
         {{ 'mod-merma.REGISTER.LEGEND2_TITLE' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm ms-2" (click)="toogleSection('registerSeccion')">
           <i [class]="mostrarSeccion.registerSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>

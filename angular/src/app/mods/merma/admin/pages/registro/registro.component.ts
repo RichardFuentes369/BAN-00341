@@ -75,7 +75,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
       className: 'text-center align-middle'
     },
     {
-      title: `<i class="fas fa-boxes me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH')}`,
+      title: `<i class="fa fa-layer-group me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH')}`,
       data: 'id_lote.lote',
       className: 'text-center align-middle'
     },
@@ -220,7 +220,7 @@ export class RegistroMermaComponent implements OnInit, OnDestroy {
         className: 'text-center align-middle'
       },
       {
-        title: `<i class="fas fa-boxes me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH')}`,
+        title: `<i class="fa fa-layer-group me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_BATCH')}`,
         data: 'id_lote.lote',
         className: 'text-center align-middle'
       },

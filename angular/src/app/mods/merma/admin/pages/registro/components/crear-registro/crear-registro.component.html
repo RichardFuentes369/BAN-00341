@@ -3,21 +3,25 @@
     @if(form_new_product){
     <fieldset class="border p-3 rounded">
       <legend class="float-none w-auto p-1">
-        <i class="fa fa-box me-1 text-primary"></i>
+        <i class="fa fa-box me-1"></i>
         {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_PRODUCT' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm ms-2" (click)="toogleSection('productSeccion')">
           <i [class]="mostrarSeccion.productSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
         </button>
       </legend>
-      <div class="row" *ngIf="mostrarSeccion.productSeccion" [class.animate__fadeIn]="mostrarSeccion.productSeccion" [class.animate__fadeOut]="!mostrarSeccion.productSeccion">
+      <div class="row" *ngIf="mostrarSeccion.productSeccion" [class.animate__fadeIn]="mostrarSeccion.productSeccion"
+        [class.animate__fadeOut]="!mostrarSeccion.productSeccion">
         <div class="col-sm-12 form-group mb-3">
           <label class="label-color">
             <i class="fa fa-barcode me-1"></i>
             {{ 'mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT' | translate }} (EAN-13)
           </label>
           <div class="input-group input-group-sm">
-            <span class="input-group-text"><i class="fa fa-barcode"></i></span>
-            <input type="text" class="form-control form-select-sm" [class]="(fielddBarCode) ? 'bg-light' :''" [(ngModel)]="producto.codigo_barra" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.codigo_barra" placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}" [disabled]="fielddBarCode">
+            <input type="text" class="form-control form-select-sm" [class]="(fielddBarCode) ? 'bg-light' :''"
+              [(ngModel)]="producto.codigo_barra" (ngModelChange)="onInputChange()"
+              [class.is-invalid]="validators.codigo_barra"
+              placeholder="{{ 'mod-catalog.PRODUCT.PLACEHOLDER_COD_BAR_PRODUCT' | translate }}"
+              [disabled]="fielddBarCode">
           </div>
           @if(validators.codigo_barra) {
           <div class="d-flex justify-content-between mt-1">
@@ -30,7 +34,7 @@
           <div class="row mt-2 g-2">
             <div class="col-4">
               <button type="button" class="btn btn-sm btn-outline-primary w-100" (click)="ean13(1)">
-                <i class="fa fa-qrcode me-1"></i> {{ 'global-scanner.BTN_SCANNER' | translate}}
+                <i class="fa fa-barcode me-1"></i>{{ 'global-scanner.BTN_SCANNER' | translate}}
               </button>
             </div>
             <div class="col-4">
@@ -62,10 +66,11 @@
             </div>
             <div class="col-sm form-group">
               <label class="label-color form-label">
-                <i class="fa fa-ruler me-1"></i>
+                <i class="fa fa-ruler-combined me-1"></i>
                 {{ 'mod-catalog.PRODUCT.LABEL_UNIT_OF_MEASUREMENT_PRODUCT' | translate }}
               </label>
-              <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.unidad_medida" disabled>
+              <input type="text" class="form-control form-select-sm bg-light" [(ngModel)]="producto.unidad_medida"
+                disabled>
             </div>
           </div>
           }
@@ -75,7 +80,8 @@
           <div class="p-2">
             <button class="btn btn-sm btn-primary" (click)="goTo('admin/mod/catalog/productos', 0)">
               <i class="fa fa-plus-circle me-1"></i>
-              {{ 'mod-catalog.PRODUCT.CREATE_TITLE' | translate }} {{ 'mod-catalog.PRODUCT.CREATE_SUBTITLE' | translate }}
+              {{ 'mod-catalog.PRODUCT.CREATE_TITLE' | translate }} {{ 'mod-catalog.PRODUCT.CREATE_SUBTITLE' | translate
+              }}
             </button>
           </div>
         </div>
@@ -95,13 +101,14 @@
     @if(form_batch){
     <fieldset class="border p-3 rounded mt-3">
       <legend class="float-none w-auto p-1">
-        <i class="fa fa-warehouse me-1 text-primary"></i>
+        <i class="fa fa-warehouse me-1"></i>
         {{ 'mod-warehouse.LEGEND_TITLE' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm ms-2" (click)="toogleSection('batchSeccion')">
           <i [class]="mostrarSeccion.batchSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
         </button>
       </legend>
-      <div class="row" *ngIf="mostrarSeccion.batchSeccion" [class.animate__fadeIn]="mostrarSeccion.batchSeccion" [class.animate__fadeOut]="!mostrarSeccion.batchSeccion">
+      <div class="row" *ngIf="mostrarSeccion.batchSeccion" [class.animate__fadeIn]="mostrarSeccion.batchSeccion"
+        [class.animate__fadeOut]="!mostrarSeccion.batchSeccion">
         <div class="col-sm-12 form-group">
           <label class="label-color">
             <i class="fa fa-layer-group me-1"></i>
@@ -118,14 +125,14 @@
           }
         </div>
         @if (btn_new_batch && puedoCrearBatch) {
-          <div class="d-flex flex-row-reverse mt-2">
-            <div class="p-2">
-              <button class="btn btn-sm btn-primary" (click)="goTo('admin/mod/warehouse', 0)">
-                <i class="fa fa-plus-circle me-1"></i>
-                {{ 'mod-warehouse.CREATE_TITLE' | translate }} {{ 'mod-warehouse.LABEL_LOTE' | translate }}
-              </button>
-            </div>
+        <div class="d-flex flex-row-reverse mt-2">
+          <div class="p-2">
+            <button class="btn btn-sm btn-primary" (click)="goTo('admin/mod/warehouse', 0)">
+              <i class="fa fa-plus-circle me-1"></i>
+              {{ 'mod-warehouse.CREATE_TITLE' | translate }} {{ 'mod-warehouse.LABEL_LOTE' | translate }}
+            </button>
           </div>
+        </div>
         }
         @if (btn_new_batch && !puedoCrearBatch) {
         <div class="d-flex justify-content-between mt-1">
@@ -146,10 +153,11 @@
         @if(producto.es_perecedero){
         <div class="col-sm-12 form-group">
           <label class="label-color">
-            <i class="fa fa-calendar-times me-1"></i>
+            <i class="fa fa-calendar-times me-1 text-danger"></i>
             {{ 'mod-warehouse.LABEL_FECHA_VENCIMIENTO' | translate}}
           </label>
-          <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.fecha_vencimiento" disabled>
+          <input type="date" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.fecha_vencimiento"
+            disabled>
         </div>
         }
         <div class="col-sm-12 form-group">
@@ -159,32 +167,40 @@
                 <i class="fa fa-cart-plus me-1"></i>
                 {{ 'mod-warehouse.LABEL_CANTIDAD_COMPRADA' | translate}}
               </label>
-              <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.cantidad_comprada" disabled>
-              <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i class="fa fa-weight-hanging me-1"></i>en {{producto.unidad_medida}}</span>
+              <input type="number" min="0" class="form-control form-select-sm bg-light"
+                [(ngModel)]="bodega.cantidad_comprada" disabled>
+              <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i
+                  class="fa fa-ruler-combined me-1"></i>en {{producto.unidad_medida}}</span>
             </div>
             <div class="col-sm-6 form-group">
               <label class="label-color">
                 <i class="fa fa-shopping-bag me-1"></i>
                 {{ 'mod-warehouse.LABEL_CANTIDAD_VENDIDA' | translate}}
               </label>
-              <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.cantidad_vendida" disabled>
-              <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i class="fa fa-weight-hanging me-1"></i>en {{producto.unidad_medida}}</span>
+              <input type="number" min="0" class="form-control form-select-sm bg-light"
+                [(ngModel)]="bodega.cantidad_vendida" disabled>
+              <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i
+                  class="fa fa-ruler-combined me-1"></i>en {{producto.unidad_medida}}</span>
             </div>
             <div class="col-sm-6 form-group">
               <label class="label-color">
                 <i class="fa fa-minus-circle me-1"></i>
                 {{ 'mod-warehouse.LABEL_CANTIDAD_AFECTADA' | translate}}
               </label>
-              <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="cantidad_afectada_por_merma" disabled>
-              <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i class="fa fa-weight-hanging me-1"></i>en {{producto.unidad_medida}}</span>
+              <input type="number" min="0" class="form-control form-select-sm bg-light"
+                [(ngModel)]="cantidad_afectada_por_merma" disabled>
+              <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i
+                  class="fa fa-ruler-combined me-1"></i>en {{producto.unidad_medida}}</span>
             </div>
             <div class="col-sm-6 form-group">
               <label class="label-color">
                 <i class="fa fa-cubes me-1"></i>
                 {{ 'mod-warehouse.LABEL_CANTIDAD_BODEGA' | translate}}
               </label>
-              <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="bodega.cantidad_en_bodega" disabled>
-              <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i class="fa fa-weight-hanging me-1"></i>en {{producto.unidad_medida}}</span>
+              <input type="number" min="0" class="form-control form-select-sm bg-light"
+                [(ngModel)]="bodega.cantidad_en_bodega" disabled>
+              <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i
+                  class="fa fa-ruler-combined me-1"></i>en {{producto.unidad_medida}}</span>
             </div>
           </div>
         </div>
@@ -201,36 +217,29 @@
           </select>
         </div>
         }
-      </div>          
+      </div>
     </fieldset>
     }
 
     @if(form_merma){
     <fieldset class="border p-3 rounded mt-3">
       <legend class="float-none w-auto p-1">
-        <i class="fa fa-dumpster me-1 text-primary"></i>
+        <i class="fa fa-dumpster me-1"></i>
         {{ 'mod-merma.REGISTER.LEGEND2_TITLE' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm ms-2" (click)="toogleSection('registerSeccion')">
           <i [class]="mostrarSeccion.registerSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
         </button>
       </legend>
-      <div class="row" *ngIf="mostrarSeccion.registerSeccion" [class.animate__fadeIn]="mostrarSeccion.registerSeccion" [class.animate__fadeOut]="!mostrarSeccion.registerSeccion">
+      <div class="row" *ngIf="mostrarSeccion.registerSeccion" [class.animate__fadeIn]="mostrarSeccion.registerSeccion"
+        [class.animate__fadeOut]="!mostrarSeccion.registerSeccion">
         <div class="col-sm-12 form-group">
           <label class="label-color">
             <i class="fa fa-list-alt me-1"></i>
             {{ 'mod-merma.REGISTER.LABEL_TYPE' | translate}}
           </label>
-          <ng-select 
-            class="form-control custom-select form-select-sm"
-            [(ngModel)]="model.id_tipo_merma"
-            [items]="tipos_merma"  
-            [loading]="isLoading"
-            (search)="onSearch($event)"
-            (change)="onSelectChange($event)"
-            bindLabel="nombre" 
-            bindValue="id" 
-            appendTo="body" 
-            [readonly]="isReadonly">
+          <ng-select class="form-control custom-select form-select-sm" [(ngModel)]="model.id_tipo_merma"
+            [items]="tipos_merma" [loading]="isLoading" (search)="onSearch($event)" (change)="onSelectChange($event)"
+            bindLabel="nombre" bindValue="id" appendTo="body" [readonly]="isReadonly">
             <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
               <div class="ng-option disabled">
                 <i class="fa fa-search me-1"></i> No se encontró "{{searchTerm}}"
@@ -249,8 +258,10 @@
             <i class="fa fa-sort-numeric-up me-1"></i>
             {{ 'mod-merma.REGISTER.LABEL_AMOUT' | translate}}
           </label>
-          <input type="number" min="0" class="form-control form-select-sm" [(ngModel)]="model.cantidad" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.cantidad">
-          <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i class="fa fa-weight-hanging me-1"></i>en {{producto.unidad_medida}}</span>
+          <input type="number" min="0" class="form-control form-select-sm" [(ngModel)]="model.cantidad"
+            (ngModelChange)="onInputChange()" [class.is-invalid]="validators.cantidad">
+          <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i
+              class="fa fa-ruler-combined me-1"></i>en {{producto.unidad_medida}}</span>
           @if(validators.cantidad) {
           <br>
           <span class="text-danger small">
@@ -271,7 +282,8 @@
             <i class="fa fa-calendar-day me-1"></i>
             {{ 'mod-merma.REGISTER.LABEL_REPORT_DATE' | translate}}
           </label>
-          <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_reporte" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.fecha_reporte"> 
+          <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_reporte"
+            (ngModelChange)="onInputChange()" [class.is-invalid]="validators.fecha_reporte">
           @if(validators.fecha_reporte) {
           <span class="text-danger small">
             <i class="fa fa-exclamation-triangle me-1"></i>
@@ -284,7 +296,8 @@
             <i class="fa fa-dollar-sign me-1"></i>
             {{ 'mod-merma.REGISTER.LABEL_LOST_VALUE' | translate}}
           </label>
-          <input type="number" min="0" class="form-control form-select-sm" [(ngModel)]="model.valor_perdido" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.valor_perdido">
+          <input type="number" min="0" class="form-control form-select-sm" [(ngModel)]="model.valor_perdido"
+            (ngModelChange)="onInputChange()" [class.is-invalid]="validators.valor_perdido">
           @if(validators.valor_perdido) {
           <span class="text-danger small">
             <i class="fa fa-exclamation-triangle me-1"></i>
@@ -297,7 +310,9 @@
             <i class="fa fa-comment-alt me-1"></i>
             {{ 'mod-merma.REGISTER.LABEL_OBSERVATION' | translate}}
           </label>
-          <textarea style="resize: none;" type="text" class="form-control form-select-sm" [(ngModel)]="model.observacion" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.observacion">
+          <textarea style="resize: none;" type="text" class="form-control form-select-sm"
+            [(ngModel)]="model.observacion" (ngModelChange)="onInputChange()"
+            [class.is-invalid]="validators.observacion">
           </textarea>
           @if(validators.observacion) {
           <span class="text-danger small">
@@ -306,7 +321,7 @@
           </span>
           }
         </div>
-      </div>          
+      </div>
     </fieldset>
     }
 

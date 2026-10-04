@@ -69,6 +69,7 @@ export class VerRegistroComponent {
     this.producto.marca  = this.registroReal.data.id_lote.id_producto.marca.nombre
     this.producto.marca  = this.registroReal.data.id_lote.id_producto.es_perecedero
     this.producto.unidad_medida  = this.registroReal.data.id_lote.id_producto.medida.nombre
+    this.producto.es_perecedero = this.registroReal.data.id_lote.id_producto.es_perecedero
 
     this.lote.lote  = this.registroReal.data.id_lote.lote
     this.lote.fecha_entrada  = this.formatoFecha(this.registroReal.data.id_lote.fecha_entrada)

@@ -83,7 +83,7 @@ export class WarehoseComponent implements OnInit, OnDestroy {
       className: 'text-center align-middle'
     },
     {
-      title: `<i class="fas fa-boxes me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_BATCH')}`,
+      title: `<i class="fa fa-layer-group me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_BATCH')}`,
       data: 'lote',
       className: 'text-center align-middle'
     },
@@ -100,6 +100,7 @@ export class WarehoseComponent implements OnInit, OnDestroy {
     {
       title: `<i class="fas fa-truck me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_SUPPLIER')}`,
       data: 'id_proveedor.razon_social',
+      visible: false,
       className: 'text-center align-middle'
     },
     {
@@ -142,7 +143,7 @@ export class WarehoseComponent implements OnInit, OnDestroy {
       className: 'text-center align-middle'
     },
     {
-      title: `<i class="fas fa-chart-line me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_SOLD')}`,
+      title: `<i class="fa fa-shopping-bag me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_SOLD')}`,
       data: 'cantidad_vendida',
       className: 'text-center align-middle'
     },
@@ -157,12 +158,14 @@ export class WarehoseComponent implements OnInit, OnDestroy {
       className: 'text-center align-middle'
     },
     {
-      title: `<i class="fas fa-ruler me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_UNIT_OF_MEASUREMENT')}`,
+      title: `<i class="fa fa-ruler-combined me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_UNIT_OF_MEASUREMENT')}`,
+      visible: false,
       data: 'id_producto.medida.nombre',
       className: 'text-center align-middle'
     },
     {
       title: `<i class="fas fa-info-circle me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_STATUS')}`,
+      visible: false,
       data: 'estado',
       className: 'text-center align-middle'
     },
@@ -257,7 +260,7 @@ export class WarehoseComponent implements OnInit, OnDestroy {
         className: 'text-center align-middle'
       },
       {
-        title: `<i class="fas fa-boxes me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_BATCH')}`,
+        title: `<i class="fa fa-layer-group me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_BATCH')}`,
         data: 'lote',
         className: 'text-center align-middle'
       },
@@ -274,6 +277,7 @@ export class WarehoseComponent implements OnInit, OnDestroy {
       {
         title: `<i class="fas fa-truck me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_SUPPLIER')}`,
         data: 'id_proveedor.razon_social',
+        visible: false,
         className: 'text-center align-middle'
       },
       {
@@ -316,7 +320,7 @@ export class WarehoseComponent implements OnInit, OnDestroy {
         className: 'text-center align-middle'
       },
       {
-        title: `<i class="fas fa-chart-line me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_SOLD')}`,
+        title: `<i class="fa fa-shopping-bag me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_SOLD')}`,
         data: 'cantidad_vendida',
         className: 'text-center align-middle'
       },
@@ -331,12 +335,14 @@ export class WarehoseComponent implements OnInit, OnDestroy {
         className: 'text-center align-middle'
       },
       {
-        title: `<i class="fas fa-ruler me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_UNIT_OF_MEASUREMENT')}`,
+        title: `<i class="fa fa-ruler-combined me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_UNIT_OF_MEASUREMENT')}`,
+        visible: false,
         data: 'id_producto.medida.nombre',
         className: 'text-center align-middle'
       },
       {
         title: `<i class="fas fa-info-circle me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_STATUS')}`,
+        visible: false,
         data: 'estado',
         className: 'text-center align-middle'
       },
@@ -462,6 +468,7 @@ export class WarehoseComponent implements OnInit, OnDestroy {
 
   async refrescarTabla() {
     setTimeout(async () => {
+      await this.actualizarContadores()
       await this.someInput.reload()
     }, 100);
   }

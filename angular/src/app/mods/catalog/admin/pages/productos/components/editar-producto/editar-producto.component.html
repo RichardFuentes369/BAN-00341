@@ -4,7 +4,7 @@
     <!-- SECCIÓN: PRODUCTO -->
     <fieldset class="border p-3 rounded">
       <legend class="float-none w-auto p-1">
-        <i class="fa fa-box me-1"></i> {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_PRODUCT' | translate }}
+        <i class="fa fa-box-open me-1"></i> {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_PRODUCT' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('productSeccion')">
           <i [class]="mostrarSeccion.productSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
         </button>
@@ -63,7 +63,7 @@
 
         <div class="col-sm-6 form-group mb-3">
           <label class="label-color">
-            <i class="fa fa-toggle-on me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_BRAND_STATUS' | translate }}
+            <i class="fa fa-info-circle me-1"></i>  {{ 'mod-catalog.PRODUCT.LABEL_BRAND_STATUS' | translate }}
           </label>
             <select class="form-control form-select-sm" [(ngModel)]="model.estado" (ngModelChange)="onInputChange(item)" [class.is-invalid]="validators.estado">
               <option [ngValue]="null">{{ 'mod-catalog.PRODUCT.SELECT_PRODUCT_STATUS' | translate }}</option>
