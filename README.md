@@ -8,6 +8,7 @@ CTRL + SHIFT + V
 	1. DASHBOARD: Graficos
 	2. Personalización
 	3. Manual web: Agregar la instalacion del plugin en chrome
+	4. Ajustar los filtros a los reportes excel csv
 
 ### Futuras mejoras
 
