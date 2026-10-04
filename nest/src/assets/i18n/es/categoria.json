@@ -15,5 +15,13 @@
   "MSJ_ERROR_MARCA_TIENE_PRODUCTOS_HIJOS": "No se puede eliminar ninguna marca, esta marca contiene productos.",
 
   "MSJ_MEDIDA_TITTLE": "Medida",
-  "MSJ_ERROR_MEIDA_TIENE_PRODUCTOS_HIJOS": "No se puede eliminar ninguna medida, esta medida contiene productos."
+  "MSJ_ERROR_MEIDA_TIENE_PRODUCTOS_HIJOS": "No se puede eliminar ninguna medida, esta medida contiene productos.",
+
+  "MSJ_TIPO_TITTLE": "Tipo pérdida",
+  "MSJ_ERROR_TIPO_TIENE_PRODUCTOS_HIJOS": "No se puede eliminar ninguna tipo de perdida, este tipo de perdida contiene registros.",
+
+
+  "MSJ_PROVEEDOR_TITTLE": "Proveedor",
+  "MSJ_ERROR_PROVEEDOR_TIENE_PRODUCTOS_HIJOS": "No se puede eliminar el proveedor, este proveedor contiene registros."
+
 }

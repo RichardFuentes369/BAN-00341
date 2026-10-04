@@ -267,13 +267,24 @@ export class TipoMermaComponent implements OnInit, OnDestroy{
       }).then(async (result) => {
         if (result.isConfirmed) {
           if (result.isConfirmed) {
-            await this.tipoService.deleteTipo(_id)
+            let response = await this.tipoService.deleteTipo(_id)
             await this.someInput.reload()
-            Swal.fire({
-              title: this.translate.instant('mod-merma.TYPE.SWAL_DELETED'),
-              text: this.translate.instant('mod-merma.SWAL_DELETED_RECORD'),
-              icon: "success"
-            });
+
+            if (response.data.status == 200) {
+              Swal.fire({
+                title: this.translate.instant('mod-merma.TYPE.SWAL_DELETED'),
+                text: this.translate.instant('mod-merma.SWAL_DELETED_RECORD'),
+                icon: "success"
+              });
+            }
+        
+            if (response.data.status == 404) {
+              Swal.fire({
+                title: this.translate.instant('mod-merma.TYPE.SWAL_DELETED'),
+                text: response.data.message,
+                icon: "error"
+              });
+            }
           }
         }
       });

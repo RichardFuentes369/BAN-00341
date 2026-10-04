@@ -165,7 +165,7 @@ export class BrandService {
       };
     } catch (error) {
       return {
-        'title': this.i18n.t('categoria.MSJ_MARCA_TIMSJ_MEDIDA_TITTLETTLE', { lang }),
+        'title': this.i18n.t('categoria.MSJ_MARCA_TITTLE', { lang }),
         'message': this.i18n.t('categoria.MSJ_ERROR_MARCA_TIENE_PRODUCTOS_HIJOS', { lang }),
         'status': 404,
       }

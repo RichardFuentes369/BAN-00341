@@ -14,5 +14,11 @@
   "MSJ_ERROR_MARCA_TIENE_PRODUCTOS_HIJOS": "No action can be delete, this brand contains products.",
 
   "MSJ_MEDIDA_TITTLE": "Measurement",
-  "MSJ_ERROR_MEIDA_TIENE_PRODUCTOS_HIJOS": "No measurement can be delete; this measurement contains child products."
+  "MSJ_ERROR_MEIDA_TIENE_PRODUCTOS_HIJOS": "No measurement can be delete; this measurement contains child products.",
+
+  "MSJ_TIPO_TITTLE": "Loss type",
+  "MSJ_ERROR_TIPO_TIENE_PRODUCTOS_HIJOS": "Cannot delete this loss type because it contains existing records.",
+
+  "MSJ_PROVEEDOR_TITTLE": "Supplier",
+  "MSJ_ERROR_PROVEEDOR_TIENE_PRODUCTOS_HIJOS": "Cannot delete the supplier; this supplier contains records."
 }

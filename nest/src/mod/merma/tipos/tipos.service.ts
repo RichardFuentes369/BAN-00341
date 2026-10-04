@@ -12,7 +12,7 @@ export class TiposService {
     @Inject('TIPOS_MERMA_REPOSITORY')
     private tipoMermaRepository: Repository<Tipo>,
     private i18n: I18nService
-  ) {}
+  ) { }
 
   listarPropiedadesTabla(repository: Repository<any>) {
     const metadata = repository.metadata;
@@ -37,7 +37,7 @@ export class TiposService {
 
     const skipReal = (page == 1) ? 0 : (page - 1) * limit;
     const where: any = {};
-    
+
     if (filterDto.nombre) where.nombre = Like(`%${filterDto.nombre}%`);
 
     const totalRecords = await this.tipoMermaRepository.count({ where });
@@ -47,14 +47,14 @@ export class TiposService {
       take: limit,
       where: where,
       order: { [field]: order },
-      relations: { mermas: true } 
+      relations: { mermas: true }
     });
 
     const result = registros.map(tipo => {
       return {
         ...tipo,
         total1: tipo.mermas ? tipo.mermas.length : 0,
-        mermas: undefined 
+        mermas: undefined
       };
     });
 
@@ -72,11 +72,11 @@ export class TiposService {
   }
 
   async findOne(
-    lang: string, 
+    lang: string,
     id: number
   ) {
-    const tipo_merma = await this.tipoMermaRepository.findOne({ 
-      where: { id } 
+    const tipo_merma = await this.tipoMermaRepository.findOne({
+      where: { id }
     });
     if (!tipo_merma) throw new NotFoundException(
       this.i18n.t('category.MSJ_CATEGORIA_NO_ENCONTRADA', { lang })
@@ -85,8 +85,8 @@ export class TiposService {
   }
 
   async create(
-    lang: string, 
-    tipoData: CreateTipoDto, 
+    lang: string,
+    tipoData: CreateTipoDto,
     userId: number
   ) {
     try {
@@ -111,13 +111,13 @@ export class TiposService {
   }
 
   async update(
-    lang: string, 
-    id: number, 
-    tipoData: UpdateTipoDto, 
+    lang: string,
+    id: number,
+    tipoData: UpdateTipoDto,
     userId: number
   ) {
     const category = await this.findOne(lang, id);
-    
+
     return this.tipoMermaRepository.save({
       ...category,
       ...tipoData
@@ -126,47 +126,55 @@ export class TiposService {
 
   async remove(lang: string, ids: number[], userId: number) {
 
-    const tipo_merma = await this.tipoMermaRepository.find({
-      where: { id: In(ids) },
-      relations: { mermas: true },
-    });
-    
-    const resultado = tipo_merma.map(cat => ({
-      ...cat,
-      total_productos: cat.mermas.length
-    }));
+    try {
+      const tipo_merma = await this.tipoMermaRepository.find({
+        where: { id: In(ids) },
+        relations: { mermas: true },
+      });
 
-    const tieneHijos = tipo_merma.some(cat => cat.mermas.length > 0);
-    
-    if (tieneHijos) {
+      const resultado = tipo_merma.map(cat => ({
+        ...cat,
+        total_productos: cat.mermas.length
+      }));
+
+      const tieneHijos = tipo_merma.some(cat => cat.mermas.length > 0);
+
+      if (tieneHijos) {
+        return {
+          title: this.i18n.t('categoria.MSJ_TIPO_TITTLE', { lang }),
+          message: this.i18n.t('categoria.MSJ_ERROR_TIPO_TIENE_PRODUCTOS_HIJOS', { lang }),
+          status: 404,
+        };
+      }
+
+      this.tipoMermaRepository.delete({ id: In(ids) })
+
       return {
-        title: this.i18n.t('categoria.MSJ_PERMISO_TITTLE', { lang }),
-        message: this.i18n.t('categoria.MSJ_ERROR_PERMISO_TIENE_PRODUCTOS_HIJOS', { lang }),
-        status: 400, 
-      };
-    }
-
-    this.tipoMermaRepository.delete({ id: In(ids) })
-
-    return {
         'title': this.i18n.t('categoria.MSJ_CATEGORY_TITTLE', { lang }),
         'message': this.i18n.t('categoria.MSN_PERMISO_REMOVIDO_OK', { lang }),
         'status': 200,
-    };
+      };
+    } catch (error) {
+      return {
+        'title': this.i18n.t('categoria.MSJ_TIPO_TITTLE', { lang }),
+        'message': this.i18n.t('categoria.MSJ_ERROR_TIPO_TIENE_PRODUCTOS_HIJOS', { lang }),
+        'status': 404,
+      }
+    }
   }
 
-  async listaTipos(search: string){
+  async listaTipos(search: string) {
     return await this.tipoMermaRepository.find({
       where: { nombre: Like(`%${search}%`) },
-      take: 20 
+      take: 20
     });
   }
 
   async contadoresTipo(
     lang: string
-  ){
-    const cont1 =  await this.tipoMermaRepository.count()
-    
+  ) {
+    const cont1 = await this.tipoMermaRepository.count()
+
     const data = {
       "count_total_type_merma": cont1,
     }

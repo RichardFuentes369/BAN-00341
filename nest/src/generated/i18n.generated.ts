@@ -31,6 +31,10 @@ export type I18nTranslations = {
         "MSJ_ERROR_MARCA_TIENE_PRODUCTOS_HIJOS": string;
         "MSJ_MEDIDA_TITTLE": string;
         "MSJ_ERROR_MEIDA_TIENE_PRODUCTOS_HIJOS": string;
+        "MSJ_TIPO_TITTLE": string;
+        "MSJ_ERROR_TIPO_TIENE_PRODUCTOS_HIJOS": string;
+        "MSJ_PROVEEDOR_TITTLE": string;
+        "MSJ_ERROR_PROVEEDOR_TIENE_PRODUCTOS_HIJOS": string;
     };
     "modulo": {
         "ERROR": string;

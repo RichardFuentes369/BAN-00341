@@ -297,13 +297,18 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
   async eliminarData(_id: string[]) {
-    const response = await this.proveedoresService.getDataProvider(_id[0])
-    const { razon_social } = response.data || { razon_social: 'xxxxxxx' }
-    const name_user = (_id.length === 1) ? razon_social : "(" + _id.length + ")"
-    const count_users = (_id.length === 1) ? 'el' : 'los'
-    const plural = (_id.length === 1) ? '' : 's'
+    // 1. Obtener datos del proveedor para el mensaje de confirmación
+    const response = await this.proveedoresService.getDataProvider(_id[0]);
+    const { razon_social } = response.data || { razon_social: 'xxxxxxx' };
+    const name_user = (_id.length === 1) ? razon_social : "(" + _id.length + ")";
+    const count_users = (_id.length === 1) ? 'el' : 'los';
+    const plural = (_id.length === 1) ? '' : 's';
 
-    this.translate.get('mod-catalog.SUPPLIER.SWAL_ARE_YOU_SURE_DELETE', { "art_the": count_users, "plural": plural, "user_name": name_user }).subscribe((translatedTitle: string) => {
+    this.translate.get('mod-catalog.SUPPLIER.SWAL_ARE_YOU_SURE_DELETE', {
+      "art_the": count_users,
+      "plural": plural,
+      "user_name": name_user
+    }).subscribe((translatedTitle: string) => {
       Swal.fire({
         title: translatedTitle,
         text: this.translate.instant('mod-catalog.SWAL_WARNING_REVERSE_CHANGE'),
@@ -313,13 +318,32 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
         cancelButtonText: this.translate.instant('mod-catalog.SWAL_BUTTON_CANCEL')
       }).then(async (result) => {
         if (result.isConfirmed) {
-          if (result.isConfirmed) {
-            await this.proveedoresService.deleteProvider(_id)
-            await this.someInput.reload()
+          try {
+            // 2. Guardar la respuesta REAL de la eliminación
+            const deleteRes: any = await this.proveedoresService.deleteProvider(_id);
+            await this.someInput.reload();
+
+            // 3. Evaluar el status de deleteRes (o deleteRes.data según tu backend)
+            if (deleteRes?.status === 200 || deleteRes?.data?.status === 200) {
+              Swal.fire({
+                title: this.translate.instant('mod-catalog.SUPPLIER.SWAL_DELETED'),
+                text: this.translate.instant('mod-catalog.SWAL_DELETED_RECORD'),
+                icon: "success"
+              });
+            }
+            if (deleteRes?.status === 404 || deleteRes?.data?.status === 404) {
+              Swal.fire({
+                title: this.translate.instant('mod-catalog.SUPPLIER.SWAL_DELETED'),
+                text: deleteRes?.data?.message || deleteRes?.message || 'Error al eliminar',
+                icon: "error"
+              });
+            }
+          } catch (error: any) {
+            // Si el Backend responde con status 4xx/5xx vía HTTP Error
             Swal.fire({
-              title: this.translate.instant('mod-catalog.SUPPLIER.SWAL_DELETED'),
-              text: this.translate.instant('mod-catalog.SWAL_DELETED_RECORD'),
-              icon: "success"
+              title: this.translate.instant('mod-catalog.SUPPLIER.SWAL_ERROR'),
+              text: error?.error?.message || error?.message || 'Error en el servidor',
+              icon: "error"
             });
           }
         }

@@ -77,8 +77,9 @@ export class CrearProveedorComponent {
 
   checkValidation(): boolean {
 
-    const regexNIT = /^[0-9]{8,15}$/;
+    const regexNIT = /^[0-9]{9}$/;
     const regexDV = /^[0-9]{1}$/;
+    const regexPhone = /^\+?[\d\s\-()]{7,20}$/;
     const regexPhoneCO = /^(\+57)?3\d{9}$/;
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -86,7 +87,7 @@ export class CrearProveedorComponent {
     this.validators.dv = (this.model.dv === null || !regexDV.test((this.model.dv as any).toString()));
     this.validators.razon_social = (this.model.razon_social.trim().length === 0)
     this.validators.direccion = (this.model.direccion.trim().length === 0)
-    this.validators.telefono = (this.model.telefono.trim().length === 0 || !regexPhoneCO.test(this.model.telefono))
+    this.validators.telefono = (this.model.telefono.trim().length === 0 || !regexPhone.test(this.model.telefono))
     this.validators.correo = (this.model.correo.trim().length === 0 || !regexEmail.test(this.model.correo))
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement

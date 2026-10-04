@@ -137,7 +137,41 @@ export class SupplierService {
   }
 
   async remove(lang: string, ids: number[], userId: number) {
-    return this.supplierRepository.delete({ id: In(ids) });
+    try {
+      const marcas = await this.supplierRepository.find({
+        where: { id: In(ids) },
+        relations: { lote: true },
+      });
+
+      const resultado = marcas.map(mar => ({
+        ...mar,
+        total_productos: mar.lote.length
+      }));
+
+      const tieneHijos = marcas.some(cat => cat.lote.length > 0);
+
+      if (tieneHijos) {
+        return {
+          title: this.i18n.t('categoria.MSJ_PROVEEDOR_TITTLE', { lang }),
+          message: this.i18n.t('categoria.MSJ_ERROR_PROVEEDOR_TIENE_PRODUCTOS_HIJOS', { lang }),
+          status: 404,
+        };
+      }
+
+      this.supplierRepository.delete({ id: In(ids) })
+
+      return {
+        'title': this.i18n.t('categoria.MSJ_CATEGORY_TITTLE', { lang }),
+        'message': this.i18n.t('categoria.MSN_PERMISO_REMOVIDO_OK', { lang }),
+        'status': 200,
+      };
+    } catch (error) {
+      return {
+        'title': this.i18n.t('categoria.MSJ_PROVEEDOR_TITTLE', { lang }),
+        'message': this.i18n.t('categoria.MSJ_ERROR_PROVEEDOR_TIENE_PRODUCTOS_HIJOS', { lang }),
+        'status': 404,
+      }
+    }
   }
 
   async contadoresProveedores(
@@ -172,7 +206,7 @@ export class SupplierService {
 
     const correoVal = getSearchValue(allParams.correo);
     if (correoVal) where.correo = Like(`%${correoVal}%`);
-    
+
     const telefonoVal = getSearchValue(allParams.telefono);
     if (telefonoVal) where.telefono = Like(`%${telefonoVal}%`);
 
@@ -226,7 +260,7 @@ export class SupplierService {
 
     const correoVal = getSearchValue(allParams.correo);
     if (correoVal) where.correo = Like(`%${correoVal}%`);
-    
+
     const telefonoVal = getSearchValue(allParams.telefono);
     if (telefonoVal) where.telefono = Like(`%${telefonoVal}%`);
 
