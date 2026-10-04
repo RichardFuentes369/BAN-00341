@@ -18,14 +18,16 @@ export class FiltroWarehouseComponent implements OnInit {
 
   complementoFiltro = ''
   marcas: any[] = [];
-  medidas: any[] = [];
+  productos: any[] = [];
+  // medidas: any[] = [];
   isLoading: boolean = false
   filtro1: string = ''
   filtro2: string = ''
+  // filtro3: string = ''
 
   constructor(
     private productosService: ProductosService,
-    private medidaService: MedidaService,
+    // private medidaService: MedidaService,
     private translate: TranslateService
   ) {
   }
@@ -49,12 +51,14 @@ export class FiltroWarehouseComponent implements OnInit {
     cantidad_vendida_maximo: '',
     cantidad_afectada_minimo: '',
     cantidad_afectada_maximo: '',
+    marca_obj: null as any,
+    producto_obj: null as any,
+    // medida_obj: null as any,
     field: '',
     order: ''
   }
 
   async ngOnInit() {
-    this.getMedida()
     this.model = {
       estado: sessionStorage.getItem('estado') || '',
       lote: sessionStorage.getItem('lote') || '',
@@ -74,6 +78,9 @@ export class FiltroWarehouseComponent implements OnInit {
       cantidad_vendida_maximo: sessionStorage.getItem('cantidad_vendida_maximo') || '',
       cantidad_afectada_minimo: sessionStorage.getItem('cantidad_afectada_minimo') || '',
       cantidad_afectada_maximo: sessionStorage.getItem('cantidad_afectada_maximo') || '',
+      marca_obj: { id: sessionStorage.getItem('id_marca'), nombre: sessionStorage.getItem('nombre_marca') },
+      producto_obj: { id: sessionStorage.getItem('id_producto'), nombre: sessionStorage.getItem('nombre_producto') },
+      // medida_obj: { id: sessionStorage.getItem('id_marca'), nombre: sessionStorage.getItem('nombre_medida') },
       field: sessionStorage.getItem('field') || '',
       order: sessionStorage.getItem('order') || ''
     }
@@ -87,6 +94,12 @@ export class FiltroWarehouseComponent implements OnInit {
     }    
     if(this.model.codigo_barra != ''){
       this.complementoFiltro += `&codigo_barra=${this.model.codigo_barra}`      
+    }
+    if(this.model.id_marca != ''){
+      this.complementoFiltro += `&id_marca=${this.model.id_marca}`      
+    }
+    if(this.model.id_producto != ''){
+      this.complementoFiltro += `&id_producto=${this.model.id_producto}`      
     }
     if(this.model.id_medida != ''){
       this.complementoFiltro += `&id_medida=${this.model.id_medida}`      
@@ -135,12 +148,74 @@ export class FiltroWarehouseComponent implements OnInit {
     }
     $(".complementoRuta").val(this.complementoFiltro)
   }
+
+  onSearchB(event: any) {
+    const term = event.term;
+    if (term && term.length >= 3) {
+      this.filtro1 = term
+      this.isLoading = true;
+      this.getMarcas();
+    }
+  }
+
+  onClearB(){
+    this.model.id_marca = ''
+    sessionStorage.removeItem('id_marca')
+    sessionStorage.removeItem('nombre_marca')
+  }
+
+  onSearchP(event: any) {
+    const term = event.term;
+    if (term && term.length >= 3) {
+      this.filtro2 = term
+      this.isLoading = true;
+      this.getProductos();
+    }
+  }
+
+  onClearP(){
+    this.model.id_producto = ''
+    sessionStorage.removeItem('id_producto')
+    sessionStorage.removeItem('nombre_producto')
+  }
+
+  // onSearchM(event: any) {
+  //   const term = event.term;
+  //   if (term && term.length >= 3) {
+  //     this.filtro3 = term
+  //     this.isLoading = true;
+  //     this.getMedida();
+  //   }
+  // }
+  
+  // onClearM(){
+  //   this.model.id_medida = ''
+  //   sessionStorage.removeItem('id_medida')
+  //   sessionStorage.removeItem('nombre_medida')
+  // }
+
+  onSelectChangeB(item: any) {
+    sessionStorage.setItem('nombre_marca', item.nombre)
+    this.model.id_marca = (item != undefined) ? item.id : null
+  }
+  // onSelectChangeM(item: any) {
+  //   sessionStorage.setItem('nombre_medida', item.nombre)
+  //   this.model.id_medida = (item != undefined) ? item.id : null
+  // }
+  onSelectChangeP(item: any) {
+    sessionStorage.setItem('nombre_producto', item.nombre)
+    this.model.id_producto = (item != undefined) ? item.id : null
+  }
   
   limpiar(){
     $(".complementoRuta").val('')
     this.complementoFiltro = ''
     this.filtro1 = ''
     this.filtro2 = ''
+    // this.filtro3 = ''
+    this.model.marca_obj = null
+    // this.model.medida_obj = null
+    this.model.producto_obj = null
     this.model.estado = '',
     this.model.lote = '',
     this.model.codigo_barra = '',
@@ -165,8 +240,11 @@ export class FiltroWarehouseComponent implements OnInit {
     sessionStorage.removeItem('estado'),
     sessionStorage.removeItem('lote'),
     sessionStorage.removeItem('codigo_barra'),
+    sessionStorage.removeItem('nombre_medida')
     sessionStorage.removeItem('id_medida'),
+    sessionStorage.removeItem('nombre_marca')
     sessionStorage.removeItem('id_marca'),
+    sessionStorage.removeItem('nombre_producto')
     sessionStorage.removeItem('id_producto'),
     sessionStorage.removeItem('fecha_entrada_minimo'),
     sessionStorage.removeItem('fecha_entrada_maximo'),
@@ -183,65 +261,13 @@ export class FiltroWarehouseComponent implements OnInit {
     sessionStorage.removeItem('field')
     sessionStorage.removeItem('order')
   }
-
-  onSearchM(event: any) {
-    const term = event.term;
-    if (term && term.length >= 3) {
-      this.filtro1 = term
-      this.isLoading = true;
-      this.getMarcas();
-    }
-  }
-
-  onSearchP(event: any) {
-    const term = event.term;
-    if (term && term.length >= 3) {
-      this.filtro2 = term
-      this.isLoading = true;
-      this.getProductos();
-    }
-  }
-
-  async getMedida() {
-    this.isLoading = true;
-    try {
-      const medidaList = await this.medidaService.getDataList()
-      this.medidas = medidaList.data[0].result;
-    } finally {
-      this.isLoading = false;
-    }
-  }
-
-  async getMarcas() {
-    this.isLoading = true;
-    try {
-      const marcasList = await this.productosService.getDataBrandSearch(this.filtro1)
-      this.marcas = [...marcasList.data];
-    } finally {
-      this.isLoading = false;
-    }
-  }  
-
-  async getProductos() {
-    this.isLoading = true;
-    try {
-      const productoList = await this.productosService.getDataBrandProductSearch(this.model.id_marca, this.filtro2)
-      this.marcas = [...productoList.data];
-    } finally {
-      this.isLoading = false;
-    }
-  } 
-
-  onSelectChangeM(item: any) {
-    this.model.id_marca = (item != undefined) ? item.id : null
-  }
-  onSelectChangeP(item: any) {
-    this.model.id_producto = (item != undefined) ? item.id : null
-  }
   
   filtrar(){
     this.complementoFiltro = ''
     
+    sessionStorage.removeItem('filtro1')
+    sessionStorage.removeItem('filtro2')
+    // sessionStorage.removeItem('filtro3')
     sessionStorage.removeItem('estado'),
     sessionStorage.removeItem('lote'),
     sessionStorage.removeItem('codigo_barra'),
@@ -279,16 +305,22 @@ export class FiltroWarehouseComponent implements OnInit {
     } 
 
     if(this.model.id_medida != ''){
-      this.complementoFiltro += `&id_medida=${this.model.id_medida}`
-      sessionStorage.setItem('id_medida', this.model.id_medida)
+      if(this.model.id_medida != null){
+        this.complementoFiltro += `&id_medida=${this.model.id_medida}`
+        sessionStorage.setItem('id_medida', this.model.id_medida)
+      }
     }
     if(this.model.id_marca != ''){
-      this.complementoFiltro += `&id_marca=${this.model.id_marca}`
-      sessionStorage.setItem('id_marca', this.model.id_marca)
+      if(this.model.id_marca != null){
+        this.complementoFiltro += `&id_marca=${this.model.id_marca}`
+        sessionStorage.setItem('id_marca', this.model.id_marca)
+      }
     }   
     if(this.model.id_producto != ''){
-      this.complementoFiltro += `&id_producto=${this.model.id_producto}`
-      sessionStorage.setItem('id_producto', this.model.id_producto)
+      if(this.model.id_producto != null){
+        this.complementoFiltro += `&id_producto=${this.model.id_producto}`
+        sessionStorage.setItem('id_producto', this.model.id_producto)
+      }
     }   
     if(this.model.fecha_entrada_minimo != ''){
       let fecha_entrada_minimo = toTimestampp(this.model.fecha_entrada_minimo)
@@ -352,5 +384,35 @@ export class FiltroWarehouseComponent implements OnInit {
     }
     $(".complementoRuta").val(this.complementoFiltro)
   }
+  
 
+  // async getMedida() {
+  //   this.isLoading = true;
+  //   try {
+  //     const medidaList = await this.medidaService.getDataList()
+  //     this.medidas = medidaList.data[0].result;
+  //   } finally {
+  //     this.isLoading = false;
+  //   }
+  // }
+
+  async getMarcas() {
+    this.isLoading = true;
+    try {
+      const marcasList = await this.productosService.getDataBrandSearch(this.filtro1)
+      this.marcas = [...marcasList.data];
+    } finally {
+      this.isLoading = false;
+    }
+  }  
+
+  async getProductos() {
+    this.isLoading = true;
+    try {
+      const productoList = await this.productosService.getDataBrandProductSearch(this.model.id_marca, this.filtro2)
+      this.productos = [...productoList.data];
+    } finally {
+      this.isLoading = false;
+    }
+  } 
 }

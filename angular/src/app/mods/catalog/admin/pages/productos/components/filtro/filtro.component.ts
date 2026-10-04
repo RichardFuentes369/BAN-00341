@@ -19,9 +19,11 @@ export class FiltroProductComponent {
   complementoFiltro = ''
   marcas: any[] = [];
   medidas: any[] = [];
+  productos: any[] = [];
   isLoading: boolean = false
   isReadonly:boolean = false
-  filtro: string = ''
+  filtro1: string = ''
+  filtro2: string = ''
   hasBrandInUrl: boolean = false;
   hasExtendInUrl: boolean = false;
 
@@ -70,7 +72,6 @@ export class FiltroProductComponent {
       field: sessionStorage.getItem('field') || '',
       order: sessionStorage.getItem('order') || ''
     }
-    this.filtro = sessionStorage.getItem('filtro') || '',
 
     this.complementoFiltro = ''
     if(this.model.nombre != ''){
@@ -110,7 +111,7 @@ export class FiltroProductComponent {
   onSearchB(event: any) {
     const term = event.term;
     if (term && term.length >= 3) {
-      this.filtro = term
+      this.filtro1 = term
       this.isLoading = true;
       this.getMarcas();
     }
@@ -131,7 +132,7 @@ export class FiltroProductComponent {
   onSearchM(event: any) {
     const term = event.term;
     if (term && term.length >= 3) {
-      this.filtro = term
+      this.filtro2 = term
       this.isLoading = true;
       this.getMedidas();
     }
@@ -150,7 +151,8 @@ export class FiltroProductComponent {
   limpiar(){
     $(".complementoRuta").val('')
     this.complementoFiltro = ''
-    this.filtro = ''
+    this.filtro1 = ''
+    this.filtro2 = ''
     this.model.marca_obj = null
     this.model.medida_obj = null
     this.model.nombre = ''
@@ -181,7 +183,8 @@ export class FiltroProductComponent {
   filtrar(){
     this.complementoFiltro = ''
     
-    sessionStorage.removeItem('filtro')
+    sessionStorage.removeItem('filtro1')
+    sessionStorage.removeItem('filtro2')
     sessionStorage.removeItem('nombre')
     sessionStorage.removeItem('id_marca')
     sessionStorage.removeItem('codigo_barra')
@@ -243,7 +246,7 @@ export class FiltroProductComponent {
   async getMarcas() {
     this.isLoading = true;
     try {
-      const marcasList = await this.productosService.getDataBrandSearch(this.filtro)
+      const marcasList = await this.productosService.getDataBrandSearch(this.filtro1)
       this.marcas = [...marcasList.data];
     } finally {
       this.isLoading = false;
@@ -253,7 +256,7 @@ export class FiltroProductComponent {
   async getMedidas() {
     this.isLoading = true;
     try {
-      const medidaList = await this.medidaService.getDataExtendSearch(this.filtro)
+      const medidaList = await this.medidaService.getDataExtendSearch(this.filtro2)
       this.medidas = [...medidaList.data];
     } finally {
       this.isLoading = false;
