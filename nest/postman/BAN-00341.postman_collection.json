@@ -1490,7 +1490,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/product/obtener-producto-por-barcode?_barcode=8959663311640&lang=es",
+											"raw": "localhost:3000/api/product/obtener-producto-por-barcode?_barcode=1000000000001&lang=es",
 											"host": [
 												"localhost"
 											],
@@ -1503,7 +1503,7 @@
 											"query": [
 												{
 													"key": "_barcode",
-													"value": "8959663311640"
+													"value": "1000000000001"
 												},
 												{
 													"key": "lang",
@@ -1845,7 +1845,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"razon_social\": \"Proveedor {{provider_id}}\",\r\n    \"direccion\": \"calle 32 a # 52 - 105\",\r\n    \"correo\": \"proveedor{{provider_id}}@gmail.com\",\r\n    \"telefono\": \"607 358 9636\",\r\n    \"dv\":\"1\",\r\n    \"nit\": \"1000241004\"\r\n}",
+											"raw": "{\r\n    \"razon_social\": \"Distribuidora Mayorista El Manantial S.A.S.\",\r\n    \"direccion\": \"Carrera 16 # 12 - 30, San Francisco, Bucaramanga\",\r\n    \"correo\": \"elmanantialmayorista@gmail.com\",\r\n    \"telefono\": \"607 634 9900\",\r\n    \"dv\": \"7\",\r\n    \"nit\": \"900990011\"\r\n  }",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2072,7 +2072,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"nombre\": \"Desconocida\"\r\n}",
+											"raw": "{ \r\n    \"nombre\": \"Terceros / Sin Marca\" \r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2325,7 +2325,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"nombre\": \"Pesa\"\r\n}",
+											"raw": "{ \r\n    \"nombre\": \"Docena\" \r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3810,7 +3810,7 @@
 			]
 		},
 		{
-			"name": "ventas y devoluciones",
+			"name": "ventas",
 			"item": [
 				{
 					"name": "admin",
@@ -3835,7 +3835,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"nro_factura\": \"fac-0004\",\n    \"fecha_venta\": 1788379521,\n    \"detalle_factura\": [\n        {\n            \"lote\": \"YF253\",\n            \"codigo_barra\": \"1000000000003\",\n            \"cantidad\": \"70\"\n        }\n    ]\n}",
+											"raw": "{\n    \"nro_factura\": \"fac-0007\",\n    \"fecha_venta\": 1788379521,\n    \"detalle_factura\": [\n        {\n            \"lote\": \"l485-69\",\n            \"codigo_barra\": \"1000000000001\",\n            \"cantidad\": \"10\"\n        },\n        {\n            \"lote\": \"poi-885\",\n            \"codigo_barra\": \"1000000000001\",\n            \"cantidad\": \"1\"\n        },\n        {\n            \"lote\": \"laq-25963\",\n            \"codigo_barra\": \"1000000000001\",\n            \"cantidad\": \"2\"\n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3946,10 +3946,6 @@
 									"response": []
 								}
 							]
-						},
-						{
-							"name": "devoluciones",
-							"item": []
 						}
 					]
 				}

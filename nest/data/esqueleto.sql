@@ -20,6 +20,38 @@ DROP DATABASE IF EXISTS `BAN_00341`;
 CREATE DATABASE IF NOT EXISTS `BAN_00341` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `BAN_00341`;
 
+-- Dumping structure for table BAN_00341.mod_auditoria_bodega
+DROP TABLE IF EXISTS `mod_auditoria_bodega`;
+CREATE TABLE IF NOT EXISTS `mod_auditoria_bodega` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_afectado` int(11) NOT NULL,
+  `accion` enum('CREAR','ACTUALIZAR','ELIMINAR','AJUSTAR_INVENTARIO') NOT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `fecha` timestamp(6) NOT NULL DEFAULT current_timestamp(6),
+  `detalles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`detalles`)),
+  PRIMARY KEY (`id`),
+  KEY `FK_34067e919f463988f81d52abc9c` (`id_usuario`),
+  CONSTRAINT `FK_34067e919f463988f81d52abc9c` FOREIGN KEY (`id_usuario`) REFERENCES `mod_usuarios_admin` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table BAN_00341.mod_auditoria_merma
+DROP TABLE IF EXISTS `mod_auditoria_merma`;
+CREATE TABLE IF NOT EXISTS `mod_auditoria_merma` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_afectado` int(11) NOT NULL,
+  `accion` enum('CREAR','ACTUALIZAR','ELIMINAR','AJUSTAR_INVENTARIO') NOT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `fecha` timestamp(6) NOT NULL DEFAULT current_timestamp(6),
+  `detalles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`detalles`)),
+  PRIMARY KEY (`id`),
+  KEY `FK_d2096f0c9243ec183b71cca93d2` (`id_usuario`),
+  CONSTRAINT `FK_d2096f0c9243ec183b71cca93d2` FOREIGN KEY (`id_usuario`) REFERENCES `mod_usuarios_admin` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Data exporting was unselected.
+
 -- Dumping structure for table BAN_00341.mod_bodega
 DROP TABLE IF EXISTS `mod_bodega`;
 CREATE TABLE IF NOT EXISTS `mod_bodega` (
@@ -38,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `mod_bodega` (
   KEY `FK_a707728565e09c6c5106a8335d1` (`id_proveedor`),
   CONSTRAINT `FK_6138e455f12a930432c960966c3` FOREIGN KEY (`id_producto`) REFERENCES `mod_catalogo_productos` (`id`) ON UPDATE NO ACTION,
   CONSTRAINT `FK_a707728565e09c6c5106a8335d1` FOREIGN KEY (`id_proveedor`) REFERENCES `mod_catalogo_proveedores` (`id`) ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=25001 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -49,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `mod_catalogo_marcas` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_09768fd7375b60a05e91503d04` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -60,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `mod_catalogo_medida` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_c279395252b4528e7bf8594d23` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -83,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `mod_catalogo_productos` (
   KEY `FK_50698dc31a0aa1ea5a81d79ea92` (`id_medida`),
   CONSTRAINT `FK_50698dc31a0aa1ea5a81d79ea92` FOREIGN KEY (`id_medida`) REFERENCES `mod_catalogo_medida` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_f3087ae9693d048e2a9aba091a5` FOREIGN KEY (`id_marca`) REFERENCES `mod_catalogo_marcas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2061 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -99,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `mod_catalogo_proveedores` (
   `nit` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_20124d60355ae6fbf4410be1f5` (`nit`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -118,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `mod_merma_mermas` (
   KEY `FK_c43c67defe5b3af684b4065015b` (`id_lote`),
   CONSTRAINT `FK_c43c67defe5b3af684b4065015b` FOREIGN KEY (`id_lote`) REFERENCES `mod_bodega` (`id`) ON UPDATE NO ACTION,
   CONSTRAINT `FK_f936b059227146a8e5f1ffaec0a` FOREIGN KEY (`id_tipo_merma`) REFERENCES `mod_merma_tipos` (`id`) ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=249311 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -129,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `mod_merma_tipos` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_d4131d037acc1ff2cb862fe550` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -175,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `mod_registro_ventas` (
   `fecha_venta` int(11) NOT NULL,
   `nro_factura` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -190,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `mod_usuarios_admin` (
   `isActive` tinyint(4) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_c885318c449a37e806a7f87607` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=258 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
@@ -205,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `mod_usuarios_user` (
   `isActive` tinyint(4) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE KEY `IDX_129e1f78d9bf43c04689f16cf8` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
