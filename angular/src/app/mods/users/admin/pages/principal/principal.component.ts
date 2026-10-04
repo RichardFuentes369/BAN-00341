@@ -454,6 +454,7 @@ export class PrincipalComponent implements OnInit, OnDestroy {
   async refrescarTabla() {
     setTimeout(async () => {
       await this.someInput.reload()
+      await this.actualizarContadores()
     }, 100);
   }
 

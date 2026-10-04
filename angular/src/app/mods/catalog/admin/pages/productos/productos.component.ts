@@ -410,6 +410,7 @@ export class ProductosComponent implements OnInit, OnDestroy {
         if (result.isConfirmed) {
           if (result.isConfirmed) {
             await this.productosService.deleteProduct(_id)
+            await this.actualizarContadores()
             await this.someInput.reload()
             Swal.fire({
               title: this.translate.instant('mod-catalog.PRODUCT.SWAL_DELETED'),
@@ -461,8 +462,8 @@ export class ProductosComponent implements OnInit, OnDestroy {
   }
 
   async refrescarTabla() {
-    console.log('actualice')
     setTimeout(async () => {
+      await this.actualizarContadores()
       await this.someInput.reload()
     }, 100);
   }

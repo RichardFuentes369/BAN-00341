@@ -411,6 +411,7 @@ export class FinalesComponent implements OnInit {
   async refrescarTabla() {
     setTimeout(async () => {
       await this.someInput.reload()
+      await this.actualizarContadores()
     }, 100);
   }
 
