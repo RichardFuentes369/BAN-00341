@@ -121,6 +121,8 @@
             {{ 'mod-merma.REGISTER.LABEL_AMOUT' | translate}}
           </label>
           <input type="number" min="0" class="form-control form-select-sm bg-light" [(ngModel)]="registro.cantidad" disabled>
+          <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i
+              class="fa fa-ruler-combined me-1"></i>en {{producto.unidad_medida}}</span>
         </div>
         <div class="col-sm-12 form-group">
           <label class="label-color">

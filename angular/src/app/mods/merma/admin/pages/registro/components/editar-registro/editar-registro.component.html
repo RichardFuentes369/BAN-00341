@@ -200,7 +200,7 @@
             {{ 'mod-merma.REGISTER.LABEL_AMOUT' | translate}}
           </label>
           <input type="number" min="0" class="form-control form-select-sm" [(ngModel)]="model.cantidad" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.cantidad">
-          <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i class="fa fa-weight-hanging me-1"></i>en {{producto.unidad_medida}}</span>
+          <span class="bg-gradient-success rounded-3 px-2 text-gray-100 small"><i class="fa fa-ruler-combined me-1"></i>en {{producto.unidad_medida}}</span>
           @if(validators.cantidad) {
           <br>
           <span class="text-danger small">
