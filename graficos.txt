@@ -1,0 +1,99 @@
+-- si solo llega el codigo de barras
+
+-- 7702025103904
+-- 7702032117833
+
+-- (ya) visualización de productos (cantidad en bodega | cantidad comprada | cantidad vendida | cantidad afectada por merma) 
+SELECT 
+	mcp.nombre,
+	mcp.codigo_barra,
+	mb.id,
+	mb.lote,
+	mb.fecha_entrada,
+	mb.fecha_vencimiento,
+	mb.cantidad_comprada,
+	mb.cantidad_vendida,
+	mb.cantidad_en_bodega,
+	COALESCE((
+        SELECT SUM(mmm.cantidad)
+        FROM mod_merma_mermas mmm
+        WHERE mmm.id_lote = mb.id
+    ), 0) AS cantidad_afectada_merma,
+	mb.id_proveedor
+FROM mod_bodega mb 
+INNER JOIN mod_catalogo_productos mcp ON mcp.id = mb.id_producto
+WHERE mb.id_producto = (SELECT id FROM mod_catalogo_productos mcp WHERE mcp.codigo_barra = '7702025103904');
+
+
+-- (ya) visualización de # de productos afectador por cada merma
+SELECT 
+    mmt.nombre AS nombre, 
+    COALESCE((
+        SELECT SUM(mmm.cantidad)
+        FROM mod_merma_mermas mmm
+        INNER JOIN mod_bodega mb ON mmm.id_lote = mb.id
+        INNER JOIN mod_catalogo_productos mcp ON mb.id_producto = mcp.id
+        WHERE mmm.id_tipo_merma = mmt.id
+          AND mcp.codigo_barra = '7702025103904'
+    ), 0) AS cantidad_por_merma
+FROM mod_merma_tipos mmt;
+
+
+-- (ya) visualización de porcentajes usados para la merma por producto 
+SELECT 
+    mmt.nombre AS nombre,
+
+    ROUND(
+        (
+            COALESCE((
+                SELECT SUM(mmm.cantidad)
+                FROM mod_merma_mermas mmm
+                INNER JOIN mod_bodega mb ON mmm.id_lote = mb.id
+                INNER JOIN mod_catalogo_productos mcp ON mb.id_producto = mcp.id
+                WHERE mmm.id_tipo_merma = mmt.id
+                  AND mcp.codigo_barra = '7702025103904'
+            ), 0) 
+            / NULLIF((
+                SELECT SUM(mb.cantidad_en_bodega)
+                FROM mod_bodega mb
+                INNER JOIN mod_catalogo_productos mcp ON mb.id_producto = mcp.id
+                WHERE mcp.codigo_barra = '7702025103904'
+            ), 0)
+        ) * 100, 2
+    ) AS porcentaje_perdida_bodega
+
+FROM mod_merma_tipos mmt;
+
+-- (Tabla de lotes a vencer)
+
+SELECT 
+    mcp.nombre,
+    mb.lote,
+    FROM_UNIXTIME(mb.fecha_vencimiento) AS fecha_vencimiento_formateada,
+    mb.cantidad_en_bodega,
+    DATEDIFF(FROM_UNIXTIME(mb.fecha_vencimiento), CURRENT_DATE()) AS dias_para_vencer,
+    CASE 
+    -- 1. ROJA: Ya venció (<= 0) o está a la mitad del tiempo de la alerta naranja
+    WHEN DATEDIFF(FROM_UNIXTIME(mb.fecha_vencimiento), CURRENT_DATE()) <= 0 
+        THEN 'Alerta roja (Vencido)'
+        
+    WHEN DATEDIFF(FROM_UNIXTIME(mb.fecha_vencimiento), CURRENT_DATE()) <= mcp.alerta_naranja 
+        THEN 'Alerta roja'
+        
+    -- 2. NARANJA: Entre alerta_naranja y el punto medio hacia la alerta_amarilla
+    WHEN DATEDIFF(FROM_UNIXTIME(mb.fecha_vencimiento), CURRENT_DATE()) <= (mcp.alerta_naranja + FLOOR((mcp.alerta_amarilla - mcp.alerta_naranja) / 2)) 
+        THEN 'Alerta naranja'
+        
+    -- 3. AMARILLA: Le queda tiempo pero está por debajo o igual a alerta_amarilla
+    WHEN DATEDIFF(FROM_UNIXTIME(mb.fecha_vencimiento), CURRENT_DATE()) <= mcp.alerta_amarilla 
+        THEN 'Alerta amarilla'
+        
+    -- 4. VERDE: Supera la alerta_amarilla (Stock totalmente seguro)
+    ELSE 'Alerta verde'
+END AS estado_riesgo
+
+FROM mod_bodega mb
+INNER JOIN mod_catalogo_productos mcp ON mb.id_producto = mcp.id
+WHERE mcp.codigo_barra = '7702025103904'
+  AND mb.cantidad_en_bodega > 0
+ORDER BY mb.fecha_vencimiento ASC;

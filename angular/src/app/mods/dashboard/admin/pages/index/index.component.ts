@@ -3,7 +3,7 @@ import { ReporteWarehouseComponent } from '../../components/reporte-warehouse/re
 import { Scanner13Component } from '@component/globales/scanner13/scanner13.component';
 import { FiltroLoteComponent } from '../../components/filtro-lote/filtro-lote.component';
 import { CommonModule } from '@angular/common';
-import { RangosFiltroComponent } from '../../components/rangos/rangos.component';
+// import { RangosFiltroComponent } from '../../components/rangos/rangos.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { ChartsComponent } from '@component/globales/charts/charts.component';
@@ -21,7 +21,7 @@ import { ProductosService } from '@mod/catalog/admin/pages/productos/service/pro
     Scanner13Component,
     FiltroLoteComponent,
     ToogleBatchComponent,
-    RangosFiltroComponent,
+    // RangosFiltroComponent,
     CommonModule,
 
     ChartsComponent,
