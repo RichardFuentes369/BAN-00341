@@ -1,3 +1,17 @@
+-- Reporte si le meto un producto valido, si le meto producto y lote vallido
+SELECT 
+    mcp.nombre,
+    mcp.codigo_barra,
+    SUM(mb.cantidad_comprada) AS cantidad_comprada,
+    SUM(mb.cantidad_vendida) AS cantidad_vendida,
+    SUM(mb.cantidad_en_bodega) AS cantidad_en_bodega,
+    (SUM(mb.cantidad_comprada) - (SUM(mb.cantidad_vendida) + SUM(mb.cantidad_en_bodega))) AS cantidad_afectada
+FROM mod_catalogo_productos mcp
+INNER JOIN mod_bodega mb ON mb.id_producto = mcp.id
+WHERE mcp.codigo_barra = '1000000000002'
+GROUP BY mcp.id, mcp.nombre, mcp.codigo_barra;
+
+-- Reporte si le meto un producto valido, si le meto producto y lote vallido
 SELECT 
     mcp.nombre,
     mcp.codigo_barra,
@@ -39,3 +53,41 @@ SELECT
         ) * 100, 2
     ) AS porcentaje_perdida_bodega
 FROM mod_merma_tipos mmt;
+
+
+-- Reporte si le meto un producto valido, si le meto producto y lote vallido
+WITH dias AS (
+    SELECT 1 AS num_dia, 'lunes' AS dia_semana UNION ALL
+    SELECT 2, 'martes' UNION ALL
+    SELECT 3, 'miercoles' UNION ALL
+    SELECT 4, 'jueves' UNION ALL
+    SELECT 5, 'viernes' UNION ALL
+    SELECT 6, 'sabado' UNION ALL
+    SELECT 7, 'domingo'
+),
+mermas_producto AS (
+    SELECT 
+        -- WEEKDAY en MySQL devuelve 0 para Lunes, 1 para Martes... 6 para Domingo
+        WEEKDAY(mmm.fecha_reporte) + 1 AS num_dia,
+        SUM(mmm.cantidad) AS cantidad_merma
+    FROM mod_merma_mermas mmm
+    INNER JOIN mod_bodega mb ON mmm.id_lote = mb.id
+    INNER JOIN mod_catalogo_productos mcp ON mb.id_producto = mcp.id
+    WHERE mcp.codigo_barra = '1000000000002'
+    GROUP BY WEEKDAY(mmm.fecha_reporte) + 1
+),
+total_merma AS (
+    SELECT COALESCE(SUM(cantidad_merma), 0) AS total 
+    FROM mermas_producto
+)
+SELECT 
+    d.dia_semana,
+    CONCAT(
+        ROUND(
+            COALESCE((mp.cantidad_merma / NULLIF(tm.total, 0)) * 100, 0), 2
+        ), '%'
+    ) AS porcentaje
+FROM dias d
+LEFT JOIN mermas_producto mp ON d.num_dia = mp.num_dia
+CROSS JOIN total_merma tm
+ORDER BY d.num_dia;
