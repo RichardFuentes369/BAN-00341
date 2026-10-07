@@ -1,9 +1,3 @@
--- si solo llega el codigo de barras
-
--- 7702025103904
--- 7702032117833
-
--- (ya) visualización de productos (cantidad en bodega | cantidad comprada | cantidad vendida | cantidad afectada por merma) 
 SELECT 
     mcp.nombre,
     mcp.codigo_barra,
@@ -13,10 +7,9 @@ SELECT
     (SUM(mb.cantidad_comprada) - (SUM(mb.cantidad_vendida) + SUM(mb.cantidad_en_bodega))) AS cantidad_afectada
 FROM mod_catalogo_productos mcp
 INNER JOIN mod_bodega mb ON mb.id_producto = mcp.id
-WHERE mcp.codigo_barra = '7702032117833'
+WHERE mcp.codigo_barra = '1000000000002'
 GROUP BY mcp.id, mcp.nombre, mcp.codigo_barra;
 
--- (ya) visualización de # de productos afectador por cada merma
 SELECT 
     mmt.nombre AS nombre, 
     COALESCE((
@@ -25,13 +18,8 @@ SELECT
         INNER JOIN mod_bodega mb ON mmm.id_lote = mb.id
         INNER JOIN mod_catalogo_productos mcp ON mb.id_producto = mcp.id
         WHERE mmm.id_tipo_merma = mmt.id
-          AND mcp.codigo_barra = '7702032117833'
-    ), 0) AS cantidad_por_merma
-FROM mod_merma_tipos mmt;
-
--- (ya) visualización de porcentajes usados para la merma por producto 
-SELECT 
-    mmt.nombre AS nombre,
+          AND mcp.codigo_barra = '1000000000002'
+    ), 0) AS cantidad_por_merma,
     ROUND(
         (
             COALESCE((
@@ -40,15 +28,14 @@ SELECT
                 INNER JOIN mod_bodega mb ON mmm.id_lote = mb.id
                 INNER JOIN mod_catalogo_productos mcp ON mb.id_producto = mcp.id
                 WHERE mmm.id_tipo_merma = mmt.id
-                  AND mcp.codigo_barra = '7702025103904'
+                  AND mcp.codigo_barra = '1000000000002'
             ), 0) 
             / NULLIF((
                 SELECT SUM(mb.cantidad_en_bodega)
                 FROM mod_bodega mb
                 INNER JOIN mod_catalogo_productos mcp ON mb.id_producto = mcp.id
-                WHERE mcp.codigo_barra = '7702025103904'
+                WHERE mcp.codigo_barra = '1000000000002'
             ), 0)
         ) * 100, 2
     ) AS porcentaje_perdida_bodega
 FROM mod_merma_tipos mmt;
-
