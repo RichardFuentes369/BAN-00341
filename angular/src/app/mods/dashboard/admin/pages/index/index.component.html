@@ -59,7 +59,6 @@
             </div>
           </fieldset>
         </div>
-        }
 
         <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4 h-auto">
           <fieldset class="border p-3 rounded mb-3">
@@ -96,6 +95,50 @@
 
           </fieldset>
         </div>
+        }@else{
+        <div class="card-custom shadow p-5 mb-4 text-center h-auto">
+          <div class="empty-state py-4">
+
+            @if(idProducto != '' && loteDigitado == ''){
+              <!-- Icono representativo de búsqueda activa -->
+              <div class="empty-state-icon mb-3">
+                <i class="fa-solid fa-magnifying-glass-location text-primary"
+                  style="font-size: 3.8rem; opacity: 0.7;"></i>
+              </div>
+  
+              <!-- Mensaje principal invitando a actuar -->
+              <h4 class="fw-bold text-dark mb-2">
+                Consulta de inventario por producto
+              </h4>
+  
+              <!-- Descripción orientativa -->
+              <p class="text-muted mx-auto mb-4" style="max-width: 460px; font-size: 0.95rem;">
+                Ingrese o escanee el código de barras en el panel izquierdo para ver los detalles y reportes del producto.
+              </p>
+            }
+
+            @if(idProducto != '' && loteDigitado != ''){
+  
+              <!-- Icono representativo -->
+              <div class="empty-state-icon mb-3">
+                <i class="fa-solid fa-boxes-packing text-muted" style="font-size: 4rem; opacity: 0.5;"></i>
+              </div>
+  
+              <!-- Mensaje principal -->
+              <h4 class="fw-bold text-secondary mb-2">
+                No se encontraron resultados
+              </h4>
+  
+              <!-- Descripción clara -->
+              <p class="text-muted mx-auto mb-4" style="max-width: 450px;">
+                No hay información registrada para los filtros o el lote seleccionado. Intenta ajustar la búsqueda o
+                seleccionar otro producto.
+              </p>
+            }
+
+          </div>
+        </div>
+        }
       </div>
     </div>
 

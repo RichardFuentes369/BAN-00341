@@ -119,6 +119,9 @@ export class AdminDashboardComponent implements OnInit {
 
   showInputBatch(tiene_lote: boolean) {
     this.showRequestBatch = tiene_lote
+
+    this.loteDigitado = (this.showRequestBatch) ? this.loteDigitado : ''
+
     this.validarBotonFiltro()
   }
 
@@ -161,35 +164,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   async filtrarLote() {
-    // CASO 1: Solo Producto (Limpiamos proveedor y lote explícitamente)
-    if (this.idProducto && this.loteDigitado == '') {
-      try {
-        const response = await this.productosService.getDataProduct(this.idProducto);
-        if (response.status === 200) {
-          // Resetear proveedor y lote para que el hijo detecte el cambio de estado
-          this.datosJson.proveedor = { show: false, nit: null, correo: null, razon_social: null };
-          this.datosJson.lote = { show: false, cantidad_afectada_por_merma: null, cantidad_comprada: null, cantidad_en_bodega: null, cantidad_vendida: null, estado: null, fecha_entrada: null, fecha_vencimiento: null, lote: null, id: null };
-
-          // Asignar producto
-          this.datosJson.producto = {
-            show: true,
-            codigo_barra: response.data.codigo_barra,
-            nombre: response.data.nombre,
-            marca: response.data.marca.nombre,
-            unidad_medida: response.data.medida.nombre
-          };
-
-          // Forzar la creación de un nuevo objeto para disparar ngOnChanges por referencia
-          this.datosJson = { ...this.datosJson };
-          this.showDetailProduct = true;
-        }
-      } catch (error: any) {
-        this.showDetailProduct = false;
-      }
-    }
-
-    // CASO 2: Producto + Lote
-    if (this.idProducto && this.loteDigitado) {
+    if(this.showRequestBatch){
       try {
         const response = await this.bodegaService.getDataLoteAndProduct(this.loteDigitado, this.idProducto);
         if (response.status === 200) {
@@ -227,6 +202,32 @@ export class AdminDashboardComponent implements OnInit {
         }
       } catch (error: any) {
         this.showDetailProduct = false;
+      }
+    }else{
+      if (this.idProducto && this.loteDigitado == '') {
+        try {
+          const response = await this.productosService.getDataProduct(this.idProducto);
+          if (response.status === 200) {
+            // Resetear proveedor y lote para que el hijo detecte el cambio de estado
+            this.datosJson.proveedor = { show: false, nit: null, correo: null, razon_social: null };
+            this.datosJson.lote = { show: false, cantidad_afectada_por_merma: null, cantidad_comprada: null, cantidad_en_bodega: null, cantidad_vendida: null, estado: null, fecha_entrada: null, fecha_vencimiento: null, lote: null, id: null };
+  
+            // Asignar producto
+            this.datosJson.producto = {
+              show: true,
+              codigo_barra: response.data.codigo_barra,
+              nombre: response.data.nombre,
+              marca: response.data.marca.nombre,
+              unidad_medida: response.data.medida.nombre
+            };
+  
+            // Forzar la creación de un nuevo objeto para disparar ngOnChanges por referencia
+            this.datosJson = { ...this.datosJson };
+            this.showDetailProduct = true;
+          }
+        } catch (error: any) {
+          this.showDetailProduct = false;
+        }
       }
     }
   }
