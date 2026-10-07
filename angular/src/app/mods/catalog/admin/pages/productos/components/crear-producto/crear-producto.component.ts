@@ -119,8 +119,6 @@ export class CrearProductoComponent implements OnInit {
     this.validators.id_medida = (this.model.id_medida === 0);
     this.validators.estado = (this.model.estado === null);
 
-    console.log(this.validators)
-
     if (this.model.es_perecedero) {
       this.validators.error_dias = (
         this.model.alerta_amarilla <= this.model.alerta_naranja ||
@@ -160,7 +158,7 @@ export class CrearProductoComponent implements OnInit {
   }
 
   async crearProducto() {
-    if (this.isFormValid) {
+    // if (this.isFormValid) {
       const response = await this.productosService.createProduct(this.model);
 
       if (response.data.status == 200) {
@@ -177,7 +175,7 @@ export class CrearProductoComponent implements OnInit {
           icon: 'error'
         });
       }
-    }
+    // }
   }
 
   onSearchB(event: any) {
