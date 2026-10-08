@@ -1,4 +1,5 @@
--- Solo codigo de barra
+
+-- Reporte si le meto un producto valido, si le meto producto y lote vallido
 SELECT 
     mcp.nombre,
     mcp.codigo_barra,
@@ -20,7 +21,11 @@ SELECT
         INNER JOIN mod_catalogo_productos mcp ON mb.id_producto = mcp.id
         WHERE mmm.id_tipo_merma = mmt.id
           AND mcp.codigo_barra = '1000000000002'
-    ), 0) AS cantidad_por_merma,
+    ), 0) AS cantidad_por_merma
+FROM mod_merma_tipos mmt;
+
+SELECT 
+    mmt.nombre AS nombre, 
     ROUND(
         (
             COALESCE((
