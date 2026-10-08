@@ -164,7 +164,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   async filtrarLote() {
-    if(this.showRequestBatch){
+    if (this.showRequestBatch) {
       try {
         const response = await this.bodegaService.getDataLoteAndProduct(this.loteDigitado, this.idProducto);
         console.log(response)
@@ -199,12 +199,17 @@ export class AdminDashboardComponent implements OnInit {
 
           // Forzar la creación de un nuevo objeto para disparar ngOnChanges por referencia
           this.datosJson = { ...this.datosJson };
+
+          if (response.data.infoGraphics) {
+            this.actualizarGraficas(response.data.infoGraphics);
+          }
+
           this.showDetailProduct = true;
         }
       } catch (error: any) {
         this.showDetailProduct = false;
       }
-    }else{
+    } else {
       if (this.idProducto && this.loteDigitado == '') {
         try {
           const response = await this.productosService.getDataProduct(this.idProducto);
@@ -213,7 +218,7 @@ export class AdminDashboardComponent implements OnInit {
             // Resetear proveedor y lote para que el hijo detecte el cambio de estado
             this.datosJson.proveedor = { show: false, nit: null, correo: null, razon_social: null };
             this.datosJson.lote = { show: false, cantidad_afectada_por_merma: null, cantidad_comprada: null, cantidad_en_bodega: null, cantidad_vendida: null, estado: null, fecha_entrada: null, fecha_vencimiento: null, lote: null, id: null };
-  
+
             // Asignar producto
             this.datosJson.producto = {
               show: true,
@@ -222,9 +227,14 @@ export class AdminDashboardComponent implements OnInit {
               marca: response.data.prodcut.marca.nombre,
               unidad_medida: response.data.prodcut.medida.nombre
             };
-  
+
             // Forzar la creación de un nuevo objeto para disparar ngOnChanges por referencia
             this.datosJson = { ...this.datosJson };
+
+            if (response.data.infoGraphics) {
+              this.actualizarGraficas(response.data.infoGraphics);
+            }
+
             this.showDetailProduct = true;
           }
         } catch (error: any) {
@@ -235,24 +245,102 @@ export class AdminDashboardComponent implements OnInit {
   }
 
 
+  private actualizarGraficas(infoGraphics: any) {
+    if (!infoGraphics) return;
 
+    if (infoGraphics.resumen) {
+      const resumen = infoGraphics.resumen;
 
+      const cantidadVendida = Number(resumen.cantidad_vendida) || 0;
+      const cantidadBodega = Number(resumen.cantidad_en_bodega) || 0;
+      const cantidadAfectada = Number(resumen.cantidad_afectada) || 0;
+      const cantidadComprada = Number(resumen.cantidad_comprada) || 0;
 
+      this.pieChartData = {
+        labels: ['Cantidad vendida', 'Cantidad en Bodega', 'Cantidad afectada por merma', 'Cantidad comprada'],
+        datasets: [{
+          data: [cantidadVendida, cantidadBodega, cantidadAfectada, cantidadComprada],
+          backgroundColor: ['#36A2EB', '#4BC0C0', '#FF6384', '#FFCE56'],
+          hoverBackgroundColor: ['#36A2EB', '#4BC0C0', '#FF6384', '#FFCE56']
+        }]
+      };
+    }
 
+    if (infoGraphics.mermasDias) {
+      const coloresDias = [
+        '#36A2EB', // Lunes
+        '#FF6384', // Martes
+        '#FFCE56', // Miércoles
+        '#4BC0C0', // Jueves
+        '#9966FF', // Viernes
+        '#FF9F40', // Sábado
+        '#C9CBCF'  // Domingo
+      ];
 
+      const datasetsBarras = infoGraphics.mermasDias.map((item: any, index: number) => {
+        return {
+          label: item.dia_semana,
+          data: [Number(item.cantidad_mermada) || 0],
+          backgroundColor: coloresDias[index % coloresDias.length],
+          borderColor: coloresDias[index % coloresDias.length],
+          borderWidth: 1,
+          borderRadius: 4,
+          hidden: false // Garantiza que empiece visible
+        };
+      });
 
+      this.barChartData = {
+        labels: ['Días de la semana'], // Una sola categoría horizontal
+        datasets: datasetsBarras
+      };
+    }
 
+    if (infoGraphics.mermasCantidad) {
+      const labelsMermas = infoGraphics.mermasCantidad.map((item: any) => item.nombre);
+      const dataMermas = infoGraphics.mermasCantidad.map((item: any) => Number(item.cantidad_por_merma) || 0);
 
+      this.mermasCantidadChartData = {
+        labels: labelsMermas,
+        datasets: [
+          {
+            data: dataMermas,
+            label: 'Cantidad por merma',
+            backgroundColor: '#FF6384',
+            borderColor: '#E55373',
+            borderWidth: 1,
+            borderRadius: 4
+          }
+        ]
+      };
+    }
 
+    if (infoGraphics.mermasDias) {
+      const labelsDias = infoGraphics.mermasDias.map((item: any) => item.dia_semana);
+      const dataPorcentajes = infoGraphics.mermasDias.map((item: any) => {
+        if (!item.porcentaje_merma) return 0;
+        const valorLimpio = item.porcentaje_merma.toString().replace('%', '').replace(',', '.').trim();
+        return parseFloat(valorLimpio) || 0;
+      });
 
-
-
-
-
-
-
-
-
+      // Se asigna forzando la creación de un nuevo objeto e incluyendo la propiedad label en el dataset
+      this.piePorcentajeChartData = {
+        labels: [...labelsDias],
+        datasets: [{
+          label: 'Porcentaje de merma',
+          data: [...dataPorcentajes],
+          backgroundColor: [
+            '#36A2EB',
+            '#FF6384',
+            '#FFCE56',
+            '#4BC0C0',
+            '#9966FF',
+            '#FF9F40',
+            '#C9CBCF'
+          ]
+        }]
+      };
+    }
+  }
 
 
   // ==========================
@@ -263,32 +351,46 @@ export class AdminDashboardComponent implements OnInit {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { display: true, position: 'top' },
+      legend: {
+        display: true,
+        position: 'top',
+        onClick: (e, legendItem, legend) => {
+          const index = legendItem.datasetIndex;
+          if (index !== undefined) {
+            const chart = legend.chart;
+            const dataset = chart.data.datasets[index];
+
+            // 1. Cambiamos el estado hidden del dataset directamente
+            dataset.hidden = !dataset.hidden;
+
+            // 2. Sincronizamos la metadata visual
+            const meta = chart.getDatasetMeta(index);
+            meta.hidden = dataset.hidden;
+
+            // 3. Forzamos el renderizado y recálculo de ejes
+            chart.update();
+          }
+        }
+      },
       tooltip: { enabled: true }
     },
     scales: {
-      x: {},
-      y: { beginAtZero: true }
+      x: {
+        grid: { display: false }
+      },
+      y: {
+        type: 'logarithmic',
+        min: 1, // <--- CAMBIO AQUÍ: Reemplaza beginAtZero y grace. Define la base del eje Y en 1.
+        ticks: {
+          callback: (value) => Number(value).toLocaleString()
+        }
+      }
     }
   };
+
   public barChartData: ChartData<'bar'> = {
-    labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
-    datasets: [
-      {
-        data: [65, 59, 80, 81, 56],
-        label: 'Ventas 2026',
-        backgroundColor: '#36A2EB',
-        borderColor: '#2A82BE',
-        borderWidth: 1
-      },
-      {
-        data: [28, 48, 40, 19, 86],
-        label: 'Gastos 2026',
-        backgroundColor: '#FF6384',
-        borderColor: '#CC4F6A',
-        borderWidth: 1
-      }
-    ]
+    labels: [],
+    datasets: []
   };
 
   // ==========================
@@ -349,6 +451,79 @@ export class AdminDashboardComponent implements OnInit {
       data: [300, 500, 100],
       backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
       hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+    }]
+  };
+
+  // ==========================
+  // CONFIGURACIÓN MERMAS POR CANTIDAD (BARRAS HORIZONTALES)
+  // ==========================
+  public mermasCantidadChartType: ChartType = 'bar';
+  public mermasCantidadChartOptions: ChartOptions<'bar'> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    indexAxis: 'y', // Barras horizontales para acomodar nombres largos de mermas
+    plugins: {
+      legend: { display: false },
+      tooltip: { enabled: true }
+    },
+    scales: {
+      x: {
+        beginAtZero: true,
+        title: { display: true, text: 'Cantidad' }
+      }
+    }
+  };
+  public mermasCantidadChartData: ChartData<'bar', number[], string> = {
+    labels: [],
+    datasets: [{
+      data: [],
+      label: 'Cantidad por merma',
+      backgroundColor: '#FF6384',
+      borderColor: '#E55373',
+      borderWidth: 1,
+      borderRadius: 4
+    }]
+  };
+
+
+  // ==========================
+  // CONFIGURACIÓN PORCENTAJE MERMA POR DÍA (PASTEL)
+  // ==========================
+  public piePorcentajeChartType: ChartType = 'pie';
+
+  public piePorcentajeChartOptions: ChartOptions<'pie'> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'top',
+        display: true
+      },
+      tooltip: {
+        callbacks: {
+          label: (context) => {
+            const label = context.label || '';
+            const value = context.formattedValue || context.raw || 0;
+            return ` ${label}: ${value}%`;
+          }
+        }
+      }
+    }
+  };
+
+  public piePorcentajeChartData: ChartData<'pie', number[], string> = {
+    labels: [],
+    datasets: [{
+      data: [],
+      backgroundColor: [
+        '#36A2EB', // Lunes
+        '#FF6384', // Martes
+        '#FFCE56', // Miércoles
+        '#4BC0C0', // Jueves
+        '#9966FF', // Viernes
+        '#FF9F40', // Sábado
+        '#C9CBCF'  // Domingo
+      ]
     }]
   };
 
