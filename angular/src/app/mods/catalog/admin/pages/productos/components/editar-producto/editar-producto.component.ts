@@ -125,7 +125,7 @@ export class EditarProductoComponent implements OnInit {
 
     if (idParam) {
       const res = await this.productosService.getDataProduct(idParam);
-      const prodData = res.data;
+      const prodData = res.data.prodcut;
 
       if (prodData.marca) {
         this.marcas = [prodData.marca];

@@ -167,6 +167,7 @@ export class AdminDashboardComponent implements OnInit {
     if(this.showRequestBatch){
       try {
         const response = await this.bodegaService.getDataLoteAndProduct(this.loteDigitado, this.idProducto);
+        console.log(response)
         if (response.status === 200) {
           this.datosJson.proveedor = {
             show: true,
@@ -207,6 +208,7 @@ export class AdminDashboardComponent implements OnInit {
       if (this.idProducto && this.loteDigitado == '') {
         try {
           const response = await this.productosService.getDataProduct(this.idProducto);
+          console.log(response)
           if (response.status === 200) {
             // Resetear proveedor y lote para que el hijo detecte el cambio de estado
             this.datosJson.proveedor = { show: false, nit: null, correo: null, razon_social: null };
@@ -215,10 +217,10 @@ export class AdminDashboardComponent implements OnInit {
             // Asignar producto
             this.datosJson.producto = {
               show: true,
-              codigo_barra: response.data.codigo_barra,
-              nombre: response.data.nombre,
-              marca: response.data.marca.nombre,
-              unidad_medida: response.data.medida.nombre
+              codigo_barra: response.data.prodcut.codigo_barra,
+              nombre: response.data.prodcut.nombre,
+              marca: response.data.prodcut.marca.nombre,
+              unidad_medida: response.data.prodcut.medida.nombre
             };
   
             // Forzar la creación de un nuevo objeto para disparar ngOnChanges por referencia

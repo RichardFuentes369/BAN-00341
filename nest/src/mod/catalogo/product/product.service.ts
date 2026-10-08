@@ -1,7 +1,7 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { Between, In, LessThanOrEqual, Like, MoreThanOrEqual, Repository } from 'typeorm';
+import { Between, DataSource, In, LessThanOrEqual, Like, MoreThanOrEqual, Repository } from 'typeorm';
 import { Producto } from './entities/product.entity';
 import { I18nService } from 'nestjs-i18n';
 import { FilterProductrDto } from './dto/filter-product.dto';
@@ -14,6 +14,8 @@ export class ProductService {
   constructor(
     @Inject('PRODUCT_REPOSITORY')
     private productRepository: Repository<Producto>,
+    @Inject('DATA_SOURCE')
+    private readonly dataSource: DataSource,
     private i18n: I18nService
   ) { }
 
@@ -110,7 +112,23 @@ export class ProductService {
     } else {
       prodcut.estado = false;
     }
-    return prodcut;
+
+    const [resumen, mermasCantidad, mermasPorcentaje, mermasDias] = await Promise.all([
+      this.dataSource.query('CALL sp_report_1(?)', [prodcut.codigo_barra]),
+      this.dataSource.query('CALL sp_report_2(?)', [prodcut.codigo_barra]),
+      this.dataSource.query('CALL sp_report_3(?)', [prodcut.codigo_barra]),
+      this.dataSource.query('CALL sp_report_4(?)', [prodcut.codigo_barra]),
+    ]);
+
+    return {
+      prodcut,
+      infoGraphics: {
+        resumen: resumen[0][0] || null,
+        mermasCantidad: mermasCantidad[0] || [],
+        mermasPorcentaje: mermasPorcentaje[0] || [],
+        mermasDias: mermasDias[0] || []
+      }
+    };
   }
 
   async findOneBarcode(lang: string, barcode: string) {

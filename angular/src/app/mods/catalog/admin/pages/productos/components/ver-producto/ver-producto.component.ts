@@ -49,7 +49,7 @@ export class VerProductoComponent implements OnInit {
         const res = await this.productosService.getDataProduct(idProduct);
         if (res && res.data) {
           // Cargamos el producto en el array para que el @for lo renderice
-          this.producto = [res.data];
+          this.producto = [res.data.prodcut];
         }
       } catch (error) {
         console.error("Error al obtener el producto:", error);

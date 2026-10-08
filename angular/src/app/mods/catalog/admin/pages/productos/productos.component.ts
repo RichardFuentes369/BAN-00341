@@ -341,7 +341,7 @@ export class ProductosComponent implements OnInit, OnDestroy {
   async verData(_id: string) {
     this.title = this.translate.instant('mod-catalog.PRODUCT.SEE_TITLE')
     const response = await this.productosService.getDataProduct(_id)
-    const { nombre } = response.data || { nombre: 'xxxxxxx' }
+    const { nombre } = response.data.prodcut || { nombre: 'xxxxxxx' }
     this.translate.get('mod-catalog.PRODUCT.SEE_SUBTITLE', { "product_name": nombre }).subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
     this.scrollable = true
@@ -367,7 +367,7 @@ export class ProductosComponent implements OnInit, OnDestroy {
   async editarData(_id: string) {
     this.title = this.translate.instant('mod-catalog.PRODUCT.EDIT_TITLE')
     const response = await this.productosService.getDataProduct(_id)
-    const { nombre } = response.data || { nombre: 'xxxxxxx' }
+    const { nombre } = response.data.prodcut || { nombre: 'xxxxxxx' }
     this.translate.get('mod-catalog.PRODUCT.EDIT_SUBTITLE', { "product_name": nombre }).subscribe((res: string) => { this.subtitle = res });
     this.tamano = "xl"
     this.scrollable = true
@@ -393,7 +393,7 @@ export class ProductosComponent implements OnInit, OnDestroy {
   someInput!: TablecrudComponent
   async eliminarData(_id: string[]) {
     const response = await this.productosService.getDataProduct(_id[0])
-    const { nombre } = response.data || { nombre: 'xxxxxxx' }
+    const { nombre } = response.data.prodcut || { nombre: 'xxxxxxx' }
     const name_user = (_id.length === 1) ? nombre : "(" + _id.length + ")"
     const count_users = (_id.length === 1) ? 'el' : 'los'
     const plural = (_id.length === 1) ? '' : 's'

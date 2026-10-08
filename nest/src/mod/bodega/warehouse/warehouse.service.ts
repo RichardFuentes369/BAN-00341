@@ -3,7 +3,7 @@ import { CreateWarehouseDto } from './dto/create-warehouse.dto';
 import { UpdateWarehouseDto } from './dto/update-warehouse.dto';
 import { Bodega } from './entities/warehouse.entity';
 import { I18nService } from 'nestjs-i18n';
-import { Between, In, LessThanOrEqual, Like, MoreThanOrEqual, Repository } from 'typeorm';
+import { DataSource, Between, In, LessThanOrEqual, Like, MoreThanOrEqual, Repository } from 'typeorm';
 import { FilterWarehouseDto } from './dto/filter-warehouse.dto';
 import { FilterWarehouseProductDTO } from './dto/filter-lote-producto.dto';
 import { CreateMermaDto } from '@module/merma/mermas/dto/create-merma.dto';
@@ -20,6 +20,9 @@ export class WarehouseService {
 
     @Inject('MERMA_REPOSITORY')
     private readonly mermaRepository: Repository<Merma>,
+
+    @Inject('DATA_SOURCE')
+    private readonly dataSource: DataSource,
 
     private i18n: I18nService
   ) { }
@@ -370,11 +373,23 @@ export class WarehouseService {
       );
     }
 
+    const [resumen, mermasCantidad, mermasPorcentaje, mermasDias] = await Promise.all([
+      this.dataSource.query('CALL sp_report_1(?)', [bodega.id_producto.codigo_barra]),
+      this.dataSource.query('CALL sp_report_2(?)', [bodega.id_producto.codigo_barra]),
+      this.dataSource.query('CALL sp_report_3(?)', [bodega.id_producto.codigo_barra]),
+      this.dataSource.query('CALL sp_report_4(?)', [bodega.id_producto.codigo_barra]),
+    ]);
+
     return {
       ...bodega,
-      mermas: bodega.mermas ? bodega.mermas.reduce((total, m) => total + m.cantidad, 0) : 0
+      mermas: bodega.mermas ? bodega.mermas.reduce((total, m) => total + m.cantidad, 0) : 0,
+      infoGraphics: {
+        resumen: resumen[0][0] || null,
+        mermasCantidad: mermasCantidad[0] || [],
+        mermasPorcentaje: mermasPorcentaje[0] || [],
+        mermasDias: mermasDias[0] || []
+      }
     };
-
   }
 
   // reporte pendiente permisos
