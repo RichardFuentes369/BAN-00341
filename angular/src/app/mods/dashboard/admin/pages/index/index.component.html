@@ -119,18 +119,19 @@
 
             @if(idProducto != '' && loteDigitado == ''){
             <!-- Icono representativo de búsqueda activa -->
+             
             <div class="empty-state-icon mb-3">
               <i class="fa-solid fa-magnifying-glass-location text-primary"
-                style="font-size: 3.8rem; opacity: 0.7;"></i>
+                style="font-size: 3.8rem; opacity: 0.5;"></i>
             </div>
 
             <!-- Mensaje principal invitando a actuar -->
-            <h4 class="fw-bold text-dark mb-2">
+            <h4 class="fw-bold title-custom mb-2">
               {{ 'mod-dashboard.TITLE_ALERT_QUERY' | translate }}
             </h4>
 
             <!-- Descripción orientativa -->
-            <p class="text-muted mx-auto mb-4" style="max-width: 460px; font-size: 0.95rem;">
+            <p class="subtitle-custom mx-auto mb-4" style="max-width: 460px; font-size: 0.95rem;">
               {{ 'mod-dashboard.SPAN_ALERT_QUERY' | translate }}
             </p>
             }
@@ -138,16 +139,16 @@
             @if(idProducto != '' && loteDigitado != ''){
             <!-- Icono representativo -->
             <div class="empty-state-icon mb-3">
-              <i class="fa-solid fa-boxes-packing text-muted" style="font-size: 4rem; opacity: 0.5;"></i>
+              <i class="fa-solid fa-boxes-packing text-primary" style="font-size: 4rem; opacity: 0.5;"></i>
             </div>
 
             <!-- Mensaje principal -->
-            <h4 class="fw-bold text-secondary mb-2">
+            <h4 class="fw-bold title-custom mb-2">
               {{ 'mod-dashboard.TITLE_ALERT_QUERY_EMPTY' | translate }}
             </h4>
 
             <!-- Descripción clara -->
-            <p class="text-muted mx-auto mb-4" style="max-width: 450px;">
+            <p class="subtitle-custom mx-auto mb-4" style="max-width: 450px;">
               {{ 'mod-dashboard.SPAN_ALERT_QUERY_EMPTY' | translate }}
             </p>
             }
