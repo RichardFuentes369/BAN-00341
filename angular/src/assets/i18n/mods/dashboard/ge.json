@@ -1,3 +1,9 @@
 {
-    "GRAPHIC_REPORT": "Grafischer Bericht"
+  "GRAPHIC_REPORT": "Grafischer Bericht",
+
+  "TITLE_ALERT_QUERY": "Bestandsabfrage nach Produkt",
+  "SPAN_ALERT_QUERY": "Geben Sie den Barcode im linken Bereich ein oder scannen Sie ihn, um Produktdetails und Berichte anzuzeigen.",
+  
+  "TITLE_ALERT_QUERY_EMPTY": "Keine Ergebnisse gefunden",
+  "SPAN_ALERT_QUERY_EMPTY": "Für die ausgewählten Filter oder die Charge sind keine Informationen vorhanden. Versuchen Sie, die Suche anzupassen oder ein anderes Produkt auszuwählen."
 }

@@ -1,3 +1,9 @@
 {
-    "GRAPHIC_REPORT": "Informe gráfico"
+    "GRAPHIC_REPORT": "Informe gráfico",
+
+    "TITLE_ALERT_QUERY": "Consulta de inventario por producto",
+    "SPAN_ALERT_QUERY": "Ingrese o escanee el código de barras en el panel izquierdo para ver los detalles y reportes del producto.",
+    
+    "TITLE_ALERT_QUERY_EMPTY": "No se encontraron resultados",
+    "SPAN_ALERT_QUERY_EMPTY": "No hay información registrada para los filtros o el lote seleccionado. Intenta ajustar la búsqueda o seleccionar otro producto."
 }

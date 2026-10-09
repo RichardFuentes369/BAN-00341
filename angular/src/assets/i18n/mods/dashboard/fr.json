@@ -1,3 +1,9 @@
 {
-    "GRAPHIC_REPORT": "Rapport graphique"
+  "GRAPHIC_REPORT": "Rapport graphique",
+
+  "TITLE_ALERT_QUERY": "Consultation des stocks par produit",
+  "SPAN_ALERT_QUERY": "Saisissez ou scannez le code-barres dans le panneau de gauche pour afficher les détails et les rapports du produit.",
+  
+  "TITLE_ALERT_QUERY_EMPTY": "Aucun résultat trouvé",
+  "SPAN_ALERT_QUERY_EMPTY": "Aucune information n'est enregistrée pour les filtres ou le lot sélectionné. Essayez de modifier votre recherche ou de sélectionner un autre produit."
 }

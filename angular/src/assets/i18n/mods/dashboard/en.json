@@ -1,3 +1,9 @@
 {
-    "GRAPHIC_REPORT": "Graphic report"
+  "GRAPHIC_REPORT": "Graphic report",
+
+  "TITLE_ALERT_QUERY": "Inventory query by product",
+  "SPAN_ALERT_QUERY": "Enter or scan the barcode in the left panel to view product details and reports.",
+  
+  "TITLE_ALERT_QUERY_EMPTY": "No results found",
+  "SPAN_ALERT_QUERY_EMPTY": "There is no recorded information for the selected filters or batch. Try adjusting your search or selecting another product."
 }

@@ -107,12 +107,13 @@
                     [chartOptions]="piePorcentajeChartOptions">
                   </app-globales-charts>
                 </div>
-                </div>
               </div>
+            </div>
 
           </fieldset>
         </div>
-        }@else{
+        }
+        @else{
         <div class="card-custom shadow p-5 mb-4 text-center h-auto">
           <div class="empty-state py-4">
 
@@ -125,17 +126,16 @@
 
             <!-- Mensaje principal invitando a actuar -->
             <h4 class="fw-bold text-dark mb-2">
-              Consulta de inventario por producto
+              {{ 'mod-dashboard.TITLE_ALERT_QUERY' | translate }}
             </h4>
 
             <!-- Descripción orientativa -->
             <p class="text-muted mx-auto mb-4" style="max-width: 460px; font-size: 0.95rem;">
-              Ingrese o escanee el código de barras en el panel izquierdo para ver los detalles y reportes del producto.
+              {{ 'mod-dashboard.SPAN_ALERT_QUERY' | translate }}
             </p>
             }
 
             @if(idProducto != '' && loteDigitado != ''){
-
             <!-- Icono representativo -->
             <div class="empty-state-icon mb-3">
               <i class="fa-solid fa-boxes-packing text-muted" style="font-size: 4rem; opacity: 0.5;"></i>
@@ -143,16 +143,14 @@
 
             <!-- Mensaje principal -->
             <h4 class="fw-bold text-secondary mb-2">
-              No se encontraron resultados
+              {{ 'mod-dashboard.TITLE_ALERT_QUERY_EMPTY' | translate }}
             </h4>
 
             <!-- Descripción clara -->
             <p class="text-muted mx-auto mb-4" style="max-width: 450px;">
-              No hay información registrada para los filtros o el lote seleccionado. Intenta ajustar la búsqueda o
-              seleccionar otro producto.
+              {{ 'mod-dashboard.SPAN_ALERT_QUERY_EMPTY' | translate }}
             </p>
             }
-
           </div>
         </div>
         }
