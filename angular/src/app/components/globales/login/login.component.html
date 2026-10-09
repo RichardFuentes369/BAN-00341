@@ -1,62 +1,61 @@
-  <div class="card shadow card-custom">
-    <div class="card-glow-effect"></div>
-    <div class="login-card-body">
-      
-      <!-- Encabezado con bienvenida ejecutiva -->
-      <div class="text-center mb-4">
-        <div class="login-badge">
-          <span class="badge-dot"></span>{{ 'global-login.ACCESS_TEXT' | translate}}
-        </div>
-        <h1 class="h4 text-gray-900 title-custom font-weight-bold">
-          {{ 'global-login.TITLE_WELCOME' | translate}} {{ this.isLoginAdmin ? 'Admin' : '' }}
-        </h1>
-        <p class="login-subtitle">{{ 'global-login.MESSAGE_INPUT_CREDENTIALS' | translate}}</p>
+<div class="card shadow card-custom">
+  <div class="card-glow-effect"></div>
+  <div class="login-card-body">
+
+    <!-- Encabezado con bienvenida ejecutiva -->
+    <div class="text-center mb-4">
+      <div class="login-badge">
+        <span class="badge-dot"></span>{{ 'global-login.ACCESS_TEXT' | translate}}
+      </div>
+      <h1 class="h4 text-gray-900 title-custom font-weight-bold">
+        {{ 'global-login.TITLE_WELCOME' | translate}} {{ this.isLoginAdmin ? 'Admin' : '' }}
+      </h1>
+      <p class="login-subtitle">{{ 'global-login.MESSAGE_INPUT_CREDENTIALS' | translate}}</p>
+    </div>
+
+    <!-- Formulario -->
+    <form class="user">
+      <div class="form-group mb-3">
+        <input type="email" class="form-control form-control-user login-subtitle" id="exampleInputEmail"
+          aria-describedby="emailHelp" placeholder="{{ 'global-login.PLACEHOLDER_EMAIL' | translate}}"
+          [(ngModel)]="model.email" name="model.email">
       </div>
 
-      <!-- Formulario -->
-      <form class="user">
-        <div class="form-group mb-3">
-          <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp"
-            placeholder="{{ 'global-login.PLACEHOLDER_EMAIL' | translate}}" [(ngModel)]="model.email"
-            name="model.email">
-        </div>
+      <div class="form-group mb-3">
+        <div class="input-group password-group">
+          <input [type]="typefield" class="form-control form-control-user login-subtitle" id="exampleInputPassword"
+            placeholder="{{ 'global-login.PLACEHOLDER_PASSWORD' | translate}}" [(ngModel)]="model.password"
+            name="model.password">
 
-        <div class="form-group mb-3">
-          <div class="input-group password-group">
-            <input [type]="typefield" class="form-control form-control-user password-input" id="exampleInputPassword"
-              placeholder="{{ 'global-login.PLACEHOLDER_PASSWORD' | translate}}" [(ngModel)]="model.password"
-              name="model.password">
-            
-            <!-- Botón del ojo moderno y limpio -->
-            <div class="input-group-text toggle-password-wrapper" (click)="showPassword()" title="Mostrar/Ocultar contraseña">
-              <i class="fas" [ngClass]="typefield === 'text' ? 'fa-eye-slash' : 'fa-eye'"></i>
-            </div>
-          </div>
-        </div>
-
-        @if (this.isLoginAdmin === false) {
-        <div class="form-group mb-4">
-          <div class="custom-control custom-checkbox small remember-me">
-            <input type="checkbox" class="custom-control-input" id="customCheck">
-            <label class="custom-control-label title-custom" for="customCheck">
-              {{ 'global-login.LABEL_REMEMBER' | translate}}
-            </label>
-          </div>
-        </div>
-        }
-
-        @if(isPending){
-          <div class="text-center my-3">
-            <app-globales-loading></app-globales-loading>
-          </div>
-        }
-        @else {
-          <button type="button" class="btn btn-primary btn-user btn-block submit-btn" (click)="ingresar()">
-            {{ 'global-login.TEXT_LOGIN' | translate}}
+          <button type="button" class="btn-toggle-password" (click)="showPassword()" title="Mostrar/Ocultar contraseña">
+            <i class="fas" [ngClass]="typefield === 'text' ? 'fa-eye-slash' : 'fa-eye'"></i>
           </button>
-        }
-      </form>
+        </div>
+      </div>
 
-      <hr class="divider-custom my-4">
-    </div>
+      @if (this.isLoginAdmin === false) {
+      <div class="form-group mb-4">
+        <div class="custom-control custom-checkbox small remember-me">
+          <input type="checkbox" class="custom-control-input" id="customCheck">
+          <label class="custom-control-label title-custom" for="customCheck">
+            {{ 'global-login.LABEL_REMEMBER' | translate}}
+          </label>
+        </div>
+      </div>
+      }
+
+      @if(isPending){
+      <div class="text-center my-3">
+        <app-globales-loading></app-globales-loading>
+      </div>
+      }
+      @else {
+      <button type="button" class="btn btn-primary btn-user btn-block submit-btn" (click)="ingresar()">
+        {{ 'global-login.TEXT_LOGIN' | translate}}
+      </button>
+      }
+    </form>
+
+    <hr class="divider-custom my-4">
   </div>
+</div>

@@ -43,13 +43,13 @@ export class LoginComponent implements OnInit {
     this.urlPeticion = this.router.url
     this.isLoginAdmin = this.urlPeticion.split('/').find(e => e == 'admin') ? true : false
 
-    if(this.isLoginAdmin){
-      this.model.email = 'admin1@correo.com'
-      this.model.password = 'Qwerty9601'
-    }else{
-      this.model.email = 'final1@gmail.com'
-      this.model.password = 'Qwerty9601'
-    }
+    // if(this.isLoginAdmin){
+    //   this.model.email = 'admin1@correo.com'
+    //   this.model.password = 'Qwerty9601'
+    // }else{
+    //   this.model.email = 'final1@gmail.com'
+    //   this.model.password = 'Qwerty9601'
+    // }
   }
 
   showPassword(){

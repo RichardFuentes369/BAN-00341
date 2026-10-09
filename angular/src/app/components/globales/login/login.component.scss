@@ -10,12 +10,15 @@
 .card-custom {
   width: 100%;
   max-width: 420px;
-  border-radius: 0 !important; /* Quitamos bordes redondeados internos para que no choquen con el contenedor general */
+  border-radius: 0 !important;
+  /* Quitamos bordes redondeados internos para que no choquen con el contenedor general */
   border: none;
-  background-color: transparent !important; /* Hereda el fondo limpio del panel derecho */
+  background-color: transparent !important;
+  /* Hereda el fondo limpio del panel derecho */
   overflow: hidden;
   position: relative;
-  box-shadow: none !important; /* Eliminamos la segunda sombra redundante */
+  box-shadow: none !important;
+  /* Eliminamos la segunda sombra redundante */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   /* Efecto de brillo sutil en la esquina superior */
@@ -68,6 +71,11 @@
     opacity: 0.7;
     font-size: 0.9rem;
     margin-top: 5px;
+
+    &::placeholder {
+      color: color-mix(in srgb, var(--modal-label_text_color) 20%, transparent) !important;
+      opacity: 1;
+    }
   }
 }
 
@@ -86,48 +94,62 @@
   }
 }
 
-/* Grupo de contraseña y botón del ojo optimizado */
 .password-group {
   position: relative;
-  display: flex;
-  align-items: stretch;
+  width: 100%;
 
-  .password-input {
-    border-top-right-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-    border-right: none !important;
+  .form-control-user {
+    width: 100%;
+    /* Agregamos padding a la derecha para que el texto no se monte sobre el ojo */
+    padding-right: 2.75rem !important;
   }
 
-  .toggle-password-wrapper {
-    background-color: transparent;
-    border: 1px solid rgba(128, 128, 128, 0.2);
-    border-left: none;
-    border-top-right-radius: 10px !important;
-    border-bottom-right-radius: 10px !important;
-    padding: 0 16px;
+  .btn-toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    /* Asegura que quede por encima del input */
+
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
     cursor: pointer;
+
+    color: #4b5563;
+    /* Color del icono */
+    font-size: 1.1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.2s ease, color 0.2s ease;
-
-    i {
-      font-size: 1rem;
-      color: var(--modal-label_text_color);
-      opacity: 0.6;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
+    transition: color 0.2s ease, transform 0.1s ease;
 
     &:hover {
-      background-color: rgba(128, 128, 128, 0.05);
-      
-      i {
-        opacity: 1;
-        color: var(--layout-index-backg_color_textcard);
-        transform: scale(1.1);
-      }
+      color: #111827;
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
     }
   }
+}
+
+
+/* Efecto hover sobre el icono */
+.password-group .toggle-password-wrapper:hover {
+  color: #333333;
+}
+
+/* Sombra/Borde activo sincronizado cuando el input está enfocado */
+.password-group:focus-within .password-input,
+.password-group:focus-within .toggle-password-wrapper {
+  border-color: #80bdff;
+  /* Mismo color del outline de Bootstrap */
 }
 
 /* Botón principal de ingreso */

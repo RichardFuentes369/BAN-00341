@@ -21,13 +21,26 @@
     }
   }
 
-  // .modal-content {
-  //   border-radius: 1rem !important;
-  // }
+  /* EL PADRE SE ENCARGA DE TODO EL REDONDEO */
+  .modal-content {
+    border-radius: 1rem !important;
+    overflow: hidden !important; /* Recorta automáticamente header y footer */
+    border: none !important;
+    background-color: var(--modal-back_color_background) !important;
+  }
 
+  /* HIJOS RECTOS (SIN BORDER-RADIUS PROPIO) */
   .modal-header {
     background: var(--modal-head_background_color) !important;
-    border-bottom: none;
+    border-bottom: none !important;
+    border-radius: 0 !important; /* Se eliminan los radiuses propios */
+  }
+
+  .modal-footer {
+    color: var(--modal-footer_text_color) !important;
+    background-color: var(--modal-footer_background_color) !important;
+    border-top: none !important;
+    border-radius: 0 !important; /* Se eliminan los radiuses propios */
   }
 
   .modal-title {
@@ -36,11 +49,6 @@
 
   .modal-body {
     background-color: var(--modal-back_color_background) !important;
-  }
-
-  .modal-footer {
-    color: var(--modal-footer_text_color) !important;
-    background-color: var(--modal-footer_background_color) !important;
   }
 
   fieldset {
