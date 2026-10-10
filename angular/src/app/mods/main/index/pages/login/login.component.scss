@@ -1,7 +1,6 @@
 :host {
   display: block;
   background-color: #ffffff;
-  min-height: 100vh;
 
   .landing-container {
     background-color: #ffffff;
@@ -12,7 +11,7 @@
     background-color: var(--layout-index-header_color_background, #0d47a1);
     position: relative;
     width: 100%;
-    padding-bottom: 70px;
+    padding-bottom: 50px;
 
     h3, p {
       color: #ffffff !important;
