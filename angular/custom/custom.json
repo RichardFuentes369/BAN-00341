@@ -23,7 +23,7 @@
         "logo_color_hover_icon_text": "#0b4a75",
         "logo_color_hover_amount": 20,
         "footer_text_background": "#FFFFFF",
-        "footer_color_background": "#878383"
+        "footer_color_background": "#575555"
       },
       "admin": {
         "header_color_background": "#0b4a75",
@@ -151,7 +151,7 @@
         "logo_color_hover_amount": 20,
         "background_color_card_menu": "#EDEDED",
         "footer_text_background": "#FFFFFF",
-        "footer_color_background": "#878383"
+        "footer_color_background": "#0F0F0F"
       },
       "admin": {
         "header_color_background": "#069E21",
