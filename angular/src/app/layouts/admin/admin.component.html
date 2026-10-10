@@ -4,49 +4,59 @@
     [class.navigation-sidebar-hidden]="tipoNavegacion !== 'sidebar'" id="accordionSidebar">
 
     <!-- LOGO & BRAND AREA -->
-    <a class="nav-link d-flex align-items-center justify-content-center flex-column flex-md-row"
+    <a class="nav-link d-flex align-items-center justify-content-center flex-column flex-md-row mb-0 pb-0"
       routerLinkActive="active" [routerLink]="LAYOUT_PAGE_DASHBOARD">
-      <div class="bg-white rounded-5" style="position: relative; z-index: 1;">
+      <div class="bg-white rounded-5 shadow-sm" style="position: relative; z-index: 1;">
         <img src="assets/images/img_logo.png" alt="" width="50">
       </div>
 
-      <div class="logo-container bg-white d-inline-block mt-md-0 ml-md-n3 mr-md-3 rounded-bottom rounded-top"
-        style="position: relative; z-index: 0;">
+      <div class="logo-container bg-white d-inline-block mt-md-0 ml-md-n3 mr-md-3 rounded-bottom rounded-top shadow-sm"
+        style="position: relative; z-index: 0;" [class.d-none]="minimizarSliderbar">
         <span class="text-dark titleApp font-weight-bold pl-2 ml-2 mr-2 mt-1 mb-1 text-center"
           style="line-height: 0.9; display: block;" [innerHTML]="nameApp">
         </span>
       </div>
     </a>
 
-    <hr class="sidebar-divider bg-line-separator-customer mb-0">
+    <div class="text-center">
+      <span class="badge badge-dark text-white-50 border border-secondary px-1"
+        style="font-size: 0.55rem; font-weight: 400;">
+        v 1.0
+      </span>
+    </div>
+
+    <hr class="sidebar-divider bg-line-separator-customer my-2">
 
     <!-- MENU INICIAL -->
     <li class="nav-item" [class.active]="isRouteActive('/admin/mod', true)">
-      <a class="nav-link" [routerLink]="LAYOUT_ADMIN_PAGE_MENU">
-        <i class="bg_side_icon fa fa-th" aria-hidden="true"></i>
+      <a class="nav-link d-flex align-items-center px-3 py-2" [routerLink]="LAYOUT_ADMIN_PAGE_MENU">
+        <i class="bg_side_icon fa fa-th mr-2" aria-hidden="true"></i>
         <span class="bg_side_text">{{ 'mod-main.PAGES_MENU' | translate }}</span>
       </a>
     </li>
 
-    <hr class="sidebar-divider bg-line-separator-customer">
+    <hr class="sidebar-divider bg-line-separator-customer my-2">
 
-    <div class="sidebar-heading text-center">
+    <div class="sidebar-heading px-3 py-1 text-uppercase font-weight-bold" style="font-size: 0.68rem; opacity: 0.6;">
       {{ 'layout-admin.WORD_MODULES' | translate}}
     </div>
 
     <!-- MODULO USUARIOS -->
     @if(tienePermiso('usuarios', '', 0)){
     <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link collapsed" style="cursor: pointer;" [attr.data-toggle]="minimizarSliderbar ? null : 'collapse'"
-        data-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers" routerLinkActive="active"
-        [routerLink]="LAYOUT_ADMIN_PAGE_USERS">
-        <i class="bg_side_icon fa fa-users" aria-hidden="true"></i>
-        <span [class.ml-auto]="!minimizarSliderbar" class="bg_side_text">{{ 'mod-main.PAGES_USERS' | translate }}</span>
+      <a class="nav-link collapsed d-flex align-items-center justify-content-between px-3 py-2" style="cursor: pointer;"
+        [attr.data-toggle]="minimizarSliderbar ? null : 'collapse'" data-target="#collapseUsers" aria-expanded="false"
+        aria-controls="collapseUsers" routerLinkActive="active" [routerLink]="LAYOUT_ADMIN_PAGE_USERS">
+        <div class="d-flex align-items-center">
+          <i class="bg_side_icon fa fa-users mr-2" aria-hidden="true"></i>
+          <span class="bg_side_text">{{ 'mod-main.PAGES_USERS' | translate }}</span>
+        </div>
+        <!-- <i class="fa fa-chevron-right collapse-arrow ml-auto" style="font-size: 0.7rem; opacity: 0.6;"></i> -->
       </a>
 
       <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers"
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
-        <div class="bg-white py-2 collapse-inner my-0 rounded">
+        <div class="bg-white py-2 collapse-inner my-1 rounded shadow-sm">
           @if(tienePermiso('usuarios', 'administradores', 1)){
           <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_USER_PAGE_ADMIN">{{
             'mod-users.BUTTON_ADMIN' | translate }}</a>
@@ -63,36 +73,34 @@
     <!-- MODULO CATALOGO -->
     @if(tienePermiso('catalogo', '', 0)){
     <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link collapsed" style="cursor: pointer;" [attr.data-toggle]="minimizarSliderbar ? null : 'collapse'"
-        data-target="#collapseCatalog" aria-expanded="false" aria-controls="collapseCatalog"
-        [routerLink]="LAYOUT_ADMIN_PAGE_CATALOG">
-        <i class="bg_side_icon fa fa-book" aria-hidden="true"></i>
-        <span [class.ml-auto]="!minimizarSliderbar" class="bg_side_text">{{ 'mod-main.PAGES_CATALOG' | translate
-          }}</span>
+      <a class="nav-link collapsed d-flex align-items-center justify-content-between px-3 py-2" style="cursor: pointer;"
+        [attr.data-toggle]="minimizarSliderbar ? null : 'collapse'" data-target="#collapseCatalog" aria-expanded="false"
+        aria-controls="collapseCatalog" [routerLink]="LAYOUT_ADMIN_PAGE_CATALOG">
+        <div class="d-flex align-items-center">
+          <i class="bg_side_icon fa fa-book mr-2" aria-hidden="true"></i>
+          <span class="bg_side_text">{{ 'mod-main.PAGES_CATALOG' | translate }}</span>
+        </div>
+        <!-- <i class="fa fa-chevron-right collapse-arrow ml-auto" style="font-size: 0.7rem; opacity: 0.6;"></i> -->
       </a>
 
       <div id="collapseCatalog" class="collapse" aria-labelledby="headingCatalog"
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
-        <div class="bg-white py-2 collapse-inner my-0 rounded">
+        <div class="bg-white py-2 collapse-inner my-1 rounded shadow-sm">
           @if(tienePermiso('catalogo', 'proveedores', 1)){
           <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_CATEGORY_PAGE_SUPPLIER">{{
-            'mod-catalog.BUTTON_SUPPLIER' |
-            translate}}</a>
+            'mod-catalog.BUTTON_SUPPLIER' | translate}}</a>
           }
           @if(tienePermiso('catalogo', 'productos', 1)){
           <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_CATEGORY_PAGE_PRODUCT">{{
-            'mod-catalog.BUTTON_PRODUCT' |
-            translate}}</a>
+            'mod-catalog.BUTTON_PRODUCT' | translate}}</a>
           }
           @if(tienePermiso('catalogo', 'marcas', 1)){
           <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_CATEGORY_PAGE_BRAND">{{
-            'mod-catalog.BUTTON_BRAND' |
-            translate}}</a>
+            'mod-catalog.BUTTON_BRAND' | translate}}</a>
           }
           @if(tienePermiso('catalogo', 'unidad_de_medida', 1)){
           <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_CATEGORY_PAGE_EXTENT">{{
-            'mod-catalog.BUTTON_EXTENT' |
-            translate}}</a>
+            'mod-catalog.BUTTON_EXTENT' | translate}}</a>
           }
         </div>
       </div>
@@ -102,20 +110,21 @@
     <!-- BODEGA -->
     @if(tienePermiso('bodega', '', 0)){
     <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link collapsed" style="cursor: pointer;" [attr.data-toggle]="minimizarSliderbar ? null : 'collapse'"
-        data-target="#collapseWarehouse" aria-expanded="false" aria-controls="collapseWarehouse"
-        [routerLink]="LAYOUT_ADMIN_PAGE_WAREHOUSE">
-        <i class="bg_side_icon fa fa-cubes" aria-hidden="true"></i>
-        <span [class.ml-auto]="!minimizarSliderbar" class="bg_side_text">{{ 'mod-main.PAGE_WAREHOUSE' | translate
-          }}</span>
+      <a class="nav-link collapsed d-flex align-items-center justify-content-between px-3 py-2" style="cursor: pointer;"
+        [attr.data-toggle]="minimizarSliderbar ? null : 'collapse'" data-target="#collapseWarehouse"
+        aria-expanded="false" aria-controls="collapseWarehouse" [routerLink]="LAYOUT_ADMIN_PAGE_WAREHOUSE">
+        <div class="d-flex align-items-center">
+          <i class="bg_side_icon fa fa-cubes mr-2" aria-hidden="true"></i>
+          <span class="bg_side_text">{{ 'mod-main.PAGE_WAREHOUSE' | translate }}</span>
+        </div>
+        <!-- <i class="fa fa-chevron-right collapse-arrow ml-auto" style="font-size: 0.7rem; opacity: 0.6;"></i> -->
       </a>
 
       <div id="collapseWarehouse" class="collapse" aria-labelledby="headingWarehouse"
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
-        <div class="bg-white py-2 collapse-inner my-0 rounded">
+        <div class="bg-white py-2 collapse-inner my-1 rounded shadow-sm">
           <a class="collapse-item" routerLinkActive="active" [routerLink]="LAYOUT_ADMIN_PAGE_WAREHOUSE">{{
-            'mod-main.PAGE_WAREHOUSE' |
-            translate}}</a>
+            'mod-main.PAGE_WAREHOUSE' | translate}}</a>
         </div>
       </div>
     </li>
@@ -124,18 +133,21 @@
     <!-- MODULO MERMA -->
     @if(tienePermiso('merma', '', 0)){
     <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link collapsed" style="cursor: pointer;" [attr.data-toggle]="minimizarSliderbar ? null : 'collapse'"
-        data-target="#collapseLoss" aria-expanded="false" aria-controls="collapseLoss"
-        [routerLink]="LAYOUT_ADMIN_PAGE_LOSS">
-        <span class="fa-stack">
-          <i class="bg_side_icon fas fa-box" aria-hidden="true"></i>
-        </span>
-        <span class="bg_side_text">{{ 'mod-main.PAGES_LOSS' | translate }}</span>
+      <a class="nav-link collapsed d-flex align-items-center justify-content-between px-3 py-2" style="cursor: pointer;"
+        [attr.data-toggle]="minimizarSliderbar ? null : 'collapse'" data-target="#collapseLoss" aria-expanded="false"
+        aria-controls="collapseLoss" [routerLink]="LAYOUT_ADMIN_PAGE_LOSS">
+        <div class="d-flex align-items-center">
+          <span class="fa-stack mr-1" style="width: 1.25em;">
+            <i class="bg_side_icon fas fa-box" aria-hidden="true"></i>
+          </span>
+          <span class="bg_side_text">{{ 'mod-main.PAGES_LOSS' | translate }}</span>
+        </div>
+        <!-- <i class="fa fa-chevron-right collapse-arrow ml-auto" style="font-size: 0.7rem; opacity: 0.6;"></i> -->
       </a>
 
       <div id="collapseLoss" class="collapse" aria-labelledby="headingLoss"
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
-        <div class="bg-white py-2 collapse-inner my-0 rounded">
+        <div class="bg-white py-2 collapse-inner my-1 rounded shadow-sm">
           @if(tienePermiso('merma', 'tipo_merma', 1)){
           <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_MERMA_PAGE_TIPOS">{{
             'mod-merma.BUTTON_TYPE' | translate}}</a>
@@ -146,8 +158,7 @@
           }
           @if(tienePermiso('merma', 'historico_merma', 1)){
           <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_MERMA_PAGE_HISTORICO">{{
-            'mod-merma.BUTTON_HISTORY' |
-            translate}}</a>
+            'mod-merma.BUTTON_HISTORY' | translate}}</a>
           }
         </div>
       </div>
@@ -157,20 +168,22 @@
     <!-- MODULO VENTAS Y DEVOLUCIONES -->
     @if(tienePermiso('ventas_y_devoluciones', '', 0)){
     <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link collapsed" style="cursor: pointer;" [attr.data-toggle]="minimizarSliderbar ? null : 'collapse'"
-        data-target="#collapseSaleReturn" aria-expanded="false" aria-controls="collapseSaleReturn"
-        [routerLink]="LAYOUT_ADMIN_PAGE_SALE_RETURN">
-        <i class="bg_side_icon fa fa-book"></i>
-        <span [class.ml-auto]="!minimizarSliderbar" class="bg_side_text">{{ 'mod-main.PAGE_SALE' | translate }}</span>
+      <a class="nav-link collapsed d-flex align-items-center justify-content-between px-3 py-2" style="cursor: pointer;"
+        [attr.data-toggle]="minimizarSliderbar ? null : 'collapse'" data-target="#collapseSaleReturn"
+        aria-expanded="false" aria-controls="collapseSaleReturn" [routerLink]="LAYOUT_ADMIN_PAGE_SALE_RETURN">
+        <div class="d-flex align-items-center">
+          <i class="bg_side_icon fa fa-book mr-2"></i>
+          <span class="bg_side_text">{{ 'mod-main.PAGE_SALE' | translate }}</span>
+        </div>
+        <!-- <i class="fa fa-chevron-right collapse-arrow ml-auto" style="font-size: 0.7rem; opacity: 0.6;"></i> -->
       </a>
 
       <div id="collapseSaleReturn" class="collapse" aria-labelledby="headingSaleReturn"
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
-        <div class="bg-white py-2 collapse-inner my-0 rounded">
+        <div class="bg-white py-2 collapse-inner my-1 rounded shadow-sm">
           @if(tienePermiso('ventas_y_devoluciones', 'ventas', 1)){
           <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_SALERETURN_PAGE_SALE">{{
-            'mod-salereturn.BUTTON_SALE' |
-            translate}}</a>
+            'mod-salereturn.BUTTON_SALE' | translate}}</a>
           }
         </div>
       </div>
@@ -180,21 +193,22 @@
     <!-- MODULO ALERTAS -->
     @if(tienePermiso('alertas', '', 0)){
     <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link collapsed" style="cursor: pointer;" [attr.data-toggle]="minimizarSliderbar ? null : 'collapse'"
-        data-target="#collapseAlert" aria-expanded="false" aria-controls="collapseAlert"
-        [routerLink]="LAYOUT_ADMIN_PAGE_ALERT">
-        <i class="bg_side_icon fa fa-bell" aria-hidden="true"></i>
-        <span [class.ml-auto]="!minimizarSliderbar" class="bg_side_text">{{ 'mod-main.PAGES_ALERTS' | translate
-          }}</span>
+      <a class="nav-link collapsed d-flex align-items-center justify-content-between px-3 py-2" style="cursor: pointer;"
+        [attr.data-toggle]="minimizarSliderbar ? null : 'collapse'" data-target="#collapseAlert" aria-expanded="false"
+        aria-controls="collapseAlert" [routerLink]="LAYOUT_ADMIN_PAGE_ALERT">
+        <div class="d-flex align-items-center">
+          <i class="bg_side_icon fa fa-bell mr-2" aria-hidden="true"></i>
+          <span class="bg_side_text">{{ 'mod-main.PAGES_ALERTS' | translate }}</span>
+        </div>
+        <!-- <i class="fa fa-chevron-right collapse-arrow ml-auto" style="font-size: 0.7rem; opacity: 0.6;"></i> -->
       </a>
 
       <div id="collapseAlert" class="collapse" aria-labelledby="headingAlert"
         [attr.data-parent]="minimizarSliderbar ? null : '#accordionSidebar'">
-        <div class="bg-white py-2 collapse-inner my-0 rounded">
+        <div class="bg-white py-2 collapse-inner my-1 rounded shadow-sm">
           @if(tienePermiso('alertas', 'alerta_caducidad', 1)){
           <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_ALERT_PAGE_EXPIRATION">{{
-            'mod-alerts.BUTTON_EXPIRATION' |
-            translate }}</a>
+            'mod-alerts.BUTTON_EXPIRATION' | translate }}</a>
           }
           @if(tienePermiso('alertas', 'alerta_stock', 1)){
           <a class="collapse-item" routerLinkActive="active" [routerLink]="MOD_ALERT_PAGE_STOCK">{{
@@ -205,11 +219,15 @@
     </li>
     }
 
-    <hr class="sidebar-divider bg-line-separator-customer d-md-block mt-2">
+    <hr class="sidebar-divider bg-line-separator-customer d-md-block mt-auto mb-2">
 
     <!-- BOTON TOGGLE -->
-    <div class="text-center mt-xl-auto mb-3">
-      <button class="rounded-circle border-0" id="sidebarToggle" (click)="mostrarMenuLateral()"></button>
+    <div class="text-center mb-3 px-2">
+      <button
+        class="btn btn-sm btn-block rounded-pill border-0 py-2 d-flex align-items-center justify-content-center text-white"
+        id="sidebarToggle" (click)="mostrarMenuLateral()" style="background: rgba(255, 255, 255, 0.1);">
+        <i class="fa fa-angle-left toggle-icon"></i>
+      </button>
     </div>
 
   </ul>
@@ -336,7 +354,7 @@
             </a>
           </li>
 
-          <!-- MODULO USUARIOS (Con active en el li para que pinte la línea lateral) -->
+          <!-- MODULO USUARIOS -->
           @if(tienePermiso('usuarios', '', 0)){
           <li class="nav-item dropdown"
             [class.active]="isRouteActive(MOD_USER_PAGE_ADMIN, true) || isRouteActive(MOD_USER_PAGE_FINAL, true)">
@@ -360,7 +378,7 @@
           </li>
           }
 
-          <!-- MODULO CATALOGO (Con active en el li para que pinte la línea lateral) -->
+          <!-- MODULO CATALOGO -->
           @if(tienePermiso('catalogo', '', 0)){
           <li class="nav-item dropdown"
             [class.active]="isRouteActive(MOD_CATEGORY_PAGE_PRODUCT, true) || isRouteActive(MOD_CATEGORY_PAGE_BRAND, true) || isRouteActive(MOD_CATEGORY_PAGE_EXTENT, true) || isRouteActive(MOD_CATEGORY_PAGE_SUPPLIER, true)">
@@ -405,7 +423,7 @@
           </li>
           }
 
-          <!-- MODULO MERMA (Con active en el li para que pinte la línea lateral) -->
+          <!-- MODULO MERMA -->
           @if(tienePermiso('merma', '', 0)){
           <li class="nav-item dropdown"
             [class.active]="isRouteActive(MOD_MERMA_PAGE_REGISTRO, true) || isRouteActive(MOD_MERMA_PAGE_HISTORICO, true) || isRouteActive(MOD_MERMA_PAGE_TIPOS, true)">
@@ -445,7 +463,7 @@
           </li>
           }
 
-          <!-- MODULO ALERTAS (Con active en el li para que pinte la línea lateral) -->
+          <!-- MODULO ALERTAS -->
           @if(tienePermiso('alertas', '', 0)){
           <li class="nav-item dropdown"
             [class.active]="isRouteActive(MOD_ALERT_PAGE_EXPIRATION, true) || isRouteActive(MOD_ALERT_PAGE_STOCK, true)">
