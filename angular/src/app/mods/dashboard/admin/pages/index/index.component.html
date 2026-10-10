@@ -17,9 +17,8 @@
               <div class="pl-4 pr-4">
                 <app-reporte-lote #hijoFiltro [idProducto]="idProducto"
                   (dataResultLote)="loteTyped($event)"></app-reporte-lote>
+                <app-reporte-rangos></app-reporte-rangos>
               </div>
-              }
-
               <div class="pl-4 pr-4 pb-4" [class.pt-4]="!showRequestBatch">
                 <div class="col-sm-12">
                   <button type="button" class="btnFilterBatch btn btn-sm btn-primary w-100" [disabled]="isFormValid"
@@ -28,17 +27,10 @@
                   </button>
                 </div>
               </div>
-
+              }
             </div>
           </div>
         </div>
-        <!-- <div class="row mb-4">
-          <div class="col-sm-12">
-            <div class="card-custom shadow mb-3 pl-4 pr-4 pt-4">
-              <app-reporte-rangos></app-reporte-rangos>
-            </div>
-          </div>
-        </div> -->
       </div>
 
       <div class="col-xl-9 col-12">
@@ -60,6 +52,7 @@
           </fieldset>
         </div>
 
+        @if(!showRequestBatch){
         <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4 h-auto">
           <fieldset class="border p-3 rounded mb-3">
             <legend class="float-none w-auto p-1">
@@ -145,6 +138,8 @@
 
           </fieldset>
         </div>
+        }
+
         }
         @else{
         <div class="card-custom shadow p-5 mb-4 text-center h-auto">
