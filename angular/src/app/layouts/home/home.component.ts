@@ -8,6 +8,7 @@ import { filter } from 'rxjs/operators';
 import { NAME_PAGE, LAYOUT_HOME_PAGE_START, LAYOUT_HOME_PAGE_LOGIN_FINAL, LAYOUT_HOME_PAGE_LOGIN_ADMIN } from '@layout/const/layouts.const';
 import { ColormodeComponent } from '@component/globales/colormode/colormode.component';
 import { VarsService } from '@service/globales/vars/vars.service';
+import { FullscreenComponent } from '@component/globales/fullscreem/fullscreen.component';
 
 @Component({
   selector: 'app-layout-home',
@@ -15,6 +16,7 @@ import { VarsService } from '@service/globales/vars/vars.service';
   imports: [
     CommonModule,
     IdiomaComponent,
+    FullscreenComponent,
     TranslateModule,
     ColormodeComponent,
     RouterModule

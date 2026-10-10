@@ -1,20 +1,45 @@
-<div class="login-split-container">
-  <!-- Columna Izquierda: Identidad y Presentación -->
-  <div class="login-brand-side">
-    <div class="brand-content">
-      <img src="assets/images/img_logo.png" alt="Logo" width="120" class="mb-4">
-      <h2>{{ 'mod-home.MESSAGE_TITLE_PAGE_LOGIN' | translate}}</h2>
-      <p>{{ 'mod-home.MESSAGE_PAGE_LOGIN' | translate}}</p>
-      
-      <div class="brand-features">
-        <div class="feature-item"><i class="fas fa-shield-alt"></i> {{ 'mod-home.WORD_SECURITY' | translate}}</div>
-        <div class="feature-item"><i class="fas fa-chart-line"></i> {{ 'mod-home.WORD_REPORT' | translate}}</div>
+<div class="landing-container d-flex flex-column min-vh-100">
+  
+  <!-- Encabezado Azul Institucional con Onda -->
+  <div class="hero-blue-section">
+    <div class="container py-4">
+      <div class="text-center text-white">
+        <h3 class="font-weight-bold mb-1">{{ 'global-login.ACCESS_TEXT' | translate}}</h3>
+      </div>
+    </div>
+
+    <!-- Onda SVG inferior -->
+    <div class="wave-container">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,32L60,42.7C120,53,240,75,360,80C480,85,600,75,720,58.7C840,43,960,21,1080,21.3C1200,21,1320,43,1380,53.3L1440,64L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z" fill="#ffffff"></path>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Sección blanca donde flota tu login -->
+  <div class="content-white-section flex-grow-1 mt-5">
+    <div class="container">
+      <div class="login-split-container">
+        <!-- Columna Izquierda: Identidad y Presentación -->
+        <div class="login-brand-side">
+          <div class="brand-content">
+            <img src="assets/images/img_logo.png" alt="Logo" width="120" class="mb-4">
+            <h2>{{ 'mod-home.MESSAGE_TITLE_PAGE_LOGIN' | translate}}</h2>
+            <p>{{ 'mod-home.MESSAGE_PAGE_LOGIN' | translate}}</p>
+            
+            <div class="brand-features">
+              <div class="feature-item"><i class="fas fa-shield-alt"></i> {{ 'mod-home.WORD_SECURITY' | translate}}</div>
+              <div class="feature-item"><i class="fas fa-chart-line"></i> {{ 'mod-home.WORD_REPORT' | translate}}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Contenedor directo del formulario hijo -->
+        <div class="login-form-side">
+          <app-globales-login class="w-100 d-flex justify-content-center"></app-globales-login>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Columna Derecha: Contenedor directo del formulario hijo -->
-  <div class="login-form-side">
-    <app-globales-login class="w-100 d-flex justify-content-center"></app-globales-login>
-  </div>
 </div>

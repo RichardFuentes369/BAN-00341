@@ -1,4 +1,71 @@
 .landing-container {
-  font-family: 'Segoe UI', sans-serif;
-  color: #333;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: #ffffff;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Bloque Superior Azul Institucional */
+.hero-blue-section {
+  background-color: var(--layout-index-header_color_background, #0d47a1);
+  color: #ffffff;
+  position: relative;
+  padding-bottom: 60px; /* Espacio para que la onda no pise el contenido */
+  
+  /* Ajuste de textos dentro de la sección azul para que sean blancos */
+  h1, h2, h3, p, span {
+    color: #ffffff !important;
+  }
+}
+
+/* Contenedor de la Onda SVG */
+.wave-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  
+  svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 70px;
+  }
+}
+
+/* Sección inferior blanca */
+.content-white-section {
+  background-color: #ffffff;
+  position: relative;
+  z-index: 2;
+  margin-top: -20px; /* Sutil solapamiento elegante */
+}
+
+/* Estilos globales opcionales para los círculos de iconos si los usas en tus componentes hijos */
+::ng-deep {
+  .icon-circle-custom {
+    width: 75px;
+    height: 75px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px auto;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-4px);
+    }
+
+    img, i, svg {
+      filter: brightness(0) invert(1); /* Vuelve los iconos blancos automáticamente */
+      max-width: 35px;
+    }
+  }
 }

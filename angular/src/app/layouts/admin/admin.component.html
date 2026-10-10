@@ -508,11 +508,58 @@
         </div>
       </div>
 
-      <footer class="sticky-footer bg-gradient-footer-custom shadow-lg mt-auto">
+      <footer class="bg-gradient-footer-custom shadow-lg mt-auto py-2">
         <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span class="text-custom-footer">Copyright &copy; {{CURRENT_YEAR}}</span>
+
+          <!-- Fila compacta de tarjetas de desarrolladores -->
+          <div class="row justify-content-between text-custom-footer g-2">
+
+            <!-- Desarrollador 1 -->
+            <div class="col-lg-6 col-md-12 mb-2 mb-lg-0">
+              <div class="px-3 py-2 rounded h-100"
+                style="background-color: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08);">
+                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                  <div class="d-flex align-items-center">
+                    <i class="fas fa-user-graduate mr-2 "></i>
+                    <span class="font-weight-bold" style="font-size: 0.85rem;">Javier Ricardo Baron Fuentes</span>
+                    <span class="text-muted-custom ml-2 small d-none d-sm-inline">(Ing. Sistemas - UTS)</span>
+                  </div>
+                  <div class="small text-muted-custom">
+                    <span class="mr-3"><i class="fas fa-envelope mr-1"></i> jrbaron@uts.edu.co</span>
+                    <span><i class="fas fa-phone-alt mr-1"></i> (+57) 350 428 4093</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Desarrollador 2 -->
+            <div class="col-lg-6 col-md-12">
+              <div class="px-3 py-2 rounded h-100"
+                style="background-color: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08);">
+                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                  <div class="d-flex align-items-center">
+                    <i class="fas fa-user-graduate mr-2 "></i>
+                    <span class="font-weight-bold" style="font-size: 0.85rem;">Oscar Eduardo Villamizar B.</span>
+                    <span class="text-muted-custom ml-2 small d-none d-sm-inline">(Ing. Sistemas - UTS)</span>
+                  </div>
+                  <div class="small text-muted-custom">
+                    <span class="mr-3"><i class="fas fa-envelope mr-1"></i> oeduardovillamizar@uts.edu.co</span>
+                    <span><i class="fas fa-phone-alt mr-1"></i> (+57) 317 626 4312</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
+
+          <!-- Copyright ultra delgado -->
+          <div class="row pt-1 mt-1 text-center">
+            <div class="col-12">
+              <span class="text-custom-footer" style="font-size: 0.75rem; opacity: 0.8;">MermaSmart &copy;
+                {{CURRENT_YEAR}} | Proyecto de Grado - Unidades Tecnológicas de Santander</span>
+            </div>
+          </div>
+
         </div>
       </footer>
     </div>

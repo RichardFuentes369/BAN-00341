@@ -1,14 +1,61 @@
+:host {
+  display: block;
+  background-color: #ffffff;
+  min-height: 100vh;
+
+  .landing-container {
+    background-color: #ffffff;
+  }
+
+  /* Sección superior azul institucional */
+  .hero-blue-section {
+    background-color: var(--layout-index-header_color_background, #0d47a1);
+    position: relative;
+    width: 100%;
+    padding-bottom: 70px;
+
+    h3, p {
+      color: #ffffff !important;
+    }
+  }
+
+  /* Onda SVG inferior conectada perfectamente */
+  .wave-container {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 60px;
+    }
+  }
+
+  /* Fondo blanco continuo que elimina los cortes grises */
+  .content-white-section {
+    background-color: #ffffff;
+    position: relative;
+    z-index: 2;
+    margin-top: -45px; /* Sube la sección para fusionarse con la onda */
+  }
+}
+
+/* Tu estructura de tarjetas respetada y optimizada */
 .login-split-container {
   display: flex;
-  min-height: calc(85vh - 120px);
+  min-height: calc(75vh - 80px);
   width: 100%;
   max-width: 1200px;
-  margin: 20px auto;
+  margin: 0 auto;
   background-color: var(--modal-back_color_background, #ffffff);
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.06);
 
   /* Lado izquierdo con identidad */
   .login-brand-side {
@@ -74,11 +121,11 @@
   }
 }
 
-/* Ocultar el lado izquierdo en pantallas medianas y pequeñas */
+/* Responsive para pantallas medianas y pequeñas */
 @media (max-width: 992px) {
   .login-split-container {
-    box-shadow: none;
-    margin: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    margin: 0 auto;
     max-width: 100%;
     
     .login-brand-side {

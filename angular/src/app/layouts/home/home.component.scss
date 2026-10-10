@@ -28,5 +28,67 @@
   .text-custom-footer {
     color: var(--layout-index-footer_text_background) !important;
   }
-  
+
+  .bg-separator-customer {
+    background-color: var(--layout-index-side-separator) !important;
+  }
+
+  .bg-gradient-header-custom {
+    background-color: var(--layout-index-header_color_background) !important;
+  }
+
+  .bg_side_text,
+  .bg_side_icon {
+    color: var(--layout-index-logo_color_icon_text) !important;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: color-mix(in srgb, var(--layout-index-logo_color_icon_text), red 50%) !important;
+    }
+  }
+
+  #content-wrapper {
+    background-color: var(--layout-index-back_color_background) !important;
+  }
+
+  .bg-gradient-footer-custom {
+    background-color: var(--layout-index-footer_color_background) !important;
+  }
+
+  .text-custom-footer {
+    color: var(--layout-index-footer_text_background) !important;
+
+    a {
+      transition: opacity 0.2s ease-in-out;
+
+      &:hover {
+        opacity: 0.8;
+        text-decoration: underline !important;
+      }
+    }
+  }
+
+  /* Estilos específicos para las tarjetas de los desarrolladores */
+  .dev-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Sutil efecto glassmorphism sobre el fondo del footer */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+  }
+
+  .dev-avatar {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
 }
