@@ -5,5 +5,10 @@
   "SPAN_ALERT_QUERY": "Geben Sie den Barcode im linken Bereich ein oder scannen Sie ihn, um Produktdetails und Berichte anzuzeigen.",
   
   "TITLE_ALERT_QUERY_EMPTY": "Keine Ergebnisse gefunden",
-  "SPAN_ALERT_QUERY_EMPTY": "Für die ausgewählten Filter oder die Charge sind keine Informationen vorhanden. Versuchen Sie, die Suche anzupassen oder ein anderes Produkt auszuwählen."
+  "SPAN_ALERT_QUERY_EMPTY": "Für die ausgewählten Filter oder die Charge sind keine Informationen vorhanden. Versuchen Sie, die Suche anzupassen oder ein anderes Produkt auszuwählen.",
+  
+  "TITLE_GRAPHIC_1": "Zusammensetzung des Produktflusses (Verkäufe, Lagerbestand, Schwund und Einkäufe)",
+  "TITLE_GRAPHIC_2": "Menge des erzeugten Schwunds nach Wochentag",
+  "TITLE_GRAPHIC_3": "Hauptursachen für Schwund",
+  "TITLE_GRAPHIC_4": "Tägliche prozentuale Verteilung des Schwunds"
 }

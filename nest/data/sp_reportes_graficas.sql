@@ -109,4 +109,22 @@ BEGIN
     ORDER BY FIELD(dias.num_dia, 2, 3, 4, 5, 6, 7, 1);
 END //
 
+-- 5. Valor perdido
+CREATE PROCEDURE sp_report_5(
+    IN p_codigo_barra VARCHAR(13)
+)
+BEGIN
+    SELECT 
+        mmt.nombre AS nombre_tipo_merma, 
+        COALESCE((
+            SELECT SUM(mmm.valor_perdido)
+            FROM mod_merma_mermas mmm
+            INNER JOIN mod_bodega mb ON mmm.id_lote = mb.id
+            INNER JOIN mod_catalogo_productos mcp ON mb.id_producto = mcp.id
+            WHERE mmm.id_tipo_merma = mmt.id
+              AND mcp.codigo_barra = p_codigo_barra
+        ), 0) AS valor_perdido_total
+    FROM mod_merma_tipos mmt;
+END //
+
 DELIMITER ;

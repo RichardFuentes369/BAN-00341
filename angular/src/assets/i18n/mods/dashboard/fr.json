@@ -5,5 +5,10 @@
   "SPAN_ALERT_QUERY": "Saisissez ou scannez le code-barres dans le panneau de gauche pour afficher les détails et les rapports du produit.",
   
   "TITLE_ALERT_QUERY_EMPTY": "Aucun résultat trouvé",
-  "SPAN_ALERT_QUERY_EMPTY": "Aucune information n'est enregistrée pour les filtres ou le lot sélectionné. Essayez de modifier votre recherche ou de sélectionner un autre produit."
+  "SPAN_ALERT_QUERY_EMPTY": "Aucune information n'est enregistrée pour les filtres ou le lot sélectionné. Essayez de modifier votre recherche ou de sélectionner un autre produit.",
+
+  "TITLE_GRAPHIC_1": "Composition du flux de produits (Ventes, Stock, Perte et Achats)",
+  "TITLE_GRAPHIC_2": "Quantité de pertes générées par jour de la semaine",
+  "TITLE_GRAPHIC_3": "Principales causes de pertes",
+  "TITLE_GRAPHIC_4": "Répartition quotidienne en pourcentage des pertes"
 }

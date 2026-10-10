@@ -3,7 +3,7 @@
 
     <div class="col-sm-12 m-auto row p-0 align-items-start">
 
-      <div [ngClass]="isSmallScreen ? 'col-12 mb-4' : 'col-xl-4 sticky-sidebar'">
+      <div [ngClass]="isSmallScreen ? 'col-12 mb-4' : 'col-xl-3 sticky-sidebar'">
         <div class="row mb-4">
           <div class="col-sm-12">
             <div class="card-custom shadow mb-3">
@@ -41,7 +41,7 @@
         </div> -->
       </div>
 
-      <div class="col-xl-8 col-12">
+      <div class="col-xl-9 col-12">
         @if(showDetailProduct){
         <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4 h-auto">
           <fieldset class="border p-3 rounded mb-3">
@@ -68,44 +68,65 @@
                 (click)="toogleSection('resultadosGraficosBusqueda')">
                 <i [class]="mostrarSeccion.resultadosGraficosBusqueda ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
               </button>
+              <span class="btn btn-sm btn-light rounded-circle shadow-sm mx-2" (click)="alternarColumnas()">
+                <i class="fas" [ngClass]="columnasGraficas === 'col-sm-6' ? 'fa-th' : 'fa-list'"></i>
+              </span>
             </legend>
 
             <div class="row" *ngIf="mostrarSeccion.resultadosGraficosBusqueda"
               [class.animate__fadeIn]="mostrarSeccion.resultadosGraficosBusqueda"
               [class.animate__fadeOut]="!mostrarSeccion.resultadosGraficosBusqueda">
 
-              <div class="row">
+              <div class="container-fluid p-3">
+                <!-- Fila principal con gutters (g-3 para espacio vertical y horizontal de nivel 3) -->
+                <div class="row g-3 m-0">
 
-                <!-- Fila 1 -->
-                <div class="col-sm-12">
-                  <div class="text-center">
-                    <h3>Información del producto</h3>
+                  <!-- Gráfica 1 -->
+                  <div [ngClass]="columnasGraficas">
+                    <div class="border rounded-5 p-3 h-100 shadow-sm ">
+                      <div class="text-center mb-3">
+                        <h3>{{ 'mod-dashboard.TITLE_GRAPHIC_1' | translate }}</h3>
+                      </div>
+                      <app-globales-charts chartType="pie" [chartData]="pieChartData" [chartOptions]="pieChartOptions">
+                      </app-globales-charts>
+                    </div>
                   </div>
-                  <app-globales-charts chartType="pie" [chartData]="pieChartData"
-                    [chartOptions]="pieChartOptions"></app-globales-charts>
-                </div>
-                <div class="col-sm-12">
-                  <div class="text-center">
-                    <h3>Merma generada por dia</h3>
+
+                  <!-- Gráfica 2 -->
+                  <div [ngClass]="columnasGraficas">
+                    <div class="border rounded-5 p-3 h-100 shadow-sm ">
+                      <div class="text-center mb-3">
+                        <h3>{{ 'mod-dashboard.TITLE_GRAPHIC_2' | translate }}</h3>
+                      </div>
+                      <app-globales-charts chartType="bar" [chartData]="barChartData" [chartOptions]="barChartOptions">
+                      </app-globales-charts>
+                    </div>
                   </div>
-                  <app-globales-charts chartType="bar" [chartData]="barChartData"
-                    [chartOptions]="barChartOptions"></app-globales-charts>
-                </div>
-                <div class="col-sm-12">
-                  <div class="text-center">
-                    <h3>Motivo de merma</h3>
+
+                  <!-- Gráfica 3 -->
+                  <div [ngClass]="columnasGraficas">
+                    <div class="border rounded-5 p-3 h-100 shadow-sm ">
+                      <div class="text-center mb-3">
+                        <h3>{{ 'mod-dashboard.TITLE_GRAPHIC_3' | translate }}</h3>
+                      </div>
+                      <app-globales-charts [chartType]="mermasCantidadChartType" [chartData]="mermasCantidadChartData"
+                        [chartOptions]="mermasCantidadChartOptions">
+                      </app-globales-charts>
+                    </div>
                   </div>
-                  <app-globales-charts [chartType]="mermasCantidadChartType" [chartData]="mermasCantidadChartData"
-                    [chartOptions]="mermasCantidadChartOptions">
-                  </app-globales-charts>
-                </div>
-                <div class="col-sm-12">
-                  <div class="text-center">
-                    <h3>% de perdida por dia</h3>
+
+                  <!-- Gráfica 4 -->
+                  <div [ngClass]="columnasGraficas">
+                    <div class="border rounded-5 p-3 h-100 shadow-sm ">
+                      <div class="text-center mb-3">
+                        <h3>{{ 'mod-dashboard.TITLE_GRAPHIC_4' | translate }}</h3>
+                      </div>
+                      <app-globales-charts [chartType]="piePorcentajeChartType" [chartData]="piePorcentajeChartData"
+                        [chartOptions]="piePorcentajeChartOptions">
+                      </app-globales-charts>
+                    </div>
                   </div>
-                  <app-globales-charts [chartType]="piePorcentajeChartType" [chartData]="piePorcentajeChartData"
-                    [chartOptions]="piePorcentajeChartOptions">
-                  </app-globales-charts>
+
                 </div>
               </div>
             </div>
@@ -119,7 +140,7 @@
 
             @if(idProducto != '' && loteDigitado == ''){
             <!-- Icono representativo de búsqueda activa -->
-             
+
             <div class="empty-state-icon mb-3">
               <i class="fa-solid fa-magnifying-glass-location text-primary"
                 style="font-size: 3.8rem; opacity: 0.5;"></i>

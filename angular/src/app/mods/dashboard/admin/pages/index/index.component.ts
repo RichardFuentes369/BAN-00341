@@ -99,23 +99,23 @@ export class AdminDashboardComponent implements OnInit {
     this.datosJson.producto.codigo_barra = null;
     this.datosJson.producto.nombre = null;
     this.datosJson.producto.marca = null;
-    this.datosJson.producto.unidad_medida =  null;
+    this.datosJson.producto.unidad_medida = null;
 
     this.datosJson.proveedor.show = false,
-    this.datosJson.proveedor.nit = null,
-    this.datosJson.proveedor.correo = null,
-    this.datosJson.proveedor.razon_social = null,
-    
-    this.datosJson.lote.show = false,
-    this.datosJson.lote.cantidad_afectada_por_merma = null,
-    this.datosJson.lote.cantidad_comprada = null,
-    this.datosJson.lote.cantidad_en_bodega = null,
-    this.datosJson.lote.cantidad_vendida = null,
-    this.datosJson.lote.estado = null,
-    this.datosJson.lote.fecha_entrada = null,
-    this.datosJson.lote.fecha_vencimiento = null,
-    this.datosJson.lote.lote = null,
-    this.datosJson.lote.id = null
+      this.datosJson.proveedor.nit = null,
+      this.datosJson.proveedor.correo = null,
+      this.datosJson.proveedor.razon_social = null,
+
+      this.datosJson.lote.show = false,
+      this.datosJson.lote.cantidad_afectada_por_merma = null,
+      this.datosJson.lote.cantidad_comprada = null,
+      this.datosJson.lote.cantidad_en_bodega = null,
+      this.datosJson.lote.cantidad_vendida = null,
+      this.datosJson.lote.estado = null,
+      this.datosJson.lote.fecha_entrada = null,
+      this.datosJson.lote.fecha_vencimiento = null,
+      this.datosJson.lote.lote = null,
+      this.datosJson.lote.id = null
 
     if (this.hijoComponente) {
       this.hijoComponente.limpiarCampo()
@@ -360,6 +360,13 @@ export class AdminDashboardComponent implements OnInit {
         }]
       };
     }
+  }
+
+
+  columnasGraficas: string = 'col-sm-12';
+
+  alternarColumnas() {
+    this.columnasGraficas = this.columnasGraficas === 'col-sm-12' ? 'col-sm-6' : 'col-sm-12';
   }
 
 
