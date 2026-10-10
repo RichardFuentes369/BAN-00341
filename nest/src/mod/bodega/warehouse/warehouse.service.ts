@@ -373,11 +373,12 @@ export class WarehouseService {
       );
     }
 
-    const [resumen, mermasCantidad, mermasPorcentaje, mermasDias] = await Promise.all([
+    const [resumen, mermasCantidad, mermasPorcentaje, mermasDias, valorPerdido] = await Promise.all([
       this.dataSource.query('CALL sp_report_1(?)', [bodega.id_producto.codigo_barra]),
       this.dataSource.query('CALL sp_report_2(?)', [bodega.id_producto.codigo_barra]),
       this.dataSource.query('CALL sp_report_3(?)', [bodega.id_producto.codigo_barra]),
       this.dataSource.query('CALL sp_report_4(?)', [bodega.id_producto.codigo_barra]),
+      this.dataSource.query('CALL sp_report_5(?)', [bodega.id_producto.codigo_barra]),
     ]);
 
     return {
@@ -387,7 +388,8 @@ export class WarehouseService {
         resumen: resumen[0][0] || null,
         mermasCantidad: mermasCantidad[0] || [],
         mermasPorcentaje: mermasPorcentaje[0] || [],
-        mermasDias: mermasDias[0] || []
+        mermasDias: mermasDias[0] || [],
+        valorPerdido: valorPerdido[0] || [],
       }
     };
   }

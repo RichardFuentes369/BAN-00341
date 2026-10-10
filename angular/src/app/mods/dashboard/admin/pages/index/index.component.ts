@@ -265,9 +265,13 @@ export class AdminDashboardComponent implements OnInit {
   }
 
 
+  // ==========================
+  // MÉTODO ACTUALIZAR GRÁFICAS
+  // ==========================
   private actualizarGraficas(infoGraphics: any) {
     if (!infoGraphics) return;
 
+    // 1. Resumen general (cantidades)
     if (infoGraphics.resumen) {
       const resumen = infoGraphics.resumen;
 
@@ -286,15 +290,10 @@ export class AdminDashboardComponent implements OnInit {
       };
     }
 
+    // 2. Mermas por días (Gráfica de barras)
     if (infoGraphics.mermasDias) {
       const coloresDias = [
-        '#36A2EB', // Lunes
-        '#FF6384', // Martes
-        '#FFCE56', // Miércoles
-        '#4BC0C0', // Jueves
-        '#9966FF', // Viernes
-        '#FF9F40', // Sábado
-        '#C9CBCF'  // Domingo
+        '#36A2EB', '#FF6384', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#C9CBCF'
       ];
 
       const datasetsBarras = infoGraphics.mermasDias.map((item: any, index: number) => {
@@ -305,16 +304,17 @@ export class AdminDashboardComponent implements OnInit {
           borderColor: coloresDias[index % coloresDias.length],
           borderWidth: 1,
           borderRadius: 4,
-          hidden: false // Garantiza que empiece visible
+          hidden: false
         };
       });
 
       this.barChartData = {
-        labels: ['Días de la semana'], // Una sola categoría horizontal
+        labels: ['Días de la semana'],
         datasets: datasetsBarras
       };
     }
 
+    // 3. Mermas por cantidad (Barras horizontales)
     if (infoGraphics.mermasCantidad) {
       const labelsMermas = infoGraphics.mermasCantidad.map((item: any) => item.nombre);
       const dataMermas = infoGraphics.mermasCantidad.map((item: any) => Number(item.cantidad_por_merma) || 0);
@@ -334,6 +334,7 @@ export class AdminDashboardComponent implements OnInit {
       };
     }
 
+    // 4. Porcentaje de merma por día (Pastel de porcentajes)
     if (infoGraphics.mermasDias) {
       const labelsDias = infoGraphics.mermasDias.map((item: any) => item.dia_semana);
       const dataPorcentajes = infoGraphics.mermasDias.map((item: any) => {
@@ -342,26 +343,42 @@ export class AdminDashboardComponent implements OnInit {
         return parseFloat(valorLimpio) || 0;
       });
 
-      // Se asigna forzando la creación de un nuevo objeto e incluyendo la propiedad label en el dataset
       this.piePorcentajeChartData = {
         labels: [...labelsDias],
         datasets: [{
           label: 'Porcentaje de merma',
           data: [...dataPorcentajes],
           backgroundColor: [
-            '#36A2EB',
-            '#FF6384',
-            '#FFCE56',
-            '#4BC0C0',
-            '#9966FF',
-            '#FF9F40',
-            '#C9CBCF'
+            '#36A2EB', '#FF6384', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#C9CBCF'
           ]
         }]
       };
     }
-  }
 
+    // 5. Valor perdido / Pérdidas económicas (Pastel dinámico basado en BD)
+    if (infoGraphics.valorPerdido && Array.isArray(infoGraphics.valorPerdido)) {
+      const resumenMermas = infoGraphics.valorPerdido;
+
+      const labels = resumenMermas.map((item: any) => item.nombre_tipo_merma);
+      const data = resumenMermas.map((item: any) => Number(item.valor_perdido_total) || 0);
+
+      const baseColors = [
+        '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
+        '#9966FF', '#FF9F40', '#C9CBCF', '#7BC225'
+      ];
+
+      const backgroundColor = labels.map((_: any, index: number) => baseColors[index % baseColors.length]);
+
+      this.pieValorPerdidoChartData = {
+        labels: labels,
+        datasets: [{
+          data: data,
+          backgroundColor: backgroundColor,
+          hoverBackgroundColor: backgroundColor
+        }]
+      };
+    }
+  }
 
   columnasGraficas: string = 'col-sm-12';
 
@@ -414,7 +431,6 @@ export class AdminDashboardComponent implements OnInit {
       }
     }
   };
-
   public barChartData: ChartData<'bar'> = {
     labels: [],
     datasets: []
@@ -512,12 +528,10 @@ export class AdminDashboardComponent implements OnInit {
     }]
   };
 
-
   // ==========================
   // CONFIGURACIÓN PORCENTAJE MERMA POR DÍA (PASTEL)
   // ==========================
   public piePorcentajeChartType: ChartType = 'pie';
-
   public piePorcentajeChartOptions: ChartOptions<'pie'> = {
     responsive: true,
     maintainAspectRatio: false,
@@ -537,7 +551,6 @@ export class AdminDashboardComponent implements OnInit {
       }
     }
   };
-
   public piePorcentajeChartData: ChartData<'pie', number[], string> = {
     labels: [],
     datasets: [{
@@ -551,6 +564,36 @@ export class AdminDashboardComponent implements OnInit {
         '#FF9F40', // Sábado
         '#C9CBCF'  // Domingo
       ]
+    }]
+  };
+
+  // ==========================
+  // CONFIGURACIÓN VALOR PERDIDO (PASTEL - ECONÓMICO)
+  // ==========================
+  public pieValorPerdidoChartType: ChartType = 'pie';
+  public pieValorPerdidoChartOptions: ChartOptions<'pie'> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    aspectRatio: 2,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: {
+        callbacks: {
+          label: (context) => {
+            const label = context.label || '';
+            const value = context.parsed || 0;
+            return ` ${label}: $ ${value.toLocaleString()}`;
+          }
+        }
+      }
+    }
+  };
+  public pieValorPerdidoChartData: ChartData<'pie', number[], string | string[]> = {
+    labels: [],
+    datasets: [{
+      data: [],
+      backgroundColor: [],
+      hoverBackgroundColor: []
     }]
   };
 

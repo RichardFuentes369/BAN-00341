@@ -127,6 +127,18 @@
                     </div>
                   </div>
 
+                  <!-- Gráfica 5 -->
+                  <div [ngClass]="columnasGraficas">
+                    <div class="border rounded-5 p-3 h-100 shadow-sm">
+                      <div class="text-center mb-3">
+                        <h3>{{ 'mod-dashboard.TITLE_GRAPHIC_5' | translate }}</h3>
+                      </div>
+                      <app-globales-charts [chartType]="pieValorPerdidoChartType" [chartData]="pieValorPerdidoChartData"
+                        [chartOptions]="pieValorPerdidoChartOptions">
+                      </app-globales-charts>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>

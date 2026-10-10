@@ -113,11 +113,12 @@ export class ProductService {
       prodcut.estado = false;
     }
 
-    const [resumen, mermasCantidad, mermasPorcentaje, mermasDias] = await Promise.all([
+    const [resumen, mermasCantidad, mermasPorcentaje, mermasDias, valorPerdido] = await Promise.all([
       this.dataSource.query('CALL sp_report_1(?)', [prodcut.codigo_barra]),
       this.dataSource.query('CALL sp_report_2(?)', [prodcut.codigo_barra]),
       this.dataSource.query('CALL sp_report_3(?)', [prodcut.codigo_barra]),
       this.dataSource.query('CALL sp_report_4(?)', [prodcut.codigo_barra]),
+      this.dataSource.query('CALL sp_report_5(?)', [prodcut.codigo_barra]),
     ]);
 
     return {
@@ -126,7 +127,8 @@ export class ProductService {
         resumen: resumen[0][0] || null,
         mermasCantidad: mermasCantidad[0] || [],
         mermasPorcentaje: mermasPorcentaje[0] || [],
-        mermasDias: mermasDias[0] || []
+        mermasDias: mermasDias[0] || [],
+        valorPerdido: valorPerdido[0] || [],
       }
     };
   }
