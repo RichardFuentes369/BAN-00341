@@ -240,6 +240,27 @@
       </div>         
     </fieldset>
 
+    <!-- SECCIÓN VENTA -->
+    <fieldset class="border p-3 rounded">
+      <legend class="float-none w-auto p-1">
+        <i class="fa fa-shopping-cart me-1"></i>
+        {{ 'mod-salereturn.PAGE_TITLE_SALE' | translate }}
+        <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('ventaSeccion')">
+          <i [class]="mostrarSeccion.ventaSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+        </button>
+      </legend>
+      <div class="row" *ngIf="mostrarSeccion.ventaSeccion" [class.animate__fadeIn]="mostrarSeccion.ventaSeccion"
+        [class.animate__fadeOut]="!mostrarSeccion.ventaSeccion">
+        @if (cargarIdioma) {
+        <div class="table-container">
+          <app-globales-tablecrud *ngIf="endPointV" [accioneson]="accioneson" [orderField]="orderField" [order]="order"
+            [endPoint]="endPointV" [columnas]="columnasV" [title]="titlePage">
+          </app-globales-tablecrud>
+        </div>
+        }
+      </div>
+    </fieldset>
+
     <!-- SECCIÓN MERMA -->
     <fieldset class="border p-3 rounded mt-3">
       <legend class="float-none w-auto p-1">
@@ -253,12 +274,12 @@
         @if (cargarIdioma) {
         <div class="table-container">
           <app-globales-tablecrud 
-            *ngIf="endPoint"
+            *ngIf="endPointM"
             [accioneson]="accioneson" 
             [orderField]="orderField" 
             [order]="order"
-            [endPoint]="endPoint" 
-            [columnas]="columnas" 
+            [endPoint]="endPointM" 
+            [columnas]="columnasM" 
             [title]="titlePage" 
           >
           </app-globales-tablecrud>

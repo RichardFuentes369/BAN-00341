@@ -137,10 +137,11 @@ export class EditarWarehouseComponent {
 
   cargarIdioma = true
   accioneson = false
-  endPoint = ``
+  endPointV = ``
+  endPointM = ``
   orderField = 'id'
   order = 'desc'
-  columnas: any[] = [
+  columnasM: any[] = [
     {
       title: this.translate.instant('mod-merma.REGISTER.COLUMN_ID'),
       data: 'id',
@@ -184,6 +185,55 @@ export class EditarWarehouseComponent {
       className: 'text-center'
     },
   ];
+  columnasV: any[] = [
+    {
+      title: this.translate.instant('mod-salereturn.COLUMN_INVOICE'),
+      data: 'id_venta.nro_factura',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-salereturn.COLUMN_DATE_SALE'),
+      data: 'id_venta.fecha_venta',
+      className: 'text-center align-middle',
+      render: (data: any) => {
+        if (!data) return '';
+        const date = new Date(Number(data) * 1000);
+        if (isNaN(date.getTime())) {
+          return 'Fecha inválida';
+        }
+        return date.toLocaleDateString('es-CO', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        });
+      }
+    },
+    {
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+      data: 'codigo_barra',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-warehouse.COLUMN_BATCH'),
+      data: 'lote',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-catalog.WORD_QUANTITY'),
+      data: 'cantidad',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-salereturn.WORD_VLR_UNITARIO'),
+      data: 'valor_unitario',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-salereturn.WORD_VLR_TOTAL'),
+      data: 'valor_total',
+      className: 'text-center'
+    },
+  ]
   titlePage = this.translate.instant('mod-warehouse.TABLE_TITLE')
 
   async ngOnInit() {
@@ -210,9 +260,6 @@ export class EditarWarehouseComponent {
     this.permisos_catalogo_proveedores = permisos_proveedores.data
 
     let idLote = this.route.snapshot.queryParams?.['id_lote']
-    if (idLote) {
-      this.endPoint = `registro-mermas/obtener-registro-mermas?id_lote=${idLote}`
-    }
 
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     this.loteReal = await this.bodegaService.getDataLote(idLote)
@@ -241,6 +288,11 @@ export class EditarWarehouseComponent {
     this.model.cantidad_en_bodega = this.loteReal.data.cantidad_en_bodega
     this.cantidad_afectada_por_merma = this.loteReal.data.mermas
     this.model.estado = this.loteReal.data.estado
+
+    if (idLote) {
+      this.endPointM = `registro-mermas/obtener-registro-mermas?id_lote=${idLote}`
+      this.endPointV = `sales/obtener-detalle-ventas?lote=${this.loteReal.data.lote}&codigo_barra=${this.loteReal.data.id_producto.codigo_barra}`
+    }
   }
 
   goTo(url: string, _id: number) {
@@ -442,6 +494,7 @@ export class EditarWarehouseComponent {
     productSeccion: true,
     providerSeccion: true,
     batchSeccion: true,
+    ventaSeccion: true,
     mermaSeccion: true,
   }
 

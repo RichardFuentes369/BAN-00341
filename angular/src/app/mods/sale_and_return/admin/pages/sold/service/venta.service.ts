@@ -15,7 +15,6 @@ export class VentaService {
     private translate: TranslateService
   ) { }
 
-
   async getDataSold(id: string) {
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'sales/obtener-registro-venta/'

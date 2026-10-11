@@ -134,79 +134,108 @@ export class SalesService {
     });
   }
 
-  // async create(
-  //   lang: string,
-  //   saleData: CreateSaleDto,
-  //   userId: number
-  // ) {
-  //   try {
-  //     return await this.dataSource.transaction(async (manager) => {
-  //       const detalles = saleData.detalle_factura;
+  async findDetailSale(
+    filterDto: FilterSaleDto,
+    lang: string
+  ) {
+    const { limit, page, field = 'id', order = 'Asc' } = filterDto
 
-  //       for (const item of detalles) {
+    if (!filterDto.page && !filterDto.limit) throw new NotFoundException(
+      this.i18n.t('user.MSJ_ERROR_PARAMETRO_LISTA_NO_ENVIADO', { lang, args: { field: field } })
+    )
 
-  //         const id_producto = await manager.findOne(Producto, {
-  //           where: { codigo_barra: item.codigo_barra }
-  //         });
+    if (field == '') throw new NotFoundException(
+      this.i18n.t('user.MSJ_ERROR_PARAMETRO_CAMPO_FILTRO_NO_ENVIADO', { lang, args: { field: field } })
+    )
+    if (!filterDto.page) throw new NotFoundException(
+      this.i18n.t('user.MSJ_ERROR_PARAMETRO_CAMPO_PAGE_NO_ENVIADO', { lang, args: { field: field } })
+    )
+    if (!filterDto.limit) throw new NotFoundException(
+      this.i18n.t('user.MSJ_ERROR_PARAMETRO_CAMPO_LIMIT_NO_ENVIADO', { lang, args: { field: field } })
+    )
 
-  //         if (!id_producto) {
-  //           throw new BadRequestException(
-  //             `El producto con código de barra '${item.codigo_barra}' no existe en nuestro catálogo.`
-  //           );
-  //         }
+    if (field != '') {
+      const propiedades = this.listarPropiedadesTabla(this.salesdetailRepository)
+      const arratResult = propiedades.filter(obj => obj === field).length
 
-  //         const productoBodega = await manager.findOne(Bodega, {
-  //           where: {
-  //             lote: item.lote,
-  //             id_producto: id_producto,
-  //           },
-  //         });
+      if (arratResult == 0) throw new NotFoundException(
+        this.i18n.t('user.MSJ_ERROR_PARAMETRO_NO_EXISTE', { lang, args: { field: field } })
+      )
+    }
 
-  //         if (!productoBodega) {
-  //           throw new BadRequestException(
-  //             `El producto con lote '${item.lote}' no existe en bodega.`
-  //           );
-  //         }
+    const parseDateParam = (param: any) => {
+      if (!param) return null;
 
-  //         const cantidadVendida = Number(item.cantidad);
-  //         const cantidadBodega = Number(productoBodega.cantidad_en_bodega);
+      if (typeof param === 'string' && param.includes('-')) {
+        const dateObj = new Date(param);
+        if (isNaN(dateObj.getTime())) return null;
+        return Math.floor(dateObj.getTime() / 1000);
+      }
 
-  //         if (cantidadVendida > cantidadBodega) {
-  //           throw new BadRequestException(
-  //             `Stock insuficiente para el lote '${item.lote}'. Stock actual: ${cantidadBodega}, solicitado: ${cantidadVendida}.`
-  //           );
-  //         }
+      const num = Number(param);
+      if (isNaN(num)) return null;
 
-  //         productoBodega.cantidad_en_bodega = cantidadBodega - cantidadVendida;
-  //         productoBodega.cantidad_vendida += cantidadVendida;
+      return num > 10000000000 ? Math.floor(num / 1000) : num;
+    };
 
-  //         await manager.save(productoBodega);
-  //       }
+    const skipeReal = (page == 1) ? 0 : (page - 1) * limit
 
-  //       // 3. Crear y guardar la factura con el JSON completo en detalle_factura
-  //       const nuevaFactura = manager.create(Ventas, {
-  //         nro_factura: saleData.nro_factura,
-  //         fecha_venta: saleData.fecha_venta,
-  //         detalle_factura: detalles
-  //       });
+    const where: any = {};
 
-  //       await manager.save(nuevaFactura);
+    const fecha_venta_min = parseDateParam(filterDto['fecha_venta_minimo']);
+    const fecha_venta_max = parseDateParam(filterDto['fecha_venta_maximo']);
 
-  //       return {
-  //         'title': this.i18n.t('supplier.MSJ_TITTLE', { lang }),
-  //         'message': this.i18n.t('supplier.MSJ_CREADO_EXITOSAMENTE', { lang }),
-  //         'status': 200,
-  //       };
-  //     });
+    if (fecha_venta_min !== null && fecha_venta_max !== null) {
+      where.fecha_venta = Between(fecha_venta_min, fecha_venta_max);
+    } else if (fecha_venta_min !== null) {
+      where.fecha_venta = MoreThanOrEqual(fecha_venta_min);
+    } else if (fecha_venta_max !== null) {
+      where.fecha_venta = LessThanOrEqual(fecha_venta_max);
+    }
 
-  //   } catch (error) {
-  //     return {
-  //       'title': 'Error',
-  //       'message': error.response?.message || error.message,
-  //       'status': error.status || 400, // Si es un BadRequestException, capturará su status correspondiente
-  //     };
-  //   }
-  // }
+    if (filterDto.nro_factura !== undefined && filterDto.nro_factura !== '') {
+      where.nro_factura = filterDto.nro_factura;
+    }
+
+    if(filterDto.lote !== undefined && filterDto.lote !== '') {
+      where.lote = filterDto.lote;      
+    }
+
+    if(filterDto.codigo_barra !== undefined && filterDto.codigo_barra !== '') {
+      where.codigo_barra = filterDto.codigo_barra;
+    }
+
+
+    const [registros, total] = await this.salesdetailRepository.findAndCount({
+      skip: skipeReal,
+      take: limit,
+      where: where,
+      relations: ['id_venta'],
+      order: { [field]: order }
+    });
+
+    const result = registros.map(admin => {
+      return {
+        ...admin,
+      };
+    });
+
+    return [{
+      'result': result,
+      'pagination': {
+        'page': page,
+        'perPage': limit,
+        'previou': (page === 1) ? null : page - 1,
+        'next': (skipeReal + limit < total) ? page + 1 : null,
+        'totalRecord': total
+      },
+      'order': {
+        'order': order,
+        'field': field
+      }
+    }];
+  }
+
 
   async create(
     lang: string,

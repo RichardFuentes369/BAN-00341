@@ -41,5 +41,13 @@ export class FilterSaleDto {
 
   @IsOptional()
   @IsString()
+  lote?: string;  
+
+  @IsOptional()
+  @IsString()
+  codigo_barra?: string;  
+
+  @IsOptional()
+  @IsString()
   lang?: string;
 }

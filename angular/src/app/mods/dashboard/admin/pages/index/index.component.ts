@@ -12,6 +12,7 @@ import { ToogleBatchComponent } from '../../components/toogle-batch/toogle-batch
 import { BodegaService } from '@mod/warehouse/admin/pages/warehouse/service/warehouse.service';
 import { ProductosService } from '@mod/catalog/admin/pages/productos/service/productos.service';
 import { RangosFiltroComponent } from '../../components/rangos/rangos.component';
+import { VentaService } from '@mod/sale_and_return/admin/pages/sold/service/venta.service';
 
 @Component({
   selector: 'app-dashboard-admin',

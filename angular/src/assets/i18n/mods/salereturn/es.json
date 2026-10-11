@@ -14,5 +14,8 @@
   "COLUMN_DATE_SALE": "Fecha de venta",
 
   "SEE_TITLE": "Ver",
-  "SEE_SUBTITLE": "{{nro_invoice}}"
+  "SEE_SUBTITLE": "{{nro_invoice}}",
+
+  "WORD_VLR_UNITARIO": "Valor unitario",
+  "WORD_VLR_TOTAL": "Valor total"
 }

@@ -3835,7 +3835,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"nro_factura\": \"fac-0007\",\n    \"fecha_venta\": 1788379521,\n    \"detalle_factura\": [\n        {\n            \"lote\": \"l485-69\",\n            \"codigo_barra\": \"1000000000001\",\n            \"cantidad\": \"10\"\n        },\n        {\n            \"lote\": \"poi-885\",\n            \"codigo_barra\": \"1000000000001\",\n            \"cantidad\": \"1\"\n        },\n        {\n            \"lote\": \"laq-25963\",\n            \"codigo_barra\": \"1000000000001\",\n            \"cantidad\": \"2\"\n        }\n    ]\n}",
+											"raw": "{\n    \"nro_factura\": \"fac-0002\",\n    \"fecha_venta\": 1791687082,\n    \"detalle_factura\": [\n        {\n            \"lote\": \"1791484677\",\n            \"codigo_barra\": \"1000000000002\",\n            \"cantidad\": 500,\n            \"valor_unitario\": 900,\n            \"valor_total\": 1800\n        },\n        {\n            \"lote\": \"1791393677\",\n            \"codigo_barra\": \"7702007045444\",\n            \"cantidad\": 1,\n            \"valor_unitario\": 1650,\n            \"valor_total\": 1650\n        },\n        {\n            \"lote\": \"Kt1791339209\",\n            \"codigo_barra\": \"7703147101717\",\n            \"cantidad\": 1,\n            \"valor_unitario\": 2800,\n            \"valor_total\": 2800\n        },\n        {\n            \"lote\": \"1791339209\",\n            \"codigo_barra\": \"7707351430311\",\n            \"cantidad\": 1,\n            \"valor_unitario\": 5400,\n            \"valor_total\": 5400\n        }\n    ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3921,7 +3921,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/sales/obtener-registro-venta?_id=6&lang=en",
+											"raw": "localhost:3000/api/sales/obtener-registro-venta?_id=1&lang=en",
 											"host": [
 												"localhost"
 											],
@@ -3934,11 +3934,77 @@
 											"query": [
 												{
 													"key": "_id",
-													"value": "6"
+													"value": "1"
 												},
 												{
 													"key": "lang",
 													"value": "en"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obtener-ventas-por-codigo_barra-lote",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/sales/obtener-detalle-ventas?page=1&limit=10&field=id&order=desc&lote=1791484677&codigo_barra=1000000000002",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"sales",
+												"obtener-detalle-ventas"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "10"
+												},
+												{
+													"key": "field",
+													"value": "id"
+												},
+												{
+													"key": "order",
+													"value": "desc"
+												},
+												{
+													"key": "lote",
+													"value": "1791484677"
+												},
+												{
+													"key": "codigo_barra",
+													"value": "1000000000002"
+												},
+												{
+													"key": "fecha_venta_minimo",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "fecha_venta_maximo",
+													"value": null,
+													"disabled": true
 												}
 											]
 										}

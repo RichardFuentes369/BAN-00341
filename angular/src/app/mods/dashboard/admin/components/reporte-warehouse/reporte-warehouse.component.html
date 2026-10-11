@@ -150,6 +150,26 @@
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
       <fieldset class="border p-3 rounded">
         <legend class="float-none w-auto p-1">
+          {{ 'mod-salereturn.PAGE_TITLE_SALE' | translate }}
+          <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('ventaSeccion')">
+            <i [class]="mostrarSeccion.ventaSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+          </button>
+        </legend>
+
+        <div class="row" *ngIf="mostrarSeccion.ventaSeccion" [class.animate__fadeIn]="mostrarSeccion.ventaSeccion"
+          [class.animate__fadeOut]="!mostrarSeccion.ventaSeccion">
+          <div class="table-container col-12 mb-4">
+            <app-globales-tablecrud *ngIf="endPointV" [accioneson]="accioneson" [orderField]="orderField" [order]="order"
+              [endPoint]="endPointV" [columnas]="columnasV" [title]="titlePage">
+            </app-globales-tablecrud>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <fieldset class="border p-3 rounded">
+        <legend class="float-none w-auto p-1">
           {{ 'mod-merma.REGISTER.LEGEND_TITLE' | translate }}
           <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('mermaSeccion')">
             <i [class]="mostrarSeccion.mermaSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
@@ -159,8 +179,8 @@
         <div class="row" *ngIf="mostrarSeccion.mermaSeccion" [class.animate__fadeIn]="mostrarSeccion.mermaSeccion"
           [class.animate__fadeOut]="!mostrarSeccion.mermaSeccion">
           <div class="table-container col-12 mb-4">
-            <app-globales-tablecrud *ngIf="endPoint" [accioneson]="accioneson" [orderField]="orderField" [order]="order"
-              [endPoint]="endPoint" [columnas]="columnas" [title]="titlePage">
+            <app-globales-tablecrud *ngIf="endPointM" [accioneson]="accioneson" [orderField]="orderField" [order]="order"
+              [endPoint]="endPointM" [columnas]="columnasM" [title]="titlePage">
             </app-globales-tablecrud>
           </div>
         </div>

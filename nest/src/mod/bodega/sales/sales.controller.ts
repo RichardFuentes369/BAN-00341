@@ -46,16 +46,14 @@ export class SalesController {
     return this.salesService.create(lang, saleData, userId);
   }
 
-  // @UseGuards(AdminGuard)
-  // @Get('obtener-detalle-ventas')
-  // findDetailSale(
-  //   @Query('_id') _id: string,
-  //   @Query('lang') lang: string,
-  //   @GetUser('id') userId: number
-  // ) {
-  //   return this.salesService.findOne(
-  //     lang,
-  //     +_id
-  //   );
-  // }
+  @Get('obtener-detalle-ventas')
+  findDetailSale(
+    @Query() filterSaleDto: FilterSaleDto,
+    @Query('lang') lang: string,
+  ) {
+    return this.salesService.findDetailSale(
+      filterSaleDto,
+      lang
+    );
+  }
 }

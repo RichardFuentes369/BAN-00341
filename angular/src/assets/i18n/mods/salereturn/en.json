@@ -14,5 +14,8 @@
   "COLUMN_DATE_SALE": "Sale date",
 
   "SEE_TITLE": "View",
-  "SEE_SUBTITLE": "{{nro_invoice}}"
+  "SEE_SUBTITLE": "{{nro_invoice}}",
+  
+  "WORD_VLR_UNITARIO": "Unit price",
+  "WORD_VLR_TOTAL": "Total price"
 }

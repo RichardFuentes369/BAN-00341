@@ -21,12 +21,13 @@ export class ReporteWarehouseComponent implements OnChanges {
   // Recibe el JSON completo del padre
   @Input() datosRecibidos: any;
 
-  endPoint = ''
+  endPointV = ''
+  endPointM = ''
   cargarIdioma = true
   accioneson = false
   orderField = 'id'
   order = 'desc'
-  columnas: any[] = [
+  columnasM: any[] = [
     {
       title: this.translate.instant('mod-merma.REGISTER.COLUMN_ID'),
       data: 'id',
@@ -70,6 +71,55 @@ export class ReporteWarehouseComponent implements OnChanges {
       className: 'text-center'
     },
   ];
+  columnasV: any[] = [
+    {
+      title: this.translate.instant('mod-salereturn.COLUMN_INVOICE'),
+      data: 'id_venta.nro_factura',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-salereturn.COLUMN_DATE_SALE'),
+      data: 'id_venta.fecha_venta',
+      className: 'text-center align-middle',
+      render: (data: any) => {
+        if (!data) return '';
+        const date = new Date(Number(data) * 1000);
+        if (isNaN(date.getTime())) {
+          return 'Fecha inválida';
+        }
+        return date.toLocaleDateString('es-CO', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        });
+      }
+    },
+    {
+      title: this.translate.instant('mod-catalog.PRODUCT.COLUMN_BAR_CODE'),
+      data: 'codigo_barra',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-warehouse.COLUMN_BATCH'),
+      data: 'lote',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-catalog.WORD_QUANTITY'),
+      data: 'cantidad',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-salereturn.WORD_VLR_UNITARIO'),
+      data: 'valor_unitario',
+      className: 'text-center'
+    },
+    {
+      title: this.translate.instant('mod-salereturn.WORD_VLR_TOTAL'),
+      data: 'valor_total',
+      className: 'text-center'
+    },
+  ]
   titlePage = this.translate.instant('mod-warehouse.TABLE_TITLE')
 
   // Banderas de visualización de detalles
@@ -108,6 +158,7 @@ export class ReporteWarehouseComponent implements OnChanges {
     batchSeccion: true,
     providerSeccion: true,
     registerSeccion: true,
+    ventaSeccion: true,
     mermaSeccion: true
   };
 
@@ -144,12 +195,14 @@ export class ReporteWarehouseComponent implements OnChanges {
         this.show_detail_batch = !!this.bodega.lote;
       }
 
-      // 4. Cargar la tabla de mermas
+      // 5. Cargar la tabla de mermas
       if (this.datosRecibidos.lote.show) {
-        this.endPoint = `registro-mermas/obtener-registro-mermas?id_lote=${this.datosRecibidos.lote.id}`
+        this.endPointV = `sales/obtener-detalle-ventas?lote=${this.datosRecibidos.lote.lote}&codigo_barra=${this.datosRecibidos.producto.codigo_barra}`
+        this.endPointM = `registro-mermas/obtener-registro-mermas?id_lote=${this.datosRecibidos.lote.id}`
         this.tableComponent?.reload();
       } else {
-        this.endPoint = ''
+        this.endPointV = ''
+        this.endPointM = ''
       }
     }
   }
