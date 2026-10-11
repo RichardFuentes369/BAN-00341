@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty } from "class-validator";
+import { IsString, IsNotEmpty, IsNumber } from "class-validator";
 
 export class ItemPedidoDto {
   @IsString()
@@ -9,7 +9,15 @@ export class ItemPedidoDto {
   @IsNotEmpty()
   codigo_barra: string;
 
-  @IsString() // O @IsNumber() si decides manejarlo como número
+  @IsNumber() // O @IsNumber() si decides manejarlo como número
   @IsNotEmpty()
-  cantidad: string;
+  cantidad: number;
+
+  @IsNumber() // O @IsNumber() si decides manejarlo como número
+  @IsNotEmpty()
+  valor_unitario: number;
+
+  @IsNumber() // O @IsNumber() si decides manejarlo como número
+  @IsNotEmpty()
+  valor_total: number;
 }

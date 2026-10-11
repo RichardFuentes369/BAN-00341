@@ -3,6 +3,7 @@ import { Producto } from '@module/catalogo/product/entities/product.entity';
 import { Proveedor } from '@module/catalogo/supplier/entities/supplier.entity';
 import { Merma } from '@module/merma/mermas/entities/merma.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn, OneToOne } from 'typeorm';
+import { DetailVentas } from './detail.entity';
 
 interface ItemPedido {
   lote: string;
@@ -19,8 +20,9 @@ export class Ventas {
   nro_factura: string;
 
   @Column()
-  fecha_venta: number; 
+  fecha_venta: number;
 
-  @Column("json")
-  detalle_factura: any[];
+  // Relation
+  @OneToMany(() => DetailVentas, (detailVenta) => detailVenta.id_venta)
+  detalle: DetailVentas[];
 }

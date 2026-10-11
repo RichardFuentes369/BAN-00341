@@ -8,6 +8,7 @@ import { Producto } from '@module/catalogo/product/entities/product.entity';
 import { Ventas } from './entities/sale.entity';
 import { I18nService } from 'nestjs-i18n';
 import { FilterSaleDto } from './dto/filter-sale.dto';
+import { DetailVentas } from './entities/detail.entity';
 
 @Injectable()
 export class SalesService {
@@ -15,13 +16,11 @@ export class SalesService {
   constructor(
     @Inject('SALES_REPOSITORY')
     private salesRepository: Repository<Ventas>,
-    @Inject('WAREHOUSE_REPOSITORY')
-    private bodegaRepository: Repository<Bodega>,
-    @Inject('PRODUCT_REPOSITORY')
-    private productoRepository: Repository<Producto>,
+    @Inject('SALES_DETAIL_REPOSITORY')
+    private salesdetailRepository: Repository<DetailVentas>,
     private i18n: I18nService,
     @Inject('DATA_SOURCE')
-    private dataSource: any 
+    private dataSource: any
   ) { }
 
   listarPropiedadesTabla(repository: Repository<any>) {
@@ -112,84 +111,85 @@ export class SalesService {
     id: number
   ) {
     return this.salesRepository.findOne({
+      relations: ['detalle'],
       where: [{ id: id }],
       order: { id: 'DESC' }
     });
   }
 
-  /*
-  async create(
-    lang: string,
-    saleData: CreateSaleDto,
-    userId: number
-  ) {
-    try {
-      const detalles = saleData.detalle_factura;
+  // async create(
+  //   lang: string,
+  //   saleData: CreateSaleDto,
+  //   userId: number
+  // ) {
+  //   try {
+  //     return await this.dataSource.transaction(async (manager) => {
+  //       const detalles = saleData.detalle_factura;
 
-      for (const item of detalles) {
+  //       for (const item of detalles) {
 
-        const id_producto = await this.productoRepository.findOne({
-          where: { codigo_barra: item.codigo_barra }
-        });
+  //         const id_producto = await manager.findOne(Producto, {
+  //           where: { codigo_barra: item.codigo_barra }
+  //         });
 
-        if (!id_producto) {
-          throw new BadRequestException(
-            `El producto con código de barra '${item.codigo_barra}' no existe en nuestro catálogo.`
-          );
-        }
+  //         if (!id_producto) {
+  //           throw new BadRequestException(
+  //             `El producto con código de barra '${item.codigo_barra}' no existe en nuestro catálogo.`
+  //           );
+  //         }
 
-        const productoBodega = await this.bodegaRepository.findOne({
-          where: {
-            lote: item.lote,
-            id_producto: id_producto,
-          },
-        });
+  //         const productoBodega = await manager.findOne(Bodega, {
+  //           where: {
+  //             lote: item.lote,
+  //             id_producto: id_producto,
+  //           },
+  //         });
 
-        if (!productoBodega) {
-          throw new BadRequestException(
-            `El producto con lote '${item.lote}' no existe en bodega.`
-          );
-        }
+  //         if (!productoBodega) {
+  //           throw new BadRequestException(
+  //             `El producto con lote '${item.lote}' no existe en bodega.`
+  //           );
+  //         }
 
-        const cantidadVendida = Number(item.cantidad);
-        const cantidadBodega = Number(productoBodega.cantidad_en_bodega);
+  //         const cantidadVendida = Number(item.cantidad);
+  //         const cantidadBodega = Number(productoBodega.cantidad_en_bodega);
 
-        if (cantidadVendida > cantidadBodega) {
-          throw new BadRequestException(
-            `Stock insuficiente para el lote '${item.lote}'. Stock actual: ${cantidadBodega}, solicitado: ${cantidadVendida}.`
-          );
-        }
+  //         if (cantidadVendida > cantidadBodega) {
+  //           throw new BadRequestException(
+  //             `Stock insuficiente para el lote '${item.lote}'. Stock actual: ${cantidadBodega}, solicitado: ${cantidadVendida}.`
+  //           );
+  //         }
 
-        productoBodega.cantidad_en_bodega = cantidadBodega - cantidadVendida;
-        productoBodega.cantidad_vendida += cantidadVendida;
+  //         productoBodega.cantidad_en_bodega = cantidadBodega - cantidadVendida;
+  //         productoBodega.cantidad_vendida += cantidadVendida;
 
-        await this.bodegaRepository.save(productoBodega);
-      }
+  //         await manager.save(productoBodega);
+  //       }
 
-      // 3. Crear y guardar la factura con el JSON completo en detalle_factura
-      const nuevaFactura = this.salesRepository.create({
-        nro_factura: saleData.nro_factura,
-        fecha_venta: saleData.fecha_venta,
-        detalle_factura: detalles
-      });
+  //       // 3. Crear y guardar la factura con el JSON completo en detalle_factura
+  //       const nuevaFactura = manager.create(Ventas, {
+  //         nro_factura: saleData.nro_factura,
+  //         fecha_venta: saleData.fecha_venta,
+  //         detalle_factura: detalles
+  //       });
 
-      await this.salesRepository.save(nuevaFactura);
+  //       await manager.save(nuevaFactura);
 
-      return {
-        'title': this.i18n.t('supplier.MSJ_TITTLE', { lang }),
-        'message': this.i18n.t('supplier.MSJ_CREADO_EXITOSAMENTE', { lang }),
-        'status': 200,
-      };
+  //       return {
+  //         'title': this.i18n.t('supplier.MSJ_TITTLE', { lang }),
+  //         'message': this.i18n.t('supplier.MSJ_CREADO_EXITOSAMENTE', { lang }),
+  //         'status': 200,
+  //       };
+  //     });
 
-    } catch (error) {
-      return {
-        'title': 'Error',
-        'message': error.response?.message || error.message,
-        'status': error.status || 400, // Si es un BadRequestException, capturará su status correspondiente
-      };
-    }
-  }
-  */
+  //   } catch (error) {
+  //     return {
+  //       'title': 'Error',
+  //       'message': error.response?.message || error.message,
+  //       'status': error.status || 400, // Si es un BadRequestException, capturará su status correspondiente
+  //     };
+  //   }
+  // }
 
   async create(
     lang: string,
@@ -200,13 +200,21 @@ export class SalesService {
       return await this.dataSource.transaction(async (manager) => {
         const detalles = saleData.detalle_factura;
 
-        for (const item of detalles) {
+        // 1. Primero creamos y guardamos la cabecera de la factura (Ventas)
+        const nuevaFactura = manager.create(Ventas, {
+          nro_factura: saleData.nro_factura,
+          fecha_venta: saleData.fecha_venta,
+        });
 
-          const id_producto = await manager.findOne(Producto, {
+        const facturaGuardada = await manager.save(nuevaFactura);
+
+        // 2. Procesamos el stock y guardamos cada detalle en DetailVentas
+        for (const item of detalles) {
+          const producto = await manager.findOne(Producto, {
             where: { codigo_barra: item.codigo_barra }
           });
 
-          if (!id_producto) {
+          if (!producto) {
             throw new BadRequestException(
               `El producto con código de barra '${item.codigo_barra}' no existe en nuestro catálogo.`
             );
@@ -215,7 +223,7 @@ export class SalesService {
           const productoBodega = await manager.findOne(Bodega, {
             where: {
               lote: item.lote,
-              id_producto: id_producto,
+              id_producto: producto,
             },
           });
 
@@ -234,20 +242,23 @@ export class SalesService {
             );
           }
 
+          // Descontar y actualizar inventario
           productoBodega.cantidad_en_bodega = cantidadBodega - cantidadVendida;
           productoBodega.cantidad_vendida += cantidadVendida;
-
           await manager.save(productoBodega);
+
+          // Crear el detalle de venta asociado a la factura y guardar con el manager
+          const nuevoDetalle = manager.create(DetailVentas, {
+            id_venta: facturaGuardada.id,
+            lote: item.lote,
+            codigo_barra: item.codigo_barra,
+            cantidad: item.cantidad,
+            valor_unitario: item.valor_unitario,
+            valor_total: item.valor_total,
+          });
+
+          await manager.save(nuevoDetalle);
         }
-
-        // 3. Crear y guardar la factura con el JSON completo en detalle_factura
-        const nuevaFactura = manager.create(Ventas, {
-          nro_factura: saleData.nro_factura,
-          fecha_venta: saleData.fecha_venta,
-          detalle_factura: detalles
-        });
-
-        await manager.save(nuevaFactura);
 
         return {
           'title': this.i18n.t('supplier.MSJ_TITTLE', { lang }),
@@ -260,7 +271,7 @@ export class SalesService {
       return {
         'title': 'Error',
         'message': error.response?.message || error.message,
-        'status': error.status || 400, // Si es un BadRequestException, capturará su status correspondiente
+        'status': error.status || 400,
       };
     }
   }

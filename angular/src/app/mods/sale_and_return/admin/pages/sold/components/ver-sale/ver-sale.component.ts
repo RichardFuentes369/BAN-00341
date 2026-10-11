@@ -11,12 +11,14 @@ export interface DetalleItem {
   lote: string;
   codigo_barra: string;
   cantidad: string;
+  valor_unitario: string;
+  valor_total: string;
 }
 
 // 2. Actualizamos la interfaz principal
 export interface VentaInterface {
   id: number;
-  detalle_factura: DetalleItem[]; // Ahora es un array tipado, no un string
+  detalle: DetalleItem[]; // Ahora es un array tipado, no un string
   fecha_venta: number;
   nro_factura: string;
 }
@@ -58,9 +60,9 @@ export class VerSaleComponent implements OnInit {
       // 3. Parseamos el string JSON de la base de datos a un array de objetos
       const ventaProcesada: VentaInterface = {
         ...dataCruda,
-        detalle_factura: typeof dataCruda.detalle_factura === 'string'
-          ? JSON.parse(dataCruda.detalle_factura)
-          : dataCruda.detalle_factura
+        detalle_factura: typeof dataCruda.detalle === 'string'
+          ? JSON.parse(dataCruda.detalle)
+          : dataCruda.detalle
       };
 
       // 4. Lo agregamos al arreglo para que tu @for lo lea sin errores
