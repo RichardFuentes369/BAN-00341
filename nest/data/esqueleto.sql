@@ -199,15 +199,31 @@ CREATE TABLE IF NOT EXISTS `mod_permisos_modulo_asignacion` (
 
 -- Data exporting was unselected.
 
+-- Dumping structure for table BAN_00341.mod_registro_detalle_ventas
+DROP TABLE IF EXISTS `mod_registro_detalle_ventas`;
+CREATE TABLE IF NOT EXISTS `mod_registro_detalle_ventas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lote` varchar(255) NOT NULL,
+  `codigo_barra` varchar(255) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `valor_unitario` int(11) NOT NULL,
+  `valor_total` int(11) NOT NULL,
+  `id_venta` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_04ca17e83bc97496bec17b4a306` (`id_venta`),
+  CONSTRAINT `FK_04ca17e83bc97496bec17b4a306` FOREIGN KEY (`id_venta`) REFERENCES `mod_registro_ventas` (`id`) ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Data exporting was unselected.
+
 -- Dumping structure for table BAN_00341.mod_registro_ventas
 DROP TABLE IF EXISTS `mod_registro_ventas`;
 CREATE TABLE IF NOT EXISTS `mod_registro_ventas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `detalle_factura` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `fecha_venta` int(11) NOT NULL,
   `nro_factura` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 

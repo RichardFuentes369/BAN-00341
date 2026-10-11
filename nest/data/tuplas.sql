@@ -14,93 +14,30 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
--- Dumping database structure for BAN_00341
-DROP DATABASE IF EXISTS `BAN_00341`;
-CREATE DATABASE IF NOT EXISTS `BAN_00341` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-USE `BAN_00341`;
-
--- Dumping structure for table BAN_00341.mod_auditoria_bodega
-DROP TABLE IF EXISTS `mod_auditoria_bodega`;
-CREATE TABLE IF NOT EXISTS `mod_auditoria_bodega` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_afectado` int(11) NOT NULL,
-  `accion` enum('CREAR','ACTUALIZAR','ELIMINAR','AJUSTAR_INVENTARIO') NOT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `fecha` timestamp(6) NOT NULL DEFAULT current_timestamp(6),
-  `detalles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`detalles`)),
-  PRIMARY KEY (`id`),
-  KEY `FK_34067e919f463988f81d52abc9c` (`id_usuario`),
-  CONSTRAINT `FK_34067e919f463988f81d52abc9c` FOREIGN KEY (`id_usuario`) REFERENCES `mod_usuarios_admin` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 -- Dumping data for table BAN_00341.mod_auditoria_bodega: ~0 rows (approximately)
 
--- Dumping structure for table BAN_00341.mod_auditoria_merma
-DROP TABLE IF EXISTS `mod_auditoria_merma`;
-CREATE TABLE IF NOT EXISTS `mod_auditoria_merma` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_afectado` int(11) NOT NULL,
-  `accion` enum('CREAR','ACTUALIZAR','ELIMINAR','AJUSTAR_INVENTARIO') NOT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `fecha` timestamp(6) NOT NULL DEFAULT current_timestamp(6),
-  `detalles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`detalles`)),
-  PRIMARY KEY (`id`),
-  KEY `FK_d2096f0c9243ec183b71cca93d2` (`id_usuario`),
-  CONSTRAINT `FK_d2096f0c9243ec183b71cca93d2` FOREIGN KEY (`id_usuario`) REFERENCES `mod_usuarios_admin` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 -- Dumping data for table BAN_00341.mod_auditoria_merma: ~0 rows (approximately)
-
--- Dumping structure for table BAN_00341.mod_bodega
-DROP TABLE IF EXISTS `mod_bodega`;
-CREATE TABLE IF NOT EXISTS `mod_bodega` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lote` varchar(50) NOT NULL,
-  `fecha_entrada` bigint(20) NOT NULL,
-  `fecha_vencimiento` bigint(20) DEFAULT NULL,
-  `cantidad_comprada` int(11) NOT NULL DEFAULT 0,
-  `cantidad_vendida` int(11) NOT NULL DEFAULT 0,
-  `cantidad_en_bodega` int(11) NOT NULL DEFAULT 0,
-  `estado` enum('disponible','vencido','agotado') NOT NULL DEFAULT 'disponible',
-  `id_producto` int(11) NOT NULL,
-  `id_proveedor` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_6138e455f12a930432c960966c3` (`id_producto`),
-  KEY `FK_a707728565e09c6c5106a8335d1` (`id_proveedor`),
-  CONSTRAINT `FK_6138e455f12a930432c960966c3` FOREIGN KEY (`id_producto`) REFERENCES `mod_catalogo_productos` (`id`) ON UPDATE NO ACTION,
-  CONSTRAINT `FK_a707728565e09c6c5106a8335d1` FOREIGN KEY (`id_proveedor`) REFERENCES `mod_catalogo_proveedores` (`id`) ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table BAN_00341.mod_bodega: ~18 rows (approximately)
 INSERT INTO `mod_bodega` (`id`, `lote`, `fecha_entrada`, `fecha_vencimiento`, `cantidad_comprada`, `cantidad_vendida`, `cantidad_en_bodega`, `estado`, `id_producto`, `id_proveedor`) VALUES
 	(1, '1791339027', 1786338000, 1794545999, 8, 0, 8, 'disponible', 1, 29),
-	(2, '1791339027', 1787720400, 1797397199, 15, 2, 13, 'disponible', 2, 29),
-	(3, '1791339027', 1790830800, NULL, 50, 4, 46, 'disponible', 5, 30),
+	(2, '1791339027', 1787720400, 1797397199, 15, 0, 15, 'disponible', 2, 29),
+	(3, '1791339027', 1790830800, NULL, 50, 0, 50, 'disponible', 5, 30),
 	(4, '1791339209', 1790830800, 1792472399, 50, 0, 50, 'disponible', 6, 20),
-	(5, '1791339209', 1790744400, 1793422799, 8, 4, 4, 'disponible', 7, 20),
+	(5, '1791339209', 1790744400, 1793422799, 8, 1, 7, 'disponible', 7, 20),
 	(6, '1791339209', 1791090000, 1791694799, 25, 0, 25, 'disponible', 8, 20),
-	(7, '1791339209', 1791176400, 1787288399, 80, 2, 78, 'disponible', 13, 20),
-	(8, '1791339209', 1790830800, 1805345999, 22, 3, 17, 'disponible', 14, 30),
+	(7, '1791339209', 1791176400, 1787288399, 80, 0, 80, 'disponible', 13, 20),
+	(8, '1791339209', 1790830800, 1805345999, 22, 0, 20, 'disponible', 14, 30),
 	(9, '1791339209', 1789966800, NULL, 100, 0, 100, 'disponible', 16, 8),
-	(10, 'L1791339209', 1791176400, NULL, 35, 3, 32, 'disponible', 17, 8),
-	(11, 'Kt1791339209', 1791176400, NULL, 38, 0, 38, 'disponible', 18, 8),
+	(10, 'L1791339209', 1791176400, NULL, 35, 0, 35, 'disponible', 17, 8),
+	(11, 'Kt1791339209', 1791176400, NULL, 38, 1, 37, 'disponible', 18, 8),
 	(12, '1791339209', 1791176400, 1805345999, 14, 0, 14, 'disponible', 19, 17),
 	(13, '1791393677', 1791262800, NULL, 50, 0, 50, 'disponible', 20, 8),
 	(14, '1791393677', 1791090000, 1793336399, 35, 0, 31, 'disponible', 21, 8),
 	(15, '1791393677', 1784178000, 1792040399, 34, 3, 31, 'disponible', 22, 29),
-	(16, '1791393677', 1787029200, 1808888399, 50000, 501, 49499, 'disponible', 88, 28),
-	(18, '1791393677', 1790139600, 1798088399, 50000, 47630, 1237, 'disponible', 89, 11),
-	(19, '1791484677', 1787202000, 1797829199, 30000, 0, 14750, 'disponible', 89, 11);
-
--- Dumping structure for table BAN_00341.mod_catalogo_marcas
-DROP TABLE IF EXISTS `mod_catalogo_marcas`;
-CREATE TABLE IF NOT EXISTS `mod_catalogo_marcas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `IDX_09768fd7375b60a05e91503d04` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+	(16, '1791393677', 1787029200, 1808888399, 50000, 1250, 48750, 'disponible', 88, 28),
+	(18, '1791393677', 1790139600, 1798088399, 50000, 0, 48867, 'disponible', 89, 11),
+	(19, '1791484677', 1787202000, 1797829199, 30000, 750, 14000, 'disponible', 89, 11);
 
 -- Dumping data for table BAN_00341.mod_catalogo_marcas: ~21 rows (approximately)
 INSERT INTO `mod_catalogo_marcas` (`id`, `nombre`) VALUES
@@ -125,15 +62,6 @@ INSERT INTO `mod_catalogo_marcas` (`id`, `nombre`) VALUES
 	(11, 'Task'),
 	(4, 'Tío Nacho');
 
--- Dumping structure for table BAN_00341.mod_catalogo_medida
-DROP TABLE IF EXISTS `mod_catalogo_medida`;
-CREATE TABLE IF NOT EXISTS `mod_catalogo_medida` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `IDX_c279395252b4528e7bf8594d23` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 -- Dumping data for table BAN_00341.mod_catalogo_medida: ~9 rows (approximately)
 INSERT INTO `mod_catalogo_medida` (`id`, `nombre`) VALUES
 	(4, 'Gramos'),
@@ -145,27 +73,6 @@ INSERT INTO `mod_catalogo_medida` (`id`, `nombre`) VALUES
 	(11, 'Paquete * 4'),
 	(2, 'Paquete * 6'),
 	(1, 'Unidades');
-
--- Dumping structure for table BAN_00341.mod_catalogo_productos
-DROP TABLE IF EXISTS `mod_catalogo_productos`;
-CREATE TABLE IF NOT EXISTS `mod_catalogo_productos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(150) NOT NULL,
-  `stock_minimo` int(11) NOT NULL,
-  `es_perecedero` tinyint(1) NOT NULL DEFAULT 1,
-  `alerta_amarilla` int(11) DEFAULT NULL,
-  `alerta_naranja` int(11) DEFAULT NULL,
-  `estado` tinyint(1) NOT NULL DEFAULT 1,
-  `codigo_barra` varchar(13) NOT NULL,
-  `id_marca` int(11) NOT NULL,
-  `id_medida` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `IDX_58c1252afc49ad323e7c5a3c0a` (`codigo_barra`),
-  KEY `FK_f3087ae9693d048e2a9aba091a5` (`id_marca`),
-  KEY `FK_50698dc31a0aa1ea5a81d79ea92` (`id_medida`),
-  CONSTRAINT `FK_50698dc31a0aa1ea5a81d79ea92` FOREIGN KEY (`id_medida`) REFERENCES `mod_catalogo_medida` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_f3087ae9693d048e2a9aba091a5` FOREIGN KEY (`id_marca`) REFERENCES `mod_catalogo_marcas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table BAN_00341.mod_catalogo_productos: ~88 rows (approximately)
 INSERT INTO `mod_catalogo_productos` (`id`, `nombre`, `stock_minimo`, `es_perecedero`, `alerta_amarilla`, `alerta_naranja`, `estado`, `codigo_barra`, `id_marca`, `id_medida`) VALUES
@@ -258,20 +165,6 @@ INSERT INTO `mod_catalogo_productos` (`id`, `nombre`, `stock_minimo`, `es_perece
 	(96, 'Cerveza Águila Cero / 0.0% (Botella)', 5, 0, NULL, NULL, 0, '7702004001429', 24, 1),
 	(97, 'Cerveza Costeñita (Botella 175 ml)', 15, 0, NULL, NULL, 0, '7702004005120', 24, 1);
 
--- Dumping structure for table BAN_00341.mod_catalogo_proveedores
-DROP TABLE IF EXISTS `mod_catalogo_proveedores`;
-CREATE TABLE IF NOT EXISTS `mod_catalogo_proveedores` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `razon_social` varchar(255) NOT NULL,
-  `direccion` varchar(255) NOT NULL,
-  `correo` varchar(150) NOT NULL,
-  `telefono` varchar(50) NOT NULL,
-  `dv` char(1) NOT NULL,
-  `nit` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `IDX_20124d60355ae6fbf4410be1f5` (`nit`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 -- Dumping data for table BAN_00341.mod_catalogo_proveedores: ~31 rows (approximately)
 INSERT INTO `mod_catalogo_proveedores` (`id`, `razon_social`, `direccion`, `correo`, `telefono`, `dv`, `nit`) VALUES
 	(1, 'Distraves S.A.S.', 'Km 2 Vía Palenque - Café Madrid, Bucaramanga', 'contacto@distraves.com', '3168960663', '1', '890200830'),
@@ -307,23 +200,6 @@ INSERT INTO `mod_catalogo_proveedores` (`id`, `razon_social`, `direccion`, `corr
 	(35, 'Bavaria distribuidor', 'Calle 89 # 25 -105 cundinamarca', 'contacto4@bavaria.com', '3168901445', '8', '683254789'),
 	(36, 'Embotelladora santander', 'Calle 32 a # 89 - 25', 'contacto-ventas@embosan.com', '3189606255', '2', '582223966');
 
--- Dumping structure for table BAN_00341.mod_merma_mermas
-DROP TABLE IF EXISTS `mod_merma_mermas`;
-CREATE TABLE IF NOT EXISTS `mod_merma_mermas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cantidad` int(11) NOT NULL DEFAULT 0,
-  `fecha_reporte` bigint(20) NOT NULL,
-  `observacion` text NOT NULL,
-  `id_tipo_merma` int(11) NOT NULL,
-  `id_lote` int(11) NOT NULL,
-  `valor_perdido` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `FK_f936b059227146a8e5f1ffaec0a` (`id_tipo_merma`),
-  KEY `FK_c43c67defe5b3af684b4065015b` (`id_lote`),
-  CONSTRAINT `FK_c43c67defe5b3af684b4065015b` FOREIGN KEY (`id_lote`) REFERENCES `mod_bodega` (`id`) ON UPDATE NO ACTION,
-  CONSTRAINT `FK_f936b059227146a8e5f1ffaec0a` FOREIGN KEY (`id_tipo_merma`) REFERENCES `mod_merma_tipos` (`id`) ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 -- Dumping data for table BAN_00341.mod_merma_mermas: ~7 rows (approximately)
 INSERT INTO `mod_merma_mermas` (`id`, `cantidad`, `fecha_reporte`, `observacion`, `id_tipo_merma`, `id_lote`, `valor_perdido`) VALUES
 	(1, 120, 1790226000, 'Se evidenció que la bolsa estaba rota y se perdieron 120 gramos de una bolsa empacada para vender al detal', 7, 18, 2850),
@@ -333,15 +209,6 @@ INSERT INTO `mod_merma_mermas` (`id`, `cantidad`, `fecha_reporte`, `observacion`
 	(6, 4, 1791262800, 'Se evidencio que el empaque esta roto por movimiento de estiba', 2, 14, 2950),
 	(7, 2, 1791003600, 'Ninguna', 7, 18, 8500),
 	(8, 15250, 1791176400, 'Ninguna', 6, 19, 258000);
-
--- Dumping structure for table BAN_00341.mod_merma_tipos
-DROP TABLE IF EXISTS `mod_merma_tipos`;
-CREATE TABLE IF NOT EXISTS `mod_merma_tipos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `IDX_d4131d037acc1ff2cb862fe550` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table BAN_00341.mod_merma_tipos: ~9 rows (approximately)
 INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
@@ -353,21 +220,6 @@ INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
 	(1, 'Robo externo (hurto de clientes)'),
 	(5, 'Robo interno (hurto de empleados)'),
 	(2, 'Rotura o daño físico');
-
--- Dumping structure for table BAN_00341.mod_permisos_modulo
-DROP TABLE IF EXISTS `mod_permisos_modulo`;
-CREATE TABLE IF NOT EXISTS `mod_permisos_modulo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) DEFAULT NULL,
-  `permiso` varchar(255) DEFAULT NULL,
-  `tiene_submodulos` tinyint(4) NOT NULL DEFAULT 0,
-  `tiene_permisos` tinyint(4) NOT NULL DEFAULT 0,
-  `descripcion` varchar(255) DEFAULT NULL,
-  `modulo_padre_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_28bd06971f76c49399db2715d90` (`modulo_padre_id`),
-  CONSTRAINT `FK_28bd06971f76c49399db2715d90` FOREIGN KEY (`modulo_padre_id`) REFERENCES `mod_permisos_modulo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table BAN_00341.mod_permisos_modulo: ~93 rows (approximately)
 INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`, `tiene_permisos`, `descripcion`, `modulo_padre_id`) VALUES
@@ -464,21 +316,6 @@ INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`
 	(128, 'Ventas', 'ventas', 0, 1, 'Permiso ventas, modulo ventas y devoluciones', 127),
 	(129, 'Devoluciones', 'devoluciones', 0, 1, 'Permiso devoluciones, modulo ventas y devoluciones', 127),
 	(130, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo ventas, modulo ventas y devoluciones', 128);
-
--- Dumping structure for table BAN_00341.mod_permisos_modulo_asignacion
-DROP TABLE IF EXISTS `mod_permisos_modulo_asignacion`;
-CREATE TABLE IF NOT EXISTS `mod_permisos_modulo_asignacion` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) DEFAULT NULL,
-  `permiso` varchar(255) DEFAULT NULL,
-  `descripcion` varchar(255) DEFAULT NULL,
-  `id_modulo` int(11) DEFAULT NULL,
-  `modulo_padre_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_6eb0af2f8e13274ad1819f4cfca` (`user_id`),
-  CONSTRAINT `FK_6eb0af2f8e13274ad1819f4cfca` FOREIGN KEY (`user_id`) REFERENCES `mod_usuarios_admin` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=921 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table BAN_00341.mod_permisos_modulo_asignacion: ~123 rows (approximately)
 INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descripcion`, `id_modulo`, `modulo_padre_id`, `user_id`) VALUES
@@ -606,41 +443,20 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(919, 'Personalizacion', 'estilos_sistema', 'Modulo general para el estilos del sistema', 113, NULL, 1),
 	(920, 'Ventas', 'ventas_y_devoluciones', 'Modulo ventas', 127, NULL, 1);
 
--- Dumping structure for table BAN_00341.mod_registro_ventas
-DROP TABLE IF EXISTS `mod_registro_ventas`;
-CREATE TABLE IF NOT EXISTS `mod_registro_ventas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `detalle_factura` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `fecha_venta` int(11) NOT NULL,
-  `nro_factura` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- Dumping data for table BAN_00341.mod_registro_detalle_ventas: ~0 rows (approximately)
+INSERT INTO `mod_registro_detalle_ventas` (`id`, `lote`, `codigo_barra`, `cantidad`, `valor_unitario`, `valor_total`, `id_venta`) VALUES
+	(1, '1791484677', '1000000000002', 250, 900, 900, 1),
+	(2, '1791393677', '7702007045444', 2, 1650, 3300, 1),
+	(3, '1791393677', '1000000000001', 1250, 1050, 3150, 1),
+	(4, '1791484677', '1000000000002', 500, 900, 1800, 2),
+	(5, '1791393677', '7702007045444', 1, 1650, 1650, 2),
+	(6, 'Kt1791339209', '7703147101717', 1, 2800, 2800, 2),
+	(7, '1791339209', '7707351430311', 1, 5400, 5400, 2);
 
--- Dumping data for table BAN_00341.mod_registro_ventas: ~9 rows (approximately)
-INSERT INTO `mod_registro_ventas` (`id`, `detalle_factura`, `fecha_venta`, `nro_factura`) VALUES
-	(1, '[{"lote":"1791393677","codigo_barra":"1000000000002","cantidad":"250"},{"lote":"1791393677","codigo_barra":"7702007045444","cantidad":"1"},{"lote":"1791339209","codigo_barra":"7702047041482","cantidad":"1"},{"lote":"1791339209","codigo_barra":"7707351430311","cantidad":"1"}]', 1791403416, 'fac-0001'),
-	(2, '[{"lote":"1791393677","codigo_barra":"1000000000002","cantidad":"500"},{"lote":"1791339027","codigo_barra":"7703252002152","cantidad":"2"}]', 1791403416, 'fac-0002'),
-	(3, '[{"lote":"1791393677","codigo_barra":"1000000000002","cantidad":"500"},{"lote":"L1791339209","codigo_barra":"7703147300097","cantidad":"1"}]', 1791403416, 'fac-0003'),
-	(4, '[{"lote":"1791393677","codigo_barra":"1000000000002","cantidad":"500"},{"lote":"L1791339209","codigo_barra":"7703147300097","cantidad":"1"},{"lote":"1791339209","codigo_barra":"7707351430311","cantidad":"2"}]', 1791403416, 'fac-0004'),
-	(5, '[{"lote":"1791393677","codigo_barra":"1000000000002","cantidad":"500"},{"lote":"L1791339209","codigo_barra":"7703147300097","cantidad":"1"},{"lote":"1791339209","codigo_barra":"7707351430311","cantidad":"1"},{"lote":"1791393677","codigo_barra":"1000000000001","cantidad":"1"}]', 1791403416, 'fac-0005'),
-	(6, '[{"lote":"1791393677","codigo_barra":"1000000000002","cantidad":"500"},{"lote":"1791393677","codigo_barra":"1000000000001","cantidad":"500"}]', 1791403416, 'fac-0006'),
-	(7, '[{"lote":"1791339027","codigo_barra":"7702025150748","cantidad":"2"},{"lote":"1791393677","codigo_barra":"7702007045444","cantidad":"2"}]', 1791403416, 'fac-0007'),
-	(8, '[{"lote":"1791339209","codigo_barra":"7702177009659","cantidad":"2"},{"lote":"1791339209","codigo_barra":"7702047041482","cantidad":"1"}]', 1791403416, 'fac-0008'),
-	(9, '[{"lote":"1791339027","codigo_barra":"7703252002152","cantidad":"2"},{"lote":"1791339209","codigo_barra":"7702047041482","cantidad":"1"}]', 1791403416, 'fac-0009'),
-	(10, '[{"lote":"1791393677","codigo_barra":"1000000000002","cantidad":"44880"}]', 1791403416, 'fac-0010');
-
--- Dumping structure for table BAN_00341.mod_usuarios_admin
-DROP TABLE IF EXISTS `mod_usuarios_admin`;
-CREATE TABLE IF NOT EXISTS `mod_usuarios_admin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(255) NOT NULL,
-  `lastName` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `isActive` tinyint(4) NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `IDX_c885318c449a37e806a7f87607` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=258 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- Dumping data for table BAN_00341.mod_registro_ventas: ~0 rows (approximately)
+INSERT INTO `mod_registro_ventas` (`id`, `fecha_venta`, `nro_factura`) VALUES
+	(1, 1791403416, 'fac-0001'),
+	(2, 1791687082, 'fac-0002');
 
 -- Dumping data for table BAN_00341.mod_usuarios_admin: ~3 rows (approximately)
 INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
@@ -648,47 +464,16 @@ INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `passw
 	(2, 'Oscar Eduardo', 'Villamizar Bautista', 'admin2@correo.com', 'Qwerty9601', 1),
 	(3, 'Oscar Mauricio', 'Parra Correa', 'admin3@correo.com', 'Qwerty96012', 0);
 
--- Dumping structure for table BAN_00341.mod_usuarios_user
-DROP TABLE IF EXISTS `mod_usuarios_user`;
-CREATE TABLE IF NOT EXISTS `mod_usuarios_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(255) NOT NULL,
-  `lastName` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `isActive` tinyint(4) NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `IDX_129e1f78d9bf43c04689f16cf8` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 -- Dumping data for table BAN_00341.mod_usuarios_user: ~3 rows (approximately)
 INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
 	(1, 'final1', 'final1', 'final1@gmail.com', 'Qwerty9601', 1),
 	(2, 'final2', 'final2', 'final2@gmail.com', 'Qwerty9601', 1),
 	(3, 'final3', 'final3', 'final3@gmail.com', 'Qwerty9601', 1);
 
--- Dumping structure for table BAN_00341.mod_vars_json
-DROP TABLE IF EXISTS `mod_vars_json`;
-CREATE TABLE IF NOT EXISTS `mod_vars_json` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) DEFAULT NULL,
-  `valor` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`valor`)),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 -- Dumping data for table BAN_00341.mod_vars_json: ~2 rows (approximately)
 INSERT INTO `mod_vars_json` (`id`, `nombre`, `valor`) VALUES
 	(2, 'socket_barcode', '"{\\"protocolo_socket_barcode\\":\\"http\\",\\"ip_socket_barcode\\":\\"192.168.1.6\\",\\"puerto_socket_barcode\\":\\"3000\\"}"'),
 	(24, 'custom_system', '"{\\n  \\"light\\": {\\n    \\"layout\\": {\\n      \\"scroll\\": {\\n        \\"color\\": \\"#A19C9D\\",\\n        \\"background_color\\": \\"transparent\\"\\n      },\\n      \\"breadcrumbs\\": {\\n        \\"link-disabled\\": \\"#D5E7F2\\",\\n        \\"link-active\\": \\"#FFFFFF\\",\\n        \\"link-hover\\": \\"#FFFFFF\\",\\n        \\"separator\\": \\"#D5E7F2\\",\\n        \\"bg_color_breadcrumb\\": \\"#000000\\"\\n      },\\n      \\"index\\": {\\n        \\"header_color_background\\": \\"#0b4a75\\",\\n        \\"back_color_background\\": \\"#EDEDED\\",\\n        \\"back_color_title\\": \\"#000000\\",\\n        \\"back_color_p\\": \\"#878382\\",\\n        \\"background_color_card_menu\\": \\"#FAF5F5\\",\\n        \\"backg_color_textcard\\": \\"#000000\\",\\n        \\"logo_color_icon_text\\": \\"#000000\\",\\n        \\"logo_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"logo_color_hover_amount\\": 20,\\n        \\"footer_text_background\\": \\"#FFFFFF\\",\\n        \\"footer_color_background\\": \\"#575555\\"\\n      },\\n      \\"admin\\": {\\n        \\"header_color_background\\": \\"#0b4a75\\",\\n        \\"header_color_line\\": \\"#E06767\\",\\n        \\"main_background_color\\": \\"#EDEDED\\",\\n        \\"heder_color_icons\\": \\"#C8CCCF\\",\\n        \\"dropdawn_text_color\\": \\"#4F4D4D\\",\\n        \\"dropdawn_background\\": \\"#FFFFFF\\",\\n        \\"dropdown_hover_background\\": \\"#E8E3E3\\",\\n        \\"side_color_background\\": \\"#000000\\",\\n        \\"side_color_icon_text\\": \\"rgba(255, 255, 255, 0.4)\\",\\n        \\"side_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"side_color_hover_amount\\": 20,\\n        \\"side_line_color_separator\\": \\"#FFFFFF\\",\\n        \\"side_dropdawn_text_color\\": \\"#4F4D4D\\",\\n        \\"side_dropdawn_background\\": \\"#FFFFFF\\",\\n        \\"side_dropdown_hover_background\\": \\"#E8E3E3\\",\\n        \\"page_color_title\\": \\"#000000\\",\\n        \\"footer_color_background\\": \\"#575555\\",\\n        \\"footer_color_text\\": \\"#FFFFFF\\"\\n      }\\n    },\\n    \\"kpicard\\": {\\n      \\"icon_color\\": \\"#000000\\",\\n      \\"border_line_color\\": \\"#0a18f5\\",\\n      \\"background_color\\": \\"#FFFFFF\\",\\n      \\"text_color\\": \\"#948F8F\\",\\n      \\"text_number_color\\": \\"#000000\\"\\n    },\\n    \\"title_page\\": {\\n      \\"background_card_color\\": \\"#FFFFFF\\",\\n      \\"icon_color\\": \\"#000000\\",\\n      \\"text_color\\": \\"#000000\\",\\n      \\"line_color\\": \\"#000000\\"\\n    },\\n    \\"card_menu\\": {\\n      \\"text_color\\": \\"#000000\\",\\n      \\"icon_color\\": \\"#000000\\",\\n      \\"hover_card_color\\": \\"#CFCACA\\",\\n      \\"background_card_color\\": \\"#FFFFFF\\"\\n    },\\n    \\"grid_table_crud\\": {\\n      \\"title_color\\": \\"#3B3939\\",\\n      \\"text_color\\": \\"#948F8F\\",\\n      \\"background_color\\": \\"#FFFFFF\\",\\n      \\"head_background\\": \\"#0a18f5\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"row_text_color\\": \\"#000000\\",\\n      \\"row_text_select\\": \\"#FFFFFF\\",\\n      \\"row_select\\": \\"#B9BDAE\\",\\n      \\"button_group_disabled\\": \\"#BEBFC2\\",\\n      \\"button_cargar_excel\\": \\"#10B981\\",\\n      \\"button_crear\\": \\"#059669\\",\\n      \\"button_ver\\": \\"#0A18F5\\",\\n      \\"button_editar\\": \\"#3B82F6\\",\\n      \\"button_estado_usuario\\": \\"#F59E0B\\",\\n      \\"button_eliminar_individual\\": \\"#EF4444\\",\\n      \\"button_eliminar_multiple\\": \\"#B91C1C\\",\\n      \\"button_asignar_permisos\\": \\"#E8E417\\",\\n      \\"button_asignar_productos\\": \\"#6D28D9\\",\\n      \\"button_limpiar\\": \\"#6B7280\\"\\n    },\\n    \\"input\\": {\\n      \\"label_color\\": \\"#000000\\",\\n      \\"text_color_placeholder\\": \\"#B6C2B4\\",\\n      \\"background_color\\": \\"#FFFFFF\\",\\n      \\"text_color\\": \\"#000000\\",\\n      \\"border_color\\": \\"#0a18f5\\"\\n    },\\n    \\"modal\\": {\\n      \\"fieldset_line_color\\": \\"#0b4a75\\",\\n      \\"legend_text_color\\": \\"#0b4a75\\",\\n      \\"label_text_color\\": \\"#000000\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#0b4a75\\",\\n      \\"back_color_background\\": \\"#FFFFFF\\",\\n      \\"body_text_color\\": \\"#948F8F\\",\\n      \\"body_background_color\\": \\"#FFFFFF\\",\\n      \\"button_cancel_background_color\\": \\"#8A8484\\",\\n      \\"button_cancel_text_color\\": \\"#FFFFFF\\",\\n      \\"button_save_background_color\\": \\"#059669\\",\\n      \\"button_save_text_color\\": \\"#FFFFFF\\",\\n      \\"button_update_background_color\\": \\"#3B82F6\\",\\n      \\"button_update_text_color\\": \\"#FFFFFF\\",\\n      \\"footer_text_color\\": \\"#948F8F\\",\\n      \\"footer_background_color\\": \\"#EDEDED\\"\\n    },\\n    \\"search\\": {\\n      \\"button_background_color\\": \\"#0A18F5\\",\\n      \\"body_color_text\\": \\"#000000\\",\\n      \\"back_color_background\\": \\"#EDEDED\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#0A18F5\\"\\n    },\\n    \\"report\\": {\\n      \\"button_background_color\\": \\"#469443\\",\\n      \\"back_color_background\\": \\"#EDEDED\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#0A18F5\\"\\n    }\\n  },\\n  \\"dark\\": {\\n    \\"layout\\": {\\n      \\"scroll\\": {\\n        \\"color\\": \\"#D4CFD0\\",\\n        \\"background_color\\": \\"transparent\\"\\n      },\\n      \\"breadcrumbs\\": {\\n        \\"link-disabled\\": \\"#B6F2C0\\",\\n        \\"link-active\\": \\"#FFFFFF\\",\\n        \\"link-hover\\": \\"#EDE4E4\\",\\n        \\"separator\\": \\"#B6F2C0\\",\\n        \\"bg_color_breadcrumb\\": \\"#000000\\"\\n      },\\n      \\"index\\": {\\n        \\"header_color_background\\": \\"#000000\\",\\n        \\"back_color_background\\": \\"#0A0A0A\\",\\n        \\"backg_color_textcard\\": \\"#000000\\",\\n        \\"back_color_title\\": \\"#FFFFFF\\",\\n        \\"back_color_p\\": \\"#FFFFFF\\",\\n        \\"logo_color_icon_text\\": \\"#000000\\",\\n        \\"logo_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"logo_color_hover_amount\\": 20,\\n        \\"background_color_card_menu\\": \\"#EDEDED\\",\\n        \\"footer_text_background\\": \\"#FFFFFF\\",\\n        \\"footer_color_background\\": \\"#0F0F0F\\"\\n      },\\n      \\"admin\\": {\\n        \\"header_color_background\\": \\"#069E21\\",\\n        \\"header_color_line\\": \\"#FFFFFF\\",\\n        \\"main_background_color\\": \\"#0A0A0A\\",\\n        \\"heder_color_icons\\": \\"#DEDEDE\\",\\n        \\"dropdawn_text_color\\": \\"#FFFFFF\\",\\n        \\"dropdawn_background\\": \\"#000000\\",\\n        \\"dropdown_hover_background\\": \\"#8A8686\\",\\n        \\"side_color_background\\": \\"#000000\\",\\n        \\"side_color_icon_text\\": \\"rgba(255, 255, 255, 0.4)\\",\\n        \\"side_color_hover_icon_text\\": \\"#0b4a75\\",\\n        \\"side_color_hover_amount\\": 20,\\n        \\"side_line_color_separator\\": \\"#FFFFFF\\",\\n        \\"side_dropdawn_text_color\\": \\"#FFFFFF\\",\\n        \\"side_dropdawn_background\\": \\"#302F2F\\",\\n        \\"side_dropdown_hover_background\\": \\"#8A8686\\",\\n        \\"page_color_title\\": \\"#FFFFFF\\",\\n        \\"footer_color_background\\": \\"#0F0F0F\\",\\n        \\"footer_color_text\\": \\"#FFFFFF\\"\\n      }\\n    },\\n    \\"kpicard\\": {\\n      \\"icon_color\\": \\"#FFFFFF\\",\\n      \\"border_line_color\\": \\"#157D00\\",\\n      \\"background_color\\": \\"#2B2A2A\\",\\n      \\"text_color\\": \\"#FFFFFF\\",\\n      \\"text_number_color\\": \\"#FFFFFF\\"\\n    },\\n    \\"title_page\\": {\\n      \\"background_card_color\\": \\"#2b2a2a\\",\\n      \\"icon_color\\": \\"#FFFFFF\\",\\n      \\"text_color\\": \\"#FFFFFF\\",\\n      \\"line_color\\": \\"#FFFFFF\\"\\n    },\\n    \\"card_menu\\": {\\n      \\"text_color\\": \\"#FFFFFF\\",\\n      \\"icon_color\\": \\"#FFFFFF\\",\\n      \\"hover_card_color\\": \\"#716f6f\\",\\n      \\"background_card_color\\": \\"#474747\\"\\n    },\\n    \\"grid_table_crud\\": {\\n      \\"title_color\\": \\"#FFFFFF\\",\\n      \\"text_color\\": \\"#FFFFFF\\",\\n      \\"background_color\\": \\"#2B2A2A\\",\\n      \\"head_background\\": \\"#111827\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"row_text_color\\": \\"#FFFFFF\\",\\n      \\"row_text_select\\": \\"#FFFFFF\\",\\n      \\"row_select\\": \\"#1e3a8a\\",\\n      \\"button_group_disabled\\": \\"#BEBFC2\\",\\n      \\"button_cargar_excel\\": \\"#065F46\\",\\n      \\"button_crear\\": \\"#047857\\",\\n      \\"button_ver\\": \\"#4338CA\\",\\n      \\"button_editar\\": \\"#2563EB\\",\\n      \\"button_estado_usuario\\": \\"#D97706\\",\\n      \\"button_eliminar_individual\\": \\"#DC2626\\",\\n      \\"button_eliminar_multiple\\": \\"#991B1B\\",\\n      \\"button_asignar_permisos\\": \\"#CA8A04\\",\\n      \\"button_asignar_productos\\": \\"#7C3AED\\",\\n      \\"button_limpiar\\": \\"#4B5563\\"\\n    },\\n    \\"input\\": {\\n      \\"label_color\\": \\"#FFFFFF\\",\\n      \\"text_color_placeholder\\": \\"#9E9E95\\",\\n      \\"background_color\\": \\"#000000\\",\\n      \\"text_color\\": \\"#ffffff\\",\\n      \\"border_color\\": \\"#4cd523\\"\\n    },\\n    \\"modal\\": {\\n      \\"fieldset_line_color\\": \\"#0b4a75\\",\\n      \\"legend_text_color\\": \\"#FFFFFF\\",\\n      \\"label_text_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#242323\\",\\n      \\"back_color_background\\": \\"#2B2A2A\\",\\n      \\"button_cancel_background_color\\": \\"#8A8484\\",\\n      \\"button_cancel_text_color\\": \\"#FFFFFF\\",\\n      \\"button_save_background_color\\": \\"#047857\\",\\n      \\"button_save_text_color\\": \\"#FFFFFF\\",\\n      \\"button_update_background_color\\": \\"#2563EB\\",\\n      \\"button_update_text_color\\": \\"#FFFFFF\\",\\n      \\"footer_text_color\\": \\"#948F8F\\",\\n      \\"footer_background_color\\": \\"#242323\\"\\n    },\\n    \\"search\\": {\\n      \\"button_background_color\\": \\"#0A18F5\\",\\n      \\"body_color_text\\": \\"#FFFFFF\\",\\n      \\"back_color_background\\": \\"#1F1E1E\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#111827\\"\\n    },\\n    \\"report\\": {\\n      \\"button_background_color\\": \\"#469443\\",\\n      \\"back_color_background\\": \\"#948F8F\\",\\n      \\"icon_background_color\\": \\"#FFFFFF\\",\\n      \\"head_text_color\\": \\"#FFFFFF\\",\\n      \\"head_background_color\\": \\"#111827\\"\\n    }\\n  }\\n}"');
-
--- Dumping structure for table BAN_00341.mod_vars_var
-DROP TABLE IF EXISTS `mod_vars_var`;
-CREATE TABLE IF NOT EXISTS `mod_vars_var` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) DEFAULT NULL,
-  `valor` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table BAN_00341.mod_vars_var: ~2 rows (approximately)
 INSERT INTO `mod_vars_var` (`id`, `nombre`, `valor`) VALUES
