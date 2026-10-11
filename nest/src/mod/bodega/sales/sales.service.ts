@@ -58,12 +58,29 @@ export class SalesService {
       )
     }
 
+
+
+    const parseDateParam = (param: any) => {
+      if (!param) return null;
+
+      if (typeof param === 'string' && param.includes('-')) {
+        const dateObj = new Date(param);
+        if (isNaN(dateObj.getTime())) return null;
+        return Math.floor(dateObj.getTime() / 1000);
+      }
+
+      const num = Number(param);
+      if (isNaN(num)) return null;
+
+      return num > 10000000000 ? Math.floor(num / 1000) : num;
+    };
+
     const skipeReal = (page == 1) ? 0 : (page - 1) * limit
 
     const where: any = {};
 
-    const fecha_venta_min = filterDto['fecha_venta_minimo'] ? parseInt(filterDto['fecha_venta_minimo']) : null;
-    const fecha_venta_max = filterDto['fecha_venta_maximo'] ? parseInt(filterDto['fecha_venta_maximo']) : null;
+    const fecha_venta_min = parseDateParam(filterDto['fecha_venta_minimo']);
+    const fecha_venta_max = parseDateParam(filterDto['fecha_venta_maximo']);
 
     if (fecha_venta_min !== null && fecha_venta_max !== null) {
       where.fecha_venta = Between(fecha_venta_min, fecha_venta_max);
