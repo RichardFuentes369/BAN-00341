@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
@@ -11,15 +11,20 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   styleUrl: './rangos.component.scss',
 })
 export class RangosFiltroComponent {
-
-  constructor(
-    private translate: TranslateService
-  ) {
-  }
+  @Output() filterDateMV = new EventEmitter<any>();
 
   model = {
     fecha_inicio: '',
     fecha_fin: ''
   }
 
+  emitirFechas() {
+    this.filterDateMV.emit(this.model);
+  }
+
+  limpiarCampo() {
+    this.model.fecha_inicio = '';
+    this.model.fecha_fin = '';
+    this.emitirFechas(); 
+  }
 }

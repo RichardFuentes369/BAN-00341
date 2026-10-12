@@ -15,9 +15,9 @@
 
               @if(showRequestBatch){
               <div class="pl-4 pr-4">
-                <app-reporte-lote #hijoFiltro [idProducto]="idProducto"
+                <app-reporte-lote #hijoFiltroBatch [idProducto]="idProducto"
                   (dataResultLote)="loteTyped($event)"></app-reporte-lote>
-                <app-reporte-rangos></app-reporte-rangos>
+                <app-reporte-rangos #hijoFiltroDate (filterDateMV)="recibirFechas($event)"></app-reporte-rangos>
               </div>
               <div class="pl-4 pr-4 pb-4" [class.pt-4]="!showRequestBatch">
                 <div class="col-sm-12">

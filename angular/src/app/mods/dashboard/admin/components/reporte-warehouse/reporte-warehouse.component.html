@@ -159,8 +159,8 @@
         <div class="row" *ngIf="mostrarSeccion.ventaSeccion" [class.animate__fadeIn]="mostrarSeccion.ventaSeccion"
           [class.animate__fadeOut]="!mostrarSeccion.ventaSeccion">
           <div class="table-container col-12 mb-4">
-            <app-globales-tablecrud *ngIf="endPointV" [accioneson]="accioneson" [orderField]="orderField" [order]="order"
-              [endPoint]="endPointV" [columnas]="columnasV" [title]="titlePage">
+            <app-globales-tablecrud #tableV *ngIf="endPointV" [accioneson]="accioneson" [orderField]="orderField"
+              [order]="order" [endPoint]="endPointV" [columnas]="columnasV" [title]="titlePage">
             </app-globales-tablecrud>
           </div>
         </div>
@@ -179,8 +179,8 @@
         <div class="row" *ngIf="mostrarSeccion.mermaSeccion" [class.animate__fadeIn]="mostrarSeccion.mermaSeccion"
           [class.animate__fadeOut]="!mostrarSeccion.mermaSeccion">
           <div class="table-container col-12 mb-4">
-            <app-globales-tablecrud *ngIf="endPointM" [accioneson]="accioneson" [orderField]="orderField" [order]="order"
-              [endPoint]="endPointM" [columnas]="columnasM" [title]="titlePage">
+            <app-globales-tablecrud #tableM *ngIf="endPointM" [accioneson]="accioneson" [orderField]="orderField"
+              [order]="order" [endPoint]="endPointM" [columnas]="columnasM" [title]="titlePage">
             </app-globales-tablecrud>
           </div>
         </div>

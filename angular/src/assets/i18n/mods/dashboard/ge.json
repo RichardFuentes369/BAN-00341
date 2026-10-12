@@ -13,5 +13,7 @@
   "TITLE_GRAPHIC_2": "Menge des erzeugten Schwunds nach Wochentag",
   "TITLE_GRAPHIC_3": "Hauptursachen für Schwund",
   "TITLE_GRAPHIC_4": "Tägliche prozentuale Verteilung des Schwunds",
-  "TITLE_GRAPHIC_5": "Zusammensetzung des Produktflusses (wirtschaftliche Verluste)"
+  "TITLE_GRAPHIC_5": "Zusammensetzung des Produktflusses (wirtschaftliche Verluste)",
+
+  "MSJ_ALERT_BATCH_EMPTY": "Bitte geben Sie eine Chargennummer ein"
 }

@@ -8,27 +8,11 @@
            (ngModelChange)="validationSubject.next()"
            [class.is-invalid]="validators.lote" 
            class="form-control form-select-sm">
-
-    @if(!idProducto) {
-    <div class="d-flex justify-content-between">
-      <small class="text-danger">
-        Producto no encontrado.
-      </small>
-    </div>    
-    }
            
     @if(validators.lote) {
     <div class="d-flex justify-content-between">
       <small [ngClass]="lote ? 'text-success font-weight-bold' : 'text-danger'">
-        Debe ingresar un lote
-      </small>
-    </div>
-    }
-
-    @if(loteNotFound){
-    <div class="d-flex justify-content-between">
-      <small class="text-danger">
-        El lote no encontrado
+        {{ 'mod-dashboard.MSJ_ALERT_BATCH_EMPTY' | translate}}
       </small>
     </div>
     }

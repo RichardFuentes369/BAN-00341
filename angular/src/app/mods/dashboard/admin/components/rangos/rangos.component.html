@@ -5,13 +5,18 @@
         <span class="label-color text-center mb-4" for="exampleInputEmail1">
           {{ 'mod-merma.WORD_FROM' | translate }}
         </span>
-        <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_inicio">
+        <!-- Se agrega (ngModelChange) -->
+        <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_inicio"
+          (ngModelChange)="emitirFechas()">
       </div>
+
       <div class="col-sm">
         <span class="label-color text-center mb-4" for="exampleInputEmail1">
           {{ 'mod-merma.WORD_UNTIL' | translate }}
         </span>
-        <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_fin">
+        <!-- Se agrega (ngModelChange) -->
+        <input type="date" class="form-control form-select-sm" [(ngModel)]="model.fecha_fin"
+          (ngModelChange)="emitirFechas()">
       </div>
     </div>
   </div>

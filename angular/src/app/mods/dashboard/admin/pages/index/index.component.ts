@@ -55,9 +55,14 @@ export class AdminDashboardComponent implements OnInit {
     this.isSmallScreen = window.innerWidth < 1024;
   }
 
-  @ViewChild('hijoFiltro') hijoComponente!: FiltroLoteComponent;
+  @ViewChild('hijoFiltroBatch') hijoFiltroBatch!: FiltroLoteComponent;
+  @ViewChild('hijoFiltroDate') hijoFiltroDate!: RangosFiltroComponent;
 
   datosJson: any = {
+    filtro: {
+      fecha_inicio: null,
+      fecha_fin: null,
+    },
     producto: {
       show: false,
       codigo_barra: null,
@@ -104,23 +109,30 @@ export class AdminDashboardComponent implements OnInit {
     this.datosJson.producto.unidad_medida = null;
 
     this.datosJson.proveedor.show = false,
-    this.datosJson.proveedor.nit = null,
-    this.datosJson.proveedor.correo = null,
-    this.datosJson.proveedor.razon_social = null,
+      this.datosJson.proveedor.nit = null,
+      this.datosJson.proveedor.correo = null,
+      this.datosJson.proveedor.razon_social = null,
 
-    this.datosJson.lote.show = false,
-    this.datosJson.lote.cantidad_afectada_por_merma = null,
-    this.datosJson.lote.cantidad_comprada = null,
-    this.datosJson.lote.cantidad_en_bodega = null,
-    this.datosJson.lote.cantidad_vendida = null,
-    this.datosJson.lote.estado = null,
-    this.datosJson.lote.fecha_entrada = null,
-    this.datosJson.lote.fecha_vencimiento = null,
-    this.datosJson.lote.lote = null,
-    this.datosJson.lote.id = null
+      this.datosJson.lote.show = false,
+      this.datosJson.lote.cantidad_afectada_por_merma = null,
+      this.datosJson.lote.cantidad_comprada = null,
+      this.datosJson.lote.cantidad_en_bodega = null,
+      this.datosJson.lote.cantidad_vendida = null,
+      this.datosJson.lote.estado = null,
+      this.datosJson.lote.fecha_entrada = null,
+      this.datosJson.lote.fecha_vencimiento = null,
+      this.datosJson.lote.lote = null,
+      this.datosJson.lote.id = null
 
-    if (this.hijoComponente) {
-      this.hijoComponente.limpiarCampo()
+    this.datosJson.filtro.fecha_inicio = null
+    this.datosJson.filtro.fecha_fin = null
+
+    if (this.hijoFiltroBatch) {
+      this.hijoFiltroBatch.limpiarCampo()
+    }
+
+    if (this.hijoFiltroDate) {
+      this.hijoFiltroDate.limpiarCampo()
     }
   }
 
@@ -146,7 +158,7 @@ export class AdminDashboardComponent implements OnInit {
     this.showRequestBatch = tiene_lote
 
     this.loteDigitado = (this.showRequestBatch) ? this.loteDigitado : ''
-    if(!this.showRequestBatch){
+    if (!this.showRequestBatch) {
       this.filtrarLote()
     }
 
@@ -156,6 +168,11 @@ export class AdminDashboardComponent implements OnInit {
   loteTyped(data: any) {
     this.loteDigitado = data
     this.validarBotonFiltro()
+  }
+
+  recibirFechas(fechas: { fecha_inicio: string, fecha_fin: string }) {
+    this.datosJson.filtro.fecha_inicio = fechas.fecha_inicio ? fechas.fecha_inicio : null;
+    this.datosJson.filtro.fecha_fin = fechas.fecha_fin ? fechas.fecha_fin : null;
   }
 
   validarBotonFiltro() {

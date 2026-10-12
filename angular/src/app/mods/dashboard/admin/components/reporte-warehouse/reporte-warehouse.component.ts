@@ -152,7 +152,6 @@ export class ReporteWarehouseComponent implements OnChanges {
     estado: '',
   };
 
-
   mostrarSeccion = {
     productSeccion: true,
     batchSeccion: true,
@@ -162,12 +161,12 @@ export class ReporteWarehouseComponent implements OnChanges {
     mermaSeccion: true
   };
 
-  @ViewChild(TablecrudComponent) tableComponent!: TablecrudComponent;
+  @ViewChild('tableV') tableComponent1!: TablecrudComponent;
+  @ViewChild('tableM') tableComponent2!: TablecrudComponent;
 
   // Detecta cuando el padre actualiza el JSON con los datos escaneados o del lote
   ngOnChanges(changes: SimpleChanges) {
     if (changes['datosRecibidos'] && this.datosRecibidos) {
-
       // 1. Mapear Producto si viene con datos
       if (this.datosRecibidos.producto) {
         this.producto = { ...this.datosRecibidos.producto };
@@ -197,9 +196,13 @@ export class ReporteWarehouseComponent implements OnChanges {
 
       // 5. Cargar la tabla de mermas
       if (this.datosRecibidos.lote.show) {
-        this.endPointV = `sales/obtener-detalle-ventas?lote=${this.datosRecibidos.lote.lote}&codigo_barra=${this.datosRecibidos.producto.codigo_barra}`
-        this.endPointM = `registro-mermas/obtener-registro-mermas?id_lote=${this.datosRecibidos.lote.id}`
-        this.tableComponent?.reload();
+        this.endPointV = `sales/obtener-detalle-ventas?lote=${this.datosRecibidos.lote.lote}&codigo_barra=${this.datosRecibidos.producto.codigo_barra}&fecha_venta_minimo=${this.datosRecibidos.filtro.fecha_inicio}&fecha_venta_maximo=${this.datosRecibidos.filtro.fecha_fin}`
+        this.endPointM = `registro-mermas/obtener-registro-mermas?id_lote=${this.datosRecibidos.lote.id}&fecha_reporte_minimo=${this.datosRecibidos.filtro.fecha_inicio}&fecha_reporte_maximo=${this.datosRecibidos.filtro.fecha_fin}`
+
+        setTimeout(() => {
+          this.tableComponent1?.reload();
+          this.tableComponent2?.reload();
+        }, 100);
       } else {
         this.endPointV = ''
         this.endPointM = ''
