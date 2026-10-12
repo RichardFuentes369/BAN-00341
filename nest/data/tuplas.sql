@@ -18,7 +18,7 @@
 
 -- Dumping data for table BAN_00341.mod_auditoria_merma: ~0 rows (approximately)
 
--- Dumping data for table BAN_00341.mod_bodega: ~18 rows (approximately)
+-- Dumping data for table BAN_00341.mod_bodega: ~19 rows (approximately)
 INSERT INTO `mod_bodega` (`id`, `lote`, `fecha_entrada`, `fecha_vencimiento`, `cantidad_comprada`, `cantidad_vendida`, `cantidad_en_bodega`, `estado`, `id_producto`, `id_proveedor`) VALUES
 	(1, '1791339027', 1786338000, 1794545999, 8, 0, 8, 'disponible', 1, 29),
 	(2, '1791339027', 1787720400, 1797397199, 15, 0, 15, 'disponible', 2, 29),
@@ -37,7 +37,8 @@ INSERT INTO `mod_bodega` (`id`, `lote`, `fecha_entrada`, `fecha_vencimiento`, `c
 	(15, '1791393677', 1784178000, 1792040399, 34, 3, 31, 'disponible', 22, 29),
 	(16, '1791393677', 1787029200, 1808888399, 50000, 1250, 48750, 'disponible', 88, 28),
 	(18, '1791393677', 1790139600, 1798088399, 50000, 0, 48867, 'disponible', 89, 11),
-	(19, '1791484677', 1787202000, 1797829199, 30000, 750, 14000, 'disponible', 89, 11);
+	(19, '1791484677', 1787202000, 1797829199, 30000, 750, 13750, 'disponible', 89, 11),
+	(20, '1791836707', 1791435600, NULL, 250, 0, 250, 'disponible', 94, 35);
 
 -- Dumping data for table BAN_00341.mod_catalogo_marcas: ~21 rows (approximately)
 INSERT INTO `mod_catalogo_marcas` (`id`, `nombre`) VALUES
@@ -200,7 +201,7 @@ INSERT INTO `mod_catalogo_proveedores` (`id`, `razon_social`, `direccion`, `corr
 	(35, 'Bavaria distribuidor', 'Calle 89 # 25 -105 cundinamarca', 'contacto4@bavaria.com', '3168901445', '8', '683254789'),
 	(36, 'Embotelladora santander', 'Calle 32 a # 89 - 25', 'contacto-ventas@embosan.com', '3189606255', '2', '582223966');
 
--- Dumping data for table BAN_00341.mod_merma_mermas: ~7 rows (approximately)
+-- Dumping data for table BAN_00341.mod_merma_mermas: ~8 rows (approximately)
 INSERT INTO `mod_merma_mermas` (`id`, `cantidad`, `fecha_reporte`, `observacion`, `id_tipo_merma`, `id_lote`, `valor_perdido`) VALUES
 	(1, 120, 1790226000, 'Se evidenció que la bolsa estaba rota y se perdieron 120 gramos de una bolsa empacada para vender al detal', 7, 18, 2850),
 	(3, 1000, 1791090000, 'Se evidenció hongos en el producto empacado. No se valido que la bolsa estuviera seca', 4, 18, 6400),
@@ -208,7 +209,8 @@ INSERT INTO `mod_merma_mermas` (`id`, `cantidad`, `fecha_reporte`, `observacion`
 	(5, 2, 1791262800, 'Presenta una perdida por daños ambientales "calor"', 8, 8, 2850),
 	(6, 4, 1791262800, 'Se evidencio que el empaque esta roto por movimiento de estiba', 2, 14, 2950),
 	(7, 2, 1791003600, 'Ninguna', 7, 18, 8500),
-	(8, 15250, 1791176400, 'Ninguna', 6, 19, 258000);
+	(8, 15250, 1791176400, 'Ninguna', 6, 19, 258000),
+	(9, 250, 1791694800, 'Se le derramo al  vendedor y cayo en el piso', 7, 19, 900);
 
 -- Dumping data for table BAN_00341.mod_merma_tipos: ~9 rows (approximately)
 INSERT INTO `mod_merma_tipos` (`id`, `nombre`) VALUES
@@ -317,7 +319,7 @@ INSERT INTO `mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_submodulos`
 	(129, 'Devoluciones', 'devoluciones', 0, 1, 'Permiso devoluciones, modulo ventas y devoluciones', 127),
 	(130, 'Ver', 'ver', 0, 1, 'Permiso ver, submodulo ventas, modulo ventas y devoluciones', 128);
 
--- Dumping data for table BAN_00341.mod_permisos_modulo_asignacion: ~123 rows (approximately)
+-- Dumping data for table BAN_00341.mod_permisos_modulo_asignacion: ~169 rows (approximately)
 INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descripcion`, `id_modulo`, `modulo_padre_id`, `user_id`) VALUES
 	(241, 'Estado (usuario)', 'estado_usuario', 'Permiso estado usuario, submodulo administradores, modulo usuarios', 8, 2, 1),
 	(243, 'Editar', 'editar', 'Permiso editar, submodulo administradores, modulo usuarios', 5, 2, 1),
@@ -416,7 +418,6 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(760, 'Asignar productos', 'asignar_productos', 'Permiso asignar_productos, submodulo marcas, modulo catalogo', 85, 79, 1),
 	(761, 'Asignar productos', 'asignar_productos', 'Permiso asignar_productos, submodulo unidad de medida, modulo catalogo', 123, 86, 1),
 	(762, 'Alertas', 'alertas', 'Modulo alertas', 91, NULL, 2),
-	(763, 'Finales', 'finales', 'Permiso finales, modulo usuarios', 10, 1, 1),
 	(791, 'Proveedores', 'proveedores', 'Permiso proveedores, modulo catalogo', 26, 22, 1),
 	(792, 'Marcas', 'marcas', 'Permiso marcas, modulo catalogo', 79, 22, 1),
 	(793, 'Unidad de medida', 'unidad_de_medida', 'Permiso unidad_de_medida, modulo catalogo', 86, 22, 1),
@@ -441,9 +442,56 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(917, 'Alertas', 'alertas', 'Modulo alertas', 91, NULL, 1),
 	(918, 'Variables del sistema', 'variables_sistema', 'Modulo configurables', 95, NULL, 1),
 	(919, 'Personalizacion', 'estilos_sistema', 'Modulo general para el estilos del sistema', 113, NULL, 1),
-	(920, 'Ventas', 'ventas_y_devoluciones', 'Modulo ventas', 127, NULL, 1);
+	(920, 'Ventas', 'ventas_y_devoluciones', 'Modulo ventas', 127, NULL, 1),
+	(921, 'Catalogo', 'catalogo', 'Modulo catalogo', 22, NULL, 258),
+	(922, 'Proveedores', 'proveedores', 'Permiso proveedores, modulo catalogo', 26, 22, 258),
+	(923, 'Productos', 'productos', 'Permiso productos, modulo catalogo', 38, 22, 258),
+	(924, 'Marcas', 'marcas', 'Permiso marcas, modulo catalogo', 79, 22, 258),
+	(925, 'Unidad de medida', 'unidad_de_medida', 'Permiso unidad_de_medida, modulo catalogo', 86, 22, 258),
+	(926, 'Ver', 'ver', 'Permiso ver, submodulo proveedores, modulo catalogo', 33, 26, 258),
+	(927, 'Crear', 'crear', 'Permiso crear, submodulo proveedores, modulo catalogo', 34, 26, 258),
+	(928, 'Editar', 'editar', 'Permiso editar, submodulo proveedores, modulo catalogo', 35, 26, 258),
+	(929, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo proveedores, modulo catalogo', 36, 26, 258),
+	(930, 'Ver', 'ver', 'Permiso ver, submodulo productos, modulo catalogo', 39, 38, 258),
+	(931, 'Crear', 'crear', 'Permiso crear, submodulo productos, modulo catalogo', 40, 38, 258),
+	(932, 'Editar', 'editar', 'Permiso editar, submodulo productos, modulo catalogo', 41, 38, 258),
+	(933, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo productos, modulo catalogo', 42, 38, 258),
+	(935, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo marcas, modulo catalogo', 83, 79, 258),
+	(936, 'Editar', 'editar', 'Permiso editar, submodulo marcas, modulo catalogo', 82, 79, 258),
+	(937, 'Crear', 'crear', 'Permiso crear, submodulo marcas, modulo catalogo', 81, 79, 258),
+	(938, 'Ver', 'ver', 'Permiso ver, submodulo marcas, modulo catalogo', 80, 79, 258),
+	(939, 'Ver', 'ver', 'Permiso ver, submodulo unidad_de_medida, modulo catalogo', 87, 86, 258),
+	(940, 'Crear', 'crear', 'Permiso crear, submodulo unidad_de_medida, modulo catalogo', 88, 86, 258),
+	(941, 'Editar', 'editar', 'Permiso editar, submodulo unidad_de_medida, modulo catalogo', 89, 86, 258),
+	(942, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo unidad_de_medida, modulo catalogo', 90, 86, 258),
+	(943, 'Merma', 'merma', 'Modulo merma', 44, NULL, 258),
+	(944, 'Tipos merma', 'tipo_merma', 'Permiso tipo_merma, modulo merma', 45, 44, 258),
+	(945, 'Ver', 'ver', 'Permiso ver, submodulo tipo_merma, modulo merma', 47, 45, 258),
+	(946, 'Crear', 'crear', 'Permiso crear, submodulo tipo_merma, modulo merma', 48, 45, 258),
+	(947, 'Editar', 'editar', 'Permiso editar, submodulo tipo_merma, modulo merma', 49, 45, 258),
+	(948, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo tipo_merma, modulo merma', 50, 45, 258),
+	(949, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo registro_merma, modulo merma', 61, 46, 258),
+	(950, 'Editar', 'editar', 'Permiso editar, submodulo registro_merma, modulo merma', 60, 46, 258),
+	(951, 'Crear', 'crear', 'Permiso crear, submodulo registro_merma, modulo merma', 59, 46, 258),
+	(952, 'Ver', 'ver', 'Permiso ver, submodulo registro_merma, modulo merma', 58, 46, 258),
+	(953, 'Registro merma', 'registro_merma', 'Permiso registro_merma, modulo merma', 46, 44, 258),
+	(954, 'Historico merma', 'historico_merma', 'Permiso historico_merma, modulo merma', 114, 44, 258),
+	(955, 'Ver', 'ver', 'Permiso ver, submodulo historico_merma, modulo merma', 115, 114, 258),
+	(956, 'Bodega', 'bodega', 'Modulo bodega', 64, NULL, 258),
+	(957, 'Ver', 'ver', 'ver', 65, 64, 258),
+	(958, 'Crear', 'crear', 'crear', 66, 64, 258),
+	(959, 'Editar', 'editar', 'editar', 67, 64, 258),
+	(960, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, submodulo json, modulo variables del sistema', 68, 64, 258),
+	(961, 'Alertas', 'alertas', 'Modulo alertas', 91, NULL, 258),
+	(962, 'Caducidad', 'alerta_caducidad', 'Aquí se mostrara la información de los lotes de los productos activos, con el detalle de (dias a vencer o ya vencidos)', 92, 91, 258),
+	(963, 'Ver (perezoso)', 'ver_lazy', 'Permiso ver_lazy, submodulo caducidad, modulo alertas', 120, 92, 258),
+	(964, 'Stock', 'alerta_stock', 'Aquí se mostrara a cerca de los productos que están en su stock o por debajo de el.', 94, 91, 258),
+	(970, 'Ventas', 'ventas', 'Permiso ventas, modulo ventas y devoluciones', 128, 127, 258),
+	(971, 'Ver', 'ver', 'Permiso ver, submodulo ventas, modulo ventas y devoluciones', 130, 128, 258),
+	(972, 'Devoluciones', 'devoluciones', 'Permiso devoluciones, modulo ventas y devoluciones', 129, 127, 258),
+	(973, 'Ventas', 'ventas_y_devoluciones', 'Modulo ventas', 127, NULL, 258);
 
--- Dumping data for table BAN_00341.mod_registro_detalle_ventas: ~0 rows (approximately)
+-- Dumping data for table BAN_00341.mod_registro_detalle_ventas: ~7 rows (approximately)
 INSERT INTO `mod_registro_detalle_ventas` (`id`, `lote`, `codigo_barra`, `cantidad`, `valor_unitario`, `valor_total`, `id_venta`) VALUES
 	(1, '1791484677', '1000000000002', 250, 900, 900, 1),
 	(2, '1791393677', '7702007045444', 2, 1650, 3300, 1),
@@ -453,16 +501,17 @@ INSERT INTO `mod_registro_detalle_ventas` (`id`, `lote`, `codigo_barra`, `cantid
 	(6, 'Kt1791339209', '7703147101717', 1, 2800, 2800, 2),
 	(7, '1791339209', '7707351430311', 1, 5400, 5400, 2);
 
--- Dumping data for table BAN_00341.mod_registro_ventas: ~0 rows (approximately)
+-- Dumping data for table BAN_00341.mod_registro_ventas: ~2 rows (approximately)
 INSERT INTO `mod_registro_ventas` (`id`, `fecha_venta`, `nro_factura`) VALUES
 	(1, 1791403416, 'fac-0001'),
 	(2, 1791687082, 'fac-0002');
 
--- Dumping data for table BAN_00341.mod_usuarios_admin: ~3 rows (approximately)
+-- Dumping data for table BAN_00341.mod_usuarios_admin: ~4 rows (approximately)
 INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
-	(1, 'Javier Ricardo', 'Baron Fuentes', 'admin1@correo.com', 'Qwerty9601', 1),
-	(2, 'Oscar Eduardo', 'Villamizar Bautista', 'admin2@correo.com', 'Qwerty9601', 1),
-	(3, 'Oscar Mauricio', 'Parra Correa', 'admin3@correo.com', 'Qwerty96012', 0);
+	(1, 'Javier Ricardo', 'Baron Fuentes', 'jrbaron@uts.edu.co', 'Qwerty9601.', 1),
+	(2, 'Oscar Eduardo', 'Villamizar Bautista', 'oeduardovillamizar@uts.edu.co', 'contraseña', 1),
+	(3, 'Oscar Mauricio', 'Parra Correa', 'omparra@correo.uts.edu.co', 'contraseña', 0),
+	(258, 'Alexander', 'Anchicoque Calderon', 'aanchicoque@correo.uts.edu.co', 'contraseña', 1);
 
 -- Dumping data for table BAN_00341.mod_usuarios_user: ~3 rows (approximately)
 INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
@@ -478,7 +527,7 @@ INSERT INTO `mod_vars_json` (`id`, `nombre`, `valor`) VALUES
 -- Dumping data for table BAN_00341.mod_vars_var: ~2 rows (approximately)
 INSERT INTO `mod_vars_var` (`id`, `nombre`, `valor`) VALUES
 	(1, 'AppName', 'Merma <br> Smart'),
-	(2, 'BannerBienvenida', 'Bienvenido al sistema de control de mermas y caducidad implementado en la universitaria');
+	(2, 'BannerBienvenida', '  -  Proyecto de grado  -  "Sistema de control de inventario, registro de mermas, visualización de ventas, alertas de existencia y alertas vencimiento".');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
