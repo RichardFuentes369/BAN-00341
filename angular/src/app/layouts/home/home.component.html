@@ -73,57 +73,117 @@
       <router-outlet></router-outlet>
     </div>
 
+    <footer class="footer-moderno mt-auto">
+      <div class="container-fluid px-0">
 
+        <!-- Tarjeta Flotante Superior (Panel de Desarrolladores) -->
+        <div class="container">
+          <div class="card border-0 shadow-lg rounded-4 card-flotante-devs p-4 p-md-4 mx-auto">
 
-    <footer class="bg-gradient-footer-custom shadow-lg mt-auto py-2">
-      <div class="container my-auto">
-
-        <!-- Fila compacta de tarjetas de desarrolladores -->
-        <div class="row justify-content-between text-custom-footer g-2">
-
-          <!-- Desarrollador 1 -->
-          <div class="col-lg-6 col-md-12 mb-2 mb-lg-0">
-            <div class="px-3 py-2 rounded h-100"
-              style="background-color: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08);">
-              <div class="d-flex align-items-center justify-content-between flex-wrap">
-                <div class="d-flex align-items-center">
-                  <i class="fas fa-user-graduate mr-2 "></i>
-                  <span class="font-weight-bold" style="font-size: 0.85rem;">Javier Ricardo Baron Fuentes</span>
-                  <span class="text-muted-custom ml-2 small d-none d-sm-inline">(Ing. Sistemas - UTS)</span>
+            <!-- Encabezado de la Tarjeta -->
+            <div
+              class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center mb-4 pb-3 border-bottom gap-2">
+              <div class="d-flex align-items-center">
+                <div
+                  class="text-white rounded-3 shadow-sm me-3 d-flex align-items-center justify-content-center"
+                  style="width: 40px; height: 40px; background-color: #581c87;">
+                  <img [src]="urlLogoUts" alt="Logo UTS" class="img-fluid rounded-5 p-1"
+                    style="max-height: 40px; object-fit: contain;">
                 </div>
-                <div class="small text-muted-custom">
-                  <span class="mr-3"><i class="fas fa-envelope mr-1"></i> jrbaron@uts.edu.co</span>
-                  <span><i class="fas fa-phone-alt mr-1"></i> (+57) 350 428 4093</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Desarrollador 2 -->
-          <div class="col-lg-6 col-md-12">
-            <div class="px-3 py-2 rounded h-100"
-              style="background-color: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08);">
-              <div class="d-flex align-items-center justify-content-between flex-wrap">
-                <div class="d-flex align-items-center">
-                  <i class="fas fa-user-graduate mr-2 "></i>
-                  <span class="font-weight-bold" style="font-size: 0.85rem;">Oscar Eduardo Villamizar B.</span>
-                  <span class="text-muted-custom ml-2 small d-none d-sm-inline">(Ing. Sistemas - UTS)</span>
-                </div>
-                <div class="small text-muted-custom">
-                  <span class="mr-3"><i class="fas fa-envelope mr-1"></i> oeduardovillamizar@uts.edu.co</span>
-                  <span><i class="fas fa-phone-alt mr-1"></i> (+57) 317 626 4312</span>
+                <div>
+                  <h5 class="fw-bold text-dark mb-1">Equipo de Desarrollo</h5>
+                  <p class="text-muted small mb-0">Universitaria Tecnol&oacute;gica de Santander (UTS)</p>
                 </div>
               </div>
+              <div>
+                <span
+                  class="badge bg-opacity-10 px-3 py-2 rounded-pill fw-semibold border border-primary border-opacity-10" style="background-color: #d8e7ce; color: #34531f;">
+                  <i class="fas fa-shield-alt me-1" style="color: #34531f;"></i> {{CURRENT_YEAR}}
+                </span>
+              </div>
             </div>
-          </div>
 
+            <!-- Fila de Tarjetas de Desarrolladores -->
+            <div class="row g-4">
+
+              <!-- Desarrollador 1 -->
+              <div class="col-lg-6">
+                <div class="dev-card p-3 p-md-4 rounded-4 h-100">
+                  <div class="d-flex align-items-start">
+                    <div
+                      class="text-white rounded-circle shadow-sm me-3 flex-shrink-0 d-flex align-items-center justify-content-center"
+                      style="width: 44px; height: 44px; background-color: #34531f;">
+                      <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="w-100">
+                      <div class="d-flex justify-content-between align-items-center flex-wrap mb-1">
+                        <h6 class="fw-bold mb-0 text-dark">Javier Ricardo Baron Fuentes</h6>
+                        <span class="badge bg-light text-secondary border small">Ing. Sistemas</span>
+                      </div>
+                      <div class="mt-3 pt-2 border-top border-light-subtle small">
+                        <div class="d-flex align-items-center text-secondary mb-1">
+                          <i class="fas fa-envelope me-2" style="color: #34531f;"></i>
+                          <a href="mailto:jrbaron@uts.edu.co"
+                            class="text-decoration-none text-secondary">jrbaron@uts.edu.co</a>
+                        </div>
+                        <div class="d-flex align-items-center text-secondary">
+                          <i class="fas fa-phone-alt me-2" style="color: #34531f;"></i>
+                          <span>(+57) 350 428 4093</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Desarrollador 2 -->
+              <div class="col-lg-6">
+                <div class="dev-card p-3 p-md-4 rounded-4 h-100">
+                  <div class="d-flex align-items-start">
+                    <div
+                      class="text-white rounded-circle shadow-sm me-3 flex-shrink-0 d-flex align-items-center justify-content-center"
+                      style="width: 44px; height: 44px; background-color: #34531f;">
+                      <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="w-100">
+                      <div class="d-flex justify-content-between align-items-center flex-wrap mb-1">
+                        <h6 class="fw-bold mb-0 text-dark">Oscar Eduardo Villamizar B.</h6>
+                        <span class="badge bg-light text-secondary border small">Ing. Sistemas</span>
+                      </div>
+                      <div class="mt-3 pt-2 border-top border-light-subtle small">
+                        <div class="d-flex align-items-center text-secondary mb-1">
+                          <i class="fas fa-envelope me-2" style="color: #34531f;"></i>
+                          <a href="mailto:oeduardovillamizar@uts.edu.co"
+                            class="text-decoration-none text-secondary">oeduardovillamizar@uts.edu.co</a>
+                        </div>
+                        <div class="d-flex align-items-center text-secondary">
+                          <i class="fas fa-phone-alt me-2" style="color: #34531f;"></i>
+                          <span>(+57) 317 626 4312</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
         </div>
 
-        <!-- Copyright ultra delgado -->
-        <div class="row pt-1 mt-1 text-center">
-          <div class="col-12">
-            <span class="text-custom-footer" style="font-size: 0.75rem; opacity: 0.8;">MermaSmart &copy;
-              {{CURRENT_YEAR}} | Proyecto de Grado - Unidades Tecnológicas de Santander</span>
+        <!-- Franja Inferior del Footer (Copyright) -->
+        <div class="footer-bottom-bar py-3 text-center">
+          <div class="container">
+            <div
+              class="d-flex flex-column flex-md-row justify-content-between align-items-center text-white-50 small gap-2">
+              <div>
+                <strong class="text-white">MermaSmart</strong> &copy; {{CURRENT_YEAR}} &bull; Todos los derechos
+                reservados
+              </div>
+              <div>
+                <span>Facultad de Ciencias Naturales e Intenierias - Sistemas</span>
+              </div>
+            </div>
           </div>
         </div>
 

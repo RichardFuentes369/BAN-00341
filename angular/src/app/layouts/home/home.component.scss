@@ -75,10 +75,10 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: transform 0.3s ease, background-color 0.3s ease;
 
-    &:hover {
-      transform: translateY(-4px);
-      background-color: rgba(255, 255, 255, 0.08);
-    }
+    // &:hover {
+    //   transform: translateY(-4px);
+    //   background-color: rgba(255, 255, 255, 0.08);
+    // }
   }
 
   .dev-avatar {
@@ -91,4 +91,48 @@
     justify-content: center;
   }
 
+
+/* Contenedor principal del footer */
+.footer-moderno {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  position: relative;
+  width: 100%;
+  margin-top: auto;
+  /* Aumentamos el padding superior para absorber el espacio de la tarjeta que sube */
+  // padding-top: 50px; 
+}
+
+/* Tarjeta flotante principal */
+.card-flotante-devs {
+  /* En lugar de usar transform translateY negativo que corta con el fondo de arriba, 
+     usamos un margen superior negativo dentro del flujo del footer oscuro */
+  margin-top: -70px; 
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border-radius: 1.25rem !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2) !important;
+  // max-width: 1050px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Tarjetas individuales de cada desarrollador */
+.dev-card {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  transition: all 0.25s ease-in-out;
+}
+
+// .dev-card:hover {
+//   transform: translateY(-3px);
+//   background-color: #ffffff;
+//   border-color: #cbd5e1;
+//   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+// }
+
+/* Franja inferior limpia */
+.footer-bottom-bar {
+  background-color: #0b0f17;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
 }

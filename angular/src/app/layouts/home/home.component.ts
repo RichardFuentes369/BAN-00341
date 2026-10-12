@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
   public LAYOUT_HOME_PAGE_LOGIN_ADMIN = LAYOUT_HOME_PAGE_LOGIN_ADMIN;
   public LAYOUT_HOME_PAGE_LOGIN_FINAL = LAYOUT_HOME_PAGE_LOGIN_FINAL;
 
+  urlLogoUts = 'assets/images/_uts.jpeg'
   nameApp: string = ''
   banner: string = ''
   isScrolled = false;
