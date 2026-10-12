@@ -80,14 +80,14 @@ export class FiltroSoldComponent implements OnInit {
       sessionStorage.setItem('nro_factura', this.model.nro_factura)
     }
     if(this.model.fecha_venta_minimo != ''){
-      let fecha_venta_minimo = toTimestampp(this.model.fecha_venta_minimo)
+      // let fecha_venta_minimo = toTimestampp(this.model.fecha_venta_minimo)
       this.complementoFiltro += `&fecha_venta_minimo=${this.model.fecha_venta_minimo}`
-      sessionStorage.setItem('fecha_venta_minimo', fecha_venta_minimo.toString())
+      sessionStorage.setItem('fecha_venta_minimo', this.model.fecha_venta_minimo.toString())
     }
     if(this.model.fecha_venta_maximo != ''){
-      let fecha_venta_maximo = toTimestampp(this.model.fecha_venta_maximo)
+      // let fecha_venta_maximo = toTimestampp(this.model.fecha_venta_maximo)
       this.complementoFiltro += `&fecha_venta_maximo=${this.model.fecha_venta_maximo}` 
-      sessionStorage.setItem('fecha_venta_minimo', fecha_venta_maximo.toString())     
+      sessionStorage.setItem('fecha_venta_minimo', this.model.fecha_venta_minimo.toString())     
     }
     if(this.model.field != ''){
       this.complementoFiltro += `&field=${this.model.field}`      

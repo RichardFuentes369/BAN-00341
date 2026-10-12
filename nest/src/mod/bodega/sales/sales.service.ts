@@ -58,17 +58,27 @@ export class SalesService {
       )
     }
 
-
-
-    const parseDateParam = (param: any) => {
+    const parseDateParam = (param: any, esFinDelDia: boolean = false) => {
       if (!param) return null;
 
+      // Si el parámetro es un string con formato de fecha (ej. "2026-12-02")
       if (typeof param === 'string' && param.includes('-')) {
-        const dateObj = new Date(param);
+        // Limpiamos por si acaso trae hora previa y nos quedamos solo con la fecha YYYY-MM-DD
+        const soloFecha = param.split('T')[0];
+        const [year, month, day] = soloFecha.split('-').map(Number);
+
+        if (!year || !month || !day) return null;
+
+        // Creamos el objeto Date asignando hora inicial o final según corresponda
+        const dateObj = esFinDelDia
+          ? new Date(year, month - 1, day, 23, 59, 59, 999) // 23:59:59.999
+          : new Date(year, month - 1, day, 0, 0, 0, 0);     // 00:00:00.000
+
         if (isNaN(dateObj.getTime())) return null;
-        return Math.floor(dateObj.getTime() / 1000);
+        return Math.floor(dateObj.getTime() / 1000); // Retorna en formato Unix (segundos)
       }
 
+      // Si viene como número (timestamp)
       const num = Number(param);
       if (isNaN(num)) return null;
 
@@ -80,7 +90,7 @@ export class SalesService {
     const where: any = {};
 
     const fecha_venta_min = parseDateParam(filterDto['fecha_venta_minimo']);
-    const fecha_venta_max = parseDateParam(filterDto['fecha_venta_maximo']);
+    const fecha_venta_max = parseDateParam(filterDto['fecha_venta_maximo'], true);
 
     if (fecha_venta_min !== null && fecha_venta_max !== null) {
       where.fecha_venta = Between(fecha_venta_min, fecha_venta_max);
@@ -155,64 +165,80 @@ export class SalesService {
     )
 
     if (field != '') {
-      const propiedades = this.listarPropiedadesTabla(this.salesdetailRepository)
-      const arratResult = propiedades.filter(obj => obj === field).length
-
+      const propiedades = this.listarPropiedadesTabla(this.salesdetailRepository);
+      const arratResult = propiedades.filter((obj) => obj === field).length;
       if (arratResult == 0) throw new NotFoundException(
         this.i18n.t('user.MSJ_ERROR_PARAMETRO_NO_EXISTE', { lang, args: { field: field } })
-      )
+      );
     }
 
-    const parseDateParam = (param: any) => {
+    const parseDateParam = (param: any, esFinDelDia: boolean = false) => {
       if (!param) return null;
 
+      // Si el parámetro es un string con formato de fecha (ej. "2026-12-02")
       if (typeof param === 'string' && param.includes('-')) {
-        const dateObj = new Date(param);
+        // Limpiamos por si acaso trae hora previa y nos quedamos solo con la fecha YYYY-MM-DD
+        const soloFecha = param.split('T')[0];
+        const [year, month, day] = soloFecha.split('-').map(Number);
+
+        if (!year || !month || !day) return null;
+
+        // Creamos el objeto Date asignando hora inicial o final según corresponda
+        const dateObj = esFinDelDia
+          ? new Date(year, month - 1, day, 23, 59, 59, 999) // 23:59:59.999
+          : new Date(year, month - 1, day, 0, 0, 0, 0);     // 00:00:00.000
+
         if (isNaN(dateObj.getTime())) return null;
-        return Math.floor(dateObj.getTime() / 1000);
+        return Math.floor(dateObj.getTime() / 1000); // Retorna en formato Unix (segundos)
       }
 
+      // Si viene como número (timestamp)
       const num = Number(param);
       if (isNaN(num)) return null;
 
       return num > 10000000000 ? Math.floor(num / 1000) : num;
     };
 
-    const skipeReal = (page == 1) ? 0 : (page - 1) * limit
-
-    const where: any = {};
+    const skipReal = (page == 1) ? 0 : (page - 1) * limit;
 
     const fecha_venta_min = parseDateParam(filterDto['fecha_venta_minimo']);
-    const fecha_venta_max = parseDateParam(filterDto['fecha_venta_maximo']);
+    const fecha_venta_max = parseDateParam(filterDto['fecha_venta_maximo'], true);
 
+    // Creamos el QueryBuilder para DetailVentas haciendo JOIN con la venta
+    const query = this.salesdetailRepository.createQueryBuilder('detalle')
+      .leftJoinAndSelect('detalle.id_venta', 'venta');
+
+    // Filtro por fecha mínima y máxima de la venta
     if (fecha_venta_min !== null && fecha_venta_max !== null) {
-      where.fecha_venta = Between(fecha_venta_min, fecha_venta_max);
+      query.andWhere('venta.fecha_venta BETWEEN :min AND :max', { min: fecha_venta_min, max: fecha_venta_max });
     } else if (fecha_venta_min !== null) {
-      where.fecha_venta = MoreThanOrEqual(fecha_venta_min);
+      query.andWhere('venta.fecha_venta >= :min', { min: fecha_venta_min });
     } else if (fecha_venta_max !== null) {
-      where.fecha_venta = LessThanOrEqual(fecha_venta_max);
+      query.andWhere('venta.fecha_venta <= :max', { max: fecha_venta_max });
     }
 
+    // Filtros adicionales
     if (filterDto.nro_factura !== undefined && filterDto.nro_factura !== '') {
-      where.nro_factura = filterDto.nro_factura;
+      query.andWhere('venta.nro_factura = :nro_factura', { nro_factura: filterDto.nro_factura });
     }
 
-    if(filterDto.lote !== undefined && filterDto.lote !== '') {
-      where.lote = filterDto.lote;      
+    if (filterDto.lote !== undefined && filterDto.lote !== '') {
+      query.andWhere('detalle.lote = :lote', { lote: filterDto.lote });
     }
 
-    if(filterDto.codigo_barra !== undefined && filterDto.codigo_barra !== '') {
-      where.codigo_barra = filterDto.codigo_barra;
+    if (filterDto.codigo_barra !== undefined && filterDto.codigo_barra !== '') {
+      query.andWhere('detalle.codigo_barra = :codigo_barra', { codigo_barra: filterDto.codigo_barra });
     }
 
+    // Paginación y ordenamiento
+    query.skip(skipReal).take(limit);
 
-    const [registros, total] = await this.salesdetailRepository.findAndCount({
-      skip: skipeReal,
-      take: limit,
-      where: where,
-      relations: ['id_venta'],
-      order: { [field]: order }
-    });
+    // Validar el campo de ordenamiento para evitar inyecciones SQL
+    const validFields = ['id', 'lote', 'codigo_barra', 'cantidad', 'valor_unitario', 'valor_total'];
+    const sortField = validFields.includes(field) ? `detalle.${field}` : 'detalle.id';
+    query.orderBy(sortField, order.toUpperCase() === 'DESC' ? 'DESC' : 'ASC');
+
+    const [registros, total] = await query.getManyAndCount();
 
     const result = registros.map(admin => {
       return {
@@ -226,7 +252,7 @@ export class SalesService {
         'page': page,
         'perPage': limit,
         'previou': (page === 1) ? null : page - 1,
-        'next': (skipeReal + limit < total) ? page + 1 : null,
+        'next': (skipReal + limit < total) ? page + 1 : null,
         'totalRecord': total
       },
       'order': {
@@ -235,7 +261,6 @@ export class SalesService {
       }
     }];
   }
-
 
   async create(
     lang: string,

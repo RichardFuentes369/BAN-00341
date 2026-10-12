@@ -161,7 +161,7 @@ export class MermasService {
     let finUnix: number;
 
     const fecha_reporte_min = parseDateParam(filterDto['fecha_reporte_minimo']);
-    const fecha_reporte_max = parseDateParam(filterDto['fecha_reporte_maximo']);
+    const fecha_reporte_max = parseDateParam(filterDto['fecha_reporte_maximo'], true);
 
     if (filterDto.year && fecha_reporte_min == undefined && fecha_reporte_max == undefined) {
       if (filterDto.year != 'null') {
@@ -193,7 +193,6 @@ export class MermasService {
         where.fecha_reporte = LessThanOrEqual(fecha_reporte_max);
       }
     }
-
 
     const valor_perdido_min = filterDto['valor_perdido_minimo'] ? parseInt(filterDto['valor_perdido_minimo']) : null;
     const valor_perdido_max = filterDto['valor_perdido_maximo'] ? parseInt(filterDto['valor_perdido_maximo']) : null;
@@ -482,7 +481,7 @@ export class MermasService {
     }
 
     const fecha_reporte_min = parseDateParam(allParams['fecha_reporte_minimo']);
-    const fecha_reporte_max = parseDateParam(allParams['fecha_reporte_maximo']);
+    const fecha_reporte_max = parseDateParam(allParams['fecha_reporte_maximo'], true);
 
     if (fecha_reporte_min !== null && fecha_reporte_max !== null) {
       where.fecha_reporte = Between(fecha_reporte_min, fecha_reporte_max);
@@ -642,15 +641,27 @@ export class MermasService {
       return `${year}-${month}-${day}`;
     };
 
-    const parseDateParam = (param: any) => {
+    const parseDateParam = (param: any, esFinDelDia: boolean = false) => {
       if (!param) return null;
 
+      // Si el parámetro es un string con formato de fecha (ej. "2026-12-02")
       if (typeof param === 'string' && param.includes('-')) {
-        const dateObj = new Date(param);
+        // Limpiamos por si acaso trae hora previa y nos quedamos solo con la fecha YYYY-MM-DD
+        const soloFecha = param.split('T')[0];
+        const [year, month, day] = soloFecha.split('-').map(Number);
+
+        if (!year || !month || !day) return null;
+
+        // Creamos el objeto Date asignando hora inicial o final según corresponda
+        const dateObj = esFinDelDia
+          ? new Date(year, month - 1, day, 23, 59, 59, 999) // 23:59:59.999
+          : new Date(year, month - 1, day, 0, 0, 0, 0);     // 00:00:00.000
+
         if (isNaN(dateObj.getTime())) return null;
-        return Math.floor(dateObj.getTime() / 1000);
+        return Math.floor(dateObj.getTime() / 1000); // Retorna en formato Unix (segundos)
       }
 
+      // Si viene como número (timestamp)
       const num = Number(param);
       if (isNaN(num)) return null;
 
@@ -678,7 +689,7 @@ export class MermasService {
     }
 
     const fecha_reporte_min = parseDateParam(allParams['fecha_reporte_minimo']);
-    const fecha_reporte_max = parseDateParam(allParams['fecha_reporte_maximo']);
+    const fecha_reporte_max = parseDateParam(allParams['fecha_reporte_maximo'], true);
 
     if (fecha_reporte_min !== null && fecha_reporte_max !== null) {
       where.fecha_reporte = Between(fecha_reporte_min, fecha_reporte_max);

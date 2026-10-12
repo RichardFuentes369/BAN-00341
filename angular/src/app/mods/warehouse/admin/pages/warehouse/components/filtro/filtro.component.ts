@@ -323,24 +323,24 @@ export class FiltroWarehouseComponent implements OnInit {
       }
     }   
     if(this.model.fecha_entrada_minimo != ''){
-      let fecha_entrada_minimo = toTimestampp(this.model.fecha_entrada_minimo)
-      this.complementoFiltro += `&fecha_entrada_minimo=${fecha_entrada_minimo}`
-      sessionStorage.setItem('fecha_entrada_minimo', fecha_entrada_minimo.toString())
+      // let fecha_entrada_minimo = toTimestampp(this.model.fecha_entrada_minimo)
+      this.complementoFiltro += `&fecha_entrada_minimo=${this.model.fecha_entrada_minimo}`
+      sessionStorage.setItem('fecha_entrada_minimo', this.model.fecha_entrada_minimo.toString())
     }    
     if(this.model.fecha_entrada_maximo != ''){
-      let fecha_entrada_maximo = toTimestampp(this.model.fecha_entrada_maximo) + 86399
-      this.complementoFiltro += `&fecha_entrada_maximo=${fecha_entrada_maximo}`
-      sessionStorage.setItem('fecha_entrada_maximo', fecha_entrada_maximo.toString())
+      // let fecha_entrada_maximo = toTimestampp(this.model.fecha_entrada_maximo) + 86399
+      this.complementoFiltro += `&fecha_entrada_maximo=${this.model.fecha_entrada_maximo}`
+      sessionStorage.setItem('fecha_entrada_maximo', this.model.fecha_entrada_maximo.toString())
     }    
     if(this.model.fecha_vencimiento_minimo != ''){
-      let fecha_vencimiento_minimo = toTimestampp(this.model.fecha_vencimiento_minimo)
-      this.complementoFiltro += `&fecha_vencimiento_minimo=${fecha_vencimiento_minimo}`
-      sessionStorage.setItem('fecha_vencimiento_minimo', fecha_vencimiento_minimo.toString())
+      // let fecha_vencimiento_minimo = toTimestampp(this.model.fecha_vencimiento_minimo)
+      this.complementoFiltro += `&fecha_vencimiento_minimo=${this.model.fecha_vencimiento_minimo}`
+      sessionStorage.setItem('fecha_vencimiento_minimo', this.model.fecha_vencimiento_minimo.toString())
     }  
     if(this.model.fecha_vencimiento_maximo != ''){
-      let fecha_vencimiento_maximo = toTimestampp(this.model.fecha_vencimiento_maximo) + 86399
-      this.complementoFiltro += `&fecha_vencimiento_maximo=${fecha_vencimiento_maximo}`
-      sessionStorage.setItem('fecha_vencimiento_maximo', fecha_vencimiento_maximo.toString())
+      // let fecha_vencimiento_maximo = toTimestampp(this.model.fecha_vencimiento_maximo) + 86399
+      this.complementoFiltro += `&fecha_vencimiento_maximo=${this.model.fecha_vencimiento_maximo}`
+      sessionStorage.setItem('fecha_vencimiento_maximo', this.model.fecha_vencimiento_maximo.toString())
     }  
     if(this.model.cantidad_en_bodega_minimo != ''){
       this.complementoFiltro += `&cantidad_en_bodega_minimo=${this.model.cantidad_en_bodega_minimo}`

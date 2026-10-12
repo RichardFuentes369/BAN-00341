@@ -86,9 +86,7 @@ export class RegistroService {
     let urlCopleta = environment.apiUrl + complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
-
     data.fecha_reporte = toTimestampp(data.fecha_reporte)
-
 
     return await axios.request({
       headers: {

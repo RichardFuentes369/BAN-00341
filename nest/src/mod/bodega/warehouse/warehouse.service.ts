@@ -54,27 +54,54 @@ export class WarehouseService {
 
     if (filterDto.estado) where.estado = filterDto.estado;
 
+    const parseDateParam = (param: any, esFinDelDia: boolean = false) => {
+      if (!param) return null;
+
+      // Si el parámetro es un string con formato de fecha (ej. "2026-12-02")
+      if (typeof param === 'string' && param.includes('-')) {
+        // Limpiamos por si acaso trae hora previa y nos quedamos solo con la fecha YYYY-MM-DD
+        const soloFecha = param.split('T')[0];
+        const [year, month, day] = soloFecha.split('-').map(Number);
+
+        if (!year || !month || !day) return null;
+
+        // Creamos el objeto Date asignando hora inicial o final según corresponda
+        const dateObj = esFinDelDia
+          ? new Date(year, month - 1, day, 23, 59, 59, 999) // 23:59:59.999
+          : new Date(year, month - 1, day, 0, 0, 0, 0);     // 00:00:00.000
+
+        if (isNaN(dateObj.getTime())) return null;
+        return Math.floor(dateObj.getTime() / 1000); // Retorna en formato Unix (segundos)
+      }
+
+      // Si viene como número (timestamp)
+      const num = Number(param);
+      if (isNaN(num)) return null;
+
+      return num > 10000000000 ? Math.floor(num / 1000) : num;
+    };
+
     // precisos y entre
-    const fecha_entrada_min = filterDto['fecha_entrada_minimo'] ? parseInt(filterDto['fecha_entrada_minimo']) : null;
-    const fecha_entrada_max = filterDto['fecha_entrada_maximo'] ? parseInt(filterDto['fecha_entrada_maximo']) : null;
+    const fecha_entrada_min = parseDateParam(filterDto['fecha_entrada_minimo']);
+    const fecha_entrada_max = parseDateParam(filterDto['fecha_entrada_maximo'], true);
 
     if (fecha_entrada_min !== null && fecha_entrada_max !== null) {
-      where.fecha_entrada = Between(fecha_entrada_min, fecha_entrada_max);
+      where.fecha_entrada = Between(parseDateParam(fecha_entrada_min), parseDateParam(fecha_entrada_max, true));
     } else if (fecha_entrada_min !== null) {
-      where.fecha_entrada = MoreThanOrEqual(fecha_entrada_min);
+      where.fecha_entrada = MoreThanOrEqual(parseDateParam(fecha_entrada_min));
     } else if (fecha_entrada_max !== null) {
-      where.fecha_entrada = LessThanOrEqual(fecha_entrada_max);
+      where.fecha_entrada = LessThanOrEqual(parseDateParam(fecha_entrada_max, true));
     }
 
-    const fecha_vencimiento_min = filterDto['fecha_vencimiento_minimo'] ? parseInt(filterDto['fecha_vencimiento_minimo']) : null;
-    const fecha_vencimiento_max = filterDto['fecha_vencimiento_maximo'] ? parseInt(filterDto['fecha_vencimiento_maximo']) : null;
+    const fecha_vencimiento_min = parseDateParam(filterDto['fecha_vencimiento_minimo']);
+    const fecha_vencimiento_max = parseDateParam(filterDto['fecha_vencimiento_maximo'], true);
 
     if (fecha_vencimiento_min !== null && fecha_vencimiento_max !== null) {
-      where.fecha_vencimiento = Between(fecha_vencimiento_min, fecha_vencimiento_max);
+      where.fecha_vencimiento = Between(parseDateParam(fecha_vencimiento_min), parseDateParam(fecha_vencimiento_max, true));
     } else if (fecha_vencimiento_min !== null) {
-      where.fecha_vencimiento = MoreThanOrEqual(fecha_vencimiento_min);
+      where.fecha_vencimiento = MoreThanOrEqual(parseDateParam(fecha_vencimiento_min));
     } else if (fecha_vencimiento_max !== null) {
-      where.fecha_vencimiento = LessThanOrEqual(fecha_vencimiento_max);
+      where.fecha_vencimiento = LessThanOrEqual(parseDateParam(fecha_vencimiento_max, true));
     }
 
     const cantidad_en_bodega_min = filterDto['cantidad_en_bodega_minimo'] ? parseInt(filterDto['cantidad_en_bodega_minimo']) : null;
@@ -398,6 +425,33 @@ export class WarehouseService {
   async generarExcel(allParams: any, lang: string) {
     const where: any = {};
 
+    const parseDateParam = (param: any, esFinDelDia: boolean = false) => {
+      if (!param) return null;
+
+      // Si el parámetro es un string con formato de fecha (ej. "2026-12-02")
+      if (typeof param === 'string' && param.includes('-')) {
+        // Limpiamos por si acaso trae hora previa y nos quedamos solo con la fecha YYYY-MM-DD
+        const soloFecha = param.split('T')[0];
+        const [year, month, day] = soloFecha.split('-').map(Number);
+
+        if (!year || !month || !day) return null;
+
+        // Creamos el objeto Date asignando hora inicial o final según corresponda
+        const dateObj = esFinDelDia
+          ? new Date(year, month - 1, day, 23, 59, 59, 999) // 23:59:59.999
+          : new Date(year, month - 1, day, 0, 0, 0, 0);     // 00:00:00.000
+
+        if (isNaN(dateObj.getTime())) return null;
+        return Math.floor(dateObj.getTime() / 1000); // Retorna en formato Unix (segundos)
+      }
+
+      // Si viene como número (timestamp)
+      const num = Number(param);
+      if (isNaN(num)) return null;
+
+      return num > 10000000000 ? Math.floor(num / 1000) : num;
+    };
+
     const getSearchValue = (param: any) => {
       if (Array.isArray(param)) {
         const val = param.find(v => v !== 'true');
@@ -429,11 +483,11 @@ export class WarehouseService {
     const fecha_entrada_max = allParams['fecha_entrada_maximo'] ? parseInt(allParams['fecha_entrada_maximo']) : null;
 
     if (fecha_entrada_min !== null && fecha_entrada_max !== null) {
-      where.fecha_entrada = Between(fecha_entrada_min, fecha_entrada_max);
+      where.fecha_entrada = Between(parseDateParam(fecha_entrada_min), parseDateParam(fecha_entrada_max, true));
     } else if (fecha_entrada_min !== null) {
-      where.fecha_entrada = MoreThanOrEqual(fecha_entrada_min);
+      where.fecha_entrada = MoreThanOrEqual(parseDateParam(fecha_entrada_min));
     } else if (fecha_entrada_max !== null) {
-      where.fecha_entrada = LessThanOrEqual(fecha_entrada_max);
+      where.fecha_entrada = LessThanOrEqual(parseDateParam(fecha_entrada_max));
     }
 
     const fecha_vencimiento_min = allParams['fecha_vencimiento_minimo'] ? parseInt(allParams['fecha_vencimiento_minimo']) : null;
@@ -588,6 +642,33 @@ export class WarehouseService {
       return `${year}-${month}-${day}`;
     };
 
+    const parseDateParam = (param: any, esFinDelDia: boolean = false) => {
+      if (!param) return null;
+
+      // Si el parámetro es un string con formato de fecha (ej. "2026-12-02")
+      if (typeof param === 'string' && param.includes('-')) {
+        // Limpiamos por si acaso trae hora previa y nos quedamos solo con la fecha YYYY-MM-DD
+        const soloFecha = param.split('T')[0];
+        const [year, month, day] = soloFecha.split('-').map(Number);
+
+        if (!year || !month || !day) return null;
+
+        // Creamos el objeto Date asignando hora inicial o final según corresponda
+        const dateObj = esFinDelDia
+          ? new Date(year, month - 1, day, 23, 59, 59, 999) // 23:59:59.999
+          : new Date(year, month - 1, day, 0, 0, 0, 0);     // 00:00:00.000
+
+        if (isNaN(dateObj.getTime())) return null;
+        return Math.floor(dateObj.getTime() / 1000); // Retorna en formato Unix (segundos)
+      }
+
+      // Si viene como número (timestamp)
+      const num = Number(param);
+      if (isNaN(num)) return null;
+
+      return num > 10000000000 ? Math.floor(num / 1000) : num;
+    };
+
     const loteVal = getSearchValue(allParams.lote);
     if (loteVal) where.lote = Like(`%${loteVal}%`);
 
@@ -595,11 +676,11 @@ export class WarehouseService {
     const fecha_entrada_max = allParams['fecha_entrada_maximo'] ? parseInt(allParams['fecha_entrada_maximo']) : null;
 
     if (fecha_entrada_min !== null && fecha_entrada_max !== null) {
-      where.fecha_entrada = Between(fecha_entrada_min, fecha_entrada_max);
+      where.fecha_entrada = Between(parseDateParam(fecha_entrada_min), parseDateParam(fecha_entrada_max));
     } else if (fecha_entrada_min !== null) {
-      where.fecha_entrada = MoreThanOrEqual(fecha_entrada_min);
+      where.fecha_entrada = MoreThanOrEqual(parseDateParam(fecha_entrada_min));
     } else if (fecha_entrada_max !== null) {
-      where.fecha_entrada = LessThanOrEqual(fecha_entrada_max);
+      where.fecha_entrada = LessThanOrEqual(parseDateParam(fecha_entrada_max));
     }
 
     const fecha_vencimiento_min = allParams['fecha_vencimiento_minimo'] ? parseInt(allParams['fecha_vencimiento_minimo']) : null;
