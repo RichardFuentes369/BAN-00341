@@ -4,15 +4,24 @@
   min-height: 100vh;
   margin: 0;
   padding: 0;
+
+  background-image: radial-gradient(rgba(228, 29, 29, 0.15) 1.5px, transparent 1.5px);
+  background-size: 24px 24px; /* Espaciado entre los puntos */
+  background-position: 0 0;
 }
 
-/* Bloque Superior Azul Institucional */
+/* Bloque Superior Azul Institucional con Patrón de Puntos */
 .hero-blue-section {
   background-color: var(--layout-index-header_color_background, #0d47a1);
   color: #ffffff;
   position: relative;
   padding-bottom: 60px; /* Espacio para que la onda no pise el contenido */
   
+  /* Patrón de puntos sutil superpuesto al color de fondo */
+  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1.5px, transparent 1.5px);
+  background-size: 24px 24px; /* Espaciado entre los puntos */
+  background-position: 0 0;
+
   /* Ajuste de textos dentro de la sección azul para que sean blancos */
   h1, h2, h3, p, span {
     color: #ffffff !important;

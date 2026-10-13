@@ -3,7 +3,16 @@
   background-color: #ffffff;
 
   .landing-container {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background-color: #ffffff;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+
+    background-image: radial-gradient(rgba(228, 29, 29, 0.15) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    /* Espaciado entre los puntos */
+    background-position: 0 0;
   }
 
   /* Sección superior azul institucional */
@@ -13,7 +22,18 @@
     width: 100%;
     padding-bottom: 50px;
 
-    h3, p {
+    /* Patrón de puntos sutil superpuesto al color de fondo */
+    background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    /* Espaciado entre los puntos */
+    background-position: 0 0;
+
+    /* Ajuste de textos dentro de la sección azul para que sean blancos */
+    h1,
+    h2,
+    h3,
+    p,
+    span {
       color: #ffffff !important;
     }
   }
@@ -39,7 +59,12 @@
     background-color: #ffffff;
     position: relative;
     z-index: 2;
-    margin-top: -45px; /* Sube la sección para fusionarse con la onda */
+    margin-top: -45px;
+    /* Sube la sección para fusionarse con la onda */
+    background-image: radial-gradient(rgba(228, 29, 29, 0.15) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    /* Espaciado entre los puntos */
+    background-position: 0 0;
   }
 }
 
@@ -101,7 +126,8 @@
           align-items: center;
           gap: 8px;
           color: #cbd5e1;
-          i { 
+
+          i {
             color: #38bdf8;
           }
         }
@@ -116,7 +142,7 @@
     align-items: center;
     justify-content: center;
     padding: 40px;
-    background-color: transparent; 
+    background-color: transparent;
   }
 }
 
@@ -126,11 +152,11 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
     margin: 0 auto;
     max-width: 100%;
-    
+
     .login-brand-side {
       display: none;
     }
-    
+
     .login-form-side {
       width: 100%;
       padding: 20px;

@@ -82,10 +82,9 @@
   0% {
     transform: translateX(0);
   }
-
   100% {
-    /* Se desplaza exactamente la mitad (el ancho de los elementos originales antes de duplicar) */
-    transform: translateX(calc(-50% - 12.5px));
+    /* Desplaza exactamente la mitad del ancho total generado por los elementos duplicados */
+    transform: translateX(-50%);
   }
 }
 

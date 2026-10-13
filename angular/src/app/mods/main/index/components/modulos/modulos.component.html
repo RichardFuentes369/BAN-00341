@@ -16,12 +16,13 @@
     <div class="modulos-carousel-container">
       <div class="modulos-track">
 
+        <!-- --- BLOQUE ORIGINAL --- -->
         <!-- Módulo 1: Usuarios -->
         <div class="modulo-card">
           <div class="card-icon-wrapper">
             <img src="assets/images/img_users.png" alt="Usuarios" width="50">
           </div>
-          <h3 class="title-card">Usuarios</h3>
+          <h3 class="title-card">{{ 'mod-main.PAGES_USERS' | translate }}</h3>
           <div class="overlay-menu">
             <div class="carousel" style="--total: 3;">
               <span>Configuración de usuarios</span>
@@ -36,7 +37,7 @@
           <div class="card-icon-wrapper">
             <img src="assets/images/img_catalog.png" alt="Catálogo" width="50">
           </div>
-          <h3 class="title-card">Catálogo</h3>
+          <h3 class="title-card">{{ 'mod-main.PAGES_CATALOG' | translate }}</h3>
           <div class="overlay-menu">
             <div class="carousel" style="--total: 4;">
               <span>Registro de proveedores</span>
@@ -52,7 +53,7 @@
           <div class="card-icon-wrapper">
             <img src="assets/images/img_warehouse.png" alt="Bodega" width="50">
           </div>
-          <h3 class="title-card">Bodega</h3>
+          <h3 class="title-card">{{ 'mod-main.PAGE_WAREHOUSE' | translate }}</h3>
           <div class="overlay-menu">
             <div class="carousel" style="--total: 1;">
               <span>Gestor de bodega</span>
@@ -65,7 +66,7 @@
           <div class="card-icon-wrapper">
             <img src="assets/images/img_averiado.png" alt="Merma" width="50">
           </div>
-          <h3 class="title-card">Merma</h3>
+          <h3 class="title-card">{{ 'mod-main.PAGES_LOSS' | translate }}</h3>
           <div class="overlay-menu">
             <div class="carousel" style="--total: 3;">
               <span>Registro de tipo de perdidas</span>
@@ -80,7 +81,7 @@
           <div class="card-icon-wrapper">
             <img src="assets/images/img_sale_return.png" alt="Ventas" width="50">
           </div>
-          <h3 class="title-card">Ventas</h3>
+          <h3 class="title-card">{{ 'mod-main.PAGE_SALE_RETURN' | translate }}</h3>
           <div class="overlay-menu">
             <div class="carousel" style="--total: 1;">
               <span>Registro de ventas</span>
@@ -93,22 +94,23 @@
           <div class="card-icon-wrapper">
             <img src="assets/images/img_alert.png" alt="Alertas" width="50">
           </div>
-          <h3 class="title-card">Alertas</h3>
+          <h3 class="title-card">{{ 'mod-main.PAGES_ALERTS' | translate }}</h3>
           <div class="overlay-menu">
             <div class="carousel" style="--total: 2;">
               <span>Vencimiento</span>
               <span>Stock</span>
             </div>
           </div>
-        </div>
+        </div> 
+        <!-- FIN BLOQUE ORIGINAL -->
 
-        <!-- DUPLICAMOS LOS MÓDULOS AQUÍ ABAJO PARA LOGRAR EL EFECTO DE BUCLE INFINITO CONTINUO -->
-        <!-- Módulo 1 duplicado -->
+        <!-- --- BLOQUE DUPLICADO EXACTO PARA EL BUCLE INFINITO --- -->
+        <!-- Módulo 1: Usuarios (Duplicado) -->
         <div class="modulo-card">
           <div class="card-icon-wrapper">
             <img src="assets/images/img_users.png" alt="Usuarios" width="50">
           </div>
-          <h3 class="title-card">Usuarios</h3>
+          <h3 class="title-card">{{ 'mod-main.PAGES_USERS' | translate }}</h3>
           <div class="overlay-menu">
             <div class="carousel" style="--total: 3;">
               <span>Configuración de usuarios</span>
@@ -117,12 +119,13 @@
             </div>
           </div>
         </div>
-        <!-- Módulo 2 duplicado -->
+
+        <!-- Módulo 2: Catálogo (Duplicado) -->
         <div class="modulo-card">
           <div class="card-icon-wrapper">
             <img src="assets/images/img_catalog.png" alt="Catálogo" width="50">
           </div>
-          <h3 class="title-card">Catálogo</h3>
+          <h3 class="title-card">{{ 'mod-main.PAGES_CATALOG' | translate }}</h3>
           <div class="overlay-menu">
             <div class="carousel" style="--total: 4;">
               <span>Registro de proveedores</span>
@@ -132,15 +135,58 @@
             </div>
           </div>
         </div>
-        <!-- Módulo 3 duplicado -->
+
+        <!-- Módulo 3: Bodega (Duplicado) -->
         <div class="modulo-card">
           <div class="card-icon-wrapper">
             <img src="assets/images/img_warehouse.png" alt="Bodega" width="50">
           </div>
-          <h3 class="title-card">Bodega</h3>
+          <h3 class="title-card">{{ 'mod-main.PAGE_WAREHOUSE' | translate }}</h3>
           <div class="overlay-menu">
             <div class="carousel" style="--total: 1;">
               <span>Gestor de bodega</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Módulo 4: Merma (Duplicado) -->
+        <div class="modulo-card">
+          <div class="card-icon-wrapper">
+            <img src="assets/images/img_averiado.png" alt="Merma" width="50">
+          </div>
+          <h3 class="title-card">{{ 'mod-main.PAGES_LOSS' | translate }}</h3>
+          <div class="overlay-menu">
+            <div class="carousel" style="--total: 3;">
+              <span>Registro de tipo de perdidas</span>
+              <span>Registro de perdidas</span>
+              <span>Registro historico de perdidas</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Módulo 5: Ventas (Duplicado) -->
+        <div class="modulo-card">
+          <div class="card-icon-wrapper">
+            <img src="assets/images/img_sale_return.png" alt="Ventas" width="50">
+          </div>
+          <h3 class="title-card">{{ 'mod-main.PAGE_SALE_RETURN' | translate }}</h3>
+          <div class="overlay-menu">
+            <div class="carousel" style="--total: 1;">
+              <span>Registro de ventas</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Módulo 6: Alertas (Duplicado) -->
+        <div class="modulo-card">
+          <div class="card-icon-wrapper">
+            <img src="assets/images/img_alert.png" alt="Alertas" width="50">
+          </div>
+          <h3 class="title-card">{{ 'mod-main.PAGES_ALERTS' | translate }}</h3>
+          <div class="overlay-menu">
+            <div class="carousel" style="--total: 2;">
+              <span>Vencimiento</span>
+              <span>Stock</span>
             </div>
           </div>
         </div>
