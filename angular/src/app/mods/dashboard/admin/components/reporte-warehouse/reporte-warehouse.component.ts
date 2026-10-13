@@ -255,12 +255,12 @@ export class ReporteWarehouseComponent implements OnChanges {
 
   mostrarSeccion = {
     productSeccion: true,
-    bodegaSeccion: true,
-    batchSeccion: true,
-    providerSeccion: true,
-    registerSeccion: true,
-    ventaSeccion: true,
-    mermaSeccion: true
+    bodegaSeccion: false,
+    batchSeccion: false,
+    providerSeccion: false,
+    registerSeccion: false,
+    ventaSeccion: false,
+    mermaSeccion: false
   };
 
   @ViewChild('tableB') tableComponent0!: TablecrudComponent;

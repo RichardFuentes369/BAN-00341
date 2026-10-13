@@ -42,6 +42,7 @@ export class AdminDashboardComponent implements OnInit {
   isSmallScreen: boolean = false;
   showRequestBatch: boolean = false;
   showToogle: boolean = false;
+  isLoading: boolean = false;
 
   ngOnInit() {
     this.checkScreenSize();
@@ -129,7 +130,7 @@ export class AdminDashboardComponent implements OnInit {
     this.datosJson.filtro.fecha_inicio = null
     this.datosJson.filtro.fecha_fin = null
 
-    if(this.toogle) {
+    if (this.toogle) {
       this.toogle.hasBatch()
     }
 
@@ -153,17 +154,18 @@ export class AdminDashboardComponent implements OnInit {
 
       this.validarBotonFiltro()
       this.filtrarLote()
-    } else {    
+    } else {
       this.validarBotonFiltro()
     }
 
   }
 
-  showFieldBatch(show_batch: boolean){
+  showFieldBatch(show_batch: boolean) {
+    this.showDetailProduct = true
     this.showToogle = show_batch
   }
 
-  noHasBatch(){
+  noHasBatch() {
     this.showRequestBatch = false
     this.filtrarLote(false)
   }
@@ -223,11 +225,18 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   async filtrarLote(active: boolean = true) {
-
     if (!active) return;
 
-    if (this.showRequestBatch) {
-      try {
+    if (!this.idProducto) {
+      this.isLoading = false;
+      return;
+    }
+
+    this.isLoading = true;
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    try {
+      if (this.showRequestBatch) {
         const response = await this.bodegaService.getDataLoteAndProduct(this.loteDigitado, this.idProducto);
         if (response.status === 200) {
           this.datosJson.proveedor = {
@@ -258,7 +267,6 @@ export class AdminDashboardComponent implements OnInit {
             unidad_medida: response.data.id_producto.medida.nombre
           };
 
-          // Forzar la creación de un nuevo objeto para disparar ngOnChanges por referencia
           this.datosJson = { ...this.datosJson };
 
           if (response.data.infoGraphics) {
@@ -266,19 +274,13 @@ export class AdminDashboardComponent implements OnInit {
           }
           this.showDetailProduct = true;
         }
-      } catch (error: any) {
-        this.showDetailProduct = false;
-      }
-    } else {
-      if (this.idProducto && this.loteDigitado == '') {
-        try {
+      } else {
+        if (this.loteDigitado == '') {
           const response = await this.productosService.getDataProduct(this.idProducto);
           if (response.status === 200) {
-            // Resetear proveedor y lote para que el hijo detecte el cambio de estado
             this.datosJson.proveedor = { show: false, nit: null, correo: null, razon_social: null };
             this.datosJson.lote = { show: false, cantidad_afectada_por_merma: null, cantidad_comprada: null, cantidad_en_bodega: null, cantidad_vendida: null, estado: null, fecha_entrada: null, fecha_vencimiento: null, lote: null, id: null };
 
-            // Asignar producto
             this.datosJson.producto = {
               show: true,
               codigo_barra: response.data.prodcut.codigo_barra,
@@ -287,7 +289,6 @@ export class AdminDashboardComponent implements OnInit {
               unidad_medida: response.data.prodcut.medida.nombre
             };
 
-            // Forzar la creación de un nuevo objeto para disparar ngOnChanges por referencia
             this.datosJson = { ...this.datosJson };
 
             if (response.data.infoGraphics) {
@@ -296,13 +297,14 @@ export class AdminDashboardComponent implements OnInit {
 
             this.showDetailProduct = true;
           }
-        } catch (error: any) {
-          this.showDetailProduct = false;
         }
       }
+    } catch (error: any) {
+      this.showDetailProduct = false;
+    } finally {
+      this.isLoading = false;
     }
   }
-
 
   // ==========================
   // MÉTODO ACTUALIZAR GRÁFICAS

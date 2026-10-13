@@ -15,5 +15,11 @@
   "TITLE_GRAPHIC_4": "Daily Percentage Distribution of Waste",
   "TITLE_GRAPHIC_5": "Product flow composition (financial losses)",
     
-  "MSJ_ALERT_BATCH_EMPTY": "Please enter a batch number"
+  "MSJ_ALERT_BATCH_EMPTY": "Please enter a batch number",
+
+  "CHARGED": {
+    "MSJ_CHARGING": "Loading...",
+    "MSJ_CHARGING_INFO": "Loading information",
+    "MSJ_CHARGING_PLEASE_ONE_MOMENT": "Please wait a moment..."
+  }
 }

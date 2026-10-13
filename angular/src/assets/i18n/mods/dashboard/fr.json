@@ -15,5 +15,11 @@
   "TITLE_GRAPHIC_4": "Répartition quotidienne en pourcentage des pertes",
   "TITLE_GRAPHIC_5": "Composition du flux de produits (pertes financières)",
 
-  "MSJ_ALERT_BATCH_EMPTY": "Veuillez saisir un numéro de lot"
+  "MSJ_ALERT_BATCH_EMPTY": "Veuillez saisir un numéro de lot",
+
+  "CHARGED": {
+      "MSJ_CHARGING": "Chargement...",
+      "MSJ_CHARGING_INFO": "Chargement des informations",
+      "MSJ_CHARGING_PLEASE_ONE_MOMENT": "Veuillez patienter un instant..."
+  }
 }
