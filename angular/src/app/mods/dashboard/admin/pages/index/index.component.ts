@@ -41,6 +41,7 @@ export class AdminDashboardComponent implements OnInit {
 
   isSmallScreen: boolean = false;
   showRequestBatch: boolean = false;
+  showToogle: boolean = false;
 
   ngOnInit() {
     this.checkScreenSize();
@@ -158,6 +159,10 @@ export class AdminDashboardComponent implements OnInit {
 
   }
 
+  showFieldBatch(show_batch: boolean){
+    this.showToogle = show_batch
+  }
+
   noHasBatch(){
     this.showRequestBatch = false
     this.filtrarLote(false)
@@ -189,6 +194,7 @@ export class AdminDashboardComponent implements OnInit {
     if (this.idProducto == null) {
       console.log('caso 1')
       this.isFormValid = true
+      this.showDetailProduct = false
     }
 
     // tiene producto y no tiene lote

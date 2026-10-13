@@ -23,6 +23,7 @@ import Swal from 'sweetalert2';
 })
 export class Scanner13Component implements OnInit {
 
+  @Output() showFieldBatch = new EventEmitter<any>();
   @Output() dataResultScanned = new EventEmitter<any>();
   @Output() clearData = new EventEmitter<any>();
 
@@ -172,8 +173,10 @@ export class Scanner13Component implements OnInit {
         this.dataResultScanned.emit(this.producto)
 
         this.btn_new_product = false
+        this.showFieldBatch.emit(true)
       }
     } catch (error: any) {
+      this.showFieldBatch.emit(false)
       this.producto.id = ''
       this.dataResultScanned.emit(this.producto)
       if (this.permisos_catalogo_productos.find(obj => obj.permiso_permiso === 'crear') == undefined) {

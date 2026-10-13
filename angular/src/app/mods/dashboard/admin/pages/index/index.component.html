@@ -8,10 +8,13 @@
           <div class="col-sm-12">
             <div class="card-custom shadow mb-3">
               <!-- EAN13 -->
-              <app-globales-scanner13 (clearData)="clearData($event)"
-                (dataResultScanned)="productScanned($event)"></app-globales-scanner13>
+              <app-globales-scanner13 (clearData)="clearData($event)" (dataResultScanned)="productScanned($event)"
+                (showFieldBatch)="showFieldBatch($event)"></app-globales-scanner13>
 
-              <app-toogle-batch #toogle (tieneLoteChange)="showInputBatch($event)" (noHasBatch)="noHasBatch()"></app-toogle-batch>
+              @if(showToogle){
+              <app-toogle-batch #toogle (tieneLoteChange)="showInputBatch($event)"
+                (noHasBatch)="noHasBatch()"></app-toogle-batch>
+              }
 
               @if(showRequestBatch){
               <div class="pl-4 pr-4">
@@ -34,6 +37,7 @@
       </div>
 
       <div class="col-xl-9 col-12">
+        <!-- @if(showToogle){ -->
         @if(showDetailProduct){
         <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4 h-auto">
           <fieldset class="border p-3 rounded mb-3">
@@ -51,95 +55,93 @@
             </div>
           </fieldset>
         </div>
+          @if(!showRequestBatch){
+          <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4 h-auto">
+            <fieldset class="border p-3 rounded mb-3">
+              <legend class="float-none w-auto p-1">
+                {{ 'mod-dashboard.GRAPHIC_REPORT' | translate }}
+                <button class="btn btn-sm btn-light rounded-circle shadow-sm"
+                  (click)="toogleSection('resultadosGraficosBusqueda')">
+                  <i [class]="mostrarSeccion.resultadosGraficosBusqueda ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+                </button>
+                <span class="btn btn-sm btn-light rounded-circle shadow-sm mx-2" (click)="alternarColumnas()">
+                  <i class="fas" [ngClass]="columnasGraficas === 'col-sm-6' ? 'fa-th' : 'fa-list'"></i>
+                </span>
+              </legend>
 
-        @if(!showRequestBatch){
-        <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4 h-auto">
-          <fieldset class="border p-3 rounded mb-3">
-            <legend class="float-none w-auto p-1">
-              {{ 'mod-dashboard.GRAPHIC_REPORT' | translate }}
-              <button class="btn btn-sm btn-light rounded-circle shadow-sm"
-                (click)="toogleSection('resultadosGraficosBusqueda')">
-                <i [class]="mostrarSeccion.resultadosGraficosBusqueda ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
-              </button>
-              <span class="btn btn-sm btn-light rounded-circle shadow-sm mx-2" (click)="alternarColumnas()">
-                <i class="fas" [ngClass]="columnasGraficas === 'col-sm-6' ? 'fa-th' : 'fa-list'"></i>
-              </span>
-            </legend>
+              <div class="row" *ngIf="mostrarSeccion.resultadosGraficosBusqueda"
+                [class.animate__fadeIn]="mostrarSeccion.resultadosGraficosBusqueda"
+                [class.animate__fadeOut]="!mostrarSeccion.resultadosGraficosBusqueda">
 
-            <div class="row" *ngIf="mostrarSeccion.resultadosGraficosBusqueda"
-              [class.animate__fadeIn]="mostrarSeccion.resultadosGraficosBusqueda"
-              [class.animate__fadeOut]="!mostrarSeccion.resultadosGraficosBusqueda">
+                <div class="container-fluid p-3">
+                  <!-- Fila principal con gutters (g-3 para espacio vertical y horizontal de nivel 3) -->
+                  <div class="row g-3 m-0">
 
-              <div class="container-fluid p-3">
-                <!-- Fila principal con gutters (g-3 para espacio vertical y horizontal de nivel 3) -->
-                <div class="row g-3 m-0">
-
-                  <!-- Gráfica 1 -->
-                  <div [ngClass]="columnasGraficas">
-                    <div class="border rounded-5 p-3 h-100 shadow-sm ">
-                      <div class="text-center mb-3">
-                        <h3>{{ 'mod-dashboard.TITLE_GRAPHIC_1' | translate }}</h3>
+                    <!-- Gráfica 1 -->
+                    <div [ngClass]="columnasGraficas">
+                      <div class="border rounded-5 p-3 h-100 shadow-sm ">
+                        <div class="text-center mb-3">
+                          <h3>{{ 'mod-dashboard.TITLE_GRAPHIC_1' | translate }}</h3>
+                        </div>
+                        <app-globales-charts chartType="pie" [chartData]="pieChartData" [chartOptions]="pieChartOptions">
+                        </app-globales-charts>
                       </div>
-                      <app-globales-charts chartType="pie" [chartData]="pieChartData" [chartOptions]="pieChartOptions">
-                      </app-globales-charts>
                     </div>
-                  </div>
 
-                  <!-- Gráfica 2 -->
-                  <div [ngClass]="columnasGraficas">
-                    <div class="border rounded-5 p-3 h-100 shadow-sm ">
-                      <div class="text-center mb-3">
-                        <h3>{{ 'mod-dashboard.TITLE_GRAPHIC_2' | translate }}</h3>
+                    <!-- Gráfica 2 -->
+                    <div [ngClass]="columnasGraficas">
+                      <div class="border rounded-5 p-3 h-100 shadow-sm ">
+                        <div class="text-center mb-3">
+                          <h3>{{ 'mod-dashboard.TITLE_GRAPHIC_2' | translate }}</h3>
+                        </div>
+                        <app-globales-charts chartType="bar" [chartData]="barChartData" [chartOptions]="barChartOptions">
+                        </app-globales-charts>
                       </div>
-                      <app-globales-charts chartType="bar" [chartData]="barChartData" [chartOptions]="barChartOptions">
-                      </app-globales-charts>
                     </div>
-                  </div>
 
-                  <!-- Gráfica 3 -->
-                  <div [ngClass]="columnasGraficas">
-                    <div class="border rounded-5 p-3 h-100 shadow-sm ">
-                      <div class="text-center mb-3">
-                        <h3>{{ 'mod-dashboard.TITLE_GRAPHIC_3' | translate }}</h3>
+                    <!-- Gráfica 3 -->
+                    <div [ngClass]="columnasGraficas">
+                      <div class="border rounded-5 p-3 h-100 shadow-sm ">
+                        <div class="text-center mb-3">
+                          <h3>{{ 'mod-dashboard.TITLE_GRAPHIC_3' | translate }}</h3>
+                        </div>
+                        <app-globales-charts [chartType]="mermasCantidadChartType" [chartData]="mermasCantidadChartData"
+                          [chartOptions]="mermasCantidadChartOptions">
+                        </app-globales-charts>
                       </div>
-                      <app-globales-charts [chartType]="mermasCantidadChartType" [chartData]="mermasCantidadChartData"
-                        [chartOptions]="mermasCantidadChartOptions">
-                      </app-globales-charts>
                     </div>
-                  </div>
 
-                  <!-- Gráfica 4 -->
-                  <div [ngClass]="columnasGraficas">
-                    <div class="border rounded-5 p-3 h-100 shadow-sm ">
-                      <div class="text-center mb-3">
-                        <h3>{{ 'mod-dashboard.TITLE_GRAPHIC_4' | translate }}</h3>
+                    <!-- Gráfica 4 -->
+                    <div [ngClass]="columnasGraficas">
+                      <div class="border rounded-5 p-3 h-100 shadow-sm ">
+                        <div class="text-center mb-3">
+                          <h3>{{ 'mod-dashboard.TITLE_GRAPHIC_4' | translate }}</h3>
+                        </div>
+                        <app-globales-charts [chartType]="piePorcentajeChartType" [chartData]="piePorcentajeChartData"
+                          [chartOptions]="piePorcentajeChartOptions">
+                        </app-globales-charts>
                       </div>
-                      <app-globales-charts [chartType]="piePorcentajeChartType" [chartData]="piePorcentajeChartData"
-                        [chartOptions]="piePorcentajeChartOptions">
-                      </app-globales-charts>
                     </div>
-                  </div>
 
-                  <!-- Gráfica 5 -->
-                  <div [ngClass]="columnasGraficas">
-                    <div class="border rounded-5 p-3 h-100 shadow-sm">
-                      <div class="text-center mb-3">
-                        <h3>{{ 'mod-dashboard.TITLE_GRAPHIC_5' | translate }}</h3>
+                    <!-- Gráfica 5 -->
+                    <div [ngClass]="columnasGraficas">
+                      <div class="border rounded-5 p-3 h-100 shadow-sm">
+                        <div class="text-center mb-3">
+                          <h3>{{ 'mod-dashboard.TITLE_GRAPHIC_5' | translate }}</h3>
+                        </div>
+                        <app-globales-charts [chartType]="pieValorPerdidoChartType" [chartData]="pieValorPerdidoChartData"
+                          [chartOptions]="pieValorPerdidoChartOptions">
+                        </app-globales-charts>
                       </div>
-                      <app-globales-charts [chartType]="pieValorPerdidoChartType" [chartData]="pieValorPerdidoChartData"
-                        [chartOptions]="pieValorPerdidoChartOptions">
-                      </app-globales-charts>
                     </div>
-                  </div>
 
+                  </div>
                 </div>
               </div>
-            </div>
 
-          </fieldset>
-        </div>
-        }
-
+            </fieldset>
+          </div>
+          }
         }
         @else{
         <div class="card-custom shadow p-5 mb-4 text-center h-auto">
@@ -188,3 +190,8 @@
 
   </div>
 </div>
+
+
+          <!-- @if(showToogle){
+            <h1>Hola hptica</h1>
+          } -->
