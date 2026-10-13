@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, HostListener, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { IdiomaComponent } from '@component/globales/idioma/idioma.component';
@@ -32,6 +32,8 @@ export class HomeComponent implements OnInit {
   public LAYOUT_HOME_PAGE_LOGIN_ADMIN = LAYOUT_HOME_PAGE_LOGIN_ADMIN;
   public LAYOUT_HOME_PAGE_LOGIN_FINAL = LAYOUT_HOME_PAGE_LOGIN_FINAL;
 
+  @ViewChild(ColormodeComponent) colorModeComponent!: ColormodeComponent;
+
   urlLogoUts = 'assets/images/_uts.jpeg'
   nameApp: string = ''
   banner: string = ''
@@ -61,6 +63,14 @@ export class HomeComponent implements OnInit {
   }
 
   async ngOnInit() {
+    setTimeout(() => {
+      if (this.colorModeComponent) {
+        localStorage.setItem(STORAGE_KEY_THEME,'light')
+        this.colorModeComponent.loadCustom(); 
+        console.log('aqui estoy')
+      }
+    });
+    
     this.verificarRuta(this.router.url);
     this.router.events.pipe(
       filter((event: Event): event is NavigationEnd => event instanceof NavigationEnd)
