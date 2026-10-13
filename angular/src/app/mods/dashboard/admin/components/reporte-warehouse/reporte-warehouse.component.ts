@@ -21,25 +21,126 @@ export class ReporteWarehouseComponent implements OnChanges {
   // Recibe el JSON completo del padre
   @Input() datosRecibidos: any;
 
+  endPointB = ''
   endPointV = ''
   endPointM = ''
   cargarIdioma = true
   accioneson = false
   orderField = 'id'
   order = 'desc'
+  columnasB: any[] = [
+    {
+      title: `<i class="fas fa-hashtag me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_ID')}`,
+      data: 'id',
+      visible: true,
+      className: 'text-center align-middle'
+    },
+    {
+      title: `<i class="fas fa-barcode me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.LABEL_COD_BAR_PRODUCT')}`,
+      data: 'id_producto.codigo_barra',
+      className: 'text-center align-middle'
+    },
+    {
+      title: `<i class="fa fa-layer-group me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_BATCH')}`,
+      data: 'lote',
+      className: 'text-center align-middle'
+    },
+    {
+      title: `<i class="fas fa-copyright me-1"></i>${this.translate.instant('mod-catalog.PRODUCT.COLUMN_BRAND')}`,
+      data: 'id_producto.marca.nombre',
+      className: 'text-center align-middle'
+    },
+    {
+      title: `<i class="fas fa-box-open me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_PRODUCT')}`,
+      data: 'id_producto.nombre',
+      className: 'text-center align-middle'
+    },
+    {
+      title: `<i class="fas fa-truck me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_SUPPLIER')}`,
+      data: 'id_proveedor.razon_social',
+      visible: false,
+      className: 'text-center align-middle'
+    },
+    {
+      title: `<i class="fas fa-calendar-alt me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_REPORT_DATE')}`,
+      data: 'fecha_entrada',
+      className: 'text-center align-middle',
+      render: (data: any) => {
+        if (!data) return '';
+        const date = new Date(Number(data) * 1000);
+        if (isNaN(date.getTime())) {
+          return 'Fecha inválida';
+        }
+        return date.toLocaleDateString('es-CO', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        });
+      }
+    },
+    {
+      title: `<i class="fas fa-calendar-times me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_EXPIRATION_DATE')}`,
+      data: 'fecha_vencimiento',
+      className: 'text-center align-middle',
+      render: (data: any) => {
+        if (!data) return '';
+        const date = new Date(Number(data) * 1000);
+        if (isNaN(date.getTime())) {
+          return 'Fecha inválida';
+        }
+        return date.toLocaleDateString('es-CO', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        });
+      }
+    },
+    {
+      title: `<i class="fas fa-shopping-cart me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_PURCHASED')}`,
+      data: 'cantidad_comprada',
+      className: 'text-center align-middle'
+    },
+    {
+      title: `<i class="fa fa-shopping-bag me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_SOLD')}`,
+      data: 'cantidad_vendida',
+      className: 'text-center align-middle'
+    },
+    {
+      title: `<i class="fas fa-exclamation-triangle me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_SHRINKAGE')}`,
+      data: 'mermas',
+      className: 'text-center align-middle'
+    },
+    {
+      title: `<i class="fas fa-warehouse me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_IN_STOCK')}`,
+      data: 'cantidad_en_bodega',
+      className: 'text-center align-middle'
+    },
+    {
+      title: `<i class="fa fa-ruler-combined me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_UNIT_OF_MEASUREMENT')}`,
+      visible: false,
+      data: 'id_producto.medida.nombre',
+      className: 'text-center align-middle'
+    },
+    {
+      title: `<i class="fas fa-info-circle me-1"></i>${this.translate.instant('mod-warehouse.COLUMN_STATUS')}`,
+      visible: false,
+      data: 'estado',
+      className: 'text-center align-middle'
+    },
+  ];
   columnasM: any[] = [
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_ID'),
+      title: `<i class="fas fa-hashtag me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_ID')}`,
       data: 'id',
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_AMOUNT'),
+      title: `<i class="fas fa-sort-numeric-up me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_AMOUNT')}`,
       data: 'cantidad',
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE'),
+      title: `<i class="fas fa-calendar-alt me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_REPORT_DATE')}`,
       data: 'fecha_reporte',
       className: 'text-center',
       render: (data: any) => {
@@ -56,17 +157,17 @@ export class ReporteWarehouseComponent implements OnChanges {
       }
     },
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_LOST_VALUE'),
+      title: `<i class="fas fa-dollar-sign me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_LOST_VALUE')}`,
       data: 'valor_perdido',
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_OBSERVATION'),
+      title: `<i class="fas fa-comment-alt me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_OBSERVATION')}`,
       data: 'observacion',
       className: 'text-center'
     },
     {
-      title: this.translate.instant('mod-merma.REGISTER.COLUMN_TYPE'),
+      title: `<i class="fas fa-tags me-1"></i>${this.translate.instant('mod-merma.REGISTER.COLUMN_TYPE')}`,
       data: 'id_tipo_merma.nombre',
       className: 'text-center'
     },
@@ -154,6 +255,7 @@ export class ReporteWarehouseComponent implements OnChanges {
 
   mostrarSeccion = {
     productSeccion: true,
+    bodegaSeccion: true,
     batchSeccion: true,
     providerSeccion: true,
     registerSeccion: true,
@@ -161,6 +263,7 @@ export class ReporteWarehouseComponent implements OnChanges {
     mermaSeccion: true
   };
 
+  @ViewChild('tableB') tableComponent0!: TablecrudComponent;
   @ViewChild('tableV') tableComponent1!: TablecrudComponent;
   @ViewChild('tableM') tableComponent2!: TablecrudComponent;
 
@@ -172,6 +275,16 @@ export class ReporteWarehouseComponent implements OnChanges {
         this.producto = { ...this.datosRecibidos.producto };
         // Si hay código de barra o nombre, mostramos la sección de detalle del producto
         this.show_detail_product = !!(this.producto.codigo_barra || this.producto.nombre);
+
+        if (this.producto.codigo_barra) {
+          // &fecha_venta_minimo=${this.datosRecibidos.filtro.fecha_inicio}&fecha_venta_maximo=${this.datosRecibidos.filtro.fecha_fin}
+          this.endPointB = `batch/obtener-registro-lotes?codigo_barra=${this.datosRecibidos.producto.codigo_barra}`
+          setTimeout(() => {
+            this.tableComponent0?.reload();
+          }, 100);
+        } else {
+          this.endPointB = ''
+        }
       }
 
       // 2. Mapear Proveedor si viene con datos

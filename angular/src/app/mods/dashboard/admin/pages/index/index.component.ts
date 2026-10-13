@@ -55,6 +55,7 @@ export class AdminDashboardComponent implements OnInit {
     this.isSmallScreen = window.innerWidth < 1024;
   }
 
+  @ViewChild('toogle') toogle!: ToogleBatchComponent;
   @ViewChild('hijoFiltroBatch') hijoFiltroBatch!: FiltroLoteComponent;
   @ViewChild('hijoFiltroDate') hijoFiltroDate!: RangosFiltroComponent;
 
@@ -127,6 +128,10 @@ export class AdminDashboardComponent implements OnInit {
     this.datosJson.filtro.fecha_inicio = null
     this.datosJson.filtro.fecha_fin = null
 
+    if(this.toogle) {
+      this.toogle.hasBatch()
+    }
+
     if (this.hijoFiltroBatch) {
       this.hijoFiltroBatch.limpiarCampo()
     }
@@ -139,7 +144,6 @@ export class AdminDashboardComponent implements OnInit {
   isFormValid = true
   productScanned(data: any) {
     this.idProducto = (data && data.id) ? data.id : null
-
     if (data.id) {
       this.datosJson.producto.codigo_barra = data.codigo_barra || null;
       this.datosJson.producto.nombre = data.nombre || null;
@@ -148,10 +152,15 @@ export class AdminDashboardComponent implements OnInit {
 
       this.validarBotonFiltro()
       this.filtrarLote()
-    } else {
+    } else {    
       this.validarBotonFiltro()
     }
 
+  }
+
+  noHasBatch(){
+    this.showRequestBatch = false
+    this.filtrarLote(false)
   }
 
   showInputBatch(tiene_lote: boolean) {
@@ -207,7 +216,10 @@ export class AdminDashboardComponent implements OnInit {
     }
   }
 
-  async filtrarLote() {
+  async filtrarLote(active: boolean = true) {
+
+    if (!active) return;
+
     if (this.showRequestBatch) {
       try {
         const response = await this.bodegaService.getDataLoteAndProduct(this.loteDigitado, this.idProducto);
@@ -246,7 +258,6 @@ export class AdminDashboardComponent implements OnInit {
           if (response.data.infoGraphics) {
             this.actualizarGraficas(response.data.infoGraphics);
           }
-
           this.showDetailProduct = true;
         }
       } catch (error: any) {
@@ -256,7 +267,6 @@ export class AdminDashboardComponent implements OnInit {
       if (this.idProducto && this.loteDigitado == '') {
         try {
           const response = await this.productosService.getDataProduct(this.idProducto);
-          console.log(response)
           if (response.status === 200) {
             // Resetear proveedor y lote para que el hijo detecte el cambio de estado
             this.datosJson.proveedor = { show: false, nit: null, correo: null, razon_social: null };

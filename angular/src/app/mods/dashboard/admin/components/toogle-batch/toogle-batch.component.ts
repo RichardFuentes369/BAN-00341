@@ -13,10 +13,16 @@ export class ToogleBatchComponent {
   public tiene_lote: boolean = false
 
   @Output() public tieneLoteChange = new EventEmitter<boolean>();
+  @Output() public noHasBatch = new EventEmitter<boolean>();
 
   public cambiarLote(valor: boolean): void {
     this.tiene_lote = valor;
     this.tieneLoteChange.emit(this.tiene_lote);
+  }
+
+  public hasBatch() {
+    this.tiene_lote = false
+    this.noHasBatch.emit();
   }
 
 }

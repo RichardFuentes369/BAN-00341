@@ -39,6 +39,28 @@
     </div>
     }
 
+    @if(!show_detail_batch){
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <fieldset class="border p-3 rounded">
+        <legend class="float-none w-auto p-1">
+          {{ 'mod-warehouse.PAGE_WAREHOUSE_TITLE' | translate }}
+          <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('bodegaSeccion')">
+            <i [class]="mostrarSeccion.bodegaSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+          </button>
+        </legend>
+
+        <div class="row" *ngIf="mostrarSeccion.bodegaSeccion" [class.animate__fadeIn]="mostrarSeccion.bodegaSeccion"
+          [class.animate__fadeOut]="!mostrarSeccion.bodegaSeccion">
+          <div class="table-container col-12 mb-4">
+            <app-globales-tablecrud #tableB *ngIf="endPointB" [accioneson]="accioneson" [orderField]="orderField"
+              [order]="order" [endPoint]="endPointB" [columnas]="columnasB" [title]="titlePage">
+            </app-globales-tablecrud>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    }
+
     @if(proveedor.show){
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
       <fieldset class="border p-3 rounded mb-3">

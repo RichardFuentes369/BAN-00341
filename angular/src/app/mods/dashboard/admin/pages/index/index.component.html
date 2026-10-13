@@ -11,7 +11,7 @@
               <app-globales-scanner13 (clearData)="clearData($event)"
                 (dataResultScanned)="productScanned($event)"></app-globales-scanner13>
 
-              <app-toogle-batch (tieneLoteChange)="showInputBatch($event)"></app-toogle-batch>
+              <app-toogle-batch #toogle (tieneLoteChange)="showInputBatch($event)" (noHasBatch)="noHasBatch()"></app-toogle-batch>
 
               @if(showRequestBatch){
               <div class="pl-4 pr-4">
