@@ -66,17 +66,15 @@
     margin-bottom: 20px;
     letter-spacing: -0.5px;
   }
+  .p-custom {
+    color: var(--layout-index-back_color_p) !important;
+    font-size: 1.1rem;
+    max-width: 650px;
+    opacity: 0.85;
+  }
 }
 
-.p-custom {
-  color: var(--layout-index-back_color_p) !important;
-  background-color: transparent;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  max-width: 650px;
-  margin-bottom: 35px;
-  opacity: 0.85;
-}
+
 
 
 /* Ajuste responsivo para pantallas pequeñas */

@@ -45,6 +45,13 @@
     font-weight: 800;
     margin-bottom: 20px;
   }
+
+  .p-custom {
+    color: var(--layout-index-back_color_p) !important;
+    font-size: 1.1rem;
+    max-width: 650px;
+    opacity: 0.85;
+  }
 }
 
 .seccion-presentacion {
