@@ -1,0 +1,116 @@
+// Reutilización de los estilos de informacion.component.scss
+.card-custom {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  border: none;
+  background-color: var(--modal-back_color_background) !important;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  .hero-background-effects {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(var(--layout-index-backg_color_textcard-rgb, 0, 123, 255), 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+}
+
+.seccion-hero {
+  padding: 60px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: rgba(var(--layout-index-backg_color_textcard-rgb, 0, 123, 255), 0.08);
+    color: var(--modal-label_text_color) !important;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--layout-index-backg_color_textcard);
+      border-radius: 50%;
+    }
+  }
+
+  .title-custom {
+    color: var(--modal-label_text_color) !important;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+}
+
+.p-custom {
+  color: var(--layout-index-back_color_p) !important;
+  font-size: 1.1rem;
+  max-width: 650px;
+  opacity: 0.85;
+}
+
+// Estilos específicos para las columnas de PDF
+.pdf-card {
+  background: rgba(255, 255, 255, 0.05); // Efecto ligero
+  border: 1px solid rgba(var(--layout-index-backg_color_textcard-rgb), 0.1);
+  padding: 20px;
+  border-radius: 15px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(var(--layout-index-backg_color_textcard-rgb), 0.05);
+    transform: translateY(-5px);
+    border-color: var(--layout-index-backg_color_textcard);
+  }
+
+  .pdf-icon {
+    font-size: 2.5rem;
+    color: #ff4d4d; // Color PDF estándar
+    margin-bottom: 15px;
+  }
+
+  .pdf-title {
+    color: var(--modal-label_text_color);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    min-height: 40px;
+  }
+
+  .pdf-link {
+    font-size: 0.85rem;
+    color: var(--layout-index-backg_color_textcard);
+    text-decoration: none;
+    font-weight: 700;
+    border: 1px solid var(--layout-index-backg_color_textcard);
+    padding: 5px 12px;
+    border-radius: 8px;
+    
+    &:hover {
+      background: var(--layout-index-backg_color_textcard);
+      color: white !important;
+    }
+  }
+}

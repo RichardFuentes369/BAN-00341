@@ -16,5 +16,15 @@
   "SECTION_CONTACTS": {
     "TARGET": "Kontaktieren Sie uns",
     "SUBTITLE": ""
+  },
+  "SECTION_DOWNLOADERS": {
+    "TARGET": "Herunterladbare PDFs",
+    "TITLE": "Technische Dokumentation",
+    "SUBTITLE": "Greifen Sie auf Benutzerhandbücher und Schnellkonfigurationsanleitungen im PDF-Format zu und laden Sie diese herunter.",
+    "PDF_LINK": "PDF herunterladen",
+    "MANUAL_GUIA": "Konfigurationsanleitung",
+    "MANUAL_WEB": "Benutzerhandbuch (WEB)",
+    "MANUAL_CLOUDFLARE": "Cloudflare Tunnel Konfiguration",
+    "MANUAL_MOBILE": "Benutzerhandbuch (MOBIL)"
   }
 }

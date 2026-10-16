@@ -16,5 +16,15 @@
   "SECTION_CONTACTS": {
     "TARGET": "Contact us",
     "SUBTITLE": ""
+  },
+  "SECTION_DOWNLOADERS": {
+    "TARGET": "Downloadable PDFs",
+    "TITLE": "Technical documentation",
+    "SUBTITLE": "Access and download user manuals and quick setup guides in PDF format.",
+    "PDF_LINK": "Download PDF",
+    "MANUAL_GUIA": "Setup Guide",
+    "MANUAL_WEB": "User Manual (WEB)",
+    "MANUAL_CLOUDFLARE": "Cloudflare Tunnel Setup",
+    "MANUAL_MOBILE": "User Manual (MOBILE)"
   }
 }
