@@ -116,6 +116,7 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private resizeObserver?: ResizeObserver;
 
+  urlLogoUts = 'assets/images/_uts.jpeg'
   minimizarSliderbar: boolean = true;
   nombreModulo: string = '';
 

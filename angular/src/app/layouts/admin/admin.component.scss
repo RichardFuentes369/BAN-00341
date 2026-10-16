@@ -42,8 +42,23 @@
     background-color: var(--layout-admin-header_color_background) !important;
   }
 
-  .bg-gradient-footer-custom {
+  .system-footer {
     background-color: var(--layout-admin-footer_color_background) !important;
+    /* Coincide con la barra/fondo gris oscuro del sistema */
+    color: #d1d5db;
+    font-size: 0.775rem;
+  }
+
+  .system-footer .hover-underline:hover {
+    text-decoration: underline !important;
+    color: var(--layout-admin-footer_color_text) !important;
+  }
+
+  .system-footer .dev-item {
+    background: rgba(255, 255, 255, 0.04);
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   .text-custom-footer {
@@ -451,8 +466,8 @@
         }
 
         /* Popover flotante al pasar el mouse colapsado */
-&:hover > .collapse,
-        > .collapse.show {
+        &:hover>.collapse,
+        >.collapse.show {
           display: block !important;
           visibility: visible !important;
           opacity: 1 !important;
