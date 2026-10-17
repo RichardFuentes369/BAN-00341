@@ -2,8 +2,8 @@
   <div class="row g-4">
     @if(producto.show){
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-      <fieldset class="border p-3 rounded mb-3">
-        <legend class="float-none w-auto p-1">
+      <fieldset class="border p-3 rounded mb-3 fieldset_custom_border">
+        <legend class="float-none w-auto p-1 legend_custom">
           {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_PRODUCT' | translate }}
           <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('productSeccion')">
             <i [class]="mostrarSeccion.productSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
@@ -41,8 +41,8 @@
 
     @if(!show_detail_batch){
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-      <fieldset class="border p-3 rounded">
-        <legend class="float-none w-auto p-1">
+      <fieldset class="border p-3 rounded fieldset_custom_border">
+        <legend class="float-none w-auto p-1 legend_custom">
           {{ 'mod-warehouse.PAGE_WAREHOUSE_TITLE' | translate }}
           <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('bodegaSeccion')">
             <i [class]="mostrarSeccion.bodegaSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
@@ -63,8 +63,8 @@
 
     @if(proveedor.show){
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-      <fieldset class="border p-3 rounded mb-3">
-        <legend class="float-none w-auto p-1">
+      <fieldset class="border p-3 rounded mb-3 fieldset_custom_border">
+        <legend class="float-none w-auto p-1 legend_custom">
           {{ 'mod-catalog.SUPPLIER.LEGEND_TITLE' | translate }}
           <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('providerSeccion')">
             <i [class]="mostrarSeccion.providerSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
@@ -94,8 +94,8 @@
 
     @if(bodega.show){
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-      <fieldset class="border p-3 rounded mb-3">
-        <legend class="float-none w-auto p-1">
+      <fieldset class="border p-3 rounded mb-3 fieldset_custom_border">
+        <legend class="float-none w-auto p-1 legend_custom">
           {{ 'mod-warehouse.LEGEND_TITLE' | translate }}
           <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('batchSeccion')">
             <i [class]="mostrarSeccion.batchSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
@@ -170,8 +170,8 @@
     </div>
 
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-      <fieldset class="border p-3 rounded">
-        <legend class="float-none w-auto p-1">
+      <fieldset class="border p-3 rounded fieldset_custom_border">
+        <legend class="float-none w-auto p-1 legend_custom">
           {{ 'mod-salereturn.PAGE_TITLE_SALE' | translate }}
           <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('ventaSeccion')">
             <i [class]="mostrarSeccion.ventaSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
@@ -190,8 +190,8 @@
     </div>
 
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-      <fieldset class="border p-3 rounded">
-        <legend class="float-none w-auto p-1">
+      <fieldset class="border p-3 rounded fieldset_custom_border">
+        <legend class="float-none w-auto p-1 legend_custom">
           {{ 'mod-merma.REGISTER.LEGEND_TITLE' | translate }}
           <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('mermaSeccion')">
             <i [class]="mostrarSeccion.mermaSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>

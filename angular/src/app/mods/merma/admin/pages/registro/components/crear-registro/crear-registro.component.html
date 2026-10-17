@@ -1,8 +1,8 @@
 <div class="">
   <div class="col-xl col-sm-12">
     @if(form_new_product){
-    <fieldset class="border p-3 rounded">
-      <legend class="float-none w-auto p-1">
+    <fieldset class="border p-3 rounded fieldset_custom_border">
+      <legend class="float-none w-auto p-1 legend_custom">
         <i class="fa fa-box me-1"></i>
         {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_PRODUCT' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm ms-2" (click)="toogleSection('productSeccion')">
@@ -99,8 +99,8 @@
     }
 
     @if(form_batch){
-    <fieldset class="border p-3 rounded mt-3">
-      <legend class="float-none w-auto p-1">
+    <fieldset class="border p-3 rounded mt-3 fieldset_custom_border">
+      <legend class="float-none w-auto p-1 legend_custom">
         <i class="fa fa-warehouse me-1"></i>
         {{ 'mod-warehouse.LEGEND_TITLE' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm ms-2" (click)="toogleSection('batchSeccion')">
@@ -222,8 +222,8 @@
     }
 
     @if(form_merma){
-    <fieldset class="border p-3 rounded mt-3">
-      <legend class="float-none w-auto p-1">
+    <fieldset class="border p-3 rounded mt-3 fieldset_custom_border">
+      <legend class="float-none w-auto p-1 legend_custom">
         <i class="fa fa-dumpster me-1"></i>
         {{ 'mod-merma.REGISTER.LEGEND2_TITLE' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm ms-2" (click)="toogleSection('registerSeccion')">

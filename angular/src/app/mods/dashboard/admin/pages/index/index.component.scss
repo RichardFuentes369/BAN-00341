@@ -3,6 +3,13 @@
   overflow: visible; 
 }
 
+.legend_custom{
+  color: var(--modal-legend_text_color) !important;
+}
+.fieldset_custom_border{
+  border-color: var(--modal-fieldset_line_color) !important;
+}
+
 .card-custom {
   height: 100%;
   display: flex;

@@ -1,3 +1,11 @@
+.legend-custom{
+  color: var(--modal_custom-legend_text_color) !important;
+}
+
+.fieldset_custom_border{
+  border-color: var(--modal_custom-fieldset_line_color) !important;
+}
+
 .card-header {
   background: var(--modal_custom-head_background_color) !important;
   border-bottom: none;

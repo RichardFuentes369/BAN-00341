@@ -52,8 +52,8 @@
         <!-- @if(showToogle){ -->
         @if(showDetailProduct){
         <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4 h-auto">
-          <fieldset class="border p-3 rounded mb-3">
-            <legend class="float-none w-auto p-1">
+          <fieldset class="border p-3 rounded mb-3 fieldset_custom_border">
+            <legend class="float-none w-auto p-1 legend_custom">
               {{ 'mod-dashboard.TITLE_RESULT_SEARCH' | translate }}
               <button class="btn btn-sm btn-light rounded-circle shadow-sm"
                 (click)="toogleSection('resultadosBusqueda')">
@@ -69,8 +69,8 @@
         </div>
         @if(!showRequestBatch){
         <div class="card-custom shadow pl-4 pr-4 pt-4 pb-4 mb-4 h-auto">
-          <fieldset class="border p-3 rounded mb-3">
-            <legend class="float-none w-auto p-1">
+          <fieldset class="border p-3 rounded mb-3 fieldset_custom_border">
+            <legend class="float-none w-auto p-1 legend_custom">
               {{ 'mod-dashboard.GRAPHIC_REPORT' | translate }}
               <button class="btn btn-sm btn-light rounded-circle shadow-sm"
                 (click)="toogleSection('resultadosGraficosBusqueda')">

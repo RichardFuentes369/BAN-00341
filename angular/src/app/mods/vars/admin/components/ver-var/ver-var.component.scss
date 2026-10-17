@@ -1,3 +1,9 @@
+.legend_custom{
+  color: var(--modal-legend_text_color) !important;
+}
+.fieldset_custom_border{
+  border-color: var(--modal-fieldset_line_color) !important;
+}
 .code-input-style {
   display: block;
   width: 100%;

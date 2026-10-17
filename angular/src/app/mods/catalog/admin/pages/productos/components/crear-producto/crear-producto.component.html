@@ -1,8 +1,8 @@
 <div class="container-fluid p-0">
   <div class="col-xl col-sm-12">
     <!-- SECCIÓN: PRODUCTO -->
-    <fieldset class="border p-3 rounded">
-      <legend class="float-none w-auto p-1">
+    <fieldset class="border p-3 rounded fieldset_custom_border">
+      <legend class="float-none w-auto p-1 legend_custom">
         <i class="fa fa-box-open me-1"></i> {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_PRODUCT' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('productSeccion')">
           <i [class]="mostrarSeccion.productSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
@@ -92,8 +92,8 @@
     </fieldset>
 
     <!-- SECCIÓN: STOCK -->
-    <fieldset class="border p-3 rounded">
-      <legend class="float-none w-auto p-1">
+    <fieldset class="border p-3 rounded fieldset_custom_border">
+      <legend class="float-none w-auto p-1 legend_custom">
         <i class="fa fa-cubes me-1"></i> {{ 'mod-catalog.PRODUCT.LEGEND_TITLE_STOCK' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('stockSeccion')">
           <i [class]="mostrarSeccion.stockSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
@@ -144,8 +144,8 @@
     </fieldset>
 
     <!-- SECCIÓN: PERECEDERO -->
-    <fieldset class="border p-3 rounded">
-      <legend class="float-none w-auto p-1">
+    <fieldset class="border p-3 rounded fieldset_custom_border">
+      <legend class="float-none w-auto p-1 legend_custom">
         <i class="fa fa-calendar-times me-1"></i> {{ 'mod-catalog.PRODUCT.LABEL_CHECK_PERISHABLE' | translate }}
         <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('esPerecedero')">
           <i [class]="mostrarSeccion.esPerecedero ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
