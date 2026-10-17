@@ -8,16 +8,27 @@
       </div>
       <span [innerHTML]="'mod-custom.MODULE_TITLE' | translate"></span>
     </h4>
-    <span class="custom-tooltip tooltip-left mt-1 mb-1"
-      [attr.data-title]="mostratTodo === true ? ('global-card.WORD_SHOW' | translate) : ('global-card.WORD_HIDE' | translate)"
-      (click)="toggleAll()">
-      <button class="btn btn-sm btn-light rounded-circle shadow-sm">
-        <i [class]="mostratTodo ? 'fa fa-chevron-down' : 'fa fa-chevron-up'"></i>
-      </button>
-    </span>
+
+    <div class="d-flex align-items-center gap-2">
+      <!-- Botón para copiar el JSON consolidado -->
+       <span class="custom-tooltip tooltip-left mt-1 mb-1"
+        [attr.data-title]="'mod-custom.COPY_JSON_CONFIG' | translate">
+        <button class="btn btn-sm btn-success shadow-sm d-flex align-items-center gap-1 px-3" (click)="copiarJsonConfiguracion()">
+          <i class="fa fa-copy"></i> JSON
+        </button>
+       </span>
+
+      <span class="custom-tooltip tooltip-left mt-1 mb-1"
+        [attr.data-title]="mostratTodo === true ? ('global-card.WORD_HIDE' | translate) : ('global-card.WORD_SHOW' | translate)"
+        (click)="toggleAll()">
+        <button class="btn btn-sm btn-light rounded-circle shadow-sm">
+          <i [class]="mostratTodo ? 'fa fa-chevron-up' : 'fa fa-chevron-down' "></i>
+        </button>
+      </span>
+    </div>
   </div>
   <hr class="mt-0 line-title-custom">
-  
+
   <div class="col-sm-12">
     <div class="row">
       <!-- Bloque Menú -->
@@ -32,16 +43,18 @@
             </button>
           </span>
         </div>
-  
+
         @if (vistas.menu) {
         <div class="card-body p-2 pb-0 pt-0 animate__animated animate__fadeIn">
           <div class="mb-2 p-2">
-            <app-custom-menu [theme]="currentTheme" [json_menu]="custom_json_menu"></app-custom-menu>
+            <app-custom-menu [theme]="currentTheme" [json_menu]="custom_json_menu"
+              (jsonMenuChanges)="custom_json_menu = $event">
+            </app-custom-menu>
           </div>
         </div>
         }
       </div>
-  
+
       <!-- Bloque Title page -->
       <div class="card-custom card mb-2 p-2">
         <div
@@ -54,17 +67,18 @@
             </button>
           </span>
         </div>
-  
+
         @if (vistas.title_page) {
         <div class="card-body p-2 pb-0 pt-0 animate__animated animate__fadeIn">
           <div class="mb-2 p-2">
-            <app-custom-title-page [theme]="currentTheme"
-              [json_titple_page]="custom_json_title_page"></app-custom-title-page>
+            <app-custom-title-page [theme]="currentTheme" [json_titple_page]="custom_json_title_page"
+              (jsonKpiChanges)="custom_json_title_page = $event">
+            </app-custom-title-page>
           </div>
         </div>
         }
       </div>
-  
+
       <!-- Bloque KPI -->
       <div class="card-custom card mb-2 p-2">
         <div
@@ -77,16 +91,18 @@
             </button>
           </span>
         </div>
-  
+
         @if (vistas.kpi) {
         <div class="card-body p-2 pb-0 pt-0 animate__animated animate__fadeIn">
           <div class="mb-2 p-2">
-            <app-custom-kpicard [theme]="currentTheme" [json_kpi]="custom_json_kpi"></app-custom-kpicard>
+            <app-custom-kpicard [theme]="currentTheme" [json_kpi]="custom_json_kpi"
+              (jsonKpiChanges)="custom_json_kpi = $event">
+            </app-custom-kpicard>
           </div>
         </div>
         }
       </div>
-  
+
       <!-- Bloque Table -->
       <div class="card-custom card mb-2 p-2">
         <div
@@ -99,17 +115,18 @@
             </button>
           </span>
         </div>
-  
+
         @if (vistas.table_grid) {
         <div class="card-body p-2 pb-0 pt-0 animate__animated animate__fadeIn">
           <div class="mb-2 p-2">
-            <app-custom-gridtable [theme]="currentTheme"
-              [json_grid_table]="custom_json_grid_table"></app-custom-gridtable>
+            <app-custom-gridtable [theme]="currentTheme" [json_grid_table]="custom_json_grid_table"
+              (jsonGridTableChanges)="custom_json_grid_table = $event">
+            </app-custom-gridtable>
           </div>
         </div>
         }
       </div>
-  
+
       <!-- Bloque Modal -->
       <div class="card-custom card mb-2 p-2">
         <div
@@ -122,16 +139,18 @@
             </button>
           </span>
         </div>
-  
+
         @if (vistas.modal) {
         <div class="card-body p-2 pb-0 pt-0 animate__animated animate__fadeIn">
           <div class="mb-2 p-2">
-            <app-custom-modal [theme]="currentTheme" [json_modal]="custom_json_modal"></app-custom-modal>
+            <app-custom-modal [theme]="currentTheme" [json_modal]="custom_json_modal"
+              (jsonModalChanges)="custom_json_modal = $event">
+            </app-custom-modal>
           </div>
         </div>
         }
       </div>
-  
+
       <!-- Bloque Input -->
       <div class="card-custom card mb-2 p-2">
         <div
@@ -144,16 +163,18 @@
             </button>
           </span>
         </div>
-  
+
         @if (vistas.input_select) {
         <div class="card-body p-2 pb-0 pt-0 animate__animated animate__fadeIn">
           <div class="mb-2 p-2">
-            <app-custom-inputselect [theme]="currentTheme" [json_input]="custom_json_input"></app-custom-inputselect>
+            <app-custom-inputselect [theme]="currentTheme" [json_input]="custom_json_input"
+              (jsonInputChanges)="custom_json_input = $event">
+            </app-custom-inputselect>
           </div>
         </div>
         }
       </div>
-  
+
       <!-- Bloque Search -->
       <div class="card-custom card mb-2 p-2">
         <div
@@ -166,7 +187,7 @@
             </button>
           </span>
         </div>
-  
+
         @if (vistas.search) {
         <div class="card-body p-2 pb-0 pt-0 animate__animated animate__fadeIn">
           <div class="mb-2 p-2 bg_system rounded-5">
@@ -175,7 +196,7 @@
         </div>
         }
       </div>
-  
+
       <!-- Bloque Report -->
       <div class="card-custom card mb-2 p-2">
         <div
@@ -188,7 +209,7 @@
             </button>
           </span>
         </div>
-  
+
         @if (vistas.report) {
         <div class="card-body p-2 pb-0 pt-0 animate__animated animate__fadeIn">
           <div class="mb-2 p-2 bg_system rounded-5">
@@ -200,12 +221,4 @@
     </div>
   </div>
 
-
-
-  <!-- Bloque BarraTareas -->
-  <!-- Bloque Slidebar / Navbar -->
-  <!-- Bloque Breadcrumbs -->
-  <!-- Fondo -->
-  <!-- Scroll -->
-  <!-- Bloque Footer -->
 </div>

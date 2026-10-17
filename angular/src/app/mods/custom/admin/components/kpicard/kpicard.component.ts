@@ -1,6 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-custom-kpicard',
   standalone: true,
@@ -10,11 +11,11 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class KpicardCustomComponent implements OnInit, OnDestroy {
 
-  title = 'Titulo contador'
-  displayValue = 200
-  img = 'assets/images/img_estadistica.png'
+  title = 'Titulo contador';
+  displayValue = 200;
+  img = 'assets/images/img_estadistica.png';
 
-  @Input() theme: string = ''
+  @Input() theme: string = '';
 
   private themeListener!: (event: any) => void;
 
@@ -48,22 +49,21 @@ export class KpicardCustomComponent implements OnInit, OnDestroy {
     if (value) {
       this._jsonKpiData = {
         light: {
-          background_color: value.light?.background_color || value.light?.text || '#000000',
-          icon_color: value.light?.icon_color || value.light?.placeholder || '#cccccc',
-          border_line_color: value.light?.border_line_color || value.light?.bg || '#ffffff',
-          text_color: value.light?.text_color || value.light?.placeholder || '#cccccc',
-          text_number_color: value.light?.text_number_color || value.light?.border || '#000000'
+          background_color: value.light?.background_color || '#ffffff',
+          icon_color: value.light?.icon_color || '#000000',
+          border_line_color: value.light?.border_line_color || '#0a18f5',
+          text_color: value.light?.text_color || '#948f8f',
+          text_number_color: value.light?.text_number_color || '#000000'
         },
         dark: {
-          background_color: value.dark?.background_color || value.dark?.text || '#000000',
-          icon_color: value.light?.icon_color || value.light?.placeholder || '#cccccc',
-          border_line_color: value.dark?.border_line_color || value.dark?.bg || '#ffffff',
-          text_color: value.dark?.text_color || value.dark?.placeholder || '#cccccc',
-          text_number_color: value.dark?.text_number_color || value.dark?.border || '#000000'
+          background_color: value.dark?.background_color || '#2b2a2a',
+          icon_color: value.dark?.icon_color || '#ffffff',
+          border_line_color: value.dark?.border_line_color || '#157d00',
+          text_color: value.dark?.text_color || '#ffffff',
+          text_number_color: value.dark?.text_number_color || '#ffffff'
         }
       };
       
-      // Aplicar estilos inmediatamente al recibir el input
       this.aplicarEstilosVisuales();
     }
   }
@@ -80,14 +80,17 @@ export class KpicardCustomComponent implements OnInit, OnDestroy {
 
       if (container) {
         const estilosCss = `
-          --kpicard_custom-background_color: ${temaActual.background_color};
-          --kpicard_custom-icon_color: ${temaActual.icon_color};
-          --kpicard_custom-border_line_color: ${temaActual.border_line_color};
-          --kpicard_custom-text_color: ${temaActual.text_color};
-          --kpicard_custom-text_number_color: ${temaActual.text_number_color};
+          --kpicard_custom-background_color: ${temaActual.background_color || ''};
+          --kpicard_custom-icon_color: ${temaActual.icon_color || ''};
+          --kpicard_custom-border_line_color: ${temaActual.border_line_color || ''};
+          --kpicard_custom-text_color: ${temaActual.text_color || ''};
+          --kpicard_custom-text_number_color: ${temaActual.text_number_color || ''};
         `;
         this.renderer.setProperty(container, 'style', estilosCss);
       }
     }
+
+    // Notificar al padre
+    this.jsonKpiChanges.emit(this._jsonKpiData);
   }
 }

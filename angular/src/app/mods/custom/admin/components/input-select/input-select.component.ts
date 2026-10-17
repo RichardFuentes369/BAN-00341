@@ -11,7 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class InputSelectCustomComponent implements OnInit, OnDestroy {
 
-  @Input() theme: string = ''
+  @Input() theme: string = '';
 
   private themeListener!: (event: any) => void;
 
@@ -60,7 +60,6 @@ export class InputSelectCustomComponent implements OnInit, OnDestroy {
         }
       };
       
-      // Aplicar estilos inmediatamente al recibir el input
       this.aplicarEstilosVisuales();
     }
   }
@@ -77,15 +76,18 @@ export class InputSelectCustomComponent implements OnInit, OnDestroy {
 
       if (container) {
         const estilosCss = `
-          --input_custom-legend_text_color: ${temaActual.legend_text_color};
-          --input_custom-background_color: ${temaActual.background_color};
-          --input_custom-label_color: ${temaActual.label_color};
-          --input_custom-text_color: ${temaActual.text_color};
-          --input_custom-text_color_placeholder: ${temaActual.text_color_placeholder};
-          --input_custom-border_color: ${temaActual.border_color};
+          --input_custom-legend_text_color: ${temaActual.legend_text_color || ''};
+          --input_custom-background_color: ${temaActual.background_color || ''};
+          --input_custom-label_color: ${temaActual.label_color || ''};
+          --input_custom-text_color: ${temaActual.text_color || ''};
+          --input_custom-text_color_placeholder: ${temaActual.text_color_placeholder || ''};
+          --input_custom-border_color: ${temaActual.border_color || ''};
         `;
         this.renderer.setProperty(container, 'style', estilosCss);
       }
     }
+
+    // Notificar al padre los cambios realizados
+    this.jsonInputChanges.emit(this._jsonInputData);
   }
 }

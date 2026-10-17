@@ -11,7 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class MenuCustomComponent implements OnInit, OnDestroy {
 
-  @Input() theme: string = ''
+  @Input() theme: string = '';
 
   private themeListener!: (event: any) => void;
 
@@ -21,8 +21,8 @@ export class MenuCustomComponent implements OnInit, OnDestroy {
 
   constructor(private renderer: Renderer2, private elRef: ElementRef) { }
 
-  imgUsers = 'assets/images/img_users.png'
-  imgCatalog = 'assets/images/img_catalog.png'
+  imgUsers = 'assets/images/img_users.png';
+  imgCatalog = 'assets/images/img_catalog.png';
 
   ngOnInit() {
     this.aplicarEstilosVisuales();
@@ -48,20 +48,19 @@ export class MenuCustomComponent implements OnInit, OnDestroy {
     if (value) {
       this._jsonMenutData = {
         light: {
-          text_color: value.light?.text_color || value.light?.bg || '#ffffff',
-          icon_color: value.light?.icon_color || value.light?.label || '#000000',
-          background_card_color: value.light?.background_card_color || value.light?.text || '#000000',
-          hover_card_color: value.light?.hover_card_color || value.light?.label || '#000000',
+          text_color: value.light?.text_color || '#000000',
+          icon_color: value.light?.icon_color || '#000000',
+          background_card_color: value.light?.background_card_color || '#ffffff',
+          hover_card_color: value.light?.hover_card_color || '#cfcaca',
         },
         dark: {
-          text_color: value.dark?.text_color || value.dark?.bg || '#ffffff',
-          icon_color: value.dark?.icon_color || value.dark?.label || '#000000',
-          background_card_color: value.dark?.background_card_color || value.dark?.text || '#000000',
-          hover_card_color: value.dark?.hover_card_color || value.dark?.label || '#000000',
+          text_color: value.dark?.text_color || '#ffffff',
+          icon_color: value.dark?.icon_color || '#ffffff',
+          background_card_color: value.dark?.background_card_color || '#474747',
+          hover_card_color: value.dark?.hover_card_color || '#716f6f',
         }
       };
 
-      // Aplicar estilos inmediatamente al recibir el input
       this.aplicarEstilosVisuales();
     }
   }
@@ -78,13 +77,16 @@ export class MenuCustomComponent implements OnInit, OnDestroy {
 
       if (container) {
         const estilosCss = `
-          --card_menu_custom-text_color: ${temaActual.text_color};
-          --card_menu_custom-icon_color: ${temaActual.icon_color};
-          --card_menu_custom-background_card_color: ${temaActual.background_card_color};
-          --card_menu_custom-hover_card_color: ${temaActual.hover_card_color};
+          --card_menu_custom-text_color: ${temaActual.text_color || ''};
+          --card_menu_custom-icon_color: ${temaActual.icon_color || ''};
+          --card_menu_custom-background_card_color: ${temaActual.background_card_color || ''};
+          --card_menu_custom-hover_card_color: ${temaActual.hover_card_color || ''};
         `;
         this.renderer.setProperty(container, 'style', estilosCss);
       }
     }
+
+    // Notificar al padre
+    this.jsonMenuChanges.emit(this._jsonMenutData);
   }
 }
