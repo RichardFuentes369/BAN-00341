@@ -45,6 +45,7 @@ export class InputSelectCustomComponent implements OnInit, OnDestroy {
     if (value) {
       this._jsonInputData = {
         light: {
+          legend_color: value.light?.legend_color || value.light?.bg || '#ffffff',
           background_color: value.light?.background_color || value.light?.bg || '#ffffff',
           text_color: value.light?.text_color || value.light?.text || '#000000',
           text_color_placeholder: value.light?.text_color_placeholder || value.light?.placeholder || '#cccccc',
@@ -52,6 +53,7 @@ export class InputSelectCustomComponent implements OnInit, OnDestroy {
           label_color: value.light?.label_color || value.light?.label || '#000000'
         },
         dark: {
+          legend_color: value.dark?.legend_color || value.dark?.bg || '#000000',
           background_color: value.dark?.background_color || value.dark?.bg || '#000000',
           text_color: value.dark?.text_color || value.dark?.text || '#ffffff',
           text_color_placeholder: value.dark?.text_color_placeholder || value.dark?.placeholder || '#666666',
@@ -77,6 +79,7 @@ export class InputSelectCustomComponent implements OnInit, OnDestroy {
 
       if (container) {
         const estilosCss = `
+          --input_custom-legend_color: ${temaActual.legend_color};
           --input_custom-background_color: ${temaActual.background_color};
           --input_custom-label_color: ${temaActual.label_color};
           --input_custom-text_color: ${temaActual.text_color};

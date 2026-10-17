@@ -6,6 +6,16 @@
 }
 
 .title-custom {
+  color: var(--layout-admin-page_color_title) !important;
+  background-color: transparent;
+}
+
+.title-p-custom {
+  color: var(--title_page_custom-text_color) !important;
+  background-color: transparent;
+}
+
+.subtitle-custom {
   color: var(--title_page_custom-text_color) !important;
   background-color: transparent;
 }
