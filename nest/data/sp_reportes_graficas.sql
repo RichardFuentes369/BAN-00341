@@ -127,4 +127,41 @@ BEGIN
     FROM mod_merma_tipos mmt;
 END //
 
+-- 6. Valor perdido por lote, codigo de barra y rango de fechas
+CREATE PROCEDURE sp_report_6(
+    IN p_codigo_barra VARCHAR(50),
+    IN p_lote VARCHAR(50),
+    IN p_fecha_inicio BIGINT,
+    IN p_fecha_fin BIGINT
+)
+BEGIN
+    SELECT
+        COALESCE(SUM(mmm.valor_perdido), 0) AS total_valor_perdido
+    FROM mod_merma_mermas mmm
+    INNER JOIN mod_bodega mb ON mmm.id_lote = mb.id
+    INNER JOIN mod_catalogo_productos mcp ON mb.id_producto = mcp.id
+    WHERE mcp.codigo_barra = p_codigo_barra
+      AND mb.lote = p_lote
+      AND (p_fecha_inicio IS NULL OR mmm.fecha_reporte >= p_fecha_inicio)
+      AND (p_fecha_fin IS NULL OR mmm.fecha_reporte <= p_fecha_fin);
+END //
+
+-- 7. Valor de ventas por lote, codigo de barra y rango de fechas
+CREATE PROCEDURE sp_report_7(
+    IN p_codigo_barra VARCHAR(50),
+    IN p_lote VARCHAR(50),
+    IN p_fecha_inicio BIGINT,
+    IN p_fecha_fin BIGINT
+)
+BEGIN
+    SELECT
+        COALESCE(SUM(mrdv.valor_total), 0) AS total_valor_ventas
+    FROM mod_registro_detalle_ventas mrdv
+    INNER JOIN mod_registro_ventas mrv ON mrdv.id_venta = mrv.id
+    WHERE mrdv.codigo_barra = p_codigo_barra
+      AND mrdv.lote = p_lote
+      AND (p_fecha_inicio IS NULL OR mrv.fecha_venta >= p_fecha_inicio)
+      AND (p_fecha_fin IS NULL OR mrv.fecha_venta <= p_fecha_fin);
+END //
+
 DELIMITER ;
