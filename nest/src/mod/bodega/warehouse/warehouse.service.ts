@@ -379,6 +379,34 @@ export class WarehouseService {
     filterWarehouseProductDTO: FilterWarehouseProductDTO
   ) {
 
+
+    const parseDateParam = (param: any, esFinDelDia: boolean = false) => {
+      if (!param) return null;
+
+      // Si el parámetro es un string con formato de fecha (ej. "2026-12-02")
+      if (typeof param === 'string' && param.includes('-')) {
+        // Limpiamos por si acaso trae hora previa y nos quedamos solo con la fecha YYYY-MM-DD
+        const soloFecha = param.split('T')[0];
+        const [year, month, day] = soloFecha.split('-').map(Number);
+
+        if (!year || !month || !day) return null;
+
+        // Creamos el objeto Date asignando hora inicial o final según corresponda
+        const dateObj = esFinDelDia
+          ? new Date(year, month - 1, day, 23, 59, 59, 999) // 23:59:59.999
+          : new Date(year, month - 1, day, 0, 0, 0, 0);     // 00:00:00.000
+
+        if (isNaN(dateObj.getTime())) return null;
+        return Math.floor(dateObj.getTime() / 1000); // Retorna en formato Unix (segundos)
+      }
+
+      // Si viene como número (timestamp)
+      const num = Number(param);
+      if (isNaN(num)) return null;
+
+      return num > 10000000000 ? Math.floor(num / 1000) : num;
+    };
+
     const bodega = await this.batchRepository.findOne({
       where: {
         lote: filterWarehouseProductDTO.lote,
@@ -400,13 +428,42 @@ export class WarehouseService {
       );
     }
 
-    const [resumen, mermasCantidad, mermasPorcentaje, mermasDias, valorPerdido] = await Promise.all([
+    const promesasBase = await Promise.all([
       this.dataSource.query('CALL sp_report_1(?)', [bodega.id_producto.codigo_barra]),
       this.dataSource.query('CALL sp_report_2(?)', [bodega.id_producto.codigo_barra]),
       this.dataSource.query('CALL sp_report_3(?)', [bodega.id_producto.codigo_barra]),
       this.dataSource.query('CALL sp_report_4(?)', [bodega.id_producto.codigo_barra]),
       this.dataSource.query('CALL sp_report_5(?)', [bodega.id_producto.codigo_barra]),
     ]);
+
+    if (filterWarehouseProductDTO?.lote) {
+      promesasBase.push(
+        this.dataSource.query('CALL sp_report_6(?, ?, ?, ?)', [
+          bodega.id_producto.codigo_barra,
+          filterWarehouseProductDTO.lote,
+          parseDateParam(filterWarehouseProductDTO.fecha_filtro_inicio) ?? null,
+          parseDateParam(filterWarehouseProductDTO.fecha_filtro_fin, true) ?? null
+        ]),
+        this.dataSource.query('CALL sp_report_7(?, ?, ?, ?)', [
+          bodega.id_producto.codigo_barra,
+          filterWarehouseProductDTO.lote,
+          parseDateParam(filterWarehouseProductDTO.fecha_filtro_inicio) ?? null,
+          parseDateParam(filterWarehouseProductDTO.fecha_filtro_fin, true) ?? null
+        ])
+      );
+    }
+
+    const resultados = await Promise.all(promesasBase);
+
+    const [
+      resumen, 
+      mermasCantidad, 
+      mermasPorcentaje, 
+      mermasDias, 
+      valorPerdido, 
+      valorPerdidoCBL = 0, 
+      valorVentasCBL = 0
+    ] = resultados;
 
     return {
       ...bodega,
@@ -417,6 +474,9 @@ export class WarehouseService {
         mermasPorcentaje: mermasPorcentaje[0] || [],
         mermasDias: mermasDias[0] || [],
         valorPerdido: valorPerdido[0] || [],
+
+        valorPerdidoCBL: valorPerdidoCBL[0] || [],
+        valorVentasCBL: valorVentasCBL[0] || [],
       }
     };
   }
