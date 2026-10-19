@@ -134,9 +134,9 @@ export class BodegaService {
     })
   }
   
-  async getDataLoteAndProduct(lote: string, idProducto: string){
+  async getDataLoteAndProduct(lote: string, idProducto: string, fecha_inicio: string = '', fecha_fin: string = ''){
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = `batch/obtener-registro-lote-producto?lote=${lote}&id_producto=${idProducto}`
+    let complemento = `batch/obtener-registro-lote-producto?lote=${lote}&id_producto=${idProducto}&fecha_filtro_inicio=${fecha_inicio}&fecha_filtro_fin=${fecha_fin}`
     let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 

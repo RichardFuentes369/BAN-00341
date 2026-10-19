@@ -237,7 +237,7 @@ export class AdminDashboardComponent implements OnInit {
 
     try {
       if (this.showRequestBatch) {
-        const response = await this.bodegaService.getDataLoteAndProduct(this.loteDigitado, this.idProducto);
+        const response = await this.bodegaService.getDataLoteAndProduct(this.loteDigitado, this.idProducto, this.datosJson.filtro.fecha_inicio, this.datosJson.filtro.fecha_fin);
         if (response.status === 200) {
           this.datosJson.proveedor = {
             show: true,
@@ -270,6 +270,11 @@ export class AdminDashboardComponent implements OnInit {
           this.datosJson = { ...this.datosJson };
 
           if (response.data.infoGraphics) {
+            this.datosJson.infoGraphics = {
+              ...response.data.infoGraphics,
+              valorPerdidoCBL: response.data.infoGraphics.valorPerdidoCBL,
+              valorVentasCBL: response.data.infoGraphics.valorVentasCBL
+            };
             this.actualizarGraficas(response.data.infoGraphics);
           }
           this.showDetailProduct = true;
@@ -292,6 +297,7 @@ export class AdminDashboardComponent implements OnInit {
             this.datosJson = { ...this.datosJson };
 
             if (response.data.infoGraphics) {
+              this.datosJson.infoGraphics = response.data.infoGraphics;
               this.actualizarGraficas(response.data.infoGraphics);
             }
 

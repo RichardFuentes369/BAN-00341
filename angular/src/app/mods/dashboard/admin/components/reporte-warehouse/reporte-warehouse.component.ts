@@ -1,14 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ChartsComponent } from '@component/globales/charts/charts.component';
 import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ChartOptions, ChartType, ChartData } from 'chart.js';
 
 @Component({
   selector: 'app-reporte-warehouse',
   standalone: true,
-  imports: [TranslateModule, FormsModule, CommonModule, NgSelectModule, TablecrudComponent],
+  imports: [TranslateModule, FormsModule, CommonModule, NgSelectModule, TablecrudComponent, ChartsComponent],
   templateUrl: './reporte-warehouse.component.html',
   styleUrl: './reporte-warehouse.component.scss',
 })
@@ -260,7 +262,8 @@ export class ReporteWarehouseComponent implements OnChanges {
     providerSeccion: false,
     registerSeccion: false,
     ventaSeccion: false,
-    mermaSeccion: false
+    mermaSeccion: false,
+    graficaSeccion: true
   };
 
   @ViewChild('tableB') tableComponent0!: TablecrudComponent;
@@ -307,6 +310,25 @@ export class ReporteWarehouseComponent implements OnChanges {
         this.show_detail_batch = !!this.bodega.lote;
       }
 
+      if (this.datosRecibidos.infoGraphics) {
+        const info = this.datosRecibidos.infoGraphics;
+
+        const rawVentas = info.valorVentasCBL?.[0]?.total_valor_ventas ?? 0;
+        const rawPerdido = info.valorPerdidoCBL?.[0]?.total_valor_perdido ?? 0;
+        
+        const valorVentas = Number(rawVentas) || 0;
+        const valorPerdido = Number(rawPerdido) || 0;
+
+        this.pieComparativaChartData = {
+          labels: ['Valor Ventas (CBL)', 'Valor Perdido (CBL)'],
+          datasets: [{
+            data: [valorVentas, valorPerdido],
+            backgroundColor: ['#4BC0C0', '#FF6384'],
+            hoverBackgroundColor: ['#36A2EB', '#FF6384']
+          }]
+        };
+      }
+
       // 5. Cargar la tabla de mermas
       if (this.datosRecibidos.lote.show) {
         this.endPointV = `sales/obtener-detalle-ventas?lote=${this.datosRecibidos.lote.lote}&codigo_barra=${this.datosRecibidos.producto.codigo_barra}&fecha_venta_minimo=${this.datosRecibidos.filtro.fecha_inicio}&fecha_venta_maximo=${this.datosRecibidos.filtro.fecha_fin}`
@@ -338,4 +360,32 @@ export class ReporteWarehouseComponent implements OnChanges {
 
     return `${yyyy}-${mm}-${dd}`
   }
+
+  // Configuración de la Gráfica de Comparativa
+  public pieComparativaChartType: ChartType = 'pie';
+  public pieComparativaChartOptions: ChartOptions<'pie'> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    aspectRatio: 2,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: {
+        callbacks: {
+          label: (context) => {
+            const label = context.label || '';
+            const value = context.parsed || 0;
+            return ` ${label}: $ ${value.toLocaleString()}`;
+          }
+        }
+      }
+    }
+  };
+  public pieComparativaChartData: ChartData<'pie', number[], string | string[]> = {
+    labels: [],
+    datasets: [{
+      data: [],
+      backgroundColor: [],
+      hoverBackgroundColor: []
+    }]
+  };
 }

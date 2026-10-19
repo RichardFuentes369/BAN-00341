@@ -208,6 +208,30 @@
         </div>
       </fieldset>
     </div>
+
+    <!-- Sección de Gráficas dentro del Reporte Warehouse -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <fieldset class="border p-3 rounded mb-3 fieldset_custom_border">
+        <legend class="float-none w-auto p-1 legend_custom">
+          {{ 'mod-dashboard.TITLE_GRAPHIC_6' | translate }}
+          <button class="btn btn-sm btn-light rounded-circle shadow-sm" (click)="toogleSection('graficaSeccion')">
+            <i [class]="mostrarSeccion.graficaSeccion ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"></i>
+          </button>
+        </legend>
+
+        <div class="row" *ngIf="mostrarSeccion.graficaSeccion" [class.animate__fadeIn]="mostrarSeccion.graficaSeccion"
+          [class.animate__fadeOut]="!mostrarSeccion.graficaSeccion">
+          <div class="col-12 p-3">
+            <div class="border rounded-5 p-3 shadow-sm">
+              <app-globales-charts [chartType]="pieComparativaChartType" [chartData]="pieComparativaChartData"
+                [chartOptions]="pieComparativaChartOptions">
+              </app-globales-charts>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
     }
+
   </div>
 </div>
