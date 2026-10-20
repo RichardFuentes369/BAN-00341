@@ -41,18 +41,18 @@ export class HomeComponent implements OnInit {
   showRouteIngreso: boolean = true;
 
   constructor(
-    private translate: TranslateService, 
+    private translate: TranslateService,
     private router: Router,
     private varsService: VarsService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  ) { }
 
   // Escuchamos el evento de scroll directamente en el contenedor que lo genera
   @HostListener('scroll', ['$event'])
   onScroll(event: any) {
     if (event.target.id === 'content-wrapper') {
       const scrollPos = event.target.scrollTop;
-      
+
       // Umbrales diferenciados para evitar fallos de parpadeo
       if (!this.isScrolled && scrollPos > 80) {
         this.isScrolled = true;
@@ -65,12 +65,12 @@ export class HomeComponent implements OnInit {
   async ngOnInit() {
     setTimeout(() => {
       if (this.colorModeComponent) {
-        localStorage.setItem(STORAGE_KEY_THEME,'light')
-        this.colorModeComponent.loadCustom(); 
+        localStorage.setItem(STORAGE_KEY_THEME, 'light')
+        this.colorModeComponent.loadCustom();
         console.log('aqui estoy')
       }
     });
-    
+
     this.verificarRuta(this.router.url);
     this.router.events.pipe(
       filter((event: Event): event is NavigationEnd => event instanceof NavigationEnd)
@@ -86,6 +86,13 @@ export class HomeComponent implements OnInit {
     if (response2?.data?.valor) {
       this.banner = response2.data.valor;
     }
+  }
+
+  get cleanedAppName(): string {
+    if (!this.nameApp) return '';
+    return this.nameApp
+      .replace(/<[^>]*>/g, '') // Elimina <br>
+      .replace(/\s+/g, '');
   }
 
   private verificarRuta(url: string) {

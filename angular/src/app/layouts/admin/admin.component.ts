@@ -198,6 +198,13 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
     this.menu = response.data;
   }
 
+  get cleanedAppName(): string {
+    if (!this.nameApp) return '';
+    return this.nameApp
+      .replace(/<[^>]*>/g, '') // Elimina <br>
+      .replace(/\s+/g, '');
+  }
+
   async ejecutarInitReal() {
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
     const response = await this.principalService.getDataUser(userData.data.id);
@@ -303,28 +310,28 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-isRouteActive(routePath: string | any[], exact: boolean = false): boolean {
-  // Si la ruta está vacía o no existe, retornamos falso inmediatamente para que no se ilumine por error
-  if (!routePath || routePath === '' || (Array.isArray(routePath) && routePath.length === 0)) {
-    return false;
+  isRouteActive(routePath: string | any[], exact: boolean = false): boolean {
+    // Si la ruta está vacía o no existe, retornamos falso inmediatamente para que no se ilumine por error
+    if (!routePath || routePath === '' || (Array.isArray(routePath) && routePath.length === 0)) {
+      return false;
+    }
+
+    const urlTree = Array.isArray(routePath)
+      ? this.router.createUrlTree(routePath)
+      : this.router.parseUrl(routePath);
+
+    // Evitamos evaluar rutas raíz vacías
+    if (urlTree.toString() === '/' && exact) {
+      return this.router.url === '/';
+    }
+
+    return this.router.isActive(urlTree, {
+      paths: exact ? 'exact' : 'subset',
+      queryParams: 'ignored',
+      fragment: 'ignored',
+      matrixParams: 'ignored'
+    });
   }
-
-  const urlTree = Array.isArray(routePath)
-    ? this.router.createUrlTree(routePath)
-    : this.router.parseUrl(routePath);
-
-  // Evitamos evaluar rutas raíz vacías
-  if (urlTree.toString() === '/' && exact) {
-    return this.router.url === '/';
-  }
-
-  return this.router.isActive(urlTree, {
-    paths: exact ? 'exact' : 'subset',
-    queryParams: 'ignored',
-    fragment: 'ignored',
-    matrixParams: 'ignored'
-  });
-}
 
   tienePermiso(modulo: string, submodulo?: string, jerarquia: number = 0): boolean {
     const moduloPadre = this.menu.find(p => p.mpm_permiso === modulo);
