@@ -92,11 +92,18 @@ export class EditarVarComponent implements OnInit {
         this.varJsonReal = await service.getDataVar(varId);
       }
 
+      this.varJson.push(this.varJsonReal.data)
+      this.model.id = this.varJsonReal.data.id
+      this.model.nombre = this.varJsonReal.data.nombre
+      
+      // Si el valor es un objeto (JSON), lo convertimos a string con formato. Si es texto plano, lo dejamos igual.
+      const valorOriginal = this.varJsonReal.data.valor;
+      if (typeof valorOriginal === 'object' && valorOriginal !== null) {
+        this.model.valor = JSON.stringify(valorOriginal, null, 2);
+      } else {
+        this.model.valor = valorOriginal;
+      }
 
-    this.varJson.push(this.varJsonReal.data)
-    this.model.id = this.varJsonReal.data.id
-    this.model.nombre = this.varJsonReal.data.nombre
-    this.model.valor = this.varJsonReal.data.valor
     } catch (error) {
       console.error('Error al inicializar el componente:', error);
     }
@@ -115,45 +122,43 @@ export class EditarVarComponent implements OnInit {
   }
 
   goTo(url: string, _id: number) {
-
     if (_id != 0) {
       this.router.navigate([url], { queryParams: { id: _id } });
     } else {
       this.router.navigate([url]);
     }
-
   }
 
-  async actualizarData() {
+async actualizarData() {
+  if (this.isFormValid) {
+    const queryParams = this.route.snapshot.queryParams;
+    const service = queryParams['id_var_var'] ? this.varService : this.jsonService;
 
-    if (this.isFormValid) {
-      const queryParams = this.route.snapshot.queryParams;
-      const service = queryParams['id_var_var'] ? this.varService : this.jsonService;
-
-      await service.updateVar(
-        {
-          "nombre": this.model.nombre,
-          "valor": this.model.valor
-        },
-        this.model.id
-      ).then((response) => {
-        ocultarModalOscura()
-        this.translate.get('mod-vars.SWAL_ARE_YOU_SURE_UPDATE_VAR').subscribe((translatedTitle: string) => {
-          Swal.fire({
-            title: this.translate.instant('mod-vars.SWAL_UPDATED'),
-            text: this.translate.instant('mod-vars.SWAL_UPDATED_RECORD'),
-            icon: "success"
-          });
-        })
-      }).catch(async error => {
-        this.ngOnInit()
-        if (typeof (error.response.data.message) == 'string') {
-          Swal.fire(error.response.data.message);
-        } else {
-          Swal.fire(error.response.data.message[0]);
-        }
+    // Enviamos directamente this.model.valor tal cual como string, 
+    // ya que el backend exige estrictamente que sea una cadena de texto.
+    await service.updateVar(
+      {
+        "nombre": this.model.nombre,
+        "valor": this.model.valor // <-- Esto ya es un string (sea texto o un JSON en texto)
+      },
+      this.model.id
+    ).then((response) => {
+      ocultarModalOscura()
+      this.translate.get('mod-vars.SWAL_ARE_YOU_SURE_UPDATE_VAR').subscribe((translatedTitle: string) => {
+        Swal.fire({
+          title: this.translate.instant('mod-vars.SWAL_UPDATED'),
+          text: this.translate.instant('mod-vars.SWAL_UPDATED_RECORD'),
+          icon: "success"
+        });
       })
-    }
-
+    }).catch(async error => {
+      this.ngOnInit()
+      if (typeof (error.response.data.message) == 'string') {
+        Swal.fire(error.response.data.message);
+      } else {
+        Swal.fire(error.response.data.message[0]);
+      }
+    })
   }
+}
 }

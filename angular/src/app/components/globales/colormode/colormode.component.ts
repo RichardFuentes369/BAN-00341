@@ -18,7 +18,19 @@ export class ColormodeComponent implements OnInit {
   isDarkMode: boolean = false;
 
   private localConfig = localStorage.getItem('custom_system');
-  private config: any = this.localConfig ? JSON.parse(this.localConfig) : themeData;
+  private getStoredConfig() {
+    const localConfig = localStorage.getItem('custom_system');
+    if (!localConfig) return themeData;
+
+    try {
+      return JSON.parse(localConfig);
+    } catch (e) {
+      console.warn('El valor en localStorage para custom_system estaba corrupto, usando themeData por defecto.');
+      return themeData;
+    }
+  }
+
+  private config: any = this.getStoredConfig();
 
   async ngOnInit() {
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -34,7 +46,7 @@ export class ColormodeComponent implements OnInit {
   toggleTheme = () => {
     this.isDarkMode = !this.isDarkMode;
     const theme = this.isDarkMode ? 'dark' : 'light';
-    
+
     document.documentElement.setAttribute('data-theme', theme);
 
     const evento = new CustomEvent('themeChanged', { detail: theme });
@@ -60,7 +72,7 @@ export class ColormodeComponent implements OnInit {
     const procesarEstilos = (obj: any, prefijo: string = '--') => {
       for (const key in obj) {
         const nuevaClave = prefijo + (prefijo === '--' ? key : `-${key}`);
-        
+
         if (typeof obj[key] === 'object' && obj[key] !== null) {
           procesarEstilos(obj[key], nuevaClave);
         } else {
