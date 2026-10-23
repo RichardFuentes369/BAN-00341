@@ -54,7 +54,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb", 
+                  "maximumWarning": "2mb",
                   "maximumError": "3mb"
                 },
                 {
@@ -81,6 +81,13 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "allowedHosts": [
+              ".trycloudflare.com",
+              "localhost",
+              "127.0.0.1"
+            ]
+          },
           "configurations": {
             "production": {
               "buildTarget": "angular:build:production"
