@@ -1,5 +1,5 @@
 <!-- Banner de advertencia si no está instalada -->
-<div *ngIf="!isExtensionInstalled" style="padding: 20px; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 8px; font-family: sans-serif;">
+<!-- <div *ngIf="!isExtensionInstalled" style="padding: 20px; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 8px; font-family: sans-serif;">
   <h2 style="margin-top: 0; color: #856404;">⚠️ Se requiere la extensión de EAN Scanner</h2>
   <p>No hemos podido detectar la extensión en tu navegador. Por favor, asegúrate de tenerla instalada y habilitada.</p>
   
@@ -17,9 +17,10 @@
       Volver a comprobar
     </button>
   </div>
-</div>
+</div> -->
 
 <!-- Contenido normal de tu aplicación Angular -->
-<div *ngIf="isExtensionInstalled">
+<!-- <div *ngIf="isExtensionInstalled"> -->
+<div>
   <router-outlet></router-outlet>
 </div>

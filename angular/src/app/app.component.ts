@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.checkExtension();
+    // this.checkExtension();
     const response = await this.varsService.obtenerJson('custom_system') as any
     if (response?.valor) {
       localStorage.setItem('custom_system', response.valor);
