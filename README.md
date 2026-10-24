@@ -4,18 +4,13 @@ CTRL + SHIFT + V
 
 ## PENDIENTE (II PARTE)
 ### Funcionalidades pendientes
-
-	1. DASHBOARD: Graficos sobre ventas y cuando hago codigo_barra y lote 
-	2. Aplicar filtro fechas
-	
-	3. Personalización
-	4. Manual web: Agregar la instalacion del plugin en chrome
-	5. Ajustar los filtros a los reportes excel csv
+	1. Manual web: Agregar la instalacion del plugin en chrome
+	2. Ajustar los filtros a los reportes excel csv
 
 ### Futuras mejoras
 
-	6. Hacer enpoint para marcar las devolución (validar como) (esto no va)
-	7. Cambio de estado de bodega automaticos (merma, ventas, devoluciones) (esto no va)
+	3. Hacer enpoint para marcar las devolución (validar como) (esto no va)
+	4. Cambio de estado de bodega automaticos (merma, ventas, devoluciones) (esto no va)
 
 ## Manejo sistema
 
