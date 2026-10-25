@@ -42,7 +42,6 @@ export function createTranslateLoader(http: HttpClient) {
       { baseTranslateUrl, moduleName: 'components/globales/tablecrud', namespace: 'global-tablecrud' },
       { baseTranslateUrl, moduleName: 'components/globales/dropzone', namespace: 'global-dropzone' },
       { baseTranslateUrl, moduleName: 'components/globales/permission', namespace: 'global-permission' },
-      { baseTranslateUrl, moduleName: 'components/globales/colormode', namespace: 'global-colormode' },
       { baseTranslateUrl, moduleName: 'components/globales/breadcrumb', namespace: 'global-breadcrumb' },
       { baseTranslateUrl, moduleName: 'components/globales/gridcrud', namespace: 'global-gridcrud' },
       { baseTranslateUrl, moduleName: 'components/globales/scanner', namespace: 'global-scanner' },

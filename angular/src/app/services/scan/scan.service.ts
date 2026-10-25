@@ -15,9 +15,9 @@ export class ScanService {
 
   async conectar() {
     const obtener_socket_barcode = await this.varsService.obtenerJson('socket_barcode');
-    const protocolo_socket_barcode = JSON.parse(obtener_socket_barcode.valor).protocolo_socket_barcode
-    const ip_socket_barcode = JSON.parse(obtener_socket_barcode.valor).ip_socket_barcode
-    const puerto_socket_barcode = JSON.parse(obtener_socket_barcode.valor).puerto_socket_barcode
+    const protocolo_socket_barcode = JSON.parse(JSON.stringify(obtener_socket_barcode.valor)).protocolo_socket_barcode
+    const ip_socket_barcode = JSON.parse(JSON.stringify(obtener_socket_barcode.valor)).ip_socket_barcode
+    const puerto_socket_barcode = JSON.parse(JSON.stringify(obtener_socket_barcode.valor)).puerto_socket_barcode
     this.socket = io(`${protocolo_socket_barcode}://${ip_socket_barcode}:${+puerto_socket_barcode}`);
   }
 

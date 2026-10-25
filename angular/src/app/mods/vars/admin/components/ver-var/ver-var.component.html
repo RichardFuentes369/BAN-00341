@@ -36,10 +36,7 @@
           }
           @else{
             <div class="position-relative p-0">
-              <div class="d-flex align-items-center mb-1 text-muted small">
-                <span>JSON</span>
-              </div>
-              <pre class="code-input-style m-0">
+              <pre class="code-input-style m-0 form-control">
                 {{ parseJson(item.valor) | json }}
               </pre>
             </div>
