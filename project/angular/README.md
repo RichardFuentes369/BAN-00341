@@ -1,4 +1,5 @@
-npm i
-ng serve
+# Ejecutar
+    npm i
+    ng serve
 
-// configurar los alias en tsconfig.json
+### Nota: Configurar los alias en (tsconfig.json)
