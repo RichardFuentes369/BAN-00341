@@ -18,7 +18,13 @@ sudo lsof -i :3000
         watch: false,
         env: {
             NODE_ENV: 'production',
-            PORT: 9601
+            PORT: 9601,
+            DATABASEHOST: 'localhost',
+            DATABASEPORT: 3306,
+            DATABASEUSERNAME: 'root',
+            DATABASEPASSWORD: '',
+            DATABASENAME: 'prueba_production_BAN_00341',
+            FALLBACK_LANG: 'es',
         }
         },
         {
