@@ -20,6 +20,7 @@ CTRL + SHIFT + V
 
 	(Nest)
 	npm i 
+	cp .env.example .env
 	nest start --watch  
 
 	(Expo)
