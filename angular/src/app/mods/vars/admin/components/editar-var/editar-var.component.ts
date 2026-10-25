@@ -92,11 +92,10 @@ export class EditarVarComponent implements OnInit {
         this.varJsonReal = await service.getDataVar(varId);
       }
 
-
     this.varJson.push(this.varJsonReal.data)
     this.model.id = this.varJsonReal.data.id
     this.model.nombre = this.varJsonReal.data.nombre
-    this.model.valor = this.varJsonReal.data.valor
+    this.model.valor = JSON.stringify(this.varJsonReal.data.valor, null, 2);
     } catch (error) {
       console.error('Error al inicializar el componente:', error);
     }

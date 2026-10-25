@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
     // this.checkExtension();
     const response = await this.varsService.obtenerJson('custom_system') as any
     if (response?.valor) {
-      localStorage.setItem('custom_system', response.valor);
+      localStorage.setItem('custom_system', JSON.stringify(response.valor));
     } else {
       localStorage.setItem('custom_system', JSON.stringify(themeData));
     }
