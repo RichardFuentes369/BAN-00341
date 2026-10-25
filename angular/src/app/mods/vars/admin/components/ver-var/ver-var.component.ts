@@ -51,7 +51,7 @@ export class VerVarComponent implements OnInit {
         const response = await service.getDataVar(varId);
 
         if (response?.data) {
-          this.varJson.push(response.data);
+          this.varJson.push(JSON.parse(JSON.stringify(response.data)));
         }
       }
     } catch (error) {
