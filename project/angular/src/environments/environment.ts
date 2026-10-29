@@ -8,5 +8,5 @@ export const environment = {
   production: false,
   apiUrl: (browserEnv && browserEnv.apiUrl) 
     ? browserEnv.apiUrl 
-    : 'https://summit-triple-hundred-greeting.trycloudflare.com/api/',
+    : 'http://localhost:3000/api/',
 };
