@@ -18,7 +18,16 @@ export class ScanService {
     const protocolo_socket_barcode = JSON.parse(JSON.stringify(obtener_socket_barcode.valor)).protocolo_socket_barcode
     const ip_socket_barcode = JSON.parse(JSON.stringify(obtener_socket_barcode.valor)).ip_socket_barcode
     const puerto_socket_barcode = JSON.parse(JSON.stringify(obtener_socket_barcode.valor)).puerto_socket_barcode
-    this.socket = io(`${protocolo_socket_barcode}://${ip_socket_barcode}:${+puerto_socket_barcode}`);
+
+    let urlSocket = ''
+
+    if(protocolo_socket_barcode === 'http'){
+      urlSocket = `${protocolo_socket_barcode}://${ip_socket_barcode}:${+puerto_socket_barcode}`
+    }else{
+      urlSocket = `${protocolo_socket_barcode}://${ip_socket_barcode}`
+    }
+
+    this.socket = io(`${urlSocket}`);
   }
 
   listenForScans(): Observable<string> {
