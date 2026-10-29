@@ -1,5 +1,5 @@
 {
-    "TITLE_RESULT_SEARCH": "Resultados de la busqueda",
+    "TITLE_RESULT_SEARCH": "Resultados de la búsqueda",
 
     "GRAPHIC_REPORT": "Informe gráfico",
 
@@ -7,16 +7,16 @@
     "SPAN_ALERT_QUERY": "Ingrese o escanee el código de barras en el panel izquierdo para ver los detalles y reportes del producto.",
     
     "TITLE_ALERT_QUERY_EMPTY": "No se encontraron resultados",
-    "SPAN_ALERT_QUERY_EMPTY": "No hay información registrada para los filtros o el lote seleccionado. Intenta ajustar la búsqueda o seleccionar otro producto.",
+    "SPAN_ALERT_QUERY_EMPTY": "No hay información registrada para los filtros o el lote seleccionado. Intente ajustar la búsqueda o seleccionar otro producto.",
 
     "TITLE_GRAPHIC_1": "Composición del flujo de producto (Ventas, Bodega, Merma y Compras)",
     "TITLE_GRAPHIC_2": "Cantidad de merma generada según el día semanal",
     "TITLE_GRAPHIC_3": "Principales causas generadoras de merma",
     "TITLE_GRAPHIC_4": "Distribución porcentual diaria de mermas",
-    "TITLE_GRAPHIC_5": "Composición del flujo de producto (perdidas economicas)",
-    "TITLE_GRAPHIC_6": "Comparativa Ventas vs Pérdidas",
+    "TITLE_GRAPHIC_5": "Composición del flujo de producto (pérdidas económicas)",
+    "TITLE_GRAPHIC_6": "Comparativa Ventas vs. Pérdidas",
     
-    "MSJ_ALERT_BATCH_EMPTY": "Porfavor, ingrese un lote",
+    "MSJ_ALERT_BATCH_EMPTY": "Por favor, ingrese un lote",
 
     "CHARGED": {
         "MSJ_CHARGING": "Cargando...",

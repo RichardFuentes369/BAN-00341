@@ -1,5 +1,5 @@
 {
-  "UNKNOW_MODULE_TITLE": "Módulo Desconocido",
+  "UNKNOW_MODULE_TITLE": "Módulo desconocido",
 
   "PAGE_TYPE_TITLE": "Tipo de pérdida",
   "PAGE_TYPE_SUBTITLE": "Gestión de tipos de pérdida",
@@ -28,23 +28,23 @@
   "REGISTER": {
     "LEGEND_TITLE": "Mermas aplicadas",
     "LEGEND2_TITLE": "Merma a aplicar",
-    "CREATE_SUBTITLE": "Nuevo registro merma", 
+    "CREATE_SUBTITLE": "Nuevo registro de merma", 
     "CREATE_TITLE": "Crear", 
     "EDIT_TITLE": "Editar", 
-    "EDIT_SUBTITLE": "Registro merma: {{register_name}}", 
+    "EDIT_SUBTITLE": "Registro de merma: {{register_name}}", 
     "SEE_TITLE": "Ver", 
-    "SEE_SUBTITLE": "Registro merma: {{register_name}}", 
+    "SEE_SUBTITLE": "Registro de merma: {{register_name}}", 
 
     "COLUMN_ID": "ID",
-    "COLUMN_TYPE": "Tipo merma",
+    "COLUMN_TYPE": "Tipo de merma",
     "COLUMN_BATCH": "Lote",
-    "COLUMN_REPORT_DATE": "Fecha reporte",
+    "COLUMN_REPORT_DATE": "Fecha de reporte",
     "COLUMN_AMOUNT": "Cantidad",
     "COLUMN_LOST_VALUE": "Valor perdido",
     "COLUMN_OBSERVATION": "Observación",
 
-    "LABEL_TYPE": "Tipo merma",
-    "LABEL_AMOUT": "Cantidad ",
+    "LABEL_TYPE": "Tipo de merma",
+    "LABEL_AMOUT": "Cantidad",
     "LABEL_REPORT_DATE": "Fecha de reporte",
     "LABEL_LOST_VALUE": "Valor perdido",
     "LABEL_OBSERVATION": "Observación",
@@ -57,24 +57,24 @@
 
     "ERROR_QUANTITY_THAT_ALLOWED": "Error: cantidad superior a la cantidad registrada en bodega",
 
-    "SWAL_CREATED": "Registro!",
-    "SWAL_UPDATED": "Registro!",
-    "SWAL_DELETED": "Registro!",
+    "SWAL_CREATED": "¡Registro!",
+    "SWAL_UPDATED": "¡Registro!",
+    "SWAL_DELETED": "¡Registro!",
 
     "SWAL_ARE_YOU_SURE_UPDATE": "¿Está seguro de que desea actualizar el registro {{user_name}}?",
     "SWAL_ARE_YOU_SURE_DELETE": "¿Está seguro de que desea eliminar {{art_the}} registro{{plural}} {{user_name}}?",
     
-    "CARD_TOTAL_REGISTER_TITLE": "Total registros"
+    "CARD_TOTAL_REGISTER_TITLE": "Total de registros"
   },
   
   "TYPE": {
-    "LEGEND_TITLE": "Datos de tipo de pérdida",
+    "LEGEND_TITLE": "Datos del tipo de pérdida",
     "CREATE_TITLE": "Crear", 
-    "CREATE_SUBTITLE": "Nuevo tipo merma", 
+    "CREATE_SUBTITLE": "Nuevo tipo de merma", 
     "EDIT_TITLE": "Editar", 
-    "EDIT_SUBTITLE": "Tipo merma: {{type_name}}", 
+    "EDIT_SUBTITLE": "Tipo de merma: {{type_name}}", 
     "SEE_TITLE": "Ver", 
-    "SEE_SUBTITLE": "Tipo merma: {{type_name}}", 
+    "SEE_SUBTITLE": "Tipo de merma: {{type_name}}", 
     
     "LABEL_NAME_TYPE": "Nombre",
     "PLACEHOLDER_NAME_TYPE": "Ingrese un nombre",
@@ -90,11 +90,11 @@
     "COLUMN_NAME": "Nombre",
     "COLUMN_TOTAL": "Total",
 
-    "CARD_TOTAL_TYPE_TITLE": "Total tipos"
+    "CARD_TOTAL_TYPE_TITLE": "Total de tipos"
   },
 
   "HISTORY": {
-    "CARD_TOTAL_HISTORY_TITLE": "Total historico"
+    "CARD_TOTAL_HISTORY_TITLE": "Total histórico"
   },
 
   "LABEL_REPORT": "Reporte",

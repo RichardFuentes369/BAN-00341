@@ -8,7 +8,7 @@
 
   "MODULE_TITLE": "Usuarios",
 
-  "CARD_TOTAL_ADMIN_TITLE": "Total usuarios",
+  "CARD_TOTAL_ADMIN_TITLE": "Total de usuarios",
   "CARD_TOTAL_PERMISSIONS_TITLE": "Total de permisos asignados",
   "CARD_TOTAL_SUSPENDED_USERS": "Total de usuarios suspendidos",
   "CARD_TOTAL_ACTIVED_USERS": "Total de usuarios activos",
@@ -24,8 +24,8 @@
   "ASSIGMENT_ADMIN_TITLE_BREADCRUMB": "Asignar permisos",
   "ASSIGMENT_ADMIN_TITLE": "Asignar permisos a <br> {{user_name}}",
 
-  "SWAL_ARE_YOU_SURE_UPDATE_USER": "¿Esta seguro de actualizar el usuario {{user_name}}?",
-  "SWAL_ARE_YOU_SURE_DELETE_USER": "¿Esta seguro de eliminar {{art_the}} usuario{{plural}} {{user_name}}?",
+  "SWAL_ARE_YOU_SURE_UPDATE_USER": "¿Está seguro de actualizar el usuario {{user_name}}?",
+  "SWAL_ARE_YOU_SURE_DELETE_USER": "¿Está seguro de eliminar {{art_the}} usuario{{plural}} {{user_name}}?",
   "SWAL_WARNING_REVERSE_CHANGE": "¡No podrás revertir esto!",
   "SWAL_CREATED": "¡USUARIO!",
   "SWAL_CREATED_RECORD": "Creado exitosamente.",
@@ -40,7 +40,7 @@
   "SWAL_WORD_OPTION_INACTIVATE": "Inactivar",
   "SWAL_ACTIVED_RECORD": "Activado exitosamente",
   "SWAL_INACTIVED_RECORD": "Inactivado exitosamente",
-  "SWAL_INACTIVED_ALL_USER": "Inactivara los {{count_users}} usuarios seleccionados",
+  "SWAL_INACTIVED_ALL_USER": "Inactivará los {{count_users}} usuarios seleccionados",
 
   "LEGEND_TITLE_USER": "Datos del usuario",
 
@@ -51,7 +51,7 @@
   "LABEL_USER_STATUS": "Estado",
   "LABEL_USER_SORT": "Ordenar por",
 
-  "PLACEHOLDER_USER_FIRSTNAME": "Juan Andres",
+  "PLACEHOLDER_USER_FIRSTNAME": "Juan Andrés",
   "PLACEHOLDER_USER_LASTNAME": "Lozano Fonseca",
   "PLACEHOLDER_USER_EMAIL": "email@example.com",
   "PLACEHOLDER_USER_PASSWORD": "**********",
@@ -63,7 +63,7 @@
 
   "ERROR_USER_FIRSTNAME": "Ingrese el/los nombres",
   "ERROR_USER_LASTNAME": "Ingrese los apellidos",
-  "ERROR_USER_EMAIL": "Ingrese un correo valido",
+  "ERROR_USER_EMAIL": "Ingrese un correo válido",
   "ERROR_USER_PASSWORD": "Ingrese una contraseña",
   "ERROR_USER_STATUS": "Debe seleccionar un elemento",
   "TABLE_TITLE": "Registros",
@@ -88,7 +88,7 @@
   "COLUMN_PERMISSION": "Permiso",
   "COLUMN_IDENTIFIER": "Identificador",
 
-  "COLUMN_ID": "Id",
+  "COLUMN_ID": "ID",
   "COLUMN_EMAIL": "Correo electrónico",
   "COLUMN_NAMES": "Nombres",
   "COLUMN_LASTNAME": "Apellidos",
@@ -104,6 +104,6 @@
   "CONSOLE_ERROR_INVALID_TOKEN": "Token vacío o nulo detectado, limpiando...",
   "CONSOLE_MSJ_REDIRECTING_TO_ADMIN": "Redirigiendo a usuario administrador",
   "CONSOLE_MSJ_REDIRECTING_TO_FINAL": "Redirigiendo a usuario final",
-  "CONSOLE_MSJ_FORBIDDEN_TO_ADMIN": "Acceso prohibido: Eres usuario final, no administrador",
-  "CONSOLE_MSJ_FORBIDDEN_TO_FINAL": "Acceso prohibido: Eres usuario administrador, no final"
+  "CONSOLE_MSJ_FORBIDDEN_TO_ADMIN": "Acceso prohibido: eres usuario final, no administrador",
+  "CONSOLE_MSJ_FORBIDDEN_TO_FINAL": "Acceso prohibido: eres usuario administrador, no final"
 }

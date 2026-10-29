@@ -14,7 +14,7 @@
     "SUBTITLE": "Selecciona o visualiza las herramientas disponibles para la gestión integral de tu sistema."
   },
   "SECTION_CONTACTS": {
-    "TARGET": "Contactanos",
+    "TARGET": "Contáctanos",
     "SUBTITLE": ""
   },
   "SECTION_DOWNLOADERS": {
@@ -22,9 +22,9 @@
     "TITLE": "Documentación técnica",
     "SUBTITLE": "Accede y descarga los manuales de usuario y guías de configuración rápida en formato PDF.",
     "PDF_LINK": "Descargar PDF",
-    "MANUAL_GUIA": "Guía de Configuración",
-    "MANUAL_WEB": "Manual de Usuario (WEB)",
-    "MANUAL_CLOUDFLARE": "Configuración tunnel cloudflare",
-    "MANUAL_MOBILE": "Manual de Usuario (MÓVIL)"
+    "MANUAL_GUIA": "Guía de configuración",
+    "MANUAL_WEB": "Manual de usuario (WEB)",
+    "MANUAL_CLOUDFLARE": "Configuración de túnel de Cloudflare",
+    "MANUAL_MOBILE": "Manual de usuario (Móvil)"
   }
 }

@@ -23,7 +23,7 @@
   "WORD_ASCENDING": "Ascendente",
   "WORD_DESCENDING": "Descendente",
 
-  "WORD_YES": "Si",
+  "WORD_YES": "Sí",
   "WORD_NO": "No",
 
   "WORD_QUANTITY": "Cantidad",
@@ -41,9 +41,9 @@
     "COLUMN_ID": "ID",
     "COLUMN_BUSINESS_NIT": "NIT",
     "COLUMN_BUSINESS_NAME": "Razón Social",
-    "COLUMN_BUSINESS_ADDRESS": "Dirección de la Empresa",
-    "COLUMN_BUSINESS_PHONE": "Teléfono de la Empresa",
-    "COLUMN_BUSINESS_EMAIL": "Correo Electrónico de la Empresa",
+    "COLUMN_BUSINESS_ADDRESS": "Dirección de la empresa",
+    "COLUMN_BUSINESS_PHONE": "Teléfono de la empresa",
+    "COLUMN_BUSINESS_EMAIL": "Correo electrónico de la empresa",
 
     "LABEL_BUSINESS_NIT": "Identificación tributaria (NIT)",
     "LABEL_BUSINESS_DV": "Dígito de verificación (DV)",
@@ -58,9 +58,9 @@
     
     "PLACEHOLDER_BUSINESS_NIT_F": "1000000005",
     "PLACEHOLDER_BUSINESS_DV": "Ingrese el dígito de verificación",
-    "PLACEHOLDER_BUSINESS_NAME_F": "Exito s.a",
+    "PLACEHOLDER_BUSINESS_NAME_F": "Éxito S.A.",
     "PLACEHOLDER_BUSINESS_EMAIL": "ejemplo@empresa.com",
-    "PLACEHOLDER_BUSINESS_PHONE": "Ej: +57 300 123 4567",
+    "PLACEHOLDER_BUSINESS_PHONE": "Ej.: +57 300 123 4567",
     "PLACEHOLDER_BUSINESS_ADDRESS": "Ingrese la dirección física de la sede principal",
 
     "SWAL_CREATED": "¡PROVEEDOR!",
@@ -70,7 +70,7 @@
     "SWAL_ARE_YOU_SURE_UPDATE": "¿Está seguro de que desea actualizar el proveedor {{user_name}}?",
     "SWAL_ARE_YOU_SURE_DELETE": "¿Está seguro de que desea eliminar {{art_the}} proveedor{{plural}} {{user_name}}?",
 
-    "CARD_TOTAL_SUPPLIERS_TITLE": "Total proveedores"
+    "CARD_TOTAL_SUPPLIERS_TITLE": "Total de proveedores"
   },
 
   "PRODUCT": {
@@ -106,14 +106,14 @@
     "LABEL_MINIMUM_QUANTITY": "Cantidad mínima",
     "LABEL_UNIT_OF_MEASUREMENT_PRODUCT": "Unidad de medida",
 
-    "PLACEHOLDER_NAME_PRODUCT": "Ingresa un nombre",
-    "PLACEHOLDER_BRAND_PRODUCT": "Ingresa una marca",
+    "PLACEHOLDER_NAME_PRODUCT": "Ingrese un nombre",
+    "PLACEHOLDER_BRAND_PRODUCT": "Ingrese una marca",
     "PLACEHOLDER_COD_BAR_INPUT": "Caracteres del código ingresados",
-    "PLACEHOLDER_COD_BAR_PRODUCT": "Ingresa un código de barras EAN-13 válido (13 dígitos)",
-    "PLACEHOLDER_STOCK_PRODUCT": "Ingresa la cantidad mínima de productos",
+    "PLACEHOLDER_COD_BAR_PRODUCT": "Ingrese un código de barras EAN-13 válido (13 dígitos)",
+    "PLACEHOLDER_STOCK_PRODUCT": "Ingrese la cantidad mínima de productos",
     "PLACEHOLDER_UNIT_OF_MEASUREMENT_PRODUCT": "Seleccione una unidad de medida",
     "PLACEHOLDER_ERROR_DIAS_PRODUCT": "La alerta amarilla no puede ser menor o igual a la alerta naranja",
-    "PLACEHOLDER_ERROR_DIAS_NULOS": "La alerta amarilla y la alerta naranja deben ser mayor a 0",
+    "PLACEHOLDER_ERROR_DIAS_NULOS": "La alerta amarilla y la alerta naranja deben ser mayores a 0",
     "PLACEHOLDER_STATUS_PRODUCT": "Seleccione un estado",
 
     "WORD_COMMENT": "Comentario",
@@ -132,16 +132,16 @@
     "SWAL_UPDATED": "¡PRODUCTO!",
     "SWAL_DELETED": "¡PRODUCTO!",
     
-    "SWAL_ARE_YOU_SURE_UPDATE": "¿Estás seguro de que deseas actualizar el producto {{product_name}}?",
-    "SWAL_ARE_YOU_SURE_DELETE": "¿Estás seguro de que deseas eliminar {{art_the}} producto{{plural}} {{product_name}}?",
+    "SWAL_ARE_YOU_SURE_UPDATE": "¿Está seguro de que desea actualizar el producto {{product_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "¿Está seguro de que desea eliminar {{art_the}} producto{{plural}} {{product_name}}?",
 
-    "CARD_TOTAL_PRODUCTS_TITLE": "Total productos",
-    "CARD_TOTAL_ACTIVED_PRODUCTS": "Total productos activos",
-    "CARD_TOTAL_SUSPENDED_PRODUCTS": "Total productos suspendidos"
+    "CARD_TOTAL_PRODUCTS_TITLE": "Total de productos",
+    "CARD_TOTAL_ACTIVED_PRODUCTS": "Total de productos activos",
+    "CARD_TOTAL_SUSPENDED_PRODUCTS": "Total de productos suspendidos"
   },
 
   "BRAND": {
-    "LEGEND_TITLE": "Datos de marca",
+    "LEGEND_TITLE": "Datos de la marca",
     "CREATE_TITLE": "Crear",
     "CREATE_SUBTITLE": "Nueva marca",
     "SEE_TITLE": "Ver",
@@ -151,24 +151,24 @@
 
     "COLUMN_ID": "ID",
     "COLUMN_BRAND_NAME": "Marca",
-    "COLUMN_TOTAL_PRODUCTS": "Total productos",
+    "COLUMN_TOTAL_PRODUCTS": "Total de productos",
 
     "LABEL_BRAND_NAME": "Marca",
 
-    "PLACEHOLDER_BRAND_NAME": "Ingresa una marca",
+    "PLACEHOLDER_BRAND_NAME": "Ingrese una marca",
 
     "SWAL_CREATED": "¡MARCA!",
     "SWAL_UPDATED": "¡MARCA!",
     "SWAL_DELETED": "¡MARCA!",
     
-    "SWAL_ARE_YOU_SURE_UPDATE": "¿Estás seguro de que deseas actualizar la marca {{brand_name}}?",
-    "SWAL_ARE_YOU_SURE_DELETE": "¿Estás seguro de que deseas eliminar {{art_the}} marca{{plural}} {{brand_name}}?",
+    "SWAL_ARE_YOU_SURE_UPDATE": "¿Está seguro de que desea actualizar la marca {{brand_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "¿Está seguro de que desea eliminar {{art_the}} marca{{plural}} {{brand_name}}?",
 
-    "CARD_TOTAL_BRANDS_TITLE": "Total marcas"
+    "CARD_TOTAL_BRANDS_TITLE": "Total de marcas"
   },
   
   "EXTENT": {
-    "LEGEND_TITLE": "Datos de medida",
+    "LEGEND_TITLE": "Datos de la medida",
     "CREATE_TITLE": "Crear",
     "CREATE_SUBTITLE": "Nueva medida",
     "SEE_TITLE": "Ver",
@@ -178,7 +178,7 @@
 
     "COLUMN_ID": "ID",
     "COLUMN_EXTENT_NAME": "Medida",
-    "COLUMN_TOTAL_EXTENT": "Total medida",
+    "COLUMN_TOTAL_EXTENT": "Total de medidas",
 
     "LABEL_EXTENT_NAME": "Medida",
 
@@ -187,10 +187,10 @@
     "SWAL_CREATED": "¡MEDIDA!",
     "SWAL_UPDATED": "¡MEDIDA!",
     "SWAL_DELETED": "¡MEDIDA!",
-    "SWAL_ARE_YOU_SURE_UPDATE": "¿Está seguro de actualizar la medida {{extent_name}}?",
-    "SWAL_ARE_YOU_SURE_DELETE": "¿Está seguro de eliminar {{art_the}} medida{{plural}} {{extent_name}}?",
+    "SWAL_ARE_YOU_SURE_UPDATE": "¿Está seguro de que desea actualizar la medida {{extent_name}}?",
+    "SWAL_ARE_YOU_SURE_DELETE": "¿Está seguro de que desea eliminar {{art_the}} medida{{plural}} {{extent_name}}?",
     
-    "CARD_TOTAL_EXTENT_TITLE": "Total medida"
+    "CARD_TOTAL_EXTENT_TITLE": "Total de medidas"
   },
 
   "SWAL_WARNING_REVERSE_CHANGE": "¡No podrás revertir esto!",

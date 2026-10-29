@@ -4,7 +4,7 @@
   "PAGE_EXPIRATION_TITLE": "Vencimiento", 
   "PAGE_EXPIRATION_SUBTITLE": "Aviso: Alerta temprana de vencimiento", 
   "PAGE_STOCK_TITLE": "Bodega", 
-  "PAGE_STOCK_SUBTITLE": "Aviso: Alerta temprana de limite", 
+  "PAGE_STOCK_SUBTITLE": "Aviso: Alerta temprana de límite", 
 
   "MODULE_TITLE": "Alertas",
 
@@ -34,8 +34,8 @@
   },
 
   "OPTION_STOCK": {
-    "ITEM_ON_GREEN_ALERT": "Aun cuenta con stock disponible",
-    "ITEM_ON_YELLOW_ALERT": "Está al limite de su stock",
+    "ITEM_ON_GREEN_ALERT": "Aún cuenta con stock disponible",
+    "ITEM_ON_YELLOW_ALERT": "Está al límite de su stock",
     "ITEM_ON_ORANGE_ALERT": "Pedir ya, bajo el mínimo",
     "ITEM_ON_RED_ALERT": "Stock agotado"
   }
